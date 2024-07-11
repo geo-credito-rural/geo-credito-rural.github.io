@@ -1,0 +1,37 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_emitente:
+
+Categoria de Emitente
+=====================
+
+
+A tabela ``categoriaemitente`` contém a categorização do beneficiário do crédito ou do termo de adesão ao Proagro. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:categoriaemitente>`.
+
+
+.. table:: categoriaemitente.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:categoriaemitente
+
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | nome                    | tipo     | descrição                                             |
+    +=========+=========================+==========+=======================================================+
+    | **PK**  | cd_categ_emitente       | char(4)  | Código da categoria do emitente                       |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | descricao               | text     | Descrição do emitente                                 |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | data_inicio             | date     | Início de validade da categoria do emitente           |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | data_fim                | date     | Fim de validade da categoria do emitente              |
+    +---------+-------------------------+----------+-------------------------------------------------------+ 
+    |         | valor_limite            | numeric  | Valor limite para o emitente                          |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | area_maxima             | numeric  | Área máxima permissível ao beneficiário               |
+    +---------+-------------------------+----------+-------------------------------------------------------+ 
+
+
+A coluna ``cd_categ_emitente`` é a chave primária dessa tabela e a coluna ``descricao`` indica a classificação do produtor quanto à área de sua propriedade, podendo ser classificado como *pequeno*, *médio* ou *grande* produtor rural, por exemplo.
+
+

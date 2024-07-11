@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.2.11. Avaliação da Forma das Glebas &mdash; Curso Proagro</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://curso-proagro.github.io/sicor/microdados/glebas-forma.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="3.2.12. Pedidos de cobertura do Proagro (COP)" href="pedidos-cobertura-proagro.html" />
+    <link rel="prev" title="3.2.10. Verificação Topológica das Geometrias das Glebas" href="glebas-topologia.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Panoptes
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. Acesso e Análise dos Dados do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../preparacao-base-dados.html">3.1. Preparação da Base de Dados Sicor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="empreendimentos.html">3.2.1. Empreendimentos de Contratos de Crédito Rural</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifs.html">3.2.2. Instituições Financeiras (IFs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instrumento-credito.html">3.2.3. Instrumento de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emitente.html">3.2.4. Categoria de Emitente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fontes-recursos.html">3.2.5. Fontes de Recursos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seguro.html">3.2.6. Garantia do Empreendimento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.2.7. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="operacoes.html">3.2.8. Operações Contratadas com Recursos Públicos e Privados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glebas.html">3.2.9. Glebas de Operações Contratadas com Recursos Públicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.2.10. Verificação Topológica das Geometrias das Glebas</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.11. Avaliação da Forma das Glebas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pedidos-cobertura-proagro.html">3.2.12. Pedidos de cobertura do Proagro (COP)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.3. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analises.html">3.4. Análise da Qualidade dos Dados do Sicor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Terminologia</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../terminologia.html">Terminologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../licenca.html">Licença</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Agradecimentos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../agradecimentos.html">Agradecimentos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Panoptes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>Acesso e Análise dos Dados do Sicor</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2.11. </span>Avaliação da Forma das Glebas</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="glebas-topologia.html" class="btn btn-neutral float-left" title="3.2.10. Verificação Topológica das Geometrias das Glebas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="pedidos-cobertura-proagro.html" class="btn btn-neutral float-right" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="avaliacao-da-forma-das-glebas">
+<span id="sec-sicor-microdados-glebas-forma"></span><h1><span class="section-number">3.2.11. </span>Avaliação da Forma das Glebas<a class="headerlink" href="#avaliacao-da-forma-das-glebas" title="Link permanente para este cabeçalho"></a></h1>
+<p>Considerando apenas a forma das glebas, é possível calcular métricas que podem revelar características comuns entre as regiões. Nessa seção, vamos criar novos atributos para a tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> para realizar estudos das formas das glebas. As novas colunas que serão introduzidas na tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> são:</p>
+<ul class="open">
+<li><p><strong>area_gleba:</strong> Coluna numérica com a área da gleba em m<sup>2</sup>. Para computar a área será usada a função <code class="docutils literal notranslate"><span class="pre">ST_Area</span></code>. No entanto, será necessário transformar o SRS dos polígonos das glebas do EPSG:4674 para um SRS que possa ser possível computar a área em metros.</p></li>
+<li><p><strong>perimetro_gleba:</strong> Coluna numérica com o perímetro da gleba em metros. Para computar o perímetro será usada a função <code class="docutils literal notranslate"><span class="pre">ST_Perimeter</span></code>. Assim como no cálculo de área, para que essa função produza um valor em metros é necessário transformar o SRS usado nas coordenadas da geometria para um SRS que permita computar distâncias em metros.</p></li>
+<li><p><strong>area_menor_retangulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor retângulo envolvente da geometria. Esse retângulo não necessariamente possui os lados paralelos aos eixos <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. Para computar esse retângulo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_OrientedEnvelope</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.12a</span></a>).</p></li>
+<li><p><strong>area_menor_circulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor círculo envolvente da geometria. Para computar esse círculo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_MinimumBoundingCircle</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.12b</span></a>).</p></li>
+</ul>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-glebas-forma-formas-geometricas" style="width: 100%">
+<caption><span class="caption-number">Tabela 3.12 - </span><span class="caption-text">Formas geométricas.</span><a class="headerlink" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><strong>( a )</strong> Menor retângulo envolvente</p></td>
+<td class="center-align"><p><strong>( b )</strong> Menor círculo envolvente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><img alt="fig:sicor:microdados:glebas-forma:menor-retangulo-envolvente" src="../../_images/menor-retangulo-envolvente.png" /></p></td>
+<td class="center-align"><p><img alt="fig:sicor:microdados:glebas-forma:menor-circulo-envolvente" src="../../_images/menor-circulo-envolvente.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para computar áreas e perímetros utlizaremos a projeção <em>Albers Equal Area</em> e o datum <em>WGS84</em>. Nas geotecnologias apoiadas na biblioteca <em>Proj</em>, uma string que podemos usar é a seguinte:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>+proj=aea +lon_0=-58.1835937 +lat_1=-36.5394082 +lat_2=-3.0767001 +lat_0=-1 9.8080541 +datum=WGS84 +units=m +no_defs
+</pre></div>
+</div>
+<p>No PostgreSQL com a extensão PostGIS</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">spatial_ref_sys</span><span class="w"> </span><span class="p">(</span><span class="n">srid</span><span class="p">,</span><span class="w"> </span><span class="n">proj4text</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;+proj=aea +lat_1=-2 +lat_2=-22 +lat_0=-12 +lon_0=-54 +x_0=5000000 +y_0=10000000 +ellps=GRS80 +units=m +no_defs &#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>O <a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-novas-colunas"><span class="std std-numref">Trecho de Código 3.17</span></a> mostra como criar as novas colunas.</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-novas-colunas">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.17 - </span><span class="caption-text">Novas colunas para estudo das formas das glebas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-novas-colunas" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sicor_glebas</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">perimetro_gleba</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_menor_retangulo_envolvente</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_menor_circulo_envolvente</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="p">;</span>
+
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">SET</span>
+<span class="w">    </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">perimetro_gleba</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_Perimeter</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">area_menor_retangulo_envolvente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">ST_OrientedEnvelope</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="mi">100000</span><span class="p">)),</span>
+<span class="w">    </span><span class="n">area_menor_circulo_envolvente</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">ST_MinimumBoundingCircle</span><span class="p">(</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="mi">100000</span><span class="p">));</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sicor_glebas</span>
+<span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">perimetro_gleba</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_menor_retangulo_envolvente</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">area_menor_circulo_envolvente</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Vamos realizar um estudo considerando somente as glebas do ano de 2022 para a região destacada em laranja no mapa mostrado na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil"><span class="std std-numref">Figura 3.2</span></a>, que corresponde às regiões norte do Rio Grande do Sul (RS), oeste de Santa Catarina (SC) e oeste do Paraná (PR). Essa região contém 436.356 geometrias de glebas no ano de 2022.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil">
+<a class="reference internal image-reference" href="../../_images/area-estudo-sul-brasil.png"><img alt="Localização da área de estudo" src="../../_images/area-estudo-sul-brasil.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.2 - </span><span class="caption-text">Localização da área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Para desenvolver o estudo, vamos criar uma tabela auxiliar denominada <code class="docutils literal notranslate"><span class="pre">glebas_area_estudo</span></code> contendo as geometrias das glebas de 2022 na região de interesse. Para isso, iremos construir uma consulta envolvendo as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> e <code class="docutils literal notranslate"><span class="pre">area_estudo</span></code> que utiliza o operador <code class="docutils literal notranslate"><span class="pre">ST_Within</span></code> para estabelecer o relacionamento espacial entre as geometrias das duas tabelas.</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-glebas-roi">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.18 - </span><span class="caption-text">Seleção de glebas da área de interesse.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-glebas-roi" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="w"> </span><span class="k">AS</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="p">.</span><span class="o">*</span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="p">,</span>
+<span class="w">           </span><span class="n">area_estudo</span>
+<span class="w">     </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">sicor_glebas</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">area_estudo</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">       </span><span class="k">AND</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">;</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">glebas_area_estudo_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">gid</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">glebas_area_estudo_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<p>No PostgreSQL podemos utilizar a função de agregação <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> para encontrar limiares de áreas que serão usados para dividir as geometrias em três grupos. A consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-area"><span class="std std-numref">Trecho de Código 3.19</span></a> mostra como computar esses valores em hectares.</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-limiares-area">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.19 - </span><span class="caption-text">Limiares de áreas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-limiares-area" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="o">/</span><span class="mi">10000</span><span class="p">.</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_1</span><span class="p">,</span>
+<span class="w">       </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="o">/</span><span class="mi">10000</span><span class="p">.</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_2</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>A saída dessa consulta mostra que temos 33% das glebas com área menor que 3.16 hectares, 33% com área entre 3.16 hectares e 8.02 hectares, e 33% glebas com mais de 8.02 hectares.</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     limite_1     |     limite_2
+------------------+------------------
+ 3.16978592383658 | 8.02600913703553
+(1 row)
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area"><span class="std std-numref">Figura 3.3</span></a> (preparada no QGIS) apresenta as glebas na área de estudo divididas em grupos em função dos limiares de áreas já calculados. Neste caso, a visualização dos três grupos (verde, amarelo e vermelho, ordenados do maior para o menor) revela uma concentração de glebas menores no norte do RS e no oeste de SC.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-gleba-tamanho-area">
+<a class="reference internal image-reference" href="../../_images/gleba-tamanho-area.png"><img alt="Tamanho das glebas na área de estudo" src="../../_images/gleba-tamanho-area.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.3 - </span><span class="caption-text">Tamanho das glebas na área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Outra métrica que pode ser empregada é a relação (divisão numérica) entre perímetro e área. Novamente, podemos obter três grupos com ajuda da função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-par"><span class="std std-numref">Trecho de Código 3.20</span></a>).</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-limiares-par">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.20 - </span><span class="caption-text">Limiares da relação perímetro e área das glebas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-limiares-par" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">perimetro_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_1</span><span class="p">,</span>
+<span class="w">       </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">perimetro_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_2</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>       limite_1       |      limite_2
+----------------------+---------------------
+ 0.019042276722803557 | 0.02964556228447662
+(1 row)
+</pre></div>
+</div>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes"><span class="std std-numref">Figura 3.4</span></a> detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente pequena em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes">
+<a class="reference internal image-reference" href="../../_images/detalhe-metrica-perimetroarea-3classes.png"><img alt="Relação entre o perímetro e a área das glebas" src="../../_images/detalhe-metrica-perimetroarea-3classes.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.4 - </span><span class="caption-text">Relação entre o perímetro e a área das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A próxima métrica que podemos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor retângulo envolvente. Novamente, vamos obter os limiares de três grupos com a função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-square"><span class="std std-numref">Trecho de Código 3.21</span></a>).</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-limiares-square">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.21 - </span><span class="caption-text">Limiares da relação área da gleba e área do menor retângulo envolvente.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-limiares-square" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_menor_retangulo_envolvente</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_1</span><span class="p">,</span>
+<span class="w">       </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_menor_retangulo_envolvente</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_2</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      limite_1      |      limite_2
+--------------------+--------------------
+ 0.5974062999419789 | 0.7323108252914907
+(1 row)
+</pre></div>
+</div>
+<p>No exemplo da <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes"><span class="std std-numref">Figura 3.5</span></a>, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são irregulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa área, devido à topografia do terreno, glebas de formato irregular podem ser frequentes.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes">
+<a class="reference internal image-reference" href="../../_images/detalhe-metrica-retangularfit-3classes.png"><img alt="Relação entre a forma das glebas e um retângulo" src="../../_images/detalhe-metrica-retangularfit-3classes.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.5 - </span><span class="caption-text">Relação entre a forma das glebas e um retângulo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A última métrica que iremos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor círculo envolvente. Novamente, vamos obter os limiares de três grupos com a função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-circle"><span class="std std-numref">Trecho de Código 3.22</span></a>).</p>
+<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-forma-sql-limiares-circle">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.22 - </span><span class="caption-text">Limiares da relação área da gleba e área do menor círculo envolvente.</span><a class="headerlink" href="#code-sicor-microdados-glebas-forma-sql-limiares-circle" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">1</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_menor_circulo_envolvente</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_1</span><span class="p">,</span>
+<span class="w">       </span><span class="n">percentile_cont</span><span class="p">(</span><span class="mi">2</span><span class="p">.</span><span class="o">/</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="n">WITHIN</span><span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_menor_circulo_envolvente</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">limite_2</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      limite_1       |      limite_2
+---------------------+---------------------
+ 0.30019149954220564 | 0.42747503263000236
+(1 row)
+</pre></div>
+</div>
+<p>Na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior"><span class="std std-numref">Figura 3.6</span></a> são mostradas apenas as glebas com os maiores valores deste atributo. Isso acaba apresentando a localização das glebas redondas, o que pode ser um indicativo de pivôs centrais (irrigação).</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior">
+<a class="reference internal image-reference" href="../../_images/metrica-ellipticfit-1p-superior.png"><img alt="Relação entre a forma das glebas e um círculo" src="../../_images/metrica-ellipticfit-1p-superior.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.6 - </span><span class="caption-text">Relação entre a forma das glebas e um círculo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="glebas-topologia.html" class="btn btn-neutral float-left" title="3.2.10. Verificação Topológica das Geometrias das Glebas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="pedidos-cobertura-proagro.html" class="btn btn-neutral float-right" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f7071cf6670>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

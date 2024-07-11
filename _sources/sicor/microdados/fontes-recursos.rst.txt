@@ -1,0 +1,67 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_fontes_recursos:
+
+Fontes de Recursos
+==================
+
+
+A tabela ``fonterecursos`` contém a listagem das fontes de recursos públicos e privados utilizados para financiar as operações de crédito rural. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:fonterecursos>`.
+
+
+.. table:: fonterecursos.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:fonterecursos
+
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | nome              | tipo    | descrição                                             |
+    +=========+===================+=========+=======================================================+
+    | **PK**  | cd_fonte_recurso  | char(4) | Código da fonte de recursos                           |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | descricao         | text    | Descrição da fonte de recursos                        |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | data_inicio       | date    | Início de validade da fonte de recursos               |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | data_fim          | date    | Fim de validade da fonte de recursos                  |
+    +---------+-------------------+---------+-------------------------------------------------------+
+
+
+.. note::
+
+    Os dados das fontes de recursos públicos e privados estão disponíveis no arquivo `FonteRecursos.csv <https://www.bcb.gov.br/htms/sicor/FonteRecursos.csv>`__.
+
+
+.. note::
+
+    O Banco Central do Brasil disponibiliza um subconjunto dessa tabela contendo apenas as fontes de recursos públicos (`FonteRecursosPublicos.csv <https://www.bcb.gov.br/htms/sicor/FonteRecursosPublicos.csv>`__). Isso possibilita a discriminação dos contratos que utilizaram recursos públicos na tabela ``sicor_operacao_basica_estado`` (veja a Seção :numref:`%s <sec_sicor_microdados_operacoes>`).
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Recuperar as fontes de recursos públicos.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM fonterecursospublicos;
+
+
+        .. tab:: Python
+
+            .. code-block:: python
+
+                import sicordb
+
+                recursos = sicordb.fonte_recursos_publicos()

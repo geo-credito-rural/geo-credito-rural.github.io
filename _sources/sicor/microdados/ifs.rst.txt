@@ -1,0 +1,45 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_ifs:
+
+Instituições Financeiras (IFs)
+==============================
+
+
+A tabela ``ifssicor`` contém os registros de instituições financeiras (IFs), isto é, bancos e cooperativas de crédito do Sicor. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:ifssicor>`.
+
+
+.. table:: ifssicor.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:ifssicor
+
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | nome                    | tipo     | descrição                                             |
+    +=========+=========================+==========+=======================================================+
+    | **PK**  | cnpj_if                 | char(8)  | CNPJ do concedente do crédito                         |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | nome_if                 | text     | Nome do concedente do crédito                         |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | segmento_if             | text     | Classificação da IF quanto a natureza jurídica        |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    
+
+A coluna ``nome_if`` contém o nome da instituição financeira concedente do crédito e a coluna ``segmento_if`` contém a sua classificação quanto a sua natureza jurídica, podendo ser classifcado como *público*, *privado* ou *cooperativa de crédito*, por exemplo.
+
+Consultas
+---------
+
+.. tabs::
+
+    .. tab:: SQL
+
+        .. code-block:: sql
+            :caption: Classificação da instituição financeira quanto a natureza jurídica.
+            :name: code:sicor:microdados:ifs:sql:naturezajuridica
+
+            SELECT DISTINCT segmento_if AS natureza,
+                   COUNT(*) AS numero_if
+            FROM ifssicor
+            GROUP BY segmento_if 

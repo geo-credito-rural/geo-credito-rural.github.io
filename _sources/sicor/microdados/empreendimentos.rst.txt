@@ -1,0 +1,119 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_empreendimentos:
+
+Empreendimentos de Contratos de Crédito Rural
+=============================================
+
+
+Nos microdados do Sicor, os objetos passíveis de serem contratados nas operações de crédito rural são denominados de **empreendimentos**. A listagem completa dos tipos de empreendimentos está disponível no sítio do Banco Central no arquivo `Empreendimento.csv <https://www.bcb.gov.br/htms/sicor/Empreendimento.csv>`__. Esse arquivo possui a estrutura mostrada :numref:`Tabela %s <tbl:sicor:microdados:empreendimento>`.
+
+
+.. table:: Estrutura do arquivo contendo a lista dos possíveis empreendimentos no Sicor.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:empreendimento
+
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | nome                    | tipo     | descrição                                             |
+    +=========+=========================+==========+=======================================================+
+    | **PK**  | cd_empreendimento       | char(14) | Código do empreendimento                              |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | data_inicio             | date     | Início de validade do empreendimento                  |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | data_fim                | date     | Fim de validade do empreendimento                     |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | finalidade              | text     | Finalidade do empreendimento                          |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | atividade               | text     | Atividade do empreendimento                           |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | modalidade              | text     | Modalidade do empreendimento                          |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | produto                 | text     | Produto do empreendimento                             |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | variedade               | text     | Variedade do empreendimento                           |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | cesta                   | text     | Cesta de safras do empreendimento                     |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | zoneamento              | text     | Zoneamento do empreendimento                          |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | unidade_medida          | text     | Unidade de medida do empreendimento                   |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | unidade_medida_previsao | text     | Unidade de medida de previsão de produção             |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | consorcio               | text     | Consórcio do empreendimento                           |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | cedula_mae              | integer  | Indica se o empreendimento refere-se a uma cédula mãe |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | cd_tipo_cultura         | integer  | Código do tipo de cultura do empreendimento           |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+
+
+A coluna ``produto`` contém valores como:
+
+.. rst-class:: open
+
+- **tipos de cultura:** soja, milho, café, algodão, feijão, arroz, entre outros;
+
+- **aquisição de insumos:** adubo, calagem, agrotóxico, entre outros;
+
+- **máquinas e implementos:** trator, caminhão, colheitadeira, gerador, avião, drone, aerador, entre outros;
+
+- **benfeitorias:** armazém, depósito, silo, galpão, paiol, estufa, cerca, entre outros;
+
+- **animais:** bovino, suino, ovino, ave, alevino, abelha, entre outros;
+
+- **atividades:** agroartesanato, agroindústria, avicultura, apicultura, algicultura (algas), entre outros;
+
+- **serviços:** reforma de máquina, perfuração de poço, certificação florestal, colheita, destoca e limpeza de floresta plantada, entre outros.
+
+
+A coluna ``finalidade`` apresenta valores como comercialização, custeio, industrialização e investimento.
+
+
+A coluna ``atividade`` indica se o empreendimento é agrícola ou pecuário.
+
+
+A coluna ``modalidade`` indica empreendimentos do tipo lavoura, estocagem, pastagem, bovinocultura, entre outros.
+
+
+A interpretação de um empreendimento depende, principalmente, da combinação das colunas ``finalidade``, ``atividade``, ``modalidade`` e ``produto``.
+
+
+A coluna ``cd_empreendimento`` contém um código único para cada empreendimento, sendo a chave primária da tabela. Essa coluna é utilizada para relacionar os empreendimentos aos contratos da tabela ``sicor_operacao_basica_estado``.
+
+
+.. note::
+
+    Alguns códigos da tabela ``empreendimento`` possuem relação com os códigos da cultura presentes nos dados do `Zarc <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__ (Zoneamento Agrícola de Risco Climático, veja a Seção :numref:`%s <sec_sicor_zarc>`).
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Recuperar os empreendimentos de custeio de lavoura de soja.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM empreendimento
+                 WHERE finalidade = 'custeio' AND modalidade = 'lavoura' AND produto = 'soja';
+
+
+        .. tab:: Python
+
+            .. code-block:: python
+
+                import sicor
+
+                empreendimentos = sicor.empreendimento(finalidade='custeio', modalidade='lavoura', produto='soja')

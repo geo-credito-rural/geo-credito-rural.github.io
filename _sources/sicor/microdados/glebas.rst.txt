@@ -1,0 +1,441 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_glebas:
+
+Glebas de Operações Contratadas com Recursos Públicos
+=====================================================
+
+
+Como parte dos microdados do Sicor disponibilizados publicamente, encontram-se as glebas associadas às operações de crédito contratadas com recursos públicos. As figuras mostradas na :numref:`Tabela %s <tbl:sicor:microdados:mapa-glebas-mg-2022>` são um recorte temporal (2022) e espacial (Minas Gerais e Triângulo Mineiro) dessas glebas.
+
+
+.. |fig:sicor:microdados:glebas:mapa-glebas-mg-2022| image:: ../../img/sicor/microdados/glebas/mapa-glebas-mg-2022.png
+
+
+.. |fig:sicor:microdados:glebas:mapa-glebas-triangulo-mg-2022| image:: ../../img/sicor/microdados/glebas/mapa-glebas-triangulo-mg-2022.png
+
+
+.. table:: Glebas das operações contratadas com recursos públicos do ano de 2022 localizadas no Estado de Minas Gerais.
+    :widths: 50 50
+    :width: 100%
+    :header-alignment: center center
+    :column-alignment: center center
+    :align: center
+    :name: tbl:sicor:microdados:mapa-glebas-mg-2022
+
+    +---------------------------------------------------+-------------------------------------------------------------+
+    | |fig:sicor:microdados:glebas:mapa-glebas-mg-2022| | |fig:sicor:microdados:glebas:mapa-glebas-triangulo-mg-2022| |
+    +---------------------------------------------------+-------------------------------------------------------------+
+
+
+Esses microdados são disponibilizados no sítio do Banco Central em arquivos no formato CSV, particionados por ano, entre 2013 e 2024, como mostrado abaixo:
+
+- `SICOR_GLEBAS_WKT_2013.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2013.gz>`__
+- `SICOR_GLEBAS_WKT_2014.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2014.gz>`__
+- `SICOR_GLEBAS_WKT_2015.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2015.gz>`__
+- `SICOR_GLEBAS_WKT_2016.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2016.gz>`__
+- `SICOR_GLEBAS_WKT_2017.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2017.gz>`__
+- `SICOR_GLEBAS_WKT_2018.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2018.gz>`__
+- `SICOR_GLEBAS_WKT_2019.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2019.gz>`__
+- `SICOR_GLEBAS_WKT_2020.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2020.gz>`__
+- `SICOR_GLEBAS_WKT_2021.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2021.gz>`__
+- `SICOR_GLEBAS_WKT_2022.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2022.gz>`__
+- `SICOR_GLEBAS_WKT_2023.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2023.gz>`__
+- `SICOR_GLEBAS_WKT_2024.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2024.gz>`__
+
+
+Para armazenar todos esses dados, podemos criar uma tabela denominada ``sicor_glebas_wkt`` com a estrutura mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_glebas_wkt>`.
+
+
+.. table:: sicor_glebas_wkt.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_glebas_wkt
+
+    +------------+--------------+---------+-------------------------------------------------------+
+    |            | nome         | tipo    | descrição                                             |
+    +============+==============+=========+=======================================================+
+    | **PK**, FK | ref_bacen    | integer | Número mascarado de referência do contrato            |
+    +------------+--------------+---------+-------------------------------------------------------+
+    | **PK**, FK | nu_ordem     | integer | Número da destinação/finalidade dentro do contrato    |
+    +------------+--------------+---------+-------------------------------------------------------+
+    | **PK**     | nu_indice    | integer | Identificador da gleba dentro da operação             |
+    +------------+--------------+---------+-------------------------------------------------------+
+    |            | gt_geometria | text    | Geometria da gleba no formato Well-Know Text (WKT)    |
+    +------------+--------------+---------+-------------------------------------------------------+
+
+
+No Sicor, as glebas são representadas textualmente utilizando uma notação conhecida por **Well-Know Text** ou **WKT**, que permite representar elementos geométricos tais como geometrias elementares (pontos, linhas e polígonos) e coleções homogêneas de geometrias (coleção de pontos, coleção de linhas e coleção de polígonos), conforme pode ser visto na :numref:`Tabela %s <tbl:sicor:microdados:glebas:wkt:geom>`.
+
+
+.. |fig:sicor:microdados:glebas:wkt-pt-lin-pol| image:: ../../img/sicor/microdados/glebas/wkt-pt-lin-pol.png
+
+
+.. |fig:sicor:microdados:glebas:wkt-mpt-mlin| image:: ../../img/sicor/microdados/glebas/wkt-mpt-mlin.png
+
+
+.. |fig:sicor:microdados:glebas:wkt-mpoly| image:: ../../img/sicor/microdados/glebas/wkt-mpoly.png
+
+
+.. table:: Exemplos de geometrias.
+    :widths: 33 33 33
+    :width: 100%
+    :header-alignment: left left left
+    :column-alignment: center center center
+    :align: center
+    :name: tbl:sicor:microdados:glebas:wkt:geom
+
+    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
+    |  ( a ) Geometrias Simples                    | ( b ) Coleções Pontos e Linhas             | ( c ) Coleções Polígonos                |
+    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
+    | |fig:sicor:microdados:glebas:wkt-pt-lin-pol| | |fig:sicor:microdados:glebas:wkt-mpt-mlin| | |fig:sicor:microdados:glebas:wkt-mpoly| |
+    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
+
+
+Na notação WKT, o ponto de coordenadas :math:`x = 1` e :math:`y = 8` mostrado na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>`, é descrito pela seguinte cadeia de caracteres ou *string*:
+
+
+.. code-block:: sql
+
+    'POINT(1 8)'
+
+
+A linha definida a partir de interpolações lineares de três vértices consecutivos mostrada na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>` é descrita pela seguinte string:
+
+
+.. code-block:: sql
+
+    'LINESTRING(1 5, 3 6, 4 5)'
+
+
+O polígono simples, formado por um anel externo e um anel interno, mostrado na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>` é descrito pela seguinte string:
+
+
+.. code-block:: sql
+
+    'POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) )'
+
+
+A coleção de pontos mostrada na :numref:`Tabela %sb <tbl:sicor:microdados:glebas:wkt:geom>`, é descrita por:
+
+
+.. code-block:: sql
+
+    'MULTIPOINT(1 8, 3 7, 4 9, 2 9)'
+
+
+A coleção de linhas (:numref:`Tabela %sb <tbl:sicor:microdados:glebas:wkt:geom>`), é descrita por:
+
+
+.. code-block:: sql
+
+    'MULTILINESTRING( (1 2, 3 3, 4 2), (4 3, 6 2) )'
+
+
+Finalmente, a coleção de polígonos (:numref:`Tabela %sc <tbl:sicor:microdados:glebas:wkt:geom>`), é descrita por:
+
+
+.. code-block:: sql
+
+    'MULTIPOLYGON( ( (1 4, 2 6, 4 5, 3 4, 1 4) ),
+                   ( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) ) )'
+
+
+A coluna ``gt_geometria``, portanto, pode conter elementos geométricos descritos no formato WKT. As geometrias no Sicor são codificadas em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
+
+
+.. tip::
+
+    As geotecnologias que utilizam códigos EPSG para referenciar **sistemas de referecial espacial (SRS)** definem o código EPSG:4674 para coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
+
+
+As colunas ``ref_bacen`` e ``nu_ordem`` relacionam com as respectivas colunas da tabela ``sicor_operacao_basica_estado``, ligando a geometria de uma gleba à operação de contratação de crédito (veja a Seção :numref:`%s <sec_sicor_microdados_operacoes>`).
+
+
+A organização dos dados nessa tabela de glebas permite que mais de uma geometria seja associada a uma mesma operação, por isso a coluna ``nu_indice`` faz parte da chave primária da tabela.
+
+
+Logo, o comando SQL para definição dessa tabela no PostgreSQL é apresentado no :numref:`Trecho de Código %s <code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt>`.
+
+
+.. code-block:: sql
+    :caption: Criação da tabela ``sicor_glebas_wkt``.
+    :name: code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt
+
+    --
+    -- Tabela: Glebas de operações em formato WKT.
+    --
+    CREATE TABLE sicor_glebas_wkt
+    (
+      ref_bacen     INTEGER NOT NULL,
+      nu_ordem      INTEGER NOT NULL,
+      nu_indice     INTEGER NOT NULL,
+      gt_geometria  TEXT NOT NULL
+    );
+
+    --
+    -- Definição de chave primária formada pelos campos ref_bacen, nu_ordem e nu_indice.
+    --
+    ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
+
+    --
+    -- Definição de integridade referencial entre as sicor_operacao_basica_estado e tabelas sicor_glebas_wkt
+    --
+    ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_ref_bacen_fkey
+        FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
+            ON UPDATE CASCADE
+            ON DELETE NO ACTION;
+
+
+.. tip::
+
+    O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando permite lidar com arquivos texto, CSV e binários. Esse comando de importação e exportação de dados é usado pelo meta-comando ``\copy`` dos aplicativos *psql* e *pgAdmin*.
+
+
+    Para carregar o arquivo CSV contendo as glebas do ano de 2022 para a tabela ``sicor_glebas_wkt``, pode ser usado o seguinte comando:
+
+
+    .. code-block:: psql
+
+        \copy sicor_glebas_wkt FROM '/dados/sicor_glebas_wkt_2022.csv'
+                               WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
+
+
+A representação WKT trata-se apenas de um texto e como tal, não permite realizar operações geométricas diretamente, como o cálculo de área e de perímetro. Logo, o formato WKT usado pelo Sicor na representação das glebas precisa ser transformado em um tipo de dado do PostgreSQL que permita realizar essas operações. O tipo **PostGIS Geometry** permite representar geometrias no **Plano Cartesiano** e pode ser construído a partir de um texto WKT através de uma operação de **coerção de tipo**, que consiste na transformação da string WKT em um objeto geométrico do PostGIS utilizando o operador de **cast** ``::``. Por exemplo, para converter um polígono representado em WKT para uma geometria do PostGIS do tipo *polygon* associado ao *SRS 4674*, podemos fazer:
+
+
+.. code-block:: sql
+
+    SELECT 'POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) )'::geometry(POLYGON, 4674);
+
+
+O resultado do comando acima é uma geometria no formato binário do PostGIS (EWKB) que é apresentado na forma de uma string codificada em hexadecimal (HEXEWKB):
+
+
+.. code-block:: text
+
+                     geometry
+    ----------------------------------------------------------------------------------------------
+     0103000020421200000200000005000000000000000000F03F00000000...00000000000008400000000000000040
+    (1 row)
+
+
+O tipo PostGIS Geometry suporta diversas operações, entre elas:
+
+.. rst-class:: open
+
+- **Entrada e Saída:** ``ST_GeomFromText``, ``ST_AsWKT``, ``ST_AsGeoJSON``.
+
+- **Propriedades:** ``ST_GeometryType``, ``ST_IsSimple``, ``ST_Envelope``, ``ST_Zmflag``.
+
+- **Métricas:** ``ST_Area``, ``ST_Perimeter``, ``ST_Distance``.
+
+- **Relacionamentos espaciais ou relacionamentos topológicos:**  ``ST_Contains``, ``ST_Within``, ``ST_Covers``, ``ST_CoveredBy` , ``ST_Crosses``, ``ST_Overlaps``, ``ST_Equals``, ``ST_Disjoint``, ``ST_Intersects``.
+
+- **Conjunto:** ``ST_Intersection``, ``ST_Union`` ``ST_Difference``, ``ST_SymDifference``.
+
+- **Construções geométricas:** ``ST_Buffer``, ``ST_Centroid``, ``ST_PointOnSurface``,  ``ST_GeneratePoints``, ``ST_MinimumBoundingCircle``, ``ST_OrientedEnvelope``.
+
+
+Para ilustrar o uso do tipo PostGIS Geometry, vamos construir uma consulta SQL que compute o total de geometrias de cada tipo (:numref:`Trecho de Código %s <code:sicor:microdados:glebas:sql:tipos-geometricos>`). Para isso, iremos transformar o texto WKT da coluna ``gt_geometria`` em um objeto geométrico e, em seguida, utilizar a função ``ST_GeometryType`` para determinar o seu tipo.
+
+
+.. code-block:: sql
+    :caption: Tipos geométricos das glebas.
+    :name: code:sicor:microdados:glebas:sql:tipos-geometricos
+
+      SELECT ST_GeometryType(gt_geometria::GEOMETRY) AS tipo_geometrico,
+             COUNT(*) AS num_geometrias
+        FROM sicor_glebas_wkt
+    GROUP BY tipo_geometrico
+    ORDER BY tipo_geometrico;
+
+
+Saída:
+
+
+.. code-block:: text
+
+     tipo_geometrico | num_geometrias
+    -----------------+----------------
+     ST_MultiPolygon |          11159
+     ST_Point        |           3940
+     ST_Polygon      |        5801274
+    (3 rows)
+
+
+Portanto, considerando todos os microdados de glebas\ [#]_, pode ser observado a existência de 5.816.381 geometrias divididas nos seguintes tipos:
+
+.. rst-class:: open
+
+- **Point:** 3.940
+- **Polygon:** 5.801.274
+- **MultiPolygon:** 11.159
+
+
+Para obter os tipos geométricos das glebas e o total desses tipos em cada ano, é necessário construir uma consulta incluindo a tabela ``sicor_operacao_basica_estado``, que se relaciona com a tabela ``sicor_glebas_wkt`` e possui a coluna ``dt_emissao`` que contém o registro das datas de contratação dos financiamentos. Portanto, esta consulta precisa utilizar as tabelas ``sicor_glebas_wkt`` e ``sicor_operacao_basica_estado``, relacionando os campos associados, ``ref_bacen`` e ``nu_ordem`` e deve usar o ano da data de contratação (``dt_emissao``) e o tipo geométrico (``ST_GeometryType``) para definir o agrupamento para a totalização dos tipos geométricos (:numref:`Trecho de Código %s <code:sicor:microdados:glebas:sql:tipos-geometricos-ano>`).
+
+
+.. code-block:: sql
+    :caption: Tipos geométricos das glebas.
+    :name: code:sicor:microdados:glebas:sql:tipos-geometricos-ano
+
+      SELECT Extract(YEAR from contratos.dt_emissao) AS ano,
+             ST_GeometryType(gt_geometria::GEOMETRY) AS tipo_geometrico,
+             COUNT(*) AS num_geometrias
+        FROM sicor_glebas_wkt AS glebas,
+             sicor_operacao_basica_estado AS contratos
+       WHERE glebas.ref_bacen = contratos.ref_bacen
+         AND glebas.nu_ordem = contratos.nu_ordem
+    GROUP BY ano, tipo_geometrico
+    ORDER BY ano, tipo_geometrico;
+
+
+A consulta acima irá retornar uma saída semelhante à mostrada abaixo:
+
+
+.. code-block:: text
+
+     ano  | tipo_geometrico | num_geometrias
+    ------+-----------------+----------------
+     2013 | ST_MultiPolygon |             63
+     2013 | ST_Polygon      |            584
+     2014 | ST_MultiPolygon |            761
+     2014 | ST_Polygon      |           1210
+     2015 | ST_MultiPolygon |           6360
+     2015 | ST_Polygon      |           2589
+     2016 | ST_MultiPolygon |           3419
+     2016 | ST_Polygon      |          87055
+     2017 | ST_MultiPolygon |            387
+     2017 | ST_Polygon      |         315406
+     2018 | ST_MultiPolygon |             28
+     2018 | ST_Point        |            182
+     2018 | ST_Polygon      |         397443
+     2019 | ST_MultiPolygon |             12
+     2019 | ST_Point        |            539
+     2019 | ST_Polygon      |         611944
+     2020 | ST_MultiPolygon |             25
+     2020 | ST_Point        |           3166
+     2020 | ST_Polygon      |         889510
+     2021 | ST_MultiPolygon |             29
+     2021 | ST_Point        |             53
+     2021 | ST_Polygon      |         991082
+     2022 | ST_MultiPolygon |             39
+     2022 | ST_Polygon      |        1073743
+     2023 | ST_MultiPolygon |             36
+     2023 | ST_Polygon      |        1131550
+     2024 | ST_Polygon      |         299158
+    (27 rows)
+
+
+Outra avaliação que podemos fazer sobre as geometrias das glebas diz respeito à dimensão de suas coordenadas, isto é, se temos geometrias 2D e 3D. A função ``ST_Zmflag`` do PostGIS retorna um código informando se a dimensão das coordenadas é 2D, 3D, 4D ou 3D-M (no caso de uma das dimensões estar associada a medidas). A consulta apresentada no :numref:`Techo de Código %s <code:sicor:microdados:glebas:sql:dimensao-geometrias>` mostra como obter essa informação.
+
+
+.. code-block:: sql
+    :caption: Tipos geométricos das glebas.
+    :name: code:sicor:microdados:glebas:sql:dimensao-geometrias
+
+      SELECT Extract(YEAR from contratos.dt_emissao) AS ano,
+             CASE WHEN ST_Zmflag(gt_geometria::GEOMETRY) = 0 THEN '2D'
+                  WHEN ST_Zmflag(gt_geometria::GEOMETRY) = 1 THEN '3D-M'
+                  WHEN ST_Zmflag(gt_geometria::GEOMETRY) = 2 THEN '3D-Z'
+                  WHEN ST_Zmflag(gt_geometria::GEOMETRY) = 3 THEN '4D'
+                  ELSE 'ERRO'
+             END AS dimensao,
+             COUNT(*) AS num_geometrias
+        FROM sicor_glebas_wkt AS glebas,
+             sicor_operacao_basica_estado AS contratos
+       WHERE glebas.ref_bacen = contratos.ref_bacen
+         AND glebas.nu_ordem = contratos.nu_ordem
+    GROUP BY ano, dimensao
+    ORDER BY ano, dimensao;
+
+
+.. code-block:: text
+
+     ano  | dimensao | num_geometrias
+    ------+----------+----------------
+     2013 | 2D       |            263
+     2013 | 3D       |            384
+     2014 | 2D       |            819
+     2014 | 3D       |           1152
+     2015 | 2D       |           6643
+     2015 | 3D       |           2306
+     2016 | 2D       |           3639
+     2016 | 3D       |          86835
+     2017 | 2D       |            518
+     2017 | 3D       |         315275
+     2018 | 2D       |             46
+     2018 | 3D       |         397607
+     2019 | 2D       |             30
+     2019 | 3D       |         612465
+     2020 | 2D       |             30
+     2020 | 3D       |         892671
+     2021 | 2D       |             41
+     2021 | 3D       |         991123
+     2022 | 2D       |             52
+     2022 | 3D       |        1073730
+     2023 | 2D       |             68
+     2023 | 3D       |        1131518
+     2024 | 3D       |         299158
+    (23 rows)
+
+
+As geometrias são formadas em alguns casos por mais de uma parte, como pode ser observado no resultado da consulta mostrada no :numref:`Techo de Código %s <code:sicor:microdados:glebas:sql:geometrias-multiparte>`.
+
+
+.. code-block:: sql
+    :caption: Tipos geométricos das glebas.
+    :name: code:sicor:microdados:glebas:sql:geometrias-multiparte
+
+      SELECT Extract(YEAR from contratos.dt_emissao) AS ano,
+             ST_GeometryType(gt_geometria::geometry) AS tipo_geometrico,
+             ST_NumGeometries(gt_geometria::geometry) AS num_partes,
+             COUNT(*) AS num_geometrias
+        FROM sicor_glebas_wkt AS glebas,
+             sicor_operacao_basica_estado AS contratos
+       WHERE glebas.ref_bacen = contratos.ref_bacen
+         AND glebas.nu_ordem = contratos.nu_ordem
+    GROUP BY ano, tipo_geometrico, num_partes
+    ORDER BY ano, tipo_geometrico, num_partes;
+
+.. code-block:: text
+
+     ano  | tipo_geometrico | num_partes | num_geometrias
+    ------+-----------------+------------+----------------
+     2013 | ST_MultiPolygon |          2 |             57
+     2013 | ST_MultiPolygon |          3 |              5
+     2013 | ST_MultiPolygon |          4 |              1
+     2013 | ST_Polygon      |          1 |            584
+     2014 | ST_MultiPolygon |          2 |            295
+     2014 | ST_MultiPolygon |          3 |             77
+     2014 | ST_MultiPolygon |          4 |             62
+     ...
+     2014 | ST_MultiPolygon |         42 |              1
+     2014 | ST_MultiPolygon |         46 |              1
+     2014 | ST_MultiPolygon |         50 |              1
+     2014 | ST_MultiPolygon |         58 |              1
+     ...
+     2021 | ST_MultiPolygon |          2 |             27
+     2021 | ST_MultiPolygon |          3 |              1
+     2021 | ST_MultiPolygon |          4 |              1
+     2021 | ST_Point        |          1 |             53
+     2021 | ST_Polygon      |          1 |         991082
+     2022 | ST_MultiPolygon |          2 |             35
+     2022 | ST_MultiPolygon |          3 |              4
+     2022 | ST_Polygon      |          1 |        1073743
+     2023 | ST_MultiPolygon |          2 |             36
+     2023 | ST_Polygon      |          1 |        1131550
+     2024 | ST_Polygon      |          1 |         299158
+    (207 rows)
+
+
+
+
+
+
+-----
+
+
+.. [#] Considerando os dados baixados em 11 de Junho de 2024.

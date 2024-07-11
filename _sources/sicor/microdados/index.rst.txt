@@ -1,0 +1,27 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados:
+
+Sicor - Tabelas e Microdados do Crédito Rural e do Proagro
+==========================================================
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./empreendimentos
+    ./ifs
+    ./instrumento-credito
+    ./emitente
+    ./fontes-recursos
+    ./seguro
+    ./programa
+    ./operacoes
+    ./glebas
+    ./glebas-topologia
+    ./glebas-forma
+    ./pedidos-cobertura-proagro
+
+

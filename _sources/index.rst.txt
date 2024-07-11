@@ -1,0 +1,73 @@
+Monitoramento de Operações de Crédito Rural por meio de Geotecnologias
+======================================================================
+
+
+Contexto e motivação do curso.
+
+
+Objetivos e organização do curso.
+
+
+Espera-se que o aluno aproveite a oportunidade no curso para ...
+
+
+| Atenciosamente,
+| Gilberto Ribeiro de Queiroz
+| Karine Reis Ferreira
+| Marcos Adami
+| Thales Körting
+|
+| São José dos Campos, 01 de Outubro de 2024
+
+
+.. toctree::
+    :hidden:
+
+    self
+
+
+.. toctree::
+    :numbered:
+    :maxdepth: 1
+    :caption: Aulas:
+
+    sql/index
+    jupyter/index
+    sicor/index
+    bases-vetoriais/index
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Terminologia
+
+    terminologia
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Referências Bibliográficas
+
+    referencias
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Informações Gerais:
+
+    licenca
+
+
+.. toctree::
+    :maxdepth: 1
+    :caption: Agradecimentos:
+
+    agradecimentos
+
+
+Índices e Tabelas
+=================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

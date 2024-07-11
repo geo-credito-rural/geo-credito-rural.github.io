@@ -1,0 +1,29 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_instrumento_credito:
+
+Instrumento de Crédito
+======================
+
+
+Instrumento de Crédito é a denominação de um instrumento específico que formaliza as operações celebradas com o Banco, compreendidos, nesse conceito, os títulos de crédito e os contratos, ao qual aderem os demais documentos a ele vinculados. Os instrumentos de crédito mais conhecidos são hipoteca, nota promissória e a duplicata. A tabela ``instrumentocredito`` contém os registros dos tipos de instrumentos de créditos utilizados no financiamento agrícola. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:instrumentocredito>`.
+
+
+.. table:: instrumentocredito.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:instrumentocredito
+
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | nome                    | tipo     | descrição                                             |
+    +=========+=========================+==========+=======================================================+
+    | **PK**  | cd_inst_credito         | char(2)  | Código de Instrumento de Crédito                      |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | descricao               | text     | Nome do concedente do Crédito                         |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    |         | sigla                   | text     | Sigla de Instrumento de Crédito                       |
+    +---------+-------------------------+----------+-------------------------------------------------------+
+    
+
+

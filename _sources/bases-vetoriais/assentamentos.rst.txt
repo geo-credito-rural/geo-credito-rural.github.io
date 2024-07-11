@@ -1,0 +1,113 @@
+.. include:: ../def.rst
+
+
+.. _sec_bases_vetoriais_assentamentos:
+
+
+Assentamentos
+=============
+
+
+O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo INCRA (Instituto Nacional de Colonização e Reforma Agrária) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
+
+
+Os agricultores que recebem o lote comprometem-se a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pela lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
+
+
+Os assentamentos utilizados nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Um sumário de todas as tabelas vetoriais e suas principais características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
+
+
+Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescentes Quilombola (TQR) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A figura abaixo apresenta a distribuição dos assentamentos no Brasil.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Recuperar o número de assentamentos.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT COUNT(*)
+                  FROM assentamentos;
+
+
+**Consulta 2.** Recuperar o número de assentamentos por estado.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT uf, count(*) 
+                  FROM assentamentos
+                  GROUP BY uf
+                  ORDER BY count(*) DESC
+
+
+**Consulta 3.** Recuperar os assentamentos que são do tipo Território Remanescentes Quilombola (TRQ).
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT id, cd_sipra, nome_proje, data_de_cr, forma_obte, descricao_ 
+                 FROM assentamentos
+                 WHERE nome_proje like '%TRQ%'
+
+
+**Consulta 4.** Recuperar informações sobre as geometrias dos assentamentos (nome da coluna, SRID e tipo geométrico).
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT * 
+                  FROM geometry_columns
+                  WHERE f_table_name = 'assentamentos'   
+
+
+**Consulta 5.** Selecionar as glebas (a partir de 2021) que tem interseção com assentamentos. 
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT gle.ano, gle.gid
+                  FROM  assentamentos as ass, sicor_glebas as gle
+                  WHERE ST_INTERSECTS(
+		              ST_Transform(ass.geom, 4674), gle.geom)
+		              AND ano > 2020
+                  ORDER BY gle.ano, gle.gid DESC
+

@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.2.8. Operações Contratadas com Recursos Públicos e Privados &mdash; Curso Proagro</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../../_static/favicon.ico"/>
+    <link rel="canonical" href="https://curso-proagro.github.io/sicor/microdados/operacoes.html" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/clipboard.min.js"></script>
+        <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
+        <script src="../../_static/translations.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../../genindex.html" />
+    <link rel="search" title="Buscar" href="../../search.html" />
+    <link rel="next" title="3.2.9. Glebas de Operações Contratadas com Recursos Públicos" href="glebas.html" />
+    <link rel="prev" title="3.2.7. Programa ou Linha de Crédito" href="programa.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Panoptes
+              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../index.html">3. Acesso e Análise dos Dados do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../preparacao-base-dados.html">3.1. Preparação da Base de Dados Sicor</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">3.2. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="empreendimentos.html">3.2.1. Empreendimentos de Contratos de Crédito Rural</a></li>
+<li class="toctree-l3"><a class="reference internal" href="ifs.html">3.2.2. Instituições Financeiras (IFs)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="instrumento-credito.html">3.2.3. Instrumento de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="emitente.html">3.2.4. Categoria de Emitente</a></li>
+<li class="toctree-l3"><a class="reference internal" href="fontes-recursos.html">3.2.5. Fontes de Recursos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="seguro.html">3.2.6. Garantia do Empreendimento</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.2.7. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">3.2.8. Operações Contratadas com Recursos Públicos e Privados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glebas.html">3.2.9. Glebas de Operações Contratadas com Recursos Públicos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.2.10. Verificação Topológica das Geometrias das Glebas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="glebas-forma.html">3.2.11. Avaliação da Forma das Glebas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="pedidos-cobertura-proagro.html">3.2.12. Pedidos de cobertura do Proagro (COP)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.3. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../analises.html">3.4. Análise da Qualidade dos Dados do Sicor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Terminologia</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../terminologia.html">Terminologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../licenca.html">Licença</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Agradecimentos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../agradecimentos.html">Agradecimentos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Panoptes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html"><span class="section-number">3. </span>Acesso e Análise dos Dados do Sicor</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3.2. </span>Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2.8. </span>Operações Contratadas com Recursos Públicos e Privados</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="programa.html" class="btn btn-neutral float-left" title="3.2.7. Programa ou Linha de Crédito" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="glebas.html" class="btn btn-neutral float-right" title="3.2.9. Glebas de Operações Contratadas com Recursos Públicos" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="operacoes-contratadas-com-recursos-publicos-e-privados">
+<span id="sec-sicor-microdados-operacoes"></span><h1><span class="section-number">3.2.8. </span>Operações Contratadas com Recursos Públicos e Privados<a class="headerlink" href="#operacoes-contratadas-com-recursos-publicos-e-privados" title="Link permanente para este cabeçalho"></a></h1>
+<p>Os microdados com os registros de operações contratadas com recursos públicos ou privados são disponibilizados no sítio do Banco Central em arquivos no formato CSV, particionados por ano, entre 2013 e 2024, como mostrado abaixo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2013.gz">SICOR_OPERACAO_BASICA_ESTADO_2013.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2014.gz">SICOR_OPERACAO_BASICA_ESTADO_2014.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2015.gz">SICOR_OPERACAO_BASICA_ESTADO_2015.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2016.gz">SICOR_OPERACAO_BASICA_ESTADO_2016.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2017.gz">SICOR_OPERACAO_BASICA_ESTADO_2017.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2018.gz">SICOR_OPERACAO_BASICA_ESTADO_2018.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2019.gz">SICOR_OPERACAO_BASICA_ESTADO_2019.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2020.gz">SICOR_OPERACAO_BASICA_ESTADO_2020.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2021.gz">SICOR_OPERACAO_BASICA_ESTADO_2021.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2022.gz">SICOR_OPERACAO_BASICA_ESTADO_2022.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2023.gz">SICOR_OPERACAO_BASICA_ESTADO_2023.gz</a></p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2024.gz">SICOR_OPERACAO_BASICA_ESTADO_2024.gz</a></p></li>
+</ul>
+<p>A tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> contém esses registros e sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-sicor-operacao-basica-estado"><span class="std std-numref">Tabela 3.7</span></a>.</p>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-operacao-basica-estado">
+<caption><span class="caption-number">Tabela 3.7 - </span><span class="caption-text">sicor_operacao_basica_estado.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-operacao-basica-estado" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>1</sub></p></td>
+<td class="left-align"><p>cnpj_if</p></td>
+<td class="left-align"><p>char(8)</p></td>
+<td class="left-align"><p>Concedente do crédito</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_emissao</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Data de emissão da operação</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_vencimento</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Data de vencimento da operação</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>2</sub></p></td>
+<td class="left-align"><p>cd_inst_credito</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Modalidade do empreendimento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>3</sub></p></td>
+<td class="left-align"><p>cd_categ_emitente</p></td>
+<td class="left-align"><p>char(4)</p></td>
+<td class="left-align"><p>Código da categoria do emitente</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>4</sub></p></td>
+<td class="left-align"><p>cd_fonte_recurso</p></td>
+<td class="left-align"><p>char(4)</p></td>
+<td class="left-align"><p>Código da fonte de recursos</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cnpj_agente_invest</p></td>
+<td class="left-align"><p>char(8)</p></td>
+<td class="left-align"><p>Concedente da operação de investimento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_estado</p></td>
+<td class="left-align"><p>char(2)</p></td>
+<td class="left-align"><p>Sigla da Unidade Federativa</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_ref_bacen_investimento</p></td>
+<td class="left-align"><p>char(11)</p></td>
+<td class="left-align"><p>Código do refbacen de investimento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>5</sub></p></td>
+<td class="left-align"><p>cd_tipo_seguro</p></td>
+<td class="left-align"><p>char(1)</p></td>
+<td class="left-align"><p>Código do tipo de seguro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>6</sub></p></td>
+<td class="left-align"><p>cd_empreendimento</p></td>
+<td class="left-align"><p>char(14)</p></td>
+<td class="left-align"><p>Código do empreendimento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>7</sub></p></td>
+<td class="left-align"><p>cd_programa</p></td>
+<td class="left-align"><p>char(4)</p></td>
+<td class="left-align"><p>Código do programa</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>8</sub></p></td>
+<td class="left-align"><p>cd_tipo_encarg_financ</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do encargo financeiro complementar</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>9</sub></p></td>
+<td class="left-align"><p>cd_tipo_irrigacao</p></td>
+<td class="left-align"><p>char(2)</p></td>
+<td class="left-align"><p>Código de tipo de irrigação</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>10</sub></p></td>
+<td class="left-align"><p>cd_tipo_agricultura</p></td>
+<td class="left-align"><p>char(1)</p></td>
+<td class="left-align"><p>Código do tipo de agricultura</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>11</sub></p></td>
+<td class="left-align"><p>cd_fase_ciclo_producao</p></td>
+<td class="left-align"><p>char(2)</p></td>
+<td class="left-align"><p>Código da fase ciclo de produção</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>12</sub></p></td>
+<td class="left-align"><p>cd_tipo_cultivo</p></td>
+<td class="left-align"><p>char(2)</p></td>
+<td class="left-align"><p>Código do tipo de cultivo</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>13</sub></p></td>
+<td class="left-align"><p>cd_tipo_intgr_consor</p></td>
+<td class="left-align"><p>char(1)</p></td>
+<td class="left-align"><p>Código do tipo de integração/consórcio</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>14</sub></p></td>
+<td class="left-align"><p>cd_tipo_grao_semente</p></td>
+<td class="left-align"><p>char(1)</p></td>
+<td class="left-align"><p>Código do tipo de grão/semente</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_aliq_proagro</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Alíquota do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_juros</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Juros do financiamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_prestacao_investimento</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor da prestação de investimento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_prev_prod</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor previsto de produção</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_produtiv_obtida</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Produtividade obtida</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_quantidade</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Quantidade</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_receita_bruta_esperada</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Receita bruta esperada</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_parc_credito</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor da parcela de crédito</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_rec_proprio</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor do recurso próprio</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_perc_risco_stn</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Percentual do risco (Secretaria do Tesouro Nacional)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_perc_risco_fundo_const</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Risco do fundo constitucional</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_rec_proprio_srv</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Garantia renda mínima (Sistema de Valores a Receber)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_area_informada</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Área empreendimento informada</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_area_financ</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>VL_AREA_INFORMADA * VL_PARC_CREDITO /
+(VL_PARC_CREDITO + VL_REC_PROPRIO)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_juros_enc_finan_posfix</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Juros do encargo financeiro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_perc_custo_efet_total</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Custo efetivo total</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_inic_plantio</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Início de plantio</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_fim_plantio</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Fim de plantio</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_inic_colheita</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Início de colheita</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_fim_colheita</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Fim de colheita</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>15</sub></p></td>
+<td class="left-align"><p>cd_subprograma</p></td>
+<td class="left-align"><p>char(4)</p></td>
+<td class="left-align"><p>Código do subprograma</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_contrato_stn</p></td>
+<td class="left-align"><p>char(13)</p></td>
+<td class="left-align"><p>Código da Secretaria do Tesouro Nacional</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_cnpj_cadastrante</p></td>
+<td class="left-align"><p>char(8)</p></td>
+<td class="left-align"><p>IF cadastrante da operação</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>16</sub></p></td>
+<td class="left-align"><p>cd_ciclo_cultivar</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do ciclo do cultivar</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>17</sub></p></td>
+<td class="left-align"><p>cd_tipo_solo</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do tipo do solo</p></td>
+</tr>
+</tbody>
+</table>
+<p>Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como <strong>ref_bacen</strong>. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> e <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cnpj_if</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">ifssicor</span></code>, permitindo relacionar a instituição concedente do crédito (veja a Seção <a class="reference internal" href="ifs.html#sec-sicor-microdados-ifs"><span class="std std-numref">3.2.2</span></a> .</p>
+<p>As colunas <code class="docutils literal notranslate"><span class="pre">dt_emissao</span></code> e <code class="docutils literal notranslate"><span class="pre">dt_vencimento</span></code> registram, respectivamente, a data em que o contrato foi realizado e o término previsto.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code>, permitindo relacionar o contrato ao tipo de instrumento de crédito (veja a Seção <a class="reference internal" href="instrumento-credito.html#sec-sicor-microdados-instrumento-credito"><span class="std std-numref">3.2.3</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_categ_emitente</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">categoriaemitente</span></code>, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (veja a Seção <a class="reference internal" href="emitente.html#sec-sicor-microdados-emitente"><span class="std std-numref">3.2.4</span></a>). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_fonte_recurso</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code>, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (veja a Seção <a class="reference internal" href="fontes-recursos.html#sec-sicor-microdados-fontes-recursos"><span class="std std-numref">3.2.5</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code>, permitindo saber se o contrato prevê algum tipo de seguro ou não (veja a Seção <a class="reference internal" href="seguro.html#sec-sicor-microdados-seguro"><span class="std std-numref">3.2.6</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a Seção <a class="reference internal" href="empreendimentos.html#sec-sicor-microdados-empreendimentos"><span class="std std-numref">3.2.1</span></a>.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_programa</span></code> indica o programa ou linha de crédito de origem dos recursos usados no financiamento (veja a Seção <a class="reference internal" href="programa.html#sec-sicor-microdados-programa"><span class="std std-numref">3.2.7</span></a>).</p>
+<section id="consultas">
+<h2><span class="section-number">3.2.8.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Qual o número de contratos de custeio de lavouras de soja ao longo dos anos?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Para se obter o número de contratos relativos ao custeio de lavouras de soja ao longo dos anos, é necessário construir uma consulta envolvendo as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> e <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code>, uma vez que a tabela <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code> contém a lista dos possíveis produtos a serem contratados nas operações de crédito.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.2 - </span><span class="caption-text">Número de contratos de custeio de lavouras de soja.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_contratos</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">empreendimento</span>
+<span class="w">           </span><span class="k">WHERE</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Saída:</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  | numero_contratos
+------+------------------
+ 2013 |           172136
+ 2014 |           183444
+ 2015 |           181770
+ 2016 |           143363
+ 2017 |           166683
+ 2018 |           154761
+ 2019 |           154298
+ 2020 |           157049
+ 2021 |           164017
+ 2022 |           184480
+ 2023 |           184417
+ 2024 |            23702
+(12 rows)
+</pre></div>
+</div>
+</div></blockquote>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicordb</span>
+
+<span class="n">contratos</span> <span class="o">=</span> <span class="n">sicordb</span><span class="o">.</span><span class="n">operacoes</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">,</span> <span class="n">produto</span><span class="o">=</span><span class="s1">&#39;soja&#39;</span><span class="p">)</span>
+
+<span class="c1"># ... processamento no Pandas com agrupamento por ano</span>
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Qual o número de operações e valor por cultura por ano?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.3 - </span><span class="caption-text">Número de operações e valor por cultura por ano.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">produto</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span><span class="p">,</span>
+<span class="w">         </span><span class="k">SUM</span><span class="p">(</span><span class="n">vl_parc_credito</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">,</span>
+<span class="w">         </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">operacoes</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operacoes</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">atividade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Saída:</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                    produto                    | num_operacoes |     valor
+------+-----------------------------------------------+---------------+----------------
+ 2013 | SOJA                                          |        175076 | 15785065346.82
+ 2013 | MILHO                                         |        198521 |  7532522363.71
+ 2013 | CAFÉ                                          |        107322 |  4726700902.76
+ 2013 | CANA-DE-AÇUCAR                                |         17112 |  3718873851.02
+ 2013 | ARROZ                                         |         15261 |  1767360735.16
+ 2013 | ALGODÃO                                       |          1019 |  1717666092.90
+ 2013 | TRIGO                                         |         40166 |  1713561854.12
+ 2013 | LARANJA                                       |          5318 |   917856561.96
+ 2013 | MADEIRA                                       |          1305 |   534431616.43
+ 2013 | FUMO                                          |        144046 |   532058230.70
+ ...
+ 2024 | LÚPULO                                        |             2 |       71709.26
+ 2024 | RABANETE                                      |             2 |       55100.00
+ 2024 | ERVA CIDREIRA (MELISSA)                       |             1 |       54000.00
+ 2024 | Ervas medicinais, aromáticas ou condimentares |             1 |       40228.00
+ 2024 | VIME                                          |             1 |       35152.50
+ 2024 | QUIUÍ (KIWI)                                  |             1 |       33500.00
+ 2024 | AROEIRA (PIMENTA-ROSA)                        |             1 |       21299.98
+(1688 rows)
+</pre></div>
+</div>
+</div></blockquote>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicordb</span>
+
+<span class="n">contratos</span> <span class="o">=</span> <span class="n">sicordb</span><span class="o">.</span><span class="n">operacoes</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">atividade</span> <span class="o">=</span> <span class="s1">&#39;agrícola&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">)</span>
+
+<span class="c1"># ... processamento no Pandas com agrupamento por ano</span>
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 3.</strong> Quais são as 10 culturas com maior valor de contratação ao longo dos anos e o <em>ranking</em> delas no número de operações e no valor por operação?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.4 - </span><span class="caption-text"><em>Ranking</em> das operações por cultura.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano" title="Link Permanente para esse código"></a></div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span>
+<span class="w">               </span><span class="n">DENSE_RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rank_valor</span><span class="p">,</span>
+<span class="w">               </span><span class="n">DENSE_RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">num_operacoes</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rank_operacoes</span><span class="p">,</span>
+<span class="w">               </span><span class="n">DENSE_RANK</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">valor_operacao</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rank_valor_operacao</span>
+<span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">                </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">produto</span><span class="p">,</span>
+<span class="w">                       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span><span class="p">,</span>
+<span class="w">                       </span><span class="k">SUM</span><span class="p">(</span><span class="n">vl_parc_credito</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor</span><span class="p">,</span>
+<span class="w">                       </span><span class="p">(</span><span class="k">SUM</span><span class="p">(</span><span class="n">vl_parc_credito</span><span class="p">)</span><span class="o">/</span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_operacao</span>
+<span class="w">                  </span><span class="k">FROM</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">,</span>
+<span class="w">                       </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">operacoes</span>
+<span class="w">                 </span><span class="k">WHERE</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operacoes</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">                   </span><span class="k">AND</span><span class="w"> </span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">                   </span><span class="k">AND</span><span class="w"> </span><span class="n">atividade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">                   </span><span class="k">AND</span><span class="w"> </span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="w">                </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span>
+<span class="w">                </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">valor</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span>
+<span class="w">          </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
+<span class="w">        </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">rank_valor</span>
+<span class="w">  </span><span class="p">)</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">rank_valor</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
+<p>Saída:</p>
+<blockquote>
+<div><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |       produto        | num_operacoes |     valor      |    valor_operacao     | rank_valor | rank_operacoes | rank_valor_operacao
+------+----------------------+---------------+----------------+-----------------------+------------+----------------+---------------------
+ 2013 | SOJA                 |        175076 | 15785065346.82 |    90161.217681578286 |          1 |              2 |                  25
+ 2013 | MILHO                |        198521 |  7532522363.71 |    37943.201795830164 |          2 |              1 |                  48
+ 2013 | CAFÉ                 |        107322 |  4726700902.76 |    44042.236473043738 |          3 |              4 |                  41
+ 2013 | CANA-DE-AÇUCAR       |         17112 |  3718873851.02 |   217325.493865123890 |          4 |              7 |                   3
+ 2013 | ARROZ                |         15261 |  1767360735.16 |   115808.972882510976 |          5 |              8 |                  15
+ 2013 | ALGODÃO              |          1019 |  1717666092.90 |  1685638.952796859666 |          6 |             30 |                   1
+ 2013 | TRIGO                |         40166 |  1713561854.12 |    42661.999056913808 |          7 |              5 |                  43
+ 2013 | LARANJA              |          5318 |   917856561.96 |   172594.314020308387 |          8 |             13 |                   6
+ 2013 | MADEIRA              |          1305 |   534431616.43 |   409526.142858237548 |          9 |             23 |                   2
+ 2013 | FUMO                 |        144046 |   532058230.70 | 3693.6689022951001763 |         10 |              3 |                 131
+ 2014 | SOJA                 |        186944 | 20406011443.18 |   109155.744197085758 |          1 |              1 |                  17
+ 2014 | MILHO                |        181637 |  8140782915.52 |    44818.968137108629 |          2 |              2 |                  49
+ 2014 | CAFÉ                 |         96685 |  4682094996.83 |    48426.281189739877 |          3 |              4 |                  43
+ 2014 | CANA-DE-AÇUCAR       |         16422 |  3908969538.46 |   238032.489249786871 |          4 |              7 |                   4
+ 2014 | TRIGO                |         52852 |  2540469636.46 |    48067.615917278438 |          5 |              5 |                  44
+ 2014 | ALGODÃO              |          1039 |  2085183413.90 |  2006913.776612127045 |          6 |             32 |                   1
+ 2014 | ARROZ                |         15212 |  2085102829.39 |   137069.604877070734 |          7 |              8 |                  11
+ 2014 | LARANJA              |          4653 |   949971515.33 |   204163.231319578766 |          8 |             13 |                   7
+ 2014 | MADEIRA              |          1514 |   892039185.77 |   589193.649782034346 |          9 |             23 |                   2
+ 2014 | FUMO                 |        128631 |   511853304.56 | 3979.2375442933662958 |         10 |              3 |                 136
+ ...
+ 2023 | SOJA                 |        186887 | 69894947053.48 |   373995.767782028713 |          1 |              1 |                  22
+ 2023 | MILHO                |        125502 | 25023550646.10 |   199387.664308935316 |          2 |              2 |                  42
+ 2023 | CAFÉ                 |         66398 | 11509542737.75 |   173341.708150094882 |          3 |              3 |                  46
+ 2023 | TRIGO                |         60664 |  6454373554.90 |   106395.449606026639 |          4 |              4 |                  70
+ 2023 | CANA-DE-AÇUCAR       |          7339 |  5825674809.58 |   793796.812860062679 |          5 |              7 |                   7
+ 2023 | ALGODÃO              |           575 |  3481153952.53 |  6054180.787008695652 |          6 |             38 |                   1
+ 2023 | ARROZ                |          7414 |  2962471241.29 |   399577.993160237389 |          7 |              6 |                  19
+ 2023 | FEIJÃO               |          8479 |  1421892609.94 |   167695.790770137988 |          8 |              5 |                  49
+ 2023 | LARANJA              |          2976 |  1342026529.43 |   450949.774674059140 |          9 |             13 |                  16
+ 2023 | ALHO                 |          1040 |  1024770326.64 |   985356.083307692308 |         10 |             24 |                   5
+ 2024 | SOJA                 |         23770 | 18760881575.60 |   789267.209743374001 |          1 |              3 |                   5
+ 2024 | MILHO                |         27297 |  4813704296.15 |   176345.543325273840 |          2 |              2 |                  40
+ 2024 | TRIGO                |         37695 |  3383278843.10 |    89754.048099217403 |          3 |              1 |                  76
+ 2024 | CAFÉ                 |         11381 |  1520410139.82 |   133591.963783498814 |          4 |              4 |                  59
+ 2024 | CANA-DE-AÇUCAR       |          2005 |  1296032432.49 |   646400.215705735661 |          5 |              8 |                  11
+ 2024 | FEIJÃO               |          4803 |   674871692.12 |   140510.450160316469 |          6 |              5 |                  57
+ 2024 | CEBOLA               |          3296 |   485454678.69 |   147286.006884101942 |          7 |              6 |                  55
+ 2024 | ARROZ                |           679 |   463631782.75 |   682815.585787923417 |          8 |             17 |                  10
+ 2024 | LARANJA              |           649 |   462967508.82 |   713355.175377503852 |          9 |             18 |                   7
+ 2024 | ALHO                 |           469 |   341324203.00 |   727770.155650319829 |         10 |             21 |                   6
+(120 rows)
+</pre></div>
+</div>
+</div></blockquote>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicordb</span>
+
+<span class="n">contratos</span> <span class="o">=</span> <span class="n">sicordb</span><span class="o">.</span><span class="n">operacoes</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">atividade</span> <span class="o">=</span> <span class="s1">&#39;agrícola&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">)</span>
+
+<span class="c1"># ... processamento no Pandas com agrupamento por ano</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="programa.html" class="btn btn-neutral float-left" title="3.2.7. Programa ou Linha de Crédito" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="glebas.html" class="btn btn-neutral float-right" title="3.2.9. Glebas de Operações Contratadas com Recursos Públicos" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f7072040670>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

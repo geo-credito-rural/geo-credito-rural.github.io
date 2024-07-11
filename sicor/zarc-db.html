@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3. Zoneamento Agrícola de Risco Climático (ZARC) &mdash; Curso Proagro</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://curso-proagro.github.io/sicor/zarc-db.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="3.4. Análise da Qualidade dos Dados do Sicor" href="analises.html" />
+    <link rel="prev" title="3.2.12. Pedidos de cobertura do Proagro (COP)" href="microdados/pedidos-cobertura-proagro.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Panoptes
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Acesso e Análise dos Dados do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="preparacao-base-dados.html">3.1. Preparação da Base de Dados Sicor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microdados/index.html">3.2. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analises.html">3.4. Análise da Qualidade dos Dados do Sicor</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Terminologia</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../terminologia.html">Terminologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Agradecimentos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Panoptes</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>Acesso e Análise dos Dados do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3. </span>Zoneamento Agrícola de Risco Climático (ZARC)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analises.html" class="btn btn-neutral float-right" title="3.4. Análise da Qualidade dos Dados do Sicor" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="zoneamento-agricola-de-risco-climatico-zarc">
+<span id="sec-sicor-zarc"></span><h1><span class="section-number">3.3. </span>Zoneamento Agrícola de Risco Climático (ZARC)<a class="headerlink" href="#zoneamento-agricola-de-risco-climatico-zarc" title="Link permanente para este cabeçalho"></a></h1>
+<p>O Zoneamento Agrícola de Risco Climático (<a class="reference external" href="https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico">ZARC</a>) tem o objetivo de promover, coordenar e apoiar projetos, estudos e ações de pesquisa, de desenvolvimento, de operação ou manutenção de avaliação, quantificação e monitoramento de riscos agroclimáticos, bem como disponibilizar essas informações à sociedade. É um trabalho colaborativo que estima o risco de produção agrícola nas condições climáticas normais de cada região, com a finalidade de permitir a adequada avaliação da variabilidade climática de cada local, época e suas consequências para as culturas agrícolas. Para isso usa um elaborado sistema de análise de dados agrometeorológicos e de simulação matemática. Esse trabalho é coordenado pelo Ministério da Agricultura e Pecuária (MAPA) e tem como base uma rede de pesquisadores e técnicos da Embrapa e de várias outras instituições de pesquisa.</p>
+<p>A primeira publicação do ZARC foi o zoneamento para a cultura do trigo na safra de 1996. Atualmente, ele é publicado anualmente e o MAPA é o órgão responsável por publicar no diário oficial da união o ZARC. As normas de publicação, de participação na formulação ou aperfeiçoamento na forma de divulgação estão estabelecidas por meio da <a class="reference external" href="https://www.in.gov.br/web/dou/-/portaria-mapa-n-412-de-30-de-dezembro-de-2020-296859190">Portaria 412 do MAPA do dia 30 de dezembro de 2020</a>. Sua atualização é sistemática e ocorre por meio desse sistema colaborativo entre os órgãos de pesquisa, agentes públicos e privados. Nesse sentido, as solicitações de formulações e/ou aperfeiçoamento podem ser apresentadas por órgãos governamentais, instituições de pesquisa agropecuária, entidades representativas dos produtores rurais, cooperativas agropecuárias, por pessoas jurídicas prestadoras de serviços de assistência técnica e extensão rural, por entidades representativas e de classe dos profissionais atuantes no setor agropecuário, agentes financeiros e pessoas jurídicas fornecedoras de insumos agropecuários. Essas propostas serão avaliadas tecnicamente por um período mínimo de 12 (doze) meses e caso aceitas, serão utilizadas nas safras seguintes. Por conta desse trabalho, o ZARC é utilizado no crédito rural, por meio de iniciativas como o Programa de Subvenção Federal ao Prêmio do Seguro Rural (PSR) e o Programa de Garantia da Atividade Agropecuária (Proagro), entre outras políticas governamentais de apoio à produção que exigem a adoção das janelas de plantio recomendadas. No âmbito privado, algumas instituições financeiras utilizam como critério para a concessão de financiamento agrícola.</p>
+<p>Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades da Federação. Inicialmente, ele estabelecia as zonas de acordo com a cultura, entretanto, com a publicação da <a class="reference external" href="https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/documentos/INSTRUONORMATIVAN16.pdf">Instrução Normativa 16, de 9 de ABRIL de 2018</a> foram estabelecidas as regras para inclusão de cultivares. Além disto, inicialmente o ZARC utilizava <a class="reference external" href="https://in.gov.br/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-9-de-novembro-de-2021-359074246">três tipos de solo</a> a serem definidos pela análise granulométrica, determinadas pelas quantidades de argila, de areia e de silte existentes no solo. Assim, foram adotadas as seguintes especificações para solos:</p>
+<ul class="open">
+<li><p><strong>SOLOS TIPO 1:</strong> Solos de textura arenosa, com teor de argila variando de 10% até 15% ou com teor de argila igual ou maior do que 15%, nos quais a diferença entre o percentual de areia e o percentual de argila seja maior ou igual a 50%. Assim, adotando-se o percentual de <span class="math notranslate nohighlight">\(argila=a\)</span>, e a diferença entre os percentuais de areia e argila iguais a <span class="math notranslate nohighlight">\(\Delta\)</span>, temos para os solos tipo 1:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight" id="equation-eq-sicor-zarc-solo1">
+<span class="eqno">(3.1)<a class="headerlink" href="#equation-eq-sicor-zarc-solo1" title="Link permanente para essa equação"></a></span>\[ \begin{align}\begin{aligned}\begin{cases}
+    10\% \leq a &lt; 15\%\\    a \geq 15\%, \text{com } \Delta \geq 50\%
+\end{cases}\end{aligned}\end{align} \]</div>
+</div></blockquote>
+</li>
+<li><p><strong>SOLOS TIPO 2:</strong> Solos de textura média, com teor mínimo variando entre 15% e 35% de argila (a), nos quais o <span class="math notranslate nohighlight">\(\Delta\)</span> (diferença entre o percentual de areia e o percentual de argila) seja menor do que 50%. Assim, temos para os solos tipo 2:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight" id="equation-eq-sicor-zarc-solo2">
+<span class="eqno">(3.2)<a class="headerlink" href="#equation-eq-sicor-zarc-solo2" title="Link permanente para essa equação"></a></span>\[15\% \leq a &lt; 35% \text {com } \Delta &lt; 50\%\]</div>
+</div></blockquote>
+</li>
+<li><p><strong>SOLOS TIPO 3:</strong> Solos de textura argilosa, com teor de argila maior ou igual a 35%. Assim, adotando-se o percentual de <span class="math notranslate nohighlight">\(argila=a\)</span>, temos para os solos tipo 3:</p>
+<blockquote>
+<div><div class="math notranslate nohighlight" id="equation-eq-sicor-zarc-solo3">
+<span class="eqno">(3.3)<a class="headerlink" href="#equation-eq-sicor-zarc-solo3" title="Link permanente para essa equação"></a></span>\[a \geq 35\%\]</div>
+</div></blockquote>
+</li>
+</ul>
+<p>Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo, conforme estabelecido pela <a class="reference external" href="https://in.gov.br/en/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-5-de-agosto-de-2022-421241455">Instrução Normativa SPA/MAPA Nº 2, de 5 de agosto de 2022</a>. A partir dessa instrução normativa passam a ser adotadas as seguintes classes de AD no solo, em milímetros de água por centímetro de solo (mm.cm<sup>-1</sup>) de acordo com a seguinte classificação:</p>
+<ul class="open">
+<li><p><strong>I - AD1:</strong> para valores de AD maiores ou iguais a 0,34 e menores que 0,46 mm.cm<sup>-1</sup>;</p></li>
+<li><p><strong>II - AD2:</strong> para valores de AD maiores ou iguais a 0,46 e menores que 0,61 mm.cm<sup>-1</sup>;</p></li>
+<li><p><strong>III - AD3:</strong> para valores de AD maiores ou iguais a 0,61 e menores que 0,80 mm cm<sup>-1</sup>;</p></li>
+<li><p><strong>IV - AD4:</strong> para valores de AD maiores ou iguais a 0,80 e menores que 1,06 mm cm<sup>-1</sup>;</p></li>
+<li><p><strong>V - AD5:</strong> para valores de AD maiores ou iguais a 1,06 e menores que 1,40 mm cm<sup>-1</sup>;</p></li>
+<li><p><strong>VI – AD6:</strong> para valores de AD maiores ou iguais a 1,40 mm cm<sup>-1</sup>;</p></li>
+</ul>
+<p>Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estão sendo revisados. Além disto estão ocorrendo investimentos na melhoria das bases de dados e avanços metodológicos na avaliação de risco climático das principais culturas agrícolas. Somado com a evolução contínua de ferramentas computacionais que têm apoiado o trabalho técnico e a comunicação das informações de risco, aplicando-se novas metodologias para o cálculo de múltiplos riscos à produção. Com isso, produtos de informações sobre clima, solos, manejo e características dos cultivos podem ser melhor explorados. Também estão sendo empregadas novas ferramentas para controle da produção de resultados e melhorias para fortalecimento da transparência e redução da incerteza. Desta maneira, com o aprimoramento metodológico, mais de 40 culturas têm o risco avaliado em todos os municípios do Brasil, em que são estimados os riscos em 20%, 30% e 40%, por decêndio (<a class="reference internal" href="#tbl-zarc-decendio"><span class="std std-numref">Tabela 3.18</span></a>). No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer uma quebra de safra é menor, em função das características edafoclimáticas e da cultura.</p>
+<table class="styled-table docutils align-default" id="tbl-zarc-decendio">
+<caption><span class="caption-number">Tabela 3.18 - </span><span class="caption-text">Decêndio.</span><a class="headerlink" href="#tbl-zarc-decendio" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Decêndio</p></th>
+<th class="head center-align"><p>Datas</p></th>
+<th class="head center-align"><p>Mês</p></th>
+<th class="head center-align"><p>Decêndio</p></th>
+<th class="head center-align"><p>Datas</p></th>
+<th class="head center-align"><p>Mês</p></th>
+<th class="head center-align"><p>Decêndio</p></th>
+<th class="head center-align"><p>Datas</p></th>
+<th class="head center-align"><p>Mês</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p>1º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Janeiro</p></td>
+<td class="center-align"><p>13º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Maio</p></td>
+<td class="center-align"><p>25º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Setembro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>2º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>14º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>26º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>3º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+<td class="center-align"><p>15º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+<td class="center-align"><p>27º</p></td>
+<td class="center-align"><p>21 a 30</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>4º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Fevereiro</p></td>
+<td class="center-align"><p>16º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Junho</p></td>
+<td class="center-align"><p>28º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Outubro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>5º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>17º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>29º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>6º</p></td>
+<td class="center-align"><p>21 a 28(9)</p></td>
+<td class="center-align"><p>18º</p></td>
+<td class="center-align"><p>21 a 30</p></td>
+<td class="center-align"><p>30º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>7º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Março</p></td>
+<td class="center-align"><p>19º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Julho</p></td>
+<td class="center-align"><p>31º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Novembro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>8º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>20º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>32º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>9º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+<td class="center-align"><p>21º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+<td class="center-align"><p>33º</p></td>
+<td class="center-align"><p>21 a 30</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>10º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Abril</p></td>
+<td class="center-align"><p>22º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Agosto</p></td>
+<td class="center-align"><p>34º</p></td>
+<td class="center-align"><p>01 a 10</p></td>
+<td class="center-align" rowspan="3"><p>Dezembro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>11º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>23º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+<td class="center-align"><p>35º</p></td>
+<td class="center-align"><p>11 a 20</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>12º</p></td>
+<td class="center-align"><p>21 a 30</p></td>
+<td class="center-align"><p>24º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+<td class="center-align"><p>36º</p></td>
+<td class="center-align"><p>21 a 31</p></td>
+</tr>
+</tbody>
+</table>
+<p>O Banco Central do Brasil estabeleceu como mandatório, para a safra 2024/2025, o uso de alguns atributos do ZARC. Como exemplo, para o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analises.html" class="btn btn-neutral float-right" title="3.4. Análise da Qualidade dos Dados do Sicor" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f70720af820>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,12 @@
+.. _cap_terminologia:
+
+Terminologia
+============
+
+
+A
+---
+
+
+- **Average Tuple Density:** Média do número de linhas por bloco.
+

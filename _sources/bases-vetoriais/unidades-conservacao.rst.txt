@@ -1,0 +1,96 @@
+.. include:: ../def.rst
+
+
+.. _sec_bases_vetoriais_unidades_conservacao:
+
+Áreas Protegidas
+================
+
+
+As **áreas protegidas** são espaços territorialmente demarcados cuja principal função é a conservação e/ou a preservação de recursos naturais e/ou culturais, a elas associados. Elas podem ser definidas como uma área terrestre e/ou marinha especialmente dedicada à proteção e manutenção da diversidade biológica e dos recursos naturais e culturais associados, manejados através de instrumentos legais ou outros instrumentos efetivos. Desta maneira, as áreas protegidas foram criadas com o objetivo de preservar e conservar o patrimônio natural de nossos ecossistemas, garantindo seus aspectos ecológicos, geológicos, históricos e culturais :cite:`medeiros:2006:a`.  No Brasil, essas áreas estão asseguradas pela `Lei Federal nº 9.985 de 18 de julho de 2000 <https://www.planalto.gov.br/ccivil_03/leis/l9985.htm>`__, que institui o Sistema Nacional de Unidades de Conservação da Natureza (SNUC). Ela também estabelece critérios e normas para a criação, implantação e gestão das unidades de conservação. A lei define *Unidade de Conservação* como um espaço territorial com objetivos de conservação e limites definidos. Seus recursos ambientais, incluindo as águas jurisdicionais, com características naturais relevantes, legalmente instituído pelo poder público, sob regime especial de administração, ao qual se aplicam garantias adequadas de proteção. Assim, unidades de conservação são áreas protegidas por lei federal, estadual, distrital ou municipal, com objetivo de conservar a biodiversidade e outros atributos naturais neles contidos, com o mínimo de impacto.
+
+
+As unidade de conservação podem ser divididas em dois grupos:
+
+.. rst-class:: open
+
+-  **Unidades de Proteção Integral:**  com o objetivo de preservar a natureza, sendo admitido apenas o uso indireto dos seus recursos naturais, com exceção dos casos previstos em lei;
+
+-  **Unidades de Uso Sustentável:** cujo objetivo é o de compatibilizar a conservação da natureza com o uso sustentável de parcela dos seus recursos naturais.
+
+
+Estes dois tipos de unidades de conservação são compostos por diversas categorias e objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta a categoria SNUC e a descrição de cada um deles.
+
+
+.. table:: Unidades de Conservação. |br| **Fonte:** :cite:`brasil:2024:a` :cite:`wikipedia:2024:a`.
+    :header-alignment: center center center 
+    :column-alignment: center center center 
+    :name: tbl:bases-vetoriais:uc
+
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Grupo        | Categoria SNUC  |  Descrição                                                                        |
+    +==============+=================+===================================================================================+
+    | Proteção     | Estação         | Servem à preservação da natureza e à realização de pesquisas científicas. A       |
+    |              |                 | visitação pública não é permitida a exceção de visitas com objetivo educacional.  |
+    | Integral     | ecológica       | As pesquisas científicas dependem de autorização prévia do órgão responsável.     |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Reserva         | Visam a preservação integral da biota e demais atributos naturais existentes em   | 
+    |              |                 | seus limites, sem interferência humana direta ou modificações ambientais,         |
+    |              |                 | excetuando-se as medidas de recuperação de seus ecossistemas alterados e as       |
+    |              | Biológica       | ações de manejo necessárias para recuperar e preservar o equilíbrio natural,      |
+    |              |                 | a diversidade biológica e os processos ecológicos naturais.                       |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Parque          | Têm como objetivo básico a preservação de ecossistemas naturais de grande         | 
+    |              |                 | relevância ecológica e beleza cênica, possibilitando a realização de pesquisas,   |
+    |              |                 | científicas e o desenvolvimento de atividades de educação e interpretação         |
+    |              | Nacional        | ambiental, de recreação em contato com a natureza e de turismo ecológico.         |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Monumento       | Têm por objetivo a preservação de sítios naturais raros, singulares ou de         | 
+    |              | Natural         | grande beleza cênica.                                                             |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Refúgio         | Objetivam a proteção de ambientes naturais que asseguram condições para a         | 
+    |              | de Vida         | existência ou reprodução de espécies ou comunidades da flora local e da fauna     |
+    |              | Silvestre       | residente ou migratória.                                                          |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Uso          | Área de         | Áreas com pouca ou nenhuma ocupação humana, exibindo características naturais     | 
+    |              | Relevante       | extraordinárias ou que abrigam exemplares raros da biota regional, tendo como     |
+    | Sustentável  | Interesse       | objetivo manter os ecossistemas naturais de importância regional ou local         |
+    |              | Ecológico       | e regular o uso admissível dessas áreas, de modo a compatibilizá-lo com os        |
+    |              |                 | objetivos de conservação da natureza.                                             |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Reserva         | São de posse privada e têm por objetivo conservar a diversidade ecológica.        | 
+    |              | particular      |                                                                                   |
+    |              | do patrimônio   |                                                                                   |
+    |              | natural         |                                                                                   |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Área de         | São áreas geralmente extensas, com um certo grau de ocupação humana, dotadas de   |
+    |              | proteção        | atributos abióticos, bióticos, estéticos ou culturais especialmente importantes   |
+    |              | ambiental       | para a qualidade de vida e o bem-estar das populações humanas, e têm como         |
+    |              |                 | objetivos básicos proteger a diversidade biológica, disciplinar o processo de     |
+    |              |                 | ocupação e assegurar a sustentabilidade do uso dos recursos naturais.             |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Floresta        | É uma área com cobertura florestal de espécies predominantemente nativas e tem    |
+    |              | Nacional        | como objetivo básico o uso múltiplo sustentável dos recursos florestais e a       |
+    |              |                 | pesquisa científica, com ênfase em métodos para exploração sustentável de         |
+    |              |                 | florestas nativas.                                                                |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Reserva de      | São áreas naturais que abrigam populações tradicionais, cuja existência baseia-se |
+    |              | desenvolvimento | em sistemas sustentáveis de exploração dos recursos naturais, desenvolvidos ao    |
+    |              | sustentável     | longo de gerações, adaptados às condições ecológicas locais, que desempenham um   |
+    |              |                 | papel fundamental na proteção da natureza e na manutenção da diversidade          |
+    |              |                 | biológica.                                                                        |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Reserva de      | São áreas naturais com populações animais de espécies nativas, terrestres ou      |
+    |              | fauna           | aquáticas, residentes ou migratórias, adequadas para estudos técnico-científicos  |
+    |              |                 | sobre o manejo econômico sustentável de recursos faunísticos.                     |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Reserva         | Utilizadas por populações locais, cuja subsistência baseia-se no extrativismo e,  | 
+    |              | extrativista    | complementarmente, na agricultura de subsistência e na criação de animais de      |
+    |              |                 | pequeno porte, áreas dessa categoria têm como objetivos básicos proteger          |
+    |              |                 | os meios de vida e a cultura dessas populações, e assegurar o uso sustentável     |
+    |              |                 | dos recursos naturais da unidade.                                                 |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+
+
+As áreas unidades de conservação são disponibilizadas pelo Ministério do Meio Ambiente e Mudança do Clima (MMA) em diversos formatos, para estee estudo foi acessado o arquivo shapefile `Polígno CNUC 2024_02 <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__. A figura abaixo apresenta a distribuição destas áreas no Brasil. 
+

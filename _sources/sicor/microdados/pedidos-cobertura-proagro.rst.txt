@@ -1,0 +1,113 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_pedidos_cobertura_proagro:
+
+Pedidos de cobertura do Proagro (COP)
+=====================================
+
+
+O **Proagro** é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle :cite:`bcb:2024:a`. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.
+
+
+No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão disponíveis no formato CSV no arquivo `SICOR_COP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz>`__. Esses pedidos registram:
+
+.. rst-class:: open
+
+- O evento adverso originador da solicitação, como geada, granizo, seca e enchentes, entre outros. A lista completa dos tipos de eventos adversos geradores de pedidos de cobertura encontra-se disponível no arquivo `EventoProagro.csv <https://www.bcb.gov.br/htms/sicor/EventoProagro.csv>`__.
+
+- O tipo de solo relacionado ao ZARC (:numref:`Seção %s <sec_sicor_zarc>`), que possibilita verificar se o empreendimento foi realizado em uma época propícia, de acordo com o recomendado. A lista completa dos tipos de solos encontra-se disponível no arquivo `TipoSoloProagro.csv <https://www.bcb.gov.br/htms/sicor/TipoSoloProagro.csv>`__.
+
+- O ciclo do cultivar relacionado ao ZARC (:numref:`Seção %s <sec_sicor_zarc>`), que também é usado para verificar se o empreendimento foi realizado em uma época propícia, de acordo com o recomendado. A lista completa dos tipos de solos encontra-se disponível no arquivo `CicloCultivarProagro.csv <https://www.bcb.gov.br/htms/sicor/CicloCultivarProagro.csv>`__.
+
+- Situação do pedido de cobertura: ``em análise``, ``deferida``, ``indeferida``, ``desistida``, ``cancelada`` e ``inválida``. A lista completa dos possíveis estados de um pedido de cobertura encontra-se disponíveç no arquivo `StatusCOPProagro.csv <https://www.bcb.gov.br/htms/sicor/StatusCOPProagro.csv>`__.
+
+
+.. table:: Eventos do Proagro: ``eventoproagro``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:eventoproagro
+
+    +---------+-------------+----------+-------------------------------+
+    |         | nome        | tipo    | descrição                      |
+    +=========+=============+=========+================================+
+    | **PK**  | cd_evento   | integer | Código do evento do proagro    |
+    +---------+-------------+---------+--------------------------------+
+    |         | nome_evento | text    | Descrição do evento do proagro |
+    +---------+-------------+---------+--------------------------------+
+
+
+.. table:: Tipo de solo: ``tiposoloproagro``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:tiposoloproagro
+
+    +---------+---------------------+----------+--------------------------+
+    |         | nome                | tipo    | descrição                 |
+    +=========+=====================+=========+===========================+
+    | **PK**  | cd_tipo_solo        | integer | Código do tipo de solo    |
+    +---------+---------------------+---------+---------------------------+
+    |         | descricao_tipo_solo | text    | Descrição do tipo de solo |
+    +---------+---------------------+---------+---------------------------+
+
+
+.. table:: Ciclo do cultivar: ``ciclocultivarproagro``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:ciclocultivarproagro
+
+    +---------+-------------------+----------+-------------------------------+
+    |         | nome              | tipo    | descrição                      |
+    +=========+===================+=========+================================+
+    | **PK**  | cd_ciclo_cultivar | integer | Código do ciclo do cultivar    |
+    +---------+-------------------+---------+--------------------------------+
+    |         | descricao_ciclo   | text    | Descrição do ciclo do cultivar |
+    +---------+-------------------+---------+--------------------------------+
+
+
+.. table:: Situação do pedido de cobertura: ``statuscopproagro``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:statuscopproagro
+
+    +---------+-----------+---------+----------------------------+
+    |         | nome      | tipo    | descrição                  |
+    +=========+===========+=========+============================+
+    | **PK**  | cd_status | integer | Código do status da COP    |
+    +---------+-----------+---------+----------------------------+
+    |         | descricao | text    | Descrição do status da COP |
+    +---------+-----------+---------+----------------------------+
+
+
+.. table:: Pedidos de cobertura do Proagro (COP): ``sicor_cop_basico``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_cop_basico
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    | **PK**, FK\ :sub:`1` | ref_bacen          | integer  | Número mascarado de referência do contrato            |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    | **PK**, FK\ :sub:`1` | nu_ordem           | integer  |  Número da destinação/finalidade dentro do contrato   |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | dt_comunicacao     | date     | Data de comunicação da cop                            |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | dt_fim_colheita    | date     | Fim de colheita                                       |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | dt_fim_plantio     | date     | Fim de plantio                                        |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | dt_inicio_colheita | date     | Início de colheita                                    |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | dt_inicio_plantio  | date     | Início de plantio                                     |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`2`         | cd_status          | integer  | Código do status da cop                               |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`3`         | cd_ciclo_cultivar  | integer  | Código do ciclo do cultivar                           |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`4`         | cd_tipo_solo       | integer  | Código do tipo de solo                                |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`5`         | cd_evento          | integer  | Código do evento da cop                               |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+

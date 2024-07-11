@@ -1,0 +1,258 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_glebas_forma:
+
+Avaliação da Forma das Glebas
+=============================
+
+
+Considerando apenas a forma das glebas, é possível calcular métricas que podem revelar características comuns entre as regiões. Nessa seção, vamos criar novos atributos para a tabela ``sicor_glebas`` para realizar estudos das formas das glebas. As novas colunas que serão introduzidas na tabela ``sicor_glebas`` são:
+
+.. rst-class:: open
+
+- **area_gleba:** Coluna numérica com a área da gleba em m\ :sup:`2`. Para computar a área será usada a função ``ST_Area``. No entanto, será necessário transformar o SRS dos polígonos das glebas do EPSG:4674 para um SRS que possa ser possível computar a área em metros.
+
+- **perimetro_gleba:** Coluna numérica com o perímetro da gleba em metros. Para computar o perímetro será usada a função ``ST_Perimeter``. Assim como no cálculo de área, para que essa função produza um valor em metros é necessário transformar o SRS usado nas coordenadas da geometria para um SRS que permita computar distâncias em metros.
+
+- **area_menor_retangulo_envolvente:** Coluna numérica com a área em m\ :sup:`2` do menor retângulo envolvente da geometria. Esse retângulo não necessariamente possui os lados paralelos aos eixos :math:`x` e :math:`y`. Para computar esse retângulo será usada a função ``ST_OrientedEnvelope`` (:numref:`Tabela %sa <tbl:sicor:microdados:glebas-forma:formas-geometricas>`).
+
+- **area_menor_circulo_envolvente:** Coluna numérica com a área em m\ :sup:`2` do menor círculo envolvente da geometria. Para computar esse círculo será usada a função ``ST_MinimumBoundingCircle`` (:numref:`Tabela %sb <tbl:sicor:microdados:glebas-forma:formas-geometricas>`).
+
+
+.. |fig:sicor:microdados:glebas-forma:menor-retangulo-envolvente| image:: ../../img/sicor/microdados/glebas-forma/menor-retangulo-envolvente.png
+
+
+.. |fig:sicor:microdados:glebas-forma:menor-circulo-envolvente| image:: ../../img/sicor/microdados/glebas-forma/menor-circulo-envolvente.png
+
+
+.. table:: Formas geométricas.
+    :widths: 50 50
+    :width: 100%
+    :header-alignment: center center
+    :column-alignment: center center
+    :align: center
+    :name: tbl:sicor:microdados:glebas-forma:formas-geometricas
+
+    +----------------------------------------------------------------+--------------------------------------------------------------+
+    | **( a )** Menor retângulo envolvente                           | **( b )** Menor círculo envolvente                           |
+    +----------------------------------------------------------------+--------------------------------------------------------------+
+    | |fig:sicor:microdados:glebas-forma:menor-retangulo-envolvente| | |fig:sicor:microdados:glebas-forma:menor-circulo-envolvente| |
+    +----------------------------------------------------------------+--------------------------------------------------------------+
+
+
+.. tip::
+
+    Para computar áreas e perímetros utlizaremos a projeção *Albers Equal Area* e o datum *WGS84*. Nas geotecnologias apoiadas na biblioteca *Proj*, uma string que podemos usar é a seguinte:
+
+
+    .. code-block:: text
+
+        +proj=aea +lon_0=-58.1835937 +lat_1=-36.5394082 +lat_2=-3.0767001 +lat_0=-1 9.8080541 +datum=WGS84 +units=m +no_defs
+
+
+    No PostgreSQL com a extensão PostGIS
+
+    .. code-block:: sql
+
+        INSERT INTO spatial_ref_sys (srid, proj4text)
+            VALUES (100000, '+proj=aea +lat_1=-2 +lat_2=-22 +lat_0=-12 +lon_0=-54 +x_0=5000000 +y_0=10000000 +ellps=GRS80 +units=m +no_defs ');
+
+
+O :numref:`Trecho de Código %s <code:sicor:microdados:glebas-forma:sql:novas-colunas>` mostra como criar as novas colunas.
+
+
+.. code-block:: sql
+    :caption: Novas colunas para estudo das formas das glebas.
+    :name: code:sicor:microdados:glebas-forma:sql:novas-colunas
+
+    ALTER TABLE sicor_glebas
+        ADD COLUMN area_gleba NUMERIC,
+        ADD COLUMN perimetro_gleba NUMERIC,
+        ADD COLUMN area_menor_retangulo_envolvente NUMERIC,
+        ADD COLUMN area_menor_circulo_envolvente NUMERIC;
+
+
+    UPDATE sicor_glebas SET
+        area_gleba = ST_Area(ST_Transform(geom, 100000)),
+        perimetro_gleba = ST_Perimeter(ST_Transform(geom, 100000)),
+        area_menor_retangulo_envolvente = ST_Area(ST_Transform(ST_OrientedEnvelope(geom), 100000)),
+        area_menor_circulo_envolvente = ST_Area(ST_Transform(ST_MinimumBoundingCircle(geom), 100000));
+
+
+    ALTER TABLE sicor_glebas
+        ALTER COLUMN area_gleba SET NOT NULL,
+        ALTER COLUMN perimetro_gleba SET NOT NULL,
+        ALTER COLUMN area_menor_retangulo_envolvente SET NOT NULL,
+        ALTER COLUMN area_menor_circulo_envolvente SET NOT NULL;
+
+
+Vamos realizar um estudo considerando somente as glebas do ano de 2022 para a região destacada em laranja no mapa mostrado na :numref:`Figura %s <fig:sicor:microdados:glebas-forma:area-estudo-sul-brasil>`, que corresponde às regiões norte do Rio Grande do Sul (RS), oeste de Santa Catarina (SC) e oeste do Paraná (PR). Essa região contém 436.356 geometrias de glebas no ano de 2022.
+
+
+.. figure:: ../../img/sicor/microdados/glebas-forma/area-estudo-sul-brasil.png
+    :alt: Localização da área de estudo
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:glebas-forma:area-estudo-sul-brasil
+
+    Localização da área de estudo.
+
+
+Para desenvolver o estudo, vamos criar uma tabela auxiliar denominada ``glebas_area_estudo`` contendo as geometrias das glebas de 2022 na região de interesse. Para isso, iremos construir uma consulta envolvendo as tabelas ``sicor_glebas`` e ``area_estudo`` que utiliza o operador ``ST_Within`` para estabelecer o relacionamento espacial entre as geometrias das duas tabelas.
+
+
+.. code-block:: sql
+    :caption: Seleção de glebas da área de interesse.
+    :name: code:sicor:microdados:glebas-forma:sql:glebas-roi
+
+    CREATE TABLE glebas_area_estudo AS
+        SELECT sicor_glebas.*
+          FROM sicor_glebas,
+               area_estudo
+         WHERE ST_Within(sicor_glebas.geom, area_estudo.geom)
+           AND ano = 2022;
+
+
+    ALTER TABLE glebas_area_estudo ADD CONSTRAINT glebas_area_estudo_pkey PRIMARY KEY (gid);
+
+    CREATE INDEX glebas_area_estudo_geom_idx ON glebas_area_estudo USING GiST(geom);
+
+
+No PostgreSQL podemos utilizar a função de agregação ``percentile_cont`` para encontrar limiares de áreas que serão usados para dividir as geometrias em três grupos. A consulta do :numref:`Trecho de Código %s <code:sicor:microdados:glebas-forma:sql:limiares-area>` mostra como computar esses valores em hectares.
+
+.. code-block:: sql
+    :caption: Limiares de áreas.
+    :name: code:sicor:microdados:glebas-forma:sql:limiares-area
+
+    SELECT percentile_cont(1./3) WITHIN GROUP ( ORDER BY area_gleba/10000. ) AS limite_1,
+           percentile_cont(2./3) WITHIN GROUP ( ORDER BY area_gleba/10000. ) AS limite_2
+      FROM glebas_area_estudo;
+
+
+A saída dessa consulta mostra que temos 33% das glebas com área menor que 3.16 hectares, 33% com área entre 3.16 hectares e 8.02 hectares, e 33% glebas com mais de 8.02 hectares.
+
+
+.. code-block:: text
+
+         limite_1     |     limite_2
+    ------------------+------------------
+     3.16978592383658 | 8.02600913703553
+    (1 row)
+
+
+A :numref:`Figura %s <fig:sicor:microdados:glebas-forma:gleba-tamanho-area>` (preparada no QGIS) apresenta as glebas na área de estudo divididas em grupos em função dos limiares de áreas já calculados. Neste caso, a visualização dos três grupos (verde, amarelo e vermelho, ordenados do maior para o menor) revela uma concentração de glebas menores no norte do RS e no oeste de SC.
+
+
+.. figure:: ../../img/sicor/microdados/glebas-forma/gleba-tamanho-area.png
+    :alt: Tamanho das glebas na área de estudo
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:glebas-forma:gleba-tamanho-area
+
+    Tamanho das glebas na área de estudo.
+
+
+Outra métrica que pode ser empregada é a relação (divisão numérica) entre perímetro e área. Novamente, podemos obter três grupos com ajuda da função ``percentile_cont`` (:numref:`Trecho de Código %s <code:sicor:microdados:glebas-forma:sql:limiares-par>`).
+
+
+.. code-block:: sql
+    :caption: Limiares da relação perímetro e área das glebas.
+    :name: code:sicor:microdados:glebas-forma:sql:limiares-par
+
+    SELECT percentile_cont(1./3) WITHIN GROUP ( ORDER BY perimetro_gleba / area_gleba ) AS limite_1,
+           percentile_cont(2./3) WITHIN GROUP ( ORDER BY perimetro_gleba / area_gleba ) AS limite_2
+      FROM glebas_area_estudo;
+
+
+Resultado:
+
+
+.. code-block:: text
+
+           limite_1       |      limite_2
+    ----------------------+---------------------
+     0.019042276722803557 | 0.02964556228447662
+    (1 row)
+
+
+A :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-perimetroarea-3classes>` detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente pequena em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.
+
+
+.. figure:: ../../img/sicor/microdados/glebas-forma/detalhe-metrica-perimetroarea-3classes.png
+    :alt: Relação entre o perímetro e a área das glebas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:glebas-forma:detalhe-metrica-perimetroarea-3classes
+
+    Relação entre o perímetro e a área das glebas.
+
+
+A próxima métrica que podemos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor retângulo envolvente. Novamente, vamos obter os limiares de três grupos com a função ``percentile_cont`` (:numref:`Trecho de Código %s <code:sicor:microdados:glebas-forma:sql:limiares-square>`).
+
+
+.. code-block:: sql
+    :caption: Limiares da relação área da gleba e área do menor retângulo envolvente.
+    :name: code:sicor:microdados:glebas-forma:sql:limiares-square
+
+    SELECT percentile_cont(1./3) WITHIN GROUP ( ORDER BY area_gleba / area_menor_retangulo_envolvente ) AS limite_1,
+           percentile_cont(2./3) WITHIN GROUP ( ORDER BY area_gleba / area_menor_retangulo_envolvente ) AS limite_2
+      FROM glebas_area_estudo;
+
+
+Resultado:
+
+
+.. code-block:: text
+
+          limite_1      |      limite_2
+    --------------------+--------------------
+     0.5974062999419789 | 0.7323108252914907
+    (1 row)
+
+
+No exemplo da :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-retangularfit-3classes>`, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são irregulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa área, devido à topografia do terreno, glebas de formato irregular podem ser frequentes.
+
+
+.. figure:: ../../img/sicor/microdados/glebas-forma/detalhe-metrica-retangularfit-3classes.png
+    :alt: Relação entre a forma das glebas e um retângulo
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:glebas-forma:detalhe-metrica-retangularfit-3classes
+
+    Relação entre a forma das glebas e um retângulo.
+
+
+A última métrica que iremos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor círculo envolvente. Novamente, vamos obter os limiares de três grupos com a função ``percentile_cont`` (:numref:`Trecho de Código %s <code:sicor:microdados:glebas-forma:sql:limiares-circle>`).
+
+
+.. code-block:: sql
+    :caption: Limiares da relação área da gleba e área do menor círculo envolvente.
+    :name: code:sicor:microdados:glebas-forma:sql:limiares-circle
+
+    SELECT percentile_cont(1./3) WITHIN GROUP ( ORDER BY area_gleba / area_menor_circulo_envolvente ) AS limite_1,
+           percentile_cont(2./3) WITHIN GROUP ( ORDER BY area_gleba / area_menor_circulo_envolvente ) AS limite_2
+      FROM glebas_area_estudo;
+
+
+Resultado:
+
+
+.. code-block:: text
+
+          limite_1       |      limite_2
+    ---------------------+---------------------
+     0.30019149954220564 | 0.42747503263000236
+    (1 row)
+
+
+Na :numref:`Figura %s <fig:sicor:microdados:glebas-forma:metrica-ellipticfit-1p-superior>` são mostradas apenas as glebas com os maiores valores deste atributo. Isso acaba apresentando a localização das glebas redondas, o que pode ser um indicativo de pivôs centrais (irrigação).
+
+
+.. figure:: ../../img/sicor/microdados/glebas-forma/metrica-ellipticfit-1p-superior.png
+    :alt: Relação entre a forma das glebas e um círculo
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:glebas-forma:metrica-ellipticfit-1p-superior
+
+    Relação entre a forma das glebas e um círculo.

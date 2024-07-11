@@ -1,0 +1,97 @@
+.. include:: ../def.rst
+
+
+.. _sec_sicor_zarc:
+
+Zoneamento Agrícola de Risco Climático (ZARC)
+=============================================
+
+
+O Zoneamento Agrícola de Risco Climático (`ZARC <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico>`__) tem o objetivo de promover, coordenar e apoiar projetos, estudos e ações de pesquisa, de desenvolvimento, de operação ou manutenção de avaliação, quantificação e monitoramento de riscos agroclimáticos, bem como disponibilizar essas informações à sociedade. É um trabalho colaborativo que estima o risco de produção agrícola nas condições climáticas normais de cada região, com a finalidade de permitir a adequada avaliação da variabilidade climática de cada local, época e suas consequências para as culturas agrícolas. Para isso usa um elaborado sistema de análise de dados agrometeorológicos e de simulação matemática. Esse trabalho é coordenado pelo Ministério da Agricultura e Pecuária (MAPA) e tem como base uma rede de pesquisadores e técnicos da Embrapa e de várias outras instituições de pesquisa.
+
+
+A primeira publicação do ZARC foi o zoneamento para a cultura do trigo na safra de 1996. Atualmente, ele é publicado anualmente e o MAPA é o órgão responsável por publicar no diário oficial da união o ZARC. As normas de publicação, de participação na formulação ou aperfeiçoamento na forma de divulgação estão estabelecidas por meio da `Portaria 412 do MAPA do dia 30 de dezembro de 2020 <https://www.in.gov.br/web/dou/-/portaria-mapa-n-412-de-30-de-dezembro-de-2020-296859190>`__. Sua atualização é sistemática e ocorre por meio desse sistema colaborativo entre os órgãos de pesquisa, agentes públicos e privados. Nesse sentido, as solicitações de formulações e/ou aperfeiçoamento podem ser apresentadas por órgãos governamentais, instituições de pesquisa agropecuária, entidades representativas dos produtores rurais, cooperativas agropecuárias, por pessoas jurídicas prestadoras de serviços de assistência técnica e extensão rural, por entidades representativas e de classe dos profissionais atuantes no setor agropecuário, agentes financeiros e pessoas jurídicas fornecedoras de insumos agropecuários. Essas propostas serão avaliadas tecnicamente por um período mínimo de 12 (doze) meses e caso aceitas, serão utilizadas nas safras seguintes. Por conta desse trabalho, o ZARC é utilizado no crédito rural, por meio de iniciativas como o Programa de Subvenção Federal ao Prêmio do Seguro Rural (PSR) e o Programa de Garantia da Atividade Agropecuária (Proagro), entre outras políticas governamentais de apoio à produção que exigem a adoção das janelas de plantio recomendadas. No âmbito privado, algumas instituições financeiras utilizam como critério para a concessão de financiamento agrícola. 
+
+
+Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades da Federação. Inicialmente, ele estabelecia as zonas de acordo com a cultura, entretanto, com a publicação da `Instrução Normativa 16, de 9 de ABRIL de 2018 <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/documentos/INSTRUONORMATIVAN16.pdf>`__ foram estabelecidas as regras para inclusão de cultivares. Além disto, inicialmente o ZARC utilizava `três tipos de solo <https://in.gov.br/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-9-de-novembro-de-2021-359074246>`__ a serem definidos pela análise granulométrica, determinadas pelas quantidades de argila, de areia e de silte existentes no solo. Assim, foram adotadas as seguintes especificações para solos:
+
+.. rst-class:: open
+
+- **SOLOS TIPO 1:** Solos de textura arenosa, com teor de argila variando de 10% até 15% ou com teor de argila igual ou maior do que 15%, nos quais a diferença entre o percentual de areia e o percentual de argila seja maior ou igual a 50%. Assim, adotando-se o percentual de :math:`argila=a`, e a diferença entre os percentuais de areia e argila iguais a :math:`\Delta`, temos para os solos tipo 1:
+
+    .. math::
+        :label: eq:sicor:zarc:solo1
+
+        \begin{cases}
+            10\% \leq a < 15\%
+
+            a \geq 15\%, \text{com } \Delta \geq 50\%
+        \end{cases}
+
+
+- **SOLOS TIPO 2:** Solos de textura média, com teor mínimo variando entre 15% e 35% de argila (a), nos quais o :math:`\Delta` (diferença entre o percentual de areia e o percentual de argila) seja menor do que 50%. Assim, temos para os solos tipo 2:
+
+    .. math::
+        :label: eq:sicor:zarc:solo2
+
+        15\% \leq a < 35% \text {com } \Delta < 50\%
+
+
+- **SOLOS TIPO 3:** Solos de textura argilosa, com teor de argila maior ou igual a 35%. Assim, adotando-se o percentual de :math:`argila=a`, temos para os solos tipo 3:
+
+    .. math::
+        :label: eq:sicor:zarc:solo3
+
+        a \geq 35\%
+
+
+Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo, conforme estabelecido pela `Instrução Normativa SPA/MAPA Nº 2, de 5 de agosto de 2022 <https://in.gov.br/en/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-5-de-agosto-de-2022-421241455>`__. A partir dessa instrução normativa passam a ser adotadas as seguintes classes de AD no solo, em milímetros de água por centímetro de solo (mm.cm\ :sup:`-1`) de acordo com a seguinte classificação:
+
+.. rst-class:: open
+
+-  **I - AD1:** para valores de AD maiores ou iguais a 0,34 e menores que 0,46 mm.cm\ :sup:`-1`;
+-  **II - AD2:** para valores de AD maiores ou iguais a 0,46 e menores que 0,61 mm.cm\ :sup:`-1`;
+-  **III - AD3:** para valores de AD maiores ou iguais a 0,61 e menores que 0,80 mm cm\ :sup:`-1`;
+-  **IV - AD4:** para valores de AD maiores ou iguais a 0,80 e menores que 1,06 mm cm\ :sup:`-1`;
+-  **V - AD5:** para valores de AD maiores ou iguais a 1,06 e menores que 1,40 mm cm\ :sup:`-1`;
+-  **VI – AD6:** para valores de AD maiores ou iguais a 1,40 mm cm\ :sup:`-1`;
+
+
+Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estão sendo revisados. Além disto estão ocorrendo investimentos na melhoria das bases de dados e avanços metodológicos na avaliação de risco climático das principais culturas agrícolas. Somado com a evolução contínua de ferramentas computacionais que têm apoiado o trabalho técnico e a comunicação das informações de risco, aplicando-se novas metodologias para o cálculo de múltiplos riscos à produção. Com isso, produtos de informações sobre clima, solos, manejo e características dos cultivos podem ser melhor explorados. Também estão sendo empregadas novas ferramentas para controle da produção de resultados e melhorias para fortalecimento da transparência e redução da incerteza. Desta maneira, com o aprimoramento metodológico, mais de 40 culturas têm o risco avaliado em todos os municípios do Brasil, em que são estimados os riscos em 20%, 30% e 40%, por decêndio (:numref:`Tabela %s <tbl:zarc:decendio>`). No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer uma quebra de safra é menor, em função das características edafoclimáticas e da cultura. 
+
+
+.. table:: Decêndio.
+    :header-alignment: center center center center center center center center center
+    :column-alignment: center center center center center center center center center
+    :name: tbl:zarc:decendio
+
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | Decêndio | Datas      | Mês       | Decêndio | Datas        | Mês        | Decêndio | Datas        | Mês        |
+    +==========+============+===========+==========+==============+============+==========+==============+============+
+    | 1º       | 01 a 10    |           | 13º      | 01 a 10      |            | 25º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 2º       | 11 a 20    | Janeiro   | 14º      | 11 a 20      | Maio       | 26º      | 11 a 20      | Setembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 3º       | 21 a 31    |           | 15º      | 21 a 31      |            | 27º      | 21 a 30      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 4º       | 01 a 10    |           | 16º      | 01 a 10      |            | 28º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 5º       | 11 a 20    | Fevereiro | 17º      | 11 a 20      | Junho      | 29º      | 11 a 20      | Outubro    |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 6º       | 21 a 28(9) |           | 18º      | 21 a 30      |            | 30º      | 21 a 31      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 7º       | 01 a 10    |           | 19º      | 01 a 10      |            | 31º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 8º       | 11 a 20    | Março     | 20º      | 11 a 20      | Julho      | 32º      | 11 a 20      | Novembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 9º       | 21 a 31    |           | 21º      | 21 a 31      |            | 33º      | 21 a 30      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 10º      | 01 a 10    |           | 22º      | 01 a 10      |            | 34º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 11º      | 11 a 20    | Abril     | 23º      | 11 a 20      | Agosto     | 35º      | 11 a 20      | Dezembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 12º      | 21 a 30    |           | 24º      | 21 a 31      |            | 36º      | 21 a 31      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    
+
+O Banco Central do Brasil estabeleceu como mandatório, para a safra 2024/2025, o uso de alguns atributos do ZARC. Como exemplo, para o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.

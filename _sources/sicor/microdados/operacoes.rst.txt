@@ -1,0 +1,408 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_operacoes:
+
+Operações Contratadas com Recursos Públicos e Privados
+======================================================
+
+
+Os microdados com os registros de operações contratadas com recursos públicos ou privados são disponibilizados no sítio do Banco Central em arquivos no formato CSV, particionados por ano, entre 2013 e 2024, como mostrado abaixo:
+
+- `SICOR_OPERACAO_BASICA_ESTADO_2013.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2013.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2014.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2014.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2015.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2015.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2016.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2016.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2017.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2017.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2018.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2018.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2019.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2019.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2020.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2020.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2021.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2021.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2022.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2022.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2023.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2023.gz>`__
+- `SICOR_OPERACAO_BASICA_ESTADO_2024.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2024.gz>`__
+
+
+A tabela ``sicor_operacao_basica_estado`` contém esses registros e sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:sicor_operacao_basica_estado>`.
+
+
+.. table:: sicor_operacao_basica_estado.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_operacao_basica_estado
+
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | nome                      | tipo     | descrição                                             |
+    +===============+===========================+==========+=======================================================+
+    | **PK**        | ref_bacen                 | integer  | Número mascarado de referência do contrato            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | **PK**        | nu_ordem                  | integer  | Número da destinação/finalidade dentro do contrato    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`1`  | cnpj_if                   | char(8)  | Concedente do crédito                                 |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_emissao                | date     | Data de emissão da operação                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_vencimento             | date     | Data de vencimento da operação                        |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`2`  | cd_inst_credito           | integer  | Modalidade do empreendimento                          |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`3`  | cd_categ_emitente         | char(4)  | Código da categoria do emitente                       |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`4`  | cd_fonte_recurso          | char(4)  | Código da fonte de recursos                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cnpj_agente_invest        | char(8)  | Concedente da operação de investimento                |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cd_estado                 | char(2)  | Sigla da Unidade Federativa                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cd_ref_bacen_investimento | char(11) | Código do refbacen de investimento                    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`5`  | cd_tipo_seguro            | char(1)  | Código do tipo de seguro                              |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`6`  | cd_empreendimento         | char(14) | Código do empreendimento                              |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`7`  | cd_programa               | char(4)  | Código do programa                                    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`8`  | cd_tipo_encarg_financ     | integer  | Código do encargo financeiro complementar             |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`9`  | cd_tipo_irrigacao         | char(2)  | Código de tipo de irrigação                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`10` | cd_tipo_agricultura       | char(1)  | Código do tipo de agricultura                         |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`11` | cd_fase_ciclo_producao    | char(2)  | Código da fase ciclo de produção                      |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`12` | cd_tipo_cultivo           | char(2)  | Código do tipo de cultivo                             |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`13` | cd_tipo_intgr_consor      | char(1)  | Código do tipo de integração/consórcio                |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`14` | cd_tipo_grao_semente      | char(1)  | Código do tipo de grão/semente                        |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_aliq_proagro           | numeric  | Alíquota do Proagro                                   |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_juros                  | numeric  | Juros do financiamento                                |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_prestacao_investimento | numeric  | Valor da prestação de investimento                    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_prev_prod              | numeric  | Valor previsto de produção                            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_produtiv_obtida        | numeric  | Produtividade obtida                                  |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_quantidade             | numeric  | Quantidade                                            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_receita_bruta_esperada | numeric  | Receita bruta esperada                                |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_parc_credito           | numeric  | Valor da parcela de crédito                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_rec_proprio            | numeric  | Valor do recurso próprio                              |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_perc_risco_stn         | numeric  | Percentual do risco (Secretaria do Tesouro Nacional)  |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_perc_risco_fundo_const | numeric  | Risco do fundo constitucional                         |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_rec_proprio_srv        | numeric  | Garantia renda mínima (Sistema de Valores a Receber)  |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_area_informada         | numeric  | Área empreendimento informada                         |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_area_financ            | numeric  | VL_AREA_INFORMADA * VL_PARC_CREDITO /                 |
+    |               |                           |          | (VL_PARC_CREDITO + VL_REC_PROPRIO)                    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_juros_enc_finan_posfix | numeric  | Juros do encargo financeiro                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | vl_perc_custo_efet_total  | numeric  | Custo efetivo total                                   |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_inic_plantio           | date     | Início de plantio                                     |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_fim_plantio            | date     | Fim de plantio                                        |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_inic_colheita          | date     | Início de colheita                                    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | dt_fim_colheita           | date     | Fim de colheita                                       |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`15` | cd_subprograma            | char(4)  | Código do subprograma                                 |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cd_contrato_stn           | char(13) | Código da Secretaria do Tesouro Nacional              |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cd_cnpj_cadastrante       | char(8)  | IF cadastrante da operação                            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`16` | cd_ciclo_cultivar         | integer  | Código do ciclo do cultivar                           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`17` | cd_tipo_solo              | integer  | Código do tipo do solo                                |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+
+
+
+Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como **ref_bacen**. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela ``sicor_operacao_basica_estado`` é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos ``ref_bacen`` e ``nu_ordem``, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.
+
+
+A coluna ``cnpj_if`` se liga à tabela auxiliar ``ifssicor``, permitindo relacionar a instituição concedente do crédito (veja a Seção :numref:`%s <sec_sicor_microdados_ifs>` .
+
+
+As colunas ``dt_emissao`` e ``dt_vencimento`` registram, respectivamente, a data em que o contrato foi realizado e o término previsto.
+
+
+A coluna ``cd_inst_credito`` se liga à tabela auxiliar ``instrumentocredito``, permitindo relacionar o contrato ao tipo de instrumento de crédito (veja a Seção :numref:`%s <sec_sicor_microdados_instrumento_credito>`).
+
+
+A coluna ``cd_categ_emitente`` se liga à tabela auxiliar ``categoriaemitente``, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (veja a Seção :numref:`%s <sec_sicor_microdados_emitente>`). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.
+
+
+A coluna ``cd_fonte_recurso`` se liga à tabela auxiliar ``fonterecursos``, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (veja a Seção :numref:`%s <sec_sicor_microdados_fontes_recursos>`).
+
+
+A coluna ``cd_tipo_seguro`` se liga à tabela auxiliar ``tipogarantiaempreendimento``, permitindo saber se o contrato prevê algum tipo de seguro ou não (veja a Seção :numref:`%s <sec_sicor_microdados_seguro>`).
+
+
+A coluna ``cd_empreendimento`` permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a Seção :numref:`%s <sec_sicor_microdados_empreendimentos>`.
+
+
+A coluna ``cd_programa`` indica o programa ou linha de crédito de origem dos recursos usados no financiamento (veja a Seção :numref:`%s <sec_sicor_microdados_programa>`).
+
+
+.. O campo ``vl_aliq_proagro`` corresponde ao prêmio pago pelo contratante para contratar o Proagro como seguro rural. Corresponde a um percentual do valor a ser coberto pelo Proagro estabelecido no contrato.
+
+
+.. O campo ``vl_parc_credito`` indica o valor financiado no contrato para um empreendimento.
+
+
+
+
+
+Consultas
++++++++++
+
+
+**Consulta 1.** Qual o número de contratos de custeio de lavouras de soja ao longo dos anos?
+
+
+.. collapse:: Solução:
+
+    Para se obter o número de contratos relativos ao custeio de lavouras de soja ao longo dos anos, é necessário construir uma consulta envolvendo as tabelas ``sicor_operacao_basica_estado`` e ``empreendimento``, uma vez que a tabela ``empreendimento`` contém a lista dos possíveis produtos a serem contratados nas operações de crédito.
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+                :caption: Número de contratos de custeio de lavouras de soja.
+                :name: code:sicor:microdados:sicor_operacao_basica_estado:sql:contratos-soja-ano
+
+                  SELECT ano, COUNT(*) AS numero_contratos
+                    FROM (
+                          SELECT DISTINCT extract(YEAR FROM dt_emissao) AS ano, ref_bacen
+                            FROM sicor_operacao_basica_estado,
+                                 empreendimento
+                           WHERE empreendimento.produto = 'soja'
+                             AND empreendimento.finalidade = 'custeio'
+                             AND empreendimento.modalidade = 'lavoura'
+                             AND empreendimento.cd_empreendimento = sicor_operacao_basica_estado.cd_empreendimento
+                    )
+                GROUP BY ano
+                ORDER BY ano;
+
+
+            Saída:
+
+
+                .. code-block:: text
+
+                     ano  | numero_contratos
+                    ------+------------------
+                     2013 |           172136
+                     2014 |           183444
+                     2015 |           181770
+                     2016 |           143363
+                     2017 |           166683
+                     2018 |           154761
+                     2019 |           154298
+                     2020 |           157049
+                     2021 |           164017
+                     2022 |           184480
+                     2023 |           184417
+                     2024 |            23702
+                    (12 rows)
+
+
+        .. tab:: Python
+
+            .. code-block:: python
+
+                import sicordb
+
+                contratos = sicordb.operacoes(finalidade='custeio', modalidade='lavoura', produto='soja')
+
+                # ... processamento no Pandas com agrupamento por ano
+
+
+-----
+
+
+**Consulta 2.** Qual o número de operações e valor por cultura por ano?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+                :caption: Número de operações e valor por cultura por ano.
+                :name: code:sicor:microdados:sicor_operacao_basica_estado:sql:operacoes-cultura-ano
+
+                  SELECT extract(YEAR FROM dt_emissao) AS ano,
+                         produto,
+                         COUNT(*) AS num_operacoes,
+                         SUM(vl_parc_credito) AS valor
+                    FROM empreendimento,
+                         sicor_operacao_basica_estado AS operacoes
+                   WHERE empreendimento.cd_empreendimento = operacoes.cd_empreendimento
+                     AND finalidade = 'custeio'
+                     AND atividade = 'agrícola'
+                     AND modalidade = 'lavoura'
+                GROUP BY ano, produto
+                ORDER BY ano, valor DESC, produto;
+
+
+            Saída:
+
+
+                .. code-block:: text
+
+                     ano  |                    produto                    | num_operacoes |     valor
+                    ------+-----------------------------------------------+---------------+----------------
+                     2013 | SOJA                                          |        175076 | 15785065346.82
+                     2013 | MILHO                                         |        198521 |  7532522363.71
+                     2013 | CAFÉ                                          |        107322 |  4726700902.76
+                     2013 | CANA-DE-AÇUCAR                                |         17112 |  3718873851.02
+                     2013 | ARROZ                                         |         15261 |  1767360735.16
+                     2013 | ALGODÃO                                       |          1019 |  1717666092.90
+                     2013 | TRIGO                                         |         40166 |  1713561854.12
+                     2013 | LARANJA                                       |          5318 |   917856561.96
+                     2013 | MADEIRA                                       |          1305 |   534431616.43
+                     2013 | FUMO                                          |        144046 |   532058230.70
+                     ...
+                     2024 | LÚPULO                                        |             2 |       71709.26
+                     2024 | RABANETE                                      |             2 |       55100.00
+                     2024 | ERVA CIDREIRA (MELISSA)                       |             1 |       54000.00
+                     2024 | Ervas medicinais, aromáticas ou condimentares |             1 |       40228.00
+                     2024 | VIME                                          |             1 |       35152.50
+                     2024 | QUIUÍ (KIWI)                                  |             1 |       33500.00
+                     2024 | AROEIRA (PIMENTA-ROSA)                        |             1 |       21299.98
+                    (1688 rows)
+
+
+        .. tab:: Python
+
+            .. code-block:: python
+
+                import sicordb
+
+                contratos = sicordb.operacoes(finalidade='custeio', atividade = 'agrícola', modalidade='lavoura')
+
+                # ... processamento no Pandas com agrupamento por ano
+
+
+-----
+
+
+**Consulta 3.** Quais são as 10 culturas com maior valor de contratação ao longo dos anos e o *ranking* delas no número de operações e no valor por operação?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+                :caption: *Ranking* das operações por cultura.
+                :name: code:sicor:microdados:sicor_operacao_basica_estado:sql:ranking-cultura-ano
+
+                SELECT *
+                  FROM (
+                        SELECT *,
+                               DENSE_RANK() OVER (PARTITION BY ano ORDER BY valor DESC) as rank_valor,
+                               DENSE_RANK() OVER (PARTITION BY ano ORDER BY num_operacoes DESC) as rank_operacoes,
+                               DENSE_RANK() OVER (PARTITION BY ano ORDER BY valor_operacao DESC) as rank_valor_operacao
+                          FROM (
+                                SELECT extract(YEAR FROM dt_emissao) AS ano,
+                                       produto,
+                                       COUNT(*) AS num_operacoes,
+                                       SUM(vl_parc_credito) AS valor,
+                                       (SUM(vl_parc_credito)/COUNT(*)) AS valor_operacao
+                                  FROM empreendimento,
+                                       sicor_operacao_basica_estado AS operacoes
+                                 WHERE empreendimento.cd_empreendimento = operacoes.cd_empreendimento
+                                   AND finalidade = 'custeio'
+                                   AND atividade = 'agrícola'
+                                   AND modalidade = 'lavoura'
+                                GROUP BY ano, produto
+                                ORDER BY ano, valor DESC, produto
+                          ) AS resultado
+                        ORDER BY ano, rank_valor
+                  )
+                 WHERE rank_valor <= 10;
+
+
+            Saída:
+
+
+                .. code-block:: text
+
+                     ano  |       produto        | num_operacoes |     valor      |    valor_operacao     | rank_valor | rank_operacoes | rank_valor_operacao
+                    ------+----------------------+---------------+----------------+-----------------------+------------+----------------+---------------------
+                     2013 | SOJA                 |        175076 | 15785065346.82 |    90161.217681578286 |          1 |              2 |                  25
+                     2013 | MILHO                |        198521 |  7532522363.71 |    37943.201795830164 |          2 |              1 |                  48
+                     2013 | CAFÉ                 |        107322 |  4726700902.76 |    44042.236473043738 |          3 |              4 |                  41
+                     2013 | CANA-DE-AÇUCAR       |         17112 |  3718873851.02 |   217325.493865123890 |          4 |              7 |                   3
+                     2013 | ARROZ                |         15261 |  1767360735.16 |   115808.972882510976 |          5 |              8 |                  15
+                     2013 | ALGODÃO              |          1019 |  1717666092.90 |  1685638.952796859666 |          6 |             30 |                   1
+                     2013 | TRIGO                |         40166 |  1713561854.12 |    42661.999056913808 |          7 |              5 |                  43
+                     2013 | LARANJA              |          5318 |   917856561.96 |   172594.314020308387 |          8 |             13 |                   6
+                     2013 | MADEIRA              |          1305 |   534431616.43 |   409526.142858237548 |          9 |             23 |                   2
+                     2013 | FUMO                 |        144046 |   532058230.70 | 3693.6689022951001763 |         10 |              3 |                 131
+                     2014 | SOJA                 |        186944 | 20406011443.18 |   109155.744197085758 |          1 |              1 |                  17
+                     2014 | MILHO                |        181637 |  8140782915.52 |    44818.968137108629 |          2 |              2 |                  49
+                     2014 | CAFÉ                 |         96685 |  4682094996.83 |    48426.281189739877 |          3 |              4 |                  43
+                     2014 | CANA-DE-AÇUCAR       |         16422 |  3908969538.46 |   238032.489249786871 |          4 |              7 |                   4
+                     2014 | TRIGO                |         52852 |  2540469636.46 |    48067.615917278438 |          5 |              5 |                  44
+                     2014 | ALGODÃO              |          1039 |  2085183413.90 |  2006913.776612127045 |          6 |             32 |                   1
+                     2014 | ARROZ                |         15212 |  2085102829.39 |   137069.604877070734 |          7 |              8 |                  11
+                     2014 | LARANJA              |          4653 |   949971515.33 |   204163.231319578766 |          8 |             13 |                   7
+                     2014 | MADEIRA              |          1514 |   892039185.77 |   589193.649782034346 |          9 |             23 |                   2
+                     2014 | FUMO                 |        128631 |   511853304.56 | 3979.2375442933662958 |         10 |              3 |                 136
+                     ...
+                     2023 | SOJA                 |        186887 | 69894947053.48 |   373995.767782028713 |          1 |              1 |                  22
+                     2023 | MILHO                |        125502 | 25023550646.10 |   199387.664308935316 |          2 |              2 |                  42
+                     2023 | CAFÉ                 |         66398 | 11509542737.75 |   173341.708150094882 |          3 |              3 |                  46
+                     2023 | TRIGO                |         60664 |  6454373554.90 |   106395.449606026639 |          4 |              4 |                  70
+                     2023 | CANA-DE-AÇUCAR       |          7339 |  5825674809.58 |   793796.812860062679 |          5 |              7 |                   7
+                     2023 | ALGODÃO              |           575 |  3481153952.53 |  6054180.787008695652 |          6 |             38 |                   1
+                     2023 | ARROZ                |          7414 |  2962471241.29 |   399577.993160237389 |          7 |              6 |                  19
+                     2023 | FEIJÃO               |          8479 |  1421892609.94 |   167695.790770137988 |          8 |              5 |                  49
+                     2023 | LARANJA              |          2976 |  1342026529.43 |   450949.774674059140 |          9 |             13 |                  16
+                     2023 | ALHO                 |          1040 |  1024770326.64 |   985356.083307692308 |         10 |             24 |                   5
+                     2024 | SOJA                 |         23770 | 18760881575.60 |   789267.209743374001 |          1 |              3 |                   5
+                     2024 | MILHO                |         27297 |  4813704296.15 |   176345.543325273840 |          2 |              2 |                  40
+                     2024 | TRIGO                |         37695 |  3383278843.10 |    89754.048099217403 |          3 |              1 |                  76
+                     2024 | CAFÉ                 |         11381 |  1520410139.82 |   133591.963783498814 |          4 |              4 |                  59
+                     2024 | CANA-DE-AÇUCAR       |          2005 |  1296032432.49 |   646400.215705735661 |          5 |              8 |                  11
+                     2024 | FEIJÃO               |          4803 |   674871692.12 |   140510.450160316469 |          6 |              5 |                  57
+                     2024 | CEBOLA               |          3296 |   485454678.69 |   147286.006884101942 |          7 |              6 |                  55
+                     2024 | ARROZ                |           679 |   463631782.75 |   682815.585787923417 |          8 |             17 |                  10
+                     2024 | LARANJA              |           649 |   462967508.82 |   713355.175377503852 |          9 |             18 |                   7
+                     2024 | ALHO                 |           469 |   341324203.00 |   727770.155650319829 |         10 |             21 |                   6
+                    (120 rows)
+
+
+        .. tab:: Python
+
+            .. code-block:: python
+
+                import sicordb
+
+                contratos = sicordb.operacoes(finalidade='custeio', atividade = 'agrícola', modalidade='lavoura')
+
+                # ... processamento no Pandas com agrupamento por ano
