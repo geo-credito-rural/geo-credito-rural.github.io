@@ -1,0 +1,52 @@
+.. include:: ../def.rst
+
+
+.. _sec_bases_vetoriais_florestas-publicas:
+
+Florestas Públicas
+==================
+
+As **Florestas Publicas** designam áreas com cobertura florestal pertencentes ao governo brasileiro (federal, estadual, municipal ou distrital). Essas áreas podem estar localizadas em todos os biomas brasileiros: Amazônia, Cerrado, Mata Atlântica, Pantanal, Caatinga e o Pampa. As florestas públicas podem ser naturais, plantadas ou a combinação das duas. A administração das florestas públicas assume a premissa de que elas pertencem ao domínio público e, portanto, devem ser preservados e explorados de maneira sustentável visando ao benefício da sociedade. Nesse contexto, a `Lei nº 11.284, de 2 de março de 2006 <https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11284.htm>`__ :cite:`brasil:2024:c` estabelece:
+
+.. rst-class:: open
+
+-  I - a proteção dos ecossistemas, do solo, da água, da biodiversidade e valores culturais associados, bem como do patrimônio público;
+
+-  II - o estabelecimento de atividades que promovam o uso eficiente e racional das florestas e que contribuam para o cumprimento das metas do desenvolvimento sustentável local, regional e de todo o País;
+
+-  III - o respeito ao direito da população, em especial das comunidades locais, de acesso às florestas públicas e aos benefícios decorrentes de seu uso e conservação;
+
+-  IV - a promoção do processamento local e o incentivo ao incremento da agregação de valor aos produtos e serviços da floresta, bem como à diversificação industrial, ao desenvolvimento tecnológico, à utilização e à capacitação de empreendedores locais e da mão-de-obra regional;
+
+-  V - o acesso livre de qualquer indivíduo às informações referentes à gestão de florestas públicas, nos termos da Lei nº 10.650, de 16 de abril de 2003;
+
+-  VI - a promoção e difusão da pesquisa florestal, faunística e edáfica, relacionada à conservação, à recuperação e ao uso sustentável das florestas;
+
+-  VII - o fomento ao conhecimento e a promoção da conscientização da população sobre a importância da conservação, da recuperação e do manejo sustentável dos recursos florestais;
+
+- VIII - a garantia de condições estáveis e seguras que estimulem investimentos de longo prazo no manejo, na conservação e na recuperação das florestas.
+
+
+Além disto, por meio da Lei nº 11.284, de 2 de março de 2006 :cite:`brasil:2024:c` foi instituído o Serviço Florestal Brasileiro (SFB) que realizou o Cadastro Nacional de Florestas Públicas (CNFP) que é um instrumento de planejamento da gestão florestal. O CNFP que reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, a participação social e unificação das informações sobre as florestas públicas.O CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA) :cite:`sfb:2024:a`. Existem três tipos de florestas públicas federais, listadas a seguir
+
+.. rst-class:: open
+
+-  Florestas Públicas do TIPO A (FPA) - São florestas que apresentam destinação e dominialidade específica como as Unidades de Conservação da Natureza, as Terras Indígenas, os Assentamentos Rurais Públicos, as áreas militares e outras formas de destinação previstas em lei. São destinadas à proteção e conservação do meio ambiente e uso de comunidades tradicionais.
+
+-  Florestas Públicas do TIPO B (FPB) - São as florestas localizadas em áreas arrecadadas pelo Poder Público, mas que ainda não foram destinadas.
+
+-  Florestas Públicas do TIPO C (FPC) - São as florestas localizadas em áreas de dominialidade indefinida, comumente chamadas de terras devolutas.
+
+
+O cadastramento das florestas públicas segue três etapas:
+
+.. rst-class:: open
+
+-  Identificação - mapeamento das florestas localizadas em áreas públicas;
+
+-  Delimitação- averbação (registro) do perímetro da floresta junto à matricula do imóvel público;
+
+-  Demarcação - implantação de marcos topográficos e colocação de placas informativas no campo.
+
+
+Para este trabalho foram utilizados os dados do arquivo `Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>`__.

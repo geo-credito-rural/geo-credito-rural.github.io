@@ -42,6 +42,7 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./assentamentos
     ./embargos
     ./sumario-tabelas-vetoriais
+    ./florestas-publicas
 
     
 
