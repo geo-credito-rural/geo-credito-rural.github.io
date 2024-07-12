@@ -144,7 +144,7 @@
 <li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2023.gz">SICOR_OPERACAO_BASICA_ESTADO_2023.gz</a></p></li>
 <li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2024.gz">SICOR_OPERACAO_BASICA_ESTADO_2024.gz</a></p></li>
 </ul>
-<p>A tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> contém esses registros e sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-sicor-operacao-basica-estado"><span class="std std-numref">Tabela 3.7</span></a>.</p>
+<p>A estrutura desses arquivos pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-sicor-operacao-basica-estado"><span class="std std-numref">Tabela 3.7</span></a>.</p>
 <table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-operacao-basica-estado">
 <caption><span class="caption-number">Tabela 3.7 - </span><span class="caption-text">sicor_operacao_basica_estado.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-operacao-basica-estado" title="Link Permanente para essa tabela"></a></caption>
 <thead>
@@ -397,6 +397,13 @@
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code>, permitindo saber se o contrato prevê algum tipo de seguro ou não (veja a Seção <a class="reference internal" href="seguro.html#sec-sicor-microdados-seguro"><span class="std std-numref">3.1.7</span></a>).</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a Seção <a class="reference internal" href="empreendimentos.html#sec-sicor-microdados-empreendimentos"><span class="std std-numref">3.1.2</span></a>.</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_programa</span></code> indica o programa ou linha de crédito de origem dos recursos usados no financiamento (veja a Seção <a class="reference internal" href="programa.html#sec-sicor-microdados-programa"><span class="std std-numref">3.1.8</span></a>).</p>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado"><span class="std std-numref">Figura 3.2</span></a> apresenta os relacionamentos da tabela <code class="docutils literal notranslate"><span class="pre">sicor-operacao-basica-estado</span></code> e as demais tabelas auxiliares (ou de domínio).</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-er-sicor-operacao-basica-estado">
+<a class="reference internal image-reference" href="../../_images/er-sicor-operacao-basica-estado.png"><img alt="Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado)" src="../../_images/er-sicor-operacao-basica-estado.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.2 - </span><span class="caption-text">Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
 <section id="consultas">
 <h2><span class="section-number">3.1.9.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Qual o número de contratos de custeio de lavouras de soja ao longo dos anos?</p>
@@ -611,7 +618,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f238649f6a0>
+<jinja2.runtime.BlockReference object at 0x7f7dec3f4430>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

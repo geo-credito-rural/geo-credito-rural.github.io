@@ -23,7 +23,7 @@ Os microdados com os registros de operações contratadas com recursos públicos
 - `SICOR_OPERACAO_BASICA_ESTADO_2024.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2024.gz>`__
 
 
-A tabela ``sicor_operacao_basica_estado`` contém esses registros e sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:sicor_operacao_basica_estado>`.
+A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:sicor_operacao_basica_estado>`.
 
 
 .. table:: sicor_operacao_basica_estado.
@@ -129,7 +129,6 @@ A tabela ``sicor_operacao_basica_estado`` contém esses registros e sua estrutur
     +---------------+---------------------------+----------+-------------------------------------------------------+
 
 
-
 Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como **ref_bacen**. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela ``sicor_operacao_basica_estado`` é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos ``ref_bacen`` e ``nu_ordem``, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.
 
 
@@ -163,7 +162,16 @@ A coluna ``cd_programa`` indica o programa ou linha de crédito de origem dos re
 .. O campo ``vl_parc_credito`` indica o valor financiado no contrato para um empreendimento.
 
 
+A :numref:`Figura %s <fig:sicor:microdados:er-sicor-operacao-basica-estado>` apresenta os relacionamentos da tabela ``sicor-operacao-basica-estado`` e as demais tabelas auxiliares (ou de domínio).
 
+
+.. figure:: ../../img/sicor/microdados/tabelas/er-sicor-operacao-basica-estado.png
+    :alt: Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado)
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:er-sicor-operacao-basica-estado
+
+    Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado).
 
 
 Consultas

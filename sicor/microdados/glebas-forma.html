@@ -188,11 +188,11 @@
 </pre></div>
 </div>
 </div>
-<p>Vamos realizar um estudo considerando somente as glebas do ano de 2022 para a região destacada em laranja no mapa mostrado na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil"><span class="std std-numref">Figura 3.3</span></a>, que corresponde às regiões norte do Rio Grande do Sul (RS), oeste de Santa Catarina (SC) e oeste do Paraná (PR). Essa região contém 436.356 geometrias de glebas no ano de 2022.</p>
+<p>Vamos realizar um estudo considerando somente as glebas do ano de 2022 para a região destacada em laranja no mapa mostrado na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil"><span class="std std-numref">Figura 3.4</span></a>, que corresponde às regiões norte do Rio Grande do Sul (RS), oeste de Santa Catarina (SC) e oeste do Paraná (PR). Essa região contém 436.356 geometrias de glebas no ano de 2022.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil">
 <a class="reference internal image-reference" href="../../_images/area-estudo-sul-brasil.png"><img alt="Localização da área de estudo" src="../../_images/area-estudo-sul-brasil.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.3 - </span><span class="caption-text">Localização da área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.4 - </span><span class="caption-text">Localização da área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-area-estudo-sul-brasil" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>Para desenvolver o estudo, vamos criar uma tabela auxiliar denominada <code class="docutils literal notranslate"><span class="pre">glebas_area_estudo</span></code> contendo as geometrias das glebas de 2022 na região de interesse. Para isso, iremos construir uma consulta envolvendo as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> e <code class="docutils literal notranslate"><span class="pre">area_estudo</span></code> que utiliza o operador <code class="docutils literal notranslate"><span class="pre">ST_Within</span></code> para estabelecer o relacionamento espacial entre as geometrias das duas tabelas.</p>
@@ -228,11 +228,11 @@
 (1 row)
 </pre></div>
 </div>
-<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area"><span class="std std-numref">Figura 3.4</span></a> (preparada no QGIS) apresenta as glebas na área de estudo divididas em grupos em função dos limiares de áreas já calculados. Neste caso, a visualização dos três grupos (verde, amarelo e vermelho, ordenados do maior para o menor) revela uma concentração de glebas menores no norte do RS e no oeste de SC.</p>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area"><span class="std std-numref">Figura 3.5</span></a> (preparada no QGIS) apresenta as glebas na área de estudo divididas em grupos em função dos limiares de áreas já calculados. Neste caso, a visualização dos três grupos (verde, amarelo e vermelho, ordenados do maior para o menor) revela uma concentração de glebas menores no norte do RS e no oeste de SC.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-gleba-tamanho-area">
 <a class="reference internal image-reference" href="../../_images/gleba-tamanho-area.png"><img alt="Tamanho das glebas na área de estudo" src="../../_images/gleba-tamanho-area.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.4 - </span><span class="caption-text">Tamanho das glebas na área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.5 - </span><span class="caption-text">Tamanho das glebas na área de estudo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-gleba-tamanho-area" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>Outra métrica que pode ser empregada é a relação (divisão numérica) entre perímetro e área. Novamente, podemos obter três grupos com ajuda da função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-par"><span class="std std-numref">Trecho de Código 3.24</span></a>).</p>
@@ -251,11 +251,11 @@
 (1 row)
 </pre></div>
 </div>
-<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes"><span class="std std-numref">Figura 3.5</span></a> detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente pequena em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.</p>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes"><span class="std std-numref">Figura 3.6</span></a> detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente pequena em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes">
 <a class="reference internal image-reference" href="../../_images/detalhe-metrica-perimetroarea-3classes.png"><img alt="Relação entre o perímetro e a área das glebas" src="../../_images/detalhe-metrica-perimetroarea-3classes.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.5 - </span><span class="caption-text">Relação entre o perímetro e a área das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.6 - </span><span class="caption-text">Relação entre o perímetro e a área das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-perimetroarea-3classes" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>A próxima métrica que podemos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor retângulo envolvente. Novamente, vamos obter os limiares de três grupos com a função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-square"><span class="std std-numref">Trecho de Código 3.25</span></a>).</p>
@@ -274,11 +274,11 @@
 (1 row)
 </pre></div>
 </div>
-<p>No exemplo da <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes"><span class="std std-numref">Figura 3.6</span></a>, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são irregulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa área, devido à topografia do terreno, glebas de formato irregular podem ser frequentes.</p>
+<p>No exemplo da <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes"><span class="std std-numref">Figura 3.7</span></a>, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são irregulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa área, devido à topografia do terreno, glebas de formato irregular podem ser frequentes.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes">
 <a class="reference internal image-reference" href="../../_images/detalhe-metrica-retangularfit-3classes.png"><img alt="Relação entre a forma das glebas e um retângulo" src="../../_images/detalhe-metrica-retangularfit-3classes.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.6 - </span><span class="caption-text">Relação entre a forma das glebas e um retângulo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.7 - </span><span class="caption-text">Relação entre a forma das glebas e um retângulo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-detalhe-metrica-retangularfit-3classes" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>A última métrica que iremos utilizar para avaliar a forma das glebas é a relação da sua área com a área do menor círculo envolvente. Novamente, vamos obter os limiares de três grupos com a função <code class="docutils literal notranslate"><span class="pre">percentile_cont</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-forma-sql-limiares-circle"><span class="std std-numref">Trecho de Código 3.26</span></a>).</p>
@@ -297,11 +297,11 @@
 (1 row)
 </pre></div>
 </div>
-<p>Na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior"><span class="std std-numref">Figura 3.7</span></a> são mostradas apenas as glebas com os maiores valores deste atributo. Isso acaba apresentando a localização das glebas redondas, o que pode ser um indicativo de pivôs centrais (irrigação).</p>
+<p>Na <a class="reference internal" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior"><span class="std std-numref">Figura 3.8</span></a> são mostradas apenas as glebas com os maiores valores deste atributo. Isso acaba apresentando a localização das glebas redondas, o que pode ser um indicativo de pivôs centrais (irrigação).</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior">
 <a class="reference internal image-reference" href="../../_images/metrica-ellipticfit-1p-superior.png"><img alt="Relação entre a forma das glebas e um círculo" src="../../_images/metrica-ellipticfit-1p-superior.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.7 - </span><span class="caption-text">Relação entre a forma das glebas e um círculo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.8 - </span><span class="caption-text">Relação entre a forma das glebas e um círculo.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-forma-metrica-ellipticfit-1p-superior" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -321,7 +321,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f2386cf8c70>
+<jinja2.runtime.BlockReference object at 0x7f7debd20610>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
