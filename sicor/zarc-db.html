@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>3.3. Zoneamento Agrícola de Risco Climático (ZARC) &mdash; GeoCreditoRural</title>
+  <title>3.2. Zoneamento Agrícola de Risco Climático (ZARC) &mdash; GeoCreditoRural</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -28,8 +28,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="3.4. Análise da Qualidade dos Dados do Sicor" href="analises.html" />
-    <link rel="prev" title="3.2.12. Pedidos de cobertura do Proagro (COP)" href="microdados/pedidos-cobertura-proagro.html" /> 
+    <link rel="next" title="3.3. Análise da Qualidade dos Dados do Sicor" href="analises.html" />
+    <link rel="prev" title="3.1.13. Pedidos de cobertura do Proagro (COP)" href="microdados/pedidos-cobertura-proagro.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -60,10 +60,9 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Acesso e Análise dos Dados do Sicor</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="preparacao-base-dados.html">3.1. Preparação da Base de Dados Sicor</a></li>
-<li class="toctree-l2"><a class="reference internal" href="microdados/index.html">3.2. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="analises.html">3.4. Análise da Qualidade dos Dados do Sicor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="microdados/index.html">3.1. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="analises.html">3.3. Análise da Qualidade dos Dados do Sicor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
@@ -100,12 +99,12 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>Acesso e Análise dos Dados do Sicor</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">3.3. </span>Zoneamento Agrícola de Risco Climático (ZARC)</li>
+      <li class="breadcrumb-item active"><span class="section-number">3.2. </span>Zoneamento Agrícola de Risco Climático (ZARC)</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
-        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="analises.html" class="btn btn-neutral float-right" title="3.4. Análise da Qualidade dos Dados do Sicor" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.1.13. Pedidos de cobertura do Proagro (COP)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analises.html" class="btn btn-neutral float-right" title="3.3. Análise da Qualidade dos Dados do Sicor" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -113,7 +112,7 @@
            <div itemprop="articleBody">
              
   <section id="zoneamento-agricola-de-risco-climatico-zarc">
-<span id="sec-sicor-zarc"></span><h1><span class="section-number">3.3. </span>Zoneamento Agrícola de Risco Climático (ZARC)<a class="headerlink" href="#zoneamento-agricola-de-risco-climatico-zarc" title="Link permanente para este cabeçalho"></a></h1>
+<span id="sec-sicor-zarc"></span><h1><span class="section-number">3.2. </span>Zoneamento Agrícola de Risco Climático (ZARC)<a class="headerlink" href="#zoneamento-agricola-de-risco-climatico-zarc" title="Link permanente para este cabeçalho"></a></h1>
 <p>O Zoneamento Agrícola de Risco Climático (<a class="reference external" href="https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico">ZARC</a>) tem o objetivo de promover, coordenar e apoiar projetos, estudos e ações de pesquisa, de desenvolvimento, de operação ou manutenção de avaliação, quantificação e monitoramento de riscos agroclimáticos, bem como disponibilizar essas informações à sociedade. É um trabalho colaborativo que estima o risco de produção agrícola nas condições climáticas normais de cada região, com a finalidade de permitir a adequada avaliação da variabilidade climática de cada local, época e suas consequências para as culturas agrícolas. Para isso usa um elaborado sistema de análise de dados agrometeorológicos e de simulação matemática. Esse trabalho é coordenado pelo Ministério da Agricultura e Pecuária (MAPA) e tem como base uma rede de pesquisadores e técnicos da Embrapa e de várias outras instituições de pesquisa.</p>
 <p>A primeira publicação do ZARC foi o zoneamento para a cultura do trigo na safra de 1996. Atualmente, ele é publicado anualmente e o MAPA é o órgão responsável por publicar no diário oficial da união o ZARC. As normas de publicação, de participação na formulação ou aperfeiçoamento na forma de divulgação estão estabelecidas por meio da <a class="reference external" href="https://www.in.gov.br/web/dou/-/portaria-mapa-n-412-de-30-de-dezembro-de-2020-296859190">Portaria 412 do MAPA do dia 30 de dezembro de 2020</a>. Sua atualização é sistemática e ocorre por meio desse sistema colaborativo entre os órgãos de pesquisa, agentes públicos e privados. Nesse sentido, as solicitações de formulações e/ou aperfeiçoamento podem ser apresentadas por órgãos governamentais, instituições de pesquisa agropecuária, entidades representativas dos produtores rurais, cooperativas agropecuárias, por pessoas jurídicas prestadoras de serviços de assistência técnica e extensão rural, por entidades representativas e de classe dos profissionais atuantes no setor agropecuário, agentes financeiros e pessoas jurídicas fornecedoras de insumos agropecuários. Essas propostas serão avaliadas tecnicamente por um período mínimo de 12 (doze) meses e caso aceitas, serão utilizadas nas safras seguintes. Por conta desse trabalho, o ZARC é utilizado no crédito rural, por meio de iniciativas como o Programa de Subvenção Federal ao Prêmio do Seguro Rural (PSR) e o Programa de Garantia da Atividade Agropecuária (Proagro), entre outras políticas governamentais de apoio à produção que exigem a adoção das janelas de plantio recomendadas. No âmbito privado, algumas instituições financeiras utilizam como critério para a concessão de financiamento agrícola.</p>
 <p>Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades da Federação. Inicialmente, ele estabelecia as zonas de acordo com a cultura, entretanto, com a publicação da <a class="reference external" href="https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/documentos/INSTRUONORMATIVAN16.pdf">Instrução Normativa 16, de 9 de ABRIL de 2018</a> foram estabelecidas as regras para inclusão de cultivares. Além disto, inicialmente o ZARC utilizava <a class="reference external" href="https://in.gov.br/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-9-de-novembro-de-2021-359074246">três tipos de solo</a> a serem definidos pela análise granulométrica, determinadas pelas quantidades de argila, de areia e de silte existentes no solo. Assim, foram adotadas as seguintes especificações para solos:</p>
@@ -269,8 +268,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.2.12. Pedidos de cobertura do Proagro (COP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="analises.html" class="btn btn-neutral float-right" title="3.4. Análise da Qualidade dos Dados do Sicor" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="microdados/pedidos-cobertura-proagro.html" class="btn btn-neutral float-left" title="3.1.13. Pedidos de cobertura do Proagro (COP)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analises.html" class="btn btn-neutral float-right" title="3.3. Análise da Qualidade dos Dados do Sicor" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -280,7 +279,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f233cf22400>
+<jinja2.runtime.BlockReference object at 0x7fc535144e50>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

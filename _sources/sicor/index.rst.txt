@@ -1,13 +1,14 @@
 Acesso e Análise dos Dados do Sicor
 ===================================
 
+
 O Crédito Rural é o financiamento para viabilizar as atividades agropecuárias e envolve os diversos setores que atuam nesse segmento, desde os produtores rurais e suas cooperativas, agentes envolvidos com a pesquisa e outros serviços ligados à agropecuária, servindo também para o escoamento da produção. Os produtores rurais utilizam os recursos concedidos pelas instituições financeiras nessa linha de crédito de diversas maneiras na sua propriedade. Por exemplo, podem investir em novos equipamentos e animais ou custear matéria prima para o cultivo. Podem ainda utilizar esses recursos para comercializar e industrializar a produção. São as chamadas finalidades do crédito rural.
 
 
 O Proagro (Programa de Garantia da Atividade Agropecuária) é um programa do Governo Federal que garante o pagamento de financiamentos rurais quando a lavoura sofrer danos provocados por eventos climáticos adversos, ou causados por doenças e pragas sem controle. O Proagro é administrado pelo Banco Central e regulamentado pelo Conselho Monetário Nacional (CMN). As instituições financeiras (bancos e cooperativas de crédito) são os agentes do programa. O manual do Crédito Rural está disponível em: https://www3.bcb.gov.br/mcr.
 
 
-De acordo com o manual de Crédito Rural, os registros das operações de crédito rural concedidas pelas instituições financeiras autorizadas a operar em crédito rural, bem como dos enquadramentos de empreendimentos no Proagro são realizados no Sistema de Operações do Crédito Rural e do Proagro (Sicor). Seus objetivos são os de fornecer dados sobre crédito rural, evitando que ocorra o paralelismo de assistência creditícia. Além disso, possibilita o acompanhamento das operações do crédito rural bem como do controle das operações enquadradas no Proagro. Desta maneira, agrupa as informações e dados essenciais e propicia que os agentes públicos tenham acesso a esses dados.
+De acordo com o manual de Crédito Rural, os registros das operações de crédito rural concedidas pelas instituições financeiras autorizadas a operar em crédito rural, bem como dos enquadramentos de empreendimentos no Proagro são realizados no Sistema de Operações do Crédito Rural e do Proagro (Sicor) :cite:`bcb:2024:b`. Seus objetivos são os de fornecer dados sobre crédito rural, evitando que ocorra o paralelismo de assistência creditícia. Além disso, possibilita o acompanhamento das operações do crédito rural bem como do controle das operações enquadradas no Proagro. Desta maneira, agrupa as informações e dados essenciais e propicia que os agentes públicos tenham acesso a esses dados.
 
 
 Este capítulo apresenta como acessar os dados do Sicor e como realizar algumas análises nesses dados. Neste tema será realizada uma introdução ao ambiente de computação interativa, ao Python e aos jupyter notebooks. Posteriormente, será explanado como acessar as glebas do Sicor; como transformar os dados tabulares referentes às glebas em geometrias, verificando sua validade. Também será apresentado como repará-las, quando possível. O propósito é apresentar quais informações estão disponíveis nesta base de dados, melhorar e facilitar o acesso e usabilidade dos dados do Sicor para as análises que serão realizadas nos próximos temas.
@@ -17,7 +18,6 @@ Este capítulo apresenta como acessar os dados do Sicor e como realizar algumas 
     :maxdepth: 1
     :titlesonly:
 
-    ./preparacao-base-dados.rst
     ./microdados/index
     ./zarc-db
     ./analises

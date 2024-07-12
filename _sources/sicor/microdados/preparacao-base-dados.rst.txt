@@ -1,0 +1,58 @@
+Preparação da Base de Dados Sicor
+=================================
+
+
+.. warning::
+
+    Os códigos mostrados nesta seção **encontram-se em desenvolvimento**. Tanto os *scripts* SQL quanto o pacote Python denominado ``sicor``, serão atualizados e disponibilizados nas próximas semanas.
+
+
+.. tabs::
+
+    .. tab:: SQL
+
+        Faça o download do arquivo :download:`sicor-esquema-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql>`, contendo as instruções de criação das tabelas que serão usadas para armazenar os microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-esquema-ddl.sql>`).
+
+
+        .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql
+            :language: sql
+            :lines: 1-19
+            :caption: Comandos de criação das tabelas para armazenamento de dados do Sicor (:download:`sicor-esquema-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql>`).
+            :name: code:sicor:microdados:preparacao-base-dados:sicor-esquema-ddl.sql
+
+
+        Em seguida, baixe o arquivo :download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql>`, contendo as instruções de carga dos arquivos CSV contendo os microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
+
+        .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql
+            :language: psql
+            :lines: 1-10
+            :caption: Comandos de importação dos microdados do Sicor (:download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql>`).
+            :name: code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql
+
+
+        Por último, faça o download do arquivo :download:`sicor-pos-carga-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`, contendo instruções para criação de chaves primárias, chaves estrangeiras e índices (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
+
+        .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql
+            :language: sql
+            :lines: 1-10
+            :caption: Definição de restrições e índices do esquema Sicor (:download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`).
+            :name: code:sicor:microdados:preparacao-base-dados:sicor-pos-carga-ddl.sql
+
+
+    .. tab:: Python
+
+        O pacote denominado `sicor <https://github.com/geo-credito-rural/sicor>`__ pode ser utilizado no Python para preparação da base de dados do Sicor. O :numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas>` inicia pela importação do pacote ``sicor`` (linha 01), que contém as funcionalidade para criação do modelo de dados do Sicor (linha 05), download automático dos microdads e carga em um banco de dados PostgreSQL com a extensão PostGIS (linha 07).
+
+
+        .. code-block:: python
+            :linenos:
+            :caption: Preparação da base de dados do Sicor.
+            :name: code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas
+
+                import sicor
+
+                sicor.use_db("postgresql://usuario:senha@endereco-servidor/sicor")
+
+                sicor.db.create_tables()
+
+                sicor.load_data(ano=2024)

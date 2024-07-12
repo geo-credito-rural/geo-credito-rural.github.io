@@ -41,10 +41,12 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./areas-quilombolas
     ./assentamentos
     ./embargos
-    ./sumario-tabelas-vetoriais
+    ./terras-indigenas
     ./florestas-publicas
-
+    ./sumario-tabelas-vetoriais
     
+
+
 
 
  

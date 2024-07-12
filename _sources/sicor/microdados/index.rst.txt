@@ -7,10 +7,26 @@ Sicor - Tabelas e Microdados do Crédito Rural e do Proagro
 ==========================================================
 
 
+Os microdados do Sicor contendo o registro das operações de crédito rural e do Proagro estão disponíveis no seguinte sítio do Banco Central: `Tabelas e Microdados do Crédito Rural e do Proagro <https://www.bcb.gov.br/estabilidadefinanceira/tabelas-credito-rural-proagro>`__. Todos os dados são fornecidos em formato texto CSV (Comma-Separated Values) e são descritos no manual de dados do Sicor. A estrutura simplificada dessa base de dados e seus relacionamentos são apresentados na :numref:`Figura %s <fig:sicor:microdados:modelo-dados-simplificado>`.
+
+
+.. figure:: ../../img/sicor/microdados/tabelas/modelo-dados-simplificado.png
+    :alt: Modelo de dados Sicor (simplificado)
+    :width: 100%
+    :figclass: align-center
+    :name: fig:sicor:microdados:modelo-dados-simplificado
+
+    Modelo de dados Sicor (simplificado).
+
+
+Esta seção irá descrever em detalhes esses dados, ensinando a preparar uma base de dados para realização de consultas e análises.
+
+
 .. toctree::
     :maxdepth: 1
     :titlesonly:
 
+    ./preparacao-base-dados
     ./empreendimentos
     ./ifs
     ./instrumento-credito
