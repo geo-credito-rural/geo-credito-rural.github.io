@@ -234,9 +234,9 @@ Consultas
 
             .. code-block:: python
 
-                import sicordb
+                import sicor
 
-                contratos = sicordb.operacoes(finalidade='custeio', modalidade='lavoura', produto='soja')
+                contratos = sicor.operacoes(finalidade='custeio', modalidade='lavoura', produto='soja')
 
                 # ... processamento no Pandas com agrupamento por ano
 
@@ -304,11 +304,24 @@ Consultas
 
             .. code-block:: python
 
-                import sicordb
+                import sicor
 
-                contratos = sicordb.operacoes(finalidade='custeio', atividade = 'agrícola', modalidade='lavoura')
+                consulta = '''SELECT extract(YEAR FROM dt_emissao) AS ano,
+                                     produto,
+                                     COUNT(*) AS num_operacoes,
+                                     SUM(vl_parc_credito) AS valor
+                                FROM empreendimento,
+                                     sicor_operacao_basica_estado AS operacoes
+                               WHERE empreendimento.cd_empreendimento = operacoes.cd_empreendimento
+                                 AND finalidade = 'custeio'
+                                 AND atividade = 'agrícola'
+                                 AND modalidade = 'lavoura'
+                            GROUP BY ano, produto
+                            ORDER BY ano, valor DESC, produto'''
 
-                # ... processamento no Pandas com agrupamento por ano
+                operacoes = sicor.query(consulta)
+
+                # ... processamento no Pandas
 
 
 -----
@@ -409,8 +422,8 @@ Consultas
 
             .. code-block:: python
 
-                import sicordb
+                import sicor
 
-                contratos = sicordb.operacoes(finalidade='custeio', atividade = 'agrícola', modalidade='lavoura')
+                operacoes = sicor.query('sql')
 
-                # ... processamento no Pandas com agrupamento por ano
+                # ... processamento no Pandas
