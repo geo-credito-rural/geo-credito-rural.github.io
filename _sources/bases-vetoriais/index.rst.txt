@@ -7,7 +7,7 @@ Análise dos Dados do Sicor com base em Dados Vetoriais
 ======================================================
 
 
-A Seção 9 (Impedimentos Sociais, Ambientais e Climáticos) do Capítulo 2 (Condições Básicas) do `Manual de Crédito Rural <https://www3.bcb.gov.br/mcr>`__ dispõe sobre a caracterização de empreendimentos com restrições de acesso ao crédito rural em razão de dispositivos legais ou infralegais atinentes a questões sociais, ambientais e climáticas. Essa Seção 9 foi criada e atualizada pelas resoluções `BCB Nº 140 de 15 de Setembro de 2021 <https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=140>`__ e `CMN Nº 5.081 de 29 de junho de 2023 <https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&numero=5081>`__, e estabelece os seguintes impedimentos:
+A Seção 9 (Impedimentos Sociais, Ambientais e Climáticos) do Capítulo 2 (Condições Básicas) do `Manual de Crédito Rural <https://www3.bcb.gov.br/mcr>`__ :cite:`bcb:2024:c` dispõe sobre a caracterização de empreendimentos com restrições de acesso ao crédito rural em razão de dispositivos legais ou infralegais atinentes a questões sociais, ambientais e climáticas. Essa Seção 9 foi criada e atualizada pelas resoluções `BCB Nº 140 de 15 de Setembro de 2021 <https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20BCB&numero=140>`__ :cite:`bcb:2024:b` e `CMN Nº 5.081 de 29 de junho de 2023 <https://www.bcb.gov.br/estabilidadefinanceira/exibenormativo?tipo=Resolu%C3%A7%C3%A3o%20CMN&numero=5081>`__, :cite:`bcb:2024:d` que estabelecem os seguintes impedimentos:
 
 
 .. list-table:: 
@@ -43,8 +43,9 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./embargos
     ./terras-indigenas
     ./florestas-publicas
+    ./cadastro-ambiental-rural
+    ./sigef
     ./sumario-tabelas-vetoriais
-    
 
 
 

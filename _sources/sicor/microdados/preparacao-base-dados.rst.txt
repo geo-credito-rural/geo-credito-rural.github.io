@@ -4,14 +4,14 @@ Preparação da Base de Dados Sicor
 
 .. warning::
 
-    Os códigos mostrados nesta seção **encontram-se em desenvolvimento**. Tanto os *scripts* SQL quanto o pacote Python denominado ``sicor``, serão atualizados e disponibilizados nas próximas semanas.
+    Os códigos mostrados nesta seção **encontram-se em desenvolvimento**. Tanto os *scripts* SQL quanto o pacote Python denominado ``sicor`` serão atualizados e disponibilizados em breve.
 
 
 .. tabs::
 
     .. tab:: SQL
 
-        Faça o download do arquivo :download:`sicor-esquema-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql>`, contendo as instruções de criação das tabelas que serão usadas para armazenar os microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-esquema-ddl.sql>`).
+        **1.** Faça o *download* do arquivo :download:`sicor-esquema-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql>`. Este arquivo contém as instruções de criação das tabelas que serão usadas para armazenar os microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-esquema-ddl.sql>`).
 
 
         .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-esquema-ddl.sql
@@ -21,7 +21,7 @@ Preparação da Base de Dados Sicor
             :name: code:sicor:microdados:preparacao-base-dados:sicor-esquema-ddl.sql
 
 
-        Em seguida, baixe o arquivo :download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql>`, contendo as instruções de carga dos arquivos CSV contendo os microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
+        **2.** Em seguida, baixe o arquivo :download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql>`, contendo as instruções de carga dos arquivos CSV dos microdados do Sicor (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
 
         .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-carga-dados.sql
             :language: psql
@@ -30,7 +30,7 @@ Preparação da Base de Dados Sicor
             :name: code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql
 
 
-        Por último, faça o download do arquivo :download:`sicor-pos-carga-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`, contendo instruções para criação de chaves primárias, chaves estrangeiras e índices (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
+        **3.** Por último, faça o *download* do arquivo :download:`sicor-pos-carga-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`. Este arquivo contem instruções para criação de chaves primárias, chaves estrangeiras e índices (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
 
         .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql
             :language: sql
@@ -41,7 +41,7 @@ Preparação da Base de Dados Sicor
 
     .. tab:: Python
 
-        O pacote denominado `sicor <https://github.com/geo-credito-rural/sicor>`__ pode ser utilizado no Python para preparação da base de dados do Sicor. O :numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas>` inicia pela importação do pacote ``sicor`` (linha 01), que contém as funcionalidade para criação do modelo de dados do Sicor (linha 05), download automático dos microdads e carga em um banco de dados PostgreSQL com a extensão PostGIS (linha 07).
+        O pacote denominado `sicor <https://github.com/geo-credito-rural/sicor>`__ pode ser utilizado no Python para criação e preparação da base de dados do Sicor. O :numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas>` mostra como utilizar esse pacote para criação do modelo de dados do Sicor, *download* automático dos microdads e carga em um banco de dados PostgreSQL com a extensão PostGIS.
 
 
         .. code-block:: python

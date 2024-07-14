@@ -7,10 +7,10 @@ Instituições Financeiras (IFs)
 ==============================
 
 
-A tabela ``ifssicor`` contém os registros de instituições financeiras (IFs), isto é, bancos e cooperativas de crédito do Sicor. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:ifssicor>`.
+O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_LISTA_IFS.csv>`__ contém os registros de instituições financeiras (IFs), isto é, bancos e cooperativas de crédito do Sicor. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:ifssicor>`.
 
 
-.. table:: ifssicor.
+.. table:: Estrutura do arquivo contendo a lista de instituições financeiras (IFs) no Sicor.
     :header-alignment: center center center center
     :column-alignment: center left left left
     :name: tbl:sicor:microdados:ifssicor
@@ -28,18 +28,55 @@ A tabela ``ifssicor`` contém os registros de instituições financeiras (IFs), 
 
 A coluna ``nome_if`` contém o nome da instituição financeira concedente do crédito e a coluna ``segmento_if`` contém a sua classificação quanto a sua natureza jurídica, podendo ser classifcado como *público*, *privado* ou *cooperativa de crédito*, por exemplo.
 
+
+.. note::
+
+    O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_LISTA_IFS.csv>`__ encontra-se carregado na tabela ``ifssicor`` do banco de dados PostgreSQL.
+
+
 Consultas
 ---------
 
-.. tabs::
 
-    .. tab:: SQL
+**Consulta 1.** Determinar o número de instituições financeiras por cada natureza jurídica.
 
-        .. code-block:: sql
-            :caption: Classificação da instituição financeira quanto a natureza jurídica.
-            :name: code:sicor:microdados:ifs:sql:naturezajuridica
 
-            SELECT DISTINCT segmento_if AS natureza,
-                   COUNT(*) AS numero_if
-            FROM ifssicor
-            GROUP BY segmento_if 
+.. collapse:: Solução:
+    :open:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            A Classificação da instituição financeira quanto a natureza jurídica refere-se à coluna ``segmento_if``. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:
+
+
+            .. code-block:: sql
+
+                SELECT DISTINCT segmento_if AS natureza,
+                       COUNT(*) AS numero_if
+                FROM ifssicor
+                GROUP BY segmento_if
+
+
+        .. tab:: Python + SQL
+
+
+            Utilizando a operação ``query`` do pacote `sicor` é possível obter um ``DataFrame`` do `Pandas` como resultado da consulta SQL:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                consulta = '''
+                    SELECT DISTINCT segmento_if AS natureza,
+                           COUNT(*) AS numero_if
+                    FROM ifssicor
+                    GROUP BY segmento_if
+                '''
+
+                ifs_segmento = sicor.query(consulta)

@@ -7,7 +7,7 @@ Garantia do Empreendimento
 ==========================
 
 
-Como todo o contrato, o financiamento rural também conta com uma forma de garantia, a mais famosa das garantias do seguro rural é o Programa de Garantia da Atividade Agropecuária (Proagro). A tabela ``tipogarantiaempreendimento`` contém os registros dos tipos de garantias utilizados no financiamento agrícola. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:tipogarantiaempreendimento>`.
+Como todo o contrato, o financiamento rural também conta com uma forma de garantia, a mais famosa das garantias do seguro rural é o Programa de Garantia da Atividade Agropecuária (Proagro) :cite:`bcb:2024:a`. A tabela ``tipogarantiaempreendimento`` contém os registros dos tipos de garantias utilizados no financiamento agrícola. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:tipogarantiaempreendimento>`.
 
 
 .. table:: tipogarantiaempreendimento.

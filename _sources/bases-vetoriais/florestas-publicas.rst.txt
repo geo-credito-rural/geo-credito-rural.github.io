@@ -1,10 +1,11 @@
 .. include:: ../def.rst
 
 
-.. _sec_bases_vetoriais_florestas-publicas:
+.. _sec_bases_vetoriais_florestas_publicas:
 
 Florestas Públicas
 ==================
+
 
 As **Florestas Publicas** designam áreas com cobertura florestal pertencentes ao governo brasileiro (federal, estadual, municipal ou distrital). Essas áreas podem estar localizadas em todos os biomas brasileiros: Amazônia, Cerrado, Mata Atlântica, Pantanal, Caatinga e o Pampa. As florestas públicas podem ser naturais, plantadas ou a combinação das duas. A administração das florestas públicas assume a premissa de que elas pertencem ao domínio público e, portanto, devem ser preservados e explorados de maneira sustentável visando ao benefício da sociedade. Nesse contexto, a `Lei nº 11.284, de 2 de março de 2006 <https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11284.htm>`__ :cite:`brasil:2024:c` estabelece:
 

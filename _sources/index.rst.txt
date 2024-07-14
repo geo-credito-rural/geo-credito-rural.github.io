@@ -2,13 +2,41 @@ Monitoramento de Operações de Crédito Rural por meio de Geotecnologias
 ======================================================================
 
 
-Contexto e motivação do curso.
+**Contexto e motivação do curso.**
+
+Um dos principais eixos da política agrícola brasileira se dá por meio do crédito agrícola e do seguro agrícola. No Plano Safra 2023/2024 serão destinados R$ 364,22 bilhões, valor 26,8% superior ao do que foi aplicado no Plano Safra anterior. Nesse plano safra o crédito rural visa incentivar o fortalecimento dos sistemas de produção ambientalmente sustentáveis. Isso se dará pela redução das taxas de juros para recuperação de pastagens e premiação para os produtores rurais que adotam práticas agropecuárias consideradas mais sustentáveis :cite:`brasil:2024:f`. Entretanto, as fraudes no crédito rural têm uma longa história e as ações de fiscalização e monitoramento realizadas pelo Banco Central com base em dados geográficos apresentam baixo grau de automação e limitada cobertura espacial e temporal. Assim, o Tribunal de Contas da União (TCU), por meio do projeto Panoptes, propôs o curso para o acompanhamento e fiscalização das operações de crédito rural.
 
 
-Objetivos e organização do curso.
+**Objetivos e organização do curso**
 
 
-Espera-se que o aluno aproveite a oportunidade no curso para ...
+O objetivo desse curso é capacitar os alunos no uso de geotecnologias para monitoramento de operações de crédito rural e Proagro. Para isto serão apresentados exemplos utilizando dados geoespaciais, vetoriais (pontos, linhas e polígonos) e matriciais (imagens obtidas por sensores remoto). Além de versar sobre a realização de análise de séries temporais com base em cubos temporais de imagens. Para atender os objetivos do projeto, será fornecida a base necessária em geotecnologias além da implementação e personalização de rotinas automatizadas para monitoramento e avaliação das operações de crédito e do PROAGRO \ [#]_,.
+
+O curso está dividido nos seguintes capítulos:
+
+.. rst-class:: open
+
+1. Introdução ao ambiente de computação interativa, ao SQL, Python e Jupyter notebooks. Nesse capítulo será realizada uma capacitação para habilitar e nivelar os alunos no uso destas ferramentas para acompanhar aplicar os conhecimentos fornecidos pelo curso.
+
+2. Acesso e análise da qualidade dos dados do Sicor. Neste tema será realizada uma explanação de como acessar as glebas do Sicor; de como transformar os dados tabulares referente as glebas em geometrias; de como verificar a sua validade e os métodos para repará-las, quando possível. Também irá apresentar quais informações estão disponíveis nesta base de dados, procurando melhorar e facilitar o acesso e usabilidade dos dados do Sicor para as análises que serão realizadas nos próximos temas. 
+
+3. Rotinas de monitoramento dos dados Sicor utilizando bases em dados vetoriais. Neste tópico serão abordadas as bases de dados e rotinas necessárias para desenvolver verificações adicionais que complementam as verificações automáticas atualmente feitas pelo SICOR com foco no cumprimento da Resolução BCB Nº 140 :cite:`bcb:2024:b` e da Resolução CMN Nº 5.081 :cite:`bcb:2024:d`, sobre impedimentos sociais, ambientais e climáticos para o crédito rural. O objetivo aqui é melhorar e facilitar o acesso aos dados para as análises que serão feitas, por exemplo, organizando as bases que serão consumidas mais frequentemente.  
+
+4. Análise conjunta entre os tipos de uso e cobertura da terra e os dados do Sicor;
+
+5. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor;
+
+6. Acesso às séries temporais de imagens para as glebas do Sicor;
+
+7. Extração e análise das métricas fenológicas das séries temporais de imagens associadas às glebas do Sicor;
+
+8. Comparação de séries temporais em agricultura; e
+
+9. Integração dos dados para análise visual.
+
+
+
+Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conhecimento em geotecnologias, análise espacial e sensoriamento remoto, além de ampliar sua capacidade de análise dos dados de Crédito Rural.
 
 
 | Atenciosamente,
@@ -71,3 +99,9 @@ Espera-se que o aluno aproveite a oportunidade no curso para ...
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
+
+
+-----
+
+
+.. [#] Grande parte dos dados utilizados nesse curso são dinâmicos e podem estar desatualizados no momento do curso. Portanto, recomendamos análise aprofundada do material disponibilizado e atualização das bases de dados junto aos órgãos responsáveis.

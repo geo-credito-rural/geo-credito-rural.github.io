@@ -27,7 +27,9 @@
 }
 
 /* Maior espaçamento entre os itens de uma lista. */
-ul.open > li {
+ul.open > li,
+ol.open > li
+{
    margin: 0 0 15px 0;
 }
 

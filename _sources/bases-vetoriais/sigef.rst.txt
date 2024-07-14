@@ -1,0 +1,25 @@
+.. include:: ../def.rst
+
+
+.. _sec_bases_vetoriais_sigef:
+
+Sistema de Gestão Fundiária (SIGEF)
+===================================
+
+
+O Instituto Nacional de Colonização e Reforma Agrária (INCRA) desenvolveu uma ferramenta eletrônica, o Sistema de Gestão Fundiária (SIGEF), para subsidiar a governança fundiária do território nacional. Por meio do SIGEF é realizada a recepção, validação, organização, regularização e disponibilização das informações georreferenciadas de limites de imóveis rurais, públicos e privados :cite:`incra:2024:a`. Por meio do SIGEF são realizadas a certificação de dados referentes a limites de imóveis rurais respeitando o disposto na `Lei nº 6.015, de 31 de dezembro de 1973 <https://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm>`__ :cite:`brasil:2024:g` e a gestão de contratos de serviços de georreferenciamento com a administração pública, compreendendo:
+
+.. rst-class:: open
+
+#. Credenciamento de profissional apto(a) a requerer certificação;
+#. Autenticidade de usuários(as) do sistema com certificação digital, seguindo padrões da Infraestrutura de Chaves Públicas;
+#. Recepção de dados georreferenciados padronizados, via internet;
+#. Validação rápida, impessoal, automatizada e precisa, de acordo com os parâmetros técnicos vigentes;
+#. Geração automática de peças técnicas (planta e memorial descritivo), com a possibilidade de verificação de autenticidade online;
+#. Gerência eletrônica de requerimentos relativos a parcelas: certificação, registro, desmembramento, remembramento, retificação e cancelamento;
+#. Possibilidade de inclusão de informações atualizadas do registro de imóveis (matrícula e proprietário) via internet, permitindo a efetiva sincronização entre os dados cadastrais e registrais;
+#. Gestão de contratos de serviços de georreferenciamento com a administração pública, com acesso para órgãos públicos, empresas, responsáveis técnicos(as) e fiscais;
+#. Pesquisa pública de parcelas certificadas, requerimentos e credenciados(as).
+
+
+Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s <sec_bases_vetoriais_car>`) é considerado como título para fins de reconhecimento do direito de propriedade ou posse, cumprimento do disposto no art. 2º da Lei nº 10.267, de 28 de agosto de 2001 :cite:`brasil:2024:e` pois ele faz parte do Sistema Nacional de Cadastro Rural (SNCR). Por isso, diversos instrumentos são utilizados para validar e garantir a qualidade dos dados. Estes dados estão disponibilizados na página de `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/acv.php>`__ do INCRA.

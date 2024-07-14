@@ -81,12 +81,17 @@ A coluna ``modalidade`` indica empreendimentos do tipo lavoura, estocagem, pasta
 A interpretação de um empreendimento depende, principalmente, da combinação das colunas ``finalidade``, ``atividade``, ``modalidade`` e ``produto``.
 
 
-A coluna ``cd_empreendimento`` contém um código único para cada empreendimento, sendo a chave primária da tabela. Essa coluna é utilizada para relacionar os empreendimentos aos contratos da tabela ``sicor_operacao_basica_estado``.
+A coluna ``cd_empreendimento`` contém um código único para cada empreendimento, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os empreendimentos aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
 
 
 .. note::
 
-    Alguns códigos da tabela ``empreendimento`` possuem relação com os códigos da cultura presentes nos dados do `Zarc <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__ (Zoneamento Agrícola de Risco Climático, veja a Seção :numref:`%s <sec_sicor_zarc>`).
+    Alguns códigos de empreendimentos possuem relação com os códigos da cultura presentes nos dados do `Zarc <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, como será visto na :numref:`Seção %s - Zoneamento Agrícola de Risco Climático (ZARC) <sec_sicor_zarc>`.
+
+
+.. note::
+
+    O arquivo `Empreendimento.csv <https://www.bcb.gov.br/htms/sicor/Empreendimento.csv>`__ encontra-se carregado na tabela ``empreendimento`` do banco de dados PostgreSQL.
 
 
 Consultas
@@ -97,11 +102,17 @@ Consultas
 
 
 .. collapse:: Solução:
+    :open:
 
 
     .. tabs::
 
+
         .. tab:: SQL
+
+
+            Para recuperar esses dados, devem ser usados os campos `finalidade`, `modalidade` e `produto`, como mostrado abaixo:
+
 
             .. code-block:: sql
 
@@ -112,8 +123,30 @@ Consultas
 
         .. tab:: Python
 
+            O pacote `sicor` possui uma operação demominada ``empreendimentos`` que fornece um atalho para recuperação dos empreendimentos na forma de um ``DataFrame`` do `Pandas`:
+
+
             .. code-block:: python
 
                 import sicor
 
-                empreendimentos = sicor.empreendimento(finalidade='custeio', modalidade='lavoura', produto='soja')
+                empreendimentos = sicor.empreendimentos(finalidade='custeio', modalidade='lavoura', produto='soja')
+
+
+        .. tab:: Python + SQL
+
+
+            O pacote `sicor` também pode ser utilizado para submeter uma consulta SQL através da operação ``query`` e obter um ``DataFrame`` do `Pandas`:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                consulta = '''
+                    SELECT *
+                      FROM empreendimento
+                     WHERE finalidade = 'custeio' AND modalidade = 'lavoura' AND produto = 'soja';
+                '''
+
+                empreendimentos = sicor.query(consulta)

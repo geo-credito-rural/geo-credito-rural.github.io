@@ -231,24 +231,42 @@
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">atividade</span></code> indica se o empreendimento é agrícola ou pecuário.</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">modalidade</span></code> indica empreendimentos do tipo lavoura, estocagem, pastagem, bovinocultura, entre outros.</p>
 <p>A interpretação de um empreendimento depende, principalmente, da combinação das colunas <code class="docutils literal notranslate"><span class="pre">finalidade</span></code>, <code class="docutils literal notranslate"><span class="pre">atividade</span></code>, <code class="docutils literal notranslate"><span class="pre">modalidade</span></code> e <code class="docutils literal notranslate"><span class="pre">produto</span></code>.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> contém um código único para cada empreendimento, sendo a chave primária da tabela. Essa coluna é utilizada para relacionar os empreendimentos aos contratos da tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code>.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> contém um código único para cada empreendimento, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os empreendimentos aos contratos, como será visto na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Alguns códigos da tabela <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code> possuem relação com os códigos da cultura presentes nos dados do <a class="reference external" href="https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html">Zarc</a> (Zoneamento Agrícola de Risco Climático, veja a Seção <a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">3.2</span></a>).</p>
+<p>Alguns códigos de empreendimentos possuem relação com os códigos da cultura presentes nos dados do <a class="reference external" href="https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html">Zarc</a>, como será visto na <a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">Seção 3.2 - Zoneamento Agrícola de Risco Climático (ZARC)</span></a>.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/Empreendimento.csv">Empreendimento.csv</a> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code> do banco de dados PostgreSQL.</p>
 </div>
 <section id="consultas">
 <h2><span class="section-number">3.1.2.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Recuperar os empreendimentos de custeio de lavoura de soja.</p>
-<details class="summary-solucao">
+<details class="summary-solucao" open>
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Para recuperar esses dados, devem ser usados os campos <cite>finalidade</cite>, <cite>modalidade</cite> e <cite>produto</cite>, como mostrado abaixo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">empreendimento</span>
 <span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">empreendimentos</span></code> que fornece um atalho para recuperação dos empreendimentos na forma de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
 
-<span class="n">empreendimentos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">empreendimento</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">,</span> <span class="n">produto</span><span class="o">=</span><span class="s1">&#39;soja&#39;</span><span class="p">)</span>
+<span class="n">empreendimentos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">empreendimentos</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">,</span> <span class="n">produto</span><span class="o">=</span><span class="s1">&#39;soja&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> também pode ser utilizado para submeter uma consulta SQL através da operação <code class="docutils literal notranslate"><span class="pre">query</span></code> e obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+
+<span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">    SELECT *</span>
+<span class="s1">      FROM empreendimento</span>
+<span class="s1">     WHERE finalidade = &#39;custeio&#39; AND modalidade = &#39;lavoura&#39; AND produto = &#39;soja&#39;;</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">empreendimentos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span>
 </pre></div>
 </div>
 </div></div>
@@ -270,7 +288,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8c6b823c40>
+<jinja2.runtime.BlockReference object at 0x7fe83d19a280>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
