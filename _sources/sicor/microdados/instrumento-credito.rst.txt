@@ -7,12 +7,13 @@ Instrumento de Crédito
 ======================
 
 
-Instrumento de Crédito é a denominação de um instrumento específico que formaliza as operações celebradas com o Banco, compreendidos, nesse conceito, os títulos de crédito e os contratos, ao qual aderem os demais documentos a ele vinculados. Os instrumentos de crédito mais conhecidos são hipoteca, nota promissória e a duplicata. A tabela ``instrumentocredito`` contém os registros dos tipos de instrumentos de créditos utilizados no financiamento agrícola. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:instrumentocredito>`.
+Instrumento de Crédito é a denominação de um instrumento específico que formaliza as operações celebradas com o banco, compreendidos, nesse conceito, os títulos de crédito e os contratos, ao qual aderem os demais documentos a ele vinculados. Os instrumentos de crédito mais conhecidos são hipoteca, nota promissória e a duplicata. O arquivo `InstrumentoCredito.csv <https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv>`__ contém os registros dos tipos de instrumentos de créditos utilizados no financiamento agrícola. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:instrumentocredito>`.
 
 
-.. table:: instrumentocredito.
+.. table:: Estrutura do arquivo contendo a lista dos instrumentos de crédito.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:instrumentocredito
 
     +---------+-------------------------+----------+-------------------------------------------------------+
@@ -24,6 +25,78 @@ Instrumento de Crédito é a denominação de um instrumento específico que for
     +---------+-------------------------+----------+-------------------------------------------------------+
     |         | sigla                   | text     | Sigla de Instrumento de Crédito                       |
     +---------+-------------------------+----------+-------------------------------------------------------+
-    
+
+
+.. note::
+
+    O arquivo `InstrumentoCredito.csv <https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv>`__ encontra-se carregado na tabela ``instrumentocredito`` do banco de dados PostgreSQL.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Listar os tipos de instrumentos de crédito.
+
+
+.. collapse:: Solução:
+    :open:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT *
+                    FROM instrumentocredito
+                ORDER BY descricao;
+
+
+        .. tab:: Python
+
+
+            O pacote `sicor` possui uma operação demominada ``instrumentos_credito`` que fornece um atalho para recuperação dos tipos de instrumentos de crédito na forma de um ``DataFrame`` do `Pandas`:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                instr_cred = sicor.instrumentos_credito()
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_inst_credito |                   descricao                    | sigla
+                -----------------+------------------------------------------------+-------
+                               5 | Cédula de Crédito Bancário                     | CCB
+                               9 | Cédula de Produto Rural-CPR (AVAL) - ENCERRADO | CPR
+                               2 | Cédula Rural Hipotecária                       | CRH
+                               1 | Cédula Rural Pignoratícia                      | CRP
+                               3 | Cédula Rural Pignoratícia e Hipotecária        | CRPH
+                              10 | Contrato de Crédito Rural                      | CAC
+                               6 | Duplicata Rural                                | DR
+                               4 | Nota de Crédito Rural                          | NCR
+                               7 | Nota Promissória Rural                         | NPR
+                               8 | Outros Instrumentos de Crédito Rural           | OIC
+                              99 | Termo de Adesão ao Proagro                     | TAP
+                (11 rows)
+
+
+        .. tab:: Python
+
 
 

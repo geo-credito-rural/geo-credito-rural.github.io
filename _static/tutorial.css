@@ -122,14 +122,16 @@ p.centered-paragraph {
 
 details.summary-solucao[open] > summary,
 details.summary-solucao-1[open] > summary,
-details.summary-solucao-2[open] > summary {
+details.summary-solucao-2[open] > summary,
+details.summary-resultado[open] > summary {
     font-weight: bold;
     padding-bottom: 1rem;
 }
 
 details.summary-solucao > summary,
 details.summary-solucao-1 > summary,
-details.summary-solucao-2 > summary {
+details.summary-solucao-2 > summary,
+details.summary-resultado > summary {
     font-weight: bold;
     padding-bottom: 0rem;
 }
@@ -137,7 +139,8 @@ details.summary-solucao-2 > summary {
 details.summary-solucao,
 details.summary-solucao-1,
 details.summary-solucao-2,
-details.summary-carga-dados {
+details.summary-carga-dados,
+details.summary-resultado {
     background-color: #f3f6f6;
     padding: 1rem;
     margin-bottom: 1rem;

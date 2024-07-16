@@ -7,12 +7,13 @@ Categoria de Emitente
 =====================
 
 
-A tabela ``categoriaemitente`` contém a categorização do beneficiário do crédito ou do termo de adesão ao Proagro. Sua estrutura pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:categoriaemitente>`.
+O arquivo `CategoriaEmitente.csv <https://www.bcb.gov.br/htms/sicor/CategoriaEmitente.csv>`__ contém a categorização do beneficiário do crédito ou do termo de adesão ao Proagro, que é classificado como *pequeno*, *médio* ou *grande* produtor rural. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:categoriaemitente>`.
 
 
-.. table:: categoriaemitente.
+.. table:: Estrutura do arquivo contendo a categorização do beneficiário do crédito ou do termo de adesão ao Proagro.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:categoriaemitente
 
     +---------+-------------------------+----------+-------------------------------------------------------+
@@ -32,6 +33,79 @@ A tabela ``categoriaemitente`` contém a categorização do beneficiário do cr�
     +---------+-------------------------+----------+-------------------------------------------------------+ 
 
 
-A coluna ``cd_categ_emitente`` é a chave primária dessa tabela e a coluna ``descricao`` indica a classificação do produtor quanto à área de sua propriedade, podendo ser classificado como *pequeno*, *médio* ou *grande* produtor rural, por exemplo.
+
+
+A coluna ``cd_categ_emitente`` contém um código único para cada categoria de beneficiário, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar as categorias de emitentes aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
+
+
+A coluna ``descricao`` indica a classificação do produtor quanto à área de sua propriedade, podendo ser classificado como *pequeno*, *médio* ou *grande* produtor rural, por exemplo.
+
+
+.. note::
+
+    O arquivo `CategoriaEmitente.csv <https://www.bcb.gov.br/htms/sicor/CategoriaEmitente.csv>`__ encontra-se carregado na tabela ``categoriaemitente`` do banco de dados PostgreSQL.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Listar as categorias de emitentes.
+
+
+.. collapse:: Solução:
+    :open:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT *
+                    FROM categoriaemitente
+                ORDER BY descricao;
+
+
+        .. tab:: Python
+
+
+            O pacote `sicor` possui uma operação demominada ``categorias_emitentes`` que fornece um atalho para recuperação das categorias de emitentes na forma de um ``DataFrame`` do `Pandas`:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                emitentes = sicor.categorias_emitentes()
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_categ_emitente |                 descricao                 | data_inicio |  data_fim  | valor_limite |  area_maxima
+                -------------------+-------------------------------------------+-------------+------------+--------------+----------------
+                 4444              | grande produtor rural                     | 2013-01-01  |            | 999999999.99 | 99999999999.99
+                 3333              | médio produtor rural                      | 2013-01-01  |            |   2000000.00 |        3000.00
+                 2222              | pequeno produtor rural                    | 2013-01-01  |            |    415000.00 |         800.00
+                 8888              | repasse a cooperativa central de crédito  | 2013-01-01  | 2018-08-31 | 999999999.99 |  9999999999.99
+                 7777              | repasse a cooperativa singular de crédito | 2013-01-01  | 2018-08-31 | 999999999.99 |  9999999999.99
+                 5555              | todas categorias de produtores rurais     | 2012-06-01  | 2013-01-06 | 130000000.00 |       25000.00
+                (6 rows)
+
+
+        .. tab:: Python
+
 
 

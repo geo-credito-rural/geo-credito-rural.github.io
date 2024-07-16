@@ -39,5 +39,8 @@ Esta seção irá descrever em detalhes esses dados, ensinando a preparar uma ba
     ./glebas-topologia
     ./glebas-forma
     ./pedidos-cobertura-proagro
+    ./mutuarios
+    ./cooperados
+    ./propriedades
 
 

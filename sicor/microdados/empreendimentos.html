@@ -74,6 +74,9 @@
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-forma.html">3.1.12. Avaliação da Forma das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pedidos-cobertura-proagro.html">3.1.13. Pedidos de cobertura do Proagro (COP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mutuarios.html">3.1.14. Mutuários</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cooperados.html">3.1.15. Cooperados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propriedades.html">3.1.16. Propriedades</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
@@ -130,7 +133,7 @@
   <section id="empreendimentos-de-contratos-de-credito-rural">
 <span id="sec-sicor-microdados-empreendimentos"></span><h1><span class="section-number">3.1.2. </span>Empreendimentos de Contratos de Crédito Rural<a class="headerlink" href="#empreendimentos-de-contratos-de-credito-rural" title="Link permanente para este cabeçalho"></a></h1>
 <p>Nos microdados do Sicor, os objetos passíveis de serem contratados nas operações de crédito rural são denominados de <strong>empreendimentos</strong>. A listagem completa dos tipos de empreendimentos está disponível no sítio do Banco Central no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/Empreendimento.csv">Empreendimento.csv</a>. Esse arquivo possui a estrutura mostrada <a class="reference internal" href="#tbl-sicor-microdados-empreendimento"><span class="std std-numref">Tabela 3.1</span></a>.</p>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-empreendimento">
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-empreendimento">
 <caption><span class="caption-number">Tabela 3.1 - </span><span class="caption-text">Estrutura do arquivo contendo a lista dos possíveis empreendimentos no Sicor.</span><a class="headerlink" href="#tbl-sicor-microdados-empreendimento" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
@@ -142,77 +145,77 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_empreendimento</p></td>
-<td class="left-align"><p>char(14)</p></td>
+<td class="center-align"><p>char(14)</p></td>
 <td class="left-align"><p>Código do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>data_inicio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de validade do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>data_fim</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de validade do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>finalidade</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Finalidade do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>atividade</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Atividade do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>modalidade</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Modalidade do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>produto</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Produto do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>variedade</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Variedade do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cesta</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Cesta de safras do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>zoneamento</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Zoneamento do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>unidade_medida</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Unidade de medida do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>unidade_medida_previsao</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Unidade de medida de previsão de produção</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>consorcio</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Consórcio do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>cedula_mae</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Indica se o empreendimento refere-se a uma cédula mãe</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cd_tipo_cultura</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do tipo de cultura do empreendimento</p></td>
 </tr>
 </tbody>
@@ -270,6 +273,31 @@
 </pre></div>
 </div>
 </div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_empreendimento | data_inicio |  data_fim  | finalidade | atividade | modalidade | produto |           variedade            |            cesta            | zoneamento  | unidade_medida | unidade_medida_previsao |    consorcio    | cedula_mae | cd_tipo_cultura
+-------------------+-------------+------------+------------+-----------+------------+---------+--------------------------------+-----------------------------+-------------+----------------+-------------------------+-----------------+------------+-----------------
+ 12016720000052    | 1984-01-01  | 2024-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000013    | 2017-02-23  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000023    | 2017-02-23  | 2099-12-31 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000812    | 1984-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Não zoneado | Hectare        | Tonelada                | Consorciado     |          0 |               3
+ 12016720000051    | 2005-08-24  | 2023-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000022    | 1984-01-01  | 2099-12-31 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000012    | 1984-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000011    | 2006-07-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000053    | 2017-03-14  | 2023-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000021    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000823    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         |             | Hectare        | Tonelada                | Consorciado     |          0 |               3
+ 12016720000031    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000032    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000033    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+ 12016720000813    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   |             | Hectare        | Tonelada                | Consorciado     |          0 |               3
+ 12016720000822    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Não zoneado | Hectare        | Tonelada                | Consorciado     |          0 |               3
+ 12016720341011    | 2013-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | CULTIVO EM SISTEMAS INTEGRADOS | Safra de Verão (1ª Safra)   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+(17 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-1-1-2" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-2" name="1-2" role="tabpanel" tabindex="0"></div></div>
 </details></section>
 </section>
 
@@ -288,7 +316,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe83d19a280>
+<jinja2.runtime.BlockReference object at 0x7f676b4e3730>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

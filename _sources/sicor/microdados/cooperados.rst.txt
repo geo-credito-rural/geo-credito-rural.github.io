@@ -1,0 +1,12 @@
+.. include:: ../../def.rst
+
+
+.. _sec_sicor_microdados_cooperados:
+
+Cooperados
+==========
+
+
+.. warning::
+
+    Esta seção **encontra-se em desenvolvimento**.

@@ -7,6 +7,11 @@ Pedidos de cobertura do Proagro (COP)
 =====================================
 
 
+.. warning::
+
+    Esta seção **encontra-se em desenvolvimento**.
+
+
 O **Proagro** é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle :cite:`bcb:2024:a`. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.
 
 
@@ -111,3 +116,67 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão di
     | FK\ :sub:`5`         | cd_evento          | integer  | Código do evento da cop                               |
     +----------------------+--------------------+----------+-------------------------------------------------------+
 
+
+.. table:: ``sicor_complemento_cop``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_complemento_cop
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    |                      | nome               | tipo     | descrição                                             |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+
+
+.. table:: ``sicor_rcp_basico``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_rcp_basico
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    |                      | nome               | tipo     | descrição                                             |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+
+
+.. table:: ``sicor_complemento_rcp``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_complemento_rcp
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    |                      | nome               | tipo     | descrição                                             |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+
+
+.. table:: ``sicor_rcp_glebas``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_rcp_glebas
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    |                      | nome               | tipo     | descrição                                             |
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+
+
+.. table:: ``sicor_sumula_julgamento_basico``.
+    :header-alignment: center center center center
+    :column-alignment: center left left left
+    :name: tbl:sicor:microdados:sicor_sumula_julgamento_basico
+
+
+    +----------------------+--------------------+----------+-------------------------------------------------------+
+    |                      | nome               | tipo     | descrição                                             |
+    +======================+====================+==========+=======================================================+
+    |                      | nome               | tipo     | descrição                                             |
+    +----------------------+--------------------+----------+-------------------------------------------------------+

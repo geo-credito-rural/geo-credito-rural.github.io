@@ -11,8 +11,9 @@ Nos microdados do Sicor, os objetos passíveis de serem contratados nas operaç�
 
 
 .. table:: Estrutura do arquivo contendo a lista dos possíveis empreendimentos no Sicor.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:empreendimento
 
     +---------+-------------------------+----------+-------------------------------------------------------+
@@ -150,3 +151,42 @@ Consultas
                 '''
 
                 empreendimentos = sicor.query(consulta)
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_empreendimento | data_inicio |  data_fim  | finalidade | atividade | modalidade | produto |           variedade            |            cesta            | zoneamento  | unidade_medida | unidade_medida_previsao |    consorcio    | cedula_mae | cd_tipo_cultura
+                -------------------+-------------+------------+------------+-----------+------------+---------+--------------------------------+-----------------------------+-------------+----------------+-------------------------+-----------------+------------+-----------------
+                 12016720000052    | 1984-01-01  | 2024-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000013    | 2017-02-23  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000023    | 2017-02-23  | 2099-12-31 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000812    | 1984-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Não zoneado | Hectare        | Tonelada                | Consorciado     |          0 |               3
+                 12016720000051    | 2005-08-24  | 2023-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000022    | 1984-01-01  | 2099-12-31 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000012    | 1984-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000011    | 2006-07-01  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000053    | 2017-03-14  | 2023-06-30 | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Irrigadas                   |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000021    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000823    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         |             | Hectare        | Tonelada                | Consorciado     |          0 |               3
+                 12016720000031    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000032    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) | Não zoneado | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000033    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Inverno (3ª Safra) |             | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                 12016720000813    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safra de Verão (1ª Safra)   |             | Hectare        | Tonelada                | Consorciado     |          0 |               3
+                 12016720000822    | 2023-08-03  |            | custeio    | Agrícola  | lavoura    | soja    | NÃO SE APLICA                  | Safrinha (2ª Safra)         | Não zoneado | Hectare        | Tonelada                | Consorciado     |          0 |               3
+                 12016720341011    | 2013-01-01  |            | custeio    | Agrícola  | lavoura    | soja    | CULTIVO EM SISTEMAS INTEGRADOS | Safra de Verão (1ª Safra)   | Zoneado     | Hectare        | Tonelada                | Não consorciado |          0 |               3
+                (17 rows)
+
+
+        .. tab:: Python
+
+
+        .. tab:: Python + SQL

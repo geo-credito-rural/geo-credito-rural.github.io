@@ -74,6 +74,9 @@
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-forma.html">3.1.12. Avaliação da Forma das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pedidos-cobertura-proagro.html">3.1.13. Pedidos de cobertura do Proagro (COP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mutuarios.html">3.1.14. Mutuários</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cooperados.html">3.1.15. Cooperados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propriedades.html">3.1.16. Propriedades</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
@@ -130,7 +133,7 @@
   <section id="instituicoes-financeiras-ifs">
 <span id="sec-sicor-microdados-ifs"></span><h1><span class="section-number">3.1.3. </span>Instituições Financeiras (IFs)<a class="headerlink" href="#instituicoes-financeiras-ifs" title="Link permanente para este cabeçalho"></a></h1>
 <p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_LISTA_IFS.csv">SICOR_LISTA_IFS.csv</a> contém os registros de instituições financeiras (IFs), isto é, bancos e cooperativas de crédito do Sicor. A estrutura desse arquivo pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-ifssicor"><span class="std std-numref">Tabela 3.2</span></a>.</p>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-ifssicor">
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-ifssicor">
 <caption><span class="caption-number">Tabela 3.2 - </span><span class="caption-text">Estrutura do arquivo contendo a lista de instituições financeiras (IFs) no Sicor.</span><a class="headerlink" href="#tbl-sicor-microdados-ifssicor" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
@@ -142,17 +145,17 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cnpj_if</p></td>
-<td class="left-align"><p>char(8)</p></td>
+<td class="center-align"><p>char(8)</p></td>
 <td class="left-align"><p>CNPJ do concedente do crédito</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>nome_if</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Nome do concedente do crédito</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>segmento_if</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Classificação da IF quanto a natureza jurídica</p></td>
 </tr>
 </tbody>
@@ -168,19 +171,20 @@
 <details class="summary-solucao" open>
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>A Classificação da instituição financeira quanto a natureza jurídica refere-se à coluna <code class="docutils literal notranslate"><span class="pre">segmento_if</span></code>. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">segmento_if</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">natureza</span><span class="p">,</span>
-<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_if</span>
-<span class="k">FROM</span><span class="w"> </span><span class="n">ifssicor</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">segmento_if</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">natureza</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_ifs</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">ifssicor</span>
 <span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segmento_if</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segmento_if</span><span class="p">;</span>
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Utilizando a operação <code class="docutils literal notranslate"><span class="pre">query</span></code> do pacote <cite>sicor</cite> é possível obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite> como resultado da consulta SQL:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
 
 <span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">    SELECT DISTINCT segmento_if AS natureza,</span>
-<span class="s1">           COUNT(*) AS numero_if</span>
-<span class="s1">    FROM ifssicor</span>
+<span class="s1">      SELECT DISTINCT segmento_if AS natureza,</span>
+<span class="s1">             COUNT(*) AS numero_if</span>
+<span class="s1">        FROM ifssicor</span>
 <span class="s1">    GROUP BY segmento_if</span>
 <span class="s1">&#39;&#39;&#39;</span>
 
@@ -188,6 +192,20 @@
 </pre></div>
 </div>
 </div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                      natureza                      | numero_ifs
+----------------------------------------------------+------------
+ banco de desenvolvimento e agência de fomento      |         10
+ banco privado                                      |         43
+ banco público                                      |          9
+ cooperativa de crédito                             |        549
+ sociedade de crédito, financiamento e investimento |          3
+                                                    |         14
+(6 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
 </details></section>
 </section>
 
@@ -206,7 +224,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe83ce19c10>
+<jinja2.runtime.BlockReference object at 0x7f676b3f46a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

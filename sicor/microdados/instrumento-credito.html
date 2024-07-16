@@ -23,6 +23,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -73,6 +74,9 @@
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-forma.html">3.1.12. Avaliação da Forma das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="pedidos-cobertura-proagro.html">3.1.13. Pedidos de cobertura do Proagro (COP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mutuarios.html">3.1.14. Mutuários</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cooperados.html">3.1.15. Cooperados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propriedades.html">3.1.16. Propriedades</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
@@ -128,9 +132,9 @@
              
   <section id="instrumento-de-credito">
 <span id="sec-sicor-microdados-instrumento-credito"></span><h1><span class="section-number">3.1.4. </span>Instrumento de Crédito<a class="headerlink" href="#instrumento-de-credito" title="Link permanente para este cabeçalho"></a></h1>
-<p>Instrumento de Crédito é a denominação de um instrumento específico que formaliza as operações celebradas com o Banco, compreendidos, nesse conceito, os títulos de crédito e os contratos, ao qual aderem os demais documentos a ele vinculados. Os instrumentos de crédito mais conhecidos são hipoteca, nota promissória e a duplicata. A tabela <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code> contém os registros dos tipos de instrumentos de créditos utilizados no financiamento agrícola. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-instrumentocredito"><span class="std std-numref">Tabela 3.3</span></a>.</p>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-instrumentocredito">
-<caption><span class="caption-number">Tabela 3.3 - </span><span class="caption-text">instrumentocredito.</span><a class="headerlink" href="#tbl-sicor-microdados-instrumentocredito" title="Link Permanente para essa tabela"></a></caption>
+<p>Instrumento de Crédito é a denominação de um instrumento específico que formaliza as operações celebradas com o banco, compreendidos, nesse conceito, os títulos de crédito e os contratos, ao qual aderem os demais documentos a ele vinculados. Os instrumentos de crédito mais conhecidos são hipoteca, nota promissória e a duplicata. O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv">InstrumentoCredito.csv</a> contém os registros dos tipos de instrumentos de créditos utilizados no financiamento agrícola. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-instrumentocredito"><span class="std std-numref">Tabela 3.3</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-instrumentocredito">
+<caption><span class="caption-number">Tabela 3.3 - </span><span class="caption-text">Estrutura do arquivo contendo a lista dos instrumentos de crédito.</span><a class="headerlink" href="#tbl-sicor-microdados-instrumentocredito" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -141,21 +145,62 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_inst_credito</p></td>
-<td class="left-align"><p>char(2)</p></td>
+<td class="center-align"><p>char(2)</p></td>
 <td class="left-align"><p>Código de Instrumento de Crédito</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Nome do concedente do Crédito</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>sigla</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Sigla de Instrumento de Crédito</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv">InstrumentoCredito.csv</a> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code> do banco de dados PostgreSQL.</p>
+</div>
+<section id="consultas">
+<h2><span class="section-number">3.1.4.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Listar os tipos de instrumentos de crédito.</p>
+<details class="summary-solucao" open>
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">instrumentocredito</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">descricao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">instrumentos_credito</span></code> que fornece um atalho para recuperação dos tipos de instrumentos de crédito na forma de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+
+<span class="n">instr_cred</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">instrumentos_credito</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_inst_credito |                   descricao                    | sigla
+-----------------+------------------------------------------------+-------
+               5 | Cédula de Crédito Bancário                     | CCB
+               9 | Cédula de Produto Rural-CPR (AVAL) - ENCERRADO | CPR
+               2 | Cédula Rural Hipotecária                       | CRH
+               1 | Cédula Rural Pignoratícia                      | CRP
+               3 | Cédula Rural Pignoratícia e Hipotecária        | CRPH
+              10 | Contrato de Crédito Rural                      | CAC
+               6 | Duplicata Rural                                | DR
+               4 | Nota de Crédito Rural                          | NCR
+               7 | Nota Promissória Rural                         | NPR
+               8 | Outros Instrumentos de Crédito Rural           | OIC
+              99 | Termo de Adesão ao Proagro                     | TAP
+(11 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</details></section>
 </section>
 
 
@@ -173,7 +218,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe83d1d44f0>
+<jinja2.runtime.BlockReference object at 0x7f676bcb0ac0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

@@ -27,7 +27,7 @@
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
     <link rel="search" title="Buscar" href="../../search.html" />
-    <link rel="next" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" href="../zarc-db.html" />
+    <link rel="next" title="3.1.14. Mutuários" href="mutuarios.html" />
     <link rel="prev" title="3.1.12. Avaliação da Forma das Glebas" href="glebas-forma.html" /> 
 </head>
 
@@ -73,6 +73,9 @@
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-forma.html">3.1.12. Avaliação da Forma das Glebas</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.13. Pedidos de cobertura do Proagro (COP)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="mutuarios.html">3.1.14. Mutuários</a></li>
+<li class="toctree-l3"><a class="reference internal" href="cooperados.html">3.1.15. Cooperados</a></li>
+<li class="toctree-l3"><a class="reference internal" href="propriedades.html">3.1.16. Propriedades</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
@@ -119,7 +122,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="glebas-forma.html" class="btn btn-neutral float-left" title="3.1.12. Avaliação da Forma das Glebas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../zarc-db.html" class="btn btn-neutral float-right" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mutuarios.html" class="btn btn-neutral float-right" title="3.1.14. Mutuários" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -128,6 +131,10 @@
              
   <section id="pedidos-de-cobertura-do-proagro-cop">
 <span id="sec-sicor-microdados-pedidos-cobertura-proagro"></span><h1><span class="section-number">3.1.13. </span>Pedidos de cobertura do Proagro (COP)<a class="headerlink" href="#pedidos-de-cobertura-do-proagro-cop" title="Link permanente para este cabeçalho"></a></h1>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
+</div>
 <p>O <strong>Proagro</strong> é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.</p>
 <p>No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão disponíveis no formato CSV no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>. Esses pedidos registram:</p>
 <ul class="open">
@@ -288,6 +295,91 @@
 </tr>
 </tbody>
 </table>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-complemento-cop">
+<caption><span class="caption-number">Tabela 3.18 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_complemento_cop</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-cop" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nome</p></td>
+<td class="left-align"><p>tipo</p></td>
+<td class="left-align"><p>descrição</p></td>
+</tr>
+</tbody>
+</table>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-rcp-basico">
+<caption><span class="caption-number">Tabela 3.19 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-basico" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nome</p></td>
+<td class="left-align"><p>tipo</p></td>
+<td class="left-align"><p>descrição</p></td>
+</tr>
+</tbody>
+</table>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-complemento-rcp">
+<caption><span class="caption-number">Tabela 3.20 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_complemento_rcp</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-rcp" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nome</p></td>
+<td class="left-align"><p>tipo</p></td>
+<td class="left-align"><p>descrição</p></td>
+</tr>
+</tbody>
+</table>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-rcp-glebas">
+<caption><span class="caption-number">Tabela 3.21 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_glebas</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-glebas" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nome</p></td>
+<td class="left-align"><p>tipo</p></td>
+<td class="left-align"><p>descrição</p></td>
+</tr>
+</tbody>
+</table>
+<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-sumula-julgamento-basico">
+<caption><span class="caption-number">Tabela 3.22 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_sumula_julgamento_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-sumula-julgamento-basico" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nome</p></td>
+<td class="left-align"><p>tipo</p></td>
+<td class="left-align"><p>descrição</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
@@ -295,7 +387,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="glebas-forma.html" class="btn btn-neutral float-left" title="3.1.12. Avaliação da Forma das Glebas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../zarc-db.html" class="btn btn-neutral float-right" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="mutuarios.html" class="btn btn-neutral float-right" title="3.1.14. Mutuários" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -305,7 +397,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe83d8a5c40>
+<jinja2.runtime.BlockReference object at 0x7f676b88e910>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

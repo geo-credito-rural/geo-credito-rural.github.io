@@ -11,8 +11,9 @@ O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SI
 
 
 .. table:: Estrutura do arquivo contendo a lista de instituições financeiras (IFs) no Sicor.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:ifssicor
 
     +---------+-------------------------+----------+-------------------------------------------------------+
@@ -56,10 +57,11 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT DISTINCT segmento_if AS natureza,
-                       COUNT(*) AS numero_if
-                FROM ifssicor
+                  SELECT DISTINCT segmento_if AS natureza,
+                         COUNT(*) AS numero_ifs
+                    FROM ifssicor
                 GROUP BY segmento_if
+                ORDER BY segmento_if;
 
 
         .. tab:: Python + SQL
@@ -73,10 +75,35 @@ Consultas
                 import sicor
 
                 consulta = '''
-                    SELECT DISTINCT segmento_if AS natureza,
-                           COUNT(*) AS numero_if
-                    FROM ifssicor
+                      SELECT DISTINCT segmento_if AS natureza,
+                             COUNT(*) AS numero_if
+                        FROM ifssicor
                     GROUP BY segmento_if
                 '''
 
                 ifs_segmento = sicor.query(consulta)
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                                      natureza                      | numero_ifs
+                ----------------------------------------------------+------------
+                 banco de desenvolvimento e agência de fomento      |         10
+                 banco privado                                      |         43
+                 banco público                                      |          9
+                 cooperativa de crédito                             |        549
+                 sociedade de crédito, financiamento e investimento |          3
+                                                                    |         14
+                (6 rows)
+
+
+        .. tab:: Python + SQL
