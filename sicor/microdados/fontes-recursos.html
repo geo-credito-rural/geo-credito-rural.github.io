@@ -68,7 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="emitente.html">3.1.5. Categoria de Emitente</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.6. Fontes de Recursos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="seguro.html">3.1.7. Garantia do Empreendimento</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programas ou Linhas de Crédito</a></li>
 <li class="toctree-l3"><a class="reference internal" href="operacoes.html">3.1.9. Operações Contratadas com Recursos Públicos e Privados</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas.html">3.1.10. Glebas de Operações Contratadas com Recursos Públicos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
@@ -132,9 +132,9 @@
              
   <section id="fontes-de-recursos">
 <span id="sec-sicor-microdados-fontes-recursos"></span><h1><span class="section-number">3.1.6. </span>Fontes de Recursos<a class="headerlink" href="#fontes-de-recursos" title="Link permanente para este cabeçalho"></a></h1>
-<p>A tabela <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code> contém a listagem das fontes de recursos públicos e privados utilizados para financiar as operações de crédito rural. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-fonterecursos"><span class="std std-numref">Tabela 3.5</span></a>.</p>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-fonterecursos">
-<caption><span class="caption-number">Tabela 3.5 - </span><span class="caption-text">fonterecursos.</span><a class="headerlink" href="#tbl-sicor-microdados-fonterecursos" title="Link Permanente para essa tabela"></a></caption>
+<p>Os dados das fontes de recursos públicos e privados utilizados para financiar as operações de crédito rural estão disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursos.csv">FonteRecursos.csv</a>. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-fonterecursos"><span class="std std-numref">Tabela 3.5</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-fonterecursos">
+<caption><span class="caption-number">Tabela 3.5 - </span><span class="caption-text">Estrutura do arquivo contendo as fontes de recursos públicos e privados das operações de crédito.</span><a class="headerlink" href="#tbl-sicor-microdados-fonterecursos" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -145,46 +145,125 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_fonte_recurso</p></td>
-<td class="left-align"><p>char(4)</p></td>
+<td class="center-align"><p>char(4)</p></td>
 <td class="left-align"><p>Código da fonte de recursos</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Descrição da fonte de recursos</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>data_inicio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de validade da fonte de recursos</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>data_fim</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de validade da fonte de recursos</p></td>
 </tr>
 </tbody>
 </table>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_fonte_recurso</span></code> contém um código único para cada fonte de recurso, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar as fontes de recursos aos contratos, como será visto na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>.</p>
+<p>O Banco Central disponibiliza um subconjunto dessa tabela contendo apenas as fontes de recursos públicos (<a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursosPublicos.csv">FonteRecursosPublicos.csv</a>). Isso possibilita a discriminação dos contratos que utilizaram recursos públicos na tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> (veja a Seção <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">3.1.9</span></a>).</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Os dados das fontes de recursos públicos e privados estão disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursos.csv">FonteRecursos.csv</a>.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>O Banco Central do Brasil disponibiliza um subconjunto dessa tabela contendo apenas as fontes de recursos públicos (<a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursosPublicos.csv">FonteRecursosPublicos.csv</a>). Isso possibilita a discriminação dos contratos que utilizaram recursos públicos na tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> (veja a Seção <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">3.1.9</span></a>).</p>
+<p>Os arquivos <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursos.csv">FonteRecursos.csv</a> e <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/FonteRecursosPublicos.csv">FonteRecursosPublicos.csv</a> encontram-se carregado, respectivamente, nas tabelas <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code> e <code class="docutils literal notranslate"><span class="pre">fonterecursospublicos</span></code> do banco de dados PostgreSQL.</p>
 </div>
 <section id="consultas">
 <h2><span class="section-number">3.1.6.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
-<p><strong>Consulta 1.</strong> Recuperar as fontes de recursos públicos.</p>
+<p><strong>Consulta 1.</strong> Recuperar todas as fontes de recursos.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">fonterecursos</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">fonte_recursos</span></code> que fornece um atalho para recuperação das fontes de recursos na forma de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+
+<span class="n">recursos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">fonte_recursos</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_fonte_recurso |                                         descricao                                          | data_inicio |  data_fim
+------------------+--------------------------------------------------------------------------------------------+-------------+------------
+ 0403             | recursos livres equalizáveis                                                               | 2011-11-01  | 2099-12-31
+ 0250             | faculdade de aplicação - compulsório                                                       | 2012-01-23  | 2012-09-30
+ 0100             | tesouro nacional                                                                           | 2011-11-01  | 2099-12-31
+ 0201             | obrigatórios - mcr 6.2                                                                     | 2011-11-01  | 2099-12-31
+ 0300             | poupança rural - controlados - subvenção econômica                                         | 2011-11-01  | 2099-12-31
+ 0301             | poupança rural - controlados - condições mcr 6.2                                           | 2011-11-01  | 2017-06-30
+ 0302             | poupança rural - controlados - fator de ponderação                                         | 2011-11-01  | 2017-06-30
+ 0303             | poupança rural - livre                                                                     | 2011-11-01  | 2099-12-31
+ 0402             | recursos livres                                                                            | 2011-11-01  | 2099-12-31
+ 0405             | fundo de commodities                                                                       | 2011-11-01  | 2013-12-31
+ 0501             | fundo constitucional de financiamento do norte (fno)                                       | 2011-11-01  | 2099-12-31
+ 0502             | fundo constitucional de financiamento do nordeste (fne)                                    | 2011-11-01  | 2099-12-31
+ 0503             | fundo constitucional de financiamento do centro-oeste (fco)                                | 2011-11-01  | 2099-12-31
+ 0505             | bndes/finame - equalizável                                                                 | 2011-11-01  | 2099-12-31
+ 0650             | fat - fundo de amparo ao trabalhador                                                       | 2011-11-01  | 2099-12-31
+ 0800             | funcafe-fundo de defesa da economia cafeeira                                               | 2011-11-01  | 2099-12-31
+ 0520             | fundo de terras e da reforma agrária                                                       | 2011-11-01  | 2099-12-31
+ 0507             | incra                                                                                      | 2011-11-01  | 2099-12-31
+ 0600             | governos e fundos estaduais ou municipais                                                  | 2011-11-01  | 2099-12-31
+ 0680             | pis/pasep                                                                                  | 2011-11-01  | 2013-12-31
+ 0850             | captação externa                                                                           | 2011-11-01  | 2099-12-31
+ 0990             | outras fontes de recursos não especificadas                                                | 2011-11-01  | 2015-05-15
+ 0900             | atividade não financiada enquadrada no proagro (mcr 16.8)                                  | 2011-11-01  | 2099-12-31
+ 0450             | instr hibrido capital dívida-ihcd (lei 12.793/2013 - art. 6º) - equalizável                | 2012-09-20  | 2021-06-30
+ 0260             | compulsório sobre recursos à vista - reforço do investimento (circ 3.745)                  | 2013-01-01  | 2015-12-31
+ 0430             | letra de crédito do agronegócio (lca) - taxa livre                                         | 2013-01-01  | 2099-12-31
+ 0506             | bndes livre                                                                                | 2013-01-01  | 2099-12-31
+ 0440             | letra de crédito do agronegócio (lca) - taxa favorecida                                    | 2016-07-01  | 2019-01-31
+ 0451             | instr hibrido capital dívida-ihcd (lei 12.793/2013 - art. 6º) - livre                      | 2021-08-09  | 2099-12-31
+ 0222             | exigibilidade adicional dos recursos à vista - resolução 5030                              | 2022-07-01  | 2023-06-30
+ 0431             | letra de crédito do agronegócio (lca) - controlados - subvenção econômica - mcr 6-7-7a-b-i | 2023-07-03  | 2099-12-31
+ 0225             | exigibilidade adicional dos recursos à vista - resolução 5087                              | 2023-07-03  | 2024-06-28
+ 0202             | exigibilidade adicional dos recursos à vista                                               | 2019-02-01  | 2019-06-30
+ 0304             | exigibilidade adicional da poupança rural                                                  | 2019-02-01  | 2019-06-30
+(34 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Recuperar as fontes de recursos públicos.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">fonterecursospublicos</span><span class="p">;</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicordb</span>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><p>A operação <code class="docutils literal notranslate"><span class="pre">fonte_recursos</span></code> aceita um parâmetro booleano para recuperação apenas das fontes públicas:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
 
-<span class="n">recursos</span> <span class="o">=</span> <span class="n">sicordb</span><span class="o">.</span><span class="n">fonte_recursos_publicos</span><span class="p">()</span>
+<span class="n">recursos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">fonte_recursos</span><span class="p">(</span><span class="n">publicos</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_fonte_recurso |                                         descricao
+------------------+--------------------------------------------------------------------------------------------
+ 0800             | funcafe-fundo de defesa da economia cafeeira
+ 0600             | governos e fundos estaduais ou municipais
+ 0403             | recursos livres equalizáveis
+ 0300             | poupança rural - controlados - subvenção econômica
+ 0503             | fundo constitucional de financiamento do centro-oeste (fco)
+ 0680             | pis/pasep
+ 0507             | incra
+ 0502             | fundo constitucional de financiamento do nordeste (fne)
+ 0505             | bndes/finame - equalizável
+ 0501             | fundo constitucional de financiamento do norte (fno)
+ 0650             | fat - fundo de amparo ao trabalhador
+ 0100             | tesouro nacional
+ 0520             | fundo de terras e da reforma agrária
+ 0450             | instr hibrido capital dívida-ihcd (lei 12.793/2013 - art. 6º) - equalizável
+ 0431             | letra de crédito do agronegócio (lca) - controlados - subvenção econômica - mcr 6-7-7a-b-i
+(15 rows)
 </pre></div>
 </div>
 </div></div>
@@ -206,7 +285,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f676b1662e0>
+<jinja2.runtime.BlockReference object at 0x7f29d5a6b2e0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

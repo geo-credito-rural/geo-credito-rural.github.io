@@ -3,5 +3,99 @@
 
 .. _sec_sicor_microdados_programa:
 
-Programa ou Linha de Crédito
-============================
+Programas ou Linhas de Crédito
+==============================
+
+
+A lista de programas ou linhas de crédito rural encontra-se disponível no arquivo `Programa.csv <https://www.bcb.gov.br/htms/sicor/Programa.csv>`__. A estrutura desse arquivo pode ser visto na :numref:`Tabela %s <tbl:sicor:microdados:programa>`.
+
+
+.. table:: Estrutura do arquivo contendo a lista de programas ou linhas de crédito rural.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:microdados:programa
+
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | nome              | tipo    | descrição                                             |
+    +=========+===================+=========+=======================================================+
+    | **PK**  | cd_programa       | char(4) | Código do Programa                                    |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | descricao         | text    | Descrição do programa                                 |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | data_inicio       | date    | Início de validade do programa                        |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | data_fim          | date    | Fim de validade do programa                           |
+    +---------+-------------------+---------+-------------------------------------------------------+
+    |         | financiamento     | text    | Financiamento do Programa                             |
+    +---------+-------------------+---------+-------------------------------------------------------+
+
+
+A coluna ``cd_programa`` contém um código único para cada programa, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os programas aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
+
+
+.. note::
+
+    O arquivo `Programa.csv <https://www.bcb.gov.br/htms/sicor/Programa.csv>`__ encontra-se carregado na tabela ``programa`` do banco de dados PostgreSQL.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Quais programas ou linhas de crédito encontram-se ativos?
+
+
+.. collapse:: Solução:
+    :open:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT *
+                    FROM programa
+                   WHERE data_fim >= CURRENT_DATE
+                ORDER BY data_inicio, descricao;
+
+
+        .. tab:: Python
+
+
+            O pacote `sicor` possui uma operação demominada ``programas`` que fornece um atalho para recuperação dos programas na forma de um ``DataFrame`` do `Pandas`:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                seguros = sicor.programas(ativos=True)
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_tipo_seguro |      descricao
+                ----------------+---------------------
+                 0              | não se aplica
+                 3              | outro seguro
+                 2              | proagro mais
+                 1              | proagro tradicional
+                 9              | sem adesão a seguro
+                (5 rows)
+
+
+        .. tab:: Python

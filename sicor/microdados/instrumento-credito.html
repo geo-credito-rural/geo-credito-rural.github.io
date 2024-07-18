@@ -68,7 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="emitente.html">3.1.5. Categoria de Emitente</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fontes-recursos.html">3.1.6. Fontes de Recursos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="seguro.html">3.1.7. Garantia do Empreendimento</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programas ou Linhas de Crédito</a></li>
 <li class="toctree-l3"><a class="reference internal" href="operacoes.html">3.1.9. Operações Contratadas com Recursos Públicos e Privados</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas.html">3.1.10. Glebas de Operações Contratadas com Recursos Públicos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
@@ -160,6 +160,7 @@
 </tr>
 </tbody>
 </table>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> contém um código único para cada instrumento de crédito, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os instrumentos de crédito aos contratos, como será visto na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv">InstrumentoCredito.csv</a> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code> do banco de dados PostgreSQL.</p>
@@ -185,17 +186,17 @@
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_inst_credito |                   descricao                    | sigla
 -----------------+------------------------------------------------+-------
-               5 | Cédula de Crédito Bancário                     | CCB
-               9 | Cédula de Produto Rural-CPR (AVAL) - ENCERRADO | CPR
-               2 | Cédula Rural Hipotecária                       | CRH
-               1 | Cédula Rural Pignoratícia                      | CRP
-               3 | Cédula Rural Pignoratícia e Hipotecária        | CRPH
-              10 | Contrato de Crédito Rural                      | CAC
-               6 | Duplicata Rural                                | DR
-               4 | Nota de Crédito Rural                          | NCR
-               7 | Nota Promissória Rural                         | NPR
-               8 | Outros Instrumentos de Crédito Rural           | OIC
-              99 | Termo de Adesão ao Proagro                     | TAP
+               5 | cédula de crédito bancário                     | CCB
+               9 | cédula de produto rural-cpr (aval) - encerrado | CPR
+               2 | cédula rural hipotecária                       | CRH
+               1 | cédula rural pignoratícia                      | CRP
+               3 | cédula rural pignoratícia e hipotecária        | CRPH
+              10 | contrato de crédito rural                      | CAC
+               6 | duplicata rural                                | DR
+               4 | nota de crédito rural                          | NCR
+               7 | nota promissória rural                         | NPR
+               8 | outros instrumentos de crédito rural           | OIC
+              99 | termo de adesão ao proagro                     | TAP
 (11 rows)
 </pre></div>
 </div>
@@ -218,7 +219,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f676bcb0ac0>
+<jinja2.runtime.BlockReference object at 0x7f29d60c63a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

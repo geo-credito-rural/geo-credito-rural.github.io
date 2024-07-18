@@ -30,6 +30,9 @@ O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SI
 A coluna ``nome_if`` contém o nome da instituição financeira concedente do crédito e a coluna ``segmento_if`` contém a sua classificação quanto a sua natureza jurídica, podendo ser classifcado como *público*, *privado* ou *cooperativa de crédito*, por exemplo.
 
 
+A coluna ``cnpj_if`` é a chave primária dos registros desse conjunto de dados, podendo ser utilizada para relacionar as instituições financeiras aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
+
+
 .. note::
 
     O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_LISTA_IFS.csv>`__ encontra-se carregado na tabela ``ifssicor`` do banco de dados PostgreSQL.

@@ -27,6 +27,9 @@ Instrumento de Crédito é a denominação de um instrumento específico que for
     +---------+-------------------------+----------+-------------------------------------------------------+
 
 
+A coluna ``cd_inst_credito`` contém um código único para cada instrumento de crédito, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os instrumentos de crédito aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
+
+
 .. note::
 
     O arquivo `InstrumentoCredito.csv <https://www.bcb.gov.br/htms/sicor/InstrumentoCredito.csv>`__ encontra-se carregado na tabela ``instrumentocredito`` do banco de dados PostgreSQL.
@@ -82,21 +85,18 @@ Consultas
 
                  cd_inst_credito |                   descricao                    | sigla
                 -----------------+------------------------------------------------+-------
-                               5 | Cédula de Crédito Bancário                     | CCB
-                               9 | Cédula de Produto Rural-CPR (AVAL) - ENCERRADO | CPR
-                               2 | Cédula Rural Hipotecária                       | CRH
-                               1 | Cédula Rural Pignoratícia                      | CRP
-                               3 | Cédula Rural Pignoratícia e Hipotecária        | CRPH
-                              10 | Contrato de Crédito Rural                      | CAC
-                               6 | Duplicata Rural                                | DR
-                               4 | Nota de Crédito Rural                          | NCR
-                               7 | Nota Promissória Rural                         | NPR
-                               8 | Outros Instrumentos de Crédito Rural           | OIC
-                              99 | Termo de Adesão ao Proagro                     | TAP
+                               5 | cédula de crédito bancário                     | CCB
+                               9 | cédula de produto rural-cpr (aval) - encerrado | CPR
+                               2 | cédula rural hipotecária                       | CRH
+                               1 | cédula rural pignoratícia                      | CRP
+                               3 | cédula rural pignoratícia e hipotecária        | CRPH
+                              10 | contrato de crédito rural                      | CAC
+                               6 | duplicata rural                                | DR
+                               4 | nota de crédito rural                          | NCR
+                               7 | nota promissória rural                         | NPR
+                               8 | outros instrumentos de crédito rural           | OIC
+                              99 | termo de adesão ao proagro                     | TAP
                 (11 rows)
 
 
         .. tab:: Python
-
-
-

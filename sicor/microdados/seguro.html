@@ -23,11 +23,12 @@
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
     <link rel="search" title="Buscar" href="../../search.html" />
-    <link rel="next" title="3.1.8. Programa ou Linha de Crédito" href="programa.html" />
+    <link rel="next" title="3.1.8. Programas ou Linhas de Crédito" href="programa.html" />
     <link rel="prev" title="3.1.6. Fontes de Recursos" href="fontes-recursos.html" /> 
 </head>
 
@@ -67,7 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="emitente.html">3.1.5. Categoria de Emitente</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fontes-recursos.html">3.1.6. Fontes de Recursos</a></li>
 <li class="toctree-l3 current"><a class="current reference internal" href="#">3.1.7. Garantia do Empreendimento</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programas ou Linhas de Crédito</a></li>
 <li class="toctree-l3"><a class="reference internal" href="operacoes.html">3.1.9. Operações Contratadas com Recursos Públicos e Privados</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas.html">3.1.10. Glebas de Operações Contratadas com Recursos Públicos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
@@ -122,7 +123,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="fontes-recursos.html" class="btn btn-neutral float-left" title="3.1.6. Fontes de Recursos" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="programa.html" class="btn btn-neutral float-right" title="3.1.8. Programa ou Linha de Crédito" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="programa.html" class="btn btn-neutral float-right" title="3.1.8. Programas ou Linhas de Crédito" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -131,9 +132,9 @@
              
   <section id="garantia-do-empreendimento">
 <span id="sec-sicor-microdados-seguro"></span><h1><span class="section-number">3.1.7. </span>Garantia do Empreendimento<a class="headerlink" href="#garantia-do-empreendimento" title="Link permanente para este cabeçalho"></a></h1>
-<p>Como todo o contrato, o financiamento rural também conta com uma forma de garantia, a mais famosa das garantias do seguro rural é o Programa de Garantia da Atividade Agropecuária (Proagro) <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. A tabela <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code> contém os registros dos tipos de garantias utilizados no financiamento agrícola. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-tipogarantiaempreendimento"><span class="std std-numref">Tabela 3.6</span></a>.</p>
+<p>Como todo contrato, o financiamento rural também conta com uma forma de garantia, sendo que a mais famosa das garantias do seguro rural é o <strong>Pro</strong>grama de Garantia da Atividade <strong>Agro</strong>pecuária ou <strong>Proagro</strong> <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/TipoGarantiaEmpreendimento.csv">TipoGarantiaEmpreendimento.csv</a> contém os registros dos tipos de garantias utilizados no financiamento agrícola. Sua estrutura pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-tipogarantiaempreendimento"><span class="std std-numref">Tabela 3.6</span></a>.</p>
 <table class="styled-table docutils align-default" id="tbl-sicor-microdados-tipogarantiaempreendimento">
-<caption><span class="caption-number">Tabela 3.6 - </span><span class="caption-text">tipogarantiaempreendimento.</span><a class="headerlink" href="#tbl-sicor-microdados-tipogarantiaempreendimento" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.6 - </span><span class="caption-text">Estrutura do arquivo contendo os tipos de seguros rurais.</span><a class="headerlink" href="#tbl-sicor-microdados-tipogarantiaempreendimento" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -154,6 +155,42 @@
 </tr>
 </tbody>
 </table>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> contém um código único para cada tio de seguro, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os tipos de seguro aos contratos, como será visto na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/TipoGarantiaEmpreendimento.csv">TipoGarantiaEmpreendimento.csv</a> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code> do banco de dados PostgreSQL.</p>
+</div>
+<section id="consultas">
+<h2><span class="section-number">3.1.7.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Listar os tipos de seguro rural.</p>
+<details class="summary-solucao" open>
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">tipogarantiaempreendimento</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">descricao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">seguros</span></code> que fornece um atalho para recuperação dos tipos de seguro na forma de um objeto <code class="docutils literal notranslate"><span class="pre">Series</span></code> do <cite>Pandas</cite>:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+
+<span class="n">seguros</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">seguros</span><span class="p">()</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_tipo_seguro |      descricao
+----------------+---------------------
+ 0              | não se aplica
+ 3              | outro seguro
+ 2              | proagro mais
+ 1              | proagro tradicional
+ 9              | sem adesão a seguro
+(5 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</details></section>
 </section>
 
 
@@ -161,7 +198,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="fontes-recursos.html" class="btn btn-neutral float-left" title="3.1.6. Fontes de Recursos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="programa.html" class="btn btn-neutral float-right" title="3.1.8. Programa ou Linha de Crédito" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="programa.html" class="btn btn-neutral float-right" title="3.1.8. Programas ou Linhas de Crédito" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -171,7 +208,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f676b2800a0>
+<jinja2.runtime.BlockReference object at 0x7f29d59b3cd0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

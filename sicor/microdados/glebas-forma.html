@@ -68,7 +68,7 @@
 <li class="toctree-l3"><a class="reference internal" href="emitente.html">3.1.5. Categoria de Emitente</a></li>
 <li class="toctree-l3"><a class="reference internal" href="fontes-recursos.html">3.1.6. Fontes de Recursos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="seguro.html">3.1.7. Garantia do Empreendimento</a></li>
-<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programa ou Linha de Crédito</a></li>
+<li class="toctree-l3"><a class="reference internal" href="programa.html">3.1.8. Programas ou Linhas de Crédito</a></li>
 <li class="toctree-l3"><a class="reference internal" href="operacoes.html">3.1.9. Operações Contratadas com Recursos Públicos e Privados</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas.html">3.1.10. Glebas de Operações Contratadas com Recursos Públicos</a></li>
 <li class="toctree-l3"><a class="reference internal" href="glebas-topologia.html">3.1.11. Verificação Topológica das Geometrias das Glebas</a></li>
@@ -136,11 +136,11 @@
 <ul class="open">
 <li><p><strong>area_gleba:</strong> Coluna numérica com a área da gleba em m<sup>2</sup>. Para computar a área será usada a função <code class="docutils literal notranslate"><span class="pre">ST_Area</span></code>. No entanto, será necessário transformar o SRS dos polígonos das glebas do EPSG:4674 para um SRS que possa ser possível computar a área em metros.</p></li>
 <li><p><strong>perimetro_gleba:</strong> Coluna numérica com o perímetro da gleba em metros. Para computar o perímetro será usada a função <code class="docutils literal notranslate"><span class="pre">ST_Perimeter</span></code>. Assim como no cálculo de área, para que essa função produza um valor em metros é necessário transformar o SRS usado nas coordenadas da geometria para um SRS que permita computar distâncias em metros.</p></li>
-<li><p><strong>area_menor_retangulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor retângulo envolvente da geometria. Esse retângulo não necessariamente possui os lados paralelos aos eixos <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. Para computar esse retângulo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_OrientedEnvelope</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.12a</span></a>).</p></li>
-<li><p><strong>area_menor_circulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor círculo envolvente da geometria. Para computar esse círculo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_MinimumBoundingCircle</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.12b</span></a>).</p></li>
+<li><p><strong>area_menor_retangulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor retângulo envolvente da geometria. Esse retângulo não necessariamente possui os lados paralelos aos eixos <span class="math notranslate nohighlight">\(x\)</span> e <span class="math notranslate nohighlight">\(y\)</span>. Para computar esse retângulo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_OrientedEnvelope</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.13a</span></a>).</p></li>
+<li><p><strong>area_menor_circulo_envolvente:</strong> Coluna numérica com a área em m<sup>2</sup> do menor círculo envolvente da geometria. Para computar esse círculo será usada a função <code class="docutils literal notranslate"><span class="pre">ST_MinimumBoundingCircle</span></code> (<a class="reference internal" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas"><span class="std std-numref">Tabela 3.13b</span></a>).</p></li>
 </ul>
 <table class="styled-table docutils align-center" id="tbl-sicor-microdados-glebas-forma-formas-geometricas" style="width: 100%">
-<caption><span class="caption-number">Tabela 3.12 - </span><span class="caption-text">Formas geométricas.</span><a class="headerlink" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.13 - </span><span class="caption-text">Formas geométricas.</span><a class="headerlink" href="#tbl-sicor-microdados-glebas-forma-formas-geometricas" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -324,7 +324,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f676b894910>
+<jinja2.runtime.BlockReference object at 0x7f29d6831dc0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
