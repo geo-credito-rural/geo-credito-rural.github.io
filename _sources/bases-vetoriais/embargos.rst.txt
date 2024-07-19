@@ -9,5 +9,25 @@ Embargos
 
 O *embargo* é uma medida administrativa que tem por objetivo impedir a continuidade do dano ambiental, propiciar a regeneração do meio ambiente e dar viabilidade à recuperação da área degradada, devendo restringir-se exclusivamente ao local onde  efetivamente caracterizou-se a infração ambiental, não alcançando as demais atividades realizadas em áreas não embargadas da propriedade ou posse ou não correlacionadas com a infração. Desta maneira, visa promover a recomposição ambiental da área em que ocorreu o dano ambiental :cite:`brasil:2024:b`. Se o embargo for desrespeitado, o infrator pode ser multado e além disso quem comprar, tiver posse, transportar ou comercializar os bens produzidos na área embargada pode ser multado e ter os bens confiscados :cite:`Schmitt:2015`. A cessação das penalidades de suspensão e embargo dependerá de decisão da autoridade ambiental após a apresentação, por parte do autuado, de documentação que regularize a obra ou atividade :cite:`brasil:2024:b`.
 
-As agências ambientais municipais, estaduais e federal podem embargar uma área quando observado o dano ambiental. Entretanto, devido a dificuldade em conseguir os dados de áreas embargada nas agências municipais e estaduais, para este trabalho estamos utilizando apenas as áreas embargadas pelo Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis (IBAMA) e Instituto Chico Mendes de Conservação da Biodiversidade (ICMBIO). Os embargos realizados pelo IBAMA estão disponibilizadas no seguinte endereço `adm_embargo_a <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__ e os embargos efetuados pelo ICMBIO estão no seguinte endereço `Embargos ICMBio shp <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/embargos_icmbio.zip>`__.
+
+As agências ambientais municipais, estaduais e federal podem embargar uma área quando observado o dano ambiental. Entretanto, devido a dificuldade em conseguir os dados de áreas embargada nas agências municipais e estaduais, para este trabalho estamos utilizando apenas as áreas embargadas pelo Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis (IBAMA) e Instituto Chico Mendes de Conservação da Biodiversidade (ICMBIO). Os embargos realizados pelo IBAMA estão disponibilizadas no seguinte endereço `adm_embargo_a <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__ e os embargos efetuados pelo ICMBIO estão no seguinte endereço `Embargos ICMBio shp <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/embargos_icmbio.zip>`__. A dispersão espacial dos embargos efetuados pelo IBAMA e pelo ICMBIO no território brasileiro pode ser observada nas figuras da :numref:`Tabela %s <tbl:bases-vetoriais:embargos>`.
+
+
+.. |fig:bases-vetoriais:embargos-ibama| image:: ../img/bases-vetoriais/embargos-ibama.png
+
+
+.. |fig:bases-vetoriais:embargos-icmbio| image:: ../img/bases-vetoriais/embargos-icmbio.png
+
+
+.. table:: Embargos efetuados pelo IBAMA e pelo ICMBIO.
+    :widths: 50 50
+    :width: 100%
+    :header-alignment: center center
+    :column-alignment: center center
+    :align: center
+    :name: tbl:bases-vetoriais:embargos
+
+    +--------------------------------------+--------------------------------------+
+    | |fig:bases-vetoriais:embargos-ibama| | |fig:bases-vetoriais:embargos-icmbio||
+    +--------------------------------------+--------------------------------------+
 

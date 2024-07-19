@@ -26,9 +26,10 @@ Os microdados com os registros de operações contratadas com recursos públicos
 A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:sicor_operacao_basica_estado>`.
 
 
-.. table:: sicor_operacao_basica_estado.
+.. table:: Estrutura dos arquivos com registro das operações de crédito.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_operacao_basica_estado
 
     +---------------+---------------------------+----------+-------------------------------------------------------+
@@ -129,40 +130,7 @@ A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:micr
     +---------------+---------------------------+----------+-------------------------------------------------------+
 
 
-Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como **ref_bacen**. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela ``sicor_operacao_basica_estado`` é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos ``ref_bacen`` e ``nu_ordem``, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.
-
-
-A coluna ``cnpj_if`` se liga à tabela auxiliar ``ifssicor``, permitindo relacionar a instituição concedente do crédito (veja a Seção :numref:`%s <sec_sicor_microdados_ifs>` .
-
-
-As colunas ``dt_emissao`` e ``dt_vencimento`` registram, respectivamente, a data em que o contrato foi realizado e o término previsto.
-
-
-A coluna ``cd_inst_credito`` se liga à tabela auxiliar ``instrumentocredito``, permitindo relacionar o contrato ao tipo de instrumento de crédito (veja a Seção :numref:`%s <sec_sicor_microdados_instrumento_credito>`).
-
-
-A coluna ``cd_categ_emitente`` se liga à tabela auxiliar ``categoriaemitente``, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (veja a Seção :numref:`%s <sec_sicor_microdados_emitente>`). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.
-
-
-A coluna ``cd_fonte_recurso`` se liga à tabela auxiliar ``fonterecursos``, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (veja a Seção :numref:`%s <sec_sicor_microdados_fontes_recursos>`).
-
-
-A coluna ``cd_tipo_seguro`` se liga à tabela auxiliar ``tipogarantiaempreendimento``, permitindo saber se o contrato prevê algum tipo de seguro ou não (veja a Seção :numref:`%s <sec_sicor_microdados_seguro>`).
-
-
-A coluna ``cd_empreendimento`` permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a Seção :numref:`%s <sec_sicor_microdados_empreendimentos>`.
-
-
-A coluna ``cd_programa`` indica o programa ou linha de crédito de origem dos recursos usados no financiamento (veja a Seção :numref:`%s <sec_sicor_microdados_programa>`).
-
-
-.. O campo ``vl_aliq_proagro`` corresponde ao prêmio pago pelo contratante para contratar o Proagro como seguro rural. Corresponde a um percentual do valor a ser coberto pelo Proagro estabelecido no contrato.
-
-
-.. O campo ``vl_parc_credito`` indica o valor financiado no contrato para um empreendimento.
-
-
-A :numref:`Figura %s <fig:sicor:microdados:er-sicor-operacao-basica-estado>` apresenta os relacionamentos da tabela ``sicor-operacao-basica-estado`` e as demais tabelas auxiliares (ou de domínio).
+Os arquivos listados acima foram carregados na tabela ``sicor_operacao_basica_estado`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:er-sicor-operacao-basica-estado>` apresenta os relacionamentos dessa tabela e as demais tabelas auxiliares (ou de domínio).
 
 
 .. figure:: ../../img/sicor/microdados/tabelas/er-sicor-operacao-basica-estado.png
@@ -174,10 +142,66 @@ A :numref:`Figura %s <fig:sicor:microdados:er-sicor-operacao-basica-estado>` apr
     Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado).
 
 
-.. warning::
+Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como **ref_bacen**. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela ``sicor_operacao_basica_estado`` é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos ``ref_bacen`` e ``nu_ordem``, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.
 
-    Será incluída nessa seção a documentação da tabela ``sicor_complemento_operacao_basica``.
 
+A coluna ``cnpj_if`` se liga à tabela auxiliar ``ifssicor``, permitindo relacionar a instituição concedente do crédito (:numref:`Seção %s - Instituições Financeiras <sec_sicor_microdados_ifs>`).
+
+
+As colunas ``dt_emissao`` e ``dt_vencimento`` registram, respectivamente, a data em que o contrato foi realizado e o término previsto.
+
+
+A coluna ``cd_inst_credito`` se liga à tabela auxiliar ``instrumentocredito``, permitindo relacionar o contrato ao tipo de instrumento de crédito (:numref:`Seção %s Instrumento de Crédito <sec_sicor_microdados_instrumento_credito>`).
+
+
+A coluna ``cd_categ_emitente`` se liga à tabela auxiliar ``categoriaemitente``, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (:numref:`Seção %s - Categoria de Emitente <sec_sicor_microdados_emitente>`). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.
+
+
+A coluna ``cd_fonte_recurso`` se liga à tabela auxiliar ``fonterecursos``, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (:numref:`Seção %s - Fontes de Recursos <sec_sicor_microdados_fontes_recursos>`).
+
+
+A coluna ``cd_tipo_seguro`` se liga à tabela auxiliar ``tipogarantiaempreendimento``, permitindo saber se o contrato prevê algum tipo de seguro ou não (:numref:`Seção %s - Garantia do Empreendimento <sec_sicor_microdados_seguro>`).
+
+
+A coluna ``cd_empreendimento`` permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a :numref:`Seção %s - Empreendimentos de Contratos de Crédito Rural <sec_sicor_microdados_empreendimentos>`.
+
+
+A coluna ``cd_programa`` indica o programa ou linha de crédito de origem dos recursos usados no financiamento (:numref:`Seção %s - Programas ou Linhas de Crédito <sec_sicor_microdados_programa>`).
+
+
+.. O campo ``vl_aliq_proagro`` corresponde ao prêmio pago pelo contratante para contratar o Proagro como seguro rural. Corresponde a um percentual do valor a ser coberto pelo Proagro estabelecido no contrato.
+
+
+.. O campo ``vl_parc_credito`` indica o valor financiado no contrato para um empreendimento.
+
+
+Outro microdado complementar às operações contratadas, disponibillizado no arquivo CSV compactado `SICOR_COMPLEMENTO_OPERACAO_BASICA.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_OPERACAO_BASICA.gz>`__, fornece informações como agência da instituição financeira e código do município de acordo com o padrão adotado pelo IBGE. A estrutura desse arquivo pode ser vista :numref:`Tabela %s <tbl:sicor:microdados:sicor_complemento_operacao_basica>`.
+
+
+.. table:: Estrutura do arquivo complementar das operações de crédito.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:microdados:sicor_complemento_operacao_basica
+
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | nome                      | tipo     | descrição                                             |
+    +===============+===========================+==========+=======================================================+
+    | **PK**, FK    | ref_bacen                 | integer  | Número mascarado de referência do contrato            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    | **PK**, FK    | nu_ordem                  | integer  | Número da destinação/finalidade dentro do contrato    |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | ref_bacen_efetivo         | text     | Número do refbacen explícito                          |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | agencia_if                | text     | Código da agência da Instituição Financeira           |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | cd_ibge_municipio         | integer  | Código IBGE do município                              |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | num_cedula_if             | text     |                                                       |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
+
+
+O arquivo `SICOR_COMPLEMENTO_OPERACAO_BASICA.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_OPERACAO_BASICA.gz>`__ encontra-se carregado na tabela ``sicor_complemento_operacao_basica`` do banco de dados PostgreSQL.
 
 
 Consultas

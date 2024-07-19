@@ -12,7 +12,7 @@ Os microdados do Sicor contendo o registro das operações de crédito rural e d
 
 .. figure:: ../../img/sicor/microdados/tabelas/modelo-dados-simplificado.png
     :alt: Modelo de dados dos microdados do Sicor (simplificado)
-    :width: 80%
+    :width: 100%
     :figclass: align-center
     :name: fig:sicor:microdados:modelo-dados-simplificado
 

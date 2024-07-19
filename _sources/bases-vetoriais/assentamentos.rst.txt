@@ -17,7 +17,16 @@ Os agricultores que recebem o lote comprometem-se a morar na parcela e a explor�
 Os assentamentos utilizados nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Um sumário de todas as tabelas vetoriais e suas principais características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
 
 
-Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescentes Quilombola (TQR) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A figura abaixo apresenta a distribuição dos assentamentos no Brasil.
+Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescentes Quilombola (TQR) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A :numref:`Figura %s <fig:bases-vetoriais:assentamentos>` abaixo apresenta a distribuição dos assentamentos no Brasil.
+
+
+.. figure:: ../img/bases-vetoriais/assentamentos.png
+    :alt: Distribuição dos assentamentos rurais
+    :width: 80%
+    :figclass: align-center
+    :name: fig:bases-vetoriais:assentamentos
+
+    Distribuição dos assentamentos rurais.
 
 
 Consultas

@@ -11,8 +11,9 @@ Como todo contrato, o financiamento rural também conta com uma forma de garanti
 
 
 .. table:: Estrutura do arquivo contendo os tipos de seguros rurais.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:tipogarantiaempreendimento
 
     +---------+-------------------------+----------+-------------------------------------------------------+

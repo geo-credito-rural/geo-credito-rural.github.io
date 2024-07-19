@@ -92,5 +92,15 @@ Estes dois tipos de unidades de conservação são compostos por diversas catego
     +--------------+-----------------+-----------------------------------------------------------------------------------+
 
 
-As áreas unidades de conservação são disponibilizadas pelo Ministério do Meio Ambiente e Mudança do Clima (MMA) em diversos formatos, para estee estudo foi acessado o arquivo shapefile `Polígno CNUC 2024_02 <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__. A figura abaixo apresenta a distribuição destas áreas no Brasil. 
+As áreas unidades de conservação são disponibilizadas pelo Ministério do Meio Ambiente e Mudança do Clima (MMA) em diversos formatos, para estee estudo foi acessado o arquivo shapefile `Polígno CNUC 2024_02 <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__. A figura :numref:`Figura %s <fig:bases-vetoriais:cnuc>`  apresenta a distribuição destas áreas por categoria no Brasil. 
+
+
+.. figure:: ../img/bases-vetoriais/cnuc.png
+    :alt: Distribuição das áreas protegidas por categoria no Brasil
+    :width: 80%
+    :figclass: align-center
+    :name: fig:bases-vetoriais:cnuc
+
+    Distribuição das áreas protegidas por categoria no Brasil.
+
 

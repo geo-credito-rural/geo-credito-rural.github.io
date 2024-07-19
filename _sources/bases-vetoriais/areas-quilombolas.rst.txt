@@ -21,7 +21,16 @@ As áreas quilombolas utilizados nesse curso foram baixadas, em arquivos no form
 do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e 
 inseridos na tabela ``areas_quilombolas``. Um sumário de todas as tabelas vetoriais e suas principais 
 características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
-A figura abaixo apresenta a distribuição das áreas quilombolas no Brasil.
+A :numref:`Figura %s <fig:bases-vetoriais:quilombos>` apresenta a distribuição das áreas quilombolas no Brasil.
+
+
+.. figure:: ../img/bases-vetoriais/quilombos.png
+    :alt: Distribuição das áreas Quilombolas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:bases-vetoriais:quilombos
+
+    Distribuição das áreas Quilombolas.
 
 
 Consultas

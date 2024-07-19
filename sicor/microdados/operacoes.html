@@ -148,8 +148,8 @@
 <li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_OPERACAO_BASICA_ESTADO_2024.gz">SICOR_OPERACAO_BASICA_ESTADO_2024.gz</a></p></li>
 </ul>
 <p>A estrutura desses arquivos pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-sicor-operacao-basica-estado"><span class="std std-numref">Tabela 3.8</span></a>.</p>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-operacao-basica-estado">
-<caption><span class="caption-number">Tabela 3.8 - </span><span class="caption-text">sicor_operacao_basica_estado.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-operacao-basica-estado" title="Link Permanente para essa tabela"></a></caption>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-operacao-basica-estado">
+<caption><span class="caption-number">Tabela 3.8 - </span><span class="caption-text">Estrutura dos arquivos com registro das operações de crédito.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-operacao-basica-estado" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -160,257 +160,297 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>ref_bacen</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número mascarado de referência do contrato</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>nu_ordem</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>1</sub></p></td>
 <td class="left-align"><p>cnpj_if</p></td>
-<td class="left-align"><p>char(8)</p></td>
+<td class="center-align"><p>char(8)</p></td>
 <td class="left-align"><p>Concedente do crédito</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_emissao</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data de emissão da operação</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_vencimento</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data de vencimento da operação</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>2</sub></p></td>
 <td class="left-align"><p>cd_inst_credito</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Modalidade do empreendimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>3</sub></p></td>
 <td class="left-align"><p>cd_categ_emitente</p></td>
-<td class="left-align"><p>char(4)</p></td>
+<td class="center-align"><p>char(4)</p></td>
 <td class="left-align"><p>Código da categoria do emitente</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>4</sub></p></td>
 <td class="left-align"><p>cd_fonte_recurso</p></td>
-<td class="left-align"><p>char(4)</p></td>
+<td class="center-align"><p>char(4)</p></td>
 <td class="left-align"><p>Código da fonte de recursos</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cnpj_agente_invest</p></td>
-<td class="left-align"><p>char(8)</p></td>
+<td class="center-align"><p>char(8)</p></td>
 <td class="left-align"><p>Concedente da operação de investimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>cd_estado</p></td>
-<td class="left-align"><p>char(2)</p></td>
+<td class="center-align"><p>char(2)</p></td>
 <td class="left-align"><p>Sigla da Unidade Federativa</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cd_ref_bacen_investimento</p></td>
-<td class="left-align"><p>char(11)</p></td>
+<td class="center-align"><p>char(11)</p></td>
 <td class="left-align"><p>Código do refbacen de investimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>5</sub></p></td>
 <td class="left-align"><p>cd_tipo_seguro</p></td>
-<td class="left-align"><p>char(1)</p></td>
+<td class="center-align"><p>char(1)</p></td>
 <td class="left-align"><p>Código do tipo de seguro</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>6</sub></p></td>
 <td class="left-align"><p>cd_empreendimento</p></td>
-<td class="left-align"><p>char(14)</p></td>
+<td class="center-align"><p>char(14)</p></td>
 <td class="left-align"><p>Código do empreendimento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>7</sub></p></td>
 <td class="left-align"><p>cd_programa</p></td>
-<td class="left-align"><p>char(4)</p></td>
+<td class="center-align"><p>char(4)</p></td>
 <td class="left-align"><p>Código do programa</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>8</sub></p></td>
 <td class="left-align"><p>cd_tipo_encarg_financ</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do encargo financeiro complementar</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>9</sub></p></td>
 <td class="left-align"><p>cd_tipo_irrigacao</p></td>
-<td class="left-align"><p>char(2)</p></td>
+<td class="center-align"><p>char(2)</p></td>
 <td class="left-align"><p>Código de tipo de irrigação</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>10</sub></p></td>
 <td class="left-align"><p>cd_tipo_agricultura</p></td>
-<td class="left-align"><p>char(1)</p></td>
+<td class="center-align"><p>char(1)</p></td>
 <td class="left-align"><p>Código do tipo de agricultura</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>11</sub></p></td>
 <td class="left-align"><p>cd_fase_ciclo_producao</p></td>
-<td class="left-align"><p>char(2)</p></td>
+<td class="center-align"><p>char(2)</p></td>
 <td class="left-align"><p>Código da fase ciclo de produção</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>12</sub></p></td>
 <td class="left-align"><p>cd_tipo_cultivo</p></td>
-<td class="left-align"><p>char(2)</p></td>
+<td class="center-align"><p>char(2)</p></td>
 <td class="left-align"><p>Código do tipo de cultivo</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>13</sub></p></td>
 <td class="left-align"><p>cd_tipo_intgr_consor</p></td>
-<td class="left-align"><p>char(1)</p></td>
+<td class="center-align"><p>char(1)</p></td>
 <td class="left-align"><p>Código do tipo de integração/consórcio</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>14</sub></p></td>
 <td class="left-align"><p>cd_tipo_grao_semente</p></td>
-<td class="left-align"><p>char(1)</p></td>
+<td class="center-align"><p>char(1)</p></td>
 <td class="left-align"><p>Código do tipo de grão/semente</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_aliq_proagro</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Alíquota do Proagro</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_juros</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Juros do financiamento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_prestacao_investimento</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Valor da prestação de investimento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_prev_prod</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Valor previsto de produção</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_produtiv_obtida</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Produtividade obtida</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_quantidade</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Quantidade</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_receita_bruta_esperada</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Receita bruta esperada</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_parc_credito</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Valor da parcela de crédito</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_rec_proprio</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Valor do recurso próprio</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_perc_risco_stn</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Percentual do risco (Secretaria do Tesouro Nacional)</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_perc_risco_fundo_const</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Risco do fundo constitucional</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_rec_proprio_srv</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Garantia renda mínima (Sistema de Valores a Receber)</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_area_informada</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Área empreendimento informada</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_area_financ</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>VL_AREA_INFORMADA * VL_PARC_CREDITO /
 (VL_PARC_CREDITO + VL_REC_PROPRIO)</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_juros_enc_finan_posfix</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Juros do encargo financeiro</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_perc_custo_efet_total</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Custo efetivo total</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_inic_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de plantio</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de plantio</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_inic_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de colheita</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de colheita</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>15</sub></p></td>
 <td class="left-align"><p>cd_subprograma</p></td>
-<td class="left-align"><p>char(4)</p></td>
+<td class="center-align"><p>char(4)</p></td>
 <td class="left-align"><p>Código do subprograma</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cd_contrato_stn</p></td>
-<td class="left-align"><p>char(13)</p></td>
+<td class="center-align"><p>char(13)</p></td>
 <td class="left-align"><p>Código da Secretaria do Tesouro Nacional</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>cd_cnpj_cadastrante</p></td>
-<td class="left-align"><p>char(8)</p></td>
+<td class="center-align"><p>char(8)</p></td>
 <td class="left-align"><p>IF cadastrante da operação</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>16</sub></p></td>
 <td class="left-align"><p>cd_ciclo_cultivar</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do ciclo do cultivar</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>17</sub></p></td>
 <td class="left-align"><p>cd_tipo_solo</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do tipo do solo</p></td>
 </tr>
 </tbody>
 </table>
-<p>Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como <strong>ref_bacen</strong>. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> e <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cnpj_if</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">ifssicor</span></code>, permitindo relacionar a instituição concedente do crédito (veja a Seção <a class="reference internal" href="ifs.html#sec-sicor-microdados-ifs"><span class="std std-numref">3.1.3</span></a> .</p>
-<p>As colunas <code class="docutils literal notranslate"><span class="pre">dt_emissao</span></code> e <code class="docutils literal notranslate"><span class="pre">dt_vencimento</span></code> registram, respectivamente, a data em que o contrato foi realizado e o término previsto.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code>, permitindo relacionar o contrato ao tipo de instrumento de crédito (veja a Seção <a class="reference internal" href="instrumento-credito.html#sec-sicor-microdados-instrumento-credito"><span class="std std-numref">3.1.4</span></a>).</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_categ_emitente</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">categoriaemitente</span></code>, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (veja a Seção <a class="reference internal" href="emitente.html#sec-sicor-microdados-emitente"><span class="std std-numref">3.1.5</span></a>). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_fonte_recurso</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code>, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (veja a Seção <a class="reference internal" href="fontes-recursos.html#sec-sicor-microdados-fontes-recursos"><span class="std std-numref">3.1.6</span></a>).</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code>, permitindo saber se o contrato prevê algum tipo de seguro ou não (veja a Seção <a class="reference internal" href="seguro.html#sec-sicor-microdados-seguro"><span class="std std-numref">3.1.7</span></a>).</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a Seção <a class="reference internal" href="empreendimentos.html#sec-sicor-microdados-empreendimentos"><span class="std std-numref">3.1.2</span></a>.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_programa</span></code> indica o programa ou linha de crédito de origem dos recursos usados no financiamento (veja a Seção <a class="reference internal" href="programa.html#sec-sicor-microdados-programa"><span class="std std-numref">3.1.8</span></a>).</p>
-<p>A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado"><span class="std std-numref">Figura 3.2</span></a> apresenta os relacionamentos da tabela <code class="docutils literal notranslate"><span class="pre">sicor-operacao-basica-estado</span></code> e as demais tabelas auxiliares (ou de domínio).</p>
+<p>Os arquivos listados acima foram carregados na tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> do banco de dados PostgreSQL. A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado"><span class="std std-numref">Figura 3.2</span></a> apresenta os relacionamentos dessa tabela e as demais tabelas auxiliares (ou de domínio).</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-er-sicor-operacao-basica-estado">
 <a class="reference internal image-reference" href="../../_images/er-sicor-operacao-basica-estado.png"><img alt="Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado)" src="../../_images/er-sicor-operacao-basica-estado.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Figura 3.2 - </span><span class="caption-text">Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<div class="admonition warning">
-<p class="admonition-title">Aviso</p>
-<p>Será incluída nessa seção a documentação da tabela <code class="docutils literal notranslate"><span class="pre">sicor_complemento_operacao_basica</span></code>.</p>
-</div>
+<p>Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como <strong>ref_bacen</strong>. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> e <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cnpj_if</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">ifssicor</span></code>, permitindo relacionar a instituição concedente do crédito (<a class="reference internal" href="ifs.html#sec-sicor-microdados-ifs"><span class="std std-numref">Seção 3.1.3 - Instituições Financeiras</span></a>).</p>
+<p>As colunas <code class="docutils literal notranslate"><span class="pre">dt_emissao</span></code> e <code class="docutils literal notranslate"><span class="pre">dt_vencimento</span></code> registram, respectivamente, a data em que o contrato foi realizado e o término previsto.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code>, permitindo relacionar o contrato ao tipo de instrumento de crédito (<a class="reference internal" href="instrumento-credito.html#sec-sicor-microdados-instrumento-credito"><span class="std std-numref">Seção 3.1.4 Instrumento de Crédito</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_categ_emitente</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">categoriaemitente</span></code>, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (<a class="reference internal" href="emitente.html#sec-sicor-microdados-emitente"><span class="std std-numref">Seção 3.1.5 - Categoria de Emitente</span></a>). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_fonte_recurso</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code>, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (<a class="reference internal" href="fontes-recursos.html#sec-sicor-microdados-fontes-recursos"><span class="std std-numref">Seção 3.1.6 - Fontes de Recursos</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code>, permitindo saber se o contrato prevê algum tipo de seguro ou não (<a class="reference internal" href="seguro.html#sec-sicor-microdados-seguro"><span class="std std-numref">Seção 3.1.7 - Garantia do Empreendimento</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_empreendimento</span></code> permite determinar o objeto da contratação dentro de uma destinação ou finalidade do financiamento. Para mais detalhes dos possíveis empreendimentos, consulte a <a class="reference internal" href="empreendimentos.html#sec-sicor-microdados-empreendimentos"><span class="std std-numref">Seção 3.1.2 - Empreendimentos de Contratos de Crédito Rural</span></a>.</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_programa</span></code> indica o programa ou linha de crédito de origem dos recursos usados no financiamento (<a class="reference internal" href="programa.html#sec-sicor-microdados-programa"><span class="std std-numref">Seção 3.1.8 - Programas ou Linhas de Crédito</span></a>).</p>
+<p>Outro microdado complementar às operações contratadas, disponibillizado no arquivo CSV compactado <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_OPERACAO_BASICA.gz">SICOR_COMPLEMENTO_OPERACAO_BASICA.gz</a>, fornece informações como agência da instituição financeira e código do município de acordo com o padrão adotado pelo IBGE. A estrutura desse arquivo pode ser vista <a class="reference internal" href="#tbl-sicor-microdados-sicor-complemento-operacao-basica"><span class="std std-numref">Tabela 3.9</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-complemento-operacao-basica">
+<caption><span class="caption-number">Tabela 3.9 - </span><span class="caption-text">Estrutura do arquivo complementar das operações de crédito.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-operacao-basica" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>ref_bacen_efetivo</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Número do refbacen explícito</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>agencia_if</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Código da agência da Instituição Financeira</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_ibge_municipio</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Código IBGE do município</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>num_cedula_if</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"></td>
+</tr>
+</tbody>
+</table>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_OPERACAO_BASICA.gz">SICOR_COMPLEMENTO_OPERACAO_BASICA.gz</a> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">sicor_complemento_operacao_basica</span></code> do banco de dados PostgreSQL.</p>
 <section id="consultas">
 <h2><span class="section-number">3.1.9.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Qual o número de contratos de custeio de lavouras de soja ao longo dos anos?</p>
@@ -638,7 +678,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f29d6077b20>
+<jinja2.runtime.BlockReference object at 0x7f019a705160>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
