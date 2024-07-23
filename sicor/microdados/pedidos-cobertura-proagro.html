@@ -23,6 +23,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -138,13 +139,10 @@
 <p>O <strong>Proagro</strong> é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.</p>
 <p>No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão disponíveis no formato CSV no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>. Esses pedidos registram:</p>
 <ul class="open">
-<li><p>O evento adverso originador da solicitação, como geada, granizo, seca e enchentes, entre outros. A lista completa dos tipos de eventos adversos geradores de pedidos de cobertura encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/EventoProagro.csv">EventoProagro.csv</a>.</p></li>
-<li><p>O tipo de solo relacionado ao ZARC (<a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">Seção 3.2</span></a>), que possibilita verificar se o empreendimento foi realizado em uma época propícia, de acordo com o recomendado. A lista completa dos tipos de solos encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/TipoSoloProagro.csv">TipoSoloProagro.csv</a>.</p></li>
-<li><p>O ciclo do cultivar relacionado ao ZARC (<a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">Seção 3.2</span></a>), que também é usado para verificar se o empreendimento foi realizado em uma época propícia, de acordo com o recomendado. A lista completa dos tipos de solos encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/CicloCultivarProagro.csv">CicloCultivarProagro.csv</a>.</p></li>
-<li><p>Situação do pedido de cobertura: <code class="docutils literal notranslate"><span class="pre">em</span> <span class="pre">análise</span></code>, <code class="docutils literal notranslate"><span class="pre">deferida</span></code>, <code class="docutils literal notranslate"><span class="pre">indeferida</span></code>, <code class="docutils literal notranslate"><span class="pre">desistida</span></code>, <code class="docutils literal notranslate"><span class="pre">cancelada</span></code> e <code class="docutils literal notranslate"><span class="pre">inválida</span></code>. A lista completa dos possíveis estados de um pedido de cobertura encontra-se disponíveç no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/StatusCOPProagro.csv">StatusCOPProagro.csv</a>.</p></li>
-</ul>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-eventoproagro">
-<caption><span class="caption-number">Tabela 3.15 - </span><span class="caption-text">Eventos do Proagro: <code class="docutils literal notranslate"><span class="pre">eventoproagro</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-eventoproagro" title="Link Permanente para essa tabela"></a></caption>
+<li><p>O evento adverso originador da solicitação, como geada, granizo, seca e enchentes, entre outros. A lista completa dos tipos de eventos adversos geradores de pedidos de cobertura encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/EventoProagro.csv">EventoProagro.csv</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-eventoproagro"><span class="std std-numref">Tabela 3.15</span></a>.</p>
+<blockquote>
+<div><table class="styled-table docutils align-center" id="tbl-sicor-microdados-eventoproagro">
+<caption><span class="caption-number">Tabela 3.15 - </span><span class="caption-text">Estrutura do arquivo com os posśiveis eventos geradores de pedidos do Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-eventoproagro" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -154,18 +152,22 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_evento</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align" colspan="2"><p>Código do evento do proagro</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>nome_evento</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align" colspan="2"><p>Descrição do evento do proagro</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-tiposoloproagro">
-<caption><span class="caption-number">Tabela 3.16 - </span><span class="caption-text">Tipo de solo: <code class="docutils literal notranslate"><span class="pre">tiposoloproagro</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-tiposoloproagro" title="Link Permanente para essa tabela"></a></caption>
+</div></blockquote>
+</li>
+<li><p>O tipo de solo relacionado ao ZARC (<a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">Seção 3.2 - Zoneamento Agrícola de Risco Climático</span></a>), que possibilita verificar se o empreendimento foi realizado em uma época propícia. A lista completa dos tipos de solos encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/TipoSoloProagro.csv">TipoSoloProagro.csv</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-tiposoloproagro"><span class="std std-numref">Tabela 3.16</span></a>.</p>
+<blockquote>
+<div><table class="styled-table docutils align-center" id="tbl-sicor-microdados-tiposoloproagro">
+<caption><span class="caption-number">Tabela 3.16 - </span><span class="caption-text">Estrutura do arquivo com os tipos de solo.</span><a class="headerlink" href="#tbl-sicor-microdados-tiposoloproagro" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -175,18 +177,22 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_tipo_solo</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align" colspan="2"><p>Código do tipo de solo</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao_tipo_solo</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align" colspan="2"><p>Descrição do tipo de solo</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-ciclocultivarproagro">
-<caption><span class="caption-number">Tabela 3.17 - </span><span class="caption-text">Ciclo do cultivar: <code class="docutils literal notranslate"><span class="pre">ciclocultivarproagro</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-ciclocultivarproagro" title="Link Permanente para essa tabela"></a></caption>
+</div></blockquote>
+</li>
+<li><p>O ciclo do cultivar relacionado ao ZARC (<a class="reference internal" href="../zarc-db.html#sec-sicor-zarc"><span class="std std-numref">Seção 3.2 - Zoneamento Agrícola de Risco Climático</span></a>), que também é usado para verificar se o empreendimento foi realizado em uma época propícia, de acordo com o recomendado. A lista completa dos tipos de solos encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/CicloCultivarProagro.csv">CicloCultivarProagro.csv</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-ciclocultivarproagro"><span class="std std-numref">Tabela 3.17</span></a>.</p>
+<blockquote>
+<div><table class="styled-table docutils align-center" id="tbl-sicor-microdados-ciclocultivarproagro">
+<caption><span class="caption-number">Tabela 3.17 - </span><span class="caption-text">Estrutura do arquivo com o ciclo do cultivar relacionado ao ZARC.</span><a class="headerlink" href="#tbl-sicor-microdados-ciclocultivarproagro" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -196,18 +202,22 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_ciclo_cultivar</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align" colspan="2"><p>Código do ciclo do cultivar</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao_ciclo</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align" colspan="2"><p>Descrição do ciclo do cultivar</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-statuscopproagro">
-<caption><span class="caption-number">Tabela 3.18 - </span><span class="caption-text">Situação do pedido de cobertura: <code class="docutils literal notranslate"><span class="pre">statuscopproagro</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-statuscopproagro" title="Link Permanente para essa tabela"></a></caption>
+</div></blockquote>
+</li>
+<li><p>Situação do pedido de cobertura: <code class="docutils literal notranslate"><span class="pre">em</span> <span class="pre">análise</span></code>, <code class="docutils literal notranslate"><span class="pre">deferida</span></code>, <code class="docutils literal notranslate"><span class="pre">indeferida</span></code>, <code class="docutils literal notranslate"><span class="pre">desistida</span></code>, <code class="docutils literal notranslate"><span class="pre">cancelada</span></code> e <code class="docutils literal notranslate"><span class="pre">inválida</span></code>. A lista completa dos possíveis estados de um pedido de cobertura encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/StatusCOPProagro.csv">StatusCOPProagro.csv</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-statuscopproagro"><span class="std std-numref">Tabela 3.18</span></a>.</p>
+<blockquote>
+<div><table class="styled-table docutils align-center" id="tbl-sicor-microdados-statuscopproagro">
+<caption><span class="caption-number">Tabela 3.18 - </span><span class="caption-text">Estrutura do arquivo com os possíveis estados dos pedido de cobertura do Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-statuscopproagro" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -218,18 +228,22 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_status</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do status da COP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>Descrição do status da COP</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-cop-basico">
-<caption><span class="caption-number">Tabela 3.19 - </span><span class="caption-text">Pedidos de cobertura do Proagro (COP): <code class="docutils literal notranslate"><span class="pre">sicor_cop_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-cop-basico" title="Link Permanente para essa tabela"></a></caption>
+</div></blockquote>
+</li>
+</ul>
+<p>A <a class="reference internal" href="#tbl-sicor-microdados-sicor-cop-basico"><span class="std std-numref">Tabela 3.19</span></a> apresenta a estrutura do arquivo contendo os registros de pedido de Proagro (<a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>).</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-cop-basico">
+<caption><span class="caption-number">Tabela 3.19 - </span><span class="caption-text">Estrutura do arquivo contendo os registros de pedidos de cobertura do Proagro (COP).</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-cop-basico" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -240,62 +254,63 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
 <td class="left-align"><p>ref_bacen</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número mascarado de referência do contrato</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
 <td class="left-align"><p>nu_ordem</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_comunicacao</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data de comunicação da cop</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de colheita</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de plantio</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_inicio_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de colheita</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_inicio_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de plantio</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>2</sub></p></td>
 <td class="left-align"><p>cd_status</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do status da cop</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>3</sub></p></td>
 <td class="left-align"><p>cd_ciclo_cultivar</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do ciclo do cultivar</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>4</sub></p></td>
 <td class="left-align"><p>cd_tipo_solo</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do tipo de solo</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"><p>FK<sub>5</sub></p></td>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>5</sub></p></td>
 <td class="left-align"><p>cd_evento</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do evento da cop</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-complemento-cop">
+<p>Outro microdado complementar ao dos pedidos de Proagro é o registro das periciadoras e peritos, disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_COP.gz">SICOR_COMPLEMENTO_COP.gz</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-complemento-cop"><span class="std std-numref">Tabela 3.20</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-complemento-cop">
 <caption><span class="caption-number">Tabela 3.20 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_complemento_cop</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-cop" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
@@ -305,13 +320,40 @@
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>cd_evento</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Código do evento da cop</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_cpf_cnpj_periciadora</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Cpf do perito da empresa periciadora</p></td>
+</tr>
 <tr class="row-even"><td class="center-align"></td>
-<td class="left-align"><p>nome</p></td>
-<td class="left-align"><p>tipo</p></td>
-<td class="left-align"><p>descrição</p></td>
+<td class="left-align"><p>cd_cpf_perito</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Cpf/Cnpj do perito</p></td>
 </tr>
 </tbody>
 </table>
+<p>Os arquivos listados acima foram carregados nas tabelas <code class="docutils literal notranslate"><span class="pre">sicor_cop_basico</span></code>, <code class="docutils literal notranslate"><span class="pre">eventoproagro</span></code>, <code class="docutils literal notranslate"><span class="pre">statuscopproagro</span></code>, <code class="docutils literal notranslate"><span class="pre">ciclocultivarproagro</span></code>, <code class="docutils literal notranslate"><span class="pre">tiposoloproagro</span></code> e <code class="docutils literal notranslate"><span class="pre">sicor_complemento_cop</span></code> do banco de dados PostgreSQL. A <a class="reference internal" href="#fig-sicor-microdados-er-cop"><span class="std std-numref">Figura 3.11</span></a> apresenta os relacionamentos dessas tabelas.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-er-cop">
+<a class="reference internal image-reference" href="../../_images/er-cop.png"><img alt="Diagrama Entidade-Relacionamento dos pedidos de cobertura do Proagro (simplificado)" src="../../_images/er-cop.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.11 - </span><span class="caption-text">Diagrama Entidade-Relacionamento dos pedidos de cobertura do Proagro (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-er-cop" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
 <table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-rcp-basico">
 <caption><span class="caption-number">Tabela 3.21 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-basico" title="Link Permanente para essa tabela"></a></caption>
 <thead>
@@ -380,6 +422,852 @@
 </tr>
 </tbody>
 </table>
+<section id="consultas">
+<h2><span class="section-number">3.1.13.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Quais as culturas que mais solicitam proagro?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Os empreendimentos que serão avaliados consistem de solicitações de Proagro no caso de financiamentos de custeio agrícola para lavoura. Serão consideros apenas os pedidos deferidos de cobertura. Além disso, como a tabela <code class="docutils literal notranslate"><span class="pre">sicor_cop_basico</span></code> pode conter mais de uma entrada para os pares de valores (<code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code>, <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>), será necessário usar uma cláusula <code class="code highlight sql docutils literal highlight-sql"><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span></code> na consulta.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">produto</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_proagro</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="p">(</span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">)</span>
+<span class="w">               </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">               </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">               </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">produto</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">produto</span><span class="p">,</span>
+<span class="w">               </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">variedade</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">variedade</span><span class="p">,</span>
+<span class="w">               </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cesta</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cesta</span>
+<span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_cop_basico</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_operacao_basica_estado</span><span class="p">,</span>
+<span class="w">               </span><span class="n">empreendimento</span>
+<span class="w">         </span><span class="k">WHERE</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;deferida&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="p">.</span><span class="n">cd_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">cd_status</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">atividade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;agrícola&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Utilizando a operação <code class="docutils literal notranslate"><span class="pre">query</span></code> do pacote <cite>sicor</cite> é possível obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite> como resultado da consulta SQL:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
+
+<span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
+<span class="s1">      SELECT ano,</span>
+<span class="s1">             produto,</span>
+<span class="s1">             COUNT(*) AS num_pedidos_proagro</span>
+<span class="s1">        FROM (</span>
+<span class="s1">            SELECT DISTINCT ON(sicor_operacao_basica_estado.ref_bacen, sicor_operacao_basica_estado.nu_ordem)</span>
+<span class="s1">                   sicor_operacao_basica_estado.ref_bacen AS ref_bacen,</span>
+<span class="s1">                   sicor_operacao_basica_estado.nu_ordem AS nu_ordem,</span>
+<span class="s1">                   extract(YEAR FROM sicor_operacao_basica_estado.dt_emissao) AS ano,</span>
+<span class="s1">                   empreendimento.produto AS produto,</span>
+<span class="s1">                   empreendimento.variedade AS variedade,</span>
+<span class="s1">                   empreendimento.cesta AS cesta</span>
+<span class="s1">              FROM statuscopproagro,</span>
+<span class="s1">                   sicor_cop_basico,</span>
+<span class="s1">                   sicor_operacao_basica_estado,</span>
+<span class="s1">                   empreendimento</span>
+<span class="s1">             WHERE statuscopproagro.descricao = &#39;deferida&#39;</span>
+<span class="s1">               AND statuscopproagro.cd_status = sicor_cop_basico.cd_status</span>
+<span class="s1">               AND sicor_cop_basico.ref_bacen = sicor_operacao_basica_estado.ref_bacen</span>
+<span class="s1">               AND sicor_cop_basico.nu_ordem = sicor_operacao_basica_estado.nu_ordem</span>
+<span class="s1">               AND sicor_operacao_basica_estado.cd_empreendimento = empreendimento.cd_empreendimento</span>
+<span class="s1">               AND empreendimento.finalidade = &#39;custeio&#39;</span>
+<span class="s1">               AND empreendimento.atividade = &#39;agrícola&#39;</span>
+<span class="s1">               AND empreendimento.modalidade = &#39;lavoura&#39;</span>
+<span class="s1">        )</span>
+<span class="s1">    GROUP BY ano, produto</span>
+<span class="s1">    ORDER BY ano ASC, num_pedidos_proagro DESC, produto ASC;</span>
+<span class="s1">&#39;&#39;&#39;</span>
+
+<span class="n">pedidos_proagro</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                    produto                    | num_pedidos_proagro
+------+-----------------------------------------------+---------------------
+ 2013 | milho                                         |               12792
+ 2013 | soja                                          |                8341
+ 2013 | trigo                                         |                6824
+ 2013 | feijão                                        |                1313
+ 2013 | cebola                                        |                 523
+ 2013 | mandioca (aipim, macaxeira)                   |                 335
+ 2013 | maçã                                          |                 312
+ 2013 | café                                          |                 310
+ 2013 | uva                                           |                 237
+ 2013 | pêssego                                       |                 159
+ 2013 | tomate                                        |                 134
+ 2013 | ameixa                                        |                 120
+ 2013 | arroz                                         |                  94
+ 2013 | canola                                        |                  92
+ 2013 | abóbora-moranga                               |                  86
+ 2013 | beterraba                                     |                  80
+ 2013 | nectarina                                     |                  44
+ 2013 | banana                                        |                  43
+ 2013 | laranja                                       |                  22
+ 2013 | melancia                                      |                  20
+ 2013 | morango                                       |                  17
+ 2013 | mandioquinha (batata: baroa, salsa, aipo)     |                  16
+ 2013 | cevada                                        |                  15
+ 2013 | caqui                                         |                  14
+ 2013 | aveia                                         |                  13
+ 2013 | alface                                        |                  11
+ 2013 | pimentão                                      |                  10
+ 2013 | brócolos (brócolis)                           |                   9
+ 2013 | cana-de-açucar                                |                   9
+ 2013 | maracujá                                      |                   9
+ 2013 | batata-inglesa                                |                   8
+ 2013 | cenoura                                       |                   8
+ 2013 | pera                                          |                   7
+ 2013 | chuchu                                        |                   6
+ 2013 | couve-flor                                    |                   6
+ 2013 | abacaxi                                       |                   5
+ 2013 | couve                                         |                   5
+ 2013 | pepino                                        |                   5
+ 2013 | repolho                                       |                   5
+ 2013 | inhame                                        |                   4
+ 2013 | sorgo                                         |                   4
+ 2013 | alho                                          |                   3
+ 2013 | girassol                                      |                   3
+ 2013 | melão                                         |                   3
+ 2013 | tangerina                                     |                   3
+ 2013 | amendoim                                      |                   2
+ 2013 | manga                                         |                   2
+ 2013 | salsa                                         |                   2
+ 2013 | abobrinha                                     |                   1
+ 2013 | acelga                                        |                   1
+ 2013 | algodão                                       |                   1
+ 2013 | berinjela                                     |                   1
+ 2013 | cacau                                         |                   1
+ 2013 | cará                                          |                   1
+ 2013 | chicoria                                      |                   1
+ 2013 | coentro                                       |                   1
+ 2013 | flores                                        |                   1
+ 2013 | goiaba                                        |                   1
+ 2013 | limão                                         |                   1
+ 2014 | trigo                                         |               29548
+ 2014 | milho                                         |                8397
+ 2014 | soja                                          |                2149
+ 2014 | feijão                                        |                1645
+ 2014 | cebola                                        |                 789
+ 2014 | cevada                                        |                 585
+ 2014 | mandioca (aipim, macaxeira)                   |                 545
+ 2014 | canola                                        |                 338
+ 2014 | maçã                                          |                 289
+ 2014 | café                                          |                 267
+ 2014 | uva                                           |                 215
+ 2014 | pêssego                                       |                 214
+ 2014 | ameixa                                        |                 147
+ 2014 | tomate                                        |                 133
+ 2014 | beterraba                                     |                 104
+ 2014 | aveia                                         |                  93
+ 2014 | caju                                          |                  82
+ 2014 | arroz                                         |                  72
+ 2014 | nectarina                                     |                  46
+ 2014 | melancia                                      |                  45
+ 2014 | laranja                                       |                  42
+ 2014 | painço                                        |                  35
+ 2014 | abóbora-moranga                               |                  34
+ 2014 | alho                                          |                  22
+ 2014 | banana                                        |                  19
+ 2014 | mandioquinha (batata: baroa, salsa, aipo)     |                  18
+ 2014 | pimentão                                      |                  18
+ 2014 | brócolos (brócolis)                           |                  17
+ 2014 | morango                                       |                  14
+ 2014 | caqui                                         |                  12
+ 2014 | pepino                                        |                  12
+ 2014 | batata-inglesa                                |                  11
+ 2014 | repolho                                       |                   9
+ 2014 | cenoura                                       |                   7
+ 2014 | tangerina                                     |                   7
+ 2014 | abacaxi                                       |                   6
+ 2014 | alface                                        |                   6
+ 2014 | maracujá                                      |                   6
+ 2014 | couve-flor                                    |                   5
+ 2014 | pera                                          |                   4
+ 2014 | sorgo                                         |                   4
+ 2014 | amendoim                                      |                   3
+ 2014 | inhame                                        |                   3
+ 2014 | melão                                         |                   3
+ 2014 | cará                                          |                   2
+ 2014 | linho                                         |                   2
+ 2014 | quiuí (kiwi)                                  |                   2
+ 2014 | triticale                                     |                   2
+ 2014 | abacate                                       |                   1
+ 2014 | alfafa                                        |                   1
+ 2014 | algodão                                       |                   1
+ 2014 | bucha vegetal                                 |                   1
+ 2014 | cana-de-açucar                                |                   1
+ 2014 | chuchu                                        |                   1
+ 2014 | girassol                                      |                   1
+ 2014 | outras lavouras                               |                   1
+ 2014 | quiabo                                        |                   1
+ 2014 | vagem                                         |                   1
+ 2015 | trigo                                         |               21870
+ 2015 | milho                                         |               10668
+ 2015 | soja                                          |                3684
+ 2015 | cebola                                        |                2273
+ 2015 | feijão                                        |                1829
+ 2015 | café                                          |                 910
+ 2015 | cevada                                        |                 828
+ 2015 | uva                                           |                 789
+ 2015 | maçã                                          |                 383
+ 2015 | pêssego                                       |                 301
+ 2015 | arroz                                         |                 287
+ 2015 | ameixa                                        |                 230
+ 2015 | canola                                        |                 219
+ 2015 | aveia                                         |                 209
+ 2015 | tomate                                        |                 204
+ 2015 | mandioca (aipim, macaxeira)                   |                 160
+ 2015 | caju                                          |                 133
+ 2015 | abóbora-moranga                               |                 124
+ 2015 | melancia                                      |                  91
+ 2015 | beterraba                                     |                  83
+ 2015 | nectarina                                     |                  71
+ 2015 | laranja                                       |                  57
+ 2015 | alho                                          |                  56
+ 2015 | banana                                        |                  47
+ 2015 | mandioquinha (batata: baroa, salsa, aipo)     |                  44
+ 2015 | brócolos (brócolis)                           |                  40
+ 2015 | caqui                                         |                  38
+ 2015 | morango                                       |                  35
+ 2015 | pimentão                                      |                  20
+ 2015 | alface                                        |                  16
+ 2015 | batata-inglesa                                |                  14
+ 2015 | maracujá                                      |                  14
+ 2015 | pepino                                        |                  14
+ 2015 | cenoura                                       |                  13
+ 2015 | pera                                          |                  13
+ 2015 | couve-flor                                    |                  12
+ 2015 | melão                                         |                  12
+ 2015 | cana-de-açucar                                |                  10
+ 2015 | repolho                                       |                  10
+ 2015 | painço                                        |                   9
+ 2015 | tangerina                                     |                   9
+ 2015 | figo                                          |                   8
+ 2015 | girassol                                      |                   8
+ 2015 | abacaxi                                       |                   7
+ 2015 | couve                                         |                   6
+ 2015 | goiaba                                        |                   5
+ 2015 | pimenta-do-reino                              |                   4
+ 2015 | triticale                                     |                   4
+ 2015 | amora                                         |                   3
+ 2015 | flores                                        |                   3
+ 2015 | abobrinha                                     |                   2
+ 2015 | alfafa                                        |                   2
+ 2015 | cará                                          |                   2
+ 2015 | cebolinha verde                               |                   2
+ 2015 | coentro                                       |                   2
+ 2015 | agrião                                        |                   1
+ 2015 | atemoia                                       |                   1
+ 2015 | chuchu                                        |                   1
+ 2015 | cogumelo                                      |                   1
+ 2015 | espinafre                                     |                   1
+ 2015 | linho                                         |                   1
+ 2015 | mamão                                         |                   1
+ 2015 | manga                                         |                   1
+ 2015 | outras lavouras                               |                   1
+ 2015 | quiuí (kiwi)                                  |                   1
+ 2015 | rúcula                                        |                   1
+ 2015 | salsa                                         |                   1
+ 2016 | milho                                         |                9946
+ 2016 | trigo                                         |                1453
+ 2016 | feijão                                        |                1394
+ 2016 | soja                                          |                 975
+ 2016 | café                                          |                 674
+ 2016 | maçã                                          |                 244
+ 2016 | cebola                                        |                 190
+ 2016 | tomate                                        |                 154
+ 2016 | canola                                        |                 133
+ 2016 | uva                                           |                 128
+ 2016 | ameixa                                        |                  98
+ 2016 | laranja                                       |                  97
+ 2016 | beterraba                                     |                  89
+ 2016 | cevada                                        |                  80
+ 2016 | arroz                                         |                  71
+ 2016 | pêssego                                       |                  65
+ 2016 | abóbora-moranga                               |                  59
+ 2016 | caju                                          |                  58
+ 2016 | mandioca (aipim, macaxeira)                   |                  51
+ 2016 | aveia                                         |                  45
+ 2016 | banana                                        |                  33
+ 2016 | mandioquinha (batata: baroa, salsa, aipo)     |                  33
+ 2016 | melancia                                      |                  29
+ 2016 | nectarina                                     |                  23
+ 2016 | cenoura                                       |                  15
+ 2016 | morango                                       |                  14
+ 2016 | caqui                                         |                  13
+ 2016 | pimenta-do-reino                              |                  13
+ 2016 | repolho                                       |                  12
+ 2016 | batata-inglesa                                |                  11
+ 2016 | pimentão                                      |                   9
+ 2016 | alface                                        |                   7
+ 2016 | couve-flor                                    |                   7
+ 2016 | maracujá                                      |                   7
+ 2016 | abacaxi                                       |                   6
+ 2016 | brócolos (brócolis)                           |                   6
+ 2016 | cana-de-açucar                                |                   6
+ 2016 | pepino                                        |                   6
+ 2016 | pera                                          |                   5
+ 2016 | tangerina                                     |                   4
+ 2016 | abobrinha                                     |                   3
+ 2016 | coco                                          |                   3
+ 2016 | melão                                         |                   3
+ 2016 | figo                                          |                   2
+ 2016 | alfafa                                        |                   1
+ 2016 | crisântemo                                    |                   1
+ 2016 | flores                                        |                   1
+ 2016 | fumo                                          |                   1
+ 2016 | goiaba                                        |                   1
+ 2016 | limão                                         |                   1
+ 2016 | manga                                         |                   1
+ 2016 | outras lavouras                               |                   1
+ 2016 | sorgo                                         |                   1
+ 2017 | trigo                                         |               19197
+ 2017 | milho                                         |               10426
+ 2017 | feijão                                        |                2195
+ 2017 | soja                                          |                1904
+ 2017 | cebola                                        |                1642
+ 2017 | cevada                                        |                1565
+ 2017 | canola                                        |                 710
+ 2017 | aveia                                         |                 484
+ 2017 | maçã                                          |                 399
+ 2017 | ameixa                                        |                 242
+ 2017 | café                                          |                 238
+ 2017 | uva                                           |                 227
+ 2017 | pêssego                                       |                 184
+ 2017 | tomate                                        |                 171
+ 2017 | mandioca (aipim, macaxeira)                   |                 150
+ 2017 | arroz                                         |                 106
+ 2017 | laranja                                       |                  85
+ 2017 | melancia                                      |                  70
+ 2017 | beterraba                                     |                  63
+ 2017 | abóbora-moranga                               |                  57
+ 2017 | mandioquinha (batata: baroa, salsa, aipo)     |                  50
+ 2017 | caju                                          |                  47
+ 2017 | nectarina                                     |                  37
+ 2017 | brócolos (brócolis)                           |                  27
+ 2017 | caqui                                         |                  26
+ 2017 | banana                                        |                  24
+ 2017 | couve-flor                                    |                  21
+ 2017 | alho                                          |                  20
+ 2017 | morango                                       |                  19
+ 2017 | batata-inglesa                                |                  16
+ 2017 | pera                                          |                  10
+ 2017 | alface                                        |                   9
+ 2017 | cenoura                                       |                   9
+ 2017 | repolho                                       |                   8
+ 2017 | figo                                          |                   7
+ 2017 | melão                                         |                   7
+ 2017 | pepino                                        |                   7
+ 2017 | tangerina                                     |                   6
+ 2017 | abacaxi                                       |                   5
+ 2017 | flores                                        |                   5
+ 2017 | painço                                        |                   5
+ 2017 | cana-de-açucar                                |                   4
+ 2017 | centeio                                       |                   4
+ 2017 | pimentão                                      |                   4
+ 2017 | abobrinha                                     |                   3
+ 2017 | goiaba                                        |                   3
+ 2017 | linho                                         |                   3
+ 2017 | manga                                         |                   3
+ 2017 | maracujá                                      |                   3
+ 2017 | pimenta-do-reino                              |                   3
+ 2017 | quiuí (kiwi)                                  |                   3
+ 2017 | sorgo                                         |                   3
+ 2017 | acerola                                       |                   2
+ 2017 | alfafa                                        |                   2
+ 2017 | couve                                         |                   2
+ 2017 | espinafre                                     |                   2
+ 2017 | agrião                                        |                   1
+ 2017 | berinjela                                     |                   1
+ 2017 | bucha vegetal                                 |                   1
+ 2017 | erva cidreira (melissa)                       |                   1
+ 2017 | jiló                                          |                   1
+ 2017 | mamão                                         |                   1
+ 2017 | noz                                           |                   1
+ 2017 | triticale                                     |                   1
+ 2017 | urucum                                        |                   1
+ 2018 | trigo                                         |               12954
+ 2018 | milho                                         |               12764
+ 2018 | soja                                          |               10339
+ 2018 | feijão                                        |                2042
+ 2018 | cebola                                        |                1470
+ 2018 | cevada                                        |                 473
+ 2018 | aveia                                         |                 385
+ 2018 | uva                                           |                 355
+ 2018 | maçã                                          |                 345
+ 2018 | pêssego                                       |                 307
+ 2018 | ameixa                                        |                 257
+ 2018 | canola                                        |                 187
+ 2018 | café                                          |                 157
+ 2018 | tomate                                        |                 156
+ 2018 | laranja                                       |                 145
+ 2018 | mandioca (aipim, macaxeira)                   |                 139
+ 2018 | beterraba                                     |                 119
+ 2018 | arroz                                         |                 106
+ 2018 | alho                                          |                  61
+ 2018 | banana                                        |                  57
+ 2018 | abóbora-moranga                               |                  48
+ 2018 | melancia                                      |                  44
+ 2018 | caqui                                         |                  40
+ 2018 | brócolos (brócolis)                           |                  33
+ 2018 | mandioquinha (batata: baroa, salsa, aipo)     |                  30
+ 2018 | nectarina                                     |                  30
+ 2018 | batata-inglesa                                |                  14
+ 2018 | cenoura                                       |                  14
+ 2018 | morango                                       |                  14
+ 2018 | couve-flor                                    |                  13
+ 2018 | tangerina                                     |                  11
+ 2018 | pepino                                        |                  10
+ 2018 | maracujá                                      |                   9
+ 2018 | pera                                          |                   9
+ 2018 | repolho                                       |                   9
+ 2018 | pimentão                                      |                   8
+ 2018 | alface                                        |                   7
+ 2018 | melão                                         |                   7
+ 2018 | caju                                          |                   6
+ 2018 | painço                                        |                   6
+ 2018 | chuchu                                        |                   4
+ 2018 | abacaxi                                       |                   3
+ 2018 | linho                                         |                   3
+ 2018 | abobrinha                                     |                   2
+ 2018 | centeio                                       |                   2
+ 2018 | figo                                          |                   2
+ 2018 | gergelim                                      |                   2
+ 2018 | goiaba                                        |                   2
+ 2018 | mamão                                         |                   2
+ 2018 | acerola                                       |                   1
+ 2018 | amendoim                                      |                   1
+ 2018 | batata-doce                                   |                   1
+ 2018 | cana-de-açucar                                |                   1
+ 2018 | cogumelo                                      |                   1
+ 2018 | erva cidreira (melissa)                       |                   1
+ 2018 | flores                                        |                   1
+ 2018 | inhame                                        |                   1
+ 2018 | pimenta                                       |                   1
+ 2018 | pimenta-do-reino                              |                   1
+ 2018 | sorgo                                         |                   1
+ 2018 | triticale                                     |                   1
+ 2018 | urucum                                        |                   1
+ 2018 | vagem                                         |                   1
+ 2019 | soja                                          |               22939
+ 2019 | milho                                         |               18847
+ 2019 | trigo                                         |               10859
+ 2019 | feijão                                        |                2570
+ 2019 | cebola                                        |                1377
+ 2019 | aveia                                         |                 533
+ 2019 | maçã                                          |                 490
+ 2019 | uva                                           |                 441
+ 2019 | ameixa                                        |                 408
+ 2019 | pêssego                                       |                 355
+ 2019 | beterraba                                     |                 311
+ 2019 | cevada                                        |                 276
+ 2019 | tomate                                        |                 255
+ 2019 | café                                          |                 251
+ 2019 | laranja                                       |                 249
+ 2019 | canola                                        |                 242
+ 2019 | banana                                        |                 185
+ 2019 | abóbora-moranga                               |                 163
+ 2019 | mandioca (aipim, macaxeira)                   |                 145
+ 2019 | mandioquinha (batata: baroa, salsa, aipo)     |                  98
+ 2019 | melancia                                      |                  91
+ 2019 | arroz                                         |                  87
+ 2019 | brócolos (brócolis)                           |                  85
+ 2019 | caqui                                         |                  62
+ 2019 | tangerina                                     |                  53
+ 2019 | nectarina                                     |                  49
+ 2019 | alho                                          |                  44
+ 2019 | cenoura                                       |                  19
+ 2019 | morango                                       |                  19
+ 2019 | pera                                          |                  19
+ 2019 | maracujá                                      |                  18
+ 2019 | couve-flor                                    |                  17
+ 2019 | pepino                                        |                  16
+ 2019 | repolho                                       |                  16
+ 2019 | abacaxi                                       |                  15
+ 2019 | batata-inglesa                                |                  14
+ 2019 | sorgo                                         |                  14
+ 2019 | figo                                          |                  12
+ 2019 | goiaba                                        |                  11
+ 2019 | melão                                         |                  11
+ 2019 | pimentão                                      |                  11
+ 2019 | alface                                        |                   8
+ 2019 | cana-de-açucar                                |                   6
+ 2019 | quiuí (kiwi)                                  |                   6
+ 2019 | batata-doce                                   |                   5
+ 2019 | chuchu                                        |                   5
+ 2019 | noz                                           |                   5
+ 2019 | pimenta-do-reino                              |                   5
+ 2019 | alfafa                                        |                   4
+ 2019 | abacate                                       |                   3
+ 2019 | limão                                         |                   3
+ 2019 | abobrinha                                     |                   2
+ 2019 | crisântemo                                    |                   2
+ 2019 | erva-mate                                     |                   2
+ 2019 | flores                                        |                   2
+ 2019 | linho                                         |                   2
+ 2019 | mamão                                         |                   2
+ 2019 | manga                                         |                   2
+ 2019 | pastagem                                      |                   2
+ 2019 | pupunha                                       |                   2
+ 2019 | acerola                                       |                   1
+ 2019 | cogumelo                                      |                   1
+ 2019 | girassol                                      |                   1
+ 2019 | hortaliças                                    |                   1
+ 2019 | inhame                                        |                   1
+ 2019 | jiló                                          |                   1
+ 2019 | painço                                        |                   1
+ 2019 | pimenta                                       |                   1
+ 2019 | plantas ornamentais                           |                   1
+ 2019 | porongo (cuia,cabaça)                         |                   1
+ 2019 | quiabo                                        |                   1
+ 2019 | triticale                                     |                   1
+ 2019 | urucum                                        |                   1
+ 2020 | milho                                         |               30856
+ 2020 | trigo                                         |               16423
+ 2020 | feijão                                        |                2924
+ 2020 | cebola                                        |                2875
+ 2020 | soja                                          |                1629
+ 2020 | aveia                                         |                 803
+ 2020 | pêssego                                       |                 520
+ 2020 | uva                                           |                 507
+ 2020 | laranja                                       |                 463
+ 2020 | maçã                                          |                 444
+ 2020 | canola                                        |                 429
+ 2020 | ameixa                                        |                 394
+ 2020 | tomate                                        |                 322
+ 2020 | beterraba                                     |                 286
+ 2020 | abóbora-moranga                               |                 208
+ 2020 | cevada                                        |                 201
+ 2020 | café                                          |                 199
+ 2020 | melancia                                      |                 148
+ 2020 | brócolos (brócolis)                           |                 141
+ 2020 | mandioca (aipim, macaxeira)                   |                 117
+ 2020 | banana                                        |                 112
+ 2020 | mandioquinha (batata: baroa, salsa, aipo)     |                  90
+ 2020 | nectarina                                     |                  68
+ 2020 | arroz                                         |                  50
+ 2020 | alho                                          |                  46
+ 2020 | caqui                                         |                  41
+ 2020 | sorgo                                         |                  41
+ 2020 | tangerina                                     |                  39
+ 2020 | batata-inglesa                                |                  32
+ 2020 | pimentão                                      |                  32
+ 2020 | morango                                       |                  29
+ 2020 | repolho                                       |                  28
+ 2020 | couve-flor                                    |                  27
+ 2020 | maracujá                                      |                  24
+ 2020 | melão                                         |                  23
+ 2020 | abacaxi                                       |                  22
+ 2020 | cenoura                                       |                  17
+ 2020 | figo                                          |                  14
+ 2020 | pepino                                        |                  14
+ 2020 | pera                                          |                  14
+ 2020 | goiaba                                        |                  13
+ 2020 | cana-de-açucar                                |                  12
+ 2020 | alface                                        |                  10
+ 2020 | painço                                        |                   9
+ 2020 | triticale                                     |                   9
+ 2020 | limão                                         |                   8
+ 2020 | alho poró                                     |                   5
+ 2020 | abacate                                       |                   4
+ 2020 | urucum                                        |                   4
+ 2020 | amora                                         |                   3
+ 2020 | batata-doce                                   |                   3
+ 2020 | cogumelo                                      |                   3
+ 2020 | noz                                           |                   3
+ 2020 | linho                                         |                   2
+ 2020 | mamão                                         |                   2
+ 2020 | pimenta-do-reino                              |                   2
+ 2020 | trigo sarraceno/mourisco                      |                   2
+ 2020 | abobrinha                                     |                   1
+ 2020 | alfafa                                        |                   1
+ 2020 | amendoim                                      |                   1
+ 2020 | atemoia                                       |                   1
+ 2020 | berinjela                                     |                   1
+ 2020 | caju                                          |                   1
+ 2020 | centeio                                       |                   1
+ 2020 | couve                                         |                   1
+ 2020 | erva-mate                                     |                   1
+ 2020 | flores                                        |                   1
+ 2020 | framboesa                                     |                   1
+ 2020 | gengibre                                      |                   1
+ 2020 | girassol                                      |                   1
+ 2020 | inhame                                        |                   1
+ 2020 | manga                                         |                   1
+ 2020 | pastagem                                      |                   1
+ 2020 | plantas ornamentais                           |                   1
+ 2020 | quiuí (kiwi)                                  |                   1
+ 2020 | salsa                                         |                   1
+ 2021 | soja                                          |               56378
+ 2021 | milho                                         |               46142
+ 2021 | trigo                                         |               12203
+ 2021 | feijão                                        |                4093
+ 2021 | cebola                                        |                2645
+ 2021 | uva                                           |                 817
+ 2021 | laranja                                       |                 569
+ 2021 | maçã                                          |                 558
+ 2021 | aveia                                         |                 432
+ 2021 | beterraba                                     |                 419
+ 2021 | pêssego                                       |                 355
+ 2021 | tomate                                        |                 351
+ 2021 | café                                          |                 335
+ 2021 | canola                                        |                 274
+ 2021 | ameixa                                        |                 205
+ 2021 | abóbora-moranga                               |                 169
+ 2021 | melancia                                      |                 166
+ 2021 | cevada                                        |                 134
+ 2021 | brócolos (brócolis)                           |                 118
+ 2021 | mandioquinha (batata: baroa, salsa, aipo)     |                 111
+ 2021 | arroz                                         |                 103
+ 2021 | caqui                                         |                  81
+ 2021 | banana                                        |                  68
+ 2021 | mandioca (aipim, macaxeira)                   |                  66
+ 2021 | morango                                       |                  51
+ 2021 | tangerina                                     |                  49
+ 2021 | nectarina                                     |                  48
+ 2021 | couve-flor                                    |                  43
+ 2021 | pimentão                                      |                  38
+ 2021 | maracujá                                      |                  36
+ 2021 | repolho                                       |                  35
+ 2021 | sorgo                                         |                  35
+ 2021 | alho                                          |                  33
+ 2021 | batata-inglesa                                |                  29
+ 2021 | melão                                         |                  20
+ 2021 | pepino                                        |                  20
+ 2021 | goiaba                                        |                  18
+ 2021 | figo                                          |                  17
+ 2021 | limão                                         |                  15
+ 2021 | cana-de-açucar                                |                  13
+ 2021 | cenoura                                       |                  13
+ 2021 | pera                                          |                  12
+ 2021 | batata-doce                                   |                  11
+ 2021 | caju                                          |                  11
+ 2021 | alface                                        |                  10
+ 2021 | noz                                           |                  10
+ 2021 | erva-mate                                     |                   9
+ 2021 | abacaxi                                       |                   8
+ 2021 | alho poró                                     |                   8
+ 2021 | alfafa                                        |                   7
+ 2021 | triticale                                     |                   7
+ 2021 | milho silagem                                 |                   6
+ 2021 | inhame                                        |                   5
+ 2021 | porongo (cuia,cabaça)                         |                   5
+ 2021 | manga                                         |                   4
+ 2021 | quiuí (kiwi)                                  |                   4
+ 2021 | abobrinha                                     |                   3
+ 2021 | couve                                         |                   3
+ 2021 | abacate                                       |                   2
+ 2021 | chuchu                                        |                   2
+ 2021 | framboesa                                     |                   2
+ 2021 | acerola                                       |                   1
+ 2021 | atemoia                                       |                   1
+ 2021 | capim                                         |                   1
+ 2021 | cará                                          |                   1
+ 2021 | gengibre                                      |                   1
+ 2021 | girassol                                      |                   1
+ 2021 | lichia (lechia)                               |                   1
+ 2021 | linho                                         |                   1
+ 2021 | mamão                                         |                   1
+ 2021 | milheto                                       |                   1
+ 2021 | pastagem                                      |                   1
+ 2021 | pimenta                                       |                   1
+ 2021 | pimenta-do-reino                              |                   1
+ 2021 | pitaya                                        |                   1
+ 2021 | plantas ornamentais                           |                   1
+ 2021 | pupunha                                       |                   1
+ 2022 | milho                                         |               52621
+ 2022 | soja                                          |               51428
+ 2022 | trigo                                         |               14841
+ 2022 | feijão                                        |                4894
+ 2022 | cebola                                        |                1546
+ 2022 | uva                                           |                1002
+ 2022 | laranja                                       |                 760
+ 2022 | beterraba                                     |                 684
+ 2022 | maçã                                          |                 640
+ 2022 | pêssego                                       |                 584
+ 2022 | ameixa                                        |                 513
+ 2022 | café                                          |                 462
+ 2022 | aveia                                         |                 411
+ 2022 | tomate                                        |                 401
+ 2022 | milho silagem                                 |                 386
+ 2022 | abóbora-moranga                               |                 342
+ 2022 | melancia                                      |                 252
+ 2022 | canola                                        |                 238
+ 2022 | mandioquinha (batata: baroa, salsa, aipo)     |                 201
+ 2022 | sorgo                                         |                 134
+ 2022 | banana                                        |                 120
+ 2022 | brócolos (brócolis)                           |                 118
+ 2022 | caqui                                         |                 102
+ 2022 | arroz                                         |                  93
+ 2022 | mandioca (aipim, macaxeira)                   |                  92
+ 2022 | tangerina                                     |                  86
+ 2022 | cevada                                        |                  82
+ 2022 | nectarina                                     |                  76
+ 2022 | couve-flor                                    |                  65
+ 2022 | morango                                       |                  65
+ 2022 | repolho                                       |                  64
+ 2022 | porongo (cuia,cabaça)                         |                  62
+ 2022 | pimentão                                      |                  45
+ 2022 | pepino                                        |                  34
+ 2022 | triticale                                     |                  33
+ 2022 | melão                                         |                  31
+ 2022 | maracujá                                      |                  25
+ 2022 | alho                                          |                  24
+ 2022 | alfafa                                        |                  23
+ 2022 | cenoura                                       |                  21
+ 2022 | pera                                          |                  21
+ 2022 | cana-de-açucar                                |                  15
+ 2022 | erva-mate                                     |                  15
+ 2022 | figo                                          |                  15
+ 2022 | alface                                        |                  14
+ 2022 | noz                                           |                  14
+ 2022 | alho poró                                     |                  13
+ 2022 | pimenta-do-reino                              |                  13
+ 2022 | amora                                         |                  12
+ 2022 | limão                                         |                   8
+ 2022 | mamão                                         |                   7
+ 2022 | abobrinha                                     |                   6
+ 2022 | goiaba                                        |                   6
+ 2022 | quiuí (kiwi)                                  |                   6
+ 2022 | batata-doce                                   |                   5
+ 2022 | milheto                                       |                   4
+ 2022 | batata-inglesa                                |                   3
+ 2022 | cogumelo                                      |                   3
+ 2022 | abacaxi                                       |                   2
+ 2022 | inhame                                        |                   2
+ 2022 | plantas ornamentais                           |                   2
+ 2022 | vagem                                         |                   2
+ 2022 | amendoim                                      |                   1
+ 2022 | cacau                                         |                   1
+ 2022 | cebolinha verde                               |                   1
+ 2022 | centeio                                       |                   1
+ 2022 | chuchu                                        |                   1
+ 2022 | coentro                                       |                   1
+ 2022 | couve                                         |                   1
+ 2022 | gengibre                                      |                   1
+ 2022 | graviola                                      |                   1
+ 2022 | hortaliças                                    |                   1
+ 2022 | palmeira                                      |                   1
+ 2022 | pupunha                                       |                   1
+ 2022 | quiabo                                        |                   1
+ 2022 | salsa                                         |                   1
+ 2023 | trigo                                         |               46077
+ 2023 | milho                                         |               31887
+ 2023 | soja                                          |               16888
+ 2023 | cebola                                        |                3600
+ 2023 | feijão                                        |                3458
+ 2023 | uva                                           |                1279
+ 2023 | aveia                                         |                 980
+ 2023 | cevada                                        |                 729
+ 2023 | maçã                                          |                 559
+ 2023 | pêssego                                       |                 556
+ 2023 | tomate                                        |                 553
+ 2023 | canola                                        |                 542
+ 2023 | abóbora-moranga                               |                 460
+ 2023 | café                                          |                 429
+ 2023 | ameixa                                        |                 376
+ 2023 | milho silagem                                 |                 347
+ 2023 | beterraba                                     |                 343
+ 2023 | melancia                                      |                 194
+ 2023 | arroz                                         |                 182
+ 2023 | sorgo                                         |                 144
+ 2023 | brócolos (brócolis)                           |                 121
+ 2023 | laranja                                       |                 120
+ 2023 | alho                                          |                 117
+ 2023 | caqui                                         |                 114
+ 2023 | triticale                                     |                 110
+ 2023 | mandioquinha (batata: baroa, salsa, aipo)     |                  99
+ 2023 | porongo (cuia,cabaça)                         |                  90
+ 2023 | banana                                        |                  80
+ 2023 | morango                                       |                  78
+ 2023 | nectarina                                     |                  71
+ 2023 | pimentão                                      |                  56
+ 2023 | couve-flor                                    |                  53
+ 2023 | repolho                                       |                  44
+ 2023 | pepino                                        |                  39
+ 2023 | cenoura                                       |                  28
+ 2023 | mandioca (aipim, macaxeira)                   |                  22
+ 2023 | melão                                         |                  21
+ 2023 | noz                                           |                  18
+ 2023 | pimenta-do-reino                              |                  18
+ 2023 | limão                                         |                  17
+ 2023 | alface                                        |                  16
+ 2023 | batata-inglesa                                |                  16
+ 2023 | pera                                          |                  16
+ 2023 | milheto                                       |                  14
+ 2023 | alho poró                                     |                  13
+ 2023 | amora                                         |                  13
+ 2023 | maracujá                                      |                  13
+ 2023 | tangerina                                     |                   9
+ 2023 | quiuí (kiwi)                                  |                   8
+ 2023 | abobrinha                                     |                   7
+ 2023 | amendoim                                      |                   7
+ 2023 | alfafa                                        |                   6
+ 2023 | figo                                          |                   6
+ 2023 | batata-doce                                   |                   4
+ 2023 | mamão                                         |                   4
+ 2023 | abacate                                       |                   3
+ 2023 | chuchu                                        |                   3
+ 2023 | painço                                        |                   3
+ 2023 | pupunha                                       |                   3
+ 2023 | caju                                          |                   2
+ 2023 | couve                                         |                   2
+ 2023 | erva-mate                                     |                   2
+ 2023 | framboesa                                     |                   2
+ 2023 | girassol                                      |                   2
+ 2023 | goiaba                                        |                   2
+ 2023 | pitaya                                        |                   2
+ 2023 | plantas ornamentais                           |                   2
+ 2023 | abacaxi                                       |                   1
+ 2023 | capim                                         |                   1
+ 2023 | cogumelo                                      |                   1
+ 2023 | ervas medicinais, aromáticas ou condimentares |                   1
+ 2023 | ervilhaca - raliça, vicia sativa              |                   1
+ 2023 | linho                                         |                   1
+ 2023 | manga                                         |                   1
+ 2023 | mirtilo                                       |                   1
+ 2023 | salsa                                         |                   1
+ 2024 | feijão                                        |                 587
+ 2024 | milho                                         |                 548
+ 2024 | soja                                          |                 146
+ 2024 | tomate                                        |                  38
+ 2024 | beterraba                                     |                  31
+ 2024 | abóbora-moranga                               |                  28
+ 2024 | café                                          |                  18
+ 2024 | pepino                                        |                  10
+ 2024 | milho silagem                                 |                   9
+ 2024 | brócolos (brócolis)                           |                   5
+ 2024 | pimentão                                      |                   4
+ 2024 | caqui                                         |                   2
+ 2024 | cenoura                                       |                   2
+ 2024 | couve-flor                                    |                   2
+ 2024 | repolho                                       |                   2
+ 2024 | uva                                           |                   2
+ 2024 | batata-doce                                   |                   1
+ 2024 | berinjela                                     |                   1
+ 2024 | melancia                                      |                   1
+ 2024 | sorgo                                         |                   1
+(763 rows)
+</pre></div>
+</div>
+</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Qual a localização das glebas associadas a pedidos de Proagro?</p>
+<hr class="docutils" />
+<p><strong>Consulta 3.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro?</p>
+</section>
 </section>
 
 
@@ -397,7 +1285,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f019a6ec550>
+<jinja2.runtime.BlockReference object at 0x7f196121f760>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

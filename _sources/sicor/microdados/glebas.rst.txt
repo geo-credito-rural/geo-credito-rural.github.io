@@ -45,12 +45,13 @@ Esses microdados são disponibilizados no sítio do Banco Central em arquivos no
 - `SICOR_GLEBAS_WKT_2024.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2024.gz>`__
 
 
-Para armazenar todos esses dados, podemos criar uma tabela denominada ``sicor_glebas_wkt`` com a estrutura mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_glebas_wkt>`.
+A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:sicor_glebas_wkt>`.
 
 
-.. table:: sicor_glebas_wkt.
+.. table::  Estrutura dos arquivos contendo os limites das glebas de contratos com recursos públicos.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_glebas_wkt
 
     +------------+--------------+---------+-------------------------------------------------------+
@@ -142,7 +143,7 @@ Finalmente, a coleção de polígonos (:numref:`Tabela %sc <tbl:sicor:microdados
                    ( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) ) )'
 
 
-A coluna ``gt_geometria``, portanto, pode conter elementos geométricos descritos no formato WKT. As geometrias no Sicor são codificadas em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
+A coluna ``gt_geometria`` , portanto, pode conter elementos geométricos descritos no formato WKT. As geometrias no Sicor são codificadas em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
 
 
 .. tip::
@@ -150,50 +151,61 @@ A coluna ``gt_geometria``, portanto, pode conter elementos geométricos descrito
     As geotecnologias que utilizam códigos EPSG para referenciar **sistemas de referecial espacial (SRS)** definem o código EPSG:4674 para coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
 
 
-As colunas ``ref_bacen`` e ``nu_ordem`` relacionam com as respectivas colunas da tabela ``sicor_operacao_basica_estado``, ligando a geometria de uma gleba à operação de contratação de crédito (veja a Seção :numref:`%s <sec_sicor_microdados_operacoes>`).
+Os arquivos listados acima foram carregados na tabela ``sicor_glebas_wkt`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:er-sicor-glebas-wkt>` apresenta o relacionamento dessa tabela com a tabela de operações contratadas.
+
+
+.. figure:: ../../img/sicor/microdados/tabelas/er-sicor-glebas-wkt.png
+    :alt: Diagrama Entidade-Relacionamento das glebas de contratações com recursos públicos (simplificado)
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sicor:microdados:er-sicor-glebas-wkt
+
+    Diagrama Entidade-Relacionamento das glebas de contratações com recursos públicos (simplificado).
+
+
+No diagrama acima, as colunas ``ref_bacen`` e ``nu_ordem`` relacionam com as respectivas colunas da tabela ``sicor_operacao_basica_estado``, ligando a geometria de uma gleba à operação de contratação de crédito (:numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`).
 
 
 A organização dos dados nessa tabela de glebas permite que mais de uma geometria seja associada a uma mesma operação, por isso a coluna ``nu_indice`` faz parte da chave primária da tabela.
 
 
-Logo, o comando SQL para definição dessa tabela no PostgreSQL é apresentado no :numref:`Trecho de Código %s <code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt>`.
+.. tip::
+
+    O comando SQL para definição dessa tabela no PostgreSQL é apresentado no :numref:`Trecho de Código %s <code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt>`.
 
 
-.. code-block:: sql
-    :caption: Criação da tabela ``sicor_glebas_wkt``.
-    :name: code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt
+    .. code-block:: sql
+        :caption: Criação da tabela ``sicor_glebas_wkt``.
+        :name: code:sicor:microdados:glebas:sql:create-table-sicor_glebas_wkt
 
-    --
-    -- Tabela: Glebas de operações em formato WKT.
-    --
-    CREATE TABLE sicor_glebas_wkt
-    (
-      ref_bacen     INTEGER NOT NULL,
-      nu_ordem      INTEGER NOT NULL,
-      nu_indice     INTEGER NOT NULL,
-      gt_geometria  TEXT NOT NULL
-    );
+        --
+        -- Tabela: Glebas de operações em formato WKT.
+        --
+        CREATE TABLE sicor_glebas_wkt
+        (
+          ref_bacen     INTEGER NOT NULL,
+          nu_ordem      INTEGER NOT NULL,
+          nu_indice     INTEGER NOT NULL,
+          gt_geometria  TEXT NOT NULL
+        );
 
-    --
-    -- Definição de chave primária formada pelos campos ref_bacen, nu_ordem e nu_indice.
-    --
-    ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
+        --
+        -- Definição de chave primária formada pelos campos ref_bacen, nu_ordem e nu_indice.
+        --
+        ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
 
-    --
-    -- Definição de integridade referencial entre as sicor_operacao_basica_estado e tabelas sicor_glebas_wkt
-    --
-    ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_ref_bacen_fkey
-        FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
-            ON UPDATE CASCADE
-            ON DELETE NO ACTION;
+        --
+        -- Definição de integridade referencial entre as sicor_operacao_basica_estado e tabelas sicor_glebas_wkt
+        --
+        ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_ref_bacen_fkey
+            FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
+                ON UPDATE CASCADE
+                ON DELETE NO ACTION;
 
 
 .. tip::
 
-    O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando permite lidar com arquivos texto, CSV e binários. Esse comando de importação e exportação de dados é usado pelo meta-comando ``\copy`` dos aplicativos *psql* e *pgAdmin*.
-
-
-    Para carregar o arquivo CSV contendo as glebas do ano de 2022 para a tabela ``sicor_glebas_wkt``, pode ser usado o seguinte comando:
+    O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando permite lidar com arquivos texto, CSV e binários. Esse comando de importação e exportação de dados é usado pelo meta-comando ``\copy`` dos aplicativos *psql* e *pgAdmin*. Portanto, para carregar o arquivo CSV contendo as glebas do ano de 2022 para a tabela ``sicor_glebas_wkt`` podemos usar o seguinte comando:
 
 
     .. code-block:: psql

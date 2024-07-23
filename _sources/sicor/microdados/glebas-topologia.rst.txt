@@ -8,7 +8,20 @@ Verificação Topológica das Geometrias das Glebas
 ================================================
 
 
-Para facilitar as análises dessa seção, iremos criar uma tabela denominada ``sicor_glebas`` a partir da tabela ``sicor_glebas_wkt``, substituindo a coluna ``gt_geometria`` do tipo ``text`` por uma coluna denominada ``geom`` do tipo ``geometry`` com as geometrias em 2D e associadas ao SRS EPSG:4674. Além disso, iremos incluir uma coluna com o ano da data de emissão da operação associada à gleba. O comando apresentado no :numref:`Techo de Código %s <code:sicor:microdados:glebas-topologia:sql:create-sicor_glebas>` mostra como podemos criar essa tabela.
+Para facilitar as análises dessa seção, iremos criar uma tabela denominada ``sicor_glebas`` a partir da tabela ``sicor_glebas_wkt``, substituindo a coluna ``gt_geometria`` do tipo ``text`` por uma coluna denominada ``geom`` do tipo ``geometry`` com as geometrias em 2D e associadas ao SRS EPSG:4674. Além disso, iremos incluir uma coluna com o ano da data de emissão da operação associada à gleba. A :numref:`Figura %s <fig:sicor:microdados:er-sicor-glebas>` apresenta a estrutura e relacionamento dessa tabela com a tabela de operações contratadas.
+
+
+.. figure:: ../../img/sicor/microdados/tabelas/er-sicor-glebas.png
+    :alt: Tabela com coluna geométrica para tratamento das glebas
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sicor:microdados:er-sicor-glebas
+
+    Tabela com coluna geométrica para tratamento das glebas.
+
+
+
+O comando apresentado no :numref:`Techo de Código %s <code:sicor:microdados:glebas-topologia:sql:create-sicor_glebas>` mostra como podemos criar essa tabela.
 
 
 .. code-block:: sql
