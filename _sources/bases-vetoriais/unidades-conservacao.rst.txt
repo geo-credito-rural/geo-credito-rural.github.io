@@ -19,10 +19,10 @@ As unidade de conservação podem ser divididas em dois grupos:
 -  **Unidades de Uso Sustentável:** cujo objetivo é o de compatibilizar a conservação da natureza com o uso sustentável de parcela dos seus recursos naturais.
 
 
-Estes dois tipos de unidades de conservação são compostos por diversas categorias e objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta a categoria SNUC e a descrição de cada um deles.
+Estes dois tipos de unidades de conservação são compostos por diversas categorias e objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta as categorias de unidade de conservação integrantes do SNUC e a descrição de cada uma delas.
 
 
-.. table:: Unidades de Conservação. |br| **Fonte:** :cite:`brasil:2024:a` :cite:`wikipedia:2024:a`.
+.. table:: Categorias de unidades de conservação. |br| **Fonte:** :cite:`brasil:2024:a` :cite:`wikipedia:2024:a`.
     :header-alignment: center center center 
     :column-alignment: center center center 
     :name: tbl:bases-vetoriais:uc
@@ -92,7 +92,7 @@ Estes dois tipos de unidades de conservação são compostos por diversas catego
     +--------------+-----------------+-----------------------------------------------------------------------------------+
 
 
-As áreas unidades de conservação são disponibilizadas pelo Ministério do Meio Ambiente e Mudança do Clima (MMA) em diversos formatos, para estee estudo foi acessado o arquivo shapefile `Polígno CNUC 2024_02 <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__. A figura :numref:`Figura %s <fig:bases-vetoriais:cnuc>`  apresenta a distribuição destas áreas por categoria no Brasil. 
+Os limites das unidades de conservação são disponibilizados em diversos formatos pelo Ministério do Meio Ambiente e Mudança do Clima (MMA). Para este estudo foi acessado o conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__, que possui aproximadamente 32MB. A :numref:`Figura %s <fig:bases-vetoriais:cnuc>` apresenta a distribuição destas áreas por categoria no Brasil.
 
 
 .. figure:: ../img/bases-vetoriais/cnuc.png
@@ -102,5 +102,431 @@ As áreas unidades de conservação são disponibilizadas pelo Ministério do Me
     :name: fig:bases-vetoriais:cnuc
 
     Distribuição das áreas protegidas por categoria no Brasil.
+
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnuc-shp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+
+
+.. table:: Estrutura do do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:cnuc-shp
+
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | gid          | integer                     |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | gml_id       | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uc_id        | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cd_cnuc      | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | wdpa_pid     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome_uc      | varchar(121)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cria_ano     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cria_ato     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | outro_ato    | varchar(254)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | pl_manejo    | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | co_gestor    | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | quali_pol    | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ppgr         | varchar(160)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ha_total     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ha_ato       | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | esfera       | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf           | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | municipio    | varchar(254)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | org_gestor   | varchar(158)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | grupo        | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | categoria    | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cat_iucn     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | amazonia     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | caatinga     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cerrado      | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | matlantica   | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | pampa        | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | pantanal     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | marinho      | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | situacao     | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | limite       | varchar(80)                 |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | area_ha      | double precision            |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nomeabrev    | varchar(121)                |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |                                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+
+
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__ encontra-se carregado na tabela ``cnuc_2024_02`` do banco de dados PostgreSQL.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Recuperar o número de unidades de conservação.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT  COUNT(*) AS num_unidades_conservacao
+                    FROM cnuc_2024_02;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 num_unidades_conservacao
+                --------------------------
+                                     2742
+                (1 row)
+
+
+-----
+
+
+**Consulta 2.** Recuperar o número de unidades de conservação por grupo e categoria.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT grupo, categoria, COUNT(*) AS num_unidades_conservacao
+                    FROM cnuc_2024_02
+                GROUP BY grupo, categoria
+                ORDER BY grupo, categoria;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                       grupo       |                categoria                 | num_unidades_conservacao
+                -------------------+------------------------------------------+--------------------------
+                 Proteção Integral | Estação Ecológica                        |                      102
+                 Proteção Integral | Monumento Natural                        |                       83
+                 Proteção Integral | Parque                                   |                      528
+                 Proteção Integral | Refúgio de Vida Silvestre                |                       97
+                 Proteção Integral | Reserva Biológica                        |                       63
+                 Uso Sustentável   | Área de Proteção Ambiental               |                      428
+                 Uso Sustentável   | Área de Relevante Interesse Ecológico    |                       89
+                 Uso Sustentável   | Floresta                                 |                      103
+                 Uso Sustentável   | Reserva de Desenvolvimento Sustentável   |                       46
+                 Uso Sustentável   | Reserva Extrativista                     |                       96
+                 Uso Sustentável   | Reserva Particular do Patrimônio Natural |                     1107
+                (11 rows)
+
+
+-----
+
+
+**Consulta 3.** Recuperar informações sobre as geometrias das unidades de conservação (nome da coluna geométrica, SRID e tipo geométrico).
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM geometry_columns
+                  WHERE f_table_name = 'cnuc_2024_02'
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 f_table_catalog | f_table_schema | f_table_name | f_geometry_column | coord_dimension | srid |     type
+                -----------------+----------------+--------------+-------------------+-----------------+------+--------------
+                 sicor           | public         | cnuc_2024_02 | geom              |               2 | 4674 | MULTIPOLYGON
+                (1 row)
+
+
+-----
+
+
+**Consulta 4.** Recuperar o número de polígonos usados na demarcação das unidades de conservação.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT ST_NumGeometries(geom) AS num_poligonos,
+                         COUNT(*) AS num_unidades_conservacao
+                    FROM cnuc_2024_02
+                GROUP BY num_poligonos
+                ORDER BY num_poligonos;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 num_poligonos | num_unidades_conservacao
+                ---------------+--------------------------
+                             1 |                     2361
+                             2 |                      196
+                             3 |                       79
+                             4 |                       36
+                             5 |                       12
+                             6 |                       12
+                             7 |                        6
+                             8 |                        5
+                             9 |                        3
+                            10 |                        1
+                            11 |                        1
+                            12 |                        1
+                            13 |                        4
+                            14 |                        3
+                            15 |                        2
+                            18 |                        2
+                            19 |                        1
+                            20 |                        2
+                            22 |                        1
+                            23 |                        1
+                            31 |                        1
+                            33 |                        1
+                            38 |                        1
+                            43 |                        1
+                            47 |                        1
+                            56 |                        1
+                            67 |                        1
+                            74 |                        1
+                            86 |                        1
+                           132 |                        1
+                           139 |                        1
+                           159 |                        1
+                           200 |                        1
+                (33 rows)
+
+
+-----
+
+
+**Consulta 5.** Validar as geometrias dos limites das unidades de conservação.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM cnuc_2024_02
+                 WHERE NOT ST_IsValid(geom);
+
+
+        .. tab:: Python
+
+
+            O pacote `geobr` permite acessar a camada de informação contendo as unidades de conservação e obtém um ``GeoDataFrame`` do `GeoPandas`:
+
+
+            .. code-block:: python
+
+                import geobr
+
+                ucs = geobr.unidades_conservacao()
+
+                print(ucs.valid())
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                NOTICE:  Self-intersection at or near point -55.357336254237282 -20.184060898305084
+                 num_geometrias_invalidas
+                --------------------------
+                                        1
+                (1 row)
+
+
+        .. tab:: Python
+
+
+-----
+
+
+**Consulta 6.** Corrigir automaticamente as geometrias dos limites das unidades de conservação detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE cnuc_2024_02
+                   SET geom = ST_MakeValid(geom)
+                 WHERE NOT ST_IsValid(geom);
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                NOTICE:  Self-intersection at or near point -55.357336254237282 -20.184060898305084
+                UPDATE 1
+
+
+-----
+
+
+**Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem intersecção com as unidades de conservação.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_ucs AS
+                     SELECT ROW_NUMBER () OVER () AS gid,
+                            gle.gid AS gid_gleba,
+                            ucs.gid AS gid_uc,
+                            ST_Intersection(gle.geom, ucs.geom) AS geom
+                       FROM sicor_glebas AS gle,
+                            cnuc_2024_02 AS ucs
+                      WHERE ST_INTERSECTS(gle.geom, ucs.geom)
+                        AND gle.ano > 2020
+                   ORDER BY gle.ano, gle.gid, ucs.gid;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                TBD
 
 

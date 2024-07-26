@@ -1,0 +1,72 @@
+.. include:: ../def.rst
+
+
+.. _sec_bases_vetoriais_malha_fundiaria:
+
+
+Malha Fundiária
+===============
+
+
+Malha Fundiária é um modelo de representação do território em categorias fundiárias, que permite identificar o status jurídico-administrativo de cada porção do território brasileiro, rastrear as sobreposições entre diferentes categorias e localizar regiões sem registro fundiário georreferenciado :cite:`coutinho:2024`.
+
+
+A Malha Fundiária usada nesse curso foi gerada pelo `Grupo de Políticas Públicas da Esalq-USP <https://www.gppesalq.agr.br/>`__ em parceria com o `Imaflora <https://www.imaflora.org/>`__ e o `Cite - Centro de Inteligência para Governança de Terras e Desenvolvimento Sustentável <https://www.citeinstituto.org/>`__. Esse dado está disponível em `Malha Fundiária <https://www.cartasdaterra.com.br/>`__. 
+
+
+Essa malha é composta de 7 categorias fundiárias, sendo que algumas são divididas em subgrupos visando detalhamento do seu status jurídico-administrativo. 
+A tabela abaixo apresenta as categorias fundiárias e a descrição de cada uma delas.
+
+
+.. table:: Categorias Fundiárias. |br| **Fonte:** :cite:`coutinho:2024`.
+    :header-alignment: center center center 
+    :column-alignment: center center center 
+    :name: tbl:bases-vetoriais:malhafundiaria
+
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Categoria    | Subgrupo        |  Descrição                                                                        |
+    +==============+=================+===================================================================================+
+    | Unidade      | Unidade de      | Unidades de Conservação registradas no Sistema Nacional de Unidades               |
+    | de           | Conservação     | de Conservação da Natureza (SNUC) do INCRA do grupo Proteção Integral,            |
+    | Conservação  | de Proteção     | como descrito na Seção                                                            |
+    |              | Integral (UCPI) | :ref:`Unidades de Conservação <sec_bases_vetoriais_unidades_conservacao>`.        |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Unidade de      | Unidades de Conservação registradas no Sistema Nacional de Unidades               |
+    |              | Conservação     | de Conservação da Natureza (SNUC) do INCRA do grupo Uso Sustentável,              |
+    |              | de Uso          | como descrito na Seção                                                            |
+    |              | Sustentável     | :ref:`Unidades de Conservação <sec_bases_vetoriais_unidades_conservacao>`.        |
+    |              | (UCPI)          |                                                                                   |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Unidade de      | Unidades de Conservação registradas no Sistema Nacional de Unidades               |      
+    |              | Conservação     | de Conservação da Natureza (SNUC) do INCRA do grupo Uso Sustentável - Áreas       |
+    |              | APA (UCUS-APA)  | de Proteção Ambiental (APA) como descrito na Seção                                |
+    |              |                 | :ref:`Unidades de Conservação <sec_bases_vetoriais_unidades_conservacao>`.        |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Terras       | Terras          | Terras indígenas declaradas, homologadas e regularizadas                          |
+    | Indígenas    | Indígenas       | registradas na base de dados da FUNAI como descrito na Seção                      |
+    |              | Declaradas      | :ref:`Terras indígenas <sec_bases_vetoriais_terras_indigenas>`                    |
+    |              | (UCPI)          |                                                                                   |
+    +              +-----------------+-----------------------------------------------------------------------------------+
+    |              | Terras          | Terras indígenas não declaradas (em estudo, delimitadas e encaminhadas para       |
+    |              | Indígenas       | reserva indígena) registradas na base de dados da FUNAI como descrito na Seção    |
+    |              | Não Declaradas  | :ref:`Terras indígenas <sec_bases_vetoriais_terras_indigenas>`                    |
+    |              | (TIND)          |                                                                                   |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Glebas       |                 | Todo remanescente de terras públicas arrecadadas que ainda não foi destinado.     |
+    | Públicas     |                 | São eles: Imóvel certificado público do SNCI/INCRA e Imóvel certificado público   |
+    |              |                 | do SIGEF/INCRA, descritos na Seção                                                |
+    |              |                 | :ref:`Sistema de Gestão Fundiária <sec_bases_vetoriais_sigef>`, e Glebas públicas |
+    |              |                 | do Cadastro Nacional de Florestas Públicas (CNFP)                                 |
+    |              |                 |                                                                                   |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Áreas        |                 | Áreas estratégicas de defesa que são bens da União sob administração das Forças   |
+    | Militares    |                 | Armadas, registradas como Uso Militar no Cadastro Nacional de Florestas           |
+    |              |                 | Públicas (CNFP)                                                                   |
+    |              |                 |                                                                                   |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+
+
+As áreas unidades de conservação.
+
+
+    

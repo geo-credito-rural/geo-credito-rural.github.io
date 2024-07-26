@@ -46,6 +46,7 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./cadastro-ambiental-rural
     ./sigef
     ./sumario-tabelas-vetoriais
+    ./malha-fundiaria
 
 
 

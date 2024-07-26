@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>4.10. Malha Fundiária &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/bases-vetoriais/malha-fundiaria.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Terminologia" href="../terminologia.html" />
+    <link rel="prev" title="4.9. Sumário das tabelas vetoriais" href="sumario-tabelas-vetoriais.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="unidades-conservacao.html">4.1. Áreas Protegidas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="areas-quilombolas.html">4.2. Áreas Quilombolas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="assentamentos.html">4.3. Assentamentos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="embargos.html">4.4. Embargos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terras-indigenas.html">4.5. Terras Indígenas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="florestas-publicas.html">4.6. Florestas Públicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cadastro-ambiental-rural.html">4.7. Cadastro Ambiental Rural (CAR)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sigef.html">4.8. Sistema de Gestão Fundiária (SIGEF)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sumario-tabelas-vetoriais.html">4.9. Sumário das tabelas vetoriais</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.10. Malha Fundiária</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Terminologia</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../terminologia.html">Terminologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Agradecimentos:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">4.10. </span>Malha Fundiária</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="sumario-tabelas-vetoriais.html" class="btn btn-neutral float-left" title="4.9. Sumário das tabelas vetoriais" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../terminologia.html" class="btn btn-neutral float-right" title="Terminologia" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="malha-fundiaria">
+<span id="sec-bases-vetoriais-malha-fundiaria"></span><h1><span class="section-number">4.10. </span>Malha Fundiária<a class="headerlink" href="#malha-fundiaria" title="Link permanente para este cabeçalho"></a></h1>
+<p>Malha Fundiária é um modelo de representação do território em categorias fundiárias, que permite identificar o status jurídico-administrativo de cada porção do território brasileiro, rastrear as sobreposições entre diferentes categorias e localizar regiões sem registro fundiário georreferenciado <span id="id1">[<a class="reference internal" href="../referencias.html#id16" title="P. A. Q. Coutinho, P. G. Fernandes, M. C. Scarabello, and A. G. O. P Barretto. Nota ténica: malha fundiária matricial do brasil;. Technical Report 0, GPP ESALQ/USP, IMAFLORA, Cite, Junho 2024. URL: https://www.cartasdaterra.com.br/.">21</a>]</span>.</p>
+<p>A Malha Fundiária usada nesse curso foi gerada pelo <a class="reference external" href="https://www.gppesalq.agr.br/">Grupo de Políticas Públicas da Esalq-USP</a> em parceria com o <a class="reference external" href="https://www.imaflora.org/">Imaflora</a> e o <a class="reference external" href="https://www.citeinstituto.org/">Cite - Centro de Inteligência para Governança de Terras e Desenvolvimento Sustentável</a>. Esse dado está disponível em <a class="reference external" href="https://www.cartasdaterra.com.br/">Malha Fundiária</a>.</p>
+<p>Essa malha é composta de 7 categorias fundiárias, sendo que algumas são divididas em subgrupos visando detalhamento do seu status jurídico-administrativo.
+A tabela abaixo apresenta as categorias fundiárias e a descrição de cada uma delas.</p>
+<table class="styled-table docutils align-default" id="tbl-bases-vetoriais-malhafundiaria">
+<caption><span class="caption-number">Tabela 4.6 - </span><span class="caption-text">Categorias Fundiárias. <br/> <strong>Fonte:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id16" title="P. A. Q. Coutinho, P. G. Fernandes, M. C. Scarabello, and A. G. O. P Barretto. Nota ténica: malha fundiária matricial do brasil;. Technical Report 0, GPP ESALQ/USP, IMAFLORA, Cite, Junho 2024. URL: https://www.cartasdaterra.com.br/.">21</a>]</span>.</span><a class="headerlink" href="#tbl-bases-vetoriais-malhafundiaria" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Categoria</p></th>
+<th class="head center-align"><p>Subgrupo</p></th>
+<th class="head center-align"><p>Descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align" rowspan="3"><p>Unidade
+de
+Conservação</p></td>
+<td class="center-align"><p>Unidade de
+Conservação
+de Proteção
+Integral (UCPI)</p></td>
+<td class="center-align"><p>Unidades de Conservação registradas no Sistema Nacional de Unidades
+de Conservação da Natureza (SNUC) do INCRA do grupo Proteção Integral,
+como descrito na Seção
+<a class="reference internal" href="unidades-conservacao.html#sec-bases-vetoriais-unidades-conservacao"><span class="std std-ref">Unidades de Conservação</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>Unidade de
+Conservação
+de Uso
+Sustentável
+(UCPI)</p></td>
+<td class="center-align"><p>Unidades de Conservação registradas no Sistema Nacional de Unidades
+de Conservação da Natureza (SNUC) do INCRA do grupo Uso Sustentável,
+como descrito na Seção
+<a class="reference internal" href="unidades-conservacao.html#sec-bases-vetoriais-unidades-conservacao"><span class="std std-ref">Unidades de Conservação</span></a>.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>Unidade de
+Conservação
+APA (UCUS-APA)</p></td>
+<td class="center-align"><p>Unidades de Conservação registradas no Sistema Nacional de Unidades
+de Conservação da Natureza (SNUC) do INCRA do grupo Uso Sustentável - Áreas
+de Proteção Ambiental (APA) como descrito na Seção
+<a class="reference internal" href="unidades-conservacao.html#sec-bases-vetoriais-unidades-conservacao"><span class="std std-ref">Unidades de Conservação</span></a>.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>Terras
+Indígenas</p></td>
+<td class="center-align"><p>Terras
+Indígenas
+Declaradas
+(UCPI)</p></td>
+<td class="center-align"><p>Terras indígenas declaradas, homologadas e regularizadas
+registradas na base de dados da FUNAI como descrito na Seção
+<a class="reference internal" href="terras-indigenas.html#sec-bases-vetoriais-terras-indigenas"><span class="std std-ref">Terras indígenas</span></a></p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>Terras
+Indígenas
+Não Declaradas
+(TIND)</p></td>
+<td class="center-align"><p>Terras indígenas não declaradas (em estudo, delimitadas e encaminhadas para
+reserva indígena) registradas na base de dados da FUNAI como descrito na Seção
+<a class="reference internal" href="terras-indigenas.html#sec-bases-vetoriais-terras-indigenas"><span class="std std-ref">Terras indígenas</span></a></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>Glebas
+Públicas</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Todo remanescente de terras públicas arrecadadas que ainda não foi destinado.
+São eles: Imóvel certificado público do SNCI/INCRA e Imóvel certificado público
+do SIGEF/INCRA, descritos na Seção
+<a class="reference internal" href="sigef.html#sec-bases-vetoriais-sigef"><span class="std std-ref">Sistema de Gestão Fundiária</span></a>, e Glebas públicas
+do Cadastro Nacional de Florestas Públicas (CNFP)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>Áreas
+Militares</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Áreas estratégicas de defesa que são bens da União sob administração das Forças
+Armadas, registradas como Uso Militar no Cadastro Nacional de Florestas
+Públicas (CNFP)</p></td>
+</tr>
+</tbody>
+</table>
+<p>As áreas unidades de conservação.</p>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="sumario-tabelas-vetoriais.html" class="btn btn-neutral float-left" title="4.9. Sumário das tabelas vetoriais" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../terminologia.html" class="btn btn-neutral float-right" title="Terminologia" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f62e096cd90>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>
