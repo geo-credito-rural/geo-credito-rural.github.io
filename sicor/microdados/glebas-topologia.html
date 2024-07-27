@@ -146,7 +146,7 @@
 <span class="w">           </span><span class="n">glebas</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
 <span class="w">           </span><span class="n">glebas</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
 <span class="w">           </span><span class="n">glebas</span><span class="p">.</span><span class="n">nu_indice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_indice</span><span class="p">,</span>
-<span class="w">           </span><span class="p">(</span><span class="k">Extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">contratos</span><span class="p">.</span><span class="n">dt_emissao</span><span class="p">))::</span><span class="nb">integer</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">           </span><span class="n">contratos</span><span class="p">.</span><span class="n">dt_emissao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">,</span>
 <span class="w">           </span><span class="p">(</span><span class="n">ST_Force2D</span><span class="p">(</span><span class="n">GT_GEOMETRIA</span><span class="p">::</span><span class="n">geometry</span><span class="p">))::</span><span class="n">geometry</span><span class="p">(</span><span class="n">geometry</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas_wkt</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">glebas</span><span class="p">,</span>
 <span class="w">         </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">contratos</span>
@@ -159,7 +159,9 @@
 
 <span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">sicor_glebas_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
 
-<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">sicor_glebas_ano_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="p">(</span><span class="n">ano</span><span class="p">);</span>
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">sicor_glebas_data_emissao_contrato_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="p">(</span><span class="n">data_emissao_contrato</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">sicor_glebas_ano_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="p">(</span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">));</span>
 
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">sicor_glebas_ref_bacen_fkey</span>
 <span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="p">(</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">(</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">)</span>
@@ -241,13 +243,15 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas">
 <div class="code-block-caption"><span class="caption-number">Trecho de Código 3.15 - </span><span class="caption-text">Glebas com geometrias válidas e inválidas em cada ano.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="n">glebas_com_geom_invalidas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geom_invalidas</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">             </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geom_invalidas</span>
 <span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span>
 <span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 <span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
 <span class="p">),</span>
 <span class="n">glebas_com_geom_validas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
-<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geom_validas</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">             </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geom_validas</span>
 <span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span>
 <span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 <span class="w">    </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
@@ -359,7 +363,7 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas">
 <div class="code-block-caption"><span class="caption-number">Trecho de Código 3.19 - </span><span class="caption-text">Correção das geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_geom_validas</span><span class="w"> </span><span class="k">AS</span>
-<span class="w">                </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span><span class="w"> </span><span class="n">nu_indice</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+<span class="w">                </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span><span class="w"> </span><span class="n">nu_indice</span><span class="p">,</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">,</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
 <span class="w">                  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_geom_invalidas</span><span class="p">;</span>
 </pre></div>
 </div>
@@ -392,6 +396,14 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 </tr>
 </tbody>
 </table>
+<p>Para corrigir automaticamente todas as geometrias inválidas da tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code>, podemos fazer:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>UPDATE 26
+</pre></div>
+</div>
 </section>
 <section id="relacionamentos-espaciais">
 <h2><span class="section-number">3.1.11.2. </span>Relacionamentos Espaciais<a class="headerlink" href="#relacionamentos-espaciais" title="Link permanente para este cabeçalho"></a></h2>
@@ -413,7 +425,7 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f62e11b60a0>
+<jinja2.runtime.BlockReference object at 0x7f04cfb2fa00>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

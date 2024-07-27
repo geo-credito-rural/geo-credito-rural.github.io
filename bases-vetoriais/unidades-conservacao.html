@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>4.1. Áreas Protegidas &mdash; GeoCreditoRural</title>
+  <title>4.1. Unidades de Conservação &mdash; GeoCreditoRural</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -61,7 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a><ul class="current">
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Áreas Protegidas</a><ul>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.1. Unidades de Conservação</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#consultas">4.1.1. Consultas</a></li>
 </ul>
 </li>
@@ -109,7 +109,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">4. </span>Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">4.1. </span>Áreas Protegidas</li>
+      <li class="breadcrumb-item active"><span class="section-number">4.1. </span>Unidades de Conservação</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
@@ -121,8 +121,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="areas-protegidas">
-<span id="sec-bases-vetoriais-unidades-conservacao"></span><h1><span class="section-number">4.1. </span>Áreas Protegidas<a class="headerlink" href="#areas-protegidas" title="Link permanente para este cabeçalho"></a></h1>
+  <section id="unidades-de-conservacao">
+<span id="sec-bases-vetoriais-unidades-conservacao"></span><h1><span class="section-number">4.1. </span>Unidades de Conservação<a class="headerlink" href="#unidades-de-conservacao" title="Link permanente para este cabeçalho"></a></h1>
 <p>As <strong>áreas protegidas</strong> são espaços territorialmente demarcados cuja principal função é a conservação e/ou a preservação de recursos naturais e/ou culturais, a elas associados. Elas podem ser definidas como uma área terrestre e/ou marinha especialmente dedicada à proteção e manutenção da diversidade biológica e dos recursos naturais e culturais associados, manejados através de instrumentos legais ou outros instrumentos efetivos. Desta maneira, as áreas protegidas foram criadas com o objetivo de preservar e conservar o patrimônio natural de nossos ecossistemas, garantindo seus aspectos ecológicos, geológicos, históricos e culturais <span id="id1">[<a class="reference internal" href="../referencias.html#id20" title="Rodrigo Medeiros. Evolução das tipologias e categorias de áreas protegidas no brasil. Ambiente &amp; Sociedade, 9(1):41–64, Janeiro 2006. URL: https://doi.org/10.1590/S1414-753X2006000100003, doi:10.1590/S1414-753X2006000100003.">8</a>]</span>.  No Brasil, essas áreas estão asseguradas pela <a class="reference external" href="https://www.planalto.gov.br/ccivil_03/leis/l9985.htm">Lei Federal nº 9.985 de 18 de julho de 2000</a>, que institui o Sistema Nacional de Unidades de Conservação da Natureza (SNUC) <span id="id2">[<a class="reference internal" href="../referencias.html#id8" title="Brasil. Lei federal nº 9.985 de 18 de julho de 2000. Julho 2024. Online; acessado 07 de Julho de 2024. URL: https://www.planalto.gov.br/ccivil_03/leis/l9985.htm.">9</a>]</span>. Ela também estabelece critérios e normas para a criação, implantação e gestão das unidades de conservação. A lei define <em>Unidade de Conservação</em> como um espaço territorial com objetivos de conservação e limites definidos. Seus recursos ambientais, incluindo as águas jurisdicionais, com características naturais relevantes, legalmente instituído pelo poder público, sob regime especial de administração, ao qual se aplicam garantias adequadas de proteção. Assim, unidades de conservação são áreas protegidas por lei federal, estadual, distrital ou municipal, com objetivo de conservar a biodiversidade e outros atributos naturais neles contidos, com o mínimo de impacto.</p>
 <p>As unidade de conservação podem ser divididas em dois grupos:</p>
 <ul class="open">
@@ -599,25 +599,116 @@ UPDATE 1
 </div>
 </div></div>
 </details><hr class="docutils" />
-<p><strong>Consulta 7.</strong> Selecionar as glebas (a partir de 2021) que possuem intersecção com as unidades de conservação.</p>
+<p><strong>Consulta 7.</strong> Alterar o tipo de dados da coluna <code class="docutils literal notranslate"><span class="pre">cria_ano</span></code> da tabela <code class="docutils literal notranslate"><span class="pre">cnuc_2024_02</span></code> para o tipo <code class="code highlight sql docutils literal highlight-sql"><span class="nb">DATE</span></code>.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-12-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-12-12-0" name="12-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-12-12-0" class="sphinx-tabs-panel" id="panel-12-12-0" name="12-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_ucs</span><span class="w"> </span><span class="k">AS</span>
-<span class="w">     </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
-<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid_gleba</span><span class="p">,</span>
-<span class="w">            </span><span class="n">ucs</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid_uc</span><span class="p">,</span>
-<span class="w">            </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
-<span class="w">       </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gle</span><span class="p">,</span>
-<span class="w">            </span><span class="n">cnuc_2024_02</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ucs</span>
-<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">ano</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2020</span>
-<span class="w">   </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">gid</span><span class="p">;</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-12-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-12-12-0" name="12-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-12-12-0" class="sphinx-tabs-panel" id="panel-12-12-0" name="12-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">cnuc_2024_02</span>
+<span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">cria_ano</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="k">DATA</span><span class="w"> </span><span class="k">TYPE</span><span class="w"> </span><span class="nb">DATE</span>
+<span class="w">        </span><span class="k">USING</span><span class="w"> </span><span class="n">TO_DATE</span><span class="p">(</span><span class="n">cria_ano</span><span class="p">,</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-13-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-13-13-0" name="13-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-13-13-0" class="sphinx-tabs-panel" id="panel-13-13-0" name="13-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>TBD
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-13-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-13-13-0" name="13-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-13-13-0" class="sphinx-tabs-panel" id="panel-13-13-0" name="13-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ALTER TABLE
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p id="sec-bases-vetoriais-unidades-conservacao-consulta-8"><strong>Consulta 8.</strong> Selecionar as glebas (a partir de 2021) que possuem intersecção com unidades de conservação criadas anteriormente à operação de crédito associada à gleba.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-14-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-14-14-0" name="14-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-14-14-0" class="sphinx-tabs-panel" id="panel-14-14-0" name="14-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_ucs</span><span class="w"> </span><span class="k">AS</span>
+
+<span class="w">     </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid_gleba</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_indice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_indice</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ucs</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid_uc</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+
+<span class="w">       </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gle</span><span class="p">,</span>
+<span class="w">            </span><span class="n">cnuc_2024_02</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ucs</span>
+
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">cria_ano</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+
+<span class="w">   </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ucs</span><span class="p">.</span><span class="n">gid</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-15-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-15-15-0" name="15-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-15-15-0" class="sphinx-tabs-panel" id="panel-15-15-0" name="15-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SELECT 67485
+</pre></div>
+</div>
+</div></div>
+<p>A <a class="reference internal" href="#fig-bases-vetoriais-glebas-x-ucs"><span class="std std-numref">Figura 4.2</span></a> apresenta em destque as glebas com intersecção na área de proteção ambiental da Ilha do Bananal/Cantão.</p>
+<figure class="align-center align-default" id="fig-bases-vetoriais-glebas-x-ucs">
+<a class="reference internal image-reference" href="../_images/glebas_x_ucs.png"><img alt="Destaque da intersecção de glebas com a unidade de conservação da Ilha do Bananal/Cantão" src="../_images/glebas_x_ucs.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 4.2 - </span><span class="caption-text">Destaque da intersecção de glebas com a unidade de conservação da Ilha do Bananal/Cantão.</span><a class="headerlink" href="#fig-bases-vetoriais-glebas-x-ucs" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</details><hr class="docutils" />
+<p><strong>Consulta 9.</strong> Quais os tipos geométricos resultantes da <a class="reference internal" href="#sec-bases-vetoriais-unidades-conservacao-consulta-8"><span class="std std-ref">Consulta 8</span></a>?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-16-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-16-16-0" name="16-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-16-16-0" class="sphinx-tabs-panel" id="panel-16-16-0" name="16-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeometryType</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tipo_geometrico</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">quantidade</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_x_ucs</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">tipo_geometrico</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">tipo_geometrico</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-17-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-17-17-0" name="17-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-17-17-0" class="sphinx-tabs-panel" id="panel-17-17-0" name="17-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    tipo_geometrico    | quantidade
+-----------------------+------------
+ ST_GeometryCollection |          1
+ ST_MultiPolygon       |       1174
+ ST_Point              |        209
+ ST_Polygon            |      66101
+(4 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 10.</strong> Quais glebas selecionadas na <a class="reference internal" href="#sec-bases-vetoriais-unidades-conservacao-consulta-8"><span class="std std-ref">Consulta 8</span></a> fazem intersecção com mais de uma unidade de conservação?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-18-18-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-18-18-0" name="18-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-18-18-0" class="sphinx-tabs-panel" id="panel-18-18-0" name="18-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid_gleba</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_ucs</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_x_ucs</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gid_gleba</span>
+
+<span class="w">  </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">numero_ucs</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-19-19-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-19-19-0" name="19-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-19-19-0" class="sphinx-tabs-panel" id="panel-19-19-0" name="19-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> gid_gleba | numero_ucs
+-----------+------------
+   4688793 |          4
+   5439751 |          3
+    233968 |          3
+   4763247 |          3
+   2940431 |          3
+       ... |        ...
+   3614765 |          2
+   2790845 |          2
+   4384385 |          2
+   2920350 |          2
+   4549027 |          2
+(1664 rows)
 </pre></div>
 </div>
 </div></div>
@@ -639,7 +730,7 @@ UPDATE 1
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f62e0264340>
+<jinja2.runtime.BlockReference object at 0x7f04cfd9db50>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

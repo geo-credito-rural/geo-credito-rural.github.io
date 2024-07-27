@@ -111,7 +111,7 @@ Para desenvolver o estudo, vamos criar uma tabela auxiliar denominada ``glebas_a
           FROM sicor_glebas,
                area_estudo
          WHERE ST_Within(sicor_glebas.geom, area_estudo.geom)
-           AND ano = 2022;
+           AND extract(YEAR FROM data_emissao_contrato) = 2022;
 
 
     ALTER TABLE glebas_area_estudo ADD CONSTRAINT glebas_area_estudo_pkey PRIMARY KEY (gid);

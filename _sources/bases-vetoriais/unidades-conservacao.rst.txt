@@ -3,8 +3,8 @@
 
 .. _sec_bases_vetoriais_unidades_conservacao:
 
-Áreas Protegidas
-================
+Unidades de Conservação
+=======================
 
 
 As **áreas protegidas** são espaços territorialmente demarcados cuja principal função é a conservação e/ou a preservação de recursos naturais e/ou culturais, a elas associados. Elas podem ser definidas como uma área terrestre e/ou marinha especialmente dedicada à proteção e manutenção da diversidade biológica e dos recursos naturais e culturais associados, manejados através de instrumentos legais ou outros instrumentos efetivos. Desta maneira, as áreas protegidas foram criadas com o objetivo de preservar e conservar o patrimônio natural de nossos ecossistemas, garantindo seus aspectos ecológicos, geológicos, históricos e culturais :cite:`medeiros:2006:a`.  No Brasil, essas áreas estão asseguradas pela `Lei Federal nº 9.985 de 18 de julho de 2000 <https://www.planalto.gov.br/ccivil_03/leis/l9985.htm>`__, que institui o Sistema Nacional de Unidades de Conservação da Natureza (SNUC) :cite:`brasil:2024:a`. Ela também estabelece critérios e normas para a criação, implantação e gestão das unidades de conservação. A lei define *Unidade de Conservação* como um espaço territorial com objetivos de conservação e limites definidos. Seus recursos ambientais, incluindo as águas jurisdicionais, com características naturais relevantes, legalmente instituído pelo poder público, sob regime especial de administração, ao qual se aplicam garantias adequadas de proteção. Assim, unidades de conservação são áreas protegidas por lei federal, estadual, distrital ou municipal, com objetivo de conservar a biodiversidade e outros atributos naturais neles contidos, com o mínimo de impacto.
@@ -490,7 +490,45 @@ Consultas
 -----
 
 
-**Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem intersecção com as unidades de conservação.
+**Consulta 7.** Alterar o tipo de dados da coluna ``cria_ano`` da tabela ``cnuc_2024_02`` para o tipo :sql:`DATE`.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                ALTER TABLE cnuc_2024_02
+                    ALTER COLUMN cria_ano SET DATA TYPE DATE
+                        USING TO_DATE(cria_ano,'DD-MM-YYYY');
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                ALTER TABLE
+
+
+-----
+
+
+.. _sec_bases_vetoriais_unidades_conservacao_consulta_8:
+
+**Consulta 8.** Selecionar as glebas (a partir de 2021) que possuem intersecção com unidades de conservação criadas anteriormente à operação de crédito associada à gleba.
 
 
 .. collapse:: Solução:
@@ -505,15 +543,23 @@ Consultas
             .. code-block:: sql
 
                 CREATE TABLE glebas_x_ucs AS
+
                      SELECT ROW_NUMBER () OVER () AS gid,
                             gle.gid AS gid_gleba,
+                            gle.ref_bacen AS ref_bacen,
+                            gle.nu_ordem AS nu_ordem,
+                            gle.nu_indice AS nu_indice,
                             ucs.gid AS gid_uc,
                             ST_Intersection(gle.geom, ucs.geom) AS geom
+
                        FROM sicor_glebas AS gle,
                             cnuc_2024_02 AS ucs
+
                       WHERE ST_INTERSECTS(gle.geom, ucs.geom)
-                        AND gle.ano > 2020
-                   ORDER BY gle.ano, gle.gid, ucs.gid;
+                        AND gle.data_emissao_contrato >= ucs.cria_ano
+                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+
+                   ORDER BY gle.data_emissao_contrato, gle.gid, ucs.gid;
 
 
 .. collapse:: Resultado:
@@ -527,6 +573,118 @@ Consultas
 
             .. code-block:: text
 
-                TBD
+                SELECT 67485
 
 
+    A :numref:`Figura %s <fig:bases-vetoriais:glebas_x_ucs>` apresenta em destque as glebas com intersecção na área de proteção ambiental da Ilha do Bananal/Cantão.
+
+
+    .. figure:: ../img/bases-vetoriais/glebas_x_ucs.png
+        :alt: Destaque da intersecção de glebas com a unidade de conservação da Ilha do Bananal/Cantão
+        :width: 80%
+        :figclass: align-center
+        :name: fig:bases-vetoriais:glebas_x_ucs
+
+        Destaque da intersecção de glebas com a unidade de conservação da Ilha do Bananal/Cantão.
+
+
+-----
+
+
+**Consulta 9.** Quais os tipos geométricos resultantes da :ref:`Consulta 8 <sec_bases_vetoriais_unidades_conservacao_consulta_8>`?
+
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT ST_GeometryType(geom) AS tipo_geometrico,
+                         COUNT(*) AS quantidade
+                    FROM glebas_x_ucs
+                GROUP BY tipo_geometrico
+                ORDER BY tipo_geometrico;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                    tipo_geometrico    | quantidade
+                -----------------------+------------
+                 ST_GeometryCollection |          1
+                 ST_MultiPolygon       |       1174
+                 ST_Point              |        209
+                 ST_Polygon            |      66101
+                (4 rows)
+
+
+
+-----
+
+
+**Consulta 10.** Quais glebas selecionadas na :ref:`Consulta 8 <sec_bases_vetoriais_unidades_conservacao_consulta_8>` fazem intersecção com mais de uma unidade de conservação?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT gid_gleba,
+                         COUNT(*) AS numero_ucs
+
+                    FROM glebas_x_ucs
+
+                GROUP BY gid_gleba
+
+                  HAVING COUNT(*) > 1
+
+                ORDER BY numero_ucs DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 gid_gleba | numero_ucs
+                -----------+------------
+                   4688793 |          4
+                   5439751 |          3
+                    233968 |          3
+                   4763247 |          3
+                   2940431 |          3
+                       ... |        ...
+                   3614765 |          2
+                   2790845 |          2
+                   4384385 |          2
+                   2920350 |          2
+                   4549027 |          2
+                (1664 rows)

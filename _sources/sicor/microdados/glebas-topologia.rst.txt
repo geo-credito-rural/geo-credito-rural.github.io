@@ -33,7 +33,7 @@ O comando apresentado no :numref:`Techo de Código %s <code:sicor:microdados:gle
                glebas.ref_bacen AS ref_bacen,
                glebas.nu_ordem AS nu_ordem,
                glebas.nu_indice AS nu_indice,
-               (Extract(YEAR from contratos.dt_emissao))::integer AS ano,
+               contratos.dt_emissao AS data_emissao_contrato,
                (ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674) AS geom
         FROM sicor_glebas_wkt AS glebas,
              sicor_operacao_basica_estado AS contratos
@@ -46,7 +46,9 @@ O comando apresentado no :numref:`Techo de Código %s <code:sicor:microdados:gle
 
     CREATE INDEX sicor_glebas_geom_idx ON sicor_glebas USING GiST(geom);
 
-    CREATE INDEX sicor_glebas_ano_idx ON sicor_glebas(ano);
+    CREATE INDEX sicor_glebas_data_emissao_contrato_idx ON sicor_glebas(data_emissao_contrato);
+
+    CREATE INDEX sicor_glebas_ano_idx ON sicor_glebas(extract(YEAR FROM data_emissao_contrato));
 
     ALTER TABLE sicor_glebas ADD CONSTRAINT sicor_glebas_ref_bacen_fkey
         FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
@@ -139,13 +141,15 @@ O número de geometrias inválidas em cada ano é muito pequeno, como mostrado n
     :name: code:sicor:microdados:glebas-topologia:sql:glebas-geom-validas-e-invalidas
 
     WITH glebas_com_geom_invalidas AS (
-          SELECT ano, COUNT(*) AS num_geom_invalidas
+          SELECT extract(YEAR FROM data_emissao_contrato) AS ano,
+                 COUNT(*) AS num_geom_invalidas
             FROM sicor_glebas
            WHERE NOT ST_IsValid(geom)
         GROUP BY ano
     ),
     glebas_com_geom_validas AS (
-          SELECT ano, COUNT(*) AS num_geom_validas
+          SELECT extract(YEAR FROM data_emissao_contrato) AS ano,
+                 COUNT(*) AS num_geom_validas
             FROM sicor_glebas
            WHERE ST_IsValid(geom)
         GROUP BY ano
@@ -286,7 +290,7 @@ Esse tipo de problema geométrico pode ser corrigido através da função ``ST_M
     :name: code:sicor:microdados:glebas-topologia:sql:tbl-glebas-geom-validas
 
     CREATE TABLE glebas_geom_validas AS
-                    SELECT gid, ref_bacen, nu_ordem, nu_indice, ano, ST_MakeValid(geom) AS geom
+                    SELECT gid, ref_bacen, nu_ordem, nu_indice, data_emissao_contrato, ST_MakeValid(geom) AS geom
                       FROM glebas_geom_invalidas;
 
 
@@ -333,6 +337,23 @@ Como pode ser observado nas figuras da :numref:`Tabela %s <tbl:sicor:microdados:
     +--------------------------------------------------------------------+----------------------------------------------------------------+
     | |fig:sicor:microdados:glebas-topologia:gleba-invalida-gid-39042-b| | |fig:sicor:microdados:glebas-topologia:gleba-valida-gid-39042| |
     +--------------------------------------------------------------------+----------------------------------------------------------------+
+
+
+Para corrigir automaticamente todas as geometrias inválidas da tabela ``sicor_glebas``, podemos fazer:
+
+
+.. code-block:: sql
+
+    UPDATE sicor_glebas SET geom = ST_MakeValid(geom) WHERE NOT ST_IsValid(geom);
+
+
+Resultado:
+
+
+.. code-block:: text
+
+    UPDATE 26
+
 
 
 Relacionamentos Espaciais
