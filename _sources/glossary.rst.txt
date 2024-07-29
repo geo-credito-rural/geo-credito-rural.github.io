@@ -1,0 +1,20 @@
+Glossário
+=========
+
+
+.. glossary::
+
+    COP
+        Pedido de cobertura do :term:`Proagro`.
+
+    Proagro
+        Programa de Garantia da Atividade Agropecuária.
+
+    RCP
+        Relatório de comprovação de perdas do :term:`Proagro`.
+
+    Sicor
+        Sistema de Operações do Crédito Rural e do :term:`Proagro`.
+
+    WKT
+        O formato textual **WKT** ou **Well-Know Text** permite representar elementos geométricos tais como pontos, linhas, polígonos, coleções homogêneas de pontos, linhas e polígonos.

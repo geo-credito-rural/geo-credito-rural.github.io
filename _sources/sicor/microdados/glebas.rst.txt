@@ -67,7 +67,7 @@ A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:micr
     +------------+--------------+---------+-------------------------------------------------------+
 
 
-No Sicor, as glebas são representadas textualmente utilizando uma notação conhecida por **Well-Know Text** ou **WKT**, que permite representar elementos geométricos tais como geometrias elementares (pontos, linhas e polígonos) e coleções homogêneas de geometrias (coleção de pontos, coleção de linhas e coleção de polígonos), conforme pode ser visto na :numref:`Tabela %s <tbl:sicor:microdados:glebas:wkt:geom>`.
+No Sicor, as glebas são representadas textualmente utilizando uma notação conhecida por **Well-Know Text** ou :term:`WKT`, que permite representar elementos geométricos tais como geometrias elementares (pontos, linhas e polígonos) e coleções homogêneas de geometrias (coleção de pontos, coleção de linhas e coleção de polígonos), conforme pode ser visto na :numref:`Tabela %s <tbl:sicor:microdados:glebas:wkt:geom>`.
 
 
 .. |fig:sicor:microdados:glebas:wkt-pt-lin-pol| image:: ../../img/sicor/microdados/glebas/wkt-pt-lin-pol.png

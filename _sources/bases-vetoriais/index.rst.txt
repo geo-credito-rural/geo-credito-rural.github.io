@@ -47,6 +47,7 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./sigef
     ./sumario-tabelas-vetoriais
     ./malha-fundiaria
+    ./trabalho-analogo-escravidao
 
 
 

@@ -35,7 +35,6 @@ O curso está dividido nos seguintes capítulos:
 9. Integração dos dados para análise visual.
 
 
-
 Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conhecimento em geotecnologias, análise espacial e sensoriamento remoto, além de ampliar sua capacidade de análise dos dados de Crédito Rural.
 
 
@@ -67,13 +66,6 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
 
 .. toctree::
     :maxdepth: 1
-    :caption: Terminologia
-
-    terminologia
-
-
-.. toctree::
-    :maxdepth: 1
     :caption: Referências Bibliográficas
 
     referencias
@@ -84,21 +76,10 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     :caption: Informações Gerais:
 
     licenca
-
-
-.. toctree::
-    :maxdepth: 1
-    :caption: Agradecimentos:
-
     agradecimentos
-
-
-Índices e Tabelas
-=================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
+    genindex
+    glossary
+    search
 
 
 -----

@@ -12,10 +12,10 @@ Pedidos de cobertura do Proagro (COP)
     Esta seção **encontra-se em desenvolvimento**.
 
 
-O **Proagro** é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle :cite:`bcb:2024:a`. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.
+O :term:`Proagro` é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle :cite:`bcb:2024:a`. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.
 
 
-No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão disponíveis no formato CSV no arquivo `SICOR_COP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz>`__. Esses pedidos registram:
+No Sicor, os microdados sobre os pedidos de cobertura do Proagro (:term:`COP`) estão disponíveis no formato CSV no arquivo `SICOR_COP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz>`__. Esses pedidos registram:
 
 .. rst-class:: open
 
@@ -28,7 +28,7 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão di
         :column-alignment: center left center left
         :name: tbl:sicor:microdados:eventoproagro
 
-        +---------+-------------+----------+-------------------------------+
+        +---------+-------------+---------+--------------------------------+
         |         | nome        | tipo    | descrição                      |
         +=========+=============+=========+================================+
         | **PK**  | cd_evento   | integer | Código do evento do proagro    |
@@ -46,7 +46,7 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão di
         :column-alignment: center left center left
         :name: tbl:sicor:microdados:tiposoloproagro
 
-        +---------+---------------------+----------+--------------------------+
+        +---------+---------------------+---------+---------------------------+
         |         | nome                | tipo    | descrição                 |
         +=========+=====================+=========+===========================+
         | **PK**  | cd_tipo_solo        | integer | Código do tipo de solo    |
@@ -64,7 +64,7 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão di
         :column-alignment: center left center left
         :name: tbl:sicor:microdados:ciclocultivarproagro
 
-        +---------+-------------------+----------+-------------------------------+
+        +---------+-------------------+---------+--------------------------------+
         |         | nome              | tipo    | descrição                      |
         +=========+===================+=========+================================+
         | **PK**  | cd_ciclo_cultivar | integer | Código do ciclo do cultivar    |
@@ -107,7 +107,7 @@ A :numref:`Tabela %s <tbl:sicor:microdados:sicor_cop_basico>` apresenta a estrut
     +----------------------+--------------------+----------+-------------------------------------------------------+
     | **PK**, FK\ :sub:`1` | nu_ordem           | integer  |  Número da destinação/finalidade dentro do contrato   |
     +----------------------+--------------------+----------+-------------------------------------------------------+
-    |                      | dt_comunicacao     | date     | Data de comunicação da cop                            |
+    |                      | dt_comunicacao     | date     | Data de comunicação da COP                            |
     +----------------------+--------------------+----------+-------------------------------------------------------+
     |                      | dt_fim_colheita    | date     | Fim de colheita                                       |
     +----------------------+--------------------+----------+-------------------------------------------------------+
@@ -117,20 +117,20 @@ A :numref:`Tabela %s <tbl:sicor:microdados:sicor_cop_basico>` apresenta a estrut
     +----------------------+--------------------+----------+-------------------------------------------------------+
     |                      | dt_inicio_plantio  | date     | Início de plantio                                     |
     +----------------------+--------------------+----------+-------------------------------------------------------+
-    | FK\ :sub:`2`         | cd_status          | integer  | Código do status da cop                               |
+    | FK\ :sub:`2`         | cd_status          | integer  | Código do status da COP                               |
     +----------------------+--------------------+----------+-------------------------------------------------------+
     | FK\ :sub:`3`         | cd_ciclo_cultivar  | integer  | Código do ciclo do cultivar                           |
     +----------------------+--------------------+----------+-------------------------------------------------------+
     | FK\ :sub:`4`         | cd_tipo_solo       | integer  | Código do tipo de solo                                |
     +----------------------+--------------------+----------+-------------------------------------------------------+
-    | **PK**, FK\ :sub:`5` | cd_evento          | integer  | Código do evento da cop                               |
+    | **PK**, FK\ :sub:`5` | cd_evento          | integer  | Código do evento da COP                               |
     +----------------------+--------------------+----------+-------------------------------------------------------+
 
 
 Outro microdado complementar ao dos pedidos de Proagro é o registro das periciadoras e peritos, disponíveis no arquivo `SICOR_COMPLEMENTO_COP.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_COP.gz>`__, cuja estrutura é apresentada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_complemento_cop>`.
 
 
-.. table:: ``sicor_complemento_cop``.
+.. table:: Estrutura dos dados complementares dos pedidos de cobertura do Proagro.
     :align: center
     :header-alignment: center center center center
     :column-alignment: center left center left
@@ -141,13 +141,13 @@ Outro microdado complementar ao dos pedidos de Proagro é o registro das pericia
     +=============+=========================+==========+=======================================================+
     | **PK**, FK  | ref_bacen               | integer  | Número mascarado de referência do contrato            |
     +-------------+-------------------------+----------+-------------------------------------------------------+
-    | **PK**, FK  | nu_ordem                | integer  |  Número da destinação/finalidade dentro do contrato   |
+    | **PK**, FK  | nu_ordem                | integer  | Número da destinação/finalidade dentro do contrato    |
     +-------------+-------------------------+----------+-------------------------------------------------------+
-    | **PK**, FK  | cd_evento               | integer  | Código do evento da cop                               |
+    | **PK**, FK  | cd_evento               | integer  | Código do evento da COP                               |
     +-------------+-------------------------+----------+-------------------------------------------------------+
-    |             | cd_cpf_cnpj_periciadora | text     | Cpf do perito da empresa periciadora                  |
+    |             | cd_cpf_cnpj_periciadora | text     | CPF do perito da empresa periciadora                  |
     +-------------+-------------------------+----------+-------------------------------------------------------+
-    |             | cd_cpf_perito           | text     | Cpf/Cnpj do perito                                    |
+    |             | cd_cpf_perito           | text     | CPF/CNPJ do perito                                    |
     +-------------+-------------------------+----------+-------------------------------------------------------+
 
 
@@ -163,57 +163,193 @@ Os arquivos listados acima foram carregados nas tabelas ``sicor_cop_basico``, ``
     Diagrama Entidade-Relacionamento dos pedidos de cobertura do Proagro (simplificado).
 
 
+Os microdados do relatório de comprovação de perdas do Proagro estão disponíveis no arquivo `SICOR_RCP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz>`__, que possui a estrutura mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_rcp_basico>`.
+
 
 .. table:: ``sicor_rcp_basico``.
+    :align: center
     :header-alignment: center center center center
     :column-alignment: center left left left
     :name: tbl:sicor:microdados:sicor_rcp_basico
 
 
-    +----------------------+--------------------+----------+-------------------------------------------------------+
-    |                      | nome               | tipo     | descrição                                             |
-    +======================+====================+==========+=======================================================+
-    |                      | nome               | tipo     | descrição                                             |
-    +----------------------+--------------------+----------+-------------------------------------------------------+
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | nome                   | tipo     | descrição                                             |
+    +======================+========================+==========+=======================================================+
+    | **PK**, FK\ :sub:`1` | ref_bacen              | integer  | Número mascarado de referência do contrato            |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | **PK**, FK\ :sub:`1` | nu_ordem               | integer  | Número da destinação/finalidade dentro do contrato    |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_entrega             | date     | Data de entrega do RCP                                |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_fim_colheita        | date     | Fim de colheita                                       |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_fim_evento          | date     | Fim de evento                                         |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_fim_plantio         | date     | Fim de plantio                                        |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_inicio_colheita     | date     | Início de colheita                                    |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_inicio_evento       | date     | Início de evento                                      |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_inicio_plantio      | date     | Início de plantio                                     |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_area                | numeric  | Área                                                  |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_prev_prod           | numeric  | Previsão de produção                                  |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_rec_prev            | numeric  | Valor da receita prevista correspondente              |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`2`         | cd_status              | integer  | Código do status do RCP                               |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`3`         | cd_tipo                | integer  | Código do tipo de solo                                |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`4`         | cd_evento              | integer  | Código do evento do RCP                               |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_visita              | date     | Data de visita do perito                              |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | nu_dias_ciclo_cultivar | integer  | Número de ciclos do cultivar                          |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
 
 
-.. table:: ``sicor_complemento_rcp``.
+Assim como os pedidos de cobertura, os relatórios de comprovação de perdas possuem um microdado complementar, com registro das periciadoras e peritos. Esta infromação encontra-se disponível no arquivo `SICOR_COMPLEMENTO_RCP.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_RCP.gz>`__, cuja estrutura é apresentada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_complemento_rcp>`.
+
+
+.. table:: Estrutura dos dados complementares dos relatórios de comprovação de perdas.
+    :align: center
     :header-alignment: center center center center
     :column-alignment: center left left left
     :name: tbl:sicor:microdados:sicor_complemento_rcp
 
+    +-------------+-------------------------+----------+-------------------------------------------------------+
+    |             | nome                    | tipo     | descrição                                             |
+    +=============+=========================+==========+=======================================================+
+    | **PK**, FK  | ref_bacen               | integer  | Número mascarado de referência do contrato            |
+    +-------------+-------------------------+----------+-------------------------------------------------------+
+    | **PK**, FK  | nu_ordem                | integer  | Número da destinação/finalidade dentro do contrato    |
+    +-------------+-------------------------+----------+-------------------------------------------------------+
+    |             | cd_cpf_cnpj_periciadora | text     | CPF do perito da empresa periciadora                  |
+    +-------------+-------------------------+----------+-------------------------------------------------------+
+    |             | cd_cpf_perito           | text     | CPF/CNPJ do perito                                    |
+    +-------------+-------------------------+----------+-------------------------------------------------------+
 
-    +----------------------+--------------------+----------+-------------------------------------------------------+
-    |                      | nome               | tipo     | descrição                                             |
-    +======================+====================+==========+=======================================================+
-    |                      | nome               | tipo     | descrição                                             |
-    +----------------------+--------------------+----------+-------------------------------------------------------+
+
+Os relatórios de comprovação de perdas em operações contratadas podem apresentar glebas da comprovação. Esses microdados são disponibilizados em dois arquivos:
+
+.. rst-class:: open
+
+- `SICOR_RCP_GLEBAS_2015_2020.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2015_2020.gz>`__: Glebas da comprovação de perdas de operações contratadas entre os anos de 2015 e 2020.
+
+- `SICOR_RCP_GLEBAS_2021.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2021.gz>`__: Glebas da comprovação de perdas de operações contratadas a partir de 2021.
 
 
-.. table:: ``sicor_rcp_glebas``.
+A :numref:`Tabela %s <tbl:sicor:microdados:sicor_rcp_glebas_wkt>` apresenta a estrutura desses arquivos. Conforme pode ser observado, é utilizada uma estrutura semelhante à apresentada na :numref:`Seção %s - Glebas de Operações Contratadas com Recursos Públicos <sec_sicor_microdados_glebas>`, com as geometrias das glebas representadas textualmente no formato :term:`WKT`.
+
+
+.. table:: Estrutura do arquivo contendo glebas da comprovação de perdas de operações contratadas.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
-    :name: tbl:sicor:microdados:sicor_rcp_glebas
+    :column-alignment: center left center left
+    :name: tbl:sicor:microdados:sicor_rcp_glebas_wkt
 
 
-    +----------------------+--------------------+----------+-------------------------------------------------------+
-    |                      | nome               | tipo     | descrição                                             |
-    +======================+====================+==========+=======================================================+
-    |                      | nome               | tipo     | descrição                                             |
-    +----------------------+--------------------+----------+-------------------------------------------------------+
+    +------------+--------------+---------+-------------------------------------------------------+
+    |            | nome         | tipo    | descrição                                             |
+    +============+==============+=========+=======================================================+
+    | **PK**, FK | ref_bacen    | integer | Número mascarado de referência do contrato            |
+    +------------+--------------+---------+-------------------------------------------------------+
+    | **PK**, FK | nu_ordem     | integer | Número da destinação/finalidade dentro do contrato    |
+    +------------+--------------+---------+-------------------------------------------------------+
+    | **PK**     | nu_indice    | integer | Identificador da gleba dentro da operação             |
+    +------------+--------------+---------+-------------------------------------------------------+
+    |            | gt_geometria | text    | Geometria da gleba no formato Well-Know Text (WKT)    |
+    +------------+--------------+---------+-------------------------------------------------------+
 
 
-.. table:: ``sicor_sumula_julgamento_basico``.
+Os arquivos `SICOR_RCP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz>`__, `SICOR_COMPLEMENTO_RCP.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_RCP.gz>`__ e `SICOR_RCP_GLEBAS_2021.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2021.gz>`__ foram carregados, respectivamente, para as tabelas ``sicor_rcp_basico``, ``sicor_complemento_rcp`` e ``sicor_rcp_glebas_wkt`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:er-rcp>` apresenta os relacionamentos dessas tabelas.
+
+
+.. figure:: ../../img/sicor/microdados/tabelas/er-rcp.png
+    :alt: Diagrama Entidade-Relacionamento dos relatórios de comprovação de perdas em operações contratadas (simplificado)
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:er-rcp
+
+    Diagrama Entidade-Relacionamento dos relatórios de comprovação de perdas em operações contratadas (simplificado).
+
+
+.. note::
+
+    O diagrama mostrado na :numref:`Figura %s <fig:sicor:microdados:er-rcp>` também inclui uma tabela denominada ``sicor_rcp_glebas`` com estrutura similiar à tabela ``sicor_rcp_glebas_wkt`` mas já com uma coluna geométrica para representação das glebas dos relatórios.
+
+
+As informações das súmulas do julgamento são disponibilizadas no arquivo `SICOR_SUMULA_JULGAMENTO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_SUMULA_JULGAMENTO.gz>`__, cuja estrutura é mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_sumula_julgamento_basico>`.
+
+
+.. table:: Estrutura do arquivo `SICOR_SUMULA_JULGAMENTO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_SUMULA_JULGAMENTO.gz>`__.
+    :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_sumula_julgamento_basico
 
 
-    +----------------------+--------------------+----------+-------------------------------------------------------+
-    |                      | nome               | tipo     | descrição                                             |
-    +======================+====================+==========+=======================================================+
-    |                      | nome               | tipo     | descrição                                             |
-    +----------------------+--------------------+----------+-------------------------------------------------------+
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | nome                                   | tipo     | descrição                                                    |
+    +======================+========================================+==========+==============================================================+
+    | **PK**, FK\ :sub:`1` | ref_bacen                              | integer  | Número mascarado de referência do contrato                   |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    | **PK**, FK\ :sub:`1` | nu_ordem                               | integer  | Número da destinação/finalidade dentro do contrato           |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_cob_ant_parcela_invest_proagro_mais | numeric  | Cobertura da parcela de investimento do Proagro Mais         |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_remu_encarr_comprov_perdas          | numeric  | Remuneração do encarregado da comprovação de perdas          |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | cd_status                              | integer  | Status da súmula de julgamento                               |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_receitas_consideradas               | numeric  | Receitas consideradas                                        |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_cobertura_ant_rec_proprios          | numeric  | Cobertura anterior dos recursos próprios                     |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_demais_despesas_comprov_perd        | numeric  | Demais despesas da comprovação de perdas                     |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_cred_custeio_usado                  | numeric  | Crédito de custeio utilizado                                 |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_demais_desp_ant_comp_per            | numeric  | Demais despesas anteriores da comprovação de perdas          |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_rec_prop_usado                      | numeric  | Recursos próprios utilizados                                 |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_cob_ant_garantia_renda_min          | numeric  | Cobertura da garantia de renda mínima do Proagro Mais        |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |  FK\ :sub:`2`        | cd_instancia                           | integer  | Instância da súmula de julgamento                            |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_perdas_nao_amparadas                | numeric  | Perdas não amparadas                                         |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_encargos_sob_credito                | numeric  | Encargos financeiros sobre o crédito utilizado               |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | dt_inclusao                            | date     | Data de inclusão da súmula de julgamento                     |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_perc_redutor_cobertura              | numeric  | Percentual do redutor de cobertura                           |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_remu_ant_encarg_comp_perdas         | numeric  | Remuneração anterior do encarregado da comprovação de perdas |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | cd_decisao                             | integer  | Início de plantio                                            |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | dt_decisao                             | date     | Data da decisão na súmula de julgamento                      |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | dt_base                                | date     | Data base da súmula de julgamento                            |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_cobertura_ant_credito_custeio       | numeric  | Cobertura anterior do crédito de custeio                     |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_bonus_pgaf                          | numeric  |                                                              |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_deducoes_legais                     | numeric  |                                                              |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | vl_orcamento_enquadrado                | numeric  |                                                              |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | nu_dias_uteis_atraso_perito            | integer  |                                                              |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
+    |                      | ib_segunda_vistoria                    | integer  |                                                              |
+    +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
 
 
 Consultas

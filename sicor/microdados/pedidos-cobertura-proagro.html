@@ -85,10 +85,6 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Terminologia</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../../terminologia.html">Terminologia</a></li>
-</ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../referencias.html">Referências Bibliográficas</a></li>
@@ -96,10 +92,10 @@
 <p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../../licenca.html">Licença</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Agradecimentos:</span></p>
-<ul>
 <li class="toctree-l1"><a class="reference internal" href="../../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../search.html">Página de Busca</a></li>
 </ul>
 
         </div>
@@ -136,8 +132,8 @@
 <p class="admonition-title">Aviso</p>
 <p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
 </div>
-<p>O <strong>Proagro</strong> é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.</p>
-<p>No Sicor, os microdados sobre os pedidos de cobertura do Proagro (COP) estão disponíveis no formato CSV no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>. Esses pedidos registram:</p>
+<p>O <a class="reference internal" href="../../glossary.html#term-Proagro"><span class="xref std std-term">Proagro</span></a> é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle <span id="id1">[<a class="reference internal" href="../../referencias.html#id2" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">6</a>]</span>. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.</p>
+<p>No Sicor, os microdados sobre os pedidos de cobertura do Proagro (<a class="reference internal" href="../../glossary.html#term-COP"><span class="xref std std-term">COP</span></a>) estão disponíveis no formato CSV no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>. Esses pedidos registram:</p>
 <ul class="open">
 <li><p>O evento adverso originador da solicitação, como geada, granizo, seca e enchentes, entre outros. A lista completa dos tipos de eventos adversos geradores de pedidos de cobertura encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/EventoProagro.csv">EventoProagro.csv</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-eventoproagro"><span class="std std-numref">Tabela 3.15</span></a>.</p>
 <blockquote>
@@ -146,19 +142,20 @@
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
-<th class="head center-align" colspan="3"><p>tipo    | descrição</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_evento</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align" colspan="2"><p>Código do evento do proagro</p></td>
+<td class="left-align"><p>Código do evento do proagro</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>nome_evento</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align" colspan="2"><p>Descrição do evento do proagro</p></td>
+<td class="left-align"><p>Descrição do evento do proagro</p></td>
 </tr>
 </tbody>
 </table>
@@ -171,19 +168,20 @@
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
-<th class="head center-align" colspan="3"><p>tipo    | descrição</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_tipo_solo</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align" colspan="2"><p>Código do tipo de solo</p></td>
+<td class="left-align"><p>Código do tipo de solo</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao_tipo_solo</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align" colspan="2"><p>Descrição do tipo de solo</p></td>
+<td class="left-align"><p>Descrição do tipo de solo</p></td>
 </tr>
 </tbody>
 </table>
@@ -196,19 +194,20 @@
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
-<th class="head center-align" colspan="3"><p>tipo    | descrição</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
 <td class="left-align"><p>cd_ciclo_cultivar</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align" colspan="2"><p>Código do ciclo do cultivar</p></td>
+<td class="left-align"><p>Código do ciclo do cultivar</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>descricao_ciclo</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align" colspan="2"><p>Descrição do ciclo do cultivar</p></td>
+<td class="left-align"><p>Descrição do ciclo do cultivar</p></td>
 </tr>
 </tbody>
 </table>
@@ -265,7 +264,7 @@
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_comunicacao</p></td>
 <td class="center-align"><p>date</p></td>
-<td class="left-align"><p>Data de comunicação da cop</p></td>
+<td class="left-align"><p>Data de comunicação da COP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_colheita</p></td>
@@ -290,7 +289,7 @@
 <tr class="row-odd"><td class="center-align"><p>FK<sub>2</sub></p></td>
 <td class="left-align"><p>cd_status</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align"><p>Código do status da cop</p></td>
+<td class="left-align"><p>Código do status da COP</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>3</sub></p></td>
 <td class="left-align"><p>cd_ciclo_cultivar</p></td>
@@ -305,13 +304,13 @@
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>5</sub></p></td>
 <td class="left-align"><p>cd_evento</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align"><p>Código do evento da cop</p></td>
+<td class="left-align"><p>Código do evento da COP</p></td>
 </tr>
 </tbody>
 </table>
 <p>Outro microdado complementar ao dos pedidos de Proagro é o registro das periciadoras e peritos, disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_COP.gz">SICOR_COMPLEMENTO_COP.gz</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-complemento-cop"><span class="std std-numref">Tabela 3.20</span></a>.</p>
 <table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-complemento-cop">
-<caption><span class="caption-number">Tabela 3.20 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_complemento_cop</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-cop" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.20 - </span><span class="caption-text">Estrutura dos dados complementares dos pedidos de cobertura do Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-cop" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -333,17 +332,17 @@
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
 <td class="left-align"><p>cd_evento</p></td>
 <td class="center-align"><p>integer</p></td>
-<td class="left-align"><p>Código do evento da cop</p></td>
+<td class="left-align"><p>Código do evento da COP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>cd_cpf_cnpj_periciadora</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align"><p>Cpf do perito da empresa periciadora</p></td>
+<td class="left-align"><p>CPF do perito da empresa periciadora</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cd_cpf_perito</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align"><p>Cpf/Cnpj do perito</p></td>
+<td class="left-align"><p>CPF/CNPJ do perito</p></td>
 </tr>
 </tbody>
 </table>
@@ -354,7 +353,8 @@
 <p><span class="caption-number">Figura 3.11 - </span><span class="caption-text">Diagrama Entidade-Relacionamento dos pedidos de cobertura do Proagro (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-er-cop" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-rcp-basico">
+<p>Os microdados do relatório de comprovação de perdas do Proagro estão disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz">SICOR_RCP_BASICO.gz</a>, que possui a estrutura mostrada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-rcp-basico"><span class="std std-numref">Tabela 3.21</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-rcp-basico">
 <caption><span class="caption-number">Tabela 3.21 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-basico" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
@@ -364,15 +364,96 @@
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
 <tr class="row-even"><td class="center-align"></td>
-<td class="left-align"><p>nome</p></td>
-<td class="left-align"><p>tipo</p></td>
-<td class="left-align"><p>descrição</p></td>
+<td class="left-align"><p>dt_entrega</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Data de entrega do RCP</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_fim_colheita</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Fim de colheita</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_fim_evento</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Fim de evento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_fim_plantio</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Fim de plantio</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_inicio_colheita</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Início de colheita</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_inicio_evento</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Início de evento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_inicio_plantio</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Início de plantio</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_area</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Área</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_prev_prod</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Previsão de produção</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_rec_prev</p></td>
+<td class="left-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor da receita prevista correspondente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>2</sub></p></td>
+<td class="left-align"><p>cd_status</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do status do RCP</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>3</sub></p></td>
+<td class="left-align"><p>cd_tipo</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do tipo de solo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>4</sub></p></td>
+<td class="left-align"><p>cd_evento</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Código do evento do RCP</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_visita</p></td>
+<td class="left-align"><p>date</p></td>
+<td class="left-align"><p>Data de visita do perito</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nu_dias_ciclo_cultivar</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número de ciclos do cultivar</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-complemento-rcp">
-<caption><span class="caption-number">Tabela 3.22 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_complemento_rcp</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-rcp" title="Link Permanente para essa tabela"></a></caption>
+<p>Assim como os pedidos de cobertura, os relatórios de comprovação de perdas possuem um microdado complementar, com registro das periciadoras e peritos. Esta infromação encontra-se disponível no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_RCP.gz">SICOR_COMPLEMENTO_RCP.gz</a>, cuja estrutura é apresentada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-complemento-rcp"><span class="std std-numref">Tabela 3.22</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-complemento-rcp">
+<caption><span class="caption-number">Tabela 3.22 - </span><span class="caption-text">Estrutura dos dados complementares dos relatórios de comprovação de perdas.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-complemento-rcp" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -381,15 +462,36 @@
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="left-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
 <tr class="row-even"><td class="center-align"></td>
-<td class="left-align"><p>nome</p></td>
-<td class="left-align"><p>tipo</p></td>
-<td class="left-align"><p>descrição</p></td>
+<td class="left-align"><p>cd_cpf_cnpj_periciadora</p></td>
+<td class="left-align"><p>text</p></td>
+<td class="left-align"><p>CPF do perito da empresa periciadora</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_cpf_perito</p></td>
+<td class="left-align"><p>text</p></td>
+<td class="left-align"><p>CPF/CNPJ do perito</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-rcp-glebas">
-<caption><span class="caption-number">Tabela 3.23 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_glebas</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-glebas" title="Link Permanente para essa tabela"></a></caption>
+<p>Os relatórios de comprovação de perdas em operações contratadas podem apresentar glebas da comprovação. Esses microdados são disponibilizados em dois arquivos:</p>
+<ul class="open">
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2015_2020.gz">SICOR_RCP_GLEBAS_2015_2020.gz</a>: Glebas da comprovação de perdas de operações contratadas entre os anos de 2015 e 2020.</p></li>
+<li><p><a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2021.gz">SICOR_RCP_GLEBAS_2021.gz</a>: Glebas da comprovação de perdas de operações contratadas a partir de 2021.</p></li>
+</ul>
+<p>A <a class="reference internal" href="#tbl-sicor-microdados-sicor-rcp-glebas-wkt"><span class="std std-numref">Tabela 3.23</span></a> apresenta a estrutura desses arquivos. Conforme pode ser observado, é utilizada uma estrutura semelhante à apresentada na <a class="reference internal" href="glebas.html#sec-sicor-microdados-glebas"><span class="std std-numref">Seção 3.1.10 - Glebas de Operações Contratadas com Recursos Públicos</span></a>, com as geometrias das glebas representadas textualmente no formato <a class="reference internal" href="../../glossary.html#term-WKT"><span class="xref std std-term">WKT</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-rcp-glebas-wkt">
+<caption><span class="caption-number">Tabela 3.23 - </span><span class="caption-text">Estrutura do arquivo contendo glebas da comprovação de perdas de operações contratadas.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-glebas-wkt" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -398,15 +500,42 @@
 </tr>
 </thead>
 <tbody>
-<tr class="row-even"><td class="center-align"></td>
-<td class="left-align"><p>nome</p></td>
-<td class="left-align"><p>tipo</p></td>
-<td class="left-align"><p>descrição</p></td>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>nu_indice</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Identificador da gleba dentro da operação</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>gt_geometria</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Geometria da gleba no formato Well-Know Text (WKT)</p></td>
 </tr>
 </tbody>
 </table>
-<table class="styled-table docutils align-default" id="tbl-sicor-microdados-sicor-sumula-julgamento-basico">
-<caption><span class="caption-number">Tabela 3.24 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_sumula_julgamento_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-sumula-julgamento-basico" title="Link Permanente para essa tabela"></a></caption>
+<p>Os arquivos <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz">SICOR_RCP_BASICO.gz</a>, <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COMPLEMENTO_RCP.gz">SICOR_COMPLEMENTO_RCP.gz</a> e <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_GLEBAS_2021.gz">SICOR_RCP_GLEBAS_2021.gz</a> foram carregados, respectivamente, para as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_rcp_basico</span></code>, <code class="docutils literal notranslate"><span class="pre">sicor_complemento_rcp</span></code> e <code class="docutils literal notranslate"><span class="pre">sicor_rcp_glebas_wkt</span></code> do banco de dados PostgreSQL. A <a class="reference internal" href="#fig-sicor-microdados-er-rcp"><span class="std std-numref">Figura 3.12</span></a> apresenta os relacionamentos dessas tabelas.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-er-rcp">
+<a class="reference internal image-reference" href="../../_images/er-rcp.png"><img alt="Diagrama Entidade-Relacionamento dos relatórios de comprovação de perdas em operações contratadas (simplificado)" src="../../_images/er-rcp.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.12 - </span><span class="caption-text">Diagrama Entidade-Relacionamento dos relatórios de comprovação de perdas em operações contratadas (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-er-rcp" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O diagrama mostrado na <a class="reference internal" href="#fig-sicor-microdados-er-rcp"><span class="std std-numref">Figura 3.12</span></a> também inclui uma tabela denominada <code class="docutils literal notranslate"><span class="pre">sicor_rcp_glebas</span></code> com estrutura similiar à tabela <code class="docutils literal notranslate"><span class="pre">sicor_rcp_glebas_wkt</span></code> mas já com uma coluna geométrica para representação das glebas dos relatórios.</p>
+</div>
+<p>As informações das súmulas do julgamento são disponibilizadas no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_SUMULA_JULGAMENTO.gz">SICOR_SUMULA_JULGAMENTO.gz</a>, cuja estrutura é mostrada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-sumula-julgamento-basico"><span class="std std-numref">Tabela 3.24</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-sumula-julgamento-basico">
+<caption><span class="caption-number">Tabela 3.24 - </span><span class="caption-text">Estrutura do arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_SUMULA_JULGAMENTO.gz">SICOR_SUMULA_JULGAMENTO.gz</a>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-sumula-julgamento-basico" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -415,10 +544,140 @@
 </tr>
 </thead>
 <tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
 <tr class="row-even"><td class="center-align"></td>
-<td class="left-align"><p>nome</p></td>
-<td class="left-align"><p>tipo</p></td>
-<td class="left-align"><p>descrição</p></td>
+<td class="left-align"><p>vl_cob_ant_parcela_invest_proagro_mais</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Cobertura da parcela de investimento do Proagro Mais</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_remu_encarr_comprov_perdas</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Remuneração do encarregado da comprovação de perdas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_status</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Status da súmula de julgamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_receitas_consideradas</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Receitas consideradas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_cobertura_ant_rec_proprios</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Cobertura anterior dos recursos próprios</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_demais_despesas_comprov_perd</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Demais despesas da comprovação de perdas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_cred_custeio_usado</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Crédito de custeio utilizado</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_demais_desp_ant_comp_per</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Demais despesas anteriores da comprovação de perdas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_rec_prop_usado</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Recursos próprios utilizados</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_cob_ant_garantia_renda_min</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Cobertura da garantia de renda mínima do Proagro Mais</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>2</sub></p></td>
+<td class="left-align"><p>cd_instancia</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Instância da súmula de julgamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_perdas_nao_amparadas</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Perdas não amparadas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_encargos_sob_credito</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Encargos financeiros sobre o crédito utilizado</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_inclusao</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data de inclusão da súmula de julgamento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_perc_redutor_cobertura</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Percentual do redutor de cobertura</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_remu_ant_encarg_comp_perdas</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Remuneração anterior do encarregado da comprovação de perdas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_decisao</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Início de plantio</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_decisao</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data da decisão na súmula de julgamento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_base</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data base da súmula de julgamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_cobertura_ant_credito_custeio</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Cobertura anterior do crédito de custeio</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_bonus_pgaf</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_deducoes_legais</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_orcamento_enquadrado</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>nu_dias_uteis_atraso_perito</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>ib_segunda_vistoria</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"></td>
 </tr>
 </tbody>
 </table>
@@ -1285,7 +1544,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f04d02d8100>
+<jinja2.runtime.BlockReference object at 0x7f20e71959a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
