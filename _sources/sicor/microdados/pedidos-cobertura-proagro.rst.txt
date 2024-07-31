@@ -292,7 +292,6 @@ As informações das súmulas do julgamento são disponibilizadas no arquivo `SI
     :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_sumula_julgamento_basico
 
-
     +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
     |                      | nome                                   | tipo     | descrição                                                    |
     +======================+========================================+==========+==============================================================+
@@ -362,7 +361,368 @@ Consultas
 .. collapse:: Solução:
 
 
-    Os empreendimentos que serão avaliados consistem de solicitações de Proagro no caso de financiamentos de custeio agrícola para lavoura. Serão consideros apenas os pedidos deferidos de cobertura. Além disso, como a tabela ``sicor_cop_basico`` pode conter mais de uma entrada para os pares de valores (``ref_bacen``, ``nu_ordem``), será necessário usar uma cláusula :sql:`DISTINCT ON` na consulta.
+    Os empreendimentos que serão avaliados consistem de financiamentos de custeio agrícola para lavoura. Serão consideros apenas os pedidos deferidos de cobertura do Proagro. Além disso, como a tabela ``sicor_cop_basico`` pode conter mais de uma entrada para os pares de valores (``ref_bacen``, ``nu_ordem``), será necessário usar uma cláusula :sql:`DISTINCT ON` na consulta.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM (
+                        SELECT *,
+                               dense_rank() OVER (PARTITION BY ano ORDER BY valor_total DESC) as rank_valor,
+                               dense_rank() OVER (PARTITION BY ano ORDER BY num_pedidos_proagro DESC) as rank_pedidos,
+                               dense_rank() OVER (PARTITION BY ano ORDER BY valor_medio_proagro DESC) as rank_valor_medio
+                          FROM (
+                              SELECT ano,
+                                     produto,
+                                     COUNT(*) AS num_pedidos_proagro,
+                                     SUM(valor) AS valor_total,
+                                     (SUM(valor)/COUNT(*)) AS valor_medio_proagro
+                                FROM (
+                                    SELECT DISTINCT ON(sicor_operacao_basica_estado.ref_bacen, sicor_operacao_basica_estado.nu_ordem)
+                                           sicor_operacao_basica_estado.ref_bacen AS ref_bacen,
+                                           sicor_operacao_basica_estado.nu_ordem AS nu_ordem,
+                                           sicor_operacao_basica_estado.vl_parc_credito AS valor,
+                                           extract(YEAR FROM sicor_operacao_basica_estado.dt_emissao) AS ano,
+                                           empreendimento.produto AS produto,
+                                           empreendimento.variedade AS variedade,
+                                           empreendimento.cesta AS cesta
+                                      FROM statuscopproagro,
+                                           sicor_cop_basico,
+                                           sicor_operacao_basica_estado,
+                                           empreendimento
+                                     WHERE statuscopproagro.descricao = 'deferida'
+                                       AND statuscopproagro.cd_status = sicor_cop_basico.cd_status
+                                       AND sicor_cop_basico.ref_bacen = sicor_operacao_basica_estado.ref_bacen
+                                       AND sicor_cop_basico.nu_ordem = sicor_operacao_basica_estado.nu_ordem
+                                       AND sicor_operacao_basica_estado.cd_empreendimento = empreendimento.cd_empreendimento
+                                       AND empreendimento.finalidade = 'custeio'
+                                       AND empreendimento.atividade = 'agrícola'
+                                       AND empreendimento.modalidade = 'lavoura'
+                                )
+                            GROUP BY ano, produto
+                          )
+                      ORDER BY ano, rank_valor
+                  )
+                 WHERE rank_valor <= 10
+                    OR rank_pedidos <= 10
+                    OR rank_valor_medio <= 10;
+
+
+        .. tab:: Python + SQL
+
+
+            Utilizando a operação ``query`` do pacote `sicor` é possível obter um ``DataFrame`` do `Pandas` como resultado da consulta SQL:
+
+
+            .. code-block:: python
+
+                import sicor
+
+                consulta = '''
+                    SELECT *
+                      FROM (
+                            SELECT *,
+                                   dense_rank() OVER (PARTITION BY ano ORDER BY valor_total DESC) as rank_valor,
+                                   dense_rank() OVER (PARTITION BY ano ORDER BY num_pedidos_proagro DESC) as rank_pedidos,
+                                   dense_rank() OVER (PARTITION BY ano ORDER BY valor_medio_proagro DESC) as rank_valor_medio
+                              FROM (
+                                  SELECT ano,
+                                         produto,
+                                         COUNT(*) AS num_pedidos_proagro,
+                                         SUM(valor) AS valor_total,
+                                         (SUM(valor)/COUNT(*)) AS valor_medio_proagro
+                                    FROM (
+                                        SELECT DISTINCT ON(sicor_operacao_basica_estado.ref_bacen, sicor_operacao_basica_estado.nu_ordem)
+                                               sicor_operacao_basica_estado.ref_bacen AS ref_bacen,
+                                               sicor_operacao_basica_estado.nu_ordem AS nu_ordem,
+                                               sicor_operacao_basica_estado.vl_parc_credito AS valor,
+                                               extract(YEAR FROM sicor_operacao_basica_estado.dt_emissao) AS ano,
+                                               empreendimento.produto AS produto,
+                                               empreendimento.variedade AS variedade,
+                                               empreendimento.cesta AS cesta
+                                          FROM statuscopproagro,
+                                               sicor_cop_basico,
+                                               sicor_operacao_basica_estado,
+                                               empreendimento
+                                         WHERE statuscopproagro.descricao = 'deferida'
+                                           AND statuscopproagro.cd_status = sicor_cop_basico.cd_status
+                                           AND sicor_cop_basico.ref_bacen = sicor_operacao_basica_estado.ref_bacen
+                                           AND sicor_cop_basico.nu_ordem = sicor_operacao_basica_estado.nu_ordem
+                                           AND sicor_operacao_basica_estado.cd_empreendimento = empreendimento.cd_empreendimento
+                                           AND empreendimento.finalidade = 'custeio'
+                                           AND empreendimento.atividade = 'agrícola'
+                                           AND empreendimento.modalidade = 'lavoura'
+                                    )
+                                GROUP BY ano, produto
+                              )
+                          ORDER BY ano, rank_valor
+                      )
+                     WHERE rank_valor <= 10
+                        OR rank_pedidos <= 10
+                        OR rank_valor_medio <= 10;
+                '''
+
+                pedidos_proagro = sicor.query(consulta)
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ano  |                  produto                  | num_pedidos_proagro |  valor_total  | valor_medio_proagro | rank_valor | rank_pedidos | rank_valor_medio
+                ------+-------------------------------------------+---------------------+---------------+---------------------+------------+--------------+------------------
+                 2013 | milho                                     |               12792 |  297390437.27 |  23248.158010475297 |          1 |            1 |               24
+                 2013 | trigo                                     |                6824 |  257801512.93 |  37778.650781066823 |          2 |            3 |               11
+                 2013 | soja                                      |                8341 |  189886804.80 |  22765.472341445870 |          3 |            2 |               26
+                 2013 | feijão                                    |                1313 |   20642755.82 |  15721.824691546078 |          4 |            4 |               40
+                 2013 | mandioca (aipim, macaxeira)               |                 335 |   15975092.89 |  47686.844447761194 |          5 |            6 |                8
+                 2013 | maçã                                      |                 312 |   14959598.87 |  47947.432275641026 |          6 |            7 |                7
+                 2013 | cebola                                    |                 523 |   14647849.76 |  28007.360917782027 |          7 |            5 |               20
+                 2013 | café                                      |                 310 |    7632790.89 |  24621.906096774194 |          8 |            8 |               23
+                 2013 | uva                                       |                 237 |    4199893.13 |  17721.068059071730 |          9 |            9 |               35
+                 2013 | tomate                                    |                 134 |    4061894.66 |  30312.646716417910 |         10 |           11 |               16
+                 2013 | arroz                                     |                  94 |    3838291.29 |  40832.886063829787 |         11 |           13 |               10
+                 2013 | pêssego                                   |                 159 |    3499400.81 |  22008.810125786164 |         12 |           10 |               27
+                 2013 | cana-de-açucar                            |                   9 |     537124.38 |  59680.486666666667 |         20 |           28 |                4
+                 2013 | batata-inglesa                            |                   8 |     417832.73 |  52229.091250000000 |         21 |           29 |                6
+                 2013 | amendoim                                  |                   2 |     374134.52 | 187067.260000000000 |         23 |           35 |                1
+                 2013 | sorgo                                     |                   4 |     250269.20 |  62567.300000000000 |         28 |           33 |                3
+                 2013 | abacaxi                                   |                   5 |     216291.86 |  43258.372000000000 |         30 |           32 |                9
+                 2013 | manga                                     |                   2 |     111500.00 |  55750.000000000000 |         37 |           35 |                5
+                 2013 | algodão                                   |                   1 |     100000.00 | 100000.000000000000 |         39 |           36 |                2
+                 2014 | trigo                                     |               29548 |  851519163.72 |  28818.165822390686 |          1 |            1 |               23
+                 2014 | milho                                     |                8397 |  207212696.29 |  24676.991340955103 |          2 |            2 |               25
+                 2014 | soja                                      |                2149 |   78900848.47 |  36715.145867845510 |          3 |            3 |               16
+                 2014 | feijão                                    |                1645 |   39707283.23 |  24138.166097264438 |          4 |            4 |               26
+                 2014 | mandioca (aipim, macaxeira)               |                 545 |   27224577.01 |  49953.352311926606 |          5 |            7 |               12
+                 2014 | cebola                                    |                 789 |   23781185.34 |  30140.919315589354 |          6 |            5 |               22
+                 2014 | maçã                                      |                 289 |   12038388.28 |  41655.322768166090 |          7 |            9 |               14
+                 2014 | cevada                                    |                 585 |   11295791.23 |  19309.044837606838 |          8 |            6 |               35
+                 2014 | canola                                    |                 338 |    9316526.20 |  27563.686982248521 |          9 |            8 |               24
+                 2014 | café                                      |                 267 |    6350004.07 |  23782.786779026217 |         10 |           10 |               27
+                 2014 | arroz                                     |                  72 |    4384470.51 |  60895.423750000000 |         12 |           18 |                7
+                 2014 | amendoim                                  |                   3 |     829659.95 | 276553.316666666667 |         21 |           36 |                2
+                 2014 | batata-inglesa                            |                  11 |     596547.39 |  54231.580909090909 |         25 |           30 |               10
+                 2014 | abacaxi                                   |                   6 |     330915.27 |  55152.545000000000 |         29 |           33 |                9
+                 2014 | pera                                      |                   4 |     307528.55 |  76882.137500000000 |         30 |           35 |                4
+                 2014 | algodão                                   |                   1 |     299267.26 | 299267.260000000000 |         32 |           38 |                1
+                 2014 | sorgo                                     |                   4 |     273197.50 |  68299.375000000000 |         33 |           35 |                5
+                 2014 | girassol                                  |                   1 |     271862.64 | 271862.640000000000 |         34 |           38 |                3
+                 2014 | chuchu                                    |                   1 |      63106.15 |  63106.150000000000 |         43 |           38 |                6
+                 2014 | abacate                                   |                   1 |      55442.42 |  55442.420000000000 |         44 |           38 |                8
+                 2015 | trigo                                     |               21870 |  745806327.25 |  34101.798228166438 |          1 |            1 |               17
+                 2015 | milho                                     |               10668 |  427724964.94 |  40094.203687664042 |          2 |            2 |               11
+                 2015 | soja                                      |                3684 |  146554703.08 |  39781.406916395223 |          3 |            3 |               12
+                 2015 | cebola                                    |                2273 |   83483218.20 |  36728.208622965244 |          4 |            4 |               14
+                 2015 | feijão                                    |                1829 |   40388281.06 |  22082.165697102242 |          5 |            5 |               34
+                 2015 | café                                      |                 910 |   27519710.68 |  30241.440307692308 |          6 |            6 |               21
+                 2015 | cevada                                    |                 828 |   20754001.35 |  25065.219021739130 |          7 |            7 |               26
+                 2015 | maçã                                      |                 383 |   19936046.30 |  52052.340208877285 |          8 |            9 |                7
+                 2015 | arroz                                     |                 287 |   16449475.77 |  57315.246585365854 |          9 |           11 |                5
+                 2015 | uva                                       |                 789 |   15337550.14 |  19439.227046894804 |         10 |            8 |               38
+                 2015 | mandioca (aipim, macaxeira)               |                 160 |   10947763.75 |  68423.523437500000 |         11 |           16 |                3
+                 2015 | pêssego                                   |                 301 |    7158334.01 |  23781.840564784053 |         12 |           10 |               30
+                 2015 | mandioquinha (batata: baroa, salsa, aipo) |                  44 |    1973814.25 |  44859.414772727273 |         19 |           25 |                9
+                 2015 | batata-inglesa                            |                  14 |     784372.51 |  56026.607857142857 |         26 |           31 |                6
+                 2015 | cenoura                                   |                  13 |     594038.69 |  45695.283846153846 |         28 |           32 |                8
+                 2015 | cana-de-açucar                            |                  10 |     436918.90 |  43691.890000000000 |         30 |           34 |               10
+                 2015 | atemoia                                   |                   1 |      99867.19 |  99867.190000000000 |         44 |           43 |                1
+                 2015 | mamão                                     |                   1 |      79150.21 |  79150.210000000000 |         47 |           43 |                2
+                 2015 | manga                                     |                   1 |      61966.71 |  61966.710000000000 |         49 |           43 |                4
+                 2016 | milho                                     |                9946 |  391871913.72 |  39399.951107983109 |          1 |            1 |               20
+                 2016 | trigo                                     |                1453 |   71755314.08 |  49384.249194769443 |          2 |            2 |               13
+                 2016 | soja                                      |                 975 |   45054053.40 |  46209.285538461538 |          3 |            4 |               16
+                 2016 | feijão                                    |                1394 |   42567370.26 |  30536.133615494978 |          4 |            3 |               26
+                 2016 | café                                      |                 674 |   23899379.74 |  35459.020385756677 |          5 |            5 |               22
+                 2016 | maçã                                      |                 244 |   17157994.30 |  70319.648770491803 |          6 |            6 |                7
+                 2016 | cebola                                    |                 190 |    7253956.90 |  38178.720526315789 |          7 |            7 |               21
+                 2016 | canola                                    |                 133 |    5822783.24 |  43780.325112781955 |          8 |            9 |               17
+                 2016 | tomate                                    |                 154 |    5451998.52 |  35402.587792207792 |          9 |            8 |               23
+                 2016 | arroz                                     |                  71 |    5437724.36 |  76587.667042253521 |         10 |           15 |                5
+                 2016 | mandioca (aipim, macaxeira)               |                  51 |    2880097.82 |  56472.506274509804 |         11 |           19 |                9
+                 2016 | uva                                       |                 128 |    2439738.70 |  19060.458593750000 |         14 |           10 |               41
+                 2016 | batata-inglesa                            |                  11 |    1193475.27 | 108497.751818181818 |         22 |           28 |                2
+                 2016 | cana-de-açucar                            |                   6 |     691465.05 | 115244.175000000000 |         25 |           31 |                1
+                 2016 | abacaxi                                   |                   6 |     469780.77 |  78296.795000000000 |         29 |           31 |                4
+                 2016 | alface                                    |                   7 |     391643.35 |  55949.050000000000 |         31 |           30 |               10
+                 2016 | coco                                      |                   3 |     212331.73 |  70777.243333333333 |         34 |           34 |                6
+                 2016 | manga                                     |                   1 |     102000.00 | 102000.000000000000 |         39 |           36 |                3
+                 2016 | outras lavouras                           |                   1 |      70071.94 |  70071.940000000000 |         42 |           36 |                8
+                 2017 | trigo                                     |               19197 |  675904943.39 |  35208.883856331718 |          1 |            1 |               23
+                 2017 | milho                                     |               10426 |  426721026.39 |  40928.546555726069 |          2 |            2 |               18
+                 2017 | soja                                      |                1904 |   99558765.51 |  52289.267599789916 |          3 |            4 |               10
+                 2017 | feijão                                    |                2195 |   80342107.14 |  36602.326715261959 |          4 |            3 |               22
+                 2017 | cebola                                    |                1642 |   76081650.53 |  46334.744537149817 |          5 |            5 |               14
+                 2017 | cevada                                    |                1565 |   47183510.73 |  30149.208134185304 |          6 |            6 |               27
+                 2017 | maçã                                      |                 399 |   30982256.87 |  77649.766591478697 |          7 |            9 |                5
+                 2017 | canola                                    |                 710 |   23905470.48 |  33669.676732394366 |          8 |            7 |               25
+                 2017 | aveia                                     |                 484 |   18274061.60 |  37756.325619834711 |          9 |            8 |               20
+                 2017 | mandioca (aipim, macaxeira)               |                 150 |   12190782.95 |  81271.886333333333 |         10 |           15 |                3
+                 2017 | ameixa                                    |                 242 |    6951685.13 |  28725.971611570248 |         12 |           10 |               30
+                 2017 | arroz                                     |                 106 |    5810537.18 |  54816.388490566038 |         15 |           16 |                8
+                 2017 | batata-inglesa                            |                  16 |    1400150.64 |  87509.415000000000 |         21 |           30 |                2
+                 2017 | banana                                    |                  24 |    1288987.04 |  53707.793333333333 |         22 |           26 |                9
+                 2017 | abacaxi                                   |                   5 |     402026.57 |  80405.314000000000 |         30 |           36 |                4
+                 2017 | sorgo                                     |                   3 |     201414.91 |  67138.303333333333 |         34 |           38 |                7
+                 2017 | mamão                                     |                   1 |     177407.72 | 177407.720000000000 |         35 |           40 |                1
+                 2017 | erva cidreira (melissa)                   |                   1 |      73440.00 |  73440.000000000000 |         47 |           40 |                6
+                 2018 | milho                                     |               12764 |  569155289.56 |  44590.668251331871 |          1 |            2 |               22
+                 2018 | trigo                                     |               12954 |  494841902.55 |  38199.930720240852 |          2 |            1 |               25
+                 2018 | soja                                      |               10339 |  484177292.27 |  46830.185924170616 |          3 |            3 |               19
+                 2018 | feijão                                    |                2042 |   73003846.44 |  35751.149089128306 |          4 |            4 |               29
+                 2018 | cebola                                    |                1470 |   71477232.22 |  48623.967496598639 |          5 |            5 |               18
+                 2018 | maçã                                      |                 345 |   25024180.36 |  72533.856115942029 |          6 |            9 |                9
+                 2018 | aveia                                     |                 385 |   17973973.45 |  46685.645324675325 |          7 |            7 |               20
+                 2018 | cevada                                    |                 473 |   15727865.44 |  33251.301141649049 |          8 |            6 |               31
+                 2018 | mandioca (aipim, macaxeira)               |                 139 |   11513136.14 |  82828.317553956835 |          9 |           16 |                7
+                 2018 | uva                                       |                 355 |    9085008.85 |  25591.574225352113 |         10 |            8 |               41
+                 2018 | pêssego                                   |                 307 |    8969856.72 |  29217.774332247557 |         11 |           10 |               35
+                 2018 | arroz                                     |                 106 |    8783163.87 |  82860.036509433962 |         12 |           18 |                6
+                 2018 | batata-inglesa                            |                  14 |    1735015.52 | 123929.680000000000 |         22 |           26 |                4
+                 2018 | mamão                                     |                   2 |     345440.19 | 172720.095000000000 |         30 |           36 |                2
+                 2018 | abacaxi                                   |                   3 |     329969.57 | 109989.856666666667 |         31 |           35 |                5
+                 2018 | gergelim                                  |                   2 |     297266.56 | 148633.280000000000 |         32 |           36 |                3
+                 2018 | amendoim                                  |                   1 |     173944.41 | 173944.410000000000 |         37 |           37 |                1
+                 2018 | pimenta-do-reino                          |                   1 |      72593.28 |  72593.280000000000 |         47 |           37 |                8
+                 2018 | inhame                                    |                   1 |      72381.68 |  72381.680000000000 |         48 |           37 |               10
+                 2019 | soja                                      |               22939 | 1205083668.24 |  52534.272123457867 |          1 |            1 |               11
+                 2019 | milho                                     |               18847 |  576105771.39 |  30567.505246988911 |          2 |            2 |               32
+                 2019 | trigo                                     |               10859 |  537500832.51 |  49498.188830463210 |          3 |            3 |               12
+                 2019 | feijão                                    |                2570 |  123516254.47 |  48060.799404669261 |          4 |            4 |               14
+                 2019 | cebola                                    |                1377 |   79583806.10 |  57795.066158315178 |          5 |            5 |                8
+                 2019 | maçã                                      |                 490 |   36793589.62 |  75088.958408163265 |          6 |            7 |                5
+                 2019 | aveia                                     |                 533 |   23652388.31 |  44375.963058161351 |          7 |            6 |               18
+                 2019 | café                                      |                 251 |   14118987.59 |  56250.946573705179 |          8 |           14 |                9
+                 2019 | mandioca (aipim, macaxeira)               |                 145 |   12127503.17 |  83637.952896551724 |          9 |           19 |                3
+                 2019 | uva                                       |                 441 |   11800540.36 |  26758.594920634921 |         10 |            8 |               41
+                 2019 | ameixa                                    |                 408 |   11096487.53 |  27197.273357843137 |         12 |            9 |               40
+                 2019 | pêssego                                   |                 355 |   10623425.52 |  29925.142309859155 |         13 |           10 |               34
+                 2019 | arroz                                     |                  87 |    6448966.80 |  74126.055172413793 |         18 |           22 |                6
+                 2019 | abacaxi                                   |                  15 |    1640488.35 | 109365.890000000000 |         25 |           32 |                1
+                 2019 | batata-inglesa                            |                  14 |    1104147.47 |  78867.676428571429 |         28 |           33 |                4
+                 2019 | cana-de-açucar                            |                   6 |     407088.23 |  67848.038333333333 |         34 |           37 |                7
+                 2019 | mamão                                     |                   2 |     177644.08 |  88822.040000000000 |         43 |           41 |                2
+                 2019 | plantas ornamentais                       |                   1 |      55984.26 |  55984.260000000000 |         56 |           42 |               10
+                 2020 | milho                                     |               30856 | 1178320216.64 |  38187.717676950998 |          1 |            1 |               30
+                 2020 | trigo                                     |               16423 |  754955551.90 |  45969.405827193570 |          2 |            2 |               22
+                 2020 | cebola                                    |                2875 |  184846426.89 |  64294.409353043478 |          3 |            4 |               13
+                 2020 | feijão                                    |                2924 |  160551876.08 |  54908.302352941176 |          4 |            3 |               18
+                 2020 | soja                                      |                1629 |   90793810.00 |  55735.917740945365 |          5 |            5 |               17
+                 2020 | maçã                                      |                 444 |   41010346.67 |  92365.645653153153 |          6 |           10 |                6
+                 2020 | aveia                                     |                 803 |   31309946.45 |  38991.216002490660 |          7 |            6 |               28
+                 2020 | canola                                    |                 429 |   19027221.26 |  44352.497109557110 |          8 |           11 |               24
+                 2020 | pêssego                                   |                 520 |   17382388.78 |  33427.670730769231 |          9 |            7 |               34
+                 2020 | uva                                       |                 507 |   13451602.47 |  26531.760295857988 |         10 |            8 |               49
+                 2020 | mandioca (aipim, macaxeira)               |                 117 |   11811277.19 | 100951.087094017094 |         11 |           20 |                4
+                 2020 | laranja                                   |                 463 |    7757533.60 |  16754.932181425486 |         16 |            9 |               60
+                 2020 | arroz                                     |                  50 |    3740581.68 |  74811.633600000000 |         22 |           24 |                9
+                 2020 | alho                                      |                  46 |    3290923.39 |  71541.812826086957 |         23 |           25 |               10
+                 2020 | batata-inglesa                            |                  32 |    2778093.49 |  86815.421562500000 |         24 |           28 |                8
+                 2020 | abacaxi                                   |                  22 |    1918702.06 |  87213.730000000000 |         27 |           34 |                7
+                 2020 | amendoim                                  |                   1 |     200777.85 | 200777.850000000000 |         43 |           46 |                1
+                 2020 | caju                                      |                   1 |     176698.00 | 176698.000000000000 |         46 |           46 |                2
+                 2020 | girassol                                  |                   1 |     113610.00 | 113610.000000000000 |         52 |           46 |                3
+                 2020 | flores                                    |                   1 |      99976.25 |  99976.250000000000 |         54 |           46 |                5
+                 2021 | soja                                      |               56378 | 3510265436.67 |  62263.035876937813 |          1 |            1 |               17
+                 2021 | milho                                     |               46142 | 1928657339.56 |  41798.303921806597 |          2 |            2 |               36
+                 2021 | trigo                                     |               12203 |  713393319.40 |  58460.486716381218 |          3 |            3 |               20
+                 2021 | feijão                                    |                4093 |  268741879.85 |  65658.900525287075 |          4 |            4 |               14
+                 2021 | cebola                                    |                2645 |  192198054.24 |  72664.670790170132 |          5 |            5 |               10
+                 2021 | maçã                                      |                 558 |   55367700.79 |  99225.270232974910 |          6 |            8 |                4
+                 2021 | uva                                       |                 817 |   25300051.84 |  30967.015716034272 |          7 |            6 |               42
+                 2021 | café                                      |                 335 |   22619732.07 |  67521.588268656716 |          8 |           13 |               12
+                 2021 | aveia                                     |                 432 |   19065515.98 |  44133.138842592593 |          9 |            9 |               32
+                 2021 | beterraba                                 |                 419 |   16512788.92 |  39409.997422434368 |         10 |           10 |               38
+                 2021 | laranja                                   |                 569 |   12799608.57 |  22494.918400702988 |         14 |            7 |               57
+                 2021 | arroz                                     |                 103 |   10230598.35 |  99326.197572815534 |         15 |           21 |                3
+                 2021 | mandioca (aipim, macaxeira)               |                  66 |    5551955.68 |  84120.540606060606 |         19 |           24 |                8
+                 2021 | morango                                   |                  51 |    4699591.26 |  92148.848235294118 |         20 |           25 |                7
+                 2021 | batata-inglesa                            |                  29 |    2692687.95 |  92851.308620689655 |         25 |           33 |                5
+                 2021 | abacaxi                                   |                   8 |    1111779.03 | 138972.378750000000 |         30 |           43 |                1
+                 2021 | mamão                                     |                   1 |     137511.36 | 137511.360000000000 |         56 |           50 |                2
+                 2021 | capim                                     |                   1 |      92712.14 |  92712.140000000000 |         58 |           50 |                6
+                 2021 | pastagem                                  |                   1 |      76724.14 |  76724.140000000000 |         60 |           50 |                9
+                 2022 | soja                                      |               51428 | 4699774937.36 |  91385.528065645174 |          1 |            2 |               11
+                 2022 | milho                                     |               52621 | 3442294605.65 |  65416.746273350944 |          2 |            1 |               21
+                 2022 | trigo                                     |               14841 | 1186341951.86 |  79936.793468095142 |          3 |            3 |               18
+                 2022 | feijão                                    |                4894 |  411578990.92 |  84098.690420923580 |          4 |            4 |               15
+                 2022 | cebola                                    |                1546 |  140291257.93 |  90744.668777490298 |          5 |            5 |               12
+                 2022 | maçã                                      |                 640 |   75269323.26 | 117608.317593750000 |          6 |            9 |                5
+                 2022 | uva                                       |                1002 |   41335289.55 |  41252.783982035928 |          7 |            6 |               40
+                 2022 | café                                      |                 462 |   38390878.98 |  83097.140649350649 |          8 |           12 |               16
+                 2022 | beterraba                                 |                 684 |   36688255.04 |  53637.799766081871 |          9 |            8 |               31
+                 2022 | pêssego                                   |                 584 |   28359498.10 |  48560.784417808219 |         10 |           10 |               34
+                 2022 | laranja                                   |                 760 |   21724227.69 |  28584.510118421053 |         12 |            7 |               56
+                 2022 | arroz                                     |                  93 |   11899913.10 | 127956.054838709677 |         19 |           24 |                4
+                 2022 | banana                                    |                 120 |   11499262.92 |  95827.191000000000 |         20 |           21 |                8
+                 2022 | mandioca (aipim, macaxeira)               |                  92 |    9701545.72 | 105451.583913043478 |         22 |           25 |                7
+                 2022 | alho                                      |                  24 |    2276614.45 |  94858.935416666667 |         30 |           37 |                9
+                 2022 | mamão                                     |                   7 |    1331240.16 | 190177.165714285714 |         33 |           45 |                3
+                 2022 | milheto                                   |                   4 |    1235000.00 | 308750.000000000000 |         34 |           48 |                1
+                 2022 | abacaxi                                   |                   2 |     223030.92 | 111515.460000000000 |         53 |           50 |                6
+                 2022 | graviola                                  |                   1 |     198795.52 | 198795.520000000000 |         55 |           51 |                2
+                 2022 | palmeira                                  |                   1 |      94783.60 |  94783.600000000000 |         62 |           51 |               10
+                 2023 | trigo                                     |               46077 | 3492541904.08 |  75797.944833213968 |          1 |            1 |               18
+                 2023 | milho                                     |               31887 | 2304500422.21 |  72270.844614106062 |          2 |            2 |               19
+                 2023 | soja                                      |               16888 | 1411756837.11 |  83595.265105992421 |          3 |            3 |               16
+                 2023 | cebola                                    |                3600 |  401498370.97 | 111527.325269444444 |          4 |            4 |                4
+                 2023 | feijão                                    |                3458 |  290843980.37 |  84107.570957200694 |          5 |            5 |               15
+                 2023 | maçã                                      |                 559 |   66711283.30 | 119340.399463327370 |          6 |            9 |                3
+                 2023 | uva                                       |                1279 |   53643970.17 |  41942.118975762314 |          7 |            6 |               40
+                 2023 | aveia                                     |                 980 |   48922318.38 |  49920.733040816327 |          8 |            7 |               34
+                 2023 | canola                                    |                 542 |   45068851.65 |  83152.862822878229 |          9 |           12 |               17
+                 2023 | cevada                                    |                 729 |   45021083.74 |  61757.316515775034 |         10 |            8 |               24
+                 2023 | pêssego                                   |                 556 |   30548957.06 |  54944.167374100719 |         13 |           10 |               27
+                 2023 | arroz                                     |                 182 |   18659826.82 | 102526.520989010989 |         15 |           19 |                5
+                 2023 | milheto                                   |                  14 |    3042825.00 | 217344.642857142857 |         29 |           41 |                1
+                 2023 | cenoura                                   |                  28 |    2561712.57 |  91489.734642857143 |         30 |           35 |               10
+                 2023 | batata-inglesa                            |                  16 |    1615080.46 | 100942.528750000000 |         33 |           40 |                7
+                 2023 | amendoim                                  |                   7 |     871871.79 | 124553.112857142857 |         40 |           45 |                2
+                 2023 | mamão                                     |                   4 |     399946.93 |  99986.732500000000 |         48 |           47 |                8
+                 2023 | caju                                      |                   2 |     203163.83 | 101581.915000000000 |         52 |           49 |                6
+                 2023 | ervilhaca - raliça, vicia sativa          |                   1 |      94500.00 |  94500.000000000000 |         58 |           50 |                9
+                 2024 | feijão                                    |                 587 |   41460595.58 |  70631.338296422487 |          1 |            1 |                4
+                 2024 | milho                                     |                 548 |   19215181.24 |  35064.199343065693 |          2 |            2 |               12
+                 2024 | soja                                      |                 146 |    8249842.26 |  56505.768904109589 |          3 |            3 |                6
+                 2024 | tomate                                    |                  38 |    3489874.30 |  91838.797368421053 |          4 |            4 |                1
+                 2024 | beterraba                                 |                  31 |    2254696.27 |  72732.137741935484 |          5 |            5 |                3
+                 2024 | café                                      |                  18 |    1558954.08 |  86608.560000000000 |          6 |            7 |                2
+                 2024 | abóbora-moranga                           |                  28 |     959124.65 |  34254.451785714286 |          7 |            6 |               13
+                 2024 | pepino                                    |                  10 |     482769.33 |  48276.933000000000 |          8 |            8 |                8
+                 2024 | milho silagem                             |                   9 |     265550.62 |  29505.624444444444 |          9 |            9 |               14
+                 2024 | pimentão                                  |                   4 |     189730.35 |  47432.587500000000 |         10 |           11 |               10
+                 2024 | cenoura                                   |                   2 |     138525.00 |  69262.500000000000 |         11 |           12 |                5
+                 2024 | brócolos (brócolis)                       |                   5 |     120195.58 |  24039.116000000000 |         12 |           10 |               17
+                 2024 | caqui                                     |                   2 |      98048.23 |  49024.115000000000 |         13 |           12 |                7
+                 2024 | couve-flor                                |                   2 |      96400.00 |  48200.000000000000 |         14 |           12 |                9
+                (224 rows)
+
+
+
+        .. tab:: Python + SQL
+
+
+-----
+
+
+**Consulta 2.** Qual o tamanho médio das áreas associadas a pedidos de Proagro?
+
+
+.. collapse:: Solução:
 
 
     .. tabs::
@@ -375,11 +735,19 @@ Consultas
 
                   SELECT ano,
                          produto,
-                         COUNT(*) AS num_pedidos_proagro
+                         COUNT(*) AS num_pedidos_proagro,
+                         MIN(valor) AS menor_valor_emprestado,
+                         MAX(valor) AS maior_valor_emprestado,
+                         AVG(valor) AS media_valor_emprestado,
+                         MIN(area) AS menor_area,
+                         MAX(area) AS maior_area,
+                         AVG(area) AS media_area
                     FROM (
                         SELECT DISTINCT ON(sicor_operacao_basica_estado.ref_bacen, sicor_operacao_basica_estado.nu_ordem)
                                sicor_operacao_basica_estado.ref_bacen AS ref_bacen,
                                sicor_operacao_basica_estado.nu_ordem AS nu_ordem,
+                               sicor_operacao_basica_estado.vl_parc_credito AS valor,
+                               sicor_operacao_basica_estado.vl_area_informada As area,
                                extract(YEAR FROM sicor_operacao_basica_estado.dt_emissao) AS ano,
                                empreendimento.produto AS produto,
                                empreendimento.variedade AS variedade,
@@ -398,49 +766,7 @@ Consultas
                            AND empreendimento.modalidade = 'lavoura'
                     )
                 GROUP BY ano, produto
-                ORDER BY ano ASC, num_pedidos_proagro DESC, produto ASC;
-
-
-        .. tab:: Python + SQL
-
-
-            Utilizando a operação ``query`` do pacote `sicor` é possível obter um ``DataFrame`` do `Pandas` como resultado da consulta SQL:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                consulta = '''
-                      SELECT ano,
-                             produto,
-                             COUNT(*) AS num_pedidos_proagro
-                        FROM (
-                            SELECT DISTINCT ON(sicor_operacao_basica_estado.ref_bacen, sicor_operacao_basica_estado.nu_ordem)
-                                   sicor_operacao_basica_estado.ref_bacen AS ref_bacen,
-                                   sicor_operacao_basica_estado.nu_ordem AS nu_ordem,
-                                   extract(YEAR FROM sicor_operacao_basica_estado.dt_emissao) AS ano,
-                                   empreendimento.produto AS produto,
-                                   empreendimento.variedade AS variedade,
-                                   empreendimento.cesta AS cesta
-                              FROM statuscopproagro,
-                                   sicor_cop_basico,
-                                   sicor_operacao_basica_estado,
-                                   empreendimento
-                             WHERE statuscopproagro.descricao = 'deferida'
-                               AND statuscopproagro.cd_status = sicor_cop_basico.cd_status
-                               AND sicor_cop_basico.ref_bacen = sicor_operacao_basica_estado.ref_bacen
-                               AND sicor_cop_basico.nu_ordem = sicor_operacao_basica_estado.nu_ordem
-                               AND sicor_operacao_basica_estado.cd_empreendimento = empreendimento.cd_empreendimento
-                               AND empreendimento.finalidade = 'custeio'
-                               AND empreendimento.atividade = 'agrícola'
-                               AND empreendimento.modalidade = 'lavoura'
-                        )
-                    GROUP BY ano, produto
-                    ORDER BY ano ASC, num_pedidos_proagro DESC, produto ASC;
-                '''
-
-                pedidos_proagro = sicor.query(consulta)
+                ORDER BY ano, media_area DESC;
 
 
 .. collapse:: Resultado:
@@ -454,787 +780,53 @@ Consultas
 
             .. code-block:: text
 
-                 ano  |                    produto                    | num_pedidos_proagro
-                ------+-----------------------------------------------+---------------------
-                 2013 | milho                                         |               12792
-                 2013 | soja                                          |                8341
-                 2013 | trigo                                         |                6824
-                 2013 | feijão                                        |                1313
-                 2013 | cebola                                        |                 523
-                 2013 | mandioca (aipim, macaxeira)                   |                 335
-                 2013 | maçã                                          |                 312
-                 2013 | café                                          |                 310
-                 2013 | uva                                           |                 237
-                 2013 | pêssego                                       |                 159
-                 2013 | tomate                                        |                 134
-                 2013 | ameixa                                        |                 120
-                 2013 | arroz                                         |                  94
-                 2013 | canola                                        |                  92
-                 2013 | abóbora-moranga                               |                  86
-                 2013 | beterraba                                     |                  80
-                 2013 | nectarina                                     |                  44
-                 2013 | banana                                        |                  43
-                 2013 | laranja                                       |                  22
-                 2013 | melancia                                      |                  20
-                 2013 | morango                                       |                  17
-                 2013 | mandioquinha (batata: baroa, salsa, aipo)     |                  16
-                 2013 | cevada                                        |                  15
-                 2013 | caqui                                         |                  14
-                 2013 | aveia                                         |                  13
-                 2013 | alface                                        |                  11
-                 2013 | pimentão                                      |                  10
-                 2013 | brócolos (brócolis)                           |                   9
-                 2013 | cana-de-açucar                                |                   9
-                 2013 | maracujá                                      |                   9
-                 2013 | batata-inglesa                                |                   8
-                 2013 | cenoura                                       |                   8
-                 2013 | pera                                          |                   7
-                 2013 | chuchu                                        |                   6
-                 2013 | couve-flor                                    |                   6
-                 2013 | abacaxi                                       |                   5
-                 2013 | couve                                         |                   5
-                 2013 | pepino                                        |                   5
-                 2013 | repolho                                       |                   5
-                 2013 | inhame                                        |                   4
-                 2013 | sorgo                                         |                   4
-                 2013 | alho                                          |                   3
-                 2013 | girassol                                      |                   3
-                 2013 | melão                                         |                   3
-                 2013 | tangerina                                     |                   3
-                 2013 | amendoim                                      |                   2
-                 2013 | manga                                         |                   2
-                 2013 | salsa                                         |                   2
-                 2013 | abobrinha                                     |                   1
-                 2013 | acelga                                        |                   1
-                 2013 | algodão                                       |                   1
-                 2013 | berinjela                                     |                   1
-                 2013 | cacau                                         |                   1
-                 2013 | cará                                          |                   1
-                 2013 | chicoria                                      |                   1
-                 2013 | coentro                                       |                   1
-                 2013 | flores                                        |                   1
-                 2013 | goiaba                                        |                   1
-                 2013 | limão                                         |                   1
-                 2014 | trigo                                         |               29548
-                 2014 | milho                                         |                8397
-                 2014 | soja                                          |                2149
-                 2014 | feijão                                        |                1645
-                 2014 | cebola                                        |                 789
-                 2014 | cevada                                        |                 585
-                 2014 | mandioca (aipim, macaxeira)                   |                 545
-                 2014 | canola                                        |                 338
-                 2014 | maçã                                          |                 289
-                 2014 | café                                          |                 267
-                 2014 | uva                                           |                 215
-                 2014 | pêssego                                       |                 214
-                 2014 | ameixa                                        |                 147
-                 2014 | tomate                                        |                 133
-                 2014 | beterraba                                     |                 104
-                 2014 | aveia                                         |                  93
-                 2014 | caju                                          |                  82
-                 2014 | arroz                                         |                  72
-                 2014 | nectarina                                     |                  46
-                 2014 | melancia                                      |                  45
-                 2014 | laranja                                       |                  42
-                 2014 | painço                                        |                  35
-                 2014 | abóbora-moranga                               |                  34
-                 2014 | alho                                          |                  22
-                 2014 | banana                                        |                  19
-                 2014 | mandioquinha (batata: baroa, salsa, aipo)     |                  18
-                 2014 | pimentão                                      |                  18
-                 2014 | brócolos (brócolis)                           |                  17
-                 2014 | morango                                       |                  14
-                 2014 | caqui                                         |                  12
-                 2014 | pepino                                        |                  12
-                 2014 | batata-inglesa                                |                  11
-                 2014 | repolho                                       |                   9
-                 2014 | cenoura                                       |                   7
-                 2014 | tangerina                                     |                   7
-                 2014 | abacaxi                                       |                   6
-                 2014 | alface                                        |                   6
-                 2014 | maracujá                                      |                   6
-                 2014 | couve-flor                                    |                   5
-                 2014 | pera                                          |                   4
-                 2014 | sorgo                                         |                   4
-                 2014 | amendoim                                      |                   3
-                 2014 | inhame                                        |                   3
-                 2014 | melão                                         |                   3
-                 2014 | cará                                          |                   2
-                 2014 | linho                                         |                   2
-                 2014 | quiuí (kiwi)                                  |                   2
-                 2014 | triticale                                     |                   2
-                 2014 | abacate                                       |                   1
-                 2014 | alfafa                                        |                   1
-                 2014 | algodão                                       |                   1
-                 2014 | bucha vegetal                                 |                   1
-                 2014 | cana-de-açucar                                |                   1
-                 2014 | chuchu                                        |                   1
-                 2014 | girassol                                      |                   1
-                 2014 | outras lavouras                               |                   1
-                 2014 | quiabo                                        |                   1
-                 2014 | vagem                                         |                   1
-                 2015 | trigo                                         |               21870
-                 2015 | milho                                         |               10668
-                 2015 | soja                                          |                3684
-                 2015 | cebola                                        |                2273
-                 2015 | feijão                                        |                1829
-                 2015 | café                                          |                 910
-                 2015 | cevada                                        |                 828
-                 2015 | uva                                           |                 789
-                 2015 | maçã                                          |                 383
-                 2015 | pêssego                                       |                 301
-                 2015 | arroz                                         |                 287
-                 2015 | ameixa                                        |                 230
-                 2015 | canola                                        |                 219
-                 2015 | aveia                                         |                 209
-                 2015 | tomate                                        |                 204
-                 2015 | mandioca (aipim, macaxeira)                   |                 160
-                 2015 | caju                                          |                 133
-                 2015 | abóbora-moranga                               |                 124
-                 2015 | melancia                                      |                  91
-                 2015 | beterraba                                     |                  83
-                 2015 | nectarina                                     |                  71
-                 2015 | laranja                                       |                  57
-                 2015 | alho                                          |                  56
-                 2015 | banana                                        |                  47
-                 2015 | mandioquinha (batata: baroa, salsa, aipo)     |                  44
-                 2015 | brócolos (brócolis)                           |                  40
-                 2015 | caqui                                         |                  38
-                 2015 | morango                                       |                  35
-                 2015 | pimentão                                      |                  20
-                 2015 | alface                                        |                  16
-                 2015 | batata-inglesa                                |                  14
-                 2015 | maracujá                                      |                  14
-                 2015 | pepino                                        |                  14
-                 2015 | cenoura                                       |                  13
-                 2015 | pera                                          |                  13
-                 2015 | couve-flor                                    |                  12
-                 2015 | melão                                         |                  12
-                 2015 | cana-de-açucar                                |                  10
-                 2015 | repolho                                       |                  10
-                 2015 | painço                                        |                   9
-                 2015 | tangerina                                     |                   9
-                 2015 | figo                                          |                   8
-                 2015 | girassol                                      |                   8
-                 2015 | abacaxi                                       |                   7
-                 2015 | couve                                         |                   6
-                 2015 | goiaba                                        |                   5
-                 2015 | pimenta-do-reino                              |                   4
-                 2015 | triticale                                     |                   4
-                 2015 | amora                                         |                   3
-                 2015 | flores                                        |                   3
-                 2015 | abobrinha                                     |                   2
-                 2015 | alfafa                                        |                   2
-                 2015 | cará                                          |                   2
-                 2015 | cebolinha verde                               |                   2
-                 2015 | coentro                                       |                   2
-                 2015 | agrião                                        |                   1
-                 2015 | atemoia                                       |                   1
-                 2015 | chuchu                                        |                   1
-                 2015 | cogumelo                                      |                   1
-                 2015 | espinafre                                     |                   1
-                 2015 | linho                                         |                   1
-                 2015 | mamão                                         |                   1
-                 2015 | manga                                         |                   1
-                 2015 | outras lavouras                               |                   1
-                 2015 | quiuí (kiwi)                                  |                   1
-                 2015 | rúcula                                        |                   1
-                 2015 | salsa                                         |                   1
-                 2016 | milho                                         |                9946
-                 2016 | trigo                                         |                1453
-                 2016 | feijão                                        |                1394
-                 2016 | soja                                          |                 975
-                 2016 | café                                          |                 674
-                 2016 | maçã                                          |                 244
-                 2016 | cebola                                        |                 190
-                 2016 | tomate                                        |                 154
-                 2016 | canola                                        |                 133
-                 2016 | uva                                           |                 128
-                 2016 | ameixa                                        |                  98
-                 2016 | laranja                                       |                  97
-                 2016 | beterraba                                     |                  89
-                 2016 | cevada                                        |                  80
-                 2016 | arroz                                         |                  71
-                 2016 | pêssego                                       |                  65
-                 2016 | abóbora-moranga                               |                  59
-                 2016 | caju                                          |                  58
-                 2016 | mandioca (aipim, macaxeira)                   |                  51
-                 2016 | aveia                                         |                  45
-                 2016 | banana                                        |                  33
-                 2016 | mandioquinha (batata: baroa, salsa, aipo)     |                  33
-                 2016 | melancia                                      |                  29
-                 2016 | nectarina                                     |                  23
-                 2016 | cenoura                                       |                  15
-                 2016 | morango                                       |                  14
-                 2016 | caqui                                         |                  13
-                 2016 | pimenta-do-reino                              |                  13
-                 2016 | repolho                                       |                  12
-                 2016 | batata-inglesa                                |                  11
-                 2016 | pimentão                                      |                   9
-                 2016 | alface                                        |                   7
-                 2016 | couve-flor                                    |                   7
-                 2016 | maracujá                                      |                   7
-                 2016 | abacaxi                                       |                   6
-                 2016 | brócolos (brócolis)                           |                   6
-                 2016 | cana-de-açucar                                |                   6
-                 2016 | pepino                                        |                   6
-                 2016 | pera                                          |                   5
-                 2016 | tangerina                                     |                   4
-                 2016 | abobrinha                                     |                   3
-                 2016 | coco                                          |                   3
-                 2016 | melão                                         |                   3
-                 2016 | figo                                          |                   2
-                 2016 | alfafa                                        |                   1
-                 2016 | crisântemo                                    |                   1
-                 2016 | flores                                        |                   1
-                 2016 | fumo                                          |                   1
-                 2016 | goiaba                                        |                   1
-                 2016 | limão                                         |                   1
-                 2016 | manga                                         |                   1
-                 2016 | outras lavouras                               |                   1
-                 2016 | sorgo                                         |                   1
-                 2017 | trigo                                         |               19197
-                 2017 | milho                                         |               10426
-                 2017 | feijão                                        |                2195
-                 2017 | soja                                          |                1904
-                 2017 | cebola                                        |                1642
-                 2017 | cevada                                        |                1565
-                 2017 | canola                                        |                 710
-                 2017 | aveia                                         |                 484
-                 2017 | maçã                                          |                 399
-                 2017 | ameixa                                        |                 242
-                 2017 | café                                          |                 238
-                 2017 | uva                                           |                 227
-                 2017 | pêssego                                       |                 184
-                 2017 | tomate                                        |                 171
-                 2017 | mandioca (aipim, macaxeira)                   |                 150
-                 2017 | arroz                                         |                 106
-                 2017 | laranja                                       |                  85
-                 2017 | melancia                                      |                  70
-                 2017 | beterraba                                     |                  63
-                 2017 | abóbora-moranga                               |                  57
-                 2017 | mandioquinha (batata: baroa, salsa, aipo)     |                  50
-                 2017 | caju                                          |                  47
-                 2017 | nectarina                                     |                  37
-                 2017 | brócolos (brócolis)                           |                  27
-                 2017 | caqui                                         |                  26
-                 2017 | banana                                        |                  24
-                 2017 | couve-flor                                    |                  21
-                 2017 | alho                                          |                  20
-                 2017 | morango                                       |                  19
-                 2017 | batata-inglesa                                |                  16
-                 2017 | pera                                          |                  10
-                 2017 | alface                                        |                   9
-                 2017 | cenoura                                       |                   9
-                 2017 | repolho                                       |                   8
-                 2017 | figo                                          |                   7
-                 2017 | melão                                         |                   7
-                 2017 | pepino                                        |                   7
-                 2017 | tangerina                                     |                   6
-                 2017 | abacaxi                                       |                   5
-                 2017 | flores                                        |                   5
-                 2017 | painço                                        |                   5
-                 2017 | cana-de-açucar                                |                   4
-                 2017 | centeio                                       |                   4
-                 2017 | pimentão                                      |                   4
-                 2017 | abobrinha                                     |                   3
-                 2017 | goiaba                                        |                   3
-                 2017 | linho                                         |                   3
-                 2017 | manga                                         |                   3
-                 2017 | maracujá                                      |                   3
-                 2017 | pimenta-do-reino                              |                   3
-                 2017 | quiuí (kiwi)                                  |                   3
-                 2017 | sorgo                                         |                   3
-                 2017 | acerola                                       |                   2
-                 2017 | alfafa                                        |                   2
-                 2017 | couve                                         |                   2
-                 2017 | espinafre                                     |                   2
-                 2017 | agrião                                        |                   1
-                 2017 | berinjela                                     |                   1
-                 2017 | bucha vegetal                                 |                   1
-                 2017 | erva cidreira (melissa)                       |                   1
-                 2017 | jiló                                          |                   1
-                 2017 | mamão                                         |                   1
-                 2017 | noz                                           |                   1
-                 2017 | triticale                                     |                   1
-                 2017 | urucum                                        |                   1
-                 2018 | trigo                                         |               12954
-                 2018 | milho                                         |               12764
-                 2018 | soja                                          |               10339
-                 2018 | feijão                                        |                2042
-                 2018 | cebola                                        |                1470
-                 2018 | cevada                                        |                 473
-                 2018 | aveia                                         |                 385
-                 2018 | uva                                           |                 355
-                 2018 | maçã                                          |                 345
-                 2018 | pêssego                                       |                 307
-                 2018 | ameixa                                        |                 257
-                 2018 | canola                                        |                 187
-                 2018 | café                                          |                 157
-                 2018 | tomate                                        |                 156
-                 2018 | laranja                                       |                 145
-                 2018 | mandioca (aipim, macaxeira)                   |                 139
-                 2018 | beterraba                                     |                 119
-                 2018 | arroz                                         |                 106
-                 2018 | alho                                          |                  61
-                 2018 | banana                                        |                  57
-                 2018 | abóbora-moranga                               |                  48
-                 2018 | melancia                                      |                  44
-                 2018 | caqui                                         |                  40
-                 2018 | brócolos (brócolis)                           |                  33
-                 2018 | mandioquinha (batata: baroa, salsa, aipo)     |                  30
-                 2018 | nectarina                                     |                  30
-                 2018 | batata-inglesa                                |                  14
-                 2018 | cenoura                                       |                  14
-                 2018 | morango                                       |                  14
-                 2018 | couve-flor                                    |                  13
-                 2018 | tangerina                                     |                  11
-                 2018 | pepino                                        |                  10
-                 2018 | maracujá                                      |                   9
-                 2018 | pera                                          |                   9
-                 2018 | repolho                                       |                   9
-                 2018 | pimentão                                      |                   8
-                 2018 | alface                                        |                   7
-                 2018 | melão                                         |                   7
-                 2018 | caju                                          |                   6
-                 2018 | painço                                        |                   6
-                 2018 | chuchu                                        |                   4
-                 2018 | abacaxi                                       |                   3
-                 2018 | linho                                         |                   3
-                 2018 | abobrinha                                     |                   2
-                 2018 | centeio                                       |                   2
-                 2018 | figo                                          |                   2
-                 2018 | gergelim                                      |                   2
-                 2018 | goiaba                                        |                   2
-                 2018 | mamão                                         |                   2
-                 2018 | acerola                                       |                   1
-                 2018 | amendoim                                      |                   1
-                 2018 | batata-doce                                   |                   1
-                 2018 | cana-de-açucar                                |                   1
-                 2018 | cogumelo                                      |                   1
-                 2018 | erva cidreira (melissa)                       |                   1
-                 2018 | flores                                        |                   1
-                 2018 | inhame                                        |                   1
-                 2018 | pimenta                                       |                   1
-                 2018 | pimenta-do-reino                              |                   1
-                 2018 | sorgo                                         |                   1
-                 2018 | triticale                                     |                   1
-                 2018 | urucum                                        |                   1
-                 2018 | vagem                                         |                   1
-                 2019 | soja                                          |               22939
-                 2019 | milho                                         |               18847
-                 2019 | trigo                                         |               10859
-                 2019 | feijão                                        |                2570
-                 2019 | cebola                                        |                1377
-                 2019 | aveia                                         |                 533
-                 2019 | maçã                                          |                 490
-                 2019 | uva                                           |                 441
-                 2019 | ameixa                                        |                 408
-                 2019 | pêssego                                       |                 355
-                 2019 | beterraba                                     |                 311
-                 2019 | cevada                                        |                 276
-                 2019 | tomate                                        |                 255
-                 2019 | café                                          |                 251
-                 2019 | laranja                                       |                 249
-                 2019 | canola                                        |                 242
-                 2019 | banana                                        |                 185
-                 2019 | abóbora-moranga                               |                 163
-                 2019 | mandioca (aipim, macaxeira)                   |                 145
-                 2019 | mandioquinha (batata: baroa, salsa, aipo)     |                  98
-                 2019 | melancia                                      |                  91
-                 2019 | arroz                                         |                  87
-                 2019 | brócolos (brócolis)                           |                  85
-                 2019 | caqui                                         |                  62
-                 2019 | tangerina                                     |                  53
-                 2019 | nectarina                                     |                  49
-                 2019 | alho                                          |                  44
-                 2019 | cenoura                                       |                  19
-                 2019 | morango                                       |                  19
-                 2019 | pera                                          |                  19
-                 2019 | maracujá                                      |                  18
-                 2019 | couve-flor                                    |                  17
-                 2019 | pepino                                        |                  16
-                 2019 | repolho                                       |                  16
-                 2019 | abacaxi                                       |                  15
-                 2019 | batata-inglesa                                |                  14
-                 2019 | sorgo                                         |                  14
-                 2019 | figo                                          |                  12
-                 2019 | goiaba                                        |                  11
-                 2019 | melão                                         |                  11
-                 2019 | pimentão                                      |                  11
-                 2019 | alface                                        |                   8
-                 2019 | cana-de-açucar                                |                   6
-                 2019 | quiuí (kiwi)                                  |                   6
-                 2019 | batata-doce                                   |                   5
-                 2019 | chuchu                                        |                   5
-                 2019 | noz                                           |                   5
-                 2019 | pimenta-do-reino                              |                   5
-                 2019 | alfafa                                        |                   4
-                 2019 | abacate                                       |                   3
-                 2019 | limão                                         |                   3
-                 2019 | abobrinha                                     |                   2
-                 2019 | crisântemo                                    |                   2
-                 2019 | erva-mate                                     |                   2
-                 2019 | flores                                        |                   2
-                 2019 | linho                                         |                   2
-                 2019 | mamão                                         |                   2
-                 2019 | manga                                         |                   2
-                 2019 | pastagem                                      |                   2
-                 2019 | pupunha                                       |                   2
-                 2019 | acerola                                       |                   1
-                 2019 | cogumelo                                      |                   1
-                 2019 | girassol                                      |                   1
-                 2019 | hortaliças                                    |                   1
-                 2019 | inhame                                        |                   1
-                 2019 | jiló                                          |                   1
-                 2019 | painço                                        |                   1
-                 2019 | pimenta                                       |                   1
-                 2019 | plantas ornamentais                           |                   1
-                 2019 | porongo (cuia,cabaça)                         |                   1
-                 2019 | quiabo                                        |                   1
-                 2019 | triticale                                     |                   1
-                 2019 | urucum                                        |                   1
-                 2020 | milho                                         |               30856
-                 2020 | trigo                                         |               16423
-                 2020 | feijão                                        |                2924
-                 2020 | cebola                                        |                2875
-                 2020 | soja                                          |                1629
-                 2020 | aveia                                         |                 803
-                 2020 | pêssego                                       |                 520
-                 2020 | uva                                           |                 507
-                 2020 | laranja                                       |                 463
-                 2020 | maçã                                          |                 444
-                 2020 | canola                                        |                 429
-                 2020 | ameixa                                        |                 394
-                 2020 | tomate                                        |                 322
-                 2020 | beterraba                                     |                 286
-                 2020 | abóbora-moranga                               |                 208
-                 2020 | cevada                                        |                 201
-                 2020 | café                                          |                 199
-                 2020 | melancia                                      |                 148
-                 2020 | brócolos (brócolis)                           |                 141
-                 2020 | mandioca (aipim, macaxeira)                   |                 117
-                 2020 | banana                                        |                 112
-                 2020 | mandioquinha (batata: baroa, salsa, aipo)     |                  90
-                 2020 | nectarina                                     |                  68
-                 2020 | arroz                                         |                  50
-                 2020 | alho                                          |                  46
-                 2020 | caqui                                         |                  41
-                 2020 | sorgo                                         |                  41
-                 2020 | tangerina                                     |                  39
-                 2020 | batata-inglesa                                |                  32
-                 2020 | pimentão                                      |                  32
-                 2020 | morango                                       |                  29
-                 2020 | repolho                                       |                  28
-                 2020 | couve-flor                                    |                  27
-                 2020 | maracujá                                      |                  24
-                 2020 | melão                                         |                  23
-                 2020 | abacaxi                                       |                  22
-                 2020 | cenoura                                       |                  17
-                 2020 | figo                                          |                  14
-                 2020 | pepino                                        |                  14
-                 2020 | pera                                          |                  14
-                 2020 | goiaba                                        |                  13
-                 2020 | cana-de-açucar                                |                  12
-                 2020 | alface                                        |                  10
-                 2020 | painço                                        |                   9
-                 2020 | triticale                                     |                   9
-                 2020 | limão                                         |                   8
-                 2020 | alho poró                                     |                   5
-                 2020 | abacate                                       |                   4
-                 2020 | urucum                                        |                   4
-                 2020 | amora                                         |                   3
-                 2020 | batata-doce                                   |                   3
-                 2020 | cogumelo                                      |                   3
-                 2020 | noz                                           |                   3
-                 2020 | linho                                         |                   2
-                 2020 | mamão                                         |                   2
-                 2020 | pimenta-do-reino                              |                   2
-                 2020 | trigo sarraceno/mourisco                      |                   2
-                 2020 | abobrinha                                     |                   1
-                 2020 | alfafa                                        |                   1
-                 2020 | amendoim                                      |                   1
-                 2020 | atemoia                                       |                   1
-                 2020 | berinjela                                     |                   1
-                 2020 | caju                                          |                   1
-                 2020 | centeio                                       |                   1
-                 2020 | couve                                         |                   1
-                 2020 | erva-mate                                     |                   1
-                 2020 | flores                                        |                   1
-                 2020 | framboesa                                     |                   1
-                 2020 | gengibre                                      |                   1
-                 2020 | girassol                                      |                   1
-                 2020 | inhame                                        |                   1
-                 2020 | manga                                         |                   1
-                 2020 | pastagem                                      |                   1
-                 2020 | plantas ornamentais                           |                   1
-                 2020 | quiuí (kiwi)                                  |                   1
-                 2020 | salsa                                         |                   1
-                 2021 | soja                                          |               56378
-                 2021 | milho                                         |               46142
-                 2021 | trigo                                         |               12203
-                 2021 | feijão                                        |                4093
-                 2021 | cebola                                        |                2645
-                 2021 | uva                                           |                 817
-                 2021 | laranja                                       |                 569
-                 2021 | maçã                                          |                 558
-                 2021 | aveia                                         |                 432
-                 2021 | beterraba                                     |                 419
-                 2021 | pêssego                                       |                 355
-                 2021 | tomate                                        |                 351
-                 2021 | café                                          |                 335
-                 2021 | canola                                        |                 274
-                 2021 | ameixa                                        |                 205
-                 2021 | abóbora-moranga                               |                 169
-                 2021 | melancia                                      |                 166
-                 2021 | cevada                                        |                 134
-                 2021 | brócolos (brócolis)                           |                 118
-                 2021 | mandioquinha (batata: baroa, salsa, aipo)     |                 111
-                 2021 | arroz                                         |                 103
-                 2021 | caqui                                         |                  81
-                 2021 | banana                                        |                  68
-                 2021 | mandioca (aipim, macaxeira)                   |                  66
-                 2021 | morango                                       |                  51
-                 2021 | tangerina                                     |                  49
-                 2021 | nectarina                                     |                  48
-                 2021 | couve-flor                                    |                  43
-                 2021 | pimentão                                      |                  38
-                 2021 | maracujá                                      |                  36
-                 2021 | repolho                                       |                  35
-                 2021 | sorgo                                         |                  35
-                 2021 | alho                                          |                  33
-                 2021 | batata-inglesa                                |                  29
-                 2021 | melão                                         |                  20
-                 2021 | pepino                                        |                  20
-                 2021 | goiaba                                        |                  18
-                 2021 | figo                                          |                  17
-                 2021 | limão                                         |                  15
-                 2021 | cana-de-açucar                                |                  13
-                 2021 | cenoura                                       |                  13
-                 2021 | pera                                          |                  12
-                 2021 | batata-doce                                   |                  11
-                 2021 | caju                                          |                  11
-                 2021 | alface                                        |                  10
-                 2021 | noz                                           |                  10
-                 2021 | erva-mate                                     |                   9
-                 2021 | abacaxi                                       |                   8
-                 2021 | alho poró                                     |                   8
-                 2021 | alfafa                                        |                   7
-                 2021 | triticale                                     |                   7
-                 2021 | milho silagem                                 |                   6
-                 2021 | inhame                                        |                   5
-                 2021 | porongo (cuia,cabaça)                         |                   5
-                 2021 | manga                                         |                   4
-                 2021 | quiuí (kiwi)                                  |                   4
-                 2021 | abobrinha                                     |                   3
-                 2021 | couve                                         |                   3
-                 2021 | abacate                                       |                   2
-                 2021 | chuchu                                        |                   2
-                 2021 | framboesa                                     |                   2
-                 2021 | acerola                                       |                   1
-                 2021 | atemoia                                       |                   1
-                 2021 | capim                                         |                   1
-                 2021 | cará                                          |                   1
-                 2021 | gengibre                                      |                   1
-                 2021 | girassol                                      |                   1
-                 2021 | lichia (lechia)                               |                   1
-                 2021 | linho                                         |                   1
-                 2021 | mamão                                         |                   1
-                 2021 | milheto                                       |                   1
-                 2021 | pastagem                                      |                   1
-                 2021 | pimenta                                       |                   1
-                 2021 | pimenta-do-reino                              |                   1
-                 2021 | pitaya                                        |                   1
-                 2021 | plantas ornamentais                           |                   1
-                 2021 | pupunha                                       |                   1
-                 2022 | milho                                         |               52621
-                 2022 | soja                                          |               51428
-                 2022 | trigo                                         |               14841
-                 2022 | feijão                                        |                4894
-                 2022 | cebola                                        |                1546
-                 2022 | uva                                           |                1002
-                 2022 | laranja                                       |                 760
-                 2022 | beterraba                                     |                 684
-                 2022 | maçã                                          |                 640
-                 2022 | pêssego                                       |                 584
-                 2022 | ameixa                                        |                 513
-                 2022 | café                                          |                 462
-                 2022 | aveia                                         |                 411
-                 2022 | tomate                                        |                 401
-                 2022 | milho silagem                                 |                 386
-                 2022 | abóbora-moranga                               |                 342
-                 2022 | melancia                                      |                 252
-                 2022 | canola                                        |                 238
-                 2022 | mandioquinha (batata: baroa, salsa, aipo)     |                 201
-                 2022 | sorgo                                         |                 134
-                 2022 | banana                                        |                 120
-                 2022 | brócolos (brócolis)                           |                 118
-                 2022 | caqui                                         |                 102
-                 2022 | arroz                                         |                  93
-                 2022 | mandioca (aipim, macaxeira)                   |                  92
-                 2022 | tangerina                                     |                  86
-                 2022 | cevada                                        |                  82
-                 2022 | nectarina                                     |                  76
-                 2022 | couve-flor                                    |                  65
-                 2022 | morango                                       |                  65
-                 2022 | repolho                                       |                  64
-                 2022 | porongo (cuia,cabaça)                         |                  62
-                 2022 | pimentão                                      |                  45
-                 2022 | pepino                                        |                  34
-                 2022 | triticale                                     |                  33
-                 2022 | melão                                         |                  31
-                 2022 | maracujá                                      |                  25
-                 2022 | alho                                          |                  24
-                 2022 | alfafa                                        |                  23
-                 2022 | cenoura                                       |                  21
-                 2022 | pera                                          |                  21
-                 2022 | cana-de-açucar                                |                  15
-                 2022 | erva-mate                                     |                  15
-                 2022 | figo                                          |                  15
-                 2022 | alface                                        |                  14
-                 2022 | noz                                           |                  14
-                 2022 | alho poró                                     |                  13
-                 2022 | pimenta-do-reino                              |                  13
-                 2022 | amora                                         |                  12
-                 2022 | limão                                         |                   8
-                 2022 | mamão                                         |                   7
-                 2022 | abobrinha                                     |                   6
-                 2022 | goiaba                                        |                   6
-                 2022 | quiuí (kiwi)                                  |                   6
-                 2022 | batata-doce                                   |                   5
-                 2022 | milheto                                       |                   4
-                 2022 | batata-inglesa                                |                   3
-                 2022 | cogumelo                                      |                   3
-                 2022 | abacaxi                                       |                   2
-                 2022 | inhame                                        |                   2
-                 2022 | plantas ornamentais                           |                   2
-                 2022 | vagem                                         |                   2
-                 2022 | amendoim                                      |                   1
-                 2022 | cacau                                         |                   1
-                 2022 | cebolinha verde                               |                   1
-                 2022 | centeio                                       |                   1
-                 2022 | chuchu                                        |                   1
-                 2022 | coentro                                       |                   1
-                 2022 | couve                                         |                   1
-                 2022 | gengibre                                      |                   1
-                 2022 | graviola                                      |                   1
-                 2022 | hortaliças                                    |                   1
-                 2022 | palmeira                                      |                   1
-                 2022 | pupunha                                       |                   1
-                 2022 | quiabo                                        |                   1
-                 2022 | salsa                                         |                   1
-                 2023 | trigo                                         |               46077
-                 2023 | milho                                         |               31887
-                 2023 | soja                                          |               16888
-                 2023 | cebola                                        |                3600
-                 2023 | feijão                                        |                3458
-                 2023 | uva                                           |                1279
-                 2023 | aveia                                         |                 980
-                 2023 | cevada                                        |                 729
-                 2023 | maçã                                          |                 559
-                 2023 | pêssego                                       |                 556
-                 2023 | tomate                                        |                 553
-                 2023 | canola                                        |                 542
-                 2023 | abóbora-moranga                               |                 460
-                 2023 | café                                          |                 429
-                 2023 | ameixa                                        |                 376
-                 2023 | milho silagem                                 |                 347
-                 2023 | beterraba                                     |                 343
-                 2023 | melancia                                      |                 194
-                 2023 | arroz                                         |                 182
-                 2023 | sorgo                                         |                 144
-                 2023 | brócolos (brócolis)                           |                 121
-                 2023 | laranja                                       |                 120
-                 2023 | alho                                          |                 117
-                 2023 | caqui                                         |                 114
-                 2023 | triticale                                     |                 110
-                 2023 | mandioquinha (batata: baroa, salsa, aipo)     |                  99
-                 2023 | porongo (cuia,cabaça)                         |                  90
-                 2023 | banana                                        |                  80
-                 2023 | morango                                       |                  78
-                 2023 | nectarina                                     |                  71
-                 2023 | pimentão                                      |                  56
-                 2023 | couve-flor                                    |                  53
-                 2023 | repolho                                       |                  44
-                 2023 | pepino                                        |                  39
-                 2023 | cenoura                                       |                  28
-                 2023 | mandioca (aipim, macaxeira)                   |                  22
-                 2023 | melão                                         |                  21
-                 2023 | noz                                           |                  18
-                 2023 | pimenta-do-reino                              |                  18
-                 2023 | limão                                         |                  17
-                 2023 | alface                                        |                  16
-                 2023 | batata-inglesa                                |                  16
-                 2023 | pera                                          |                  16
-                 2023 | milheto                                       |                  14
-                 2023 | alho poró                                     |                  13
-                 2023 | amora                                         |                  13
-                 2023 | maracujá                                      |                  13
-                 2023 | tangerina                                     |                   9
-                 2023 | quiuí (kiwi)                                  |                   8
-                 2023 | abobrinha                                     |                   7
-                 2023 | amendoim                                      |                   7
-                 2023 | alfafa                                        |                   6
-                 2023 | figo                                          |                   6
-                 2023 | batata-doce                                   |                   4
-                 2023 | mamão                                         |                   4
-                 2023 | abacate                                       |                   3
-                 2023 | chuchu                                        |                   3
-                 2023 | painço                                        |                   3
-                 2023 | pupunha                                       |                   3
-                 2023 | caju                                          |                   2
-                 2023 | couve                                         |                   2
-                 2023 | erva-mate                                     |                   2
-                 2023 | framboesa                                     |                   2
-                 2023 | girassol                                      |                   2
-                 2023 | goiaba                                        |                   2
-                 2023 | pitaya                                        |                   2
-                 2023 | plantas ornamentais                           |                   2
-                 2023 | abacaxi                                       |                   1
-                 2023 | capim                                         |                   1
-                 2023 | cogumelo                                      |                   1
-                 2023 | ervas medicinais, aromáticas ou condimentares |                   1
-                 2023 | ervilhaca - raliça, vicia sativa              |                   1
-                 2023 | linho                                         |                   1
-                 2023 | manga                                         |                   1
-                 2023 | mirtilo                                       |                   1
-                 2023 | salsa                                         |                   1
-                 2024 | feijão                                        |                 587
-                 2024 | milho                                         |                 548
-                 2024 | soja                                          |                 146
-                 2024 | tomate                                        |                  38
-                 2024 | beterraba                                     |                  31
-                 2024 | abóbora-moranga                               |                  28
-                 2024 | café                                          |                  18
-                 2024 | pepino                                        |                  10
-                 2024 | milho silagem                                 |                   9
-                 2024 | brócolos (brócolis)                           |                   5
-                 2024 | pimentão                                      |                   4
-                 2024 | caqui                                         |                   2
-                 2024 | cenoura                                       |                   2
-                 2024 | couve-flor                                    |                   2
-                 2024 | repolho                                       |                   2
-                 2024 | uva                                           |                   2
-                 2024 | batata-doce                                   |                   1
-                 2024 | berinjela                                     |                   1
-                 2024 | melancia                                      |                   1
-                 2024 | sorgo                                         |                   1
+                 ano  |                    produto                    | num_pedidos_proagro | menor_valor_emprestado | maior_valor_emprestado | media_valor_emprestado | menor_area | maior_area |       media_area
+                ------+-----------------------------------------------+---------------------+------------------------+------------------------+------------------------+------------+------------+------------------------
+                 2013 | sorgo                                         |                   4 |               20000.00 |              151258.20 |     62567.300000000000 |      35.00 |     240.00 |    96.2500000000000000
+                 2013 | amendoim                                      |                   2 |               74134.52 |              300000.00 |    187067.260000000000 |      24.00 |      91.00 |    57.5000000000000000
+                 2013 | algodão                                       |                   1 |              100000.00 |              100000.00 |    100000.000000000000 |      55.00 |      55.00 |    55.0000000000000000
+                 2013 | trigo                                         |                6824 |                1445.00 |              300000.00 |     37778.650781066823 |       1.70 |     392.00 |    37.2841984173505275
+                 2013 | aveia                                         |                  13 |                1982.88 |              102891.34 |     28646.108461538462 |       2.70 |     125.00 |    37.0000000000000000
+                 2013 | girassol                                      |                   3 |               12596.18 |               78786.43 |     36477.413333333333 |      13.00 |      72.00 |    34.6333333333333333
+                 2013 | canola                                        |                  92 |                3065.08 |              189288.00 |     28773.830326086957 |       4.00 |     220.00 |    32.7082608695652174
+                 2013 | cacau                                         |                   1 |               35595.56 |               35595.56 |     35595.560000000000 |      28.60 |      28.60 |    28.6000000000000000
+                 2013 | cana-de-açucar                                |                   9 |               16113.68 |              152002.62 |     59680.486666666667 |       8.00 |      56.00 |    23.8055555555555556
+                 2013 | arroz                                         |                  94 |                3200.00 |              175001.97 |     40832.886063829787 |       2.00 |     208.00 |    21.0656382978723404
+                 2013 | soja                                          |                8341 |                 850.00 |              300000.00 |     22765.472341445870 |       1.00 |    1000.00 |    20.3837585421412301
+                 2013 | cevada                                        |                  15 |                2490.00 |               63105.11 |     17998.629333333333 |       3.00 |      62.00 |    18.9666666666666667
+                 2013 | milho                                         |               12792 |                1000.00 |              300000.00 |     23248.158010475297 |       0.80 |     309.00 |    17.9366197623514697
+                 2013 | mandioca (aipim, macaxeira)                   |                 335 |                1845.96 |              300000.00 |     47686.844447761194 |       1.00 |     124.09 |    16.6392835820895522
+                 2013 | feijão                                        |                1313 |                 418.23 |              300000.00 |     15721.824691546078 |       0.30 |     200.00 |    10.5115689261233816
+                 2013 | manga                                         |                   2 |               31500.00 |               80000.00 |     55750.000000000000 |       6.00 |      15.00 |    10.5000000000000000
+                 2013 | tangerina                                     |                   3 |                7920.00 |               12600.00 | 10573.3333333333333333 |       6.00 |       9.00 |     7.6666666666666667
+                 2013 | banana                                        |                  43 |                5940.83 |              162277.71 |     33801.447209302326 |       1.50 |      26.00 |     6.1334883720930233
+                  ... | ...                                           |                 ... |                    ... |                    ... |                    ... |        ... |        ... |
+                 2024 | soja                                          |                 146 |                5000.00 |              321723.73 |     56505.768904109589 |       1.76 |      87.69 |    12.9967808219178082
+                 2024 | milho                                         |                 548 |                3120.00 |              331679.97 |     35064.199343065693 |       0.73 |      84.70 |     7.8008211678832117
+                 2024 | milho silagem                                 |                   9 |                9243.00 |               55788.11 |     29505.624444444444 |       1.58 |       8.50 |     4.9377777777777778
+                 2024 | melancia                                      |                   1 |               36501.00 |               36501.00 |     36501.000000000000 |       4.60 |       4.60 |     4.6000000000000000
+                 2024 | beterraba                                     |                  31 |               19000.00 |              248400.00 |     72732.137741935484 |       0.84 |      10.83 |     3.5812903225806452
+                 2024 | café                                          |                  18 |               33782.91 |              180156.79 |     86608.560000000000 |       1.05 |       8.92 |     3.3883333333333333
+                 2024 | abóbora-moranga                               |                  28 |                6000.00 |               85800.00 |     34254.451785714286 |       1.00 |       8.00 |     3.3371428571428571
+                 2024 | sorgo                                         |                   1 |               17580.00 |               17580.00 | 17580.0000000000000000 |       2.99 |       2.99 |     2.9900000000000000
+                 2024 | couve-flor                                    |                   2 |               18000.00 |               78400.00 |     48200.000000000000 |       1.50 |       3.91 |     2.7050000000000000
+                 2024 | caqui                                         |                   2 |               43048.23 |               55000.00 |     49024.115000000000 |       2.60 |       2.74 |     2.6700000000000000
+                 2024 | repolho                                       |                   2 |               23867.35 |               33488.06 |     28677.705000000000 |       1.00 |       3.60 |     2.3000000000000000
+                 2024 | cenoura                                       |                   2 |               68000.00 |               70525.00 |     69262.500000000000 |       2.00 |       2.18 |     2.0900000000000000
+                 2024 | brócolos (brócolis)                           |                   5 |               16000.00 |               32053.88 |     24039.116000000000 |       1.31 |       2.99 |     1.9600000000000000
+                 2024 | tomate                                        |                  38 |               10194.87 |              247500.00 |     91838.797368421053 |       0.11 |       4.49 |     1.5828947368421053
+                 2024 | batata-doce                                   |                   1 |               15000.00 |               15000.00 | 15000.0000000000000000 |       1.50 |       1.50 | 1.50000000000000000000
+                 2024 | uva                                           |                   2 |                9819.52 |               21105.00 |     15462.260000000000 |       0.87 |       2.06 | 1.46500000000000000000
+                 2024 | pimentão                                      |                   4 |               31383.33 |               71500.00 |     47432.587500000000 |       0.19 |       1.30 | 0.89500000000000000000
+                 2024 | berinjela                                     |                   1 |               28428.47 |               28428.47 |     28428.470000000000 |       0.60 |       0.60 | 0.60000000000000000000
+                 2024 | pepino                                        |                  10 |                6218.09 |              110000.00 |     48276.933000000000 |       0.15 |       1.00 | 0.49100000000000000000
                 (763 rows)
 
 
-
-        .. tab:: Python + SQL
-
-
 -----
 
 
-**Consulta 2.** Qual a localização das glebas associadas a pedidos de Proagro?
+**Consulta 3.** Qual a localização das glebas associadas a pedidos de Proagro?
 
-
------
-
-
-**Consulta 3.** Qual o tamanho médio das áreas associadas a pedidos de Proagro?
 
 

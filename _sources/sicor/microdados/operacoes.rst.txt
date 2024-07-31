@@ -135,7 +135,7 @@ Os arquivos listados acima foram carregados na tabela ``sicor_operacao_basica_es
 
 .. figure:: ../../img/sicor/microdados/tabelas/er-sicor-operacao-basica-estado.png
     :alt: Diagrama Entidade-Relacionamento das operações contratadas com recursos públicos ou privados (simplificado)
-    :width: 80%
+    :width: 100%
     :figclass: align-center
     :name: fig:sicor:microdados:er-sicor-operacao-basica-estado
 

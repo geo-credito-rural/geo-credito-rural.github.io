@@ -45,11 +45,6 @@ Para analisar esses impedimentos a partir das glebas do Sicor, os seguintes dado
     ./florestas-publicas
     ./cadastro-ambiental-rural
     ./sigef
-    ./sumario-tabelas-vetoriais
-    ./malha-fundiaria
     ./trabalho-analogo-escravidao
-
-
-
-
- 
+    ./malha-fundiaria
+    ./sumario-tabelas-vetoriais

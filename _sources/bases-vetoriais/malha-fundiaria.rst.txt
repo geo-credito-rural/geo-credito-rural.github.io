@@ -12,10 +12,11 @@ Malha Fundiária é um modelo de representação do território em categorias fu
 
 
 A Malha Fundiária usada nesse curso foi gerada pelo `Grupo de Políticas Públicas da Esalq-USP <https://www.gppesalq.agr.br/>`__ em parceria com o `Imaflora <https://www.imaflora.org/>`__ e o `Cite - Centro de Inteligência para Governança de Terras e Desenvolvimento Sustentável <https://www.citeinstituto.org/>`__. Esse dado está disponível em `Malha Fundiária <https://www.cartasdaterra.com.br/>`__. 
+Este produto se dedica a identificar e categorizar a ocupação do território brasileiro com base no aspecto fundiário.
 
 
 Essa malha é composta de 7 categorias fundiárias, sendo que algumas são divididas em subgrupos visando detalhamento do seu status jurídico-administrativo. 
-A tabela abaixo apresenta as categorias fundiárias e a descrição de cada uma delas.
+A :numref:`Tabela %s <tbl:bases-vetoriais:malhafundiaria>` apresenta as categorias fundiárias e a descrição de cada uma delas.
 
 
 .. table:: Categorias Fundiárias. |br| **Fonte:** :cite:`coutinho:2024`.
@@ -56,17 +57,72 @@ A tabela abaixo apresenta as categorias fundiárias e a descrição de cada uma 
     | Públicas     |                 | São eles: Imóvel certificado público do SNCI/INCRA e Imóvel certificado público   |
     |              |                 | do SIGEF/INCRA, descritos na Seção                                                |
     |              |                 | :ref:`Sistema de Gestão Fundiária <sec_bases_vetoriais_sigef>`, e Glebas públicas |
-    |              |                 | do Cadastro Nacional de Florestas Públicas (CNFP)                                 |
-    |              |                 |                                                                                   |
+    |              |                 | do Cadastro Nacional de Florestas Públicas (CNFP) descrito na Seção               |
+    |              |                 | :ref:`Florestas Públicas <sec_bases_vetoriais_florestas_publicas>`. São consideras|
+    |              |                 | Glebas Públicas as classes GLEBAEST, GLEBAEST/UMF, GLEBAFED e GLEBAFED/OUTROS do  |
+    |              |                 | CNFP.                                                                             |
     +--------------+-----------------+-----------------------------------------------------------------------------------+
     | Áreas        |                 | Áreas estratégicas de defesa que são bens da União sob administração das Forças   |
-    | Militares    |                 | Armadas, registradas como Uso Militar no Cadastro Nacional de Florestas           |
-    |              |                 | Públicas (CNFP)                                                                   |
+    | Militares    |                 | Armadas, registradas como USO MILITAR no Cadastro Nacional de Florestas           |
+    |              |                 | Públicas (CNFP), descrito na Seção                                                |
+    |              |                 | :ref:`Florestas Públicas <sec_bases_vetoriais_florestas_publicas>`.               |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Territórios  |                 | Terras ocupadas por remanescentes das comunidades dos quilombos, utilizadas para  |
+    | Quilombolas  |                 | a garantia de sua reprodução física, social, econômica e cultural. Essas terras   |
+    |              |                 | são registradas no INCRA, como descrito na Seção                                  |
+    |              |                 | :ref:`Áreas Quilombolas <sec_bases_vetoriais_areas_quilombolas>`.                 |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Assentamentos|                 | Áreas de assentamento da reforma agrária cadastrados pelo INCRA, como             |
+    |              |                 | descrito na Seção :ref:`Assentamentos <sec_bases_vetoriais_assentamentos>`.       |
     |              |                 |                                                                                   |
+    |              |                 |                                                                                   |
+    +--------------+-----------------+-----------------------------------------------------------------------------------+
+    | Imóvel Rural |                 | Imóvel privado com registro fundiário cadastrado nos sistemas SIGEF/INCRA         |
+    | Privado      |                 | e SNCI/INCRA, como descrito na Seção                                              |
+    |              |                 | :ref:`Sistema de Gestão Fundiária <sec_bases_vetoriais_sigef>`. Nessa malha,      |
+    |              |                 | dados auto declaratórios, como o Cadastro Ambiental Rural (CAR), não              |
+    |              |                 | são considerados como registros funidários.                                       |
     +--------------+-----------------+-----------------------------------------------------------------------------------+
 
 
-As áreas unidades de conservação.
+Além das 7 categorias fundiárias descritas na :numref:`Tabela %s <tbl:bases-vetoriais:malhafundiaria>`, a malha fundiária possui as seguintes classes:
+
+.. rst-class:: open
+
+a) **Áreas Sem Registro Fundiário Georreferenciado (ASRFG)**: porções do território brasileiro que não possuem registro fundiário georreferenciado nas bases consultadas. Essas áreas podem reprsentar duas situações: Terras Devolutas ou Imóveis rurais privados ainda não cadastrados nos sistemas SNCI/INCRA e SIGEF/INCRA.
+b) **Áreas urbanas**: áreas urbanas definidas pelo `IBGE <https://www.ibge.gov.br/geociencias/cartas-e-mapas/redes-geograficas/15789-areas-urbanizadas.html?=&t=downloads>`__. 
+c) **Massas de água**: massas de água definidas pela `ANA <https://dadosabertos.ana.gov.br/datasets/4c606c38ee534b84bffe70ca6c8552c6_0/about>`__. 
+d) **Zonas de sobreposição** entre as categorias e classes descritas.
+
+
+Os dados do Cadastro Ambiental Rural (CAR), descrito na Seção  :ref:`Cadastro Ambiental Rural <sec_bases_vetoriais_car>`, foram utilizados como um dado auxiliar. 
+A presença de um polígono do CAR em uma determinada área não garante que exista um registro daquela propriedade nas bases de dados do INCRA. No entanto, indica que pode haver a ocupação do território. Por esse
+motivo, nesta malha os dados do CAR não são inseridos na categoria fundiária de Imóveis Rurais Privados, e sim considerados como uma camada declaratória separada, que
+permite interpretações sobre a ocupação do território em diferentes contextos. Sendo assim, todas as categorias fundiárias reportadas neste produto, inclusive as ASRFG, terão as classes: 
+com presença de CAR e sem presença de CAR :cite:`coutinho:2024`. 
+
+
+A Malha Fundiária está disponível em formato matricial com 30 metros de resolução espacial, em arquivo no formato GeoTiff, para o ano de 2024 e
+no sistema de coordenadas WGS84 (EPSG 4326). É possível baixar esse dado em `Malha Fundiária <https://www.cartasdaterra.com.br/>`__. 
+A figura a seguir apresenta esse dado matricial.
+
+
+.. figure:: ../img/bases-vetoriais/malha-fundiaria.png 
+    :alt: Malha Fundiária Brasileira 
+    :width: 80% 
+    :figclass: align-center 
+    :name: fig:bases-vetoriais:malha 
+
+    Malha Fundiária Brasileira
+    
+
+
+
+
+
+
+
+
 
 
     
