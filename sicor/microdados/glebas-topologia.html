@@ -127,11 +127,11 @@
              
   <section id="verificacao-topologica-das-geometrias-das-glebas">
 <span id="sec-sicor-microdados-glebas-topologia"></span><h1><span class="section-number">3.1.11. </span>Verificação Topológica das Geometrias das Glebas<a class="headerlink" href="#verificacao-topologica-das-geometrias-das-glebas" title="Link permanente para este cabeçalho"></a></h1>
-<p>Para facilitar as análises dessa seção, iremos criar uma tabela denominada <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> a partir da tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas_wkt</span></code>, substituindo a coluna <code class="docutils literal notranslate"><span class="pre">gt_geometria</span></code> do tipo <code class="docutils literal notranslate"><span class="pre">text</span></code> por uma coluna denominada <code class="docutils literal notranslate"><span class="pre">geom</span></code> do tipo <code class="docutils literal notranslate"><span class="pre">geometry</span></code> com as geometrias em 2D e associadas ao SRS EPSG:4674. Além disso, iremos incluir uma coluna com o ano da data de emissão da operação associada à gleba. A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-glebas"><span class="std std-numref">Figura 3.4</span></a> apresenta a estrutura e relacionamento dessa tabela com a tabela de operações contratadas.</p>
+<p>Para facilitar as análises dessa seção, iremos criar uma tabela denominada <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> a partir da tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas_wkt</span></code>, substituindo a coluna <code class="docutils literal notranslate"><span class="pre">gt_geometria</span></code> do tipo <code class="docutils literal notranslate"><span class="pre">text</span></code> por uma coluna denominada <code class="docutils literal notranslate"><span class="pre">geom</span></code> do tipo <code class="docutils literal notranslate"><span class="pre">geometry</span></code> com as geometrias em 2D e associadas ao SRS EPSG:4674. Além disso, iremos incluir uma coluna com o ano da data de emissão da operação associada à gleba. A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-glebas"><span class="std std-numref">Figura 3.10</span></a> apresenta a estrutura e relacionamento dessa tabela com a tabela de operações contratadas.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-er-sicor-glebas">
 <a class="reference internal image-reference" href="../../_images/er-sicor-glebas.png"><img alt="Tabela com coluna geométrica para tratamento das glebas" src="../../_images/er-sicor-glebas.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.4 - </span><span class="caption-text">Tabela com coluna geométrica para tratamento das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-er-sicor-glebas" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.10 - </span><span class="caption-text">Tabela com coluna geométrica para tratamento das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-er-sicor-glebas" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>O comando apresentado no <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas"><span class="std std-numref">Techo de Código 3.13</span></a> mostra como podemos criar essa tabela.</p>
@@ -331,11 +331,11 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 (26 rows)
 </pre></div>
 </div>
-<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042"><span class="std std-numref">Figura 3.5</span></a> destaca o vértice que apresenta o local da auto-intesecção para a gleba com o identificador (<code class="docutils literal notranslate"><span class="pre">gid</span></code>) 39042.</p>
+<p>A <a class="reference internal" href="#fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042"><span class="std std-numref">Figura 3.11</span></a> destaca o vértice que apresenta o local da auto-intesecção para a gleba com o identificador (<code class="docutils literal notranslate"><span class="pre">gid</span></code>) 39042.</p>
 <figure class="align-center align-default" id="fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042">
 <a class="reference internal image-reference" href="../../_images/gleba-invalida-gid-39042.png"><img alt="Gleba com geometria inválida" src="../../_images/gleba-invalida-gid-39042.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 3.5 - </span><span class="caption-text">Gleba com geometria inválida.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 3.11 - </span><span class="caption-text">Gleba com geometria inválida.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>A geometria da gleba mostrada acima possui apenas um anel exterior, como mostrado na consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-num-rings"><span class="std std-numref">Trecho de Código 3.18</span></a>.</p>
@@ -421,7 +421,7 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f84dcd932e0>
+<jinja2.runtime.BlockReference object at 0x7f65f4ca80a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

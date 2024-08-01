@@ -241,22 +241,54 @@
 </div>
 <section id="consultas">
 <h2><span class="section-number">3.1.2.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
-<p><strong>Consulta 1.</strong> Recuperar os empreendimentos de custeio de lavoura de soja.</p>
-<details class="summary-solucao" open>
+<p><strong>Consulta 1.</strong> Quais sãos os tipos de empreendimentos vigentes?</p>
+<details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>Para recuperar esses dados, devem ser usados os campos <cite>finalidade</cite>, <cite>modalidade</cite> e <cite>produto</cite>, como mostrado abaixo:</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">finalidade</span><span class="p">,</span><span class="w"> </span><span class="n">atividade</span><span class="p">,</span><span class="w"> </span><span class="n">modalidade</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">tipos_empreendimento</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">empreendimento</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="w"> </span><span class="k">BETWEEN</span><span class="w"> </span><span class="n">data_inicio</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">data_fim</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">finalidade</span><span class="p">,</span><span class="w"> </span><span class="n">atividade</span><span class="p">,</span><span class="w"> </span><span class="n">modalidade</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><p>A consulta irá utilizar os campos <cite>finalidade</cite>, <cite>atividade</cite> e <cite>modalidade</cite>, como mostrado abaixo:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    finalidade    |  atividade  |                   modalidade                   | tipos_empreendimento
+------------------+-------------+------------------------------------------------+----------------------
+ industrialização | pecuário(a) | beneficiamento ou industrialização             |                    1
+ investimento     | pecuário(a) | máquinas, equipamentos, materiais e utensílios |                    1
+ investimento     | agrícola    | formação de culturas perenes                   |                    2
+ custeio          | agrícola    | lavoura                                        |                    9
+(4 rows)
+</pre></div>
+</div>
+<p>O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: <a class="reference download internal" download="" href="../../_downloads/2c8beb31fc0b35bb0bdaef46f13e323e/tipos-empreendimento.csv"><code class="xref download docutils literal notranslate"><span class="pre">tipos-empreendimento.csv</span></code></a>.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-empreendimentos-tipos-empreendimento">
+<a class="reference internal image-reference" href="../../_images/tipos-empreendimento.png"><img alt="Tipos de empreendimentos existentes" src="../../_images/tipos-empreendimento.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.2 - </span><span class="caption-text">Tipos de empreendimentos existentes.</span><a class="headerlink" href="#fig-sicor-microdados-empreendimentos-tipos-empreendimento" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Recuperar os empreendimentos de custeio de lavoura de soja.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-2-2-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-2" name="2-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><p>Para recuperar esses dados, devem ser usados os campos <cite>finalidade</cite>, <cite>modalidade</cite> e <cite>produto</cite>, como mostrado abaixo:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">empreendimento</span>
 <span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span><span class="p">;</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">empreendimentos</span></code> que fornece um atalho para recuperação dos empreendimentos na forma de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> possui uma operação demominada <code class="docutils literal notranslate"><span class="pre">empreendimentos</span></code> que fornece um atalho para recuperação dos empreendimentos na forma de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
 
 <span class="n">empreendimentos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">empreendimentos</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">,</span> <span class="n">produto</span><span class="o">=</span><span class="s1">&#39;soja&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> também pode ser utilizado para submeter uma consulta SQL através da operação <code class="docutils literal notranslate"><span class="pre">query</span></code> e obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
+</div><div aria-labelledby="tab-2-2-2" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-2" name="2-2" role="tabpanel" tabindex="0"><p>O pacote <cite>sicor</cite> também pode ser utilizado para submeter uma consulta SQL através da operação <code class="docutils literal notranslate"><span class="pre">query</span></code> e obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
 
 <span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
@@ -271,7 +303,7 @@
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-1-1-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-2" name="1-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_empreendimento | data_inicio |  data_fim  | finalidade | atividade | modalidade | produto |           variedade            |            cesta            | zoneamento  | unidade_medida | unidade_medida_previsao |    consorcio    | cedula_mae | cd_tipo_cultura
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-3-3-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-1" name="3-1" role="tab" tabindex="-1">Python</button><button aria-controls="panel-3-3-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-3-3-2" name="3-2" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_empreendimento | data_inicio |  data_fim  | finalidade | atividade | modalidade | produto |           variedade            |            cesta            | zoneamento  | unidade_medida | unidade_medida_previsao |    consorcio    | cedula_mae | cd_tipo_cultura
 -------------------+-------------+------------+------------+-----------+------------+---------+--------------------------------+-----------------------------+-------------+----------------+-------------------------+-----------------+------------+-----------------
  12016720000052    | 1984-01-01  | 2024-06-30 | custeio    | agrícola  | lavoura    | soja    | não se aplica                  | irrigadas                   | não zoneado | hectare        | tonelada                | não consorciado |          0 |               3
  12016720000013    | 2017-02-23  |            | custeio    | agrícola  | lavoura    | soja    | não se aplica                  | safra de verão (1ª safra)   |             | hectare        | tonelada                | não consorciado |          0 |               3
@@ -293,7 +325,8 @@
 (17 rows)
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-1-1-2" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-2" name="1-2" role="tabpanel" tabindex="0"></div></div>
+<p>O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: <a class="reference download internal" download="" href="../../_downloads/db935dc89288897de8b0f20565df130b/empreendimentos-custeio-lavoura-soja.csv"><code class="xref download docutils literal notranslate"><span class="pre">empreendimentos-custeio-lavoura-soja.csv</span></code></a>.</p>
+</div><div aria-labelledby="tab-3-3-1" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-1" name="3-1" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-3-3-2" class="sphinx-tabs-panel" hidden="true" id="panel-3-3-2" name="3-2" role="tabpanel" tabindex="0"></div></div>
 </details></section>
 </section>
 
@@ -312,7 +345,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f84dc8f03a0>
+<jinja2.runtime.BlockReference object at 0x7f65f4ccac40>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

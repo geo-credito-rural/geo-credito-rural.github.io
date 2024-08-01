@@ -109,4 +109,16 @@ Consultas
                 (6 rows)
 
 
+            O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: :download:`ifs-natureza.csv <../../data/sicor/resultados/ifs-natureza.csv>`.
+
+
+            .. figure:: ../../img/sicor/microdados/ifs/ifs-natureza.png
+                :alt: Natureza das instituições financeiras
+                :width: 70%
+                :figclass: align-center
+                :name: fig:sicor:microdados:ifs:ifs-natureza
+
+                Natureza das instituições financeiras.
+
+
         .. tab:: Python + SQL

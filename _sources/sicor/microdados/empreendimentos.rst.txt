@@ -99,11 +99,69 @@ Consultas
 ---------
 
 
-**Consulta 1.** Recuperar os empreendimentos de custeio de lavoura de soja.
+**Consulta 1.** Quais sãos os tipos de empreendimentos vigentes?
 
 
 .. collapse:: Solução:
-    :open:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT finalidade, atividade, modalidade, COUNT(*) tipos_empreendimento
+                    FROM empreendimento
+                   WHERE CURRENT_DATE BETWEEN data_inicio AND data_fim
+                GROUP BY finalidade, atividade, modalidade
+                ORDER BY COUNT(*);
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            A consulta irá utilizar os campos `finalidade`, `atividade` e `modalidade`, como mostrado abaixo:
+
+
+            .. code-block:: text
+
+                    finalidade    |  atividade  |                   modalidade                   | tipos_empreendimento
+                ------------------+-------------+------------------------------------------------+----------------------
+                 industrialização | pecuário(a) | beneficiamento ou industrialização             |                    1
+                 investimento     | pecuário(a) | máquinas, equipamentos, materiais e utensílios |                    1
+                 investimento     | agrícola    | formação de culturas perenes                   |                    2
+                 custeio          | agrícola    | lavoura                                        |                    9
+                (4 rows)
+
+
+            O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: :download:`tipos-empreendimento.csv <../../data/sicor/resultados/tipos-empreendimento.csv>`.
+
+
+            .. figure:: ../../img/sicor/microdados/empreendimentos/tipos-empreendimento.png
+                :alt: Tipos de empreendimentos existentes
+                :width: 70%
+                :figclass: align-center
+                :name: fig:sicor:microdados:empreendimentos:tipos-empreendimento
+
+                Tipos de empreendimentos existentes.
+
+
+-----
+
+
+**Consulta 2.** Recuperar os empreendimentos de custeio de lavoura de soja.
+
+
+.. collapse:: Solução:
 
 
     .. tabs::
@@ -186,7 +244,15 @@ Consultas
                 (17 rows)
 
 
+            O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: :download:`empreendimentos-custeio-lavoura-soja.csv <../../data/sicor/resultados/empreendimentos-custeio-lavoura-soja.csv>`.
+
+
         .. tab:: Python
 
 
         .. tab:: Python + SQL
+
+
+
+
+

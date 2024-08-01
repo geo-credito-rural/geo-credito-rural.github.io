@@ -62,6 +62,7 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     jupyter/index
     sicor/index
     bases-vetoriais/index
+..    acesso-imagens/index
 
 
 .. toctree::
