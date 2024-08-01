@@ -11,13 +11,13 @@ Assentamentos
 O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo INCRA (Instituto Nacional de Colonização e Reforma Agrária) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
 
 
-Os agricultores que recebem o lote comprometem-se a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pela lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
+Os agricultores que recebem o lote se comprometem a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pelo lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
 
 
-Os assentamentos utilizados nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Um sumário de todas as tabelas vetoriais e suas principais características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
+Os assentamentos utilizados nesse curso foram baixados, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
 
 
-Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescentes Quilombola (TQR) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A :numref:`Figura %s <fig:bases-vetoriais:assentamentos>` abaixo apresenta a distribuição dos assentamentos no Brasil.
+Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescente Quilombola (TRQ) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A :numref:`Figura %s <fig:bases-vetoriais:assentamentos>` abaixo apresenta a distribuição dos assentamentos no Brasil.
 
 
 .. figure:: ../img/bases-vetoriais/assentamentos.png
@@ -67,7 +67,7 @@ Consultas
                   ORDER BY count(*) DESC
 
 
-**Consulta 3.** Recuperar os assentamentos que são do tipo Território Remanescentes Quilombola (TRQ).
+**Consulta 3.** Recuperar os assentamentos que são do tipo Território Remanescente Quilombola (TRQ).
 
 
 .. collapse:: Solução:
@@ -101,7 +101,7 @@ Consultas
                   WHERE f_table_name = 'assentamentos'   
 
 
-**Consulta 5.** Selecionar as glebas (a partir de 2021) que tem interseção com assentamentos. 
+**Consulta 5.** Selecionar as glebas (a partir de 2021) que têm interseção com assentamentos. 
 
 
 .. collapse:: Solução:

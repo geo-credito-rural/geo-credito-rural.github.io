@@ -8,10 +8,10 @@ Terras Indígenas
 ================
 
 
-Terra Indígena, conforme a Constituição Federal de 1988, é um território demarcado e protegido para a posse permanente e o usufruto exclusivo dos povos indígenas. Essas terras são reconhecidas como patrimônio da União e são destinadas à preservação de sua cultura, tradições, recursos naturais e formas de organização social, além de assegurar a reprodução física e cultural dessas comunidades. A demarcação das terras indígenas é um direito constitucional e visa garantir a autodeterminação, a autonomia e a proteção dos direitos dos povos indígenas, bem como sua participação ativa na gestão e preservação desses territórios.
+Terra Indígena, conforme a Constituição Federal de 1988, é um território demarcado e protegido para a posse permanente e o usufruto exclusivo dos povos indígenas. Essas terras são reconhecidas como patrimônio da União e são destinadas à preservação de sua cultura, tradições, recursos naturais e formas de organização social, além de assegurar a reprodução física e cultural dessas comunidades. A demarcação das terras indígenas é um direito constitucional e visa garantir a autodeterminação, a autonomia e a proteção dos direitos dos povos indígenas, bem como sua participação ativa na gestão e preservação desses territórios. A regulamentação das Terras Indígenas é feita pela `Lei Federal nº 14.701 de 20 de outubro de 2023 <https://www.planalto.gov.br/ccivil_03/_ato2023-2026/2023/lei/L14701.htm>`__ que dispõe sobre o reconhecimento, a demarcação, o uso e a gestão de terras indígenas;
 
 
-A FUNAI (Fundação Nacional dos Povos Indígenas) é a instituição responsável por demarcar, monitorar e fiscalizar as terras indígenas no Brasil. As terras indígenas podem ser classificadas nas seguintes modalidades: (1) Terras Indígenas Tradicionalmente Ocupadas; (2) Reservas Indígenas; e (3) Terras Dominiais. Mais informações sobre essas modalidades podem ser encontradas no `site da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/demarcacao-de-terras-indigenas>`__. A localização dos territórios indígenas pode ser observada na :numref:`Figura %s <fig:bases-vetoriais:terras-indigenas>` .
+A Fundação Nacional dos Povos Indígenas (FUNAI) é a instituição responsável por demarcar, monitorar e fiscalizar as terras indígenas no Brasil. As terras indígenas podem ser classificadas nas seguintes modalidades: (1) áreas tradicionalmente Ocupadas; (2) áreas reservadas; e (3) áreas adquiridas :cite:`brasil:2024:k`. Além destas modalidades, existem ainda as Terras indígenas não declaradas, que são áreas que estão em estudo, em processo de regulamentação ou de delimitação mas que possuem algum registro na base de dados da FUNAI. Mais informações sobre essas modalidades podem ser encontradas no `site da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/demarcacao-de-terras-indigenas>`__. A localização dos territórios indígenas pode ser observada na :numref:`Figura %s <fig:bases-vetoriais:terras-indigenas>` .
 
 
 .. figure:: ../img/bases-vetoriais/terras-indigenas.png
@@ -23,7 +23,7 @@ A FUNAI (Fundação Nacional dos Povos Indígenas) é a instituição responsáv
     Localização das Terras Indígenas no Brasil.
 
 
-As terras indígenas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas>`__  e inseridas na tabela ``terras_indigenas``. Um sumário de todas as tabelas vetoriais e suas principais características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`.
+As terras indígenas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas>`__  e inseridas na tabela ``terras_indigenas``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`.
 
 
 Consultas
@@ -81,7 +81,7 @@ Consultas
                   WHERE f_table_name = 'terras_indigenas'   
 
 
-**Consulta 4.** Selecionar as glebas (a partir de 2021) que tem interseção com terras indígenas. 
+**Consulta 4.** Selecionar as glebas (a partir de 2021) que têm interseção com terras indígenas. 
 
 
 .. collapse:: Solução:

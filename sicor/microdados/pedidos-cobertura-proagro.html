@@ -355,7 +355,7 @@
 </figure>
 <p>Os microdados do relatório de comprovação de perdas do Proagro estão disponíveis no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz">SICOR_RCP_BASICO.gz</a>, que possui a estrutura mostrada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-rcp-basico"><span class="std std-numref">Tabela 3.21</span></a>.</p>
 <table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-rcp-basico">
-<caption><span class="caption-number">Tabela 3.21 - </span><span class="caption-text"><code class="docutils literal notranslate"><span class="pre">sicor_rcp_basico</span></code>.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-basico" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.21 - </span><span class="caption-text">Estrutura dos dados dos relatórios de comprovação de perdas do Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-rcp-basico" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -366,87 +366,87 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
 <td class="left-align"><p>ref_bacen</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número mascarado de referência do contrato</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
 <td class="left-align"><p>nu_ordem</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_entrega</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data de entrega do RCP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de colheita</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_evento</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de evento</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_fim_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Fim de plantio</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_inicio_colheita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de colheita</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_inicio_evento</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de evento</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>dt_inicio_plantio</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Início de plantio</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_area</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Área</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>vl_prev_prod</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Previsão de produção</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>vl_rec_prev</p></td>
-<td class="left-align"><p>numeric</p></td>
+<td class="center-align"><p>numeric</p></td>
 <td class="left-align"><p>Valor da receita prevista correspondente</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>2</sub></p></td>
 <td class="left-align"><p>cd_status</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do status do RCP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p>FK<sub>3</sub></p></td>
 <td class="left-align"><p>cd_tipo</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do tipo de solo</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"><p>FK<sub>4</sub></p></td>
 <td class="left-align"><p>cd_evento</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do evento do RCP</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>dt_visita</p></td>
-<td class="left-align"><p>date</p></td>
+<td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data de visita do perito</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>nu_dias_ciclo_cultivar</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número de ciclos do cultivar</p></td>
 </tr>
 </tbody>
@@ -464,22 +464,22 @@
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
 <td class="left-align"><p>ref_bacen</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número mascarado de referência do contrato</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
 <td class="left-align"><p>nu_ordem</p></td>
-<td class="left-align"><p>integer</p></td>
+<td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
 </tr>
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>cd_cpf_cnpj_periciadora</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>CPF do perito da empresa periciadora</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>cd_cpf_perito</p></td>
-<td class="left-align"><p>text</p></td>
+<td class="center-align"><p>text</p></td>
 <td class="left-align"><p>CPF/CNPJ do perito</p></td>
 </tr>
 </tbody>
@@ -681,6 +681,102 @@
 </tr>
 </tbody>
 </table>
+<p>Os valores pagos pelo Proagro são disponibilizados no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_PARCELAS_PROAGRO.gz">SICOR_PARCELAS_PROAGRO.gz</a>, que possui a estrutura apresentada na <a class="reference internal" href="#tbl-sicor-microdados-sicor-parcelas-proagro"><span class="std std-numref">Tabela 3.25</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-sicor-parcelas-proagro">
+<caption><span class="caption-number">Tabela 3.25 - </span><span class="caption-text">Estrutura dos dados de valores pagos pelo Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-sicor-parcelas-proagro" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_base</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data base de parcela do Proagro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_pagamento</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data de pagamento de parcela do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>2</sub></p></td>
+<td class="left-align"><p>cd_instancia</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Instância de parcela do Proagro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>FK<sub>3</sub></p></td>
+<td class="left-align"><p>cd_status</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Status de parcela do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>4</sub></p></td>
+<td class="left-align"><p>cd_natureza_parcela</p></td>
+<td class="center-align"><p>char(3)</p></td>
+<td class="left-align"><p>Natureza de parcela do Proagro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_atualizacao</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data de atualização de parcela do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_atual</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor atual de parcela do Proagro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_base</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor base de parcela do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_pago</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor pago de parcela do Proagro</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>vl_imposto</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor do imposto de parcela do Proagro</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_remessa</p></td>
+<td class="center-align"><p>date</p></td>
+<td class="left-align"><p>Data de remessa de parcela do Proagro</p></td>
+</tr>
+</tbody>
+</table>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_PARCELAS_PROAGRO.gz">SICOR_PARCELAS_PROAGRO.gz</a> foi carregado para a tabela <code class="docutils literal notranslate"><span class="pre">sicor_parcelas_proagro</span></code> do banco de dados PostgreSQL. A <a class="reference internal" href="#fig-sicor-microdados-parcelas-proagro"><span class="std std-numref">Figura 3.13</span></a> apresenta os relacionamentos dessa tabela.</p>
+<figure class="align-center align-default" id="fig-sicor-microdados-parcelas-proagro">
+<a class="reference internal image-reference" href="../../_images/parcelas-proagro.png"><img alt="Diagrama Entidade-Relacionamento dos valores pagos pelo Proagro nos contratos de financiamento (simplificado)" src="../../_images/parcelas-proagro.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 3.13 - </span><span class="caption-text">Diagrama Entidade-Relacionamento dos valores pagos pelo Proagro nos contratos de financiamento (simplificado).</span><a class="headerlink" href="#fig-sicor-microdados-parcelas-proagro" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>A tabela <code class="docutils literal notranslate"><span class="pre">naturezaproagro</span></code> foi estendida com a coluna denominada <code class="docutils literal notranslate"><span class="pre">sinal</span></code>. O comando SQL abaixo pode ser usado para criar essa coluna:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">naturezaproagro</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">sinal</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>A idéia básica dessa coluna é auxiliar na definição de valores positivos ou negativos da coluna <code class="docutils literal notranslate"><span class="pre">vl_pago</span></code> nos dados da tabela <code class="docutils literal notranslate"><span class="pre">sicor_parcelas_proagro</span></code>. As naturezas de parcela cuja descrição contenha a cadeia de caracteres <code class="docutils literal notranslate"><span class="pre">devolução</span></code> (ou similar) deve ter o valor da coluna <code class="docutils literal notranslate"><span class="pre">sinal</span></code> com valor <code class="docutils literal notranslate"><span class="pre">-1</span></code>. Podemos usar o comando SQL abaixo para definir esses valores:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">naturezaproagro</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">sinal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">descricao</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;%devolu%&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 <section id="consultas">
 <h2><span class="section-number">3.1.13.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Quais as culturas que mais solicitam proagro?</p>
@@ -729,6 +825,13 @@
 <span class="w">    </span><span class="k">OR</span><span class="w"> </span><span class="n">rank_pedidos</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span>
 <span class="w">    </span><span class="k">OR</span><span class="w"> </span><span class="n">rank_valor_medio</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 </pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para exportar o resultado da consulta acima para um arquivo CSV, utilize o comando <code class="docutils literal notranslate"><span class="pre">\copy</span></code>:</p>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="kp">\copy</span><span class="w"> </span><span class="ss">(consulta)</span><span class="w"> </span><span class="ss">to</span><span class="w"> </span><span class="s1">&#39;/tmp/culturas-proagro.csv&#39;</span><span class="w"> </span><span class="ss">WITH</span><span class="w"> </span><span class="ss">(FORMAT</span><span class="w"> </span><span class="ss">CSV,</span><span class="w"> </span><span class="ss">HEADER,</span><span class="w"> </span><span class="ss">DELIMITER</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="ss">,</span><span class="w"> </span><span class="ss">ENCODING</span><span class="w"> </span><span class="s1">&#39;UTF8&#39;</span><span class="ss">);</span>
+</pre></div>
+</div>
 </div>
 </div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Utilizando a operação <code class="docutils literal notranslate"><span class="pre">query</span></code> do pacote <cite>sicor</cite> é possível obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite> como resultado da consulta SQL:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
@@ -1014,7 +1117,7 @@
 </div>
 </div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
 </details><hr class="docutils" />
-<p><strong>Consulta 2.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro?</p>
+<p><strong>Consulta 2.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
@@ -1101,8 +1204,172 @@
 </div>
 </div></div>
 </details><hr class="docutils" />
-<p><strong>Consulta 3.</strong> Qual a localização das glebas associadas a pedidos de Proagro?</p>
-</section>
+<p><strong>Consulta 3.</strong> Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>A tabela <code class="docutils literal notranslate"><span class="pre">sicor_complemento_operacao_basica</span></code> contém uma coluna que possui o código do IBGE associado ao município da operação contratada. Dessa forma, vamos começar pela construção de uma consulta que calcule o número de pedidos de Proagro por municipio.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_proagro</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">)</span>
+<span class="w">             </span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span>
+<span class="w">        </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span><span class="p">,</span>
+<span class="w">             </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op_complemento</span>
+<span class="w">       </span><span class="k">WHERE</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+<p>Agora, vamos acrescentar quatro novas colunas à tabela <code class="docutils literal notranslate"><span class="pre">municipios_2022</span></code>:</p>
+<ul class="open">
+<li><p><code class="docutils literal notranslate"><span class="pre">num_pedidos_proagro</span></code>: número total de pedidos de Proagro associado ao município.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valor_financiamento</span></code>: valor total associado aos contratos de finaciamento no município.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">num_pedidos_deferidos_proagro</span></code>: número total de pedidos deferidos de Proagro no município.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valor_financiamento_pedidos_deferidos</span></code>: valor total dos contratos que tiveream pedidos deferidos de Proagro no município.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">valor_pago_proagro</span></code>: valor total pago de Proagro no município.</p></li>
+</ul>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">valor_financiamento</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_pedidos_deferidos_proagro</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">valor_financiamento_pedidos_deferidos</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">valor_pago_proagro</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+<p>Agora podemos atualizar as colunas <code class="docutils literal notranslate"><span class="pre">num_pedidos_proagro</span></code> e <code class="docutils literal notranslate"><span class="pre">valor_financiamento</span></code> com o seguinte comando SQL:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_pedidos_proagro</span><span class="p">,</span>
+<span class="w">       </span><span class="n">valor_financiamento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_financiamento</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">SUM</span><span class="p">(</span><span class="n">valor_financiamento</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_financiamento</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">)</span>
+<span class="w">                     </span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">op</span><span class="p">.</span><span class="n">vl_parc_credito</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_financiamento</span>
+<span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+<p>Em seguida, podemos atualizar as colunas <code class="docutils literal notranslate"><span class="pre">num_pedidos_deferidos_proagro</span></code> e <code class="docutils literal notranslate"><span class="pre">valor_financiamento_pedidos_deferidos</span></code>:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_pedidos_deferidos_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_pedidos_deferidos_proagro</span><span class="p">,</span>
+<span class="w">       </span><span class="n">valor_financiamento_pedidos_deferidos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_financiamento_pedidos_deferidos</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_deferidos_proagro</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">SUM</span><span class="p">(</span><span class="n">valor_financiamento</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_financiamento_pedidos_deferidos</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">)</span>
+<span class="w">                     </span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">op</span><span class="p">.</span><span class="n">vl_parc_credito</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_financiamento</span>
+<span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">statuscopproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">status</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span>
+<span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_status</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">status</span><span class="p">.</span><span class="n">cd_status</span>
+<span class="w">                 </span><span class="k">AND</span><span class="w"> </span><span class="n">status</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;deferida&#39;</span>
+<span class="w">            </span><span class="p">)</span>
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+<p>Por último, podemos calcular o valor pago de Proagro por municipio, atualizando a coluna <code class="docutils literal notranslate"><span class="pre">valor_pago_proagro</span></code>:</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">valor_pago_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_pago_proagro</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">SUM</span><span class="p">(</span><span class="n">parcelas</span><span class="p">.</span><span class="n">vl_pago</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">natureza</span><span class="p">.</span><span class="n">sinal</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_pago_proagro</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">              </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">)</span>
+<span class="w">                     </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">nu_ordem</span>
+<span class="w">                </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span>
+<span class="w">               </span><span class="k">WHERE</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="w">            </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pedidos_proagro</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">sicor_parcelas_proagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">parcelas</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">naturezaproagro</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">natureza</span>
+<span class="w">           </span><span class="k">WHERE</span><span class="w"> </span><span class="n">pedidos_proagro</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parcelas</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">pedidos_proagro</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parcelas</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">pedidos_proagro</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">pedidos_proagro</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">parcelas</span><span class="p">.</span><span class="n">cd_natureza_parcela</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">natureza</span><span class="p">.</span><span class="n">cd_natureza_parcela</span>
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+<p>O resultado dos cálculos realizados pode ser visto nos mapas apresentados nas figuras da <a class="reference internal" href="#tbl-sicor-microdados-proagro-numero-pedidos-x-valor-pago"><span class="std std-numref">Tabela 3.26</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-proagro-numero-pedidos-x-valor-pago" style="width: 100%">
+<caption><span class="caption-number">Tabela 3.26 - </span><span class="caption-text">Mapa da distribuição dos pedidos de Proagro.</span><a class="headerlink" href="#tbl-sicor-microdados-proagro-numero-pedidos-x-valor-pago" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><strong>(a) Número de pedidos de Proagro por município</strong></p></td>
+<td class="center-align"><p><strong>(b) Valor pago pelo Proagro em cada muncípio</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><img alt="fig:sicor:microdados:proagro:proagro-numero-pedidos-municipio" src="../../_images/proagro-numero-pedidos-municipio.png" /></p></td>
+<td class="center-align"><p><img alt="fig:sicor:microdados:proagro:proagro-valor-pago-municipio" src="../../_images/proagro-valor-pago-municipio.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</details><hr class="docutils" />
+<p><strong>Consulta 4.</strong> Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_contratos</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">               </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_contratos</span>
+<span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_complemento_operacao_basica</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">op_complemento</span>
+<span class="w">         </span><span class="k">WHERE</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
+<span class="w">      </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span>
+<span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
 </section>
 
 
@@ -1120,7 +1387,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f32e8721820>
+<jinja2.runtime.BlockReference object at 0x7f84dbad48b0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

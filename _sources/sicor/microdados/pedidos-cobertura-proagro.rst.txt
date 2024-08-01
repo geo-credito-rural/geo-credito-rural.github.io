@@ -166,12 +166,11 @@ Os arquivos listados acima foram carregados nas tabelas ``sicor_cop_basico``, ``
 Os microdados do relatório de comprovação de perdas do Proagro estão disponíveis no arquivo `SICOR_RCP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_RCP_BASICO.gz>`__, que possui a estrutura mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_rcp_basico>`.
 
 
-.. table:: ``sicor_rcp_basico``.
+.. table:: Estrutura dos dados dos relatórios de comprovação de perdas do Proagro.
     :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_rcp_basico
-
 
     +----------------------+------------------------+----------+-------------------------------------------------------+
     |                      | nome                   | tipo     | descrição                                             |
@@ -218,7 +217,7 @@ Assim como os pedidos de cobertura, os relatórios de comprovação de perdas po
 .. table:: Estrutura dos dados complementares dos relatórios de comprovação de perdas.
     :align: center
     :header-alignment: center center center center
-    :column-alignment: center left left left
+    :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_complemento_rcp
 
     +-------------+-------------------------+----------+-------------------------------------------------------+
@@ -251,7 +250,6 @@ A :numref:`Tabela %s <tbl:sicor:microdados:sicor_rcp_glebas_wkt>` apresenta a es
     :header-alignment: center center center center
     :column-alignment: center left center left
     :name: tbl:sicor:microdados:sicor_rcp_glebas_wkt
-
 
     +------------+--------------+---------+-------------------------------------------------------+
     |            | nome         | tipo    | descrição                                             |
@@ -351,6 +349,76 @@ As informações das súmulas do julgamento são disponibilizadas no arquivo `SI
     +----------------------+----------------------------------------+----------+--------------------------------------------------------------+
 
 
+Os valores pagos pelo Proagro são disponibilizados no arquivo `SICOR_PARCELAS_PROAGRO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_PARCELAS_PROAGRO.gz>`__, que possui a estrutura apresentada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_parcelas_proagro>`.
+
+
+.. table:: Estrutura dos dados de valores pagos pelo Proagro.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:microdados:sicor_parcelas_proagro
+
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | nome                   | tipo     | descrição                                             |
+    +======================+========================+==========+=======================================================+
+    | **PK**, FK\ :sub:`1` | ref_bacen              | integer  | Número mascarado de referência do contrato            |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | **PK**, FK\ :sub:`1` | nu_ordem               | integer  | Número da destinação/finalidade dentro do contrato    |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_base                | date     | Data base de parcela do Proagro                       |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_pagamento           | date     | Data de pagamento de parcela do Proagro               |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`2`         | cd_instancia           | integer  | Instância de parcela do Proagro                       |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`3`         | cd_status              | integer  | Status de parcela do Proagro                          |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    | FK\ :sub:`4`         | cd_natureza_parcela    | char(3)  | Natureza de parcela do Proagro                        |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_atualizacao         | date     | Data de atualização de parcela do Proagro             |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_atual               | numeric  | Valor atual de parcela do Proagro                     |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_base                | numeric  | Valor base de parcela do Proagro                      |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_pago                | numeric  | Valor pago de parcela do Proagro                      |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | vl_imposto             | numeric  | Valor do imposto de parcela do Proagro                |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+    |                      | dt_remessa             | date     | Data de remessa de parcela do Proagro                 |
+    +----------------------+------------------------+----------+-------------------------------------------------------+
+
+
+O arquivo `SICOR_PARCELAS_PROAGRO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_PARCELAS_PROAGRO.gz>`__ foi carregado para a tabela ``sicor_parcelas_proagro`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:parcelas-proagro>` apresenta os relacionamentos dessa tabela.
+
+
+.. figure:: ../../img/sicor/microdados/tabelas/parcelas-proagro.png
+    :alt: Diagrama Entidade-Relacionamento dos valores pagos pelo Proagro nos contratos de financiamento (simplificado)
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sicor:microdados:parcelas-proagro
+
+    Diagrama Entidade-Relacionamento dos valores pagos pelo Proagro nos contratos de financiamento (simplificado).
+
+
+.. note::
+
+    A tabela ``naturezaproagro`` foi estendida com a coluna denominada ``sinal``. O comando SQL abaixo pode ser usado para criar essa coluna:
+
+
+    .. code-block:: sql
+
+        ALTER TABLE naturezaproagro ADD COLUMN sinal NUMERIC DEFAULT 1.0;
+
+
+    A idéia básica dessa coluna é auxiliar na definição de valores positivos ou negativos da coluna ``vl_pago`` nos dados da tabela ``sicor_parcelas_proagro``. As naturezas de parcela cuja descrição contenha a cadeia de caracteres ``devolução`` (ou similar) deve ter o valor da coluna ``sinal`` com valor ``-1``. Podemos usar o comando SQL abaixo para definir esses valores:
+
+
+    .. code-block:: sql
+
+        UPDATE naturezaproagro SET sinal = -1.0 WHERE descricao LIKE '%devolu%';
+
+
 Consultas
 ---------
 
@@ -413,6 +481,15 @@ Consultas
                  WHERE rank_valor <= 10
                     OR rank_pedidos <= 10
                     OR rank_valor_medio <= 10;
+
+
+            .. tip::
+
+                Para exportar o resultado da consulta acima para um arquivo CSV, utilize o comando ``\copy``:
+
+                .. code-block:: psql
+
+                    \copy (consulta) to '/tmp/culturas-proagro.csv' WITH (FORMAT CSV, HEADER, DELIMITER ';', ENCODING 'UTF8');
 
 
         .. tab:: Python + SQL
@@ -719,7 +796,7 @@ Consultas
 -----
 
 
-**Consulta 2.** Qual o tamanho médio das áreas associadas a pedidos de Proagro?
+**Consulta 2.** Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?
 
 
 .. collapse:: Solução:
@@ -826,7 +903,231 @@ Consultas
 -----
 
 
-**Consulta 3.** Qual a localização das glebas associadas a pedidos de Proagro?
+**Consulta 3.** Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?
 
 
+.. collapse:: Solução:
 
+
+    A tabela ``sicor_complemento_operacao_basica`` contém uma coluna que possui o código do IBGE associado ao município da operação contratada. Dessa forma, vamos começar pela construção de uma consulta que calcule o número de pedidos de Proagro por municipio.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT geocodigo,
+                         COUNT(*) AS num_pedidos_proagro
+                    FROM (
+                      SELECT DISTINCT ON (cop.ref_bacen, cop.nu_ordem)
+                             cd_ibge_municipio AS geocodigo
+                        FROM sicor_cop_basico AS cop,
+                             sicor_complemento_operacao_basica AS op_complemento
+                       WHERE cop.ref_bacen = op_complemento.ref_bacen
+                         AND cop.nu_ordem = op_complemento.nu_ordem
+                         AND extract(YEAR FROM cop.dt_comunicacao) >= 2022
+                    )
+                GROUP BY geocodigo
+                ORDER BY num_pedidos_proagro DESC;
+
+
+    Agora, vamos acrescentar quatro novas colunas à tabela ``municipios_2022``:
+
+    .. rst-class:: open
+
+    - ``num_pedidos_proagro``: número total de pedidos de Proagro associado ao município.
+    - ``valor_financiamento``: valor total associado aos contratos de finaciamento no município.
+    - ``num_pedidos_deferidos_proagro``: número total de pedidos deferidos de Proagro no município.
+    - ``valor_financiamento_pedidos_deferidos``: valor total dos contratos que tiveream pedidos deferidos de Proagro no município.
+    - ``valor_pago_proagro``: valor total pago de Proagro no município.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                ALTER TABLE municipios_2022
+                    ADD COLUMN num_pedidos_proagro INTEGER NOT NULL DEFAULT 0,
+                    ADD COLUMN valor_financiamento NUMERIC NOT NULL DEFAULT 0.0,
+                    ADD COLUMN num_pedidos_deferidos_proagro INTEGER NOT NULL DEFAULT 0,
+                    ADD COLUMN valor_financiamento_pedidos_deferidos NUMERIC NOT NULL DEFAULT 0.0,
+                    ADD COLUMN valor_pago_proagro NUMERIC NOT NULL DEFAULT 0.0;
+
+
+    Agora podemos atualizar as colunas ``num_pedidos_proagro`` e ``valor_financiamento`` com o seguinte comando SQL:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE municipios_2022
+                   SET num_pedidos_proagro = resultado.num_pedidos_proagro,
+                       valor_financiamento = resultado.valor_financiamento
+                  FROM (
+                          SELECT geocodigo,
+                                 COUNT(*) AS num_pedidos_proagro,
+                                 SUM(valor_financiamento) AS valor_financiamento
+                            FROM (
+                              SELECT DISTINCT ON (cop.ref_bacen, cop.nu_ordem)
+                                     cd_ibge_municipio AS geocodigo,
+                                     op.vl_parc_credito AS valor_financiamento
+                                FROM sicor_cop_basico AS cop,
+                                     sicor_complemento_operacao_basica AS op_complemento,
+                                     sicor_operacao_basica_estado AS op
+                               WHERE cop.ref_bacen = op_complemento.ref_bacen
+                                 AND cop.nu_ordem = op_complemento.nu_ordem
+                                 AND extract(YEAR FROM cop.dt_comunicacao) >= 2022
+                                 AND cop.ref_bacen = op.ref_bacen
+                                 AND cop.nu_ordem = op.nu_ordem
+                            )
+                        GROUP BY geocodigo
+                  ) AS resultado
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+
+
+    Em seguida, podemos atualizar as colunas ``num_pedidos_deferidos_proagro`` e ``valor_financiamento_pedidos_deferidos``:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE municipios_2022
+                   SET num_pedidos_deferidos_proagro = resultado.num_pedidos_deferidos_proagro,
+                       valor_financiamento_pedidos_deferidos = resultado.valor_financiamento_pedidos_deferidos
+                  FROM (
+                          SELECT geocodigo,
+                                 COUNT(*) AS num_pedidos_deferidos_proagro,
+                                 SUM(valor_financiamento) AS valor_financiamento_pedidos_deferidos
+                            FROM (
+                              SELECT DISTINCT ON (cop.ref_bacen, cop.nu_ordem)
+                                     cd_ibge_municipio AS geocodigo,
+                                     op.vl_parc_credito AS valor_financiamento
+                                FROM sicor_cop_basico AS cop,
+                                     statuscopproagro AS status,
+                                     sicor_complemento_operacao_basica AS op_complemento,
+                                     sicor_operacao_basica_estado AS op
+                               WHERE cop.ref_bacen = op_complemento.ref_bacen
+                                 AND cop.nu_ordem = op_complemento.nu_ordem
+                                 AND extract(YEAR FROM cop.dt_comunicacao) >= 2022
+                                 AND cop.ref_bacen = op.ref_bacen
+                                 AND cop.nu_ordem = op.nu_ordem
+                                 AND cop.cd_status = status.cd_status
+                                 AND status.descricao = 'deferida'
+                            )
+                        GROUP BY geocodigo
+                  ) AS resultado
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+
+
+    Por último, podemos calcular o valor pago de Proagro por municipio, atualizando a coluna ``valor_pago_proagro``:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE municipios_2022
+                   SET valor_pago_proagro = resultado.valor_pago_proagro
+                  FROM (
+                          SELECT cd_ibge_municipio AS geocodigo,
+                                 SUM(parcelas.vl_pago * natureza.sinal) AS valor_pago_proagro
+                            FROM (
+                              SELECT DISTINCT ON (ref_bacen, nu_ordem)
+                                     ref_bacen,
+                                     nu_ordem
+                                FROM sicor_cop_basico
+                               WHERE extract(YEAR FROM dt_comunicacao) >= 2022
+                            ) AS pedidos_proagro,
+                                 sicor_parcelas_proagro AS parcelas,
+                                 sicor_complemento_operacao_basica AS op_complemento,
+                                 naturezaproagro AS natureza
+                           WHERE pedidos_proagro.ref_bacen = parcelas.ref_bacen
+                             AND pedidos_proagro.nu_ordem = parcelas.nu_ordem
+                             AND pedidos_proagro.ref_bacen = op_complemento.ref_bacen
+                             AND pedidos_proagro.nu_ordem = op_complemento.nu_ordem
+                             AND parcelas.cd_natureza_parcela = natureza.cd_natureza_parcela
+                        GROUP BY geocodigo
+                  ) AS resultado
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+
+
+    O resultado dos cálculos realizados pode ser visto nos mapas apresentados nas figuras da :numref:`Tabela %s <tbl:sicor:microdados:proagro:numero-pedidos-x-valor-pago>`.
+
+
+    .. |fig:sicor:microdados:proagro:proagro-numero-pedidos-municipio| image:: ../../img/sicor/microdados/proagro/proagro-numero-pedidos-municipio.png
+
+
+    .. |fig:sicor:microdados:proagro:proagro-valor-pago-municipio| image:: ../../img/sicor/microdados/proagro/proagro-valor-pago-municipio.png
+
+
+    .. table:: Mapa da distribuição dos pedidos de Proagro.
+        :widths: 50 50
+        :width: 100%
+        :header-alignment: center center
+        :column-alignment: center center
+        :align: center
+        :name: tbl:sicor:microdados:proagro:numero-pedidos-x-valor-pago
+
+        +-----------------------------------------------------------------+-------------------------------------------------------------+
+        | **(a) Número de pedidos de Proagro por município**              | **(b) Valor pago pelo Proagro em cada muncípio**            |
+        +-----------------------------------------------------------------+-------------------------------------------------------------+
+        | |fig:sicor:microdados:proagro:proagro-numero-pedidos-municipio| | |fig:sicor:microdados:proagro:proagro-valor-pago-municipio| |
+        +-----------------------------------------------------------------+-------------------------------------------------------------+
+
+
+-----
+
+
+**Consulta 4.** Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                ALTER TABLE municipios_2022
+                    ADD COLUMN num_contratos INTEGER NOT NULL DEFAULT 0;
+
+
+                UPDATE municipios_2022
+                   SET num_contratos = resultado.num_contratos
+                  FROM (
+                        SELECT op_complemento.cd_ibge_municipio AS geocodigo,
+                               COUNT(*) AS num_contratos
+                          FROM sicor_operacao_basica_estado AS op,
+                               sicor_complemento_operacao_basica AS op_complemento
+                         WHERE op.ref_bacen = op_complemento.ref_bacen
+                           AND op.nu_ordem = op_complemento.nu_ordem
+                           AND extract(YEAR FROM op.dt_emissao) >= 2022
+                      GROUP BY op_complemento.cd_ibge_municipio
+                  ) AS resultado
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;

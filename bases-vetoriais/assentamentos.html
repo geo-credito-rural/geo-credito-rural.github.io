@@ -121,9 +121,9 @@
   <section id="assentamentos">
 <span id="sec-bases-vetoriais-assentamentos"></span><h1><span class="section-number">4.3. </span>Assentamentos<a class="headerlink" href="#assentamentos" title="Link permanente para este cabeçalho"></a></h1>
 <p>O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo INCRA (Instituto Nacional de Colonização e Reforma Agrária) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.</p>
-<p>Os agricultores que recebem o lote comprometem-se a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pela lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.</p>
-<p>Os assentamentos utilizados nesse curso foram baixadas, em arquivos no formato shapefile, do <a class="reference external" href="https://acervofundiario.incra.gov.br/acervo/login.php">Acervo Fundiário</a> do INCRA e inseridos na tabela <code class="docutils literal notranslate"><span class="pre">assentamentos</span></code>. Um sumário de todas as tabelas vetoriais e suas principais características podem ser encontrado em  <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-ref">Sumário das tabelas vetoriais</span></a>.</p>
-<p>Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescentes Quilombola (TQR) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no <a class="reference external" href="https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos">site do INCRA</a>. A <a class="reference internal" href="#fig-bases-vetoriais-assentamentos"><span class="std std-numref">Figura 4.4</span></a> abaixo apresenta a distribuição dos assentamentos no Brasil.</p>
+<p>Os agricultores que recebem o lote se comprometem a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pelo lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.</p>
+<p>Os assentamentos utilizados nesse curso foram baixados, em arquivos no formato shapefile, do <a class="reference external" href="https://acervofundiario.incra.gov.br/acervo/login.php">Acervo Fundiário</a> do INCRA e inseridos na tabela <code class="docutils literal notranslate"><span class="pre">assentamentos</span></code>. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-ref">Sumário das tabelas vetoriais</span></a>.</p>
+<p>Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescente Quilombola (TRQ) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no <a class="reference external" href="https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos">site do INCRA</a>. A <a class="reference internal" href="#fig-bases-vetoriais-assentamentos"><span class="std std-numref">Figura 4.4</span></a> abaixo apresenta a distribuição dos assentamentos no Brasil.</p>
 <figure class="align-center align-default" id="fig-bases-vetoriais-assentamentos">
 <a class="reference internal image-reference" href="../_images/assentamentos.png"><img alt="Distribuição dos assentamentos rurais" src="../_images/assentamentos.png" style="width: 80%;" /></a>
 <figcaption>
@@ -150,7 +150,7 @@
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 3.</strong> Recuperar os assentamentos que são do tipo Território Remanescentes Quilombola (TRQ).</p>
+</details><p><strong>Consulta 3.</strong> Recuperar os assentamentos que são do tipo Território Remanescente Quilombola (TRQ).</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span><span class="p">,</span><span class="w"> </span><span class="n">cd_sipra</span><span class="p">,</span><span class="w"> </span><span class="n">nome_proje</span><span class="p">,</span><span class="w"> </span><span class="n">data_de_cr</span><span class="p">,</span><span class="w"> </span><span class="n">forma_obte</span><span class="p">,</span><span class="w"> </span><span class="n">descricao_</span>
@@ -168,7 +168,7 @@
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 5.</strong> Selecionar as glebas (a partir de 2021) que tem interseção com assentamentos.</p>
+</details><p><strong>Consulta 5.</strong> Selecionar as glebas (a partir de 2021) que têm interseção com assentamentos.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span>
@@ -198,7 +198,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f32e8c51940>
+<jinja2.runtime.BlockReference object at 0x7f84dbe2ec70>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

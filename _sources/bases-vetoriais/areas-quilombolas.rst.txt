@@ -17,10 +17,10 @@ As terras ocupadas por remanescentes das comunidades dos quilombos são aquelas 
 para a garantia de sua reprodução física, social, econômica e cultural. 
 
 
-As áreas quilombolas utilizados nesse curso foram baixadas, em arquivos no formato shapefile, 
+As áreas quilombolas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, 
 do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e 
 inseridos na tabela ``areas_quilombolas``. Um sumário de todas as tabelas vetoriais e suas principais 
-características podem ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
+características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
 A :numref:`Figura %s <fig:bases-vetoriais:quilombos>` apresenta a distribuição das áreas quilombolas no Brasil.
 
 
@@ -88,7 +88,7 @@ Consultas
                   WHERE f_table_name = 'areas_quilombolas'   
 
 
-**Consulta 4.** Selecionar as glebas (a partir de 2021) que tem interseção com áreas quilombolas. 
+**Consulta 4.** Selecionar as glebas (a partir de 2021) que têm interseção com áreas quilombolas. 
 
 
 .. collapse:: Solução:

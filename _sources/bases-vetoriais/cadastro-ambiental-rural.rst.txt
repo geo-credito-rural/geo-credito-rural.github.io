@@ -7,7 +7,7 @@ Cadastro Ambiental Rural (CAR)
 ==============================
 
 
-O **Cadastro Ambiental Rural (CAR)** tem o objetivo de integrar as informações ambientais das propriedades e posses rurais, compondo base de dados para controle, monitoramento, planejamento ambiental e econômico e combate ao desmatamento. Ele é um registro público eletrônico declaratório, obrigatório para todos os imóveis rurais e foi criado pela lei `LEI Nº 12.651, de 25 de maio de 2012 <https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12651.htm>`__ :cite:`brasil:2024:d` no âmbito do Sistema Nacional de Informação sobre Meio Ambiente (SINIMA). A Lei estabelece que a inscrição do imóvel rural no CAR deverá ser feita, preferencialmente, no órgão ambiental municipal ou estadual. Para o cadastro, são exigidas: 
+O **Cadastro Ambiental Rural (CAR)** tem o objetivo de integrar as informações ambientais das propriedades e posses rurais, compondo base de dados para controle, monitoramento, planejamento ambiental e econômico e combate ao desmatamento. Ele é um registro público eletrônico declaratório, obrigatório para todos os imóveis rurais, e foi criado pela `LEI Nº 12.651, de 25 de maio de 2012 <https://www.planalto.gov.br/ccivil_03/_ato2011-2014/2012/lei/l12651.htm>`__ :cite:`brasil:2024:d` no âmbito do Sistema Nacional de Informação sobre Meio Ambiente (SINIMA). A Lei estabelece que a inscrição do imóvel rural no CAR deverá ser feita, preferencialmente, no órgão ambiental municipal ou estadual. Para o cadastro, são exigidas: 
 
 .. rst-class:: open
 
@@ -15,12 +15,12 @@ O **Cadastro Ambiental Rural (CAR)** tem o objetivo de integrar as informações
 
 #. comprovação da propriedade ou posse;
 
-#. identificação do imóvel por meio de planta e memorial descritivo, contendo a indicação das coordenadas geográficas com pelo menos um ponto de amarração do perímetro do imóvel, informando a localização dos remanescentes de vegetação nativa, das Áreas de Preservação Permanente, das Áreas de Uso Restrito, das áreas consolidadas e, caso existente, também da localização da Reserva Legal.
+#. identificação do imóvel por meio de planta e memorial descritivo, contendo a indicação das coordenadas geográficas com pelo menos um ponto de amarração do perímetro do imóvel, informando a localização dos remanescentes de vegetação nativa, das Áreas de Preservação Permanente, das Áreas de Uso Restrito, das áreas consolidadas e, caso existente, da localização da Reserva Legal.
 
 
-Na Lei Nº 12.651 :cite:`brasil:2024:d` fica claro que CAR não será considerado título para fins de reconhecimento do direito de propriedade ou posse, tampouco elimina a necessidade de cumprimento do disposto no art. 2º da Lei nº 10.267, de 28 de agosto de 2001 :cite:`brasil:2024:e` no que diz respeito ao Sistema Nacional de Cadastro Rural gerido pelo `Instituto Nacional de Colonização e Reforma Agrária (Incra) <https://www.gov.br/incra/pt-br>`__.
+Na Lei Nº 12.651 :cite:`brasil:2024:d` fica claro que o CAR não será considerado título para fins de reconhecimento do direito de propriedade ou posse, tampouco elimina a necessidade de cumprimento do disposto no art. 2º da Lei nº 10.267, de 28 de agosto de 2001 :cite:`brasil:2024:e` no que diz respeito ao Sistema Nacional de Cadastro Rural gerido pelo `Instituto Nacional de Colonização e Reforma Agrária (Incra) <https://www.gov.br/incra/pt-br>`__.
 
-O `Serviço Florestal Brasileiro (SFB) <https://www.gov.br/florestal/pt-br>`__ é responsável por coordenar, em âmbito federal, o CAR e prestar apoio técnico à sua implementação nos entes federativos, por meio de disponibilização de soluções tecnológicas. O SFB disponibiliza regularmente documentos com informações sobre o andamento desta política, compilando os dados cadastrados em cada estado. Os dados do CAR para cada uma das unidades da federação estão disponíveis para download por no seguinte link `<https://www.car.gov.br/publico/estados/downloads>`. No link para cada estado são disponibilizados os seguintes dados:
+O `Serviço Florestal Brasileiro (SFB) <https://www.gov.br/florestal/pt-br>`__ é responsável por coordenar, em âmbito federal, o CAR e, prestar apoio técnico à sua implementação nos entes federativos, por meio de disponibilização de soluções tecnológicas. O SFB disponibiliza regularmente documentos com informações sobre o andamento desta política, compilando os dados cadastrados em cada estado. Os dados do CAR para cada uma das unidades da federação estão disponíveis para download no `seguinte link <https://www.car.gov.br/publico/estados/downloads>`__. Nos links para cada estado são disponibilizados os seguintes dados:
 
 .. rst-class:: open
 
