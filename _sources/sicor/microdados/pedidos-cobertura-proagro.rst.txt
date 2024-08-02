@@ -429,7 +429,7 @@ Consultas
 .. collapse:: Solução:
 
 
-    Os empreendimentos que serão avaliados consistem de financiamentos de custeio agrícola para lavoura. Serão consideros apenas os pedidos deferidos de cobertura do Proagro. Além disso, como a tabela ``sicor_cop_basico`` pode conter mais de uma entrada para os pares de valores (``ref_bacen``, ``nu_ordem``), será necessário usar uma cláusula :sql:`DISTINCT ON` na consulta.
+    Os empreendimentos que serão avaliados consistem de financiamentos de custeio agrícola para lavoura.
 
 
     .. tabs::
