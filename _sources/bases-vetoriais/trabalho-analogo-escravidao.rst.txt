@@ -53,5 +53,5 @@ De tal maneira que a ausência de liberdade e de dignidade fazem o trabalhador e
 
 .. note::
 
-    O arquivo `cadastro_de_empregadores.csv <https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/areas-de-atuacao/cadastro_de_empregadores.csv>`__ encontra-se carregado na tabela ``cadastro-empregadores`` do banco de dados PostgreSQL.
+    O arquivo :download:`cadastro_de_empregadores.csv <https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/areas-de-atuacao/cadastro_de_empregadores.csv>` encontra-se carregado na tabela ``cadastro-empregadores`` do banco de dados PostgreSQL.
 

@@ -151,7 +151,7 @@ A coluna ``cnpj_if`` se liga à tabela auxiliar ``ifssicor``, permitindo relacio
 As colunas ``dt_emissao`` e ``dt_vencimento`` registram, respectivamente, a data em que o contrato foi realizado e o término previsto.
 
 
-A coluna ``cd_inst_credito`` se liga à tabela auxiliar ``instrumentocredito``, permitindo relacionar o contrato ao tipo de instrumento de crédito (:numref:`Seção %s Instrumento de Crédito <sec_sicor_microdados_instrumento_credito>`).
+A coluna ``cd_inst_credito`` se liga à tabela auxiliar ``instrumentocredito``, permitindo relacionar o contrato ao tipo de instrumento de crédito (:numref:`Seção %s - Instrumento de Crédito <sec_sicor_microdados_instrumento_credito>`).
 
 
 A coluna ``cd_categ_emitente`` se liga à tabela auxiliar ``categoriaemitente``, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (:numref:`Seção %s - Categoria de Emitente <sec_sicor_microdados_emitente>`). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.

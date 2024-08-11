@@ -22,7 +22,7 @@ As unidades de conservação podem ser divididas em dois grupos:
 Estes dois tipos de unidades de conservação são compostos por diversas categorias e objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta as categorias de unidade de conservação integrantes do SNUC e a descrição de cada uma delas.
 
 
-.. table:: Categorias de unidades de conservação. |br| **Fonte:** :cite:`brasil:2024:a` :cite:`wikipedia:2024:a`.
+.. table:: Categorias de unidades de conservação. |br| **Fonte:** :cite:`brasil:2024:a, wikipedia:2024:a`.
     :header-alignment: center center center 
     :column-alignment: center center center 
     :name: tbl:bases-vetoriais:uc
@@ -104,91 +104,106 @@ Os limites das unidades de conservação são disponibilizados em diversos forma
     Distribuição das áreas protegidas por categoria no Brasil.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnuc-shp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
-.. table:: Estrutura do do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.
     :align: center
     :header-alignment: center center center center
     :column-alignment: center left center left
-    :name: tbl:bases-vetoriais:cnuc-shp
-
+    :name: tbl:bases-vetoriais:cnucshp
+    
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | nome         | tipo                        | descrição                                             |
     +=========+==============+=============================+=======================================================+
-    | **PK**  | gid          | integer                     |                                                       |
+    | **PK**  | gid          | integer                     |  Identificador da UC                                  |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | gml_id       | varchar(80)                 |                                                       |
+    |         | gml_id       | varchar(80)                 |  Campo vazio                                          |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | uc_id        | varchar(80)                 |                                                       |
+    |         | uc_id        | varchar(80)                 |  Identificador da UC                                  |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | cd_cnuc      | varchar(80)                 |                                                       |
+    |         | cd_cnuc      | varchar(80)                 |  Código de identificação da UC no Cadastro Nacional   |
+    |         |              |                             |  de Unidades de Conservação - CNUC                    |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | wdpa_pid     | varchar(80)                 |                                                       |
+    |         | wdpa_pid     | varchar(80)                 |  Id da UC na Base de dados mundial de áreas protegidas|
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | nome_uc      | varchar(121)                |                                                       |
+    |         | nome_uc      | varchar(121)                |  Denominação da UC                                    |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | cria_ano     | varchar(80)                 |                                                       |
+    |         | cria_ano     | date                        |  Ano do ato legal que cria a UC                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | cria_ato     | varchar(80)                 |                                                       |
+    |         | cria_ato     | varchar(80)                 |  Ato legal que cria a UC                              |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | outro_ato    | varchar(254)                |                                                       |
+    |         | outro_ato    | varchar(254)                |  Atos legais com diversos objetivos que alteram       |
+    |         |              |                             |  características relevantes à validação da UC no CNUC |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | pl_manejo    | varchar(80)                 |                                                       |
+    |         | pl_manejo    | varchar(80)                 |  Indicativo se tem ou não plano de manejo             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | co_gestor    | varchar(80)                 |                                                       |
+    |         | co_gestor    | varchar(80)                 |  Indicativo se a UC tem conselho reconhecido por      |
+    |         |              |                             |  portaria                                             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | quali_pol    | varchar(80)                 |                                                       |
+    |         | quali_pol    | varchar(80)                 |  Indicativo da qualidade do polígono, informando se   |
+    |         |              |                             |  o polígono corresponde ao memorial descritivo,       |
+    |         |              |                             |  se é uma estimativa dos limites da UC ou se é        |
+    |         |              |                             |  uma representação esquemática da localização da UC   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | ppgr         | varchar(160)                |                                                       |
+    |         | ppgr         | varchar(160)                |  Programa ou projeto de gestão integrada              |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | ha_total     | varchar(80)                 |                                                       |
+    |         | ha_total     | varchar(80)                 |  Área em hectares da UC. A área é obtida              |
+    |         |              |                             |  preferencialmente através de geoprocessamento, mas   | 
+    |         |              |                             |  considera-se a área do ato legal quando a informação | 
+    |         |              |                             |  de localização cadastrada no CNUC não tem qualidade  |
+    |         |              |                             |  suficiente, essa observação é válida para todas os   |
+    |         |              |                             |  demais valores de área informados na planilha        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | ha_ato       | varchar(80)                 |                                                       |
+    |         | ha_ato       | varchar(80)                 |  Área em hectares da UC oriunda do ato de criação     |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | esfera       | varchar(80)                 |                                                       |
+    |         | esfera       | varchar(80)                 |  Federal, estadual ou municipal                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | uf           | varchar(80)                 |                                                       |
+    |         | uf           | varchar(80)                 |  Unidade da federação (pode ser composta em função    | 
+    |         |              |                             |  dos limites da UC)                                   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | municipio    | varchar(254)                |                                                       |
+    |         | municipio    | varchar(254)                |  Municípios (idem uf)                                 |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | org_gestor   | varchar(158)                |                                                       |
+    |         | org_gestor   | varchar(158)                |  Órgão gestor da UC                                   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | grupo        | varchar(80)                 |                                                       |
+    |         | grupo        | varchar(80)                 |  Proteção integral ou uso sustentável                 |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | categoria    | varchar(80)                 |                                                       |
+    |         | categoria    | varchar(80)                 |  Categoria SNUC                                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | cat_iucn     | varchar(80)                 |                                                       |
+    |         | cat_iucn     | varchar(80)                 |  A categoria equivalente no sistema IUCN de           |
+    |         |              |                             |  categorias de gestão de áreas protegidas, contendo   |
+    |         |              |                             |  os seguintes valores: Ia, Ib, II, III, IV, V e VI.   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | amazonia     | varchar(80)                 |                                                       |
+    |         | amazonia     | varchar(80)                 |  Área em hectares da UC no bioma Amazônia             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | caatinga     | varchar(80)                 |                                                       |
+    |         | caatinga     | varchar(80)                 | Área em hectares da UC no bioma Caatinga              |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | cerrado      | varchar(80)                 |                                                       |
+    |         | cerrado      | varchar(80)                 | Área em hectares da UC no bioma Cerrado               |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | matlantica   | varchar(80)                 |                                                       |
+    |         | matlantica   | varchar(80)                 | Área em hectares da UC no bioma Mata Atlantica        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | pampa        | varchar(80)                 |                                                       |
+    |         | pampa        | varchar(80)                 | Área em hectares da UC no bioma Pampa                 |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | pantanal     | varchar(80)                 |                                                       |
+    |         | pantanal     | varchar(80)                 | Área em hectares da UC no bioma Pantanal              |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | marinho      | varchar(80)                 |                                                       |
+    |         | marinho      | varchar(80)                 | Área em hectares da UC na Área Marinha, considerados  |
+    |         |              |                             | o Mar Territorial e a Zona Econômica Exclusiva        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | situacao     | varchar(80)                 |                                                       |
+    |         | situacao     | varchar(80)                 | Informa se a UC está ativa ou em cadastro             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | limite       | varchar(80)                 |                                                       |
+    |         | limite       | varchar(80)                 |  Campo preenchido com a sigla "UC"                    |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | area_ha      | double precision            |                                                       |
+    |         | area_ha      | double precision            |  Área em hectares da UC                               |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | nomeabrev    | varchar(121)                |                                                       |
+    |         | nomeabrev    | varchar(121)                |  Abreviatura do nome da UC                            |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4674) |                                                       |
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da UC                                      |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
 
 
 .. note::
 
-    O conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__ encontra-se carregado na tabela ``cnuc_2024_02`` do banco de dados PostgreSQL.
+    O conjunto de arquivos *Esri Shapefile* :download:`shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>` encontra-se carregado na tabela ``cnuc_2024_02`` do banco de dados PostgreSQL.
 
 
 Consultas

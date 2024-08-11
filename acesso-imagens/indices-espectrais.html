@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.4. Índices espectrais obtidos a partir de imagens &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/acesso-imagens/indices-espectrais.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Referências Bibliográficas" href="../referencias.html" />
+    <link rel="prev" title="6.3. Composição colorida e Contraste" href="composicao-contraste.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.2. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composicao-contraste.html">6.3. Composição colorida e Contraste</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.4. </span>Índices espectrais obtidos a partir de imagens</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="composicao-contraste.html" class="btn btn-neutral float-left" title="6.3. Composição colorida e Contraste" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="indices-espectrais-obtidos-a-partir-de-imagens">
+<span id="sec-acesso-imagens-indices-espectrais"></span><h1><span class="section-number">6.4. </span>Índices espectrais obtidos a partir de imagens<a class="headerlink" href="#indices-espectrais-obtidos-a-partir-de-imagens" title="Link permanente para este cabeçalho"></a></h1>
+<p>Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e suas interações com a radiação eletromagnética. Interferências do ambiente também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados da vegetação, crescimento urbano, áreas queimadas, entre outros <span id="id1">[<a class="reference internal" href="../referencias.html#id58" title="David Montero, César Aybar, Miguel D Mahecha, Francesco Martinuzzi, Maximilian Söchting, and Sebastian Wieneke. A standardized catalogue of spectral indices to advance the use of remote sensing in earth system research. Scientific Data, 10(1):1–20, 2023.">73</a>]</span>. Para ressaltar essas assinaturas, bem como para reduzir interferências de respostas espectrais semelhantes de outros alvos, combinações de bandas são aplicadas nas imagens, gerando os conhecidos índices espectrais.</p>
+<p>Um dos índices mais conhecidos é o <em>Normalized Difference Vegetation Index</em>, NDVI (equação <a class="reference internal" href="#equation-eq-acesso-imagens-indices-espectrais-ndvi">Equação 6.4</a>), que é um índice da diferença normalizada entre os canais infravermelho e vermelho <span id="id2">[<a class="reference internal" href="../referencias.html#id64" title="John Wilson Rouse, Rüdiger H Haas, John A Schell, and Donald W Deering. Monitoring vegetation systems in the great plains with erts. NASA Spec. Publ, 351(1):309, 1974.">74</a>]</span>, e é geralmente utilizado para representar a quantidade de resposta espectral típica de alvos de vegetação encontrada numa imagem:</p>
+<div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-indices-espectrais-ndvi">
+<span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-acesso-imagens-indices-espectrais-ndvi" title="Link permanente para essa equação"></a></span>\[NDVI = \frac{IV - V}{IV + V}\]</div>
+<p>onde IV representa a banda do infravermelho, e V a banda do vermelho.</p>
+<p>O <a class="reference external" href="https://www.indexdatabase.de/db/ias.php">Index DataBase</a> apresenta uma ferramenta de consulta, que combina satélites de observação da terra e aplicações. Ao escolher, por exemplo, o Sentinel-2 com a aplicação Agricultura, mais de 10 índices espectrais são apresentados. Outros exemplos de índices espectrais amplamente utilizados são o NDWI, <em>Normalized Difference Water Index</em> (veja a equação <a class="reference internal" href="#equation-eq-acesso-imagens-indices-espectrais-ndwi">Equação 6.5</a>) com aplicações que envolvem alvos de água, e o NBR, <em>Normalized Burn Ratio</em> (conforme a equação <a class="reference internal" href="#equation-eq-acesso-imagens-indices-espectrais-nbr">Equação 6.6</a>) para ressaltar áreas queimadas na cobertura da terra. Estes índices normalizados comumente retornam valores entre -1 e +1.</p>
+<div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-indices-espectrais-ndwi">
+<span class="eqno">(6.5)<a class="headerlink" href="#equation-eq-acesso-imagens-indices-espectrais-ndwi" title="Link permanente para essa equação"></a></span>\[NDWI = \frac{G - IV}{G + IV}\]</div>
+<p>onde G representa a banda do verde, e IV a banda do infravermelho.</p>
+<div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-indices-espectrais-nbr">
+<span class="eqno">(6.6)<a class="headerlink" href="#equation-eq-acesso-imagens-indices-espectrais-nbr" title="Link permanente para essa equação"></a></span>\[NDVI = \frac{IV - IVC}{IV + IVC}\]</div>
+<p>onde IV representa a banda do infravermelho, e IVC a banda do infravermelho de ondas curtas.</p>
+<p><strong>Script 1.</strong> Dada a geometria de uma gleba e uma busca de imagens Sentinel-2 no BDC na data de interesse (consultar <a class="reference internal" href="scripts-analise.html#subsec-acesso-imagens-scripts-analise-visualizacao-bdc"><span class="std std-ref">Visualização de imagens Sentinel-2 do Brazil Data Cube (BDC)</span></a>, calcular e apresentar 3 índices espectrais, NDVI, NDWI e NBR.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="s1">&#39;B03&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">href</span><span class="p">)</span> <span class="k">as</span> <span class="n">raster</span><span class="p">:</span>
+    <span class="n">gleba_box</span> <span class="o">=</span> <span class="n">gleba</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">to_crs</span><span class="p">(</span><span class="n">raster</span><span class="o">.</span><span class="n">crs</span><span class="p">)</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">bounds</span>
+    <span class="n">janela_gleba</span> <span class="o">=</span> <span class="n">from_bounds</span><span class="p">(</span><span class="o">*</span><span class="n">gleba_box</span><span class="p">,</span> <span class="n">raster</span><span class="o">.</span><span class="n">transform</span><span class="p">)</span>
+    <span class="n">banda_b03</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">janela_gleba</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="s1">&#39;B04&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">href</span><span class="p">)</span> <span class="k">as</span> <span class="n">raster</span><span class="p">:</span>
+    <span class="n">banda_b04</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">janela_gleba</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="s1">&#39;B08&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">href</span><span class="p">)</span> <span class="k">as</span> <span class="n">raster</span><span class="p">:</span>
+    <span class="n">banda_b08</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">janela_gleba</span><span class="p">)</span>
+<span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="n">item</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="s1">&#39;B11&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">href</span><span class="p">)</span> <span class="k">as</span> <span class="n">raster</span><span class="p">:</span>
+    <span class="n">banda_b11</span> <span class="o">=</span> <span class="n">raster</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">window</span><span class="o">=</span><span class="n">janela_gleba</span><span class="p">)</span>
+
+<span class="n">ndvi</span> <span class="o">=</span> <span class="p">(</span><span class="n">banda_08</span> <span class="o">-</span> <span class="n">banda_04</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">banda_08</span> <span class="o">+</span> <span class="n">banda_04</span><span class="p">)</span>
+<span class="n">ndwi</span> <span class="o">=</span> <span class="p">(</span><span class="n">banda_03</span> <span class="o">-</span> <span class="n">banda_08</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">banda_03</span> <span class="o">+</span> <span class="n">banda_08</span><span class="p">)</span>
+<span class="n">nbr</span> <span class="o">=</span> <span class="p">(</span><span class="n">banda_08</span> <span class="o">-</span> <span class="n">banda_11</span><span class="p">)</span> <span class="o">/</span> <span class="p">(</span><span class="n">banda_08</span> <span class="o">+</span> <span class="n">banda_11</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">12</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span> <span class="c1"># 1 linha, 3 colunas, 1o desenho</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndvi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">)</span> <span class="c1"># 1 linha, 3 colunas, 2o desenho</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">ndwi</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">subplot</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span> <span class="c1"># 1 linha, 3 colunas, 3o desenho</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">nbr</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="composicao-contraste.html" class="btn btn-neutral float-left" title="6.3. Composição colorida e Contraste" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee530b0a0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

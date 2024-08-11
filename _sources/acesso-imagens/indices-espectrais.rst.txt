@@ -1,0 +1,79 @@
+.. include:: ../def.rst
+
+
+.. _sec_acesso_imagens_indices_espectrais:
+
+Índices espectrais obtidos a partir de imagens 
+==============================================
+
+
+Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e suas interações com a radiação eletromagnética. Interferências do ambiente também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados da vegetação, crescimento urbano, áreas queimadas, entre outros :cite:`montero:2023`. Para ressaltar essas assinaturas, bem como para reduzir interferências de respostas espectrais semelhantes de outros alvos, combinações de bandas são aplicadas nas imagens, gerando os conhecidos índices espectrais.
+
+Um dos índices mais conhecidos é o *Normalized Difference Vegetation Index*, NDVI (equação :eq:`eq:acesso-imagens:indices-espectrais:ndvi`), que é um índice da diferença normalizada entre os canais infravermelho e vermelho :cite:`rouse:1974`, e é geralmente utilizado para representar a quantidade de resposta espectral típica de alvos de vegetação encontrada numa imagem:
+
+
+.. math::
+    :label: eq:acesso-imagens:indices-espectrais:ndvi
+
+    NDVI = \frac{IV - V}{IV + V}
+
+onde IV representa a banda do infravermelho, e V a banda do vermelho.
+
+
+O `Index DataBase <https://www.indexdatabase.de/db/ias.php>`__ apresenta uma ferramenta de consulta, que combina satélites de observação da terra e aplicações. Ao escolher, por exemplo, o Sentinel-2 com a aplicação Agricultura, mais de 10 índices espectrais são apresentados. Outros exemplos de índices espectrais amplamente utilizados são o NDWI, *Normalized Difference Water Index* (veja a equação :eq:`eq:acesso-imagens:indices-espectrais:ndwi`) com aplicações que envolvem alvos de água, e o NBR, *Normalized Burn Ratio* (conforme a equação :eq:`eq:acesso-imagens:indices-espectrais:nbr`) para ressaltar áreas queimadas na cobertura da terra. Estes índices normalizados comumente retornam valores entre -1 e +1.
+
+
+.. math::
+    :label: eq:acesso-imagens:indices-espectrais:ndwi
+
+    NDWI = \frac{G - IV}{G + IV}
+
+onde G representa a banda do verde, e IV a banda do infravermelho.
+
+
+.. math::
+    :label: eq:acesso-imagens:indices-espectrais:nbr
+ 
+    NDVI = \frac{IV - IVC}{IV + IVC}
+
+onde IV representa a banda do infravermelho, e IVC a banda do infravermelho de ondas curtas.
+
+
+**Script 1.** Dada a geometria de uma gleba e uma busca de imagens Sentinel-2 no BDC na data de interesse (consultar :ref:`subsec_acesso_imagens_scripts_analise_visualizacao_bdc`, calcular e apresentar 3 índices espectrais, NDVI, NDWI e NBR.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: Python
+
+
+            .. code-block:: ipython
+
+                with rio.open(item.assets['B03'].href) as raster:
+                    gleba_box = gleba.geometry.to_crs(raster.crs).iloc[0].bounds
+                    janela_gleba = from_bounds(*gleba_box, raster.transform)
+                    banda_b03 = raster.read(1, window=janela_gleba)
+                with rio.open(item.assets['B04'].href) as raster:
+                    banda_b04 = raster.read(1, window=janela_gleba)
+                with rio.open(item.assets['B08'].href) as raster:
+                    banda_b08 = raster.read(1, window=janela_gleba)
+                with rio.open(item.assets['B11'].href) as raster:
+                    banda_b11 = raster.read(1, window=janela_gleba)
+
+                ndvi = (banda_08 - banda_04) / (banda_08 + banda_04)
+                ndwi = (banda_03 - banda_08) / (banda_03 + banda_08)
+                nbr = (banda_08 - banda_11) / (banda_08 + banda_11)
+
+                plt.figure(figsize=(12,4))
+                plt.subplot(1,3,1) # 1 linha, 3 colunas, 1o desenho
+                plt.imshow(ndvi)
+                plt.subplot(1,3,2) # 1 linha, 3 colunas, 2o desenho
+                plt.imshow(ndwi)
+                plt.subplot(1,3,3) # 1 linha, 3 colunas, 3o desenho
+                plt.imshow(nbr)
+
+

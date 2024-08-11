@@ -1,0 +1,536 @@
+.. include:: ../def.rst
+
+
+.. _sec_acesso_imagens_introducao:
+
+Introdução ao Sensoriamento Remoto por Satélites
+================================================
+
+
+O processo de obtenção de dados para formação de uma imagem é apresentado na :numref:`Figura %s <fig:acesso-imagens:introducao-ser:modis-pixel>` que coloca como exemplo um satélite (Terra) que, a fim de garantir a cobertura diária em quase todo o planeta, tem o sensor MODIS (*Moderate Resolution Imaging Spectroradiometer*) que possui um campo de visada, *Field of View* (FOV) de 110°. Este FOV representa a largura nominal da faixa imageada, que neste caso é 2330 km. Por causa da largura da faixa imageada, do efeito de curvatura da Terra, da rotação da Terra e da velocidade angular de varredura do espelho, ocorre o efeito panorâmico e o *bow-tie* (borramento). No limite da largura da área imageada (*swath*), os pixels tem o seu tamanho aumentado a uma razão de 2 vezes na direção da linha de imageamento (*along-track*) e de 5 vezes na direção da linha de imageamento (*across-track*). Portanto, existe uma influência da geometria de visada e de iluminação na função de distribuição de refletância bidirecional (FDRB) e de como isso pode ocasionar distorções no momento da coleta de imagens :cite:`vanleeuwen:1999,ju:2010`.
+
+
+.. figure:: ../img/acesso-imagens/introducao-ser/modis-pixel.png
+    :alt: Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m)
+    :width: 40%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:modis-pixel
+
+    Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m). |br| **Fonte:** Adaptada de :cite:`vanleeuwen:1999,ju:2010`.
+
+
+Dessa maneira, são obtidas as imagens, que no contexto de sensoriamento remoto comumente é chamada de *raster*. Elas podem ser armazenadas de diferentes formas. Uma delas é por meio de um arquivo, comumente no formato `GeoTIFF <https://www.ogc.org/standard/geotiff/>`__, onde estão contidos os metadados da imagem e também os *pixels* de todas as bandas disponíveis naquela configuração de sensor. Assim, por exemplo, uma imagem com 200 linhas, 300 colunas e 5 bandas, estará armazenada integralmente no arquivo, e por meio de scripts será possível obter uma matriz com 5 dimensões, cada dimensão com 200 *x* 300 elementos. A outra forma de armazenar as imagens é através do armazenamento individual, onde um arquivo contém informações de somente uma banda espectral. Neste caso, cada arquivo possui metadados independentes, com informações sobre o sistema de referência espacial, os limites geográficos cobertos pela imagem, as dimensões da imagem em termos de linhas e colunas, a matriz de pixels, e o tipo de dados associado aos pixels da imagem.
+
+
+Sensores Passivos e Ativos
+--------------------------
+
+
+Bandas Espectrais
+-----------------
+
+
+O conjunto de imagens abaixo apresenta a composição colorida e falsa cor de uma cenas Landsat 8/OLI do oeste da Bahia no ano de 2015.
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_captions_below:
+    :show_fade:
+    :data-bs-interval: false
+
+    .. figure:: ../img/acesso-imagens/index/landsat8-220070-20150908-cores-verdadeiras.png
+
+        Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 08/09/2015
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/landsat8-220070-20150908-falsa-cor.png
+
+        Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição falsa cor das bandas 5-4-2 (destaque da vegetação em vermelho) <br> Região do oeste do Estado da Bahia - 08/09/2015
+
+
+Resolução Espacial
+------------------
+
+
+A **resolução espacial** se refere à área da superfície terrestre capturada por um único pixel de uma imagem. Este parâmetro influencia a quantidade de detalhes que podem ser percebidos na imagem, como apresentado nas figuras abaixo, com imagens da região da barragem de `Sobradinho <https://pt.wikipedia.org/wiki/Usina_Hidrel%C3%A9trica_de_Sobradinho>`__. Essas imagens possuem, respectivamente, resolução espacial de 10m, 60m e 100m. Isso significa que cada pixel da imagem representa uma área de :math:`10 \times 10 = 100m^2`, :math:`3.600m^2` e :math:`10.000m^2`, respectivamente.
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_captions_below:
+    :show_fade:
+    :data-bs-interval: false
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t24ltq_10m.png
+        :alt: Resolução espacial de 10 metros
+        :width: 60%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:t24ltq_10m
+
+        Imagem Sentinel-2 com resolução espacial original de 10 metros.<br>Composição colorida das bandas 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t24ltq_60m.png
+        :alt: Resolução espacial de 60 metros
+        :width: 60%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:t24ltq_60m
+
+        Imagem Sentinel-2 com resolução espacial degradada para 60 metros.<br>Composição colorida das bandas 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t24ltq_100m.png
+        :alt: Resolução espacial de 100 metros
+        :width: 60%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:t24ltq_100m
+
+        Imagem Sentinel-2 com resolução espacial degradada para 100 metros.<br>Composição colorida das bandas 4-3-2 (cores Verdadeiras).<br>Região da barragem de Sobradinho.
+
+
+Para reforçar o conceito de resolução espacial, relacionando com a aplicação de mapeamento de áreas agrícolas, podemos visualizar 2 glebas em 3 resoluções espaciais. As 2 glebas foram selecionadas com áreas diferentes, para que se perceba, de forma visual, *quantos pixels cabem numa gleba* com área relativamente pequena (14 hectares), e outra maior (200 hectares).
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_captions_below:
+    :show_fade:
+    :data-bs-interval: false
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_amazonia1.png
+        :alt: Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_amazonia1
+
+        Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_s2.png
+        :alt: Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_s2
+
+        Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_cbers4a.png
+        :alt: Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_cbers4a
+
+        Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
+
+
+Embora as 3 imagens acima não sejam exatamente da mesma data, e também a CBERS-4A não apresenta o canal infravermelho, mas a banda pancromática, a qual inclui uma intervalo maior de comprimentos de onda e por isso possui mais detalhes, é possível perceber que a imagem de 64m de resolução espacial apresenta limitações de mapeamento da área de 14 hectares delimitada pelo polígono amarelo. A resolução espacial de 10m já permite observar mais detalhes dentro da área da gleba, e a imagem de 2m representa a área de forma detalhada. No caso da imagem CBERS-4A, com 2m de resolução espacial, para ser ideal no mapeamento de culturas agrícolas, precisaria ter uma taxa de revisita bem mais frequente, visto que obtém uma nova imagem da mesma área a cada 31 dias. A essa propriedade damos o nome de resolução temporal. 
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_captions_below:
+    :show_fade:
+    :data-bs-interval: false
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_amazonia1.png
+        :alt: Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_amazonia1
+
+        Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_s2.png
+        :alt: Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_s2
+
+        Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_cbers4a.png
+        :alt: Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
+        :width: 100%
+        :figclass: align-center
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_cbers4a
+
+        Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
+
+
+.. Nas figuras abaixo, podemos perceber que na imagem de 100m de resolução conseguimos ver poucos detalhes da barragem. Com a imagem de 10m de resolução, já conseguimos identificar a barragem. Finalmente, na imagem de 2m, conseguimos visualizar mais detalhes sobre as feições da barragem.
+..
+..
+.. .. carousel::
+..    :show_controls:
+..    :show_indicators:
+..    :show_captions_below:
+..    :show_fade:
+..    :data-bs-interval: false
+..
+..    .. figure:: ../img/acesso-imagens/introducao-ser/img-sentinel2-100m.png
+..        :alt: Resolução espacial de 100 metros
+..        :width: 100%
+..        :figclass: align-center
+..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-sentinel2-100m
+..
+..        Imagem Sentinel-2 com resolução espacial degradada para 100 metros.<br>Composição colorida 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.
+..
+..
+..    .. figure:: ../img/acesso-imagens/introducao-ser/img-sentinel2-10m.png
+..        :alt: Resolução espacial de 10 metros
+..        :width: 100%
+..        :figclass: align-center
+..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-sentinel2-10m
+..
+..        Imagem Sentinel-2 com resolução espacial original de 10 metros.<br>Composição colorida das bandas 4-3-2 (cores Verdadeiras).<br>Região da barragem de Sobradinho.
+..
+..
+..    .. figure:: ../img/acesso-imagens/introducao-ser/img-cbers4a-2m.png
+..        :alt: Resolução espacial de 2 metros
+..        :width: 100%
+..        :figclass: align-center
+..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-cbers4a-2m
+..
+..        Imagem CBERS-4A/WPM com resolução espacial original de 2 metros.<br>Processo de fusão usado: PCA (Componentes Principais).<br>Região da barragem de Sobradinho.
+
+
+Resolução Temporal
+------------------
+
+
+A **resolução temporal** é o tempo que um sensor leva para revisitar uma localização geográfica específica. As imagens apresentadas na figura abaixo ilustram algumas revisitas do sensor Sentinel-2/MSI à cena 21LZF (grade MGRS).
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_fade:
+    :data-bs-interval: false
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220418.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('eb812ef2-78c8-4b75-a6e8-dbd7d9624919')/$value
+
+        18/04/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220423.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('3df2a932-8536-42eb-8f13-165741e51e65')/$value
+
+        23/04/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220428.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('3a7507c4-caaa-4728-8a1e-713f601e15fa')/$value
+
+        28/04/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220503.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('4a51ce55-c246-4b96-b868-217d8dfdb0d5')/$value
+
+        03/05/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220508.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('0ae27644-f47c-4909-a692-132a3c7c007d')/$value
+
+        08/05/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220513.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('a49c4ee2-96bc-472c-a1ff-d75692c8056a')/$value
+
+        13/05/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220518.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('7c9d0dc9-a1ad-4cad-818b-5eb8c1bf3e0d')/$value
+
+        18/05/2022
+
+
+    .. figure:: ../img/acesso-imagens/introducao-ser/t21lzf_20220523.png
+        :target: https://data.inpe.br/sentinel-hub/odata/v1/Products('a5baad0a-a88e-4fe5-bd22-cef70b9e6993')/$value
+
+        23/05/2022
+
+
+A :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:resolucao-temporal>` apresenta a resolução temporal de alguns satélites/sensores muito utilizados na área geoespacial.
+
+
+.. table:: Resolução temporal de alguns satélites/sensores. |br| **Fontes:** `NASA <https://modis.gsfc.nasa.gov/about/>`__, `ESA <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/revisit-coverage>`__.
+    :name: tbl:acesso-imagens:introducao-ser:resolucao-temporal
+    :align: center
+    :header-alignment: center center center
+    :column-alignment: left center center
+    :widths: 30 30 40
+
+    +----------------------+----------------------+--------------------+
+    | Satélites            | Sensores             | Resolução Temporal |
+    +======================+======================+====================+
+    | Landsat 5            | TM                   | 16 dias            |
+    +----------------------+----------------------+--------------------+
+    | Landsat 7            | ETM\ :sup:`+`        | 16 dias            |
+    +----------------------+----------------------+--------------------+
+    | Landsat 8            | OLI                  | 16 dias            |
+    +----------------------+----------------------+--------------------+
+    | Landsat 9            | OLI-2                | 16 dias            |
+    +----------------------+----------------------+--------------------+
+    | Sentinel 2A e 2B     | MSI                  | 05 dias            |
+    +----------------------+----------------------+--------------------+
+    | Terra/Aqua           | MODIS                | 01 a 02 dias       |
+    +----------------------+----------------------+--------------------+
+
+
+.. _sec_acesso_imagens_introducao_quantizacao:
+
+Quantização
+-----------
+
+
+A quantização, representada por :math:`L`, indica a quantidade de bits utilizados para representar a radiância/refletância observada em cada ponto imageado (pixel). Por exemplo, o satélite AMAZONIA-1 possui :math:`L = 10`. Nesse caso, os pixels das imagens do AMAZONIA-1 possuem valores variando entre 0 e :math:`2^{10} = 1024`.
+
+
+Distribuição de Imagens - Cenas
+-------------------------------
+
+
+Os produtos de imagens de cada satélite/sensor são distribuídos em cenas que mantém alguma organização do tamanho dos arquivos de imagem. Os produtos de superfície do sendor MODIS utilizam uma grade de *tiles* com aproximadamete 10 graus x 10 graus na linha do equador (:numref:`Figura %s <fig:acesso-imagens:introducao-ser:grade-modis>`). As imagens com 250m de resolução espacial possuem cerca de 4800 x 4800 pixels.
+
+
+.. figure:: https://modis-land.gsfc.nasa.gov/images/MODIS_sinusoidal_grid1.gif
+    :alt: Grade sinusoidal dos produtos de superfície do MODIS
+    :width: 60%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:grade-modis
+
+    Grade sinusoidal dos produtos de superfície do MODIS. |br| **Fonte:** `NASA <https://modis-land.gsfc.nasa.gov/MODLAND_grid.html>`__.
+
+
+As imagens do Landsat 5, 7, 8 e 9 utilizam uma grade donominada **Worldwide Reference System-2** (**WRS-2**) :cite:`nasa:2023:a`. Nessa grade as imagens são organizadas em 233 órbitas, também chamadas de *paths*, numerados de 001 a 233, de leste para oeste. O *path* 001 cruza a Linha do Equador com 64.60 graus de longitude oeste. Cada órbita é particionada em 248 linhas ou *rows*, com a linha 60 coicidindo com a Linha do Equador. A expressão *path/row* é muito comum para nos referirmos a uma determinada cena nessa grade (:numref:`Figura %s <fig:acesso-imagens:introducao-ser:grade-wrs2>`. O arquivo *ESRI Shapefile* dessa grade pode ser baixado do site da `USGS <https://www.usgs.gov/media/files/landsat-wrs-2-descending-path-row-shapefile>`__.
+
+
+.. figure:: https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/wrs2.gif
+    :alt: Worldwide Reference System-2
+    :width: 60%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:grade-wrs2
+
+    Worldwide Reference System-2. |br| **Fonte:** `USGS <https://www.usgs.gov/media/images/world-reference-system-2-wrs-2-daydescending>`__.
+
+
+As imagens Sentinel 2/MSI são disponibilizadas em uma grade com células de 110km x 110km em UTM/WGS84 (:numref:`Figura %s <fig:acesso-imagens:introducao-ser:grade-mgrs2>`). A grade KML pode ser baixada do site da `ESA <https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2/data-products>`__.
+
+
+.. figure:: ../img/acesso-imagens/introducao-ser/mgrs-sentinel-2.png
+    :alt: Grade Sentinel 2 / MSI
+    :width: 60%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:grade-mgrs2
+
+    Grade Sentinel 2 / MSI
+
+
+Formatos
+--------
+
+
+As imagens de sensoriamento remoto são disponibilizadas nos mais diversos formatos. As imagens MODIS, por exemplo, são disponibilizadas no formato **HDF4** (extensão ``.hdf``). Já as imagens Landsat são distribuídas no formato GeoTIFF (extensão ``.tif``). As imagens Sentinel 2/MSI são distribuídas no formato JPEG 2000 (extensão ``.jp2``).
+
+
+.. _sec_acesso_imagens_introducao_caracteristicas_sensores:
+
+Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente
+-----------------------------------------------------------------------------
+
+
+.. tabs::
+
+
+    .. tab:: CBERS-4
+
+
+
+    .. tab:: CBERS-4A
+
+
+        O sensor WPM (*Wide Scan Panchromatic and Multispectral Camera*) a bordo do CBERS-4A realiza o imageamento da superfície terrestre usando um *swath* de 92km x 92km com resolução temporal de 31 dias e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:cbers-4a-wpm>`. O CBERS-4A também carrega a bordo os sensores WFI e MUX (*Multispectral Camera*), com características distintas, e resolução espacial inferior à WPM. O satélite `CBERS-4 <http://www.cbers.inpe.br/sobre/cameras/cbers3-4.php>`__ carrega os sensores PAN (*Panchromatic and Multispectral*), MUX, IRS e WFI.
+
+
+        .. table:: Características do sensor WPM a bordo do satélite CBERS-4A. |br| **Fonte:** `INPE <http://www.cbers.inpe.br/sobre/cameras/cbers04a.php>`__
+            :name: tbl:acesso-imagens:introducao-ser:cbers-4a-wpm
+            :align: center
+            :header-alignment: center center center
+            :column-alignment: left center center
+            :widths: 30 35 25
+
+            +----------------------+---------------------------+--------------------+
+            | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +======================+===========================+====================+
+            | 0 - PAN              | 0.45 - 0.90               |  2 metros          |
+            +----------------------+---------------------------+--------------------+
+            | 1 - Blue             | 0.45 - 0.52               |  8 metros          |
+            +----------------------+---------------------------+                    +
+            | 2 - Green            | 0.52 - 0.59               |                    |
+            +----------------------+---------------------------+                    +
+            | 3 - Red              | 0.63 - 0.69               |                    |
+            +----------------------+---------------------------+                    +
+            | 4 - NIR              | 0.77 - 0.89               |                    |
+            +----------------------+---------------------------+--------------------+
+
+
+    .. tab:: AMAZONIA-1
+
+
+        O sensor WFI (*Wide Field Imaging Camera*) a bordo do AMAZONIA-1 realiza o imageamento da superfície terrestre usando um *swath* de 850km x 850km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:amazonia-1-wfi>`. O mesmo sensor está a bordo de outros 2 satélites brasileiros, o CBERS-4 e o CBERS-4A, permitindo a integração em uma série de alta resolução temporal.
+
+
+        .. table:: Características do sensor WFI a bordo do satélite AMAZONIA-1. |br| **Fonte:** `INPE <https://www.gov.br/inpe/pt-br/programas/amazonia1/sobre-o-satelite/sobre-o-satelite>`__
+            :name: tbl:acesso-imagens:introducao-ser:amazonia-1-wfi
+            :align: center
+            :header-alignment: center center center
+            :column-alignment: left center center
+            :widths: 30 35 25
+
+            +----------------------+---------------------------+--------------------+
+            | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +======================+===========================+====================+
+            | 1 - Blue             | 0.45 - 0.52               | 64 metros          |
+            +----------------------+---------------------------+                    +
+            | 2 - Green            | 0.52 - 0.59               |                    |
+            +----------------------+---------------------------+                    +
+            | 3 - Red              | 0.63 - 0.69               |                    |
+            +----------------------+---------------------------+                    +
+            | 4 - NIR              | 0.77 - 0.89               |                    |
+            +----------------------+---------------------------+--------------------+
+
+
+    .. tab:: Landsat 8
+
+
+        O sensor OLI a bordo do Landsat 8 realiza o imageamento da superfície terrestre usando um *swath* de 185km x 185km com resolução temporal de 16 dias e produz imagens de 12 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:l8-oli>`.
+
+
+        .. table:: Características do sensor OLI a bordo do satélite Landsat 8. |br| **Fonte:** `USGS <https://www.usgs.gov/landsat-missions/landsat-8>`__
+            :name: tbl:acesso-imagens:introducao-ser:l8-oli
+            :align: center
+            :header-alignment: center center center
+            :column-alignment: left center center
+            :widths: 30 35 25
+
+            +----------------------+---------------------------+--------------------+
+            | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +======================+===========================+====================+
+            | 1 - Coastal Aerosol  | 0.43 - 0.45               | 30 metros          |
+            +----------------------+---------------------------+                    +
+            | 2 - Blue             | 0.45 - 0.51               |                    |
+            +----------------------+---------------------------+                    +
+            | 3 - Green            | 0.53 - 0.59               |                    |
+            +----------------------+---------------------------+                    +
+            | 4 - Red              | 0.64 - 0.67               |                    |
+            +----------------------+---------------------------+                    +
+            | 5 - NIR              | 0.85 - 0.88               |                    |
+            +----------------------+---------------------------+                    +
+            | 6 - SWIR 1           | 1.57 - 1.65               |                    |
+            +----------------------+---------------------------+                    +
+            | 7 - SWIR 2           | 2.11 - 2.29               |                    |
+            +----------------------+---------------------------+                    +
+            | 9 - Cirrus           | 1.36 - 1.38               |                    |
+            +----------------------+---------------------------+--------------------+
+            | 8 - PAN              | 0.50 - 0.68               | 15 metros          |
+            +----------------------+---------------------------+--------------------+
+
+
+    .. tab:: Landsat 9
+
+
+        O sensor OLI-2 a bordo do Landsat 9 realiza o imageamento da superfície terrestre usando um *swath* de 185km x 185km com resolução temporal de 16 dias e produz imagens de 14 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:l9-oli-2>`.
+
+
+        .. table:: Características do sensor OLI a bordo do satélite Landsat 8. |br| **Fonte:** `USGS <https://www.usgs.gov/landsat-missions/landsat-9>`__
+            :name: tbl:acesso-imagens:introducao-ser:l9-oli-2
+            :align: center
+            :header-alignment: center center center
+            :column-alignment: left center center
+            :widths: 30 35 25
+
+            +----------------------+---------------------------+--------------------+
+            | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +======================+===========================+====================+
+            | 1 - Coastal Aerosol  | 0.43 - 0.45               | 30 metros          |
+            +----------------------+---------------------------+                    +
+            | 2 - Blue             | 0.45 - 0.51               |                    |
+            +----------------------+---------------------------+                    +
+            | 3 - Green            | 0.53 - 0.59               |                    |
+            +----------------------+---------------------------+                    +
+            | 4 - Red              | 0.64 - 0.67               |                    |
+            +----------------------+---------------------------+                    +
+            | 5 - NIR              | 0.85 - 0.88               |                    |
+            +----------------------+---------------------------+                    +
+            | 6 - SWIR 1           | 1.57 - 1.65               |                    |
+            +----------------------+---------------------------+                    +
+            | 7 - SWIR 2           | 2.11 - 2.29               |                    |
+            +----------------------+---------------------------+                    +
+            | 9 - Cirrus           | 1.36 - 1.38               |                    |
+            +----------------------+---------------------------+--------------------+
+            | 8 - PAN              | 0.50 - 0.68               | 15 metros          |
+            +----------------------+---------------------------+--------------------+
+
+
+    .. tab:: Sentinel-2
+
+
+        O sensor MSI a bordo dos satélites Sentinel-2A e 2B realiza o imageamento da superfície terrestre usando um *swath* de 25km x 23km com resolução temporal de 05 dias e produz imagens de 12 bits. As características das 13 bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:s2-msi>`.
+
+
+        .. table:: Características do sensor MSI a bordo dos satélite Sentinel-2. |br| **Fonte:** `ESA <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/resolutions/spectral>`__
+            :name: tbl:acesso-imagens:introducao-ser:s2-msi
+            :align: center
+            :header-alignment: center center center
+            :column-alignment: left center center
+            :widths: 50 25 25
+
+            +---------------------------------------+----------------------------+--------------------+
+            | Banda                                 | Intervalo (:math:`\eta m`) | Resolução Espacial |
+            +=======================================+============================+====================+
+            | 1 - Ultra Blue (Coastal Aerosol)      | 443                        | 60 metros          |
+            +---------------------------------------+----------------------------+--------------------+
+            | 2 - Blue                              | 493                        | 10 metros          |
+            +---------------------------------------+----------------------------+                    +
+            | 3 - Green                             | 560                        |                    |
+            +---------------------------------------+----------------------------+                    +
+            | 4 - Red                               | 665                        |                    |
+            +---------------------------------------+----------------------------+--------------------+
+            | 5 - Red-edge (VNIR)                   | 704                        | 20 metros          |
+            +---------------------------------------+----------------------------+                    +
+            | 6 - Red-edge (VNIR 2)                 | 740                        |                    |
+            +---------------------------------------+----------------------------+                    +
+            | 7 - Red-edge (VNIR 3)                 | 783                        |                    |
+            +---------------------------------------+----------------------------+--------------------+
+            | 8 - NIR                               | 833                        | 10 metros          |
+            +---------------------------------------+----------------------------+--------------------+
+            | 8a - NIR                              | 865                        | 20 metros          |
+            +---------------------------------------+----------------------------+--------------------+
+            | 9 - NIR (Water Vapour)                | 945                        | 60 metros          |
+            +---------------------------------------+----------------------------+                    +
+            | 10 - SWIR (Cirrus)                    | 1374                       |                    |
+            +---------------------------------------+----------------------------+--------------------+
+            | 11- SWIR                              | 1610                       | 20 metros          |
+            +---------------------------------------+----------------------------+                    +
+            | 12 - SWIR                             | 2190                       |                    |
+            +---------------------------------------+----------------------------+--------------------+
+
+
+        .. note::
+
+            Significado de algumas siglas:
+
+                - **NIR:** Near Infrared.
+                - **VNIR:** Visible and Near Infrared.
+                - **SWIR:** Short Wave Infrared.
+                - **PAN:** Panchromatic.
+

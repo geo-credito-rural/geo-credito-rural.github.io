@@ -1,0 +1,66 @@
+.. include:: ../def.rst
+
+
+.. _sec_uso_cobertura_terra_prodes:
+
+Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES)
+===============================================================================================
+
+
+.. figure:: https://content.time.com/time/magazine/archive/covers/1989/1101890918_400.jpg
+    :alt: Desmatamento no Brasil na capa da Revista Time
+    :width: 150
+    :align: right
+
+
+O `Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES) <http://www.obt.inpe.br/OBT/assuntos/programas/amazonia/prodes>`__ realiza sistematicamente o mapeamento do desmatamento por corte raso na Amazônia Legal desde 1988. A sua origem está relacionada com uma fotografia obtida por um astronauta que mostrava uma grande nuvem de fumaça na América do Sul oriunda de queimadas na Amazônia. Essa fotografia ocasionou diversas reportagens, incluindo a capa da `Revista Time <https://content.time.com/time/covers/0,16641,19890918,00.html>`__ em 1989. Isto criou grande pressão internacional visando a proteção da Amazônia e solicitando ao governo brasileiro uma ação de combate ao desmatamento :cite:`linden:1989`. Por conta disso, o governo brasileiro solicitou ao INPE a criação de um projeto para mensurar o desmatamento. Nesta época o INPE já tinha experiência neste tipo de mapeamento. Entretanto, os primeiros projetos relacionados com o desmatamento na Amazônia não estavam relacionados com a proteção ambiental. Eles foram aplicados para verificar se o dinheiro investido na década de 1970 pelo Governo Federal para realizar a ocupação da Amazônia, pelo o Programa de Integração Nacional (PIN), estava sendo utilizado, gerando desflorestamentos :cite:`santos:1977,tardin:1979`. Atualmente, os resultados do PRODES são usados pelo governo brasileiro para o estabelecimento de políticas públicas de proteção ambiental. As taxas anuais são estimadas a partir dos incrementos de desmatamento identificados em cada imagem de satélite que cobre a Amazônia Legal. A primeira apresentação dos dados é realizada até dezembro de cada ano, na forma de estimativa, quando normalmente são processadas aproximadamente 50% das imagens que cobrem a Amazônia Legal e que representam em torno de 90% da área desmatada. Os dados consolidados são apresentados no primeiro semestre do ano seguinte :cite:`almeida:2022`.
+
+
+No período entre 1988 a 2002 o monitoramento foi realizado por interpretação visual de imagens de maneira analógica. As imagens Landsat eram impressas em papel fotográfico na escala de *1:250.000* e sobrepostas por *overlay* em que eram desenhados os desmatamentos. Nesta época os dados disponibilizados eram apenas os valores numéricos do desflorestamento por estado e a plotagem dos mapas com os polígonos das áreas desmatadas :cite:`shimabukuro:2012`. Neste período surge a área mínima de mapeamento do PRODES de 6,25 ha. Esse número é o resultado de dois fatores, o primeiro, a escala de mapeamento usada em que cada milímetro mapeado corresponde a 250 metros. O segundo, a espessura do grafite utilizado para o mapeamento, que era de 0,5 mm. Por tanto, o menor elemento que essa escala permitia mapear, utilizando esse grafite, é de 1 mm por 1 mm. Assim, :math:`250\ m \times 250\ m` que corresponde aos 6,25 hectares. Também nascem nessa época alguns problemas, como por exemplo as distorções e/ou deslocamento dos polígonos; descontinuidade entre as cenas, dentre outros.
+
+
+Mas, no final da década de 1990 com o avanço da informática, tanto na parte de hardware (aumento do desempenho, de capacidade de armazenamento e, principalmente, a redução de custo) quanto do desenvolvimento de softwares, principalmente os Sistemas de Informações Geográficas (SIG), inicia uma nova fase para a metodologia de mapeamento do PRODES, agora computadorizada. O INPE desenvolve o **S**\ istema de **Pr**\ ocessamento de **In**\ formações **G**\ eoreferenciadas (SPRING) :cite:`camara:1996` utilizado pelo PRODES para realizar o monitoramento e integração com banco de dados geoespacial :cite:`maurano:2019`. Além disto, o SPRING possibilitou o processamento digital de imagens que se tornaram fundamentais para o mapeamento executado pelo PRODES, a exemplo do modelo linear de mistura espectral (MLME) :cite:`shimabukuro:1998` e da segmentação de imagens :cite:`bins:1996`. Com isto, inicia o PRODES digital, que tem como marco a disponibilização dos dados (vetoriais, imagens e tabulares) na Web, gerando transparência e garantindo a qualidade da informação. Entretanto, o SPRING é um sistema monousuário e não permitia a integração necessária em um projeto com essa dimensão. Por isso, foi desenvolvido o software TeraAmazon, um sistema multiusuário que permite gerenciar o projeto e o trabalho conjunto na edição de dados geográficos vetoriais. Isso permitiu o uso de diversas imagens pelos analistas, que trabalham em um mesmo banco de dados e conseguem observar o que cada um está produzindo em tempo real, reduzindo o problema de descontinuidade entre cenas :cite:`inpe:2024:c`. A metodologia voltou a ser interpretação visual, com revisão por auditores, geralmente mais experientes, que validam o mapeamento dos fotointerpretes :cite:`almeida:2022`. Esse mapeamento tem a exatidão de aproximadamente 95% e fornece os dados com transparência :cite:`maurano:2019`. Dada a precisão, transparência e qualidade do mapeamento, esses dados são utilizados também por acordos como a Moratória da soja :cite:`rudorff:2012`. Atualmente, o projeto PRODES expandiu a área de atuação e está realizando o mapeamento para todos os biomas brasileiros. A evolução temporal da taxa de desmatamento na amazônia desde 1988 pode ser observada na :numref:`Figura %s <fig:uso-cobertura-terra:prodes-taxa>` :cite:`inpe:2024:b`.
+
+
+.. figure:: ../img/uso-cobertura-terra/prodes-taxa.png
+    :alt: Taxa de desmatamento PRODES na Amazônia desde 1988 
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:prodes-taxa
+
+    Taxa de desmatamento PRODES na Amazônia desde 1988.
+
+
+Na :numref:`Figura %s <fig:uso-cobertura-terra:prodes-area-tamanho>` pode ser observada a variação temporal da área dos polígonos de 2002 até 2021 e de como flutuou ao longo do tempo a importância de cada uma delas na Amazônia :cite:`inpe:2024:b`. Inicialmente, a influência dos grandes polígonos (> 50 ha) é alta, representando em torno de 70% da área total desflorestada na amazônia e com o passar dos anos, possivelmente relacionado com o uso do DETER (:numref:`Seção %s - DETER  <sec_uso_cobertura_terra_deter>`) como instrumento para alerta e combate ao desflorestamento, a influência desses polígonos diminui, atingindo cerca de 20% em torno de 2010, voltando a aumentar posteriormente com o enfraquecimento das políticas de controle do desmatamento e, em 2021 retorna para representarem aproximadamente 50% da área total desflorestada.
+
+
+.. figure:: ../img/uso-cobertura-terra/prodes-area-tamanho.png
+    :alt: Variação temporal da influência e da área dos polígonos
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:prodes-area-tamanho
+
+    Variação temporal da influência da área dos polígonos no total desflorestado.
+
+
+Os mapeamentos dos desflorestamentos na Amazônia e no Cerrado executados pelo PRODES são apresentados na :numref:`Figura %s <fig:uso-cobertura-terra:prodes-amz-cerr>`, em que é possível avaliar a localização da área desmatada e os maciços florestais ainda existentes nesses biomas :cite:`inpe:2024:b`.
+
+
+.. figure:: ../img/uso-cobertura-terra/prodes-amz-cerr.png
+    :alt: Desflorestamento mapeado pelo PRODES nos biomas Amazônia e Cerrado
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:prodes-amz-cerr
+
+    Desflorestamento mapeado pelo PRODES nos biomas Amazônia e Cerrado.
+
+
+
+
+
+
+
+
+
+
+    

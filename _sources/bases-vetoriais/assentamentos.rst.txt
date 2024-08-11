@@ -8,13 +8,13 @@ Assentamentos
 =============
 
 
-O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo INCRA (Instituto Nacional de Colonização e Reforma Agrária) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
+O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo Instituto Nacional de Colonização e Reforma Agrária (INCRA) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
 
 
 Os agricultores que recebem o lote se comprometem a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pelo lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
 
 
-Os assentamentos utilizados nesse curso foram baixados, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
+Os assentamentos utilizados nesse curso foram baixados, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Para realizar o download desse dado, é necessário autenticar com a credencial do **gov.br**. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
 
 
 Os assentamentos são classificados em diferentes modalidades, como por exemplo, Projeto de Assentamento Federal (PA), Projeto de Assentamento Agroextrativista (PAE), Projeto de Desenvolvimento Sustentável (PDS), Projeto de Assentamento Florestal (PAF), Reservas Extrativistas (RESEX), Território Remanescente Quilombola (TRQ) e Floresta Nacional (FLONA). Informações sobre cada tipo podem ser encontradas no `site do INCRA <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__. A :numref:`Figura %s <fig:bases-vetoriais:assentamentos>` abaixo apresenta a distribuição dos assentamentos no Brasil.
@@ -27,6 +27,66 @@ Os assentamentos são classificados em diferentes modalidades, como por exemplo,
     :name: fig:bases-vetoriais:assentamentos
 
     Distribuição dos assentamentos rurais.
+
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Áreas de Quilombolas.zip`.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:assentamentos
+
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cd_sipra     | varchar(50)                 |  Código no Sistema de Informações de Projetos de      |
+    |         |              |                             |  Reforma Agrária (SIPRA)                              |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf           | varchar(2)                  |  Código da UF em que está o assentamento              |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome_proje   | varchar(254)                |  Denominação do projeto de assentamento               |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | municipio    | varchar(254)                |  Município em que se localiza o projeto de            |
+    |         |              |                             |  assentamento                                         |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | area_hecta   | varchar(40)                 |  Área em hectares do assentamento                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+   
+    |         | capacidade   | integer                     |  Capacidade do assentamento em número de famílias     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | num_famili   | integer                     |  Número de famílias instaladas no assentamento        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | fase         | integer                     |  Fase na qual se encontra o projeto de assentamento   |
+    |         |              |                             |  que pode ser: 0 - Em Obtenção; 1 - Pré-Projeto de    |
+    |         |              |                             |  Assentamento; 2 - Assentamento em criação;           |
+    |         |              |                             |  3 - Assentamento Criado; 4 - Assentamento em         |
+    |         |              |                             |  Instalação; 5 - Assentamento em Estruturação;        |
+    |         |              |                             |  6 - Assentamento em Consolidação                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_de_cr   | varchar(10)                 |  Data da publicação do ato de criação do projeto de   |
+    |         |              |                             |  assentamento                                         |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | forma_obte   | varchar(50)                 |  Forma pela qual o terreno foi obtido pelo INCRA      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_obten   | varchar(10)                 |  Data de obtenção do terreno pelo INCRA               |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | area\_calc\_ | double                      |  Área calculada do projeto de assentamento com base   |
+    |         |              |                             |  no mapeamento ou georreferenciamento                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | sr           | varchar(50)                 |  Superintendência regional do INCRA                   |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | descricao\_  | varchar(50)                 |  Sem informação                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria do território quilombola                   |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+  
+
+
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `Assentamento Brasil.zip` encontra-se carregado na tabela ``assentamentos`` do banco de dados PostgreSQL.
 
 
 Consultas

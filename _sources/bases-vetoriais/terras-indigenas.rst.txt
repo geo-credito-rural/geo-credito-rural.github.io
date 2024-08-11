@@ -23,7 +23,7 @@ A Fundação Nacional dos Povos Indígenas (FUNAI) é a instituição responsáv
     Localização das Terras Indígenas no Brasil.
 
 
-As terras indígenas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas>`__  e inseridas na tabela ``terras_indigenas``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`.
+As terras indígenas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do :download:`Acervo da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas>` e inseridas na tabela ``terras_indigenas``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`.
 
 
 Consultas

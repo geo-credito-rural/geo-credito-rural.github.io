@@ -43,7 +43,7 @@ O cadastramento das florestas públicas segue três etapas:
 - **Demarcação:** Implantação de marcos topográficos e colocação de placas informativas no campo.
 
 
-Para este trabalho foram utilizados os dados do arquivo `Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>`__. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a espacialização das florestas públicas por destinação.
+Para este trabalho foram utilizados os dados do arquivo :download:`Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>`. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a espacialização das florestas públicas por destinação.
 
 
 .. figure:: ../img/bases-vetoriais/florestas-publicas.png

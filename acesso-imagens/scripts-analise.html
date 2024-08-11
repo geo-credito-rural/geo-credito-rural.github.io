@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.2. Scripts para suporte à análise de imagens &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/acesso-imagens/scripts-analise.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="6.3. Composição colorida e Contraste" href="composicao-contraste.html" />
+    <link rel="prev" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" href="introducao-ser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.2. Scripts para suporte à análise de imagens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#visualizacao-de-imagens-sentinel-2-do-brazil-data-cube-bdc">6.2.1. Visualização de imagens Sentinel-2 do Brazil Data Cube (BDC)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="composicao-contraste.html">6.3. Composição colorida e Contraste</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.2. </span>Scripts para suporte à análise de imagens</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="introducao-ser.html" class="btn btn-neutral float-left" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="composicao-contraste.html" class="btn btn-neutral float-right" title="6.3. Composição colorida e Contraste" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="scripts-para-suporte-a-analise-de-imagens">
+<span id="sec-acesso-imagens-scripts-analise"></span><h1><span class="section-number">6.2. </span>Scripts para suporte à análise de imagens<a class="headerlink" href="#scripts-para-suporte-a-analise-de-imagens" title="Link permanente para este cabeçalho"></a></h1>
+<p>Para analisar as imagens relacionadas com as glebas do Sicor, podemos construir scripts em Python e combinar algumas bibliotecas disponíveis, que nos auxiliam muito na manipulação dos dados. Tais bibliotecas servem de suporte para abrir uma imagem, para obter a matriz de pixels, reprojetar, combinar as bandas e visualizar as imagens. As bibliotecas <a class="reference external" href="https://gdal.org/api/python_bindings.html">GDAL</a> e <a class="reference external" href="https://rasterio.readthedocs.io/en/stable/">Rasterio</a> são muito úteis para facilitar o acesso às imagens nos formatos tradicionais, como por exemplo GeoTIFF.</p>
+<p>Os scripts que são criados basicamente manipulam números em matrizes digitais, e a biblioteca <a class="reference external" href="https://numpy.org/">NumPy</a> possui muitas funções prontas para facilitar essa manipulação. Além disso, a visualização das imagens e gráficos como histogramas, pode ser feita com ajuda da biblioteca <a class="reference external" href="https://matplotlib.org/">Matplotlib</a>. Para iniciar os experimentos de análise de imagens, apresentamos alguns trechos de scripts em Python.</p>
+<p>Como são arquivos separados para cada banda, é preciso carregar cada banda de forma individual, utilizando a biblioteca Rasterio, assumindo que os metadados serão equivalentes.</p>
+<p><strong>Script 1.</strong> Carregar a imagem e construir uma matriz com os pixels da banda carregada.</p>
+<details class="summary-solucao-tabs-tab-python-code-block-python">
+<summary>Solução:
+.. tabs::
+    .. tab:: Python
+        .. code-block:: python</summary><blockquote>
+<div><dl class="simple">
+<dt>with rio.open(‘/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND1.tif’) as banda1:</dt><dd><p>matriz_verde = banda1.read(1)
+# as linhas a seguir são para apresentar algumas informações sobre a imagem
+resolucao_espacial = banda1.res[0]
+linhas = banda1.height
+colunas = banda1.width
+print(f’as imagens têm resolução espacial de {resolucao_espacial} m, número de linhas: {linhas}, número de colunas: {colunas}’)
+print(f’área total imageada: {linhas * colunas * resolucao_espacial * resolucao_espacial / 1000000} km²’)</p>
+</dd>
+<dt>with rio.open(‘/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND2.tif’) as banda2:</dt><dd><p>matriz_azul = banda2.read(1)</p>
+</dd>
+<dt>with rio.open(‘/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND3.tif’) as banda3:</dt><dd><p>matriz_vermelho = banda3.read(1)</p>
+</dd>
+<dt>with rio.open(‘/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND4.tif’) as banda4:</dt><dd><p>matriz_iv = banda4.read(1)</p>
+</dd>
+</dl>
+</div></blockquote>
+</details><p>Cada par de linhas do código acima solicita a abertura do arquivo de imagem indicado pelo nome, armazenando-o na variável correspondente, <code class="docutils literal notranslate"><span class="pre">banda1</span></code>, <code class="docutils literal notranslate"><span class="pre">banda2</span></code>, etc. Em seguida, a função read com o parâmetro 1 indica que a primeira banda contida no arquivo, que nesse caso só possui uma banda, será carregada e a matriz de pixels será armazenada nas variáveis <code class="docutils literal notranslate"><span class="pre">matriz_verde</span></code>, <code class="docutils literal notranslate"><span class="pre">matriz_azul</span></code>, <code class="docutils literal notranslate"><span class="pre">matriz_vermelho</span></code>, <code class="docutils literal notranslate"><span class="pre">matriz_iv</span></code>.</p>
+<p><strong>Script 2.</strong> Realizar a visualização das imagens, utilizando as funções disponíveis na biblioteca <code class="docutils literal notranslate"><span class="pre">matplotlib</span></code>, módulo <code class="docutils literal notranslate"><span class="pre">pyplot</span></code>.</p>
+<details class="summary-solucao-tabs-tab-python-code-block-python">
+<summary>Solução:
+.. tabs::
+    .. tab:: Python
+        .. code-block:: python</summary><blockquote>
+<div><p>plt.figure(figsize=(19, 3))
+plt.subplot(141)
+plt.imshow(matriz_azul, cmap = ‘gray’)
+plt.title(‘Canal Azul’)
+plt.subplot(142)
+plt.imshow(matriz_verde, cmap = ‘gray’)
+plt.title(‘Canal Verde’)
+plt.subplot(143)
+plt.imshow(matriz_vermelho, cmap = ‘gray’)
+plt.title(‘Canal Vermelho’)
+plt.subplot(144)
+plt.imshow(matriz_iv, cmap = ‘gray’)
+plt.title(‘Canal Infravermelho’)
+plt.colorbar()
+plt.show()</p>
+</div></blockquote>
+</details><p>A <a class="reference internal" href="#fig-acesso-imagens-scripts-analise-4bandas"><span class="std std-numref">Figura 6.6</span></a> abaixo apresenta o resultado do <strong>Script 3</strong>.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-scripts-analise-4bandas">
+<a class="reference internal image-reference" href="../_images/scripts-analise-4bandas.png"><img alt="Visualização das 4 bandas carregadas, em tons de cinza" src="../_images/scripts-analise-4bandas.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.6 - </span><span class="caption-text">Visualização das 4 bandas carregadas, em tons de cinza.</span><a class="headerlink" href="#fig-acesso-imagens-scripts-analise-4bandas" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A visualização dessas imagens está prejudicada por alguns fatores. Primeiramente, a quantidade de pixels de cada banda é muito grande, e o espaço de visualização é muito pequeno. A área representada por esta imagem, considerando a resolução espacial de 64 metros, é de aproximadamente 950 mil km². No entanto, uma gleba armazenada nos dados Sicor, tendo sido escolhida a de maior área no ano de 2022, possui uma área de aproximadamente 15 km². Assim, para focar a visualização dos pixels da imagem somente na área de interesse de uma gleba, podemos recortar a imagem em uma região no entorno da geometria da gleba, considerando um buffer de alguns metros para observação da vizinhança.</p>
+<p>A <a class="reference internal" href="#fig-acesso-imagens-scripts-analise-4bandas-recorte"><span class="std std-numref">Figura 6.7</span></a> abaixo apresenta um recorte das 4 bandas carregadas, em tons de cinza, e com visualizações independentes.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-scripts-analise-4bandas-recorte">
+<a class="reference internal image-reference" href="../_images/scripts-analise-4bandas-recorte.png"><img alt="Visualização de um recorte das 4 bandas carregadas, em tons de cinza" src="../_images/scripts-analise-4bandas-recorte.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.7 - </span><span class="caption-text">Visualização de um recorte das 4 bandas carregadas, em tons de cinza.</span><a class="headerlink" href="#fig-acesso-imagens-scripts-analise-4bandas-recorte" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A barra de cores ao lado de cada figura nos indica que essa visualização está com um esquema de cores independente para cada imagem. Esse esquema de cores é baseado nos valores mínimos e máximos encontrados no recorte, e isso automaticamente transforma a visualização numa rampa de cores entre preto e branco. Isso pode nos trazer uma falsa impressão de que o canal infravermelho, por exemplo, possui a resposta espectral semelhante às demais imagens. No entanto podemos perceber pela barra de cores, que os menores valores do canal infravermelho, representados em pixels escuros, correspondem ao número 100, e os maiores valores estão em torno de 500, valor tal muito maior do que nos canais visíveis, como azul, verde e vermelho.</p>
+<p>Para observar a distribuição de valores de cada banda, de forma independente, podemos utilizar ferramentas estatísticas. Uma maneira muito utilizada para complementar a visualização das imagens é através do histograma. Ele apresenta, de forma gráfica, a distribuição dos pixels na imagem.</p>
+<p>A <a class="reference internal" href="#fig-acesso-imagens-scripts-analise-4bandas-histograma"><span class="std std-numref">Figura 6.8</span></a> abaixo apresenta 4 histogramas integrados das bandas carregadas. Nesta figura fica bem claro que os pixels do canal infravermelho são muito mais altos do que os demais. Nota-se também a ocorrência dos menores valores no canal vermelho.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-scripts-analise-4bandas-histograma">
+<a class="reference internal image-reference" href="../_images/scripts-analise-4bandas-histograma.png"><img alt="Visualização do histograma composto pelas 4 bandas carregadas" src="../_images/scripts-analise-4bandas-histograma.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.8 - </span><span class="caption-text">Visualização do histograma composto pelas 4 bandas carregadas.</span><a class="headerlink" href="#fig-acesso-imagens-scripts-analise-4bandas-histograma" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>É possível também combinar a visualização de 2 bandas em um gráfico de dispersão, também chamado de scatterplot. Com este gráfico, é possível verificar a diferença, ou a semelhança, entre as bandas. Note como os canais verde e azul possuem uma grande semelhança (o que também se mostrou pela grande sobreposição no histograma).</p>
+<p>A <a class="reference internal" href="#fig-acesso-imagens-scripts-analise-2graficos-dispersao"><span class="std std-numref">Figura 6.9</span></a> abaixo apresenta 2 gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-scripts-analise-2graficos-dispersao">
+<a class="reference internal image-reference" href="../_images/scripts-analise-2graficos-dispersao.png"><img alt="Visualização de gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas" src="../_images/scripts-analise-2graficos-dispersao.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.9 - </span><span class="caption-text">Visualização de gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas.</span><a class="headerlink" href="#fig-acesso-imagens-scripts-analise-2graficos-dispersao" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Os intervalos de valores apresentados nos gráficos de dispersão são interessantes pois nos ajudarão posteriormente a identificar formas de melhorar a visualização da imagem numa composição colorida.</p>
+<section id="visualizacao-de-imagens-sentinel-2-do-brazil-data-cube-bdc">
+<span id="subsec-acesso-imagens-scripts-analise-visualizacao-bdc"></span><h2><span class="section-number">6.2.1. </span>Visualização de imagens Sentinel-2 do Brazil Data Cube (BDC)<a class="headerlink" href="#visualizacao-de-imagens-sentinel-2-do-brazil-data-cube-bdc" title="Link permanente para este cabeçalho"></a></h2>
+<p>… incluir figura do BDC sobre geração de produtos 16 dias e trechos do script de consulta</p>
+<p><strong>Script 3.</strong> Carregar a geometria de uma gleba, disponível em arquivo Shapefile, e buscar imagens Sentinel-2 no BDC que incluam a área da gleba, em um período de agosto de 2022 até julho de 2023.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1"># carregar o arquivo Shapefile e consultar o primeiro polígono disponível</span>
+<span class="n">gleba</span> <span class="o">=</span> <span class="n">geopandas</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="s1">&#39;arquivo_gleba.shp&#39;</span><span class="p">)</span>
+<span class="n">poligono_gleba</span> <span class="o">=</span> <span class="n">gleba</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="c1"># realizar uma busca de imagens Sentinel-2 disponíveis no</span>
+<span class="c1"># Brazil Data Cube no intervalo temporal estabelecido</span>
+<span class="c1"># e na região delimitada pela área de interesse (gleba)</span>
+<span class="n">catalogo_bdc</span> <span class="o">=</span> <span class="n">pystac_client</span><span class="o">.</span><span class="n">Client</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s2">&quot;https://data.inpe.br/bdc/stac/v1&quot;</span><span class="p">)</span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">catalogo_bdc</span><span class="o">.</span><span class="n">search</span><span class="p">(</span>
+    <span class="n">collections</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;S2_L2A-1&#39;</span><span class="p">],</span>
+    <span class="n">datetime</span><span class="o">=</span><span class="s1">&#39;2022-08-01/2023-07-31&#39;</span><span class="p">,</span>
+    <span class="n">intersects</span><span class="o">=</span><span class="n">shapely</span><span class="o">.</span><span class="n">geometry</span><span class="o">.</span><span class="n">mapping</span><span class="p">(</span><span class="n">poligono_gleba</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">total_rasters</span> <span class="o">=</span> <span class="n">items</span><span class="o">.</span><span class="n">matched</span><span class="p">()</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;total de elementos encontrados&#39;</span><span class="p">,</span> <span class="n">total_rasters</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- data da imagem&#39;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">properties</span><span class="p">[</span><span class="s1">&#39;datetime&#39;</span><span class="p">])</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;- link da banda 04&#39;</span><span class="p">,</span> <span class="n">item</span><span class="o">.</span><span class="n">assets</span><span class="p">[</span><span class="s1">&#39;B04&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">href</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="introducao-ser.html" class="btn btn-neutral float-left" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="composicao-contraste.html" class="btn btn-neutral float-right" title="6.3. Composição colorida e Contraste" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee5300eb0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

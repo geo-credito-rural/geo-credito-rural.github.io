@@ -2,6 +2,51 @@ Introdução à Linguagem de Consulta SQL
 ======================================
 
 
-.. warning::
+Na última década, o uso de dados geoespaciais tem sido cada vez mais comum nas aplicações do cotidiano, bem como nas diversas áreas do conhecimento. Esses dados são fundamentais em tomadas de decisão, em problemas ambientais e socioeconômicos. O monitoramento de operações de crédito rural por meio de geotecnologias depende do tratameto e análise de diversos conjuntos de dados geoespaciais. Esses conjuntos de dados podem ter desde poucos Kilobytes, como no caso do cadastro de empregadores que submeteram trabalhadores a condições análogas à escravidão (:numref:`Seção %s <sec_bases_vetoriais_trabalho_analogo_escravidao>`), até Gigabytes, como os microdados do Sicor (:numref:`Seção %s <sec_sicor_microdados>`). Logo, é imprescindível dominar e utilizar tecnologias que ajudem na organização de uma base de dados bem estruturada, que permita o seu compartilhamento e que também possibilite a extração de subconjuntos desses dados ou até mesmo a realização de análises.
 
-    Esta seção **encontra-se em desenvolvimento**.
+
+.. image:: ../img/logos/pg.svg
+    :alt: PostgreSQL
+    :width: 48
+    :align: right
+
+
+As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamente para atender esse tipo de demanda. Nessa seção, será apresentado o uso básico da linguagem SQL em um servidor típico de bancos de dados, o PostgreSQL. O `PostgreSQL <http://www.postgresql.org>`_ é um sistema gerenciador de banco de dados objeto-relacional, gratuito e de código fonte aberto, desenvolvido a partir do projeto Postgres, iniciado em 1986, na Universidade da Califórnia, em Berkeley, sob a liderança do professor `Michael Stonebraker <https://en.wikipedia.org/wiki/Michael_Stonebraker>`__. O código fonte do núcleo do PostgreSQL encontra-se escrito na Linguagem de Programação C, o que garante grande portabilidade, estando disponível para as principais plataformas de hardware e sistemas operacionais como Linux, macOS e Microsoft Windows.
+
+
+.. image:: ../img/logos/postgis.png
+    :alt: PostGIS
+    :width: 48
+    :align: left
+
+
+Esse SGBD fornece inúmeras facilidades e para trabalhar no *domínio geoespacial*, iremos utilizar a extensão `PostGIS <https://postgis.net/>`__, que é uma biblioteca de software livre, sob a licença `GNU GPL versão 2 <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>`__ (GPLv2). Inicialmente, esta extensão foi desenvolvida pela empresa Canadense `Refractions Research <http://postgis.refractions.net>`__, para suportar os tipos geométricos e operadores espaciais da *OGC Simple Feature* (OGC-SFS) :cite:`herring:2011:a,herring:2011:b`, bem como fornecer um mecanismo de indexação baseado nas Árvores-R :cite:`guttman:1984`. No entanto, com a evolução dessa extensão, a implementação passou a adotar o padrão ISO/SQL, relativo a *SQL multimedia and application packages - Part 3: Spatial* :cite:`iso:2016`. Assim, o PostGIS além de fornecer os tipos existentes na OGC-SFS, também suporta os tipos circulares e compostos da ISO/SQL.
+
+
+Nos últimos anos, a extensão PostGIS passou a integrar diversas outras funcionalidades, como suporte a dados matriciais através do módulo PostGIS Raster e o tratamento de dados em 3D com o módulo SFSCGAL. A :numref:`Figura %s <fig:sql:index:arquitetura-postgis>` mostra o PostGIS como uma extensão do SGBD PostgreSQL, integrando as bibliotecas `GEOS <https://libgeos.org/>`__ :cite:`geos:2021`, `Proj <https://proj.org/>`__, `GDAL <https://gdal.org>`__ e `CGAL <https://www.cgal.org/>`__. Repare que o servidor PostgreSQL possui todos os elementos para análise sintática das consultas, para definir os planos ou estratégias de execução das consultas, bem como cuidar do gerenciamento dos dados em disco e memória.
+
+
+.. figure:: ../img/sql/index/arquitetura-postgis.png
+    :alt: Arquitetura PostGIS
+    :width: 50%
+    :figclass: align-center
+    :name: fig:sql:index:arquitetura-postgis
+
+    Arquitetura PostGIS.
+
+
+Neste capítulo será utilizado o PostgreSQL versão 16.4 e sua extensão geográfica PostGIS 3.4.2 para exemplificar as funcionalidades presentes em um servidor típico de bancos de dados capaz de suportar consultas SQL no domínio geoespacial.
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./conectando-bd
+    ./criando-bd
+    ./criando-tabelas
+    ./inserindo-dados
+    ./consultas
+    ./alterando-estrutura-tabela
+    ./import-export
+

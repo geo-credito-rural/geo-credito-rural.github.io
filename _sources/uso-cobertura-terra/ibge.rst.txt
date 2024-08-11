@@ -1,0 +1,68 @@
+.. include:: ../def.rst
+
+
+.. _sec_uso_cobertura_terra_ibge:
+
+Monitoramento da Cobertura e Uso da Terra do Brasil (IBGE)
+==========================================================
+
+
+O mapeamento Monitoramento da Cobertura e Uso da Terra do Brasil é um levantamento sistemático, contínuo e amplo da cobertura e uso da terra de todo o país executado pelo Instituto Brasileiro de Geografia e Estatística (IBGE). O principal objetivo é espacializar e quantificar a cobertura e uso da terra do Brasil a cada dois anos, permitindo a comparação entre os anos analisados e a geração das estatísticas de todas as mudanças nas formas de ocupação do país. Esses mapeamentos são lançados pelo IBGE desde 2015 e referem-se aos seguintes anos: 2000, 2010, 2012, 2014, 2016, 2018 e, 2020. Atualmente, esses mapeamentos são realizados utilizando interpretação visual de imagens com base em imagens da série Landsat. Também incorpora mapeamentos oriundos de outras instituições e do próprio IBGE. Posteriormente, esses resultados são revisados para minimizar as inconsistências :cite:`ibge:2024:a`.
+
+
+Os resultados desse mapeamento seguem as orientações do Quadro de Referência das Nações Unidas, que constitui a base para a construção das Contas da Terra :cite:`onu:2024:a`. Por isso são utilizados como subsídios aos estudos de contabilidade econômica ambiental, para as Contas de Ecossistemas e as Contas da Terra, nas quais são estimados os estoques e os fluxos de utilização dos ativos naturais. Eles são apresentados em diversos formatos, como textos, mapas, gráficos e tabelas. Apresentam também a Matriz de Mudanças que traz numericamente todas as conversões entre as diferentes classes de cobertura e uso :cite:`ibge:2024:a`. As classes desse mapeamento e a sua descrição são apresentadas na :numref:`Tabela %s <tbl:uso-cobertura-terra:ibge>`.
+
+
+.. list-table:: Classes do mapeamento Monitoramento da Cobertura e Uso da Terra do Brasil e sua descrição.
+   :widths: 20 80 
+   :name: tbl:uso-cobertura-terra:ibge
+
+   * - **Classes** 
+     - **Descrição** 
+   * - Área artificial
+     - Áreas onde predominam superfícies antrópicas não-agrícolas. São aquelas estruturadas por edificações e sistema viário, nas quais estão incluídas as metrópoles, cidades, vilas, as aldeias indígenas e comunidades quilombolas, áreas ocupadas por complexos industriais e comerciais e edificações que podem, em alguns casos, estar situadas em áreas peri-urbanas. Também pertencem a essa classe as áreas onde ocorrem a exploração ou extração de substâncias minerais, por meio de lavra ou garimpo.
+   * - Área Agrícola
+     - Área caracterizada por lavouras temporárias, semi-perenes e permanentes, irrigadas ou não, sendo a terra utilizada para a produção de alimentos, fibras, combustíveis e outras matérias-primas. Segue os parâmetros adotados nas pesquisas agrícolas do IBGE e inclui todas as áreas cultivadas, inclusive as que estão em pousio ou localizadas em terrenos alagáveis. Pode ser representada por zonas agrícolas heterogêneas ou extensas áreas de plantations. Inclui os tanques de aquicultura.
+   * - Pastagem com Manejo
+     - Áreas destinadas ao pastoreio do gado e outros animais, com vegetação herbácea cultivada (braquiária, azevém, etc) ou vegetação campestre (natural), ambas apresentando interferências antrópicas de alta intensidade. Estas interferências podem incluir o plantio; a limpeza da terra (destocamento e despedramento); eliminação de ervas daninhas de forma mecânica ou química (aplicação de herbicidas); gradagem; calagem; adubação; entre outras que descaracterizem a cobertura natural.
+   * - Mosaico de Ocupações em Área Florestal
+     - Área caracterizada por ocupação mista de área agrícola, pastagem e/ou silvicultura associada ou não a remanescentes florestais, na qual não é possível uma individualização de seus componentes. Inclui também áreas com perturbações naturais e antrópicas, mecânicas ou não mecânicas, que dificultem a caracterização da área.
+   * - Silvicultura
+     - Área caracterizada por plantios florestais de espécies exóticas ou nativas como monoculturas. Segue os parâmetros adotados nas pesquisas de extração vegetal e silvicultura do IBGE.
+   * - Vegetação Florestal
+     - Área ocupada por florestas. Consideram-se florestais as formações arbóreas com porte superior a 5 metros de altura, incluindo-se aí as áreas de Floresta Ombrófila Densa, de Floresta Ombrófila Aberta, de Floresta Estacional, além da Floresta Ombrófila Mista. Inclui outras feições em razão de seu porte superior a 5 m de altura, como a Savana Florestada, Campinarana Florestada, Savana-Estépica Florestada, os Manguezais e os Buritizais, conforme o Manual Técnico de Uso da Terra :cite:`ibge:2013:a`.
+   * - Área Úmida
+     - Área caracterizada por vegetação natural herbácea ou arbustiva (cobertura de 10% ou mais), permanentemente ou periodicamente inundada por água doce ou salobra. Inclui os terrenos de charcos, pântanos, campos úmidos, estuários, entre outros. O período de inundação deve ser de no mínimo 2 meses por ano. Pode ocorrer vegetação arbustiva ou arbórea, desde que estas ocupem área inferior a 10% do total.
+   * - Vegetação Campestre
+     - Área caracterizada por formações campestres. Entende-se como campestres as diferentes categorias de vegetação fisionomicamente bem diversas da florestal, ou seja, aquelas que se caracterizam por um estrato predominantemente arbustivo, esparsamente distribuído sobre um estrato gramíneo-lenhoso. Incluem-se nessa categoria as Savanas, Estepes, Savanas-Estépicas, Formações Pioneiras e Refúgios Ecológicos. Encontram-se disseminadas por diferentes regiões fitogeográficas, compreendendo diferentes tipologias primárias: estepes planaltinas, campos rupestres das serras costeiras e campos hidroarenosos litorâneos (restinga), conforme o Manual Técnico de Uso da Terra :cite:`ibge:2013:a`. Essas áreas podem estar sujeitas a pastoreio e a outras interferências antrópicas de baixa intensidade como as áreas de pastagens não manejadas do Rio Grande do Sul e do Pantanal.
+   * - Mosaico de Ocupações em Área Campestre
+     - Área caracterizada por ocupação mista de área agrícola, pastagem e/ou silvicultura associada ou não a remanescentes campestres, na qual não é possível uma individualização de seus componentes. Inclui também áreas com perturbações naturais e antrópicas, mecânicas ou não mecânicas, que dificultem a caracterização da área.
+   * - Corpo d'água Continental
+     - Inclui todas as águas interiores, como rios, riachos, canais e outros corpos d’água lineares. Também engloba corpos d’água naturalmente fechados (lagos naturais) e reservatórios artificiais (represamentos artificiais de água construídos para irrigação, controle de enchentes, fornecimento de água e geração de energia elétrica). Não inclui os tanques de aquicultura.
+   * - Corpo d'água Costeiro
+     - Inclui as águas inseridas nas 12 milhas náuticas, conforme `Lei nº 8.617, de 4 de janeiro de 1993 <http://legislacao.planalto.gov.br/legisla/legislacao.nsf/Viw_Identificacao/lei%208.617-1993?OpenDocument>`__.
+   * - Área Descoberta
+     - Esta categoria engloba locais sem vegetação, como os afloramentos rochosos, penhascos, recifes e terrenos com processos de erosão ativos. Também inclui as praias e dunas, litorâneas e interiores, e acúmulo de cascalho ao longo dos rios.
+
+
+Os resultados do mapeamento de cobertura e uso da terra no Brasil do ano de 2020 pode ser visto na :numref:`fig:uso-cobertura-terra:ibge`.
+
+
+.. figure:: https://www.ibge.gov.br/apps/monitoramento_cobertura_uso_terra/v1/pdf/Brasil_2020.png
+    :alt: Mapeamento de cobertura e uso da terra no Brasil do ano de 2020
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:ibge
+
+    Mapeamento de cobertura e uso da terra no Brasil do ano de 2020. |br| **Fonte:** IBGE :cite:`ibge:2024:a`.
+
+
+
+
+
+
+
+
+
+
+    

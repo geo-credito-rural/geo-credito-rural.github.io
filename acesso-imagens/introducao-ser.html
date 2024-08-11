@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.1. Introdução ao Sensoriamento Remoto por Satélites &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bootstrap-carousel.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/carousel-custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/acesso-imagens/introducao-ser.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script src="../_static/bootstrap-carousel.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="6.2. Scripts para suporte à análise de imagens" href="scripts-analise.html" />
+    <link rel="prev" title="6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.1. Introdução ao Sensoriamento Remoto por Satélites</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#sensores-passivos-e-ativos">6.1.1. Sensores Passivos e Ativos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#bandas-espectrais">6.1.2. Bandas Espectrais</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resolucao-espacial">6.1.3. Resolução Espacial</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#resolucao-temporal">6.1.4. Resolução Temporal</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#quantizacao">6.1.5. Quantização</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distribuicao-de-imagens-cenas">6.1.6. Distribuição de Imagens - Cenas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#formatos">6.1.7. Formatos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#caracteristicas-de-alguns-sensores-com-imagens-disponibilizadas-gratuitamente">6.1.8. Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.2. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composicao-contraste.html">6.3. Composição colorida e Contraste</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.1. </span>Introdução ao Sensoriamento Remoto por Satélites</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-right" title="6.2. Scripts para suporte à análise de imagens" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="introducao-ao-sensoriamento-remoto-por-satelites">
+<span id="sec-acesso-imagens-introducao"></span><h1><span class="section-number">6.1. </span>Introdução ao Sensoriamento Remoto por Satélites<a class="headerlink" href="#introducao-ao-sensoriamento-remoto-por-satelites" title="Link permanente para este cabeçalho"></a></h1>
+<p>O processo de obtenção de dados para formação de uma imagem é apresentado na <a class="reference internal" href="#fig-acesso-imagens-introducao-ser-modis-pixel"><span class="std std-numref">Figura 6.2</span></a> que coloca como exemplo um satélite (Terra) que, a fim de garantir a cobertura diária em quase todo o planeta, tem o sensor MODIS (<em>Moderate Resolution Imaging Spectroradiometer</em>) que possui um campo de visada, <em>Field of View</em> (FOV) de 110°. Este FOV representa a largura nominal da faixa imageada, que neste caso é 2330 km. Por causa da largura da faixa imageada, do efeito de curvatura da Terra, da rotação da Terra e da velocidade angular de varredura do espelho, ocorre o efeito panorâmico e o <em>bow-tie</em> (borramento). No limite da largura da área imageada (<em>swath</em>), os pixels tem o seu tamanho aumentado a uma razão de 2 vezes na direção da linha de imageamento (<em>along-track</em>) e de 5 vezes na direção da linha de imageamento (<em>across-track</em>). Portanto, existe uma influência da geometria de visada e de iluminação na função de distribuição de refletância bidirecional (FDRB) e de como isso pode ocasionar distorções no momento da coleta de imagens <span id="id1">[<a class="reference internal" href="../referencias.html#id75" title="Wim J.D van Leeuwen, Alfredo R Huete, and Trevor W Laing. Modis vegetation index compositing approach: a prototype with avhrr data. Remote Sensing of Environment, 69(3):264-280, 1999. URL: https://www.sciencedirect.com/science/article/pii/S003442579900022X, doi:https://doi.org/10.1016/S0034-4257(99)00022-X.">70</a>, <a class="reference internal" href="../referencias.html#id43" title="Junchang Ju, David P. Roy, Yanmin Shuai, and Crystal Schaaf. Development of an approach for generation of temporally complete daily nadir modis reflectance time series. Remote Sensing of Environment, 114(1):1-20, 2010. URL: https://www.sciencedirect.com/science/article/pii/S0034425709002557, doi:https://doi.org/10.1016/j.rse.2009.05.022.">71</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-introducao-ser-modis-pixel">
+<a class="reference internal image-reference" href="../_images/modis-pixel.png"><img alt="Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m)" src="../_images/modis-pixel.png" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.2 - </span><span class="caption-text">Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m). <br/> <strong>Fonte:</strong> Adaptada de <span id="id2">[<a class="reference internal" href="../referencias.html#id75" title="Wim J.D van Leeuwen, Alfredo R Huete, and Trevor W Laing. Modis vegetation index compositing approach: a prototype with avhrr data. Remote Sensing of Environment, 69(3):264-280, 1999. URL: https://www.sciencedirect.com/science/article/pii/S003442579900022X, doi:https://doi.org/10.1016/S0034-4257(99)00022-X.">70</a>, <a class="reference internal" href="../referencias.html#id43" title="Junchang Ju, David P. Roy, Yanmin Shuai, and Crystal Schaaf. Development of an approach for generation of temporally complete daily nadir modis reflectance time series. Remote Sensing of Environment, 114(1):1-20, 2010. URL: https://www.sciencedirect.com/science/article/pii/S0034425709002557, doi:https://doi.org/10.1016/j.rse.2009.05.022.">71</a>]</span>.</span><a class="headerlink" href="#fig-acesso-imagens-introducao-ser-modis-pixel" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Dessa maneira, são obtidas as imagens, que no contexto de sensoriamento remoto comumente é chamada de <em>raster</em>. Elas podem ser armazenadas de diferentes formas. Uma delas é por meio de um arquivo, comumente no formato <a class="reference external" href="https://www.ogc.org/standard/geotiff/">GeoTIFF</a>, onde estão contidos os metadados da imagem e também os <em>pixels</em> de todas as bandas disponíveis naquela configuração de sensor. Assim, por exemplo, uma imagem com 200 linhas, 300 colunas e 5 bandas, estará armazenada integralmente no arquivo, e por meio de scripts será possível obter uma matriz com 5 dimensões, cada dimensão com 200 <em>x</em> 300 elementos. A outra forma de armazenar as imagens é através do armazenamento individual, onde um arquivo contém informações de somente uma banda espectral. Neste caso, cada arquivo possui metadados independentes, com informações sobre o sistema de referência espacial, os limites geográficos cobertos pela imagem, as dimensões da imagem em termos de linhas e colunas, a matriz de pixels, e o tipo de dados associado aos pixels da imagem.</p>
+<section id="sensores-passivos-e-ativos">
+<h2><span class="section-number">6.1.1. </span>Sensores Passivos e Ativos<a class="headerlink" href="#sensores-passivos-e-ativos" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+<section id="bandas-espectrais">
+<h2><span class="section-number">6.1.2. </span>Bandas Espectrais<a class="headerlink" href="#bandas-espectrais" title="Link permanente para este cabeçalho"></a></h2>
+<p>O conjunto de imagens abaixo apresenta a composição colorida e falsa cor de uma cenas Landsat 8/OLI do oeste da Bahia no ano de 2015.</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-0">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-0" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<img alt="../_images/landsat8-220070-20150908-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat8-220070-20150908-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 08/09/2015</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<img alt="../_images/landsat8-220070-20150908-falsa-cor.png" class="scbs-d-block scbs-w-100" src="../_images/landsat8-220070-20150908-falsa-cor.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição falsa cor das bandas 5-4-2 (destaque da vegetação em vermelho) <br> Região do oeste do Estado da Bahia - 08/09/2015</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+</section>
+<section id="resolucao-espacial">
+<h2><span class="section-number">6.1.3. </span>Resolução Espacial<a class="headerlink" href="#resolucao-espacial" title="Link permanente para este cabeçalho"></a></h2>
+<p>A <strong>resolução espacial</strong> se refere à área da superfície terrestre capturada por um único pixel de uma imagem. Este parâmetro influencia a quantidade de detalhes que podem ser percebidos na imagem, como apresentado nas figuras abaixo, com imagens da região da barragem de <a class="reference external" href="https://pt.wikipedia.org/wiki/Usina_Hidrel%C3%A9trica_de_Sobradinho">Sobradinho</a>. Essas imagens possuem, respectivamente, resolução espacial de 10m, 60m e 100m. Isso significa que cada pixel da imagem representa uma área de <span class="math notranslate nohighlight">\(10 \times 10 = 100m^2\)</span>, <span class="math notranslate nohighlight">\(3.600m^2\)</span> e <span class="math notranslate nohighlight">\(10.000m^2\)</span>, respectivamente.</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-1">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-1" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-1" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carousel-1" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/t24ltq_10m.png"><img alt="Resolução espacial de 10 metros" class="scbs-d-block scbs-w-100" src="../_images/t24ltq_10m.png" style="width: 60%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Sentinel-2 com resolução espacial original de 10 metros.<br>Composição colorida das bandas 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/t24ltq_60m.png"><img alt="Resolução espacial de 60 metros" class="scbs-d-block scbs-w-100" src="../_images/t24ltq_60m.png" style="width: 60%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Sentinel-2 com resolução espacial degradada para 60 metros.<br>Composição colorida das bandas 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/t24ltq_100m.png"><img alt="Resolução espacial de 100 metros" class="scbs-d-block scbs-w-100" src="../_images/t24ltq_100m.png" style="width: 60%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Sentinel-2 com resolução espacial degradada para 100 metros.<br>Composição colorida das bandas 4-3-2 (cores Verdadeiras).<br>Região da barragem de Sobradinho.</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-1" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-1" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+<p>Para reforçar o conceito de resolução espacial, relacionando com a aplicação de mapeamento de áreas agrícolas, podemos visualizar 2 glebas em 3 resoluções espaciais. As 2 glebas foram selecionadas com áreas diferentes, para que se perceba, de forma visual, <em>quantos pixels cabem numa gleba</em> com área relativamente pequena (14 hectares), e outra maior (200 hectares).</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-2">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-2" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-2" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carousel-2" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514261300_amazonia1.png"><img alt="Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho" class="scbs-d-block scbs-w-100" src="../_images/gleba_514261300_amazonia1.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514261300_s2.png"><img alt="Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho" class="scbs-d-block scbs-w-100" src="../_images/gleba_514261300_s2.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514261300_cbers4a.png"><img alt="Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática" class="scbs-d-block scbs-w-100" src="../_images/gleba_514261300_cbers4a.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-2" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-2" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+<p>Embora as 3 imagens acima não sejam exatamente da mesma data, e também a CBERS-4A não apresenta o canal infravermelho, mas a banda pancromática, a qual inclui uma intervalo maior de comprimentos de onda e por isso possui mais detalhes, é possível perceber que a imagem de 64m de resolução espacial apresenta limitações de mapeamento da área de 14 hectares delimitada pelo polígono amarelo. A resolução espacial de 10m já permite observar mais detalhes dentro da área da gleba, e a imagem de 2m representa a área de forma detalhada. No caso da imagem CBERS-4A, com 2m de resolução espacial, para ser ideal no mapeamento de culturas agrícolas, precisaria ter uma taxa de revisita bem mais frequente, visto que obtém uma nova imagem da mesma área a cada 31 dias. A essa propriedade damos o nome de resolução temporal.</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-3">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-3" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-3" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carousel-3" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514077675_amazonia1.png"><img alt="Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho" class="scbs-d-block scbs-w-100" src="../_images/gleba_514077675_amazonia1.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514077675_s2.png"><img alt="Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho" class="scbs-d-block scbs-w-100" src="../_images/gleba_514077675_s2.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="scbs-d-block scbs-w-100 reference internal image-reference" href="../_images/gleba_514077675_cbers4a.png"><img alt="Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática" class="scbs-d-block scbs-w-100" src="../_images/gleba_514077675_cbers4a.png" style="width: 100%;" /></a>
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-3" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-3" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+</section>
+<section id="resolucao-temporal">
+<h2><span class="section-number">6.1.4. </span>Resolução Temporal<a class="headerlink" href="#resolucao-temporal" title="Link permanente para este cabeçalho"></a></h2>
+<p>A <strong>resolução temporal</strong> é o tempo que um sensor leva para revisitar uma localização geográfica específica. As imagens apresentadas na figura abaixo ilustram algumas revisitas do sensor Sentinel-2/MSI à cena 21LZF (grade MGRS).</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-4">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active" data-bs-slide-to="0" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 2" data-bs-slide-to="1" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 3" data-bs-slide-to="2" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 4" data-bs-slide-to="3" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 5" data-bs-slide-to="4" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 6" data-bs-slide-to="5" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 7" data-bs-slide-to="6" data-bs-target="#carousel-4" type="button"></button>
+<button aria-label="Slide 8" data-bs-slide-to="7" data-bs-target="#carousel-4" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('eb812ef2-78c8-4b75-a6e8-dbd7d9624919')/$value"><img alt="../_images/t21lzf_20220418.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220418.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>18/04/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('3df2a932-8536-42eb-8f13-165741e51e65')/$value"><img alt="../_images/t21lzf_20220423.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220423.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>23/04/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('3a7507c4-caaa-4728-8a1e-713f601e15fa')/$value"><img alt="../_images/t21lzf_20220428.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220428.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>28/04/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('4a51ce55-c246-4b96-b868-217d8dfdb0d5')/$value"><img alt="../_images/t21lzf_20220503.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220503.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>03/05/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('0ae27644-f47c-4909-a692-132a3c7c007d')/$value"><img alt="../_images/t21lzf_20220508.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220508.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>08/05/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('a49c4ee2-96bc-472c-a1ff-d75692c8056a')/$value"><img alt="../_images/t21lzf_20220513.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220513.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>13/05/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('7c9d0dc9-a1ad-4cad-818b-5eb8c1bf3e0d')/$value"><img alt="../_images/t21lzf_20220518.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220518.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>18/05/2022</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<a class="reference external image-reference" href="https://data.inpe.br/sentinel-hub/odata/v1/Products('a5baad0a-a88e-4fe5-bd22-cef70b9e6993')/$value"><img alt="../_images/t21lzf_20220523.png" class="scbs-d-block scbs-w-100" src="../_images/t21lzf_20220523.png" /></a>
+<div class="scbs-carousel-caption scbs-d-none scbs-d-md-block">
+<h5>23/05/2022</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev" data-bs-slide="prev" data-bs-target="#carousel-4" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next" data-bs-slide="next" data-bs-target="#carousel-4" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+<p>A <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-resolucao-temporal"><span class="std std-numref">Tabela 6.1</span></a> apresenta a resolução temporal de alguns satélites/sensores muito utilizados na área geoespacial.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-resolucao-temporal">
+<caption><span class="caption-number">Tabela 6.1 - </span><span class="caption-text">Resolução temporal de alguns satélites/sensores. <br/> <strong>Fontes:</strong> <a class="reference external" href="https://modis.gsfc.nasa.gov/about/">NASA</a>, <a class="reference external" href="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/revisit-coverage">ESA</a>.</span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-resolucao-temporal" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 30%" />
+<col style="width: 40%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Satélites</p></th>
+<th class="head center-align"><p>Sensores</p></th>
+<th class="head center-align"><p>Resolução Temporal</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>Landsat 5</p></td>
+<td class="center-align"><p>TM</p></td>
+<td class="center-align"><p>16 dias</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>Landsat 7</p></td>
+<td class="center-align"><p>ETM<sup>+</sup></p></td>
+<td class="center-align"><p>16 dias</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>Landsat 8</p></td>
+<td class="center-align"><p>OLI</p></td>
+<td class="center-align"><p>16 dias</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>Landsat 9</p></td>
+<td class="center-align"><p>OLI-2</p></td>
+<td class="center-align"><p>16 dias</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>Sentinel 2A e 2B</p></td>
+<td class="center-align"><p>MSI</p></td>
+<td class="center-align"><p>05 dias</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>Terra/Aqua</p></td>
+<td class="center-align"><p>MODIS</p></td>
+<td class="center-align"><p>01 a 02 dias</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="quantizacao">
+<span id="sec-acesso-imagens-introducao-quantizacao"></span><h2><span class="section-number">6.1.5. </span>Quantização<a class="headerlink" href="#quantizacao" title="Link permanente para este cabeçalho"></a></h2>
+<p>A quantização, representada por <span class="math notranslate nohighlight">\(L\)</span>, indica a quantidade de bits utilizados para representar a radiância/refletância observada em cada ponto imageado (pixel). Por exemplo, o satélite AMAZONIA-1 possui <span class="math notranslate nohighlight">\(L = 10\)</span>. Nesse caso, os pixels das imagens do AMAZONIA-1 possuem valores variando entre 0 e <span class="math notranslate nohighlight">\(2^{10} = 1024\)</span>.</p>
+</section>
+<section id="distribuicao-de-imagens-cenas">
+<h2><span class="section-number">6.1.6. </span>Distribuição de Imagens - Cenas<a class="headerlink" href="#distribuicao-de-imagens-cenas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Os produtos de imagens de cada satélite/sensor são distribuídos em cenas que mantém alguma organização do tamanho dos arquivos de imagem. Os produtos de superfície do sendor MODIS utilizam uma grade de <em>tiles</em> com aproximadamete 10 graus x 10 graus na linha do equador (<a class="reference internal" href="#fig-acesso-imagens-introducao-ser-grade-modis"><span class="std std-numref">Figura 6.3</span></a>). As imagens com 250m de resolução espacial possuem cerca de 4800 x 4800 pixels.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-introducao-ser-grade-modis">
+<a class="reference internal image-reference" href="https://modis-land.gsfc.nasa.gov/images/MODIS_sinusoidal_grid1.gif"><img alt="Grade sinusoidal dos produtos de superfície do MODIS" src="https://modis-land.gsfc.nasa.gov/images/MODIS_sinusoidal_grid1.gif" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.3 - </span><span class="caption-text">Grade sinusoidal dos produtos de superfície do MODIS. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://modis-land.gsfc.nasa.gov/MODLAND_grid.html">NASA</a>.</span><a class="headerlink" href="#fig-acesso-imagens-introducao-ser-grade-modis" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>As imagens do Landsat 5, 7, 8 e 9 utilizam uma grade donominada <strong>Worldwide Reference System-2</strong> (<strong>WRS-2</strong>) <span id="id3">[<a class="reference internal" href="../referencias.html#id61" title="NASA. The worldwide reference system. 2023. Online; acessado 25 de Junho de 2023. URL: https://landsat.gsfc.nasa.gov/about/the-worldwide-reference-system/.">72</a>]</span>. Nessa grade as imagens são organizadas em 233 órbitas, também chamadas de <em>paths</em>, numerados de 001 a 233, de leste para oeste. O <em>path</em> 001 cruza a Linha do Equador com 64.60 graus de longitude oeste. Cada órbita é particionada em 248 linhas ou <em>rows</em>, com a linha 60 coicidindo com a Linha do Equador. A expressão <em>path/row</em> é muito comum para nos referirmos a uma determinada cena nessa grade (<a class="reference internal" href="#fig-acesso-imagens-introducao-ser-grade-wrs2"><span class="std std-numref">Figura 6.4</span></a>. O arquivo <em>ESRI Shapefile</em> dessa grade pode ser baixado do site da <a class="reference external" href="https://www.usgs.gov/media/files/landsat-wrs-2-descending-path-row-shapefile">USGS</a>.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-introducao-ser-grade-wrs2">
+<a class="reference internal image-reference" href="https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/wrs2.gif"><img alt="Worldwide Reference System-2" src="https://d9-wret.s3.us-west-2.amazonaws.com/assets/palladium/production/s3fs-public/thumbnails/image/wrs2.gif" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.4 - </span><span class="caption-text">Worldwide Reference System-2. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://www.usgs.gov/media/images/world-reference-system-2-wrs-2-daydescending">USGS</a>.</span><a class="headerlink" href="#fig-acesso-imagens-introducao-ser-grade-wrs2" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>As imagens Sentinel 2/MSI são disponibilizadas em uma grade com células de 110km x 110km em UTM/WGS84 (<a class="reference internal" href="#fig-acesso-imagens-introducao-ser-grade-mgrs2"><span class="std std-numref">Figura 6.5</span></a>). A grade KML pode ser baixada do site da <a class="reference external" href="https://sentinels.copernicus.eu/web/sentinel/missions/sentinel-2/data-products">ESA</a>.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-introducao-ser-grade-mgrs2">
+<a class="reference internal image-reference" href="../_images/mgrs-sentinel-2.png"><img alt="Grade Sentinel 2 / MSI" src="../_images/mgrs-sentinel-2.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.5 - </span><span class="caption-text">Grade Sentinel 2 / MSI</span><a class="headerlink" href="#fig-acesso-imagens-introducao-ser-grade-mgrs2" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+<section id="formatos">
+<h2><span class="section-number">6.1.7. </span>Formatos<a class="headerlink" href="#formatos" title="Link permanente para este cabeçalho"></a></h2>
+<p>As imagens de sensoriamento remoto são disponibilizadas nos mais diversos formatos. As imagens MODIS, por exemplo, são disponibilizadas no formato <strong>HDF4</strong> (extensão <code class="docutils literal notranslate"><span class="pre">.hdf</span></code>). Já as imagens Landsat são distribuídas no formato GeoTIFF (extensão <code class="docutils literal notranslate"><span class="pre">.tif</span></code>). As imagens Sentinel 2/MSI são distribuídas no formato JPEG 2000 (extensão <code class="docutils literal notranslate"><span class="pre">.jp2</span></code>).</p>
+</section>
+<section id="caracteristicas-de-alguns-sensores-com-imagens-disponibilizadas-gratuitamente">
+<span id="sec-acesso-imagens-introducao-caracteristicas-sensores"></span><h2><span class="section-number">6.1.8. </span>Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente<a class="headerlink" href="#caracteristicas-de-alguns-sensores-com-imagens-disponibilizadas-gratuitamente" title="Link permanente para este cabeçalho"></a></h2>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">CBERS-4</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">CBERS-4A</button><button aria-controls="panel-0-0-2" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-2" name="0-2" role="tab" tabindex="-1">AMAZONIA-1</button><button aria-controls="panel-0-0-3" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-3" name="0-3" role="tab" tabindex="-1">Landsat 8</button><button aria-controls="panel-0-0-4" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-4" name="0-4" role="tab" tabindex="-1">Landsat 9</button><button aria-controls="panel-0-0-5" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-5" name="0-5" role="tab" tabindex="-1">Sentinel-2</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"></div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O sensor WPM (<em>Wide Scan Panchromatic and Multispectral Camera</em>) a bordo do CBERS-4A realiza o imageamento da superfície terrestre usando um <em>swath</em> de 92km x 92km com resolução temporal de 31 dias e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-cbers-4a-wpm"><span class="std std-numref">Tabela 6.2</span></a>. O CBERS-4A também carrega a bordo os sensores WFI e MUX (<em>Multispectral Camera</em>), com características distintas, e resolução espacial inferior à WPM. O satélite <a class="reference external" href="http://www.cbers.inpe.br/sobre/cameras/cbers3-4.php">CBERS-4</a> carrega os sensores PAN (<em>Panchromatic and Multispectral</em>), MUX, IRS e WFI.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-cbers-4a-wpm">
+<caption><span class="caption-number">Tabela 6.2 - </span><span class="caption-text">Características do sensor WPM a bordo do satélite CBERS-4A. <br/> <strong>Fonte:</strong> <a class="reference external" href="http://www.cbers.inpe.br/sobre/cameras/cbers04a.php">INPE</a></span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-cbers-4a-wpm" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 39%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Banda</p></th>
+<th class="head center-align"><p>Intervalo (<span class="math notranslate nohighlight">\(\mu m\)</span>)</p></th>
+<th class="head center-align"><p>Resolução Espacial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>0 - PAN</p></td>
+<td class="center-align"><p>0.45 - 0.90</p></td>
+<td class="center-align"><p>2 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>1 - Blue</p></td>
+<td class="center-align"><p>0.45 - 0.52</p></td>
+<td class="center-align" rowspan="4"><p>8 metros</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>2 - Green</p></td>
+<td class="center-align"><p>0.52 - 0.59</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>3 - Red</p></td>
+<td class="center-align"><p>0.63 - 0.69</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>4 - NIR</p></td>
+<td class="center-align"><p>0.77 - 0.89</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-2" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-2" name="0-2" role="tabpanel" tabindex="0"><p>O sensor WFI (<em>Wide Field Imaging Camera</em>) a bordo do AMAZONIA-1 realiza o imageamento da superfície terrestre usando um <em>swath</em> de 850km x 850km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-amazonia-1-wfi"><span class="std std-numref">Tabela 6.3</span></a>. O mesmo sensor está a bordo de outros 2 satélites brasileiros, o CBERS-4 e o CBERS-4A, permitindo a integração em uma série de alta resolução temporal.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-amazonia-1-wfi">
+<caption><span class="caption-number">Tabela 6.3 - </span><span class="caption-text">Características do sensor WFI a bordo do satélite AMAZONIA-1. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://www.gov.br/inpe/pt-br/programas/amazonia1/sobre-o-satelite/sobre-o-satelite">INPE</a></span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-amazonia-1-wfi" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 39%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Banda</p></th>
+<th class="head center-align"><p>Intervalo (<span class="math notranslate nohighlight">\(\mu m\)</span>)</p></th>
+<th class="head center-align"><p>Resolução Espacial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>1 - Blue</p></td>
+<td class="center-align"><p>0.45 - 0.52</p></td>
+<td class="center-align" rowspan="4"><p>64 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>2 - Green</p></td>
+<td class="center-align"><p>0.52 - 0.59</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>3 - Red</p></td>
+<td class="center-align"><p>0.63 - 0.69</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>4 - NIR</p></td>
+<td class="center-align"><p>0.77 - 0.89</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-3" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-3" name="0-3" role="tabpanel" tabindex="0"><p>O sensor OLI a bordo do Landsat 8 realiza o imageamento da superfície terrestre usando um <em>swath</em> de 185km x 185km com resolução temporal de 16 dias e produz imagens de 12 bits. As características das bandas espectrais desse sensor são apresentadas na <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-l8-oli"><span class="std std-numref">Tabela 6.4</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-l8-oli">
+<caption><span class="caption-number">Tabela 6.4 - </span><span class="caption-text">Características do sensor OLI a bordo do satélite Landsat 8. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://www.usgs.gov/landsat-missions/landsat-8">USGS</a></span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-l8-oli" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 39%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Banda</p></th>
+<th class="head center-align"><p>Intervalo (<span class="math notranslate nohighlight">\(\mu m\)</span>)</p></th>
+<th class="head center-align"><p>Resolução Espacial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>1 - Coastal Aerosol</p></td>
+<td class="center-align"><p>0.43 - 0.45</p></td>
+<td class="center-align" rowspan="8"><p>30 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>2 - Blue</p></td>
+<td class="center-align"><p>0.45 - 0.51</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>3 - Green</p></td>
+<td class="center-align"><p>0.53 - 0.59</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>4 - Red</p></td>
+<td class="center-align"><p>0.64 - 0.67</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>5 - NIR</p></td>
+<td class="center-align"><p>0.85 - 0.88</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>6 - SWIR 1</p></td>
+<td class="center-align"><p>1.57 - 1.65</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>7 - SWIR 2</p></td>
+<td class="center-align"><p>2.11 - 2.29</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>9 - Cirrus</p></td>
+<td class="center-align"><p>1.36 - 1.38</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>8 - PAN</p></td>
+<td class="center-align"><p>0.50 - 0.68</p></td>
+<td class="center-align"><p>15 metros</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-4" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-4" name="0-4" role="tabpanel" tabindex="0"><p>O sensor OLI-2 a bordo do Landsat 9 realiza o imageamento da superfície terrestre usando um <em>swath</em> de 185km x 185km com resolução temporal de 16 dias e produz imagens de 14 bits. As características das bandas espectrais desse sensor são apresentadas na <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-l9-oli-2"><span class="std std-numref">Tabela 6.5</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-l9-oli-2">
+<caption><span class="caption-number">Tabela 6.5 - </span><span class="caption-text">Características do sensor OLI a bordo do satélite Landsat 8. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://www.usgs.gov/landsat-missions/landsat-9">USGS</a></span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-l9-oli-2" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 39%" />
+<col style="width: 28%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Banda</p></th>
+<th class="head center-align"><p>Intervalo (<span class="math notranslate nohighlight">\(\mu m\)</span>)</p></th>
+<th class="head center-align"><p>Resolução Espacial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>1 - Coastal Aerosol</p></td>
+<td class="center-align"><p>0.43 - 0.45</p></td>
+<td class="center-align" rowspan="8"><p>30 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>2 - Blue</p></td>
+<td class="center-align"><p>0.45 - 0.51</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>3 - Green</p></td>
+<td class="center-align"><p>0.53 - 0.59</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>4 - Red</p></td>
+<td class="center-align"><p>0.64 - 0.67</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>5 - NIR</p></td>
+<td class="center-align"><p>0.85 - 0.88</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>6 - SWIR 1</p></td>
+<td class="center-align"><p>1.57 - 1.65</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>7 - SWIR 2</p></td>
+<td class="center-align"><p>2.11 - 2.29</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>9 - Cirrus</p></td>
+<td class="center-align"><p>1.36 - 1.38</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>8 - PAN</p></td>
+<td class="center-align"><p>0.50 - 0.68</p></td>
+<td class="center-align"><p>15 metros</p></td>
+</tr>
+</tbody>
+</table>
+</div><div aria-labelledby="tab-0-0-5" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-5" name="0-5" role="tabpanel" tabindex="0"><p>O sensor MSI a bordo dos satélites Sentinel-2A e 2B realiza o imageamento da superfície terrestre usando um <em>swath</em> de 25km x 23km com resolução temporal de 05 dias e produz imagens de 12 bits. As características das 13 bandas espectrais desse sensor são apresentadas na <a class="reference internal" href="#tbl-acesso-imagens-introducao-ser-s2-msi"><span class="std std-numref">Tabela 6.6</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-acesso-imagens-introducao-ser-s2-msi">
+<caption><span class="caption-number">Tabela 6.6 - </span><span class="caption-text">Características do sensor MSI a bordo dos satélite Sentinel-2. <br/> <strong>Fonte:</strong> <a class="reference external" href="https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/resolutions/spectral">ESA</a></span><a class="headerlink" href="#tbl-acesso-imagens-introducao-ser-s2-msi" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Banda</p></th>
+<th class="head center-align"><p>Intervalo (<span class="math notranslate nohighlight">\(\eta m\)</span>)</p></th>
+<th class="head center-align"><p>Resolução Espacial</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="left-align"><p>1 - Ultra Blue (Coastal Aerosol)</p></td>
+<td class="center-align"><p>443</p></td>
+<td class="center-align"><p>60 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>2 - Blue</p></td>
+<td class="center-align"><p>493</p></td>
+<td class="center-align" rowspan="3"><p>10 metros</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>3 - Green</p></td>
+<td class="center-align"><p>560</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>4 - Red</p></td>
+<td class="center-align"><p>665</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>5 - Red-edge (VNIR)</p></td>
+<td class="center-align"><p>704</p></td>
+<td class="center-align" rowspan="3"><p>20 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>6 - Red-edge (VNIR 2)</p></td>
+<td class="center-align"><p>740</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>7 - Red-edge (VNIR 3)</p></td>
+<td class="center-align"><p>783</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>8 - NIR</p></td>
+<td class="center-align"><p>833</p></td>
+<td class="center-align"><p>10 metros</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>8a - NIR</p></td>
+<td class="center-align"><p>865</p></td>
+<td class="center-align"><p>20 metros</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>9 - NIR (Water Vapour)</p></td>
+<td class="center-align"><p>945</p></td>
+<td class="center-align" rowspan="2"><p>60 metros</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>10 - SWIR (Cirrus)</p></td>
+<td class="center-align"><p>1374</p></td>
+</tr>
+<tr class="row-odd"><td class="left-align"><p>11- SWIR</p></td>
+<td class="center-align"><p>1610</p></td>
+<td class="center-align" rowspan="2"><p>20 metros</p></td>
+</tr>
+<tr class="row-even"><td class="left-align"><p>12 - SWIR</p></td>
+<td class="center-align"><p>2190</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Significado de algumas siglas:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><strong>NIR:</strong> Near Infrared.</p></li>
+<li><p><strong>VNIR:</strong> Visible and Near Infrared.</p></li>
+<li><p><strong>SWIR:</strong> Short Wave Infrared.</p></li>
+<li><p><strong>PAN:</strong> Panchromatic.</p></li>
+</ul>
+</div></blockquote>
+</div>
+</div></div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-right" title="6.2. Scripts para suporte à análise de imagens" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee54bccd0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

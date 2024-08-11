@@ -10,7 +10,7 @@ Embargos
 O *embargo* é uma medida administrativa que tem por objetivo impedir a continuidade do dano ambiental, propiciar a regeneração do meio ambiente e dar viabilidade à recuperação da área degradada, devendo restringir-se exclusivamente ao local onde  efetivamente caracterizou-se a infração ambiental, não alcançando as demais atividades realizadas em áreas não embargadas da propriedade ou posse, ou não correlacionadas com a infração. Desta maneira, visa promover a recomposição ambiental da área em que ocorreu o dano ambiental :cite:`brasil:2024:b`. Se o embargo for desrespeitado, o infrator pode ser multado e além disso quem comprar, tiver posse, transportar ou comercializar os bens produzidos na área embargada pode ser multado e ter os bens confiscados :cite:`schmitt:2015`. A cessação das penalidades de suspensão e embargo dependerá de decisão da autoridade ambiental após a apresentação, por parte do autuado, de documentação que regularize a obra ou atividade :cite:`brasil:2024:b`.
 
 
-As agências ambientais municipais, estaduais e federal podem embargar uma área, quando observado o dano ambiental. Entretanto, devido à dificuldade de conseguir os dados de áreas embargadas nas agências municipais e estaduais, para este trabalho serão utilizadas apenas as áreas embargadas pelo Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis (IBAMA) e Instituto Chico Mendes de Conservação da Biodiversidade (ICMBIO). Os embargos realizados pelo IBAMA estão disponibilizadas no `seguinte endereço <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__ e os embargos efetuados pelo ICMBIO estão no `seguinte endereço <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/embargos_icmbio.zip>`__. A dispersão espacial dos embargos efetuados pelo IBAMA e pelo ICMBIO no território brasileiro pode ser observada nas figuras da :numref:`Tabela %s <tbl:bases-vetoriais:embargos>`.
+As agências ambientais municipais, estaduais e federal podem embargar uma área, quando observado o dano ambiental. Entretanto, devido à dificuldade de conseguir os dados de áreas embargadas nas agências municipais e estaduais, para este trabalho serão utilizadas apenas as áreas embargadas pelo Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis (IBAMA) e Instituto Chico Mendes de Conservação da Biodiversidade (ICMBIO). Os embargos realizados pelo IBAMA estão disponibilizadas no :download:`seguinte endereço <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>` e os embargos efetuados pelo ICMBIO estão no :download:`seguinte endereço <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/embargos_icmbio.zip>`. A dispersão espacial dos embargos efetuados pelo IBAMA e pelo ICMBIO no território brasileiro pode ser observada nas figuras da :numref:`Tabela %s <tbl:bases-vetoriais:embargos>`.
 
 
 .. |fig:bases-vetoriais:embargos-ibama| image:: ../img/bases-vetoriais/embargos-ibama.png
@@ -31,3 +31,46 @@ As agências ambientais municipais, estaduais e federal podem embargar uma área
     | |fig:bases-vetoriais:embargos-ibama| | |fig:bases-vetoriais:embargos-icmbio||
     +--------------------------------------+--------------------------------------+
 
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `adm_embargo_a.zip <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:emb-ibama
+    
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador do embargo                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da área embargada                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | objectid     | bigint                      |  Identificador do embargo                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nom_pessoa   | varchar(120)                |  Pessoa identificada como responsável pelo local      |
+    |         |              |                             |  ou área embargada                                    |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         |  cpf_cnpj_i  | varchar(25)                 |  Número de Cadastro Nacional de Pessoa Jurídica       |
+    |         |              |                             |  (CNPJ) ou Cadastro de Pessoa Física (CPF) da pessoa  |
+    |         |              |                             |  embargada com delimitadores                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         |  cpf_cnpj_S  | varchar(25)                 |  Número de Cadastro Nacional de Pessoa Jurídica       |
+    |         |              |                             |  (CNPJ) ou Cadastro de Pessoa Física (CPF) da pessoa  |
+    |         |              |                             |  embargada (somente os números)                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nom_mun_uf   | varchar(120)                |  Município e Unidade da federação                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | end_pessoa   | varchar(180)                |  Endereço do resposável                               |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | des_bairro   | varchar(120)                |  Bairro do responsável                                |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | num_cep      | varchar(25)                 |  Código de endereçamento postal do endereço           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | num_fone     | varchar(80)                 |  Telefone da pessoa identificada como responsável     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         |  seq_tad     | bigint                      |  Telefone da pessoa identificada como responsável     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    

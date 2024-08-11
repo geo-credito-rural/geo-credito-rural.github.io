@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/bootstrap-carousel.min.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/carousel-custom.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/acesso-imagens/index.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script src="../_static/bootstrap-carousel.min.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" href="introducao-ser.html" />
+    <link rel="prev" title="5.6. Integração e Análise de Dados de Uso e Cobertura da Terra com o WLTS" href="../uso-cobertura-terra/wlts.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.2. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composicao-contraste.html">6.3. Composição colorida e Contraste</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="../uso-cobertura-terra/wlts.html" class="btn btn-neutral float-left" title="5.6. Integração e Análise de Dados de Uso e Cobertura da Terra com o WLTS" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducao-ser.html" class="btn btn-neutral float-right" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="acesso-e-analise-das-imagens-de-satelite-disponiveis-para-as-glebas-do-sicor">
+<span id="cap-acesso-imagens"></span><h1><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor<a class="headerlink" href="#acesso-e-analise-das-imagens-de-satelite-disponiveis-para-as-glebas-do-sicor" title="Link permanente para este cabeçalho"></a></h1>
+<p>Atualmente existem diversas fontes de dados geoespaciais, como os satélites de observação da Terra mostrados na <a class="reference internal" href="#fig-acesso-imagens-index-earthsat-hd"><span class="std std-numref">Figura 6.1</span></a>. Sensores a bordo de satélites como Terra e Aqua e da série Landsat, têm sido importantes instrumentos de coleta de dados sobre nosso planeta. Esses satélites produzem dados sobre superfície, oceanos, atmosfera, entre outros, servindo de insumo básico para a construção de diversas aplicações. No INPE, as imagens da série Landsat são utilizadas, por exemplo, no sistema de monitoramento da Floresta Amazônica. Através dessas imagens, o PRODES (<a class="reference internal" href="../uso-cobertura-terra/prodes.html#sec-uso-cobertura-terra-prodes"><span class="std std-numref">Seção 5.1</span></a>) mantém o inventário de todo o desmatamento por corte raso na vegatação natural ocorrido na Amazônia Legal desde 1988.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-index-earthsat-hd">
+<a class="reference internal image-reference" href="../_images/earthsat-hd.jpg"><img alt="Satélites de Observação da Terra" src="../_images/earthsat-hd.jpg" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.1 - </span><span class="caption-text">Satélites de Observação da Terra. <br/> <strong>Fonte:</strong> NASA <span id="id1">[<a class="reference internal" href="../referencias.html#id60" title="NASA. Nasa’s earth science satellite fleet. 2013. Online; acessado 27 de Fevereiro de 2021. URL: https://earthobservatory.nasa.gov/images/81559/nasas-earth-science-satellite-fleet.">69</a>]</span>.</span><a class="headerlink" href="#fig-acesso-imagens-index-earthsat-hd" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A figura abaixo apresenta uma região vista com base em imagens Landsat 5, 7, 8 e 9 entre os anos de 1984 e 2022.</p>
+<div class="scbs-carousel scbs-slide scbs-carousel-fade" data-bs-interval="false" id="carousel-0">
+<div class="scbs-carousel-indicators">
+<button aria-current="true" aria-label="Slide 1" class="scbs-active scc-shadow-indicator" data-bs-slide-to="0" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 2" class="scc-shadow-indicator" data-bs-slide-to="1" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 3" class="scc-shadow-indicator" data-bs-slide-to="2" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 4" class="scc-shadow-indicator" data-bs-slide-to="3" data-bs-target="#carousel-0" type="button"></button>
+<button aria-label="Slide 5" class="scc-shadow-indicator" data-bs-slide-to="4" data-bs-target="#carousel-0" type="button"></button>
+</div>
+<div class="scbs-carousel-inner">
+<div class="scbs-carousel-item scbs-active">
+<img alt="../_images/landsat5-220070-19840620-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat5-220070-19840620-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 5/TM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 20/06/1984</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<img alt="../_images/landsat5-220070-19900605-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat5-220070-19900605-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 5/TM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 05/06/1990</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<img alt="../_images/landsat7-220070-20000726-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat7-220070-20000726-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 7/ETM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 26/07/2000</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<img alt="../_images/landsat8-220070-20150908-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat8-220070-20150908-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 08/09/2015</h5>
+</div>
+</div>
+<div class="scbs-carousel-item">
+<img alt="../_images/landsat9-220070-20220723-cores-verdadeiras.png" class="scbs-d-block scbs-w-100" src="../_images/landsat9-220070-20220723-cores-verdadeiras.png" />
+<div class="scbs-carousel-caption scbs-bg-dark scbs-d-sm-block scc-below-control">
+<h5>Imagem Landsat 9/OLI-2 com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 23/07/2022</h5>
+</div>
+</div>
+</div>
+<button class="scbs-carousel-control-prev scc-shadow-control" data-bs-slide="prev" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-prev-icon"></span>
+<span class="scbs-visually-hidden">Previous</span>
+</button>
+<button class="scbs-carousel-control-next scc-shadow-control" data-bs-slide="next" data-bs-target="#carousel-0" type="button">
+<span aria-hidden="true" class="scbs-carousel-control-next-icon"></span>
+<span class="scbs-visually-hidden">Next</span>
+</button>
+</div>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts-analise.html">6.2. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l1"><a class="reference internal" href="composicao-contraste.html">6.3. Composição colorida e Contraste</a></li>
+<li class="toctree-l1"><a class="reference internal" href="indices-espectrais.html">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</div>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="../uso-cobertura-terra/wlts.html" class="btn btn-neutral float-left" title="5.6. Integração e Análise de Dados de Uso e Cobertura da Terra com o WLTS" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="introducao-ser.html" class="btn btn-neutral float-right" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee4e38be0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

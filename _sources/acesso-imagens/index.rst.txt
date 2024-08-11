@@ -1,0 +1,103 @@
+.. include:: ../def.rst
+
+
+.. _cap_acesso_imagens:
+
+Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor
+============================================================================
+
+
+Atualmente existem diversas fontes de dados geoespaciais, como os satélites de observação da Terra mostrados na :numref:`Figura %s <fig:acesso-imagens:index:earthsat-hd>`. Sensores a bordo de satélites como Terra e Aqua e da série Landsat, têm sido importantes instrumentos de coleta de dados sobre nosso planeta. Esses satélites produzem dados sobre superfície, oceanos, atmosfera, entre outros, servindo de insumo básico para a construção de diversas aplicações. No INPE, as imagens da série Landsat são utilizadas, por exemplo, no sistema de monitoramento da Floresta Amazônica. Através dessas imagens, o PRODES (:numref:`Seção %s <sec_uso_cobertura_terra_prodes>`) mantém o inventário de todo o desmatamento por corte raso na vegatação natural ocorrido na Amazônia Legal desde 1988.
+
+
+.. figure:: ../img/acesso-imagens/index/earthsat-hd.jpg
+    :alt: Satélites de Observação da Terra
+    :width: 80%
+    :figclass: align-center
+    :name: fig:acesso-imagens:index:earthsat-hd
+
+    Satélites de Observação da Terra. |br| **Fonte:** NASA :cite:`nasa:2021:a`.
+
+
+A figura abaixo apresenta uma região vista com base em imagens Landsat 5, 7, 8 e 9 entre os anos de 1984 e 2022.
+
+
+.. carousel::
+    :show_controls:
+    :show_indicators:
+    :show_captions_below:
+    :show_fade:
+    :data-bs-interval: false
+    :show_shadows:
+
+    .. figure:: ../img/acesso-imagens/index/landsat5-220070-19840620-cores-verdadeiras.png
+
+        Imagem Landsat 5/TM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 20/06/1984
+
+
+
+    .. figure:: ../img/acesso-imagens/index/landsat5-220070-19900605-cores-verdadeiras.png
+
+        Imagem Landsat 5/TM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 05/06/1990
+
+
+    .. figure:: ../img/acesso-imagens/index/landsat7-220070-20000726-cores-verdadeiras.png
+
+        Imagem Landsat 7/ETM com resolução espacial de 30 metros <br> Composição colorida das bandas 3-2-1 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 26/07/2000
+
+
+    .. figure:: ../img/acesso-imagens/index/landsat8-220070-20150908-cores-verdadeiras.png
+
+        Imagem Landsat 8/OLI com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 08/09/2015
+
+
+    .. figure:: ../img/acesso-imagens/index/landsat9-220070-20220723-cores-verdadeiras.png
+
+        Imagem Landsat 9/OLI-2 com resolução espacial de 30 metros <br> Composição colorida das bandas 4-3-2 (cores verdadeiras) <br> Região do oeste do Estado da Bahia - 23/07/2022
+
+
+.. Como exemplo, uma imagem do sensor WFI (*Wide Field Imager*, ou Imageador de Amplo Campo de Visada) do satélite AMAZONIA-1, quando baixada do `catálogo oficial de imagens do INPE <http://www.dgi.inpe.br/catalogo/explore>`__, possui um conjunto de arquivos na seguinte nomenclatura:
+..
+.. .. rst-class:: open
+..
+.. - AMAZONIA_1_WFI_20240721_036_019_L4_BAND1.tif
+.. - AMAZONIA_1_WFI_20240721_036_019_L4_BAND2.tif
+.. - AMAZONIA_1_WFI_20240721_036_019_L4_BAND3.tif
+.. - AMAZONIA_1_WFI_20240721_036_019_L4_BAND4.tif
+..
+..
+.. Veja que nesse caso o nome dos arquivos já contém informações importantes sobre a imagem:
+..
+..
+..  .. list-table::
+..    :widths: 25 75
+..
+..    * - **AMAZONIA_1**
+..      - nome do satélite
+..    * - **WFI**
+..      - nome do sensor
+..    * - **20240721**
+..      - data da realização do imageamento, no formato YYYYMMDD
+..    * - **036_019**
+..      - localização da imagem na grade de imageamento, *path* e *row*
+..    * - **L4**
+..      - nível de processamento da imagem, nesse caso L4 é o melhor produto disponível, sendo 0 o nível de dados brutos, 1 quando foi aplicada correção radiométrica sobre o nível anterior, 2 quando foi aplicada correção de sistema sobre o nível anterior, 3 quando foi aplicada correção geométrica utilizando pontos de controle sobre o nível anterior, e por fim 4 quando a imagem do nível anterior foi ortorretificada (observação: cada satélite possui uma quantidade diferente de níveis de processamento, e formas variadas de representação desses níveis)
+..    * - **BAND1, ... BAND4**
+..      - indica a banda específica, no caso do AMAZONIA-1, BAND1 corresponde ao canal verde, BAND2 ao canal azul, BAND3 ao canal vermelho, e BAND4 ao canal infravermelho (observação: nem sempre a banda número 1 de um sensor vai corresponder ao canal verde, e nem sempre a BAND4 ao canal infravermelho; isso sempre depende da quantidade de bandas que cada sensor possui.
+..
+..  .. note::
+..
+..    Alguns satélites possuem mais de um sensor, e alguns deles podem capturar as mesmas bandas, que serão representadas em números diferentes. Por exemplo, o CBERS-4 possui a BAND5 correspondendo ao canal verde, e a BAND13 também correspondendo ao canal verde, porém cada uma obtida por um sensor diferente (MUX e WFI).
+..
+..
+.. Podemos utilizar também as imagens do satélite Sentinel-2, disponíveis no projeto `Brazil Data Cube (BDC) <https://data.inpe.br/bdc/web/sobre-o-brazil-data-cube/>`__. O BDC é um projeto de pesquisa, desenvolvimento e inovação tecnológica do Instituto Nacional de Pesquisas Espaciais (INPE), que está produzindo dados a partir de grandes volumes de imagens de sensoriamento remoto de média resolução espacial para todo o território nacional. Os dados produzidos no BDC incluem coleções de dados prontos para análise (conhecidos como ARD - Analysis-Ready Data) :cite:`ferreira:2020`, cubos de dados multidimensionais e mosaicos a partir de imagens dos satélites CBERS-4/4A, Sentinel-2 e Landsat-8.
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./introducao-ser
+    ./scripts-analise
+    ./composicao-contraste
+    ./indices-espectrais

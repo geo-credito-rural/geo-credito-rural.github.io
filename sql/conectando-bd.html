@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.1. Conectando ao Servidor PostgreSQL &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/sql/conectando-bd.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="1.2. Criando um Novo Banco de Dados no PostgreSQL" href="criando-bd.html" />
+    <link rel="prev" title="1. Introdução à Linguagem de Consulta SQL" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Introdução à Linguagem de Consulta SQL</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.1. Conectando ao Servidor PostgreSQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#psql">1.1.1. psql</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#pgadmin">1.1.2. pgAdmin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="criando-bd.html">1.2. Criando um Novo Banco de Dados no PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.3. Criando Tabelas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.4. Inserindo Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.5. Consultas em SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.6. Alterando a Estrutura de uma Tabela</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.7. Importando e Exportando Dados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Introdução à Linguagem de Consulta SQL</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.1. </span>Conectando ao Servidor PostgreSQL</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="1. Introdução à Linguagem de Consulta SQL" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="criando-bd.html" class="btn btn-neutral float-right" title="1.2. Criando um Novo Banco de Dados no PostgreSQL" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="conectando-ao-servidor-postgresql">
+<span id="sec-sql-conectando-bd"></span><h1><span class="section-number">1.1. </span>Conectando ao Servidor PostgreSQL<a class="headerlink" href="#conectando-ao-servidor-postgresql" title="Link permanente para este cabeçalho"></a></h1>
+<p>Após a instalação do PostgreSQL você terá um serviço rodando em <em>background</em> no seu sistema que ficará aguardando por conexões com aplicações clientes, como mostrado na <a class="reference internal" href="#fig-sql-conectando-bd-conectando-servidor"><span class="std std-numref">Figura 1.2</span></a>. Em geral, os clientes se conectam ao servidor PostgreSQL usando uma rede TCP/IP. Desta forma, para que o cliente possa se conectar ao servidor, ele deve especificar o endereço IP ou o nome de <em>host</em> do servidor, o número da porta na qual o servidor aguarda por requisições de conexão, o nome do banco de dados com o qual a conexão será associada, e as credenciais do usuário (nome e senha). Nessa figura, supomos que o servidor possui o endereço IP <code class="docutils literal notranslate"><span class="pre">10.10.1.10</span></code> e que ele aguarda por conexões na porta <code class="docutils literal notranslate"><span class="pre">5432</span></code>, que é a porta usada na instalação padrão. Ao receber o pedido de conexão de um cliente, o servidor PostgreSQL valida as credenciais do usuário e caso elas sejam válidas, estabelece a conexão do cliente com o repositório físico de dados através de uma nova instância do PostgreSQL, que ficará responsável pela interação com este cliente.</p>
+<figure class="align-center align-default" id="fig-sql-conectando-bd-conectando-servidor">
+<a class="reference internal image-reference" href="../_images/conectando-servidor.png"><img alt="Estabelecendo conexão a um servidor PostgreSQL" src="../_images/conectando-servidor.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1.2 - </span><span class="caption-text">Estabelecendo conexão a um servidor PostgreSQL.</span><a class="headerlink" href="#fig-sql-conectando-bd-conectando-servidor" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<section id="psql">
+<h2><span class="section-number">1.1.1. </span>psql<a class="headerlink" href="#psql" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para se conectar ao PostgreSQL através do <cite>psql</cite>, podemos utilizar as seguintes opções na linha de comando do sistema operacional:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">psql</span> <span class="o">-</span><span class="n">h</span> <span class="mf">10.10.1.10</span> <span class="o">-</span><span class="n">p</span> <span class="mi">5432</span> <span class="o">-</span><span class="n">d</span> <span class="n">db1</span> <span class="o">-</span><span class="n">U</span> <span class="n">eduardo</span>
+</pre></div>
+</div>
+<p>No comando acima, temos:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-h</span></code>: Permite informar o endereço IP do servidor ou o seu nome.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-p</span></code>: Permite informar a porta em que o servidor aguarda por conexões. A porta padrão do PostgreSQL é a <code class="docutils literal notranslate"><span class="pre">5432</span></code>, de maneira que seu servidor esteja utilizando esta porta, você pode até omitir essa opção.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span></code>: Permite informar o banco de dados com o qual a conexão será associada. Cada conexão só pode estar associada a um único banco de dados.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-U</span></code>: Permite informar o nome do usuário para o qual a conexão será aberta.</p></li>
+</ul>
+</section>
+<section id="pgadmin">
+<h2><span class="section-number">1.1.2. </span>pgAdmin<a class="headerlink" href="#pgadmin" title="Link permanente para este cabeçalho"></a></h2>
+<p>Para conseguir se conectar a um servidor com o <cite>pgAdmin</cite>, você precisará ter esse servidor registrado na árvore de objetos. No <em>menu</em> de atalho do objeto <code class="docutils literal notranslate"><span class="pre">Servers</span></code>, selecione a opção <code class="docutils literal notranslate"><span class="pre">Register</span> <span class="pre">|</span> <span class="pre">Server...</span></code> como indicado na <a class="reference internal" href="#fig-sql-conectando-bd-pgadmin4-menu-register-server"><span class="std std-numref">Figura 1.3</span></a>.</p>
+<figure class="align-center align-default" id="fig-sql-conectando-bd-pgadmin4-menu-register-server">
+<a class="reference internal image-reference" href="../_images/menu-register-server.png"><img alt="Menu para registro da conexão a um novo servidor PostgreSQL" src="../_images/menu-register-server.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1.3 - </span><span class="caption-text">Menu para registro da conexão a um novo servidor PostgreSQL.</span><a class="headerlink" href="#fig-sql-conectando-bd-pgadmin4-menu-register-server" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Na janela apresentada, deve ser informado um nome que será usado para identificar o servidor na árvore de objetos do pgAdmin (<a class="reference internal" href="#fig-sql-conectando-bd-pgadmin4-register-server-general"><span class="std std-numref">Figura 1.4</span></a>).</p>
+<figure class="align-center align-default" id="fig-sql-conectando-bd-pgadmin4-register-server-general">
+<a class="reference internal image-reference" href="../_images/register-server-general.png"><img alt="Registrando um novo servidor PostgreSQL" src="../_images/register-server-general.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1.4 - </span><span class="caption-text">Registrando um novo servidor PostgreSQL.</span><a class="headerlink" href="#fig-sql-conectando-bd-pgadmin4-register-server-general" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Na aba <code class="docutils literal notranslate"><span class="pre">Connection</span></code>, forneça as informações de conexão ao servidor (<a class="reference internal" href="#fig-sql-conectando-bd-pgadmin4-register-server-connection"><span class="std std-numref">Figura 1.5</span></a>).</p>
+<figure class="align-center align-default" id="fig-sql-conectando-bd-pgadmin4-register-server-connection">
+<a class="reference internal image-reference" href="../_images/register-server-connection.png"><img alt="Informações de conexão ao servidor PostgreSQL" src="../_images/register-server-connection.png" style="width: 60%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1.5 - </span><span class="caption-text">Informações de conexão ao servidor PostgreSQL</span><a class="headerlink" href="#fig-sql-conectando-bd-pgadmin4-register-server-connection" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Ao pressionar o botão <code class="docutils literal notranslate"><span class="pre">Save</span></code>, deverá ser apresentada uma tela como a da <a class="reference internal" href="#fig-sql-conectando-bd-pgadmin4-local-server"><span class="std std-numref">Figura 1.6</span></a>.</p>
+<figure class="align-center align-default" id="fig-sql-conectando-bd-pgadmin4-local-server">
+<a class="reference internal image-reference" href="../_images/local-server.png"><img alt="Conexão ao servidor PostgreSQL" src="../_images/local-server.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 1.6 - </span><span class="caption-text">Conexão ao servidor PostgreSQL.</span><a class="headerlink" href="#fig-sql-conectando-bd-pgadmin4-local-server" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="1. Introdução à Linguagem de Consulta SQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="criando-bd.html" class="btn btn-neutral float-right" title="1.2. Criando um Novo Banco de Dados no PostgreSQL" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee59c8130>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

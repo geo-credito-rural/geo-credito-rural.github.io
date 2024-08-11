@@ -1,0 +1,168 @@
+.. include:: ../def.rst
+
+
+.. _sec_acesso_imagens_scripts_analise:
+
+Scripts para suporte à análise de imagens 
+=========================================
+
+
+Para analisar as imagens relacionadas com as glebas do Sicor, podemos construir scripts em Python e combinar algumas bibliotecas disponíveis, que nos auxiliam muito na manipulação dos dados. Tais bibliotecas servem de suporte para abrir uma imagem, para obter a matriz de pixels, reprojetar, combinar as bandas e visualizar as imagens. As bibliotecas `GDAL <https://gdal.org/api/python_bindings.html>`__ e `Rasterio <https://rasterio.readthedocs.io/en/stable/>`__ são muito úteis para facilitar o acesso às imagens nos formatos tradicionais, como por exemplo GeoTIFF.
+
+
+Os scripts que são criados basicamente manipulam números em matrizes digitais, e a biblioteca `NumPy <https://numpy.org/>`__ possui muitas funções prontas para facilitar essa manipulação. Além disso, a visualização das imagens e gráficos como histogramas, pode ser feita com ajuda da biblioteca `Matplotlib <https://matplotlib.org/>`__. Para iniciar os experimentos de análise de imagens, apresentamos alguns trechos de scripts em Python.
+
+
+Como são arquivos separados para cada banda, é preciso carregar cada banda de forma individual, utilizando a biblioteca Rasterio, assumindo que os metadados serão equivalentes. 
+
+
+**Script 1.** Carregar a imagem e construir uma matriz com os pixels da banda carregada.
+
+.. collapse:: Solução:
+    .. tabs::
+        .. tab:: Python
+            .. code-block:: python
+
+              with rio.open('/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND1.tif') as banda1:
+                  matriz_verde = banda1.read(1)
+                  # as linhas a seguir são para apresentar algumas informações sobre a imagem
+                  resolucao_espacial = banda1.res[0]
+                  linhas = banda1.height
+                  colunas = banda1.width
+                  print(f'as imagens têm resolução espacial de {resolucao_espacial} m, número de linhas: {linhas}, número de colunas: {colunas}')
+                  print(f'área total imageada: {linhas * colunas * resolucao_espacial * resolucao_espacial / 1000000} km²')
+
+              with rio.open('/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND2.tif') as banda2:
+                  matriz_azul = banda2.read(1)
+              with rio.open('/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND3.tif') as banda3:
+                  matriz_vermelho = banda3.read(1)
+              with rio.open('/kaggle/input/analise-imagens/AMAZONIA_1_WFI_20220819_035_020_L4_BAND4.tif') as banda4:
+                  matriz_iv = banda4.read(1)
+
+
+Cada par de linhas do código acima solicita a abertura do arquivo de imagem indicado pelo nome, armazenando-o na variável correspondente, ``banda1``, ``banda2``, etc. Em seguida, a função read com o parâmetro 1 indica que a primeira banda contida no arquivo, que nesse caso só possui uma banda, será carregada e a matriz de pixels será armazenada nas variáveis ``matriz_verde``, ``matriz_azul``, ``matriz_vermelho``, ``matriz_iv``. 
+
+
+**Script 2.** Realizar a visualização das imagens, utilizando as funções disponíveis na biblioteca ``matplotlib``, módulo ``pyplot``.
+
+.. collapse:: Solução:
+    .. tabs::
+        .. tab:: Python
+            .. code-block:: python
+
+              plt.figure(figsize=(19, 3))
+              plt.subplot(141)
+              plt.imshow(matriz_azul, cmap = 'gray')
+              plt.title('Canal Azul')
+              plt.subplot(142)
+              plt.imshow(matriz_verde, cmap = 'gray')
+              plt.title('Canal Verde')
+              plt.subplot(143)
+              plt.imshow(matriz_vermelho, cmap = 'gray')
+              plt.title('Canal Vermelho')
+              plt.subplot(144)
+              plt.imshow(matriz_iv, cmap = 'gray')
+              plt.title('Canal Infravermelho')
+              plt.colorbar()
+              plt.show()
+
+
+A :numref:`Figura %s <fig:acesso-imagens:scripts-analise-4bandas>` abaixo apresenta o resultado do **Script 3**.
+
+.. figure:: ../img/acesso-imagens/scripts-analise-4bandas.png
+    :alt: Visualização das 4 bandas carregadas, em tons de cinza
+    :width: 80%
+    :figclass: align-center
+    :name: fig:acesso-imagens:scripts-analise-4bandas
+
+    Visualização das 4 bandas carregadas, em tons de cinza.
+
+
+A visualização dessas imagens está prejudicada por alguns fatores. Primeiramente, a quantidade de pixels de cada banda é muito grande, e o espaço de visualização é muito pequeno. A área representada por esta imagem, considerando a resolução espacial de 64 metros, é de aproximadamente 950 mil km². No entanto, uma gleba armazenada nos dados Sicor, tendo sido escolhida a de maior área no ano de 2022, possui uma área de aproximadamente 15 km². Assim, para focar a visualização dos pixels da imagem somente na área de interesse de uma gleba, podemos recortar a imagem em uma região no entorno da geometria da gleba, considerando um buffer de alguns metros para observação da vizinhança.
+
+
+A :numref:`Figura %s <fig:acesso-imagens:scripts-analise-4bandas-recorte>` abaixo apresenta um recorte das 4 bandas carregadas, em tons de cinza, e com visualizações independentes.
+
+.. figure:: ../img/acesso-imagens/scripts-analise-4bandas-recorte.png
+    :alt: Visualização de um recorte das 4 bandas carregadas, em tons de cinza
+    :width: 80%
+    :figclass: align-center
+    :name: fig:acesso-imagens:scripts-analise-4bandas-recorte
+
+    Visualização de um recorte das 4 bandas carregadas, em tons de cinza.
+
+
+A barra de cores ao lado de cada figura nos indica que essa visualização está com um esquema de cores independente para cada imagem. Esse esquema de cores é baseado nos valores mínimos e máximos encontrados no recorte, e isso automaticamente transforma a visualização numa rampa de cores entre preto e branco. Isso pode nos trazer uma falsa impressão de que o canal infravermelho, por exemplo, possui a resposta espectral semelhante às demais imagens. No entanto podemos perceber pela barra de cores, que os menores valores do canal infravermelho, representados em pixels escuros, correspondem ao número 100, e os maiores valores estão em torno de 500, valor tal muito maior do que nos canais visíveis, como azul, verde e vermelho.
+
+
+Para observar a distribuição de valores de cada banda, de forma independente, podemos utilizar ferramentas estatísticas. Uma maneira muito utilizada para complementar a visualização das imagens é através do histograma. Ele apresenta, de forma gráfica, a distribuição dos pixels na imagem. 
+
+
+A :numref:`Figura %s <fig:acesso-imagens:scripts-analise-4bandas-histograma>` abaixo apresenta 4 histogramas integrados das bandas carregadas. Nesta figura fica bem claro que os pixels do canal infravermelho são muito mais altos do que os demais. Nota-se também a ocorrência dos menores valores no canal vermelho.
+
+
+.. figure:: ../img/acesso-imagens/scripts-analise-4bandas-histograma.png
+    :alt: Visualização do histograma composto pelas 4 bandas carregadas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:acesso-imagens:scripts-analise-4bandas-histograma
+
+    Visualização do histograma composto pelas 4 bandas carregadas.
+
+
+É possível também combinar a visualização de 2 bandas em um gráfico de dispersão, também chamado de scatterplot. Com este gráfico, é possível verificar a diferença, ou a semelhança, entre as bandas. Note como os canais verde e azul possuem uma grande semelhança (o que também se mostrou pela grande sobreposição no histograma).
+
+
+A :numref:`Figura %s <fig:acesso-imagens:scripts-analise-2graficos-dispersao>` abaixo apresenta 2 gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas.
+
+.. figure:: ../img/acesso-imagens/scripts-analise-2graficos-dispersao.png
+    :alt: Visualização de gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:acesso-imagens:scripts-analise-2graficos-dispersao
+
+    Visualização de gráficos de dispersão entre pares de bandas, das mesmas 4 bandas carregadas.
+
+
+Os intervalos de valores apresentados nos gráficos de dispersão são interessantes pois nos ajudarão posteriormente a identificar formas de melhorar a visualização da imagem numa composição colorida.
+
+.. _subsec_acesso_imagens_scripts_analise_visualizacao_bdc:
+
+Visualização de imagens Sentinel-2 do Brazil Data Cube (BDC)
+------------------------------------------------------------
+
+... incluir figura do BDC sobre geração de produtos 16 dias e trechos do script de consulta
+
+
+**Script 3.** Carregar a geometria de uma gleba, disponível em arquivo Shapefile, e buscar imagens Sentinel-2 no BDC que incluam a área da gleba, em um período de agosto de 2022 até julho de 2023.
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: Python
+
+
+            .. code-block:: python
+
+                # carregar o arquivo Shapefile e consultar o primeiro polígono disponível
+                gleba = geopandas.read_file('arquivo_gleba.shp')
+                poligono_gleba = gleba.geometry.iloc[0]
+
+                # realizar uma busca de imagens Sentinel-2 disponíveis no
+                # Brazil Data Cube no intervalo temporal estabelecido
+                # e na região delimitada pela área de interesse (gleba)
+                catalogo_bdc = pystac_client.Client.open("https://data.inpe.br/bdc/stac/v1")
+                items = catalogo_bdc.search(
+                    collections=['S2_L2A-1'],
+                    datetime='2022-08-01/2023-07-31',
+                    intersects=shapely.geometry.mapping(poligono_gleba)
+                )
+                total_rasters = items.matched()
+                print('total de elementos encontrados', total_rasters)
+
+                for item in items():
+                    print('- data da imagem', item.properties['datetime'])
+                    print('- link da banda 04', item.assets['B04'].href)

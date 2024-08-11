@@ -94,4 +94,90 @@ Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estã
     +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
     
 
-O Banco Central do Brasil estabeleceu como mandatório, para a safra 2024/2025, o uso de alguns atributos do ZARC. Como exemplo, para o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.
+O Banco Central estabelece que o custeio agrícola está restrito aos empreendimentos conduzidos sob as condições do ZARC, condicionando à obrigação contratual de aplicação das recomendações técnicas referentes ao zoneamento :cite:`bcb:2024:c`. Com relação ao Proagro, estabelece diversas regras regularizando o uso do ZARC, como por exemplo, o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação. 
+
+
+Os dados do ZARC podem ser acessados no seguinte endereço `<https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`, em que é possível formatar diversas consultas. Para este trabalho foram acessados os dados completos do ZARC, disponibilizados neste endereço `<http://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-
+dc8ff323b96f/resource/a8875ff8-fe4d-4c3c-b1a1-3b19c32916f1/download/dados-abertos-tabua-
+de-risco.csv>`, cuja estrutura de dados é apresentada na :numref:`Tabela %s <tbl:zarc:csv>` cujo `dicionário de dados <https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf>`__  é replicado abaixo. As colunas alfanuméricas encontram-se codificadas em UTF8.
+
+
+.. table:: Dicionário de dados do ZARC. |br| **Fonte:** :cite:`mapa:2024:a`.
+    :align: center
+    :header-alignment: center center  
+    :column-alignment: center center 
+    :name: tbl:zarc:csv
+
+    +-----------------------+---------------------------------------------------------------+
+    | nome                  |  descrição                                                    |
+    +=======================+===============================================================+
+    | Nome_cultura          |  Nome da cultura zoneada                                      |
+    +-----------------------+---------------------------------------------------------------+
+    | SafraIni              |  Ano inicial da Safra                                         |
+    +-----------------------+---------------------------------------------------------------+
+    | SafraFin              |  Ano final da Safra                                           |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Cultura           |  Código da culura zoneada                                     |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Ciclo             |  Código do ciclo                                              |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Solo              |  Código do Solo                                               |
+    +-----------------------+---------------------------------------------------------------+
+    | geocodigo             |  Geocódigo do município no IBGE                               |
+    +-----------------------+---------------------------------------------------------------+
+    | UF                    |  Sigla da Unidade Federativa do município                     |
+    +-----------------------+---------------------------------------------------------------+
+    | municipio             |  Nome do município                                            |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Outros_Manejos    |  Código dos Tipos de Manejo                                   |
+    +-----------------------+---------------------------------------------------------------+
+    | Nome_Outros_Manejos   |  Nome dos Tipos de Manejo                                     |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Clima             |  Código do Clima                                              |
+    +-----------------------+---------------------------------------------------------------+
+    | Nome_Clima            |  Nome do Clima                                                |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Munic             |  Código do município no Bacen                                 |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Meso              |  Código da mesorregião do município no IBGE                   |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Micro             |  Código da microrrfegião do município do IBGE                 |
+    +-----------------------+---------------------------------------------------------------+
+    | Portaria              |  Número e data da portaria de publicação de Zarc no D.O.U.    |
+    +-----------------------+---------------------------------------------------------------+
+    | dec1 a dec 36         |  Período de plantio no ano separado por decêndios de 1 a 36   |
+    +-----------------------+---------------------------------------------------------------+
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    

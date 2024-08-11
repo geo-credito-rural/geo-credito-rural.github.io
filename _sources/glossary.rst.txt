@@ -4,17 +4,140 @@ Glossário
 
 .. glossary::
 
+    BDC
+        Brazil Data Cube.
+    
+    CAR
+        Cadastro Ambiental Rural.
+    
     COP
         Pedido de cobertura do :term:`Proagro`.
 
+    CNPJ 
+        Cadastro Nacional de Pessoa Jurídica.
+    
+    CPF
+        Cadastrado de Pessoa Física.
+    
+    DAP 
+        Declaração de Aptidão ao :term:`Proagro`.
+
+    DETER
+        Sistema de Detecção do Desmatamento em tempo quase real.
+
+    EMBRAPA
+        Empresa brasileira de Pesquisa Agropecuária.
+    
+    FLONA
+        Floresta Nacional.
+
+    FOV
+        Campo de visada (Field of View).
+
+    FDRB
+        Função de distribuição de refletância bidirecional.
+
+    IBAMA
+        Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis.
+
+    IBGE
+        Instituto Brasileiro de Geografia e Estatística.
+        
+    ICMBIO
+        Instituto Chico Mendes de Conservação da Biodiversidade.
+
+    INCRA 
+        Instituto Nacional de Colonização e Reforma Agrária.
+
+    INPE
+        Instituto Nacional de Pesquisas Espaciais.
+
+    MAPA
+        Ministério da Agricultura e Pecuária.
+
+    MMA
+        Ministério do Meio Ambiente.
+
+    MCR
+        Manual do Crédito Rural.
+
+    NIRF
+        Número De Imóvel na Receita Federal.
+
+    OGC
+        `Open Geospatial Consortium <https://www.ogc.org/>`__.
+
+    PA
+        Projeto de Assentamento Federal.
+    
+    PAE 
+        Projeto de Assentamento Agroextrativista.
+    
+    PAF
+        Projeto de Assentamento Florestal.
+    
+    PDS 
+        Projeto de Desenvolvimento Sustentável.
+
+    PIN
+        Programa de Integração Nacional.
+
+    PMABB
+        Programa de Monitoramento Ambiental dos Biomas Brasileiros.
+
+    PPCDAm
+        Plano de Ação para Prevenção e Controle do Desmatamento na Amazônia Legal.
+        
     Proagro
         Programa de Garantia da Atividade Agropecuária.
 
+    PRODES
+        Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite.
+
+    Pronaf
+        Programa Nacional de Fortalecimento da Agricultura Familiar.
+
     RCP
         Relatório de comprovação de perdas do :term:`Proagro`.
+    
+    RESEX 
+        Reservas Extrativistas.
+
+    SFB
+        Serviço Florestal Brasileiro.
 
     Sicor
         Sistema de Operações do Crédito Rural e do :term:`Proagro`.
+
+    SIG
+        Sistemas de Informações Geográficas.
+
+    SIGEF
+        Sistema de Gestão Fundiária.
+    
+    SINIMA
+        Sistema Nacional de Informação sobre Meio Ambiente.
+
+    SNCI
+        Sistema Nacional de Certificação de Imóveis.
+
+    SNCR
+        Sistema Nacional de Cadastro Rural.
+
+    SNUC
+        Sistema Nacional de Unidades de Conservação da Natureza.
+
+    SPRING
+        Sistema de Processamento de Informações Georeferenciadas.
+    
+    TRQ
+        Território Remanescente Quilombola.
+
+    UC
+        Unidade de Conservação.
+
+    UF
+        Unidade da Ferderação. 
 
     WKT
         O formato textual **WKT** ou **Well-Know Text** permite representar elementos geométricos tais como pontos, linhas, polígonos, coleções homogêneas de pontos, linhas e polígonos.

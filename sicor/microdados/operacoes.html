@@ -42,7 +42,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             GeoCreditoRural
-              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -84,6 +84,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -397,7 +399,7 @@
 <p>Os contratos de crédito rural na base de microdados do Sicor são identificados por um valor conhecido como <strong>ref_bacen</strong>. Um contrato pode envolver mais de uma destinação ou finalidade, por exemplo, um contrato de financiamento de custeio de lavoura de soja e de aquisição de trator. Logo, a organização da tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> é feita de maneira a conter uma linha para cada par contrato e destinação ou finalidade. Por isso, a chave primária dessa tabela é formada pelos campos <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> e <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code>, que indicam uma referência ao número do contrato e a destinação ou finalidade dentro desse contrato, respectivamente.</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cnpj_if</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">ifssicor</span></code>, permitindo relacionar a instituição concedente do crédito (<a class="reference internal" href="ifs.html#sec-sicor-microdados-ifs"><span class="std std-numref">Seção 3.1.3 - Instituições Financeiras</span></a>).</p>
 <p>As colunas <code class="docutils literal notranslate"><span class="pre">dt_emissao</span></code> e <code class="docutils literal notranslate"><span class="pre">dt_vencimento</span></code> registram, respectivamente, a data em que o contrato foi realizado e o término previsto.</p>
-<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code>, permitindo relacionar o contrato ao tipo de instrumento de crédito (<a class="reference internal" href="instrumento-credito.html#sec-sicor-microdados-instrumento-credito"><span class="std std-numref">Seção 3.1.4 Instrumento de Crédito</span></a>).</p>
+<p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_inst_credito</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">instrumentocredito</span></code>, permitindo relacionar o contrato ao tipo de instrumento de crédito (<a class="reference internal" href="instrumento-credito.html#sec-sicor-microdados-instrumento-credito"><span class="std std-numref">Seção 3.1.4 - Instrumento de Crédito</span></a>).</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_categ_emitente</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">categoriaemitente</span></code>, permitindo relacionar o contrato à classificação do produtor rural, como pequeno, médio e grande produtor (<a class="reference internal" href="emitente.html#sec-sicor-microdados-emitente"><span class="std std-numref">Seção 3.1.5 - Categoria de Emitente</span></a>). Em geral, quando o contrato é realizado por mais de um emitente (mutuário), esse código deve ser o do produtor de maior porte.</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_fonte_recurso</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">fonterecursos</span></code>, permitindo relacionar o contrato à fonte de recurso usada para o financiamento (<a class="reference internal" href="fontes-recursos.html#sec-sicor-microdados-fontes-recursos"><span class="std std-numref">Seção 3.1.6 - Fontes de Recursos</span></a>).</p>
 <p>A coluna <code class="docutils literal notranslate"><span class="pre">cd_tipo_seguro</span></code> se liga à tabela auxiliar <code class="docutils literal notranslate"><span class="pre">tipogarantiaempreendimento</span></code>, permitindo saber se o contrato prevê algum tipo de seguro ou não (<a class="reference internal" href="seguro.html#sec-sicor-microdados-seguro"><span class="std std-numref">Seção 3.1.7 - Garantia do Empreendimento</span></a>).</p>
@@ -678,7 +680,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fc327056280>
+<jinja2.runtime.BlockReference object at 0x7f0ee5f77700>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

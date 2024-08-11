@@ -42,7 +42,7 @@
           
           <a href="../index.html" class="icon icon-home">
             GeoCreditoRural
-              <img src="../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
@@ -77,6 +77,8 @@
 <li class="toctree-l2"><a class="reference internal" href="sumario-tabelas-vetoriais.html">4.11. Sumário das tabelas vetoriais</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -120,24 +122,167 @@
              
   <section id="areas-quilombolas">
 <span id="sec-bases-vetoriais-areas-quilombolas"></span><h1><span class="section-number">4.2. </span>Áreas Quilombolas<a class="headerlink" href="#areas-quilombolas" title="Link permanente para este cabeçalho"></a></h1>
-<p>As comunidades quilombolas são grupos étnicos – predominantemente constituídos pela população
-negra rural ou urbana –, que se autodefinem a partir das relações específicas com a terra,
-o parentesco, o território, a ancestralidade, as tradições e práticas culturais próprias.
-Por força do Decreto nº 4.887, de 2003, o INCRA (Instituto Nacional de Colonização e Reforma
-Agrária) é a autarquia competente, na esfera federal, pela titulação dos territórios quilombolas.
-As terras ocupadas por remanescentes das comunidades dos quilombos são aquelas utilizadas
-para a garantia de sua reprodução física, social, econômica e cultural.</p>
-<p>As áreas quilombolas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile,
-do <a class="reference external" href="https://acervofundiario.incra.gov.br/acervo/login.php">Acervo Fundiário</a> do INCRA e
-inseridos na tabela <code class="docutils literal notranslate"><span class="pre">areas_quilombolas</span></code>. Um sumário de todas as tabelas vetoriais e suas principais
-características pode ser encontrado em  <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-ref">Sumário das tabelas vetoriais</span></a>.
-A <a class="reference internal" href="#fig-bases-vetoriais-quilombos"><span class="std std-numref">Figura 4.3</span></a> apresenta a distribuição das áreas quilombolas no Brasil.</p>
+<p>A palavra <strong>Quilombo</strong> cujo significado provável está relacionado com <em>acampamento guerreiro na floresta</em> e pode ter sua etimologia da palavra derivada do Quimbundo (Kilombo) significando ‘acampamento’, ‘arraial’, ‘povoação’, ‘capital’, ‘união’ e ainda ‘exército’. Essa expressão e palavra amplamente utilizada em diversas circunstâncias da história do Brasil, foi primeiramente popularizada pela administração colonial, em suas leis, relatórios, atos e decretos para se referir às unidades de apoio mútuo criadas pelos rebeldes ao sistema escravista, bem como às suas lutas pelo fim da escravidão no país. Em seguida, foi também expressão dos afrodescendentes para designar a sua trajetória, conquista e liberdade, em amplas dimensões e significados. Mas, como observado, <em>Quilombo</em> está relacionado com a questão relevante desde os primeiros focos de resistência dos africanos ao escravismo colonial, posteriormente com a Frente Negra Brasileira (1930/40) e volta à cena política no final dos anos 1970, durante a redemocratização do país. Esse termo se relaciona com uma questão persistente, a luta dos afro-descendentes <span id="id1">[<a class="reference internal" href="../referencias.html#id50" title="Ilka Boaventura Leite. Os quilombos no brasil: questões conceituais e normativas. Etnográfica, Iv(2):333-354, 2000. URL: http://ceas.iscte.pt/etnografica/docs/vol_04/N2/Vol_iv_N2_333-354.pdf, doi:https://doi.org/10.4000/etnografica.2769.">23</a>]</span>.</p>
+<p>Por tanto, As comunidades quilombolas são grupos étnicos que se autodefinem a partir das relações específicas com a terra, o parentesco, o território, a ancestralidade, as tradições e práticas culturais próprias. Assim, são considerados como remanescentes das comunidades dos quilombos os grupos étnico-raciais, segundo critérios de auto-atribuição, com trajetória histórica própria, dotados de relações territoriais específicas, com presunção de ancestralidade negra relacionada com a resistência à opressão histórica sofrida. Segundo o <a class="reference external" href="https://www.planalto.gov.br/ccivil_03/decreto/2003/d4887.htm">Decreto nº 4.887, de 2003</a> que regulamenta o procedimento para identificação, reconhecimento, delimitação, demarcação e titulação das terras ocupadas por remanescentes das comunidades dos quilombos, o Instituto Nacional de Colonização e Reforma  Agrária (INCRA) é a autarquia competente, na esfera federal, pela titulação dos territórios quilombolas. As terras ocupadas por remanescentes das comunidades dos quilombos são aquelas utilizadas para a garantia de sua reprodução física, social, econômica e cultural <span id="id2">[<a class="reference internal" href="../referencias.html#id23" title="Brasil. Decreto nº 4.887, de 20 de novembro de 2003. Agosto 2024. Online; acessado 04 de Agosto de 2024. URL: https://www.planalto.gov.br/ccivil_03/decreto/2003/d4887.htm.">24</a>]</span>.</p>
+<p>As áreas quilombolas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do <a class="reference external" href="https://acervofundiario.incra.gov.br/acervo/login.php">Acervo Fundiário</a> do INCRA e inseridos na tabela <code class="docutils literal notranslate"><span class="pre">areas_quilombolas</span></code>. Para realizar o download desse dado, é necessário autenticar com a credencial do <strong>gov.br</strong>. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-numref">Seção 4.11 - Sumário das tabelas vetoriais</span></a>. A <a class="reference internal" href="#fig-bases-vetoriais-quilombos"><span class="std std-numref">Figura 4.3</span></a> apresenta a distribuição das áreas quilombolas no Brasil.</p>
 <figure class="align-center align-default" id="fig-bases-vetoriais-quilombos">
 <a class="reference internal image-reference" href="../_images/quilombos.png"><img alt="Distribuição das áreas Quilombolas" src="../_images/quilombos.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Figura 4.3 - </span><span class="caption-text">Distribuição das áreas Quilombolas.</span><a class="headerlink" href="#fig-bases-vetoriais-quilombos" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
+<p>A <a class="reference internal" href="#tbl-bases-vetoriais-areas-quilombolas"><span class="std std-numref">Tabela 4.3</span></a> apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).</p>
+<table class="styled-table docutils align-center" id="tbl-bases-vetoriais-areas-quilombolas">
+<caption><span class="caption-number">Tabela 4.3 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>Áreas de Quilombolas.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-areas-quilombolas" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>id</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Identificador</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_quilomb</p></td>
+<td class="center-align"><p>bigint</p></td>
+<td class="left-align"><p>Código da comunidade quilombola</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_sr</p></td>
+<td class="center-align"><p>varchar(5)</p></td>
+<td class="left-align"><p>Código da superintendência regional do INCRA</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>nr_process</p></td>
+<td class="center-align"><p>varchar(50)</p></td>
+<td class="left-align"><p>Número do processo de titulação de terras no INCRA</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nm_comunid</p></td>
+<td class="center-align"><p>varchar(50)</p></td>
+<td class="left-align"><p>Nome da comunidade quilombola</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>nm_municip</p></td>
+<td class="center-align"><p>varchar(50)</p></td>
+<td class="left-align"><p>Município(s) em que se localiza a comunidade
+quilombola</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_uf</p></td>
+<td class="center-align"><p>varchar(2)</p></td>
+<td class="left-align"><p>Código da UF em que está a comunidade quilombola</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>dt_publica</p></td>
+<td class="center-align"><p>varchar(10)</p></td>
+<td class="left-align"><p>Data de publicação da portaria de reconhecimento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_public1</p></td>
+<td class="center-align"><p>varchar(10)</p></td>
+<td class="left-align"><p>Data do decreto presidencial para fins de
+desapropriação por interesse social</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>nr_familia</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número de famílias da comunidade quilombola</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_titulac</p></td>
+<td class="center-align"><p>varchar(10)</p></td>
+<td class="left-align"><p>Data da titulação da comunidade quilombola</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>nr_area_ha</p></td>
+<td class="center-align"><p>double</p></td>
+<td class="left-align"><p>Área em hectares do território quilombola</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nr_perimet</p></td>
+<td class="center-align"><p>double</p></td>
+<td class="left-align"><p>Perímetro do território quilombola, que consta na
+matrícula</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_sipra</p></td>
+<td class="center-align"><p>varchar(50)</p></td>
+<td class="left-align"><p>Código no Sistema de Informações de Projetos de
+Reforma Agrária (SIPRA)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>ob_descric</p></td>
+<td class="center-align"><p>varchar(50)</p></td>
+<td class="left-align"><p>Observações e descrições sobre o andamento do
+processo</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>st_titulad</p></td>
+<td class="center-align"><p>varchar(1)</p></td>
+<td class="left-align"><p>Informa se a comunidade quilombola tem (t) ou
+não (f) a titulação</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>dt_decreto</p></td>
+<td class="center-align"><p>varchar(10)</p></td>
+<td class="left-align"><p>Data decreto de regularização do território
+quilombola</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>tp_levanta</p></td>
+<td class="center-align"><p>varchar(254)</p></td>
+<td class="left-align"><p>Informa o tipo de levantamento utilizado para a
+demarcação do território</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nr_escalao</p></td>
+<td class="center-align"><p>varchar(20)</p></td>
+<td class="left-align"><p>Escala utilizada para o mapeamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>area_calc_</p></td>
+<td class="center-align"><p>double</p></td>
+<td class="left-align"><p>Área calculada do território quilombola com base no
+mapeamento ou georreferenciamento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>perimetro</p></td>
+<td class="center-align"><p>double</p></td>
+<td class="left-align"><p>Perímetro calculado do território quilombola com
+base no mapeamento ou georreferenciamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>esfera</p></td>
+<td class="center-align"><p>varchar(9)</p></td>
+<td class="left-align"><p>Federal, estadual ou municipal</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>fase</p></td>
+<td class="center-align"><p>varchar(20)</p></td>
+<td class="left-align"><p>Fase em que se encontra o processo de titulação</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>responsave</p></td>
+<td class="center-align"><p>varchar(40)</p></td>
+<td class="left-align"><p>Órgão responsável</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>geom</p></td>
+<td class="center-align"><p>geometry(MultiPolygon,4674)</p></td>
+<td class="left-align"><p>Geometria do território quilombola</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O conjunto de arquivos <em>Esri Shapefile</em> <cite>Áreas de Quilombolas.zip</cite> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">areas_quilombolas</span></code> do banco de dados PostgreSQL.</p>
+</div>
 <section id="consultas">
 <h2><span class="section-number">4.2.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Recuperar o número de terras quilombolas.</p>
@@ -197,7 +342,7 @@ A <a class="reference internal" href="#fig-bases-vetoriais-quilombos"><span clas
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fc326d51550>
+<jinja2.runtime.BlockReference object at 0x7f0ee5d7f610>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

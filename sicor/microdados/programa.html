@@ -42,7 +42,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             GeoCreditoRural
-              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -84,6 +84,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -191,14 +193,23 @@
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_tipo_seguro |      descricao
-----------------+---------------------
- 0              | não se aplica
- 3              | outro seguro
- 2              | proagro mais
- 1              | proagro tradicional
- 9              | sem adesão a seguro
-(5 rows)
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_programa |                                              descricao                                              | data_inicio |  data_fim  |              financiamento
+-------------+-----------------------------------------------------------------------------------------------------+-------------+------------+------------------------------------------
+ 0240        | anf - atividade não financiada enquadrada no proagro                                                | 1984-01-01  | 2099-12-31 | não pode ser utilizado em financiamentos
+ 0153        | moderagro - programa de modernização da agricultura e conservação de recursos naturais              | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0154        | moderfrota - programa de modernização da frota de tratores agrícolas e impl assoc e colheitadeiras  | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0151        | procap-agro (programa de capitalização das cooperativas de produção agropecuárias)                  | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0155        | prodecoop - programa de desenvolvimento cooperativo para agregação de valor à produção agropecuária | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0152        | proirriga - antigo moderinfra, alterado em 01/07/2021                                               | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0001        | pronaf - programa nacional de fortalecimento da agricultura familiar                                | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0050        | pronamp - programa nacional de apoio ao médio produtor rural                                        | 2011-11-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0999        | financiamento sem vínculo a programa específico                                                     | 2012-07-02  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0070        | funcafé (programa de defesa da economia cafeeira)                                                   | 2012-07-02  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0201        | programa nacional de crédito fundiário (ftra)                                                       | 2013-01-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0162        | inovagro - programa de incentivo à inovação tecnológica na produção agropecuária                    | 2013-07-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0163        | pca - programa para construção e ampliação de armazéns                                              | 2013-07-01  | 2099-12-31 | pode ser utilizado em financiamentos
+ 0222        | renovagro - programa de financiamento a sistemas de produção agropecuária sustentáveis              | 2023-07-01  | 2099-12-31 | pode ser utilizado em financiamentos
+(14 rows)
 </pre></div>
 </div>
 </div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
@@ -220,7 +231,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fc327674b80>
+<jinja2.runtime.BlockReference object at 0x7f0ee4dfb910>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

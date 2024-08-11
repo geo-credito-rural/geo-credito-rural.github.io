@@ -1,0 +1,168 @@
+.. include:: ../def.rst
+
+
+.. _sec_uso_cobertura_terra_terraclass:
+
+TerraClass
+==========
+
+
+O projeto TerraClass nasce da necessidade do governo saber quais eram os principais vetores do desmatamento na Amazônia, sendo este mapeamento uma demandada do Ministério da Agricultura e Pecuária (MAPA) para responder aos questionamentos que relacionavam a produção agrícola brasileira com o desmatamento. Ele surge também da necessidade de geração de informações adicionais relacionadas às taxas de desmatamento estimadas pelo :ref:`PRODES <sec_uso_cobertura_terra_prodes>`. A demanda era quantificar e qualificar o uso e a cobertura que havia substituído as florestas. Assim, o Instituto Nacional de Pesquisas Espaciais (INPE) e a Empresa brasileira de Pesquisa Agropecuária (EMBRAPA) ficaram responsáveis por realizar este mapeamento. O primeiro mapeamento foi referente ao ano de 2008, ano em que ocorreu a demanda e foi apresentado em 2010, dando uma uma nova perspectiva da situação do uso e da cobertura da terra na Amazônia. Posteriormente, foi serializado obtendo-se o dado para os anos de 2004, 2008, 2010, 2012, 2014, 2016, 2018, 2020 e 2022 para a Amazônia :cite:`inpe:2024:a`.
+
+
+Dada a importância de conhecer o uso e a cobertura da terra, o Ministério do Meio Ambiente (MMA), em 2015 publicada a `Portaria MMA nº 365 de 27 de novembro de 2015 <http://pesquisa.in.gov.br/imprensa/jsp/visualiza/index.jsp?jornal=1&pagina=114&data=30/11/2015&sa=D>`__, criando o Programa de Monitoramento Ambiental dos Biomas Brasileiros (PMABB). O PMABB tem por objetivo mapear e monitorar o desmatamento, avaliar o uso e a cobertura da terra e sua dinâmica, as queimadas, a extração seletiva de madeira e a recuperação da vegetação. Em uma esfera mais ampla, tais informações subsidiarão as tomadas de decisão em ações para promoção da conservação da biodiversidade brasileira, e, também, para propiciar uma visão estratégica para uma gestão territorial que conjugue os diversos interesses sobre o uso da terra e permita o desenvolvimento do País em bases sustentáveis :cite:`brasil:2024:n`. Por conta disso o TerraClass passa a realizar o mapeamento também para o Cerrado, sendo disponibilizado os mapeamentos para os anos 2018, 2020 e 2022, com isso, mapeando aproximadamente 70% do territorio brasileiro.
+
+
+Inicialmente, o TerraClass praticamente realizava todo o mapeamento utilizando interpretação visual de imagens de satélite Landsat Like (ver :numref:`Seção %s <sec_acesso_imagens_introducao_caracteristicas_sensores>`), com resolução espacial de 30 m :cite:`almeida:2016`. Atualmente, adota tecnologias desenvolvidas no Brasil para o processamento dos dados e a divulgação dos resultados. Para isso utiliza séries históricas de imagens de satélite disponibilizadas pelo projeto *Brazil Data Cube* (`BDC <https://data.inpe.br/bdc/web/>`__) :cite:`ferreira:2020` e o pacote computacional *Satellite Image Time Series Analysis on Earth Observation Data Cubes* (`SITS <https://e-sensing.github.io/sitsbook/>`__) :cite:`simoes:2021` para realizar a classificação de imagens. Nos novos mapeamentos, as lavouras temporárias de grãos e fibras são diferenciadas com base em seu nível de intensificação agrícola. A adoção de tecnologias de processamento em nuvens, também permitiu o mapeamento de culturas agrícolas perenes, como cacau, café, dendê, açaí e citros, sobretudo no bioma Amazônia. As classes mapeadas pelo TerraClass Amazônia e sua descrição estão apresendas na :numref:`Tabela %s <tbl:uso-cobertura-terra:tcamzlegenda>`. Já as classes mapeadas pelo TerraClass Cerrado são descritas  na :numref:`Tabela %s <tbl:uso-cobertura-terra:tccerlegenda>`. Os dados de ambos os projetos são disponibilizados no `Geoportal TerraClass <https://www.terraclass.gov.br/download-de-dados>`__.
+
+
+.. table:: Classes mapeadas pelo TerraClass Amazônia e sua descrição.
+    :align: center
+    :widths: 25 75
+    :header-alignment: center center 
+    :column-alignment: center left
+    :name: tbl:uso-cobertura-terra:tcamzlegenda
+
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Classe                                  | legenda                                                                            |
+    +=========================================+====================================================================================+
+    | Vegetação Natural Florestal Primária    | Formação vegetal natural caracterizada pelo adensamento de espécies arbóreas que   |
+    |                                         | não tenham sofrido supressão total da vegetação original, desde o início do        | 
+    |                                         | monitoramento do desflorestamento da Amazônia                                      |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Vegetação Natural Florestal Secundária  | Formação vegetal natural em processo de regeneração, caracterizada pelo            |
+    |                                         | adensamento de espécies arbóreas, que já tenham sofrido supressão total da         |
+    |                                         | vegetação original, desde o início do monitoramento do desflorestamento da Amazônia|
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Silvicultura                            | Culturas de espécies florestais de interesse comercial, representadas por          |
+    |                                         | formações arbóreas monoespecíficas, como eucalipto e pinus                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    |  Pastagem Arbustiva/Arbórea             | Pastagens com predomínio de vegetação lenhosa, composta por espécies               |
+    |                                         | arbustivas/arbóreas, além das espécies herbáceas cultivada                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Pastagem Herbácea                       | Pastagens com predomínio de vegetação forrageira herbácea, composta por espécies   |
+    |                                         | cultivadas                                                                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Perene                 | Culturas agrícolas permanentes, apresentando diferentes estádios de maturidade     |
+    |                                         | e cobertura vegetal, como plantações de café, citros, seringueira, entre outras    |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    |Cultura Agrícola Semiperene              | Culturas agrícolas que apresentam ciclo de produção superior ao ano-safra de       |
+    |                                         | referência do mapeamento, representadas, principalmente, pela cana-de-açúcar       |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Temporária de 1 Ciclo  | Culturas agrícolas temporárias, apresentando apenas um ciclo de produção no ano    |
+    |                                         | de referência, sobretudo de grãos e fibras                                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Temporária de          | Culturas agrícolas temporárias, apresentando mais de um ciclo de produção no       |
+    | Mais de 1 Ciclo                         | ano de referência, sobretudo de grãos e fibras                                     |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Mineração                               | Áreas de extração mineral caracterizadas pela presença de solo exposto e           |
+    |                                         | alterações da paisagem local                                                       |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Urbanizada                              | Áreas urbanas decorrentes da concentração populacional delimitadora de lugarejos,  |
+    |                                         | vilas, cidades ou regiões metropolitanas com infraestrutura diferenciada,          |
+    |                                         | apresentando adensamento de arruamentos, casas, prédios e outras edificações       |
+    |                                         | públicas                                                                           |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Outros Usos                             | Áreas que não se encaixam nas demais classes, tais como: afloramentos rochosos,    |
+    |                                         | praias, dunas                                                                      |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Não Observado                           | Áreas não mapeadas em função da presença de nuvens, sombra de nuvens ou queimadas  |
+    |                                         | nas imagens de satélite utilizadas                                                 |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Desflorestamento no Ano                 | Áreas cuja cobertura vegetal natural foi suprimida durante o ano de referência     |
+    |                                         | do mapeamento                                                                      |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Não Floresta                            | Áreas contidas nos limites da Amazônia, cuja cobertura vegetal não é florestal     |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Corpo D'Água                            | Corpos d'água naturais ou artificiais, como rios, lagos, açudes e represas         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+
+
+.. table:: Classes mapeadas pelo TerraClass Cerrado e sua descrição.
+    :align: center
+    :widths: 25 75
+    :header-alignment: center center 
+    :column-alignment: center left
+    :name: tbl:uso-cobertura-terra:tccerlegenda
+
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Classe                                  | legenda                                                                            |
+    +=========================================+====================================================================================+
+    | Vegetação Natural Primária              | Formação vegetal natural, caracterizada por um mosaico de fitofisionomias,         |
+    |                                         | variando de campo limpo (estrato herbáceo) a cerradão (estrato árboreo-arbustivo   |
+    |                                         | com altura de até 18m), passando por fitofisionomias intermediárias, como campo    |
+    |                                         | sujo, campo cerrado e cerrado sensu stricto. Diz-se primária para aquelas regiões  |
+    |                                         | que, desde o início do processo de monitoramento do Cerrado, não tenham sofrido    |
+    |                                         | supressão total da vegetação original                                              |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Vegetação Natural Secundária            | Formação vegetal natural, com predominância de floresta savânica (cerradão) com    |
+    |                                         | altura de 15 a 18m, caracterizada por árvores e arbustos com troncos tortuosos.    |
+    |                                         | Diz-se secundária para aquelas regiões que, em algum momento da série histórica    |
+    |                                         | do monitoramento do desmatamento do Cerrado, tenham sofrido corte raso (supressão  |
+    |                                         | total da vegetação original)                                                       |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Silvicultura                            | Culturas de espécies florestais de interesse comercial, representadas por          |
+    |                                         | formações arbóreas monoespecíficas, como eucalipto e pinus                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Pastagem                                | Pastagens compostas por vegetação forrageira herbácea de espécies cultivadas,      |
+    |                                         | podendo apresentar variação dos extratos herbáceo, arbustivo ou arbóreo            |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Perene                 | Culturas agrícolas permanentes, apresentando diferentes estádios de maturidade     |
+    |                                         | e cobertura vegetal, como plantações de café, citros, seringueira, entre outras    |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    |Cultura Agrícola Semiperene              | Culturas agrícolas que apresentam ciclo de produção superior ao ano-safra de       |
+    |                                         | referência do mapeamento, representadas, principalmente, pela cana-de-açúcar       |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Temporária de 1 Ciclo  | Culturas agrícolas temporárias, apresentando apenas um ciclo de produção no ano    |
+    |                                         | de referência, sobretudo de grãos e fibras                                         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Cultura Agrícola Temporária de          | Culturas agrícolas temporárias, apresentando mais de um ciclo de produção no       |
+    | Mais de 1 Ciclo                         | ano de referência, sobretudo de grãos e fibras                                     |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Mineração                               | Áreas de extração mineral caracterizadas pela presença de solo exposto e           |
+    |                                         | alterações da paisagem local                                                       |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Urbanizada                              | Áreas urbanas decorrentes da concentração populacional delimitadora de lugarejos,  |
+    |                                         | vilas, cidades ou regiões metropolitanas com infraestrutura diferenciada,          |
+    |                                         | apresentando adensamento de arruamentos, casas, prédios e outras edificações       |
+    |                                         | públicas                                                                           |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Outras Áreas Edificadas                 | Áreas com baixa concentração de edificações, afastadas de áreas com alta           |
+    |                                         | concentração populacional, como núcleos de fazenda, complexos agroindustriais,     |
+    |                                         | aldeias, hidrelétricas, barragens e outras obras de infraestrutura                 |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Outros Usos                             | Áreas que não se encaixam nas demais classes, tais como: afloramentos rochosos,    |
+    |                                         | praias, dunas                                                                      |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Não Observado                           | Áreas não mapeadas em função da presença de nuvens, sombra de nuvens ou queimadas  |
+    |                                         | nas imagens de satélite utilizadas                                                 |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Desflorestamento no Ano                 | Áreas cuja cobertura vegetal natural foi suprimida durante o ano de referência     |
+    |                                         | do mapeamento                                                                      |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+    | Corpo D'Água                            | Corpos d'água naturais ou artificiais, como rios, lagos, açudes e represas         |
+    +-----------------------------------------+------------------------------------------------------------------------------------+
+
+
+Os mapeamentos dos usos e cobertura tanto na Amazônia quanto no Cerrado executados pelo projeto TerraClass são apresentados na :numref:`Figura %s <fig:uso-cobertura-terra:tcc-amz-cerr>`, em que é possível avaliar os predomínios locais de agricultura e de pastagem nesses biomas.
+
+
+.. figure:: ../img/uso-cobertura-terra/tcc-amz-cerr.png
+    :alt: Uso e cobertura da terra nos biomas Amazônia e Cerrado no ano de 2022
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:tcc-amz-cerr
+
+    Uso e cobertura da terra nos biomas Amazônia e Cerrado no ano de 2022.
+
+
+
+
+    
+
+
+
+
+
+
+    

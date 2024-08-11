@@ -12,3 +12,71 @@ Mutuários
     Esta seção **encontra-se em desenvolvimento**.
 
 
+O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz>` contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas ``ref_bacen`` que liga esta tabela a tabela  ``sicor_operacao_basica_estado`` descrita na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Inclui tambèm a coluna ``cd_cpf_cnpj``, contendo o CPF ou CNPJ do mutuário, a ``cd_sexo``, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna ``cd_dap`` que contém o código da Declaração de Aptidão ao Pronaf (DAP), ``cd_primeiro`` que informa o codigo do primeiro mutuário informado e o ``cd_tipo_beneficiario`` contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`.
+
+
+.. table:: Estrutura do arquivo contendo a lista de mutuários.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:microdados:mutuario
+
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    |                      | nome                    | tipo     | descrição                                             |
+    +======================+=========================+==========+=======================================================+
+    |                      | cd_sexo                 | integer  | Sexo do mutuário                                      |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    | **PK**               | cd_cpf_cnpj             | text     | CPF ou CNPJ dos mutuários                             |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    |  FK\ :sub:`2`        | cd_tipo_beneficiario    | integer  | código do tipo do beneficiário                        |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    |                      | cd_dap                  | text     | Código da Declaração de Aptidão ao Pronaf             |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    | **PK**, FK\ :sub:`1` | ref_bacen               | integer  | Número mascarado de referência do contrato            |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+    |                      | cd_primeiro             | char(1)  | Código do primeiro mutuário informado                 |
+    +----------------------+-------------------------+----------+-------------------------------------------------------+
+
+
+Como pode ser observado na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`, o campo ``ref_bacen`` permite a ligação do mutuário com os contrato, possibilitando verificar o acesso ao financiamento.  
+
+
+De acordo com o Manual do Crédito Rural (MCR) :cite:`bcb:2024:c`, os beneficiários podem são classificados pelos seguintes tipos:
+
+.. rst-class:: open
+    
+- Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)
+
+- Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)
+
+- Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)
+
+- Associação de produtores rurais (MCR 4-1-2)
+
+- Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)
+
+- Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)
+
+- Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)
+
+- Beneficiador (MCR 1-4-2A-a)
+
+- Agroindústria (MCR 1-4-2A-a)
+
+- Cerealista (MCR 1-4-2A-b)
+
+- Silvícola/indígena (MCR 1-4-3)
+
+- Pescador (MCR 2-1-15 e 20)
+
+- Aquicultor (MCR 2-1-20)
+
+- Torrefadora/indústria de café solúvel (MCR 9-4-1-a)
+
+- Exportador de café (MCR 9-4-1-a)
+
+- Silvicultor (MCR 10-2-2-a-III)
+
+- Extrativista (MCR 2-1-15)
+
+- Quilombola rural (MCR 10-2-2-b-II)

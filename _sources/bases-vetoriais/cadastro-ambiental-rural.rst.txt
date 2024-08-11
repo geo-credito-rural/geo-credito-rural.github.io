@@ -34,3 +34,14 @@ g) Uso Restrito;
 h) Servidão Administrativa; e 
 i) Reserva Legal
 
+
+Neste trabalho foram obtidos os dados do CAR para os estados do Paraná, Rio Grande do Sul e Santa Catarina cujo dado com detalhes é apresentado na :numref:`Figura %s <fig:bases-vetoriais:car>`.
+
+
+.. figure:: ../img/bases-vetoriais/car.png
+    :alt: Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina
+    :width: 80%
+    :figclass: align-center
+    :name: fig:bases-vetoriais:car
+
+    Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina.

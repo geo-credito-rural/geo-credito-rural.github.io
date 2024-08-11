@@ -41,7 +41,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             GeoCreditoRural
-              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -83,6 +83,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -131,6 +133,50 @@
 <p class="admonition-title">Aviso</p>
 <p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
 </div>
+<p>O arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_LISTA_COOPERADOS.gz">SICOR_LISTA_COOPERADOS.gz</a> contém a lista de beneficiários do crédito rural associados a cooperativas. A estrutura desse arquivo pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-cooperados"><span class="std std-numref">Tabela 3.28</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-cooperados">
+<caption><span class="caption-number">Tabela 3.28 - </span><span class="caption-text">Estrutura do arquivo contendo a lista de cooperados beneficiários do crédito rural.</span><a class="headerlink" href="#tbl-sicor-microdados-cooperados" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong>, FK</p></td>
+<td class="left-align"><p>nu_ordem</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número da destinação/finalidade dentro do contrato</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>cd_cpf_cnpj</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>CPF ou CNPJ dos mutuários</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>tipo_pessoa</p></td>
+<td class="center-align"><p>char(1)</p></td>
+<td class="left-align"><p>Tipo da pessoa (F: física; J: Jurídica)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>vl_parcela</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Valor da parcela do cooperado</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_programa</p></td>
+<td class="center-align"><p>char(4)</p></td>
+<td class="left-align"><p>Código do Programa</p></td>
+</tr>
+</tbody>
+</table>
+<p>As colunas <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> e <code class="docutils literal notranslate"><span class="pre">nu_ordem</span></code> ligam os cooperados ao contrato e a sua com a destinação ou a finalidade, conforme descrito na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>. Além disto, é possível saber a ligação do recurso com o Programa ou Linha de Crédito, como descrito na <a class="reference internal" href="programa.html#sec-sicor-microdados-programa"><span class="std std-numref">Seção 3.1.8 - Programas ou Linhas de Crédito</span></a>.</p>
 </section>
 
 
@@ -148,7 +194,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fc3267564c0>
+<jinja2.runtime.BlockReference object at 0x7f0ee4dbcbb0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

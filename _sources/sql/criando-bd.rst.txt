@@ -1,0 +1,48 @@
+Criando um Novo Banco de Dados no PostgreSQL
+============================================
+
+
+Um mesmo servidor PostgreSQL pode gerenciar diversos bancos de dados (repositórios físicos de dados).
+
+
+Durante a instalação do PostgreSQL é executado um programa chamado ``initdb`` que realiza a criação de alguns bancos de dados fundamentais ao sistema:
+
+- ``template1``: Esse banco de dados é criado durante a preparação da área de armazenamento de um servidor PostgreSQL. Ele é usado como o molde (``template``) padrão para criação de novos bancos, quando não indicamos um específico.
+
+- ``template0``: Esse banco de dados contém exatamente as mesmas definições do ``template1`` e não deve ser alterado em hipótese alguma. Esse *template* é muito útil para restauração de backups criados com o ``pg_dump``. Esse banco também deve ser usado como molde quando quisermos criar novos bancos com *caracter encoding* e *locale* diferentes do definido no ``template1``.
+
+- ``postgres``: Esse banco de dados é criado na instalação do PostgreSQL e serve como o banco padrão para conexão de todos os usuários. Trat-se de uma cópia do ``template1``.
+
+
+Para criar um novo banco de dados é necessário estar conectado a algum banco. Em geral, é utilizado o baco denominado ``postgres`` para esta finalidade. Além disso, é necessário usar um **banco de molde** (ou **template**) para realizar uma cópia física desse banco (*clone*). O banco de dados ``template1`` pode ser usado para esta finalidade.
+
+
+O comando SQL :sql:`CREATE DATABASE` pode ser utilizado para criar um novo banco de dados:
+
+
+.. code-block:: sql
+
+    CREATE DATABASE bdgeo TEMPLATE template1;
+
+
+.. note::
+
+    O comando acima permite utilizar qualquer banco de dados com *template*. A única restrição é que o banco utilizado como *template* não pode ter sessões ativas.
+
+
+.. note::
+
+    Em algumas instalações do PostgreSQL com o PostGIS, será criado um banco de dado *template* denominado ``template_postgis``, que já vem preparado com todo o suporte geoespacial.
+
+
+.. tip::
+
+    A tabela do catálogo do sistema chamada ``pg_database`` contém a lista de bancos de dados existentes no *cluster* PostgreSQL:
+
+
+    .. code-block:: sql
+
+        SELECT datname FROM pg_database;
+
+
+    De maneira similar, o meta-comando ``\l`` no `psql` fornece uma listagem dos bancos de dados existentes.

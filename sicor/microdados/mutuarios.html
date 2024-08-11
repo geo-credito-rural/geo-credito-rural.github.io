@@ -41,7 +41,7 @@
           
           <a href="../../index.html" class="icon icon-home">
             GeoCreditoRural
-              <img src="../../_static/logo.png" class="logo" alt="Logo"/>
+              <img src="../../_static/logo.jpeg" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
@@ -83,6 +83,8 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -131,6 +133,71 @@
 <p class="admonition-title">Aviso</p>
 <p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
 </div>
+<p>O arquivo <a class="reference download external" download="" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz"><code class="xref download docutils literal notranslate"><span class="pre">SICOR_MUTUARIOS.gz</span></code></a> contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> que liga esta tabela a tabela  <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> descrita na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>. Inclui tambèm a coluna <code class="docutils literal notranslate"><span class="pre">cd_cpf_cnpj</span></code>, contendo o CPF ou CNPJ do mutuário, a <code class="docutils literal notranslate"><span class="pre">cd_sexo</span></code>, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna <code class="docutils literal notranslate"><span class="pre">cd_dap</span></code> que contém o código da Declaração de Aptidão ao Pronaf (DAP), <code class="docutils literal notranslate"><span class="pre">cd_primeiro</span></code> que informa o codigo do primeiro mutuário informado e o <code class="docutils literal notranslate"><span class="pre">cd_tipo_beneficiario</span></code> contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-mutuario"><span class="std std-numref">Tabela 3.27</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sicor-microdados-mutuario">
+<caption><span class="caption-number">Tabela 3.27 - </span><span class="caption-text">Estrutura do arquivo contendo a lista de mutuários.</span><a class="headerlink" href="#tbl-sicor-microdados-mutuario" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>cd_sexo</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Sexo do mutuário</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>cd_cpf_cnpj</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>CPF ou CNPJ dos mutuários</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>FK<sub>2</sub></p></td>
+<td class="left-align"><p>cd_tipo_beneficiario</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>código do tipo do beneficiário</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_dap</p></td>
+<td class="center-align"><p>text</p></td>
+<td class="left-align"><p>Código da Declaração de Aptidão ao Pronaf</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong>, FK<sub>1</sub></p></td>
+<td class="left-align"><p>ref_bacen</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Número mascarado de referência do contrato</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cd_primeiro</p></td>
+<td class="center-align"><p>char(1)</p></td>
+<td class="left-align"><p>Código do primeiro mutuário informado</p></td>
+</tr>
+</tbody>
+</table>
+<p>Como pode ser observado na <a class="reference internal" href="#tbl-sicor-microdados-mutuario"><span class="std std-numref">Tabela 3.27</span></a>, o campo <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> permite a ligação do mutuário com os contrato, possibilitando verificar o acesso ao financiamento.</p>
+<p>De acordo com o Manual do Crédito Rural (MCR) <span id="id1">[<a class="reference internal" href="../../referencias.html#id7" title="Banco Central do Brasil. Manual de crédito rural (mcr). Technical Report 694, Banco Central do Brasil, Maio 2021. URL: https://www3.bcb.gov.br/mcr.">18</a>]</span>, os beneficiários podem são classificados pelos seguintes tipos:</p>
+<ul class="open">
+<li><p>Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)</p></li>
+<li><p>Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)</p></li>
+<li><p>Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)</p></li>
+<li><p>Associação de produtores rurais (MCR 4-1-2)</p></li>
+<li><p>Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)</p></li>
+<li><p>Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)</p></li>
+<li><p>Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)</p></li>
+<li><p>Beneficiador (MCR 1-4-2A-a)</p></li>
+<li><p>Agroindústria (MCR 1-4-2A-a)</p></li>
+<li><p>Cerealista (MCR 1-4-2A-b)</p></li>
+<li><p>Silvícola/indígena (MCR 1-4-3)</p></li>
+<li><p>Pescador (MCR 2-1-15 e 20)</p></li>
+<li><p>Aquicultor (MCR 2-1-20)</p></li>
+<li><p>Torrefadora/indústria de café solúvel (MCR 9-4-1-a)</p></li>
+<li><p>Exportador de café (MCR 9-4-1-a)</p></li>
+<li><p>Silvicultor (MCR 10-2-2-a-III)</p></li>
+<li><p>Extrativista (MCR 2-1-15)</p></li>
+<li><p>Quilombola rural (MCR 10-2-2-b-II)</p></li>
+</ul>
 </section>
 
 
@@ -148,7 +215,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fc3276d8f40>
+<jinja2.runtime.BlockReference object at 0x7f0ee4e38b20>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

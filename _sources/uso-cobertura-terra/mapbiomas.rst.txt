@@ -1,0 +1,148 @@
+.. include:: ../def.rst
+
+
+.. _sec_uso_cobertura_terra_mapbiomas:
+
+MapBiomas
+=========
+
+
+`MapBiomas <https://brasil.mapbiomas.org/>`__ é um projeto desenvolvido por uma rede colaborativa formada por ONGs, universidades e startups de tecnologia, que produz mapeamento anual de uso e cobertura da terra para o Brasil :cite:`souza:2020`. Esse mapeamento é feito a partir de imagens de sátelites Landsat, com 30 metros de resolução espacial, usando algoritmos de aprendizado de máquina (*machine learning*) na plataforma `Google Earth Engine <https://earthengine.google.com/>`__.
+
+
+A última coleção de mapas do MapBiomas, versão 8.0, foi lançada em agosto de 2023 e possui mapas anuais, de 1985 a 2022, com as classes de uso e cobertura da terra descritas na :numref:`Tabela %s <tbl:uso-cobertura-terra:mapbiomas>`.
+    
+
+.. table:: Classes de uso e cobertura da terra do MapBiomas.
+    :header-alignment: center center center center
+    :column-alignment: center center center center
+    :align: center
+    :name: tbl:uso-cobertura-terra:mapbiomas
+
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Nível 1      | Nível 2 / Nível 3   | Nível 4             | Descrição                                                       |          
+    +==============+=====================+=====================+=================================================================+
+    | Floresta     | Formação Florestal  |                     | Tipos de vegetação com predominância de espécies arbóreas com   |
+    |              |                     |                     | dossel contínuo de alta densidade, áreas que foram perturbadas  |
+    |              |                     |                     | por incêndios e/ou exploração madeireira e florestas resultantes|
+    |              |                     |                     | de regeneração natural.                                         |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Formação Savânica   |                     | Tipos de vegetação com estrato arbóreo de densidade variável,   |
+    |              |                     |                     | distribuído sobre um estrato arbustivo-herbáceo contínuo.       |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Mangue              |                     | Formação florestal densa e perene, frequentemente inundada pela |
+    |              |                     |                     | maré e associada ao ecossistema costeiro de manguezais.         |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Floresta            |                     | Floresta Ombrófila Aberta Aluvial estabelecida ao longo dos     |
+    |              | Alagável            |                     | cursos de água, ocupa as planícies e terraços periodicamente    |
+    |              |                     |                     | ou permanentemente inundados.                                   |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Restinga            |                     | Formações florestais que se estabelecem sobre solos arenosos ou |
+    |              | Arbórea             |                     | sobre dunas na zona costeira                                    |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Formação     | Campo Alagado e     |                     | Vegetação com influência fluvial e/ou lacustre, Áreas           |
+    | Natual não   | Área Pantanosa      |                     | pantanosas, Vegetação com predomínio de estrato herbáceo sujeita|
+    | Florestal    |                     |                     | ao alagamento sazonal.                                          |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Formação            |                     | Tipo de vegetação com predominância de estrato herbáceo,        |
+    |              | Campestre           |                     | incluindo manchas com estrato arbustivo-herbáceo bem            |
+    |              |                     |                     | desenvolvido.                                                   |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Apicum              |                     | Salinas. São formações muitas vezes sem vegetação arbórea,      |
+    |              |                     |                     | associadas a áreas salinas e menos alagáveis no manguezal,      |
+    |              |                     |                     | geralmente na transição entre esta área e o continente.         |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Afloramento         |                     | Rochas naturalmente expostas na superfície terrestre sem        |
+    |              | Rochoso             |                     | cobertura de solo, muitas vezes com presença parcial de         |
+    |              |                     |                     | vegetação rupícola e alta declividade.                          |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Restinga            |                     | Vegetação herbácea com influência fluviomarinha.                |
+    |              | Herbácia            |                     |                                                                 |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Outras Formações    |                     | Outras Formações Naturais não florestais que não puderam        |
+    |              | não Florestais      |                     | ser categorizadas.                                              |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Agropecuária | Pastagem            |                     | Áreas de pastagem, naturais ou plantadas, relacionadas com a    |
+    |              |                     |                     | atividade agropecuária.                                         |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Agricultura /       | Soja                | Áreas cultivadas com a cultura da soja.                         |
+    +              + Lavoura Temporária  +---------------------+-----------------------------------------------------------------+
+    |              |                     | Cana                | Áreas cultivadas com a cultura da cana.                         |
+    +              +                     +---------------------+-----------------------------------------------------------------+
+    |              |                     | Arroz               | Áreas cultivadas com a cultura do arroz.                        |
+    +              +                     +---------------------+-----------------------------------------------------------------+
+    |              |                     | Algodão             | Áreas cultivadas com a cultura do algodão.                      |
+    +              +                     +---------------------+-----------------------------------------------------------------+
+    |              |                     | Outras              | Áreas cultivadas com outras culturas temporárias.               |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Agricultura /       | Café                | Áreas cultivadas com a cultura do café.                         |
+    +              + Lavoura Perene      +---------------------+-----------------------------------------------------------------+
+    |              |                     | Citrus              | Áreas cultivadas com a cultura do citrus.                       |
+    +              +                     +---------------------+-----------------------------------------------------------------+
+    |              |                     | Dendê               | Áreas cultivadas com a cultura do dendê.                        |
+    +              +                     +---------------------+-----------------------------------------------------------------+
+    |              |                     | Outras              | Áreas cultivadas com outras culturas perenes.                   |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Silvicultura        |                     | Espécies arbóreas plantadas para fins comerciais (ex. pinus,    |
+    |              |                     |                     | eucalipto, araucária).                                          |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Mosaicos de Usos    |                     | Areas de uso agropecuário onde não foi possível distinguir      |
+    |              |                     |                     | entre pastagem e agricultura.                                   |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Área não     | Praia, Duna e Areal |                     | Cordões arenosos, de coloração branco brilhante, onde           |
+    | Vegetada     |                     |                     | não há o predomínio de vegetação de nenhum tipo.                |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Área                |                     | Áreas com significativa densidade de edificações e vias,        |
+    |              | Urbanizada          |                     | incluindo áreas livres de construções e infraestrutura.         |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Mineração           |                     | Áreas referentes a extração mineral de porte industrial ou      |
+    |              |                     |                     | artesanal (garimpos), havendo clara exposição do solo           |
+    |              |                     |                     | por ação por ação antrópica.                                    |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Outras áreas não    |                     | Áreas de superfícies não permeáveis,                            |
+    |              | Vegetadas           |                     | Classe mista que contempla áreas naturais e áreas antropizadas, |
+    |              |                     |                     | Áreas de solo exposto não classificada.                         |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Corpos       | Rio, Lago e Oceano  |                     | Rios, lagos, represas, reservatórios e outros corpos d'água.    |
+    | D'água       |                     |                     |                                                                 |
+    +              +---------------------+---------------------+-----------------------------------------------------------------+
+    |              | Aquicultura         |                     | Área referente a lagos artificiais, onde predominam             |
+    |              |                     |                     | atividades aquícolas e/ou de salicultura.                       |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+    | Não          |                     |                     | Áreas bloqueadas por nuvens ou ruído atmosférico, ou            |
+    | Observado    |                     |                     | com ausência de observação.                                     |
+    +--------------+---------------------+---------------------+-----------------------------------------------------------------+
+
+
+Esses mapas estão disponíveis na `Plataforma MapBiomas <https://plataforma.brasil.mapbiomas.org/>`__, como mostrado na Figura :numref:`Figura %s <fig:uso-cobertura-terra:mapbiomas>`.
+
+
+.. figure:: ../img/uso-cobertura-terra/mapbiomas.png
+    :alt: Mapa de Uso e Cobertura da Terra do MapBiomas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:uso-cobertura-terra:mapbiomas
+
+    Mapa de Uso e Cobertura da Terra do MapBiomas |br| **Fonte:** `Plataforma MapBiomas <https://plataforma.brasil.mapbiomas.org/>`__
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    

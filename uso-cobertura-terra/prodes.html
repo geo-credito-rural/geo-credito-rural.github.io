@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>5.1. Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES) &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/uso-cobertura-terra/prodes.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="5.2. Sistema de Detecção do Desmatamento em tempo quase real (DETER)" href="deter.html" />
+    <link rel="prev" title="5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">5.1. Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="deter.html">5.2. Sistema de Detecção do Desmatamento em tempo quase real (DETER)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="terraclass.html">5.3. TerraClass</a></li>
+<li class="toctree-l2"><a class="reference internal" href="mapbiomas.html">5.4. MapBiomas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ibge.html">5.5. Monitoramento da Cobertura e Uso da Terra do Brasil (IBGE)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wlts.html">5.6. Integração e Análise de Dados de Uso e Cobertura da Terra com o WLTS</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">5. </span>Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">5.1. </span>Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="deter.html" class="btn btn-neutral float-right" title="5.2. Sistema de Detecção do Desmatamento em tempo quase real (DETER)" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="projeto-de-monitoramento-do-desmatamento-da-floresta-amazonica-brasileira-por-satelite-prodes">
+<span id="sec-uso-cobertura-terra-prodes"></span><h1><span class="section-number">5.1. </span>Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES)<a class="headerlink" href="#projeto-de-monitoramento-do-desmatamento-da-floresta-amazonica-brasileira-por-satelite-prodes" title="Link permanente para este cabeçalho"></a></h1>
+<figure class="align-right">
+<a class="reference internal image-reference" href="https://content.time.com/time/magazine/archive/covers/1989/1101890918_400.jpg"><img alt="Desmatamento no Brasil na capa da Revista Time" src="https://content.time.com/time/magazine/archive/covers/1989/1101890918_400.jpg" style="width: 150px;" /></a>
+</figure>
+<p>O <a class="reference external" href="http://www.obt.inpe.br/OBT/assuntos/programas/amazonia/prodes">Projeto de Monitoramento do Desmatamento da Floresta Amazônica Brasileira por Satélite (PRODES)</a> realiza sistematicamente o mapeamento do desmatamento por corte raso na Amazônia Legal desde 1988. A sua origem está relacionada com uma fotografia obtida por um astronauta que mostrava uma grande nuvem de fumaça na América do Sul oriunda de queimadas na Amazônia. Essa fotografia ocasionou diversas reportagens, incluindo a capa da <a class="reference external" href="https://content.time.com/time/covers/0,16641,19890918,00.html">Revista Time</a> em 1989. Isto criou grande pressão internacional visando a proteção da Amazônia e solicitando ao governo brasileiro uma ação de combate ao desmatamento <span id="id1">[<a class="reference internal" href="../referencias.html#id52" title="Eugene Linden. Torching the amazon: can the rainforest be saved? Setembro 1989. Online; acessado 07 de Agosto de 2024. URL: https://content.time.com/time/covers/0,16641,19890918,00.html.">47</a>]</span>. Por conta disso, o governo brasileiro solicitou ao INPE a criação de um projeto para mensurar o desmatamento. Nesta época o INPE já tinha experiência neste tipo de mapeamento. Entretanto, os primeiros projetos relacionados com o desmatamento na Amazônia não estavam relacionados com a proteção ambiental. Eles foram aplicados para verificar se o dinheiro investido na década de 1970 pelo Governo Federal para realizar a ocupação da Amazônia, pelo o Programa de Integração Nacional (PIN), estava sendo utilizado, gerando desflorestamentos <span id="id2">[<a class="reference internal" href="../referencias.html#id67" title="Armando Pacheco dos Santos and Evelyn Marcia Leao de Moraes Novo. Uso de dados do landsat-1 na implantação, controle e acompanhamento de projetos agropecuários no sudoeste da amazônia legal. Junho 1977. URL: http://urlib.net/sid.inpe.br/iris&#64;1912/2005/07.15.22.29.49.">48</a>, <a class="reference internal" href="../referencias.html#id74" title="Antonio Tebaldi Tardin, Jose Eduardo Rodrigues, Myrian de Moura Abdon, Rene Antonio Novaes, Sherry Chou Chen, Valdete Duarte, Yosio Edemir Shimabukuro, Armando Pacheco dos Santos, David Chung Liang Lee, Fernando Celso Soares Maia, Francisco Jose Mendonca, and Getulio Vargas de Assuncao. Levantamento de áreas de desmatamento na Amazônia Legal através de imagens do Satelite Landsat. INPE, 1979. URL: http://urlib.net/ibi/6qtX3pFwXQZ3r59YD6/GLCRo.">49</a>]</span>. Atualmente, os resultados do PRODES são usados pelo governo brasileiro para o estabelecimento de políticas públicas de proteção ambiental. As taxas anuais são estimadas a partir dos incrementos de desmatamento identificados em cada imagem de satélite que cobre a Amazônia Legal. A primeira apresentação dos dados é realizada até dezembro de cada ano, na forma de estimativa, quando normalmente são processadas aproximadamente 50% das imagens que cobrem a Amazônia Legal e que representam em torno de 90% da área desmatada. Os dados consolidados são apresentados no primeiro semestre do ano seguinte <span id="id3">[<a class="reference internal" href="../referencias.html#id3" title="Claudio Aparecido Almeida, Luís Eduardo Pinheiro Maurano, Dalton de Morisson Valeriano, Gilberto Câmara, Lúbia Vinhas, Marisa da Motta, Alessandra Rodrigues Gomes, Antônio Miguel Vieira Monteiro, Arlesson Antônio de Almeida Souza, Cassiano Gustavo Messias, and others. Metodologia utilizada nos sistemas prodes e deter-2. Technical Report, INPE, Outubro 2022. URL: http://urlib.net/ibi/8JMKD3MGP3W34T/47GAF6S.">44</a>]</span>.</p>
+<p>No período entre 1988 a 2002 o monitoramento foi realizado por interpretação visual de imagens de maneira analógica. As imagens Landsat eram impressas em papel fotográfico na escala de <em>1:250.000</em> e sobrepostas por <em>overlay</em> em que eram desenhados os desmatamentos. Nesta época os dados disponibilizados eram apenas os valores numéricos do desflorestamento por estado e a plotagem dos mapas com os polígonos das áreas desmatadas <span id="id4">[<a class="reference internal" href="../referencias.html#id71" title="Yosio Edemir Shimabukuro, João Santos, Antonio Formaggio, Valdete Duarte, Bernardo Rudorff, F Achard, and M Hansen. The brazilian amazon monitoring program: prodes and deter projects. In Global forest monitoring from earth observation, volume 2012, pages 153–169. CRC Press—Taylor &amp; Francis Group: Boca Raton, FL, USA, 2012. doi:https://doi.org/10.1201/b13040.">50</a>]</span>. Neste período surge a área mínima de mapeamento do PRODES de 6,25 ha. Esse número é o resultado de dois fatores, o primeiro, a escala de mapeamento usada em que cada milímetro mapeado corresponde a 250 metros. O segundo, a espessura do grafite utilizado para o mapeamento, que era de 0,5 mm. Por tanto, o menor elemento que essa escala permitia mapear, utilizando esse grafite, é de 1 mm por 1 mm. Assim, <span class="math notranslate nohighlight">\(250\ m \times 250\ m\)</span> que corresponde aos 6,25 hectares. Também nascem nessa época alguns problemas, como por exemplo as distorções e/ou deslocamento dos polígonos; descontinuidade entre as cenas, dentre outros.</p>
+<p>Mas, no final da década de 1990 com o avanço da informática, tanto na parte de hardware (aumento do desempenho, de capacidade de armazenamento e, principalmente, a redução de custo) quanto do desenvolvimento de softwares, principalmente os Sistemas de Informações Geográficas (SIG), inicia uma nova fase para a metodologia de mapeamento do PRODES, agora computadorizada. O INPE desenvolve o <strong>S</strong>istema de <strong>Pr</strong>ocessamento de <strong>In</strong>formações <strong>G</strong>eoreferenciadas (SPRING) <span id="id5">[<a class="reference internal" href="../referencias.html#id28" title="Gilberto Câmara, Ricardo Cartaxo Modesto Souza, Ubirajara Moura Freitas, and Juan Garrido. Spring: integrating remote sensing and gis by object-oriented data modelling. Computers &amp; Graphics, 20(3):395-403, 1996. URL: https://www.sciencedirect.com/science/article/pii/0097849396000088, doi:https://doi.org/10.1016/0097-8493(96)00008-8.">51</a>]</span> utilizado pelo PRODES para realizar o monitoramento e integração com banco de dados geoespacial <span id="id6">[<a class="reference internal" href="../referencias.html#id55" title="Luis Eduardo Pinheiro Maurano, Maria Isabel Sobral Escada, and Camilo Daleles Renno. Padrões espaciais de desmatamento ea estimativa da exatidão dos mapas do prodes para amazônia legal brasileira. Ciência florestal, 29(4):1763–1775, 2019.">52</a>]</span>. Além disto, o SPRING possibilitou o processamento digital de imagens que se tornaram fundamentais para o mapeamento executado pelo PRODES, a exemplo do modelo linear de mistura espectral (MLME) <span id="id7">[<a class="reference internal" href="../referencias.html#id70" title="Y. E. Shimabukuro, G. T. Batista, E. M. K. Mello, J. C. Moreira, and V. Duarte. Using shade fraction image segmentation to evaluate deforestation in landsat thematic mapper images of the amazon region. International Journal of Remote Sensing, 19(3):535–541, 1998. URL: https://doi.org/10.1080/014311698216152, doi:10.1080/014311698216152.">53</a>]</span> e da segmentação de imagens <span id="id8">[<a class="reference internal" href="../referencias.html#id11" title="L Sant’anna Bins, LM Garcia Fonseca, Guaraci José Erthal, and F Mitsuo Ii. Satellite imagery segmentation: a region growing approach. Simpósio Brasileiro de Sensoriamento Remoto, 8(1996):677–680, 1996.">54</a>]</span>. Com isto, inicia o PRODES digital, que tem como marco a disponibilização dos dados (vetoriais, imagens e tabulares) na Web, gerando transparência e garantindo a qualidade da informação. Entretanto, o SPRING é um sistema monousuário e não permitia a integração necessária em um projeto com essa dimensão. Por isso, foi desenvolvido o software TeraAmazon, um sistema multiusuário que permite gerenciar o projeto e o trabalho conjunto na edição de dados geográficos vetoriais. Isso permitiu o uso de diversas imagens pelos analistas, que trabalham em um mesmo banco de dados e conseguem observar o que cada um está produzindo em tempo real, reduzindo o problema de descontinuidade entre cenas <span id="id9">[<a class="reference internal" href="../referencias.html#id41" title="INPE e Funcate. Terraamazon. Agosto 2024. Online; acessado 08 de Agosto de 2024. URL: http://www.terraamazon.dpi.inpe.br/.">55</a>]</span>. A metodologia voltou a ser interpretação visual, com revisão por auditores, geralmente mais experientes, que validam o mapeamento dos fotointerpretes <span id="id10">[<a class="reference internal" href="../referencias.html#id3" title="Claudio Aparecido Almeida, Luís Eduardo Pinheiro Maurano, Dalton de Morisson Valeriano, Gilberto Câmara, Lúbia Vinhas, Marisa da Motta, Alessandra Rodrigues Gomes, Antônio Miguel Vieira Monteiro, Arlesson Antônio de Almeida Souza, Cassiano Gustavo Messias, and others. Metodologia utilizada nos sistemas prodes e deter-2. Technical Report, INPE, Outubro 2022. URL: http://urlib.net/ibi/8JMKD3MGP3W34T/47GAF6S.">44</a>]</span>. Esse mapeamento tem a exatidão de aproximadamente 95% e fornece os dados com transparência <span id="id11">[<a class="reference internal" href="../referencias.html#id55" title="Luis Eduardo Pinheiro Maurano, Maria Isabel Sobral Escada, and Camilo Daleles Renno. Padrões espaciais de desmatamento ea estimativa da exatidão dos mapas do prodes para amazônia legal brasileira. Ciência florestal, 29(4):1763–1775, 2019.">52</a>]</span>. Dada a precisão, transparência e qualidade do mapeamento, esses dados são utilizados também por acordos como a Moratória da soja <span id="id12">[<a class="reference internal" href="../referencias.html#id65" title="Bernardo F. T. Rudorff, Marcos Adami, Joel Risso, Daniel Alves De Aguiar, Bernardo Pires, Daniel Amaral, Leandro Fabiani, and Izabel Cecarelli. Remote sensing images to detect soy plantations in the amazon biome—the soy moratorium initiative. Sustainability, 4(5):1074–1088, 2012. URL: https://www.mdpi.com/2071-1050/4/5/1074, doi:10.3390/su4051074.">56</a>]</span>. Atualmente, o projeto PRODES expandiu a área de atuação e está realizando o mapeamento para todos os biomas brasileiros. A evolução temporal da taxa de desmatamento na amazônia desde 1988 pode ser observada na <a class="reference internal" href="#fig-uso-cobertura-terra-prodes-taxa"><span class="std std-numref">Figura 5.1</span></a> <span id="id13">[<a class="reference internal" href="../referencias.html#id40" title="INPE. Prodes - desmatamento. Agosto 2024. Online; acessado 08 de Agosto de 2024. URL: https://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates.">57</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-uso-cobertura-terra-prodes-taxa">
+<a class="reference internal image-reference" href="../_images/prodes-taxa.png"><img alt="Taxa de desmatamento PRODES na Amazônia desde 1988" src="../_images/prodes-taxa.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 5.1 - </span><span class="caption-text">Taxa de desmatamento PRODES na Amazônia desde 1988.</span><a class="headerlink" href="#fig-uso-cobertura-terra-prodes-taxa" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Na <a class="reference internal" href="#fig-uso-cobertura-terra-prodes-area-tamanho"><span class="std std-numref">Figura 5.2</span></a> pode ser observada a variação temporal da área dos polígonos de 2002 até 2021 e de como flutuou ao longo do tempo a importância de cada uma delas na Amazônia <span id="id14">[<a class="reference internal" href="../referencias.html#id40" title="INPE. Prodes - desmatamento. Agosto 2024. Online; acessado 08 de Agosto de 2024. URL: https://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates.">57</a>]</span>. Inicialmente, a influência dos grandes polígonos (&gt; 50 ha) é alta, representando em torno de 70% da área total desflorestada na amazônia e com o passar dos anos, possivelmente relacionado com o uso do DETER (<a class="reference internal" href="deter.html#sec-uso-cobertura-terra-deter"><span class="std std-numref">Seção 5.2 - DETER</span></a>) como instrumento para alerta e combate ao desflorestamento, a influência desses polígonos diminui, atingindo cerca de 20% em torno de 2010, voltando a aumentar posteriormente com o enfraquecimento das políticas de controle do desmatamento e, em 2021 retorna para representarem aproximadamente 50% da área total desflorestada.</p>
+<figure class="align-center align-default" id="fig-uso-cobertura-terra-prodes-area-tamanho">
+<a class="reference internal image-reference" href="../_images/prodes-area-tamanho.png"><img alt="Variação temporal da influência e da área dos polígonos" src="../_images/prodes-area-tamanho.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 5.2 - </span><span class="caption-text">Variação temporal da influência da área dos polígonos no total desflorestado.</span><a class="headerlink" href="#fig-uso-cobertura-terra-prodes-area-tamanho" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Os mapeamentos dos desflorestamentos na Amazônia e no Cerrado executados pelo PRODES são apresentados na <a class="reference internal" href="#fig-uso-cobertura-terra-prodes-amz-cerr"><span class="std std-numref">Figura 5.3</span></a>, em que é possível avaliar a localização da área desmatada e os maciços florestais ainda existentes nesses biomas <span id="id15">[<a class="reference internal" href="../referencias.html#id40" title="INPE. Prodes - desmatamento. Agosto 2024. Online; acessado 08 de Agosto de 2024. URL: https://terrabrasilis.dpi.inpe.br/app/dashboard/deforestation/biomes/legal_amazon/rates.">57</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-uso-cobertura-terra-prodes-amz-cerr">
+<a class="reference internal image-reference" href="../_images/prodes-amz-cerr.png"><img alt="Desflorestamento mapeado pelo PRODES nos biomas Amazônia e Cerrado" src="../_images/prodes-amz-cerr.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 5.3 - </span><span class="caption-text">Desflorestamento mapeado pelo PRODES nos biomas Amazônia e Cerrado.</span><a class="headerlink" href="#fig-uso-cobertura-terra-prodes-amz-cerr" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="deter.html" class="btn btn-neutral float-right" title="5.2. Sistema de Detecção do Desmatamento em tempo quase real (DETER)" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f0ee5323520>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

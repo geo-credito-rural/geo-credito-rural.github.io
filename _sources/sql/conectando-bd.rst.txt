@@ -1,0 +1,88 @@
+.. _sec_sql_conectando_bd:
+
+Conectando ao Servidor PostgreSQL
+=================================
+
+
+Após a instalação do PostgreSQL você terá um serviço rodando em *background* no seu sistema que ficará aguardando por conexões com aplicações clientes, como mostrado na :numref:`Figura %s <fig:sql:conectando-bd:conectando-servidor>`. Em geral, os clientes se conectam ao servidor PostgreSQL usando uma rede TCP/IP. Desta forma, para que o cliente possa se conectar ao servidor, ele deve especificar o endereço IP ou o nome de *host* do servidor, o número da porta na qual o servidor aguarda por requisições de conexão, o nome do banco de dados com o qual a conexão será associada, e as credenciais do usuário (nome e senha). Nessa figura, supomos que o servidor possui o endereço IP ``10.10.1.10`` e que ele aguarda por conexões na porta ``5432``, que é a porta usada na instalação padrão. Ao receber o pedido de conexão de um cliente, o servidor PostgreSQL valida as credenciais do usuário e caso elas sejam válidas, estabelece a conexão do cliente com o repositório físico de dados através de uma nova instância do PostgreSQL, que ficará responsável pela interação com este cliente.
+
+
+.. figure:: ../img/sql/conectando-bd/conectando-servidor.png
+    :alt: Estabelecendo conexão a um servidor PostgreSQL
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:conectando-bd:conectando-servidor
+
+    Estabelecendo conexão a um servidor PostgreSQL.
+
+
+psql
+----
+
+
+Para se conectar ao PostgreSQL através do `psql`, podemos utilizar as seguintes opções na linha de comando do sistema operacional::
+
+    psql -h 10.10.1.10 -p 5432 -d db1 -U eduardo
+
+
+No comando acima, temos:
+
+- ``-h``: Permite informar o endereço IP do servidor ou o seu nome.
+
+- ``-p``: Permite informar a porta em que o servidor aguarda por conexões. A porta padrão do PostgreSQL é a ``5432``, de maneira que seu servidor esteja utilizando esta porta, você pode até omitir essa opção.
+
+- ``-d``: Permite informar o banco de dados com o qual a conexão será associada. Cada conexão só pode estar associada a um único banco de dados.
+
+- ``-U``: Permite informar o nome do usuário para o qual a conexão será aberta.
+
+
+pgAdmin
+-------
+
+
+Para conseguir se conectar a um servidor com o `pgAdmin`, você precisará ter esse servidor registrado na árvore de objetos. No *menu* de atalho do objeto ``Servers``, selecione a opção ``Register | Server...`` como indicado na :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-menu-register-server>`.
+
+
+.. figure:: ../img/sql/pgadmin4/menu-register-server.png
+    :alt: Menu para registro da conexão a um novo servidor PostgreSQL
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:conectando-bd:pgadmin4-menu-register-server
+
+    Menu para registro da conexão a um novo servidor PostgreSQL.
+
+
+Na janela apresentada, deve ser informado um nome que será usado para identificar o servidor na árvore de objetos do pgAdmin (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-general>`).
+
+
+.. figure:: ../img/sql/pgadmin4/register-server-general.png
+    :alt: Registrando um novo servidor PostgreSQL
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:conectando-bd:pgadmin4-register-server-general
+
+    Registrando um novo servidor PostgreSQL.
+
+
+Na aba ``Connection``, forneça as informações de conexão ao servidor (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-connection>`).
+
+
+.. figure:: ../img/sql/pgadmin4/register-server-connection.png
+    :alt: Informações de conexão ao servidor PostgreSQL
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:conectando-bd:pgadmin4-register-server-connection
+
+    Informações de conexão ao servidor PostgreSQL
+
+
+Ao pressionar o botão ``Save``, deverá ser apresentada uma tela como a da :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-local-server>`.
+
+
+.. figure:: ../img/sql/pgadmin4/local-server.png
+    :alt: Conexão ao servidor PostgreSQL
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:conectando-bd:pgadmin4-local-server
+
+    Conexão ao servidor PostgreSQL.

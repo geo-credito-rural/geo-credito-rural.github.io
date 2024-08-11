@@ -16,14 +16,16 @@ A Malha Fundiária usada nesse curso foi gerada pelo `Grupo de Políticas Públi
 
 Essa malha é composta de 7 categorias fundiárias, sendo que algumas são divididas em subgrupos visando detalhamento do seu status jurídico-administrativo. 
 
+
 A :numref:`Tabela %s <tbl:bases-vetoriais:malhafundiaria>` apresenta as categorias fundiárias e a descrição de cada uma delas.
 
 
-.. table:: Categorias Fundiárias. |br| **Fonte:** :cite:`coutinho:2024`.
+.. table:: Categorias Fundiárias. |br| **Fonte:** :cite:`coutinho:2024`
     :align: center
     :header-alignment: center center center
     :column-alignment: center center center
     :name: tbl:bases-vetoriais:malhafundiaria
+
 
     +--------------+-----------------+-----------------------------------------------------------------------------------+
     | Categoria    | Subgrupo        |  Descrição                                                                        |
@@ -47,7 +49,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:malhafundiaria>` apresenta as categori
     | Terras       | Terras          | Terras indígenas declaradas, homologadas e regularizadas                          |
     | Indígenas    | Indígenas       | registradas na base de dados da FUNAI como descrito na Seção                      |
     |              | Declaradas      | :ref:`Terras indígenas <sec_bases_vetoriais_terras_indigenas>`                    |
-    |              | (UCPI)          |                                                                                   |
+    |              | (TID)           |                                                                                   |
     +              +-----------------+-----------------------------------------------------------------------------------+
     |              | Terras          | Terras indígenas não declaradas (em estudo, delimitadas e encaminhadas para       |
     |              | Indígenas       | reserva indígena) registradas na base de dados da FUNAI como descrito na Seção    |
