@@ -4,7 +4,7 @@ Conectando ao Servidor PostgreSQL
 =================================
 
 
-Após a instalação do PostgreSQL você terá um serviço rodando em *background* no seu sistema que ficará aguardando por conexões com aplicações clientes, como mostrado na :numref:`Figura %s <fig:sql:conectando-bd:conectando-servidor>`. Em geral, os clientes se conectam ao servidor PostgreSQL usando uma rede TCP/IP. Desta forma, para que o cliente possa se conectar ao servidor, ele deve especificar o endereço IP ou o nome de *host* do servidor, o número da porta na qual o servidor aguarda por requisições de conexão, o nome do banco de dados com o qual a conexão será associada, e as credenciais do usuário (nome e senha). Nessa figura, supomos que o servidor possui o endereço IP ``10.10.1.10`` e que ele aguarda por conexões na porta ``5432``, que é a porta usada na instalação padrão. Ao receber o pedido de conexão de um cliente, o servidor PostgreSQL valida as credenciais do usuário e caso elas sejam válidas, estabelece a conexão do cliente com o repositório físico de dados através de uma nova instância do PostgreSQL, que ficará responsável pela interação com este cliente.
+Após a instalação do PostgreSQL haverá um serviço sendo executado em *background* no sistema. Este serviço ficará aguardando por conexões com as aplicações clientes, como mostrado na :numref:`Figura %s <fig:sql:conectando-bd:conectando-servidor>`. Em geral, os clientes se conectam ao servidor PostgreSQL usando uma rede TCP/IP. Desta forma, para que o cliente possa se conectar ao servidor, ele deve especificar o endereço IP ou o nome do *host* do servidor, o número da porta na qual o servidor aguarda por requisições de conexão, o nome do banco de dados com o qual a conexão será associada, e as credenciais do usuário (nome e senha). Nessa figura, supomos que o servidor possui o endereço IP ``10.10.1.10`` e que ele aguarda por conexões na porta ``5432``, que é a porta usada numa instalação padrão. Ao receber o pedido de conexão de um cliente, o servidor PostgreSQL valida as credenciais do usuário e caso elas sejam válidas, estabelece a conexão do cliente com o repositório físico de dados através de uma nova instância do PostgreSQL, que ficará responsável pela interação com este cliente.
 
 
 .. figure:: ../img/sql/conectando-bd/conectando-servidor.png
@@ -26,6 +26,8 @@ Para se conectar ao PostgreSQL através do `psql`, podemos utilizar as seguintes
 
 
 No comando acima, temos:
+
+.. rst-class:: open
 
 - ``-h``: Permite informar o endereço IP do servidor ou o seu nome.
 

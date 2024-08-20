@@ -7,30 +7,58 @@ Introdução ao Sensoriamento Remoto por Satélites
 ================================================
 
 
-O processo de obtenção de dados para formação de uma imagem é apresentado na :numref:`Figura %s <fig:acesso-imagens:introducao-ser:modis-pixel>` que coloca como exemplo um satélite (Terra) que, a fim de garantir a cobertura diária em quase todo o planeta, tem o sensor MODIS (*Moderate Resolution Imaging Spectroradiometer*) que possui um campo de visada, *Field of View* (FOV) de 110°. Este FOV representa a largura nominal da faixa imageada, que neste caso é 2330 km. Por causa da largura da faixa imageada, do efeito de curvatura da Terra, da rotação da Terra e da velocidade angular de varredura do espelho, ocorre o efeito panorâmico e o *bow-tie* (borramento). No limite da largura da área imageada (*swath*), os pixels tem o seu tamanho aumentado a uma razão de 2 vezes na direção da linha de imageamento (*along-track*) e de 5 vezes na direção da linha de imageamento (*across-track*). Portanto, existe uma influência da geometria de visada e de iluminação na função de distribuição de refletância bidirecional (FDRB) e de como isso pode ocasionar distorções no momento da coleta de imagens :cite:`vanleeuwen:1999,ju:2010`.
+Sensoriamento remoto é a técnica de se obter informações sem ter contato físico com o alvo. Os sensores detectam e registram a energia refletida ou emitida pelo alvo. Com base nisso, observa-se que no processo tem: a) alvo; b) sensor; c) energia; e não tão evidente, d) o meio por onde trafega a energia (atmosfera). Os dados de sensoriamento remoto possuem quatro resoluções: i) resolução espacial, ii) resolução espectral, iii) resolução temporal; e iv) resolução radiométrica. Assim, o processo de obtenção de dados para formação de uma imagem é apresentado na :numref:`Figura %s <fig:acesso-imagens:introducao-ser:modis-pixel>` que coloca como exemplo um satélite (Terra) que, a fim de garantir a cobertura diária em quase todo o planeta (resolução temporal), tem o sensor MODIS (*Moderate Resolution Imaging Spectroradiometer*) que possui um campo de visada, *Field of View* (FOV) de 110°. Este FOV representa a largura nominal da faixa imageada, que neste caso é 2330 km. Por causa da largura da faixa imageada, do efeito de curvatura da Terra, da rotação da Terra e da velocidade angular de varredura do espelho, ocorre o efeito panorâmico e o *bow-tie* (borramento). No limite da largura da área imageada (*swath*), os pixels (resolução espacial) tem o seu tamanho aumentado a uma razão de 2 vezes na direção da linha de imageamento (*along-track*) e de 5 vezes na direção da linha de imageamento (*across-track*). Portanto, existe uma influência da geometria de visada e de iluminação na função de distribuição de refletância bidirecional (FDRB) e de como isso pode ocasionar distorções no momento da coleta de imagens :cite:`vanleeuwen:1999,ju:2010`.
 
 
 .. figure:: ../img/acesso-imagens/introducao-ser/modis-pixel.png
-    :alt: Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m)
+    :alt: Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0º (250 x 250 m); 15º (270 x 260 m); 30º (350 x 285 m); 45º (610 x 380 m) e 55º (1200 x 450 m)
     :width: 40%
     :figclass: align-center
     :name: fig:acesso-imagens:introducao-ser:modis-pixel
 
-    Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0° (250 x 250 m); 15° (270 x 260 m); 30° (350 x 285 m); 45ª (610 x 380 m) e 55° (1200 x 450 m). |br| **Fonte:** Adaptada de :cite:`vanleeuwen:1999,ju:2010`.
+    Representação pictórica da aquisição de dados pelo sensor MODIS-Terra e alterações da função de distribuição de refletância bidirecional em função da visada e da geometria de iluminação. Alteração das dimensões do pixel MODIS, perpendicular à órbita do satélite (across-track) e na direção da órbita do satélite (along-track), em função dos ângulos de imageamento: 0º (250 x 250 m); 15º (270 x 260 m); 30º (350 x 285 m); 45º (610 x 380 m) e 55º (1200 x 450 m). |br| **Fonte:** Adaptada de :cite:t:`vanleeuwen:1999,ju:2010`.
 
 
-Dessa maneira, são obtidas as imagens, que no contexto de sensoriamento remoto comumente é chamada de *raster*. Elas podem ser armazenadas de diferentes formas. Uma delas é por meio de um arquivo, comumente no formato `GeoTIFF <https://www.ogc.org/standard/geotiff/>`__, onde estão contidos os metadados da imagem e também os *pixels* de todas as bandas disponíveis naquela configuração de sensor. Assim, por exemplo, uma imagem com 200 linhas, 300 colunas e 5 bandas, estará armazenada integralmente no arquivo, e por meio de scripts será possível obter uma matriz com 5 dimensões, cada dimensão com 200 *x* 300 elementos. A outra forma de armazenar as imagens é através do armazenamento individual, onde um arquivo contém informações de somente uma banda espectral. Neste caso, cada arquivo possui metadados independentes, com informações sobre o sistema de referência espacial, os limites geográficos cobertos pela imagem, as dimensões da imagem em termos de linhas e colunas, a matriz de pixels, e o tipo de dados associado aos pixels da imagem.
+Dessa maneira, são obtidas as imagens, que no contexto de geotecnologias são os dados *raster*. Elas podem ser armazenadas de diferentes formas. Uma delas é por meio de um arquivo, geralmente no formato `GeoTIFF <https://www.ogc.org/standard/geotiff/>`__ (mas podem ser GRIB, JPG, dentre outros). Nesse arquivo estão contidos os metadados da imagem e também os *pixels* de todas as bandas disponíveis naquela configuração de sensor. Assim, por exemplo, uma imagem com 200 linhas, 300 colunas e 5 *bandas*, estará armazenada integralmente no arquivo, e por meio de scripts será possível obter uma matriz com 5 dimensões, cada dimensão com 200 *x* 300 elementos. A outra forma de armazenar as imagens é através do armazenamento individual, onde um arquivo contém informações de somente uma banda espectral. Neste caso, cada arquivo possui metadados independentes, com informações sobre o sistema de referência espacial, os limites geográficos cobertos pela imagem, as dimensões da imagem em termos de linhas e colunas, a matriz de pixels, e o tipo de dados associado aos pixels da imagem. Para entender integralmente o texto acima, serão fornecidas algumas definições nos tópicos a seguir utilizando como base o seguinte material fornecido pela NASA `What is Remote Sensing? <https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing>`__.
+
+
+Espectro eletromagnético
+------------------------
+
+
+Todos os corpos com temperatura acima de zero kelvin (:math:`0 k`) produz alguma energia eletromagnética pela vibração das partículas. Essa energia viaja em formato de ondas e possuem diferentes comprimentos de onda e frequências. A :numref:`Figura %s <fig:acesso-imagens:introducao-ser:espectro-eletromagnetico>` apresenta um diagrama contendo os comprimentos de onda e frequências mais conhecidos e utilizados pelos seres humanos. Em sensoriamento remoto, os comprimentos de onda mais utilizados vão da faixa do visível ao microondas.
+
+
+.. figure:: https://www.earthdata.nasa.gov/s3fs-public/imported/EMS-Introduction_0.jpeg?VersionId=rSEKLCj0F2zuFCQ6hRTw6zaBBipH.UWY
+    :alt: Diagrama do espectro eletromagnético
+    :width: 60%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:espectro-eletromagnetico
+
+    Diagrama do espectro eletromagnético. |br| **Fonte:** `NASA <https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing>`__.
 
 
 Sensores Passivos e Ativos
 --------------------------
 
 
+Essa classificação está relacionada com a capacidade do sensor de utilizar o sol como fonte de iluminação (sensor **passivo**) ou de gerar a sua própria fonte de iluminação (sensor **ativo**). Os sensores **passivos** usualmente trabalham na com os comprimentos de onda do visível, infravermelho, infravermelho termal. Já, os sensores **ativos** operam nos comprimentos de onda do microondas ou utilizam a tecnologia LIDAR. 
+
+
+.. figure:: https://www.earthdata.nasa.gov/s3fs-public/styles/large_full_968px_/public/imported/activePassive.png?VersionId=5RwWhgdW7kFSdrcyM1stzRKQ1ku7ITEp&itok=rdAY4oLb
+    :alt: Sensor passivo versus ativo
+    :width: 60%
+    :figclass: align-center
+    :name: fig:acesso-imagens:introducao-ser:tipos-sensores
+
+    Sensor passivo versus ativo. |br| **Fonte:** `NASA <https://www.earthdata.nasa.gov/learn/backgrounders/remote-sensing>`__.
+
+
 Bandas Espectrais
 -----------------
 
 
-O conjunto de imagens abaixo apresenta a composição colorida e falsa cor de uma cenas Landsat 8/OLI do oeste da Bahia no ano de 2015.
+A **resolução espectral** é dada pela capacidade que o sensor tem de discriminar os comprimentos de onda e é dada pela quantidade de bandas espectrais que um sensor possui. Sensores hiperespectrais conseguem discriminar mais de 200 bandas no espectro eletromagnético, como é o caso do `EnMAP <https://www.enmap.org/>`__ com largura de banda de 1 nm a 5 nm. Os sensores multiespectrais, como é o caso do Landsat-8/OLI, conseguem discriminar em torno de 10 bandas espectrais com largura de banda em torno de 10nm ou mais. Como exemplo de bandas espectrais, é apresentado  uma variação na composição colorida e falsa cor de uma cenas Landsat-8/OLI do oeste da Bahia no ano de 2015.
 
 
 .. carousel::
@@ -101,13 +129,13 @@ Para reforçar o conceito de resolução espacial, relacionando com a aplicaçã
     :show_fade:
     :data-bs-interval: false
 
-    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_amazonia1.png
-        :alt: Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_cbers4a.png
+        :alt: Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
         :width: 100%
         :figclass: align-center
-        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_amazonia1
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_cbers4a
 
-        Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
+        Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
 
     .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_s2.png
         :alt: Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho
@@ -117,16 +145,16 @@ Para reforçar o conceito de resolução espacial, relacionando com a aplicaçã
 
         Gleba com 14 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.
 
-    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_cbers4a.png
-        :alt: Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514261300_amazonia1.png
+        :alt: Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
         :width: 100%
         :figclass: align-center
-        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_cbers4a
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514261300_amazonia1
 
-        Gleba com 14 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
+        Gleba com 14 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
 
 
-Embora as 3 imagens acima não sejam exatamente da mesma data, e também a CBERS-4A não apresenta o canal infravermelho, mas a banda pancromática, a qual inclui uma intervalo maior de comprimentos de onda e por isso possui mais detalhes, é possível perceber que a imagem de 64m de resolução espacial apresenta limitações de mapeamento da área de 14 hectares delimitada pelo polígono amarelo. A resolução espacial de 10m já permite observar mais detalhes dentro da área da gleba, e a imagem de 2m representa a área de forma detalhada. No caso da imagem CBERS-4A, com 2m de resolução espacial, para ser ideal no mapeamento de culturas agrícolas, precisaria ter uma taxa de revisita bem mais frequente, visto que obtém uma nova imagem da mesma área a cada 31 dias. A essa propriedade damos o nome de resolução temporal. 
+Embora as 3 imagens acima não sejam exatamente da mesma data, e também a imagem do CBERS-4A não apresente o canal infravermelho, mas a banda pancromática, a qual inclui uma intervalo maior de comprimentos de onda e por isso possui mais detalhes, é possível perceber que a imagem de 64m de resolução espacial apresenta limitações de mapeamento da área de 14 hectares, delimitada pelo polígono amarelo. A resolução espacial de 10m já permite observar mais detalhes dentro da área da gleba, e a imagem de 2m representa a área de forma detalhada. No caso da imagem CBERS-4A, com 2m de resolução espacial, para ser ideal no mapeamento de culturas agrícolas, precisaria ter uma taxa de revisita bem mais frequente, visto que obtém uma nova imagem da mesma área a cada 31 dias. A essa propriedade damos o nome de resolução temporal. 
 
 
 .. carousel::
@@ -136,13 +164,13 @@ Embora as 3 imagens acima não sejam exatamente da mesma data, e também a CBERS
     :show_fade:
     :data-bs-interval: false
 
-    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_amazonia1.png
-        :alt: Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_cbers4a.png
+        :alt: Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
         :width: 100%
         :figclass: align-center
-        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_amazonia1
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_cbers4a
 
-        Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
+        Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
 
     .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_s2.png
         :alt: Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho
@@ -152,50 +180,14 @@ Embora as 3 imagens acima não sejam exatamente da mesma data, e também a CBERS
 
         Gleba com 200 hectares visualizada na resolução espacial de 10 metros, Sentinel-2, canal infravermelho.
 
-    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_cbers4a.png
-        :alt: Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática
+    .. figure:: ../img/acesso-imagens/introducao-ser/gleba_514077675_amazonia1.png
+        :alt: Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho
         :width: 100%
         :figclass: align-center
-        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_cbers4a
+        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:gleba_514077675_amazonia1
 
-        Gleba com 200 hectares visualizada na resolução espacial de 2 metros, CBERS-4A, banda pancromática.
+        Gleba com 200 hectares visualizada na resolução espacial de 64 metros, AMAZONIA-1, canal infravermelho.
 
-
-.. Nas figuras abaixo, podemos perceber que na imagem de 100m de resolução conseguimos ver poucos detalhes da barragem. Com a imagem de 10m de resolução, já conseguimos identificar a barragem. Finalmente, na imagem de 2m, conseguimos visualizar mais detalhes sobre as feições da barragem.
-..
-..
-.. .. carousel::
-..    :show_controls:
-..    :show_indicators:
-..    :show_captions_below:
-..    :show_fade:
-..    :data-bs-interval: false
-..
-..    .. figure:: ../img/acesso-imagens/introducao-ser/img-sentinel2-100m.png
-..        :alt: Resolução espacial de 100 metros
-..        :width: 100%
-..        :figclass: align-center
-..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-sentinel2-100m
-..
-..        Imagem Sentinel-2 com resolução espacial degradada para 100 metros.<br>Composição colorida 4-3-2 (cores verdadeiras).<br>Região da barragem de Sobradinho.
-..
-..
-..    .. figure:: ../img/acesso-imagens/introducao-ser/img-sentinel2-10m.png
-..        :alt: Resolução espacial de 10 metros
-..        :width: 100%
-..        :figclass: align-center
-..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-sentinel2-10m
-..
-..        Imagem Sentinel-2 com resolução espacial original de 10 metros.<br>Composição colorida das bandas 4-3-2 (cores Verdadeiras).<br>Região da barragem de Sobradinho.
-..
-..
-..    .. figure:: ../img/acesso-imagens/introducao-ser/img-cbers4a-2m.png
-..        :alt: Resolução espacial de 2 metros
-..        :width: 100%
-..        :figclass: align-center
-..        :name: fig:acesso-imagens:introducao-ser:resolucao-espacial:img-cbers4a-2m
-..
-..        Imagem CBERS-4A/WPM com resolução espacial original de 2 metros.<br>Processo de fusão usado: PCA (Componentes Principais).<br>Região da barragem de Sobradinho.
 
 
 Resolução Temporal
@@ -262,7 +254,7 @@ A **resolução temporal** é o tempo que um sensor leva para revisitar uma loca
 A :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:resolucao-temporal>` apresenta a resolução temporal de alguns satélites/sensores muito utilizados na área geoespacial.
 
 
-.. table:: Resolução temporal de alguns satélites/sensores. |br| **Fontes:** `NASA <https://modis.gsfc.nasa.gov/about/>`__, `ESA <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/revisit-coverage>`__.
+.. table:: Resolução temporal de alguns satélites/sensores. |br| **Fontes:** `INPE/AMAZONIA-1 <https://www.gov.br/inpe/pt-br/programas/amazonia1>`__, `INPE/CBERS <http://www.cbers.inpe.br/>`__, `NASA <https://modis.gsfc.nasa.gov/about/>`__, `ESA <https://sentinels.copernicus.eu/web/sentinel/user-guides/sentinel-2-msi/revisit-coverage>`__.
     :name: tbl:acesso-imagens:introducao-ser:resolucao-temporal
     :align: center
     :header-alignment: center center center
@@ -270,8 +262,14 @@ A :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:resolucao-temporal>` apr
     :widths: 30 30 40
 
     +----------------------+----------------------+--------------------+
-    | Satélites            | Sensores             | Resolução Temporal |
+    | Satélite             | Sensor               | Resolução Temporal |
     +======================+======================+====================+
+    | AMAZONIA-1           | WFI                  | 5 dias             |
+    +----------------------+----------------------+--------------------+
+    | CBERS-4              | PAN                  | 26 dias            |
+    +----------------------+----------------------+--------------------+
+    | CBERS-4A             | WPM                  | 31 dias            |
+    +----------------------+----------------------+--------------------+
     | Landsat 5            | TM                   | 16 dias            |
     +----------------------+----------------------+--------------------+
     | Landsat 7            | ETM\ :sup:`+`        | 16 dias            |
@@ -288,11 +286,12 @@ A :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:resolucao-temporal>` apr
 
 .. _sec_acesso_imagens_introducao_quantizacao:
 
+
 Quantização
 -----------
 
 
-A quantização, representada por :math:`L`, indica a quantidade de bits utilizados para representar a radiância/refletância observada em cada ponto imageado (pixel). Por exemplo, o satélite AMAZONIA-1 possui :math:`L = 10`. Nesse caso, os pixels das imagens do AMAZONIA-1 possuem valores variando entre 0 e :math:`2^{10} = 1024`.
+A quantização, ou **resolução radiométrica** está relacionada com a capacidade que o sensor possui de discriminar a energia observada em uma banda específica. A quantização é representada por :math:`L`, indica a quantidade de bits utilizados para representar a energia (radiância/refletância) observada em cada ponto imageado (pixel). Por exemplo, o satélite AMAZONIA-1 possui :math:`L = 10`. Nesse caso, os pixels das imagens do AMAZONIA-1 consegue discriminar :math:`2^{10} = 1024` níveis de radiância/refletância entre o mínimo e máximo de energia que o sensor consegue observar. Assim, quanto maior a resolução radiométrica, mais valores estarão disponíveis para armazenar informações, proporcionando melhor discriminação até mesmo entre as menores diferenças de radiância/refletância.
 
 
 Distribuição de Imagens - Cenas
@@ -354,39 +353,94 @@ Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente
     .. tab:: CBERS-4
 
 
+        O sensor PAN (*Panchromatic and Multispectral Camera*) a bordo do `CBERS-4 <http://www.cbers.inpe.br/sobre/cameras/cbers3-4.php>`__ realiza o imageamento da superfície terrestre em um *swath* de 60km x 60km com resolução temporal de 26 dias e produz imagens de 8 bits. Já o sensor MUX (*Regular Multispectral Camera*) realiza o imageamento da superfície terrestre com um *swath* de 120km x 120km com resolução temporal de 26 dias e produz imagens de 8 bits. O sensor WFI (*Wide Field Imaging Camera*) realiza o imageamento da superfície terrestre em um *swath* de 866km x 866km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desses sensores são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:cbers-4-pan-mux-wfi>`. 
+
+
+        .. table:: Características dos sensores PAN, MUX e WFI a bordo do satélite CBERS-4. |br| **Fonte:** `INPE <http://www.cbers.inpe.br/sobre/cameras/cbers3-4.php>`__
+            :name: tbl:acesso-imagens:introducao-ser:cbers-4-pan-mux-wfi
+            :align: center
+            :header-alignment: center center center center
+            :column-alignment: center center center center
+            :widths: 10 20 35 35
+
+
+            +----------+----------------------+---------------------------+--------------------+
+            | Sensor   | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +==========+======================+===========================+====================+
+            | PAN      | 1 - PAN              | 0.51 - 0.85               | 5 metros           |
+            +          +----------------------+---------------------------+--------------------+
+            |          | 2 - Green            | 0.52 - 0.59               | 10 metros          |
+            +          +----------------------+---------------------------+                    +
+            |          | 3 - Red              | 0.63 - 0.69               |                    |
+            +          +----------------------+---------------------------+                    +
+            |          | 4 - NIR              | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
+            | MUX      | 5 - Blue             | 0.45 - 0.52               | 20 metros          |
+            +          +----------------------+---------------------------+                    +
+            |          | 6 - Green            | 0.52 - 0.59               |                    |
+            +          +----------------------+---------------------------+                    +
+            |          | 7 - Red              | 0.63 - 0.69               |                    |
+            +          +----------------------+---------------------------+                    +
+            |          | 8 - NIR              | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
+            | WFI      | 13 - Blue            | 0.45 - 0.52               | 64 metros          |
+            +          +----------------------+---------------------------+                    +
+            |          | 14 - Green           | 0.52 - 0.59               |                    |
+            +          +----------------------+---------------------------+                    +
+            |          | 15 - Red             | 0.63 - 0.69               |                    |
+            +          +----------------------+---------------------------+                    +
+            |          | 16 - NIR             | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
+
 
     .. tab:: CBERS-4A
 
 
-        O sensor WPM (*Wide Scan Panchromatic and Multispectral Camera*) a bordo do CBERS-4A realiza o imageamento da superfície terrestre usando um *swath* de 92km x 92km com resolução temporal de 31 dias e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:cbers-4a-wpm>`. O CBERS-4A também carrega a bordo os sensores WFI e MUX (*Multispectral Camera*), com características distintas, e resolução espacial inferior à WPM. O satélite `CBERS-4 <http://www.cbers.inpe.br/sobre/cameras/cbers3-4.php>`__ carrega os sensores PAN (*Panchromatic and Multispectral*), MUX, IRS e WFI.
+        O sensor WPM (*Wide Scan Panchromatic and Multispectral Camera*) a bordo do CBERS-4A realiza o imageamento da superfície terrestre usando um *swath* de 92km x 92km com resolução temporal de 31 dias e produz imagens de 10 bits. Já o sensor MUX (*Regular Multispectral Camera*) realiza o imageamento da superfície terrestre com um *swath* de 95km x 95km com resolução temporal de 31 dias e produz imagens de 8 bits. O sensor WFI (*Wide Field Imaging Camera*) realiza o imageamento da superfície terrestre em um *swath* de 684km x 684km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desses sensores são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:cbers-4a-wpm-mux-wfi>`.
 
 
-        .. table:: Características do sensor WPM a bordo do satélite CBERS-4A. |br| **Fonte:** `INPE <http://www.cbers.inpe.br/sobre/cameras/cbers04a.php>`__
-            :name: tbl:acesso-imagens:introducao-ser:cbers-4a-wpm
+        .. table:: Características dos sensores WPM, MUX e WFI a bordo do satélite CBERS-4A. |br| **Fonte:** `INPE <http://www.cbers.inpe.br/sobre/cameras/cbers04a.php>`__.
+            :name: tbl:acesso-imagens:introducao-ser:cbers-4a-wpm-mux-wfi
             :align: center
-            :header-alignment: center center center
-            :column-alignment: left center center
-            :widths: 30 35 25
+            :header-alignment: center center center center
+            :column-alignment: center center center center
+            :widths: 10 20 35 35
 
-            +----------------------+---------------------------+--------------------+
-            | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
-            +======================+===========================+====================+
-            | 0 - PAN              | 0.45 - 0.90               |  2 metros          |
-            +----------------------+---------------------------+--------------------+
-            | 1 - Blue             | 0.45 - 0.52               |  8 metros          |
-            +----------------------+---------------------------+                    +
-            | 2 - Green            | 0.52 - 0.59               |                    |
-            +----------------------+---------------------------+                    +
-            | 3 - Red              | 0.63 - 0.69               |                    |
-            +----------------------+---------------------------+                    +
-            | 4 - NIR              | 0.77 - 0.89               |                    |
-            +----------------------+---------------------------+--------------------+
+            +----------+----------------------+---------------------------+--------------------+
+            | Sensor   | Banda                | Intervalo (:math:`\mu m`) | Resolução Espacial |
+            +==========+======================+===========================+====================+
+            | WPM      | 0 - PAN              | 0.45 - 0.90               | 2 metros           |
+            |          +----------------------+---------------------------+--------------------+
+            |          | 1 - Blue             | 0.45 - 0.52               | 8 metros           |
+            |          +----------------------+---------------------------+                    |
+            |          | 2 - Green            | 0.52 - 0.59               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 3 - Red              | 0.63 - 0.69               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 4 - NIR              | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
+            | MUX      | 5 - Blue             | 0.45 - 0.52               | 16 metros          |
+            |          +----------------------+---------------------------+                    |
+            |          | 6 - Green            | 0.52 - 0.59               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 7 - Red              | 0.63 - 0.69               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 8 - NIR              | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
+            | WFI      | 13 - Blue            | 0.45 - 0.52               | 55 metros          |
+            |          +----------------------+---------------------------+                    |
+            |          | 14 - Green           | 0.52 - 0.59               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 15 - Red             | 0.63 - 0.69               |                    |
+            |          +----------------------+---------------------------+                    |
+            |          | 16 - NIR             | 0.77 - 0.89               |                    |
+            +----------+----------------------+---------------------------+--------------------+
 
 
     .. tab:: AMAZONIA-1
 
 
-        O sensor WFI (*Wide Field Imaging Camera*) a bordo do AMAZONIA-1 realiza o imageamento da superfície terrestre usando um *swath* de 850km x 850km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:amazonia-1-wfi>`. O mesmo sensor está a bordo de outros 2 satélites brasileiros, o CBERS-4 e o CBERS-4A, permitindo a integração em uma série de alta resolução temporal.
+        O sensor WFI (*Wide Field Imaging Camera*) a bordo do AMAZONIA-1 realiza o imageamento da superfície terrestre em um *swath* de 850km x 850km. Sua órbita foi projetada para proporcionar uma alta taxa de revisita, de 5 dias, e produz imagens de 10 bits. As características das bandas espectrais desse sensor são apresentadas na :numref:`Tabela %s <tbl:acesso-imagens:introducao-ser:amazonia-1-wfi>`. O mesmo sensor está a bordo de outros 2 satélites brasileiros, o CBERS-4 e o CBERS-4A, permitindo a integração em uma série de alta resolução temporal.
 
 
         .. table:: Características do sensor WFI a bordo do satélite AMAZONIA-1. |br| **Fonte:** `INPE <https://www.gov.br/inpe/pt-br/programas/amazonia1/sobre-o-satelite/sobre-o-satelite>`__

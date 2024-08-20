@@ -1,0 +1,25 @@
+.. include:: ../def.rst
+
+
+.. _sec_fenologia_metricas:
+
+Métricas Fenológicas
+====================
+
+
+A fenologia está sendo cada vez mais utilizada pelas mais diversas áreas da ciência, entretanto, sua obtenção é lenta e onerosa. Para agilizar a obtenção dessas informações em larga escala e reduzir os custos, são utilizadas séries temporais de imagens de satélite de onde se extraem as métricas fenológicas. Assim, **métricas fenológicas** podem ser definidas por um conjunto de medidas associadas às curvas temporais obtidas das imagens de sensoriamento remoto que permitem a estimativa das fases ou estádios fenológicos. Neste sentido, diversos métodos estão sendo desenvolvidos para obter as métricas fenológicas oriundas de séries de imagens de sensoriamento remoto. Esses métodos para extração de métricas fenológicas podem ser agrupados em: limiares, derivadas, algoritmos de suavização e modelos matemáticos :cite:`you:2013`. Já as métricas mais frequentemente extraídas têm sido: início e final do ciclo, bem como a sua duração; taxa de crescimento e de senescência, produtividade total e sazonal, valores do mínimo e máximo, comprimento e amplitude alcançados no início, meio e fim das estações, entre outras :cite:`eklundh:2016`. 
+
+
+Entretanto, como visto na :numref:`Section %s <sec_series_temporais_filtragem>`, as séries temporais de imagens de satélite possuem ruídos que devem ser tratados utilizando processos de filtragem, garantindo assim o espaçamento uniforme entre os dados, a remoção dos ruídos e o preenchimento de falhas, para que se possa obter as métricas fenológicas. Um exemplo apresentando uma série temporal antes de depois da filtragem, bem como as métricas fenológicas associadas a elas pode ser visualizado na :numref:`Figura %s <fig:fenologia:timesat-parameters>`. Nesta figura pode ser observado que os valores das estimativas de métricas fenológicas (letras :math:`a..i`) usam a curva filtrada (em vermelho) e todos os atributos são calculados a partir dela.
+
+
+.. figure:: ../img/fenologia/timesat-parameters.png
+    :alt: Métricas fenológicas estimadas usando dados de sensoriamento remoto
+    :width: 60%
+    :figclass: align-center
+    :name: fig:fenologia:timesat-parameters
+
+    Métricas fenológicas. A linha em azul representa os dados obtidos por sensoriamento remoto sem filtragem. A linha em vermelho representa o resultado da filtragem dos dados e são representados palas letras: (a) início do ciclo, (b) fim do ciclo, (c) duração do ciclo, (d) valor base, (e) tempo do meio do ciclo, (f) valor máximo, (g) amplitude, (h) pequeno valor integrado, (h+i) grande valor integrado. |br| **Fonte:** Adaptada de :cite:t:`jonsson:2004`
+
+
+Diversos métodos foram criados para obter a fenologia utilizando imagens obtidas por satélites de observação da Terra :cite:`zeng:2020,jonsson:2002,jonsson:2004,eklundh:2016,araya:2018,doktor:2019, kong:2022,forkel:2013`. O primeiro software de extração de fenologia, lançado no início dos anos 2002, foi o TIMESAT :cite:`jonsson:2002,jonsson:2004,eklundh:2016` e com base nele, foram implementadas diversas outras metodologias para extração de da fenologia da vegetação, como CropPhenology :cite:`araya:2018`, phenex :cite:`doktor:2019`, phenofit :cite:`kong:2022`, greenbrown :cite:`forkel:2013`. Para preencher a lacuna na compreensão da robustez desses algoritmos quando inseridos com diferentes fontes de dados foi executada uma pesquisa utilizando dados oriundos do sensor Modis e do MSI do Sentinel-2 :cite:`rodigheri:2023`. Segundo os autores, os softwares TIMESAT e phenex apresentaram as estimativas mais precisas de métricas fenológicas para datas de semeadura e colheita, respectivamente. TIMESAT foi menos sensível a mudanças em mudanças espaciais, temporais, espectrais e radiométricas, enquanto os outros métodos foram sensíveis a mudanças na entrada de dados. No geral, os erros nas datas de semeadura e colheita extraídas dos índices de vegetação de satélite estão entre 10 e 20 dias. Informam ainda que a sua aplicabilidade é limitada para tomada de decisão que necessite maior precisão na estimativa dessas datas.

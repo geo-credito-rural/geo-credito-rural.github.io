@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>1.2. Criando um Novo Banco de Dados no PostgreSQL &mdash; GeoCreditoRural</title>
+  <title>1.3. Criando um Novo Banco de Dados no PostgreSQL &mdash; GeoCreditoRural</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -27,8 +27,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="1.3. Criando Tabelas" href="criando-tabelas.html" />
-    <link rel="prev" title="1.1. Conectando ao Servidor PostgreSQL" href="conectando-bd.html" /> 
+    <link rel="next" title="1.4. Conceitos do Modelo Relacional" href="tabelas.html" />
+    <link rel="prev" title="1.2. Conectando ao Servidor PostgreSQL" href="conectando-bd.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -57,13 +57,21 @@
 <p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Introdução à Linguagem de Consulta SQL</a><ul class="current">
-<li class="toctree-l2"><a class="reference internal" href="conectando-bd.html">1.1. Conectando ao Servidor PostgreSQL</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.2. Criando um Novo Banco de Dados no PostgreSQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.3. Criando Tabelas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.4. Inserindo Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.5. Consultas em SQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.6. Alterando a Estrutura de uma Tabela</a></li>
-<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.7. Importando e Exportando Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação do Servidor PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conectando-bd.html">1.2. Conectando ao Servidor PostgreSQL</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.3. Criando um Novo Banco de Dados no PostgreSQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#habilitando-a-extensao-postgis">1.3.1. Habilitando a Extensão PostGIS</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="tabelas.html">1.4. Conceitos do Modelo Relacional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-dados.html">1.5. Tipos de Dados SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-geometricos.html">1.6. Tipos Geométricos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgis-geometry.html">1.7. PostGIS Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.8. Criando Tabelas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.9. Inserindo Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.10. Consultas em SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
@@ -71,6 +79,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -100,12 +110,12 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Introdução à Linguagem de Consulta SQL</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">1.2. </span>Criando um Novo Banco de Dados no PostgreSQL</li>
+      <li class="breadcrumb-item active"><span class="section-number">1.3. </span>Criando um Novo Banco de Dados no PostgreSQL</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
-        <a href="conectando-bd.html" class="btn btn-neutral float-left" title="1.1. Conectando ao Servidor PostgreSQL" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="criando-tabelas.html" class="btn btn-neutral float-right" title="1.3. Criando Tabelas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="conectando-bd.html" class="btn btn-neutral float-left" title="1.2. Conectando ao Servidor PostgreSQL" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="tabelas.html" class="btn btn-neutral float-right" title="1.4. Conceitos do Modelo Relacional" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -113,22 +123,22 @@
            <div itemprop="articleBody">
              
   <section id="criando-um-novo-banco-de-dados-no-postgresql">
-<h1><span class="section-number">1.2. </span>Criando um Novo Banco de Dados no PostgreSQL<a class="headerlink" href="#criando-um-novo-banco-de-dados-no-postgresql" title="Link permanente para este cabeçalho"></a></h1>
+<h1><span class="section-number">1.3. </span>Criando um Novo Banco de Dados no PostgreSQL<a class="headerlink" href="#criando-um-novo-banco-de-dados-no-postgresql" title="Link permanente para este cabeçalho"></a></h1>
 <p>Um mesmo servidor PostgreSQL pode gerenciar diversos bancos de dados (repositórios físicos de dados).</p>
 <p>Durante a instalação do PostgreSQL é executado um programa chamado <code class="docutils literal notranslate"><span class="pre">initdb</span></code> que realiza a criação de alguns bancos de dados fundamentais ao sistema:</p>
-<ul class="simple">
+<ul class="open">
 <li><p><code class="docutils literal notranslate"><span class="pre">template1</span></code>: Esse banco de dados é criado durante a preparação da área de armazenamento de um servidor PostgreSQL. Ele é usado como o molde (<code class="docutils literal notranslate"><span class="pre">template</span></code>) padrão para criação de novos bancos, quando não indicamos um específico.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">template0</span></code>: Esse banco de dados contém exatamente as mesmas definições do <code class="docutils literal notranslate"><span class="pre">template1</span></code> e não deve ser alterado em hipótese alguma. Esse <em>template</em> é muito útil para restauração de backups criados com o <code class="docutils literal notranslate"><span class="pre">pg_dump</span></code>. Esse banco também deve ser usado como molde quando quisermos criar novos bancos com <em>caracter encoding</em> e <em>locale</em> diferentes do definido no <code class="docutils literal notranslate"><span class="pre">template1</span></code>.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">postgres</span></code>: Esse banco de dados é criado na instalação do PostgreSQL e serve como o banco padrão para conexão de todos os usuários. Trat-se de uma cópia do <code class="docutils literal notranslate"><span class="pre">template1</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">postgres</span></code>: Esse banco de dados é criado na instalação do PostgreSQL e serve como o banco padrão para conexão de todos os usuários. Trata-se de uma cópia do <code class="docutils literal notranslate"><span class="pre">template1</span></code>.</p></li>
 </ul>
-<p>Para criar um novo banco de dados é necessário estar conectado a algum banco. Em geral, é utilizado o baco denominado <code class="docutils literal notranslate"><span class="pre">postgres</span></code> para esta finalidade. Além disso, é necessário usar um <strong>banco de molde</strong> (ou <strong>template</strong>) para realizar uma cópia física desse banco (<em>clone</em>). O banco de dados <code class="docutils literal notranslate"><span class="pre">template1</span></code> pode ser usado para esta finalidade.</p>
+<p>Para criar um novo banco de dados é necessário estar conectado a algum banco. Em geral, é utilizado o banco denominado <code class="docutils literal notranslate"><span class="pre">postgres</span></code> para esta finalidade. Além disso, é necessário indicar um <strong>banco de molde</strong> ou <strong>template</strong> para que seja realizada uma cópia física desse banco (<em>clone</em>). O banco de dados <code class="docutils literal notranslate"><span class="pre">template1</span></code>, geralmente, é utilizado como molde.</p>
 <p>O comando SQL <code class="code highlight sql docutils literal highlight-sql"><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span></code> pode ser utilizado para criar um novo banco de dados:</p>
-<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">bdgeo</span><span class="w"> </span><span class="k">TEMPLATE</span><span class="w"> </span><span class="n">template1</span><span class="p">;</span>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">DATABASE</span><span class="w"> </span><span class="n">geocredito</span><span class="w"> </span><span class="k">TEMPLATE</span><span class="w"> </span><span class="n">template1</span><span class="p">;</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>O comando acima permite utilizar qualquer banco de dados com <em>template</em>. A única restrição é que o banco utilizado como <em>template</em> não pode ter sessões ativas.</p>
+<p>O comando acima permite utilizar qualquer banco de dados como <em>template</em>. A única restrição é que o banco utilizado como <em>template</em> não pode ter sessões ativas.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
@@ -142,14 +152,32 @@
 </div>
 <p>De maneira similar, o meta-comando <code class="docutils literal notranslate"><span class="pre">\l</span></code> no <cite>psql</cite> fornece uma listagem dos bancos de dados existentes.</p>
 </div>
+<section id="habilitando-a-extensao-postgis">
+<h2><span class="section-number">1.3.1. </span>Habilitando a Extensão PostGIS<a class="headerlink" href="#habilitando-a-extensao-postgis" title="Link permanente para este cabeçalho"></a></h2>
+<p>O comando <code class="code highlight postgresql docutils literal highlight-postgresql"><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTENSION</span></code> possibilita carregar a extensão PostGIS no banco de dados criado:</p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">EXTENSION</span><span class="w"> </span><span class="n">postgis</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Para saber as configurações da extensão PostGIS carregada, utilize a função <code class="docutils literal notranslate"><span class="pre">postgis_full_version</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">postgis_full_version</span><span class="p">();</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                                                                                                                                                    postgis_full_version
+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+ POSTGIS=&quot;3.4.2 c19ce56&quot; [EXTENSION] PGSQL=&quot;160&quot; GEOS=&quot;3.9.0-CAPI-1.16.2&quot; PROJ=&quot;7.2.1 NETWORK_ENABLED=OFF URL_ENDPOINT=https://cdn.proj.org USER_WRITABLE_DIRECTORY=/var/lib/postgresql/.local/share/proj DATABASE_PATH=/usr/share/proj/proj.db&quot; LIBXML=&quot;2.9.10&quot; LIBJSON=&quot;0.15&quot; LIBPROTOBUF=&quot;1.3.3&quot; WAGYU=&quot;0.5.0 (Internal)&quot;
+(1 row)
+</pre></div>
+</div>
+</section>
 </section>
 
 
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="conectando-bd.html" class="btn btn-neutral float-left" title="1.1. Conectando ao Servidor PostgreSQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="criando-tabelas.html" class="btn btn-neutral float-right" title="1.3. Criando Tabelas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="conectando-bd.html" class="btn btn-neutral float-left" title="1.2. Conectando ao Servidor PostgreSQL" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="tabelas.html" class="btn btn-neutral float-right" title="1.4. Conceitos do Modelo Relacional" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -159,7 +187,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f0ee52ab130>
+<jinja2.runtime.BlockReference object at 0x7fce6c503e50>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

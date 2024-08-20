@@ -1,0 +1,60 @@
+.. include:: ../def.rst
+
+
+.. _sec_acesso_imagens_stac:
+
+Catálogo de Coleções de Imagem de Sensoriamento Remoto
+======================================================
+
+
+Os produtos de imagem do `Brazil Data Cube <https://data.inpe.br/bdc/web/>`__  são disponibilizados de maneira aberta na forma de arquivos otimizados para *cloud*, o denominado formato **C**\ loud **O**\ ptimized **G**\ eoTIFF (**COG**). Este formato permite que as aplicações possam utilizar as imagens através da Web com o melhor compromisso possível, incluindo o uso de pirâmide de multi-resolução para aplicações de visualização ou até mesmo a recuperação parcial de porções de uma imagem.
+
+
+Esses produtos de dados podem ser consultados utilizando uma interface de programação de aplicações baseada no padrão aberto **S**\ patio\ **T**\ emporal **A**\ sset **C**\ atalog (`STAC <https://stacspec.org/>`__). Esta especificação, criada por organizações e especialistas do setor geoespacial, é baseada nos conceitos apresentados no diagrama da :numref:`Figura %s <fig:acesso-imagens:stac:concept>`.
+
+
+.. figure:: ../img/acesso-imagens/stac/stac-concept.png
+    :alt: Visão geral do serviço STAC
+    :width: 40%
+    :figclass: align-center
+    :name: fig:acesso-imagens:stac:concept
+
+    Visão geral do serviço STAC.
+
+
+Onde:
+
+.. rst-class:: open
+
+- **Catalog**: É um tipo de objeto que fornece uma estrutura para vincular vários itens ou coleções STAC juntos ou mesmo outros catálogos. Na :numref:`Figura %s <fig:acesso-imagens:stac:concept>`, o catálogo é composto de três coleções: Landsat/OLI, CBERS4/WFI e Sentinel-2/MSI.
+
+- **Collection:** É uma especialização do catálogo que permite incluir informações adicionais sobre uma determinada coleção espaço-temporal. Uma coleção pode conter informações como o conjunto de bandas espectrais disponíveis das imagens, a extensão geográfica ou área de cobertura das imagens, o período de tempo que compreende a coleção, entre outras informações. Em geral, através da coleção chegamos aos itens dessa coleção.
+
+- **Item**: Corresponde à unidade atômica de metadados, fornecendo *links* para os *assets* associados. Um *Item* é descrito através da notação GeoJSON, como uma feição (*feature*) contendo atributos específicos como a coleção a que ele pertence, propriedades temporais, *links* para os *assets* e coleções ou catálogos associados. Na :numref:`Figura %s <fig:acesso-imagens:stac:concept>`, um `Item` equivale a uma cena obtida por um satélite em um determinado instante de tempo.
+
+- **Asset**: Um *asset* é qualquer recurso geoespacial, como um arquivo de imagem ou arquivo vetorial, contendo informações sobre a superfície da Terra, em um determinado espaço e tempo.
+
+
+A especificação conceitual do STAC permite dois tipos de implementações:
+
+.. rst-class:: open
+
+- **STAC estático:** Baseada em um conjunto de documentos JSON ligados que podem ser facilmente navegados. Ex: `CBERS na AWS <https://cbers-stac-1-0-0.s3.amazonaws.com/CBERS4/catalog.json>`__.
+
+- **STAC dinâmico:** Baseada em uma *API RESTful*, de modo que a navegação é realizada através de uma API de serviço Web que permite realizar consultas utilizando uma linguagem padrão para acessar subconjuntos do catálogo. Ex: `BDC-STAC <https://data.inpe.br/bdc/data>`__.
+
+
+.. note::
+
+    Como parte do aperfeiçoamento dos produtos e serviços disponibilizados pelo INPE à sociedade, encontra-se em desenvolvimento o novo portal https://data.inpe.br/, que faz parte da modernização da infraestrutura de serviços para acesso às imagens de satélites do acervo do instituto. Esse portal foi criado com o intuito de facilitar a pesquisa e obtenção das imagens disponibilizadas gratuitamente. Esse novo serviço tem como base as tecnologias desenvolvidas no projeto Brazil Data Cube, e está ancorado dentro do Programa Base de Informações Georreferenciadas (BIG) do INPE. Para navegar pelas coleções disponibilizadas no serviço STAC do INPE, utilize a instância do `STAC Browser <https://data.inpe.br/stac/browser/>`__.
+
+
+Para demonstrar o acesso aos produtos de dados do Brazil Data Cube, serão utiizados os seguintes *Jupyter Notebooks*:
+
+.. rst-class:: open
+
+- `Introdução ao STAC: consultando e recuperando imagens de sensoriamento remoto associadas à região de uma gleba do Sicor <https://www.kaggle.com/code/gqueiroz/tema4-stac-introducao>`__.
+
+- Usando o STAC e o TMS para visualização de imagens.
+
+

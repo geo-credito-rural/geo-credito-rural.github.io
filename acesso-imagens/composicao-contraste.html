@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>6.3. Composição colorida e Contraste &mdash; GeoCreditoRural</title>
+  <title>6.4. Composição colorida e Contraste &mdash; GeoCreditoRural</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -28,8 +28,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="6.4. Índices espectrais obtidos a partir de imagens" href="indices-espectrais.html" />
-    <link rel="prev" title="6.2. Scripts para suporte à análise de imagens" href="scripts-analise.html" /> 
+    <link rel="next" title="6.5. Índices espectrais obtidos a partir de imagens" href="indices-espectrais.html" />
+    <link rel="prev" title="6.3. Scripts para suporte à análise de imagens" href="scripts-analise.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -64,11 +64,14 @@
 <li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
-<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.2. Scripts para suporte à análise de imagens</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">6.3. Composição colorida e Contraste</a></li>
-<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.4. Índices espectrais obtidos a partir de imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="stac.html">6.2. Catálogo de Coleções de Imagem de Sensoriamento Remoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.3. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.4. Composição colorida e Contraste</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.5. Índices espectrais obtidos a partir de imagens</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -98,12 +101,12 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">6.3. </span>Composição colorida e Contraste</li>
+      <li class="breadcrumb-item active"><span class="section-number">6.4. </span>Composição colorida e Contraste</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
-        <a href="scripts-analise.html" class="btn btn-neutral float-left" title="6.2. Scripts para suporte à análise de imagens" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="indices-espectrais.html" class="btn btn-neutral float-right" title="6.4. Índices espectrais obtidos a partir de imagens" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-left" title="6.3. Scripts para suporte à análise de imagens" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="indices-espectrais.html" class="btn btn-neutral float-right" title="6.5. Índices espectrais obtidos a partir de imagens" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -111,7 +114,7 @@
            <div itemprop="articleBody">
              
   <section id="composicao-colorida-e-contraste">
-<span id="sec-acesso-imagens-composicao-contraste"></span><h1><span class="section-number">6.3. </span>Composição colorida e Contraste<a class="headerlink" href="#composicao-colorida-e-contraste" title="Link permanente para este cabeçalho"></a></h1>
+<span id="sec-acesso-imagens-composicao-contraste"></span><h1><span class="section-number">6.4. </span>Composição colorida e Contraste<a class="headerlink" href="#composicao-colorida-e-contraste" title="Link permanente para este cabeçalho"></a></h1>
 <p>Para construir uma composição colorida a partir de um conjunto de imagens, precisamos informar quais bandas serão utilizadas nas componentes RGB do gráfico:</p>
 <ul class="simple">
 <li><p>canal R (<em>Red</em>, vermelho)</p></li>
@@ -124,28 +127,28 @@
 <p class="admonition-title">Nota</p>
 <p>Para realizar análises baseadas no comportamento espectral de alvos, técnicas de contraste devem ser evitadas. Por exemplo, o índice espectral NDVI não pode ser computado utilizando canais alterados por contraste.</p>
 </div>
-<p>Uma maneira bem conhecida de aplicar o contraste é através das operações de <em>gain</em> (usualmente chamada ganho) e <em>offset</em>. O <em>gain</em> é um valor constante que é multiplicado por todos os pixels das imagens. O <em>offset</em>, que representa um deslocamento, é um valor constante que é somado a todos os pixels das imagens. Para aplicar este tipo de contraste, bem como outros que veremos a seguir, é importante ter conhecimento da propriedade <em>quantização</em> das imagens (<a class="reference internal" href="introducao-ser.html#sec-acesso-imagens-introducao-quantizacao"><span class="std std-numref">Seção 6.1.5</span></a>), e também sobre como as bibliotecas de visualização trabalham com os intervalos de representação. A quantização, representada por <span class="math notranslate nohighlight">\(L\)</span>, indica a quantidade de bits utilizados para armazenar cada pixel. Por exemplo, o satélite AMAZONIA-1 possui <span class="math notranslate nohighlight">\(L = 10\)</span>. Nesse caso, os pixels das imagens do AMAZONIA-1 possuem valores variando entre 0 e <span class="math notranslate nohighlight">\(2^{10} = 1024\)</span>. No entanto, muitas vezes a distribuição de valores dos pixels não está espalhada em todo esse intervalo. Dessa forma, a visualização da imagem acaba ficando opaca. Assim, técnicas de contraste visam transformar o intervalo de pixels, muitas vezes mal distribuído, de forma a utilizar todo o intervalo de representação.</p>
+<p>Uma maneira bem conhecida de aplicar o contraste é através das operações de <em>gain</em> (usualmente chamada ganho) e <em>offset</em>. O <em>gain</em> é um valor constante que é multiplicado por todos os pixels das imagens. O <em>offset</em>, que representa um deslocamento, é um valor constante que é somado a todos os pixels das imagens. Para aplicar este tipo de contraste, bem como outros que veremos a seguir, é importante ter conhecimento da propriedade <em>quantização</em> das imagens (<a class="reference internal" href="introducao-ser.html#sec-acesso-imagens-introducao-quantizacao"><span class="std std-numref">Seção 6.1.6</span></a>), e também sobre como as bibliotecas de visualização trabalham com os intervalos de representação. A quantização, representada por <span class="math notranslate nohighlight">\(L\)</span>, indica a quantidade de bits utilizados para armazenar cada pixel. Por exemplo, o satélite AMAZONIA-1 possui <span class="math notranslate nohighlight">\(L = 10\)</span>. Nesse caso, os pixels das imagens do AMAZONIA-1 possuem valores variando entre 0 e <span class="math notranslate nohighlight">\(2^{10} = 1024\)</span>. No entanto, muitas vezes a distribuição de valores dos pixels não está espalhada em todo esse intervalo. Dessa forma, a visualização da imagem acaba ficando opaca. Assim, técnicas de contraste visam transformar o intervalo de pixels, muitas vezes mal distribuído, de forma a utilizar todo o intervalo de representação.</p>
 <p>Para melhor visualizar a imagem, espera-se que a distribuição dos pixels maximize o intervalo de representação. Uma forma de fazer isso é por meio de técnicas de normalização. Uma forma eficiente de normalizar uma imagem consiste em aplicar uma função que transforme o menor valor de pixel encontrado em <span class="math notranslate nohighlight">\(0\)</span>, e o maior valor de pixel encontrado em <span class="math notranslate nohighlight">\(L - 1\)</span>, usando a fórmula apresentada na <a class="reference internal" href="#equation-eq-acesso-imagens-composicao-contraste-normalizacao-min-max">Equação 6.1</a>:</p>
 <div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-composicao-contraste-normalizacao-min-max">
 <span class="eqno">(6.1)<a class="headerlink" href="#equation-eq-acesso-imagens-composicao-contraste-normalizacao-min-max" title="Link permanente para essa equação"></a></span>\[Q = (L - 1) \frac{P - \min_{pixel}}{\max_{pixel} - \min_{pixel}}\]</div>
-<p>onde: <span class="math notranslate nohighlight">\(P\)</span> refere-se ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação, e <span class="math notranslate nohighlight">\(\min_{pixel}, \max_{pixel}\)</span> são, respectivamente, os valores do maior e do menor valor de pixel encontrados na imagem original.</p>
+<p>onde: <span class="math notranslate nohighlight">\(P\)</span> se refere ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação, e <span class="math notranslate nohighlight">\(\min_{pixel}, \max_{pixel}\)</span> são, respectivamente, os valores do maior e do menor valor de pixel encontrados na imagem original.</p>
 <p>É possível também realizar outras transformações nas imagens, como por exemplo aplicar uma função matemática sobre todos os pixels, e assim a forma da função vai gerar uma alteração na relação entre os valores originais. Se aplicarmos a função raiz quadrada sobre cada pixel, conforme a <a class="reference internal" href="#equation-eq-acesso-imagens-composicao-contrate-contraste-raiz">Equação 6.2</a>, veremos que essa função tem uma angulação acentuada nos menores valores, e a angulação vai reduzindo conforme os valores aumentam. Isso acaba produzindo um efeito de gerar alto contraste nas áreas escuras da imagem, e um contraste reduzido nas áreas mais claras da imagem.</p>
 <div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-composicao-contrate-contraste-raiz">
 <span class="eqno">(6.2)<a class="headerlink" href="#equation-eq-acesso-imagens-composicao-contrate-contraste-raiz" title="Link permanente para essa equação"></a></span>\[Q = \sqrt{L} * \sqrt{P}\]</div>
-<p>onde: <span class="math notranslate nohighlight">\(P\)</span> refere-se ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação.</p>
+<p>onde: <span class="math notranslate nohighlight">\(P\)</span> se refere ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação.</p>
 <p>De forma oposta, ao aplicar a função quadrado nos pixels da imagem, conforme a <a class="reference internal" href="#equation-eq-acesso-imagens-composicao-contrate-contraste-funcao-quadrado">Equação 6.3</a>, nota-se que a curva tem ângulo reduzida na região das áreas escuras da imagem, e um contraste acentuado nas áreas mais claras da imagem.</p>
 <div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-composicao-contrate-contraste-funcao-quadrado">
 <span class="eqno">(6.3)<a class="headerlink" href="#equation-eq-acesso-imagens-composicao-contrate-contraste-funcao-quadrado" title="Link permanente para essa equação"></a></span>\[Q = \frac{P^2}{L}\]</div>
-<p>onde: <span class="math notranslate nohighlight">\(P\)</span> refere-se ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação.</p>
+<p>onde: <span class="math notranslate nohighlight">\(P\)</span> se refere ao valor atual do pixel, <span class="math notranslate nohighlight">\(Q\)</span> é o valor resultante da transformação.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Algumas transformações podem gerar valores fora do intervalo de representação. Assim, é comum aplicar uma determinada função, como raiz ou quadrado, por exemplo, e depois ter que aplicar uma normalização dos valores para que voltem a ficar no intervalo de representação. Quando essa operação não é realizada, pode ser observado um efeito de saturação dos pixels com valores extremos, tanto os mais claros quanto os mais escuros. Dependendo do sistema de visualização, os resultados podem parecer incoerentes.</p>
 </div>
-<p>A <a class="reference internal" href="#fig-acesso-imagens-composicao-contrate-diversos-contrastes"><span class="std std-numref">Figura 6.10</span></a> apresenta uma composição colorida original (sem contraste), e a aplicação do contraste por ganho e <em>offset</em>, além da normalização das bandas e a aplicação de duas funções de contraste, o quadrado e a raiz.</p>
+<p>A <a class="reference internal" href="#fig-acesso-imagens-composicao-contrate-diversos-contrastes"><span class="std std-numref">Figura 6.14</span></a> apresenta uma composição colorida original (sem contraste), e a aplicação do contraste por ganho e <em>offset</em>, além da normalização das bandas e a aplicação de duas funções de contraste, o quadrado e a raiz.</p>
 <figure class="align-center align-default" id="fig-acesso-imagens-composicao-contrate-diversos-contrastes">
 <a class="reference internal image-reference" href="../_images/diversos-contrastes.png"><img alt="Visualização da composição colorida original e o resultado da aplicação de diferentes contrastes" src="../_images/diversos-contrastes.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 6.10 - </span><span class="caption-text">Visualização da composição colorida original e o resultado da aplicação de diferentes contrastes.</span><a class="headerlink" href="#fig-acesso-imagens-composicao-contrate-diversos-contrastes" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 6.14 - </span><span class="caption-text">Visualização da composição colorida original e o resultado da aplicação de diferentes contrastes.</span><a class="headerlink" href="#fig-acesso-imagens-composicao-contrate-diversos-contrastes" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -154,8 +157,8 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="scripts-analise.html" class="btn btn-neutral float-left" title="6.2. Scripts para suporte à análise de imagens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="indices-espectrais.html" class="btn btn-neutral float-right" title="6.4. Índices espectrais obtidos a partir de imagens" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-left" title="6.3. Scripts para suporte à análise de imagens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="indices-espectrais.html" class="btn btn-neutral float-right" title="6.5. Índices espectrais obtidos a partir de imagens" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -165,7 +168,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f0ee559fe50>
+<jinja2.runtime.BlockReference object at 0x7fce6b34a490>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

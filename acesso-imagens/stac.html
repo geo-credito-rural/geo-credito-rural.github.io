@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>6.2. Catálogo de Coleções de Imagem de Sensoriamento Remoto &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/acesso-imagens/stac.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="6.3. Scripts para suporte à análise de imagens" href="scripts-analise.html" />
+    <link rel="prev" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" href="introducao-ser.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">6.2. Catálogo de Coleções de Imagem de Sensoriamento Remoto</a></li>
+<li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.3. Scripts para suporte à análise de imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="composicao-contraste.html">6.4. Composição colorida e Contraste</a></li>
+<li class="toctree-l2"><a class="reference internal" href="indices-espectrais.html">6.5. Índices espectrais obtidos a partir de imagens</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">6.2. </span>Catálogo de Coleções de Imagem de Sensoriamento Remoto</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="introducao-ser.html" class="btn btn-neutral float-left" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-right" title="6.3. Scripts para suporte à análise de imagens" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="catalogo-de-colecoes-de-imagem-de-sensoriamento-remoto">
+<span id="sec-acesso-imagens-stac"></span><h1><span class="section-number">6.2. </span>Catálogo de Coleções de Imagem de Sensoriamento Remoto<a class="headerlink" href="#catalogo-de-colecoes-de-imagem-de-sensoriamento-remoto" title="Link permanente para este cabeçalho"></a></h1>
+<p>Os produtos de imagem do <a class="reference external" href="https://data.inpe.br/bdc/web/">Brazil Data Cube</a>  são disponibilizados de maneira aberta na forma de arquivos otimizados para <em>cloud</em>, o denominado formato <strong>C</strong>loud <strong>O</strong>ptimized <strong>G</strong>eoTIFF (<strong>COG</strong>). Este formato permite que as aplicações possam utilizar as imagens através da Web com o melhor compromisso possível, incluindo o uso de pirâmide de multi-resolução para aplicações de visualização ou até mesmo a recuperação parcial de porções de uma imagem.</p>
+<p>Esses produtos de dados podem ser consultados utilizando uma interface de programação de aplicações baseada no padrão aberto <strong>S</strong>patio<strong>T</strong>emporal <strong>A</strong>sset <strong>C</strong>atalog (<a class="reference external" href="https://stacspec.org/">STAC</a>). Esta especificação, criada por organizações e especialistas do setor geoespacial, é baseada nos conceitos apresentados no diagrama da <a class="reference internal" href="#fig-acesso-imagens-stac-concept"><span class="std std-numref">Figura 6.8</span></a>.</p>
+<figure class="align-center align-default" id="fig-acesso-imagens-stac-concept">
+<a class="reference internal image-reference" href="../_images/stac-concept.png"><img alt="Visão geral do serviço STAC" src="../_images/stac-concept.png" style="width: 40%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 6.8 - </span><span class="caption-text">Visão geral do serviço STAC.</span><a class="headerlink" href="#fig-acesso-imagens-stac-concept" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Onde:</p>
+<ul class="open">
+<li><p><strong>Catalog</strong>: É um tipo de objeto que fornece uma estrutura para vincular vários itens ou coleções STAC juntos ou mesmo outros catálogos. Na <a class="reference internal" href="#fig-acesso-imagens-stac-concept"><span class="std std-numref">Figura 6.8</span></a>, o catálogo é composto de três coleções: Landsat/OLI, CBERS4/WFI e Sentinel-2/MSI.</p></li>
+<li><p><strong>Collection:</strong> É uma especialização do catálogo que permite incluir informações adicionais sobre uma determinada coleção espaço-temporal. Uma coleção pode conter informações como o conjunto de bandas espectrais disponíveis das imagens, a extensão geográfica ou área de cobertura das imagens, o período de tempo que compreende a coleção, entre outras informações. Em geral, através da coleção chegamos aos itens dessa coleção.</p></li>
+<li><p><strong>Item</strong>: Corresponde à unidade atômica de metadados, fornecendo <em>links</em> para os <em>assets</em> associados. Um <em>Item</em> é descrito através da notação GeoJSON, como uma feição (<em>feature</em>) contendo atributos específicos como a coleção a que ele pertence, propriedades temporais, <em>links</em> para os <em>assets</em> e coleções ou catálogos associados. Na <a class="reference internal" href="#fig-acesso-imagens-stac-concept"><span class="std std-numref">Figura 6.8</span></a>, um <cite>Item</cite> equivale a uma cena obtida por um satélite em um determinado instante de tempo.</p></li>
+<li><p><strong>Asset</strong>: Um <em>asset</em> é qualquer recurso geoespacial, como um arquivo de imagem ou arquivo vetorial, contendo informações sobre a superfície da Terra, em um determinado espaço e tempo.</p></li>
+</ul>
+<p>A especificação conceitual do STAC permite dois tipos de implementações:</p>
+<ul class="open">
+<li><p><strong>STAC estático:</strong> Baseada em um conjunto de documentos JSON ligados que podem ser facilmente navegados. Ex: <a class="reference external" href="https://cbers-stac-1-0-0.s3.amazonaws.com/CBERS4/catalog.json">CBERS na AWS</a>.</p></li>
+<li><p><strong>STAC dinâmico:</strong> Baseada em uma <em>API RESTful</em>, de modo que a navegação é realizada através de uma API de serviço Web que permite realizar consultas utilizando uma linguagem padrão para acessar subconjuntos do catálogo. Ex: <a class="reference external" href="https://data.inpe.br/bdc/data">BDC-STAC</a>.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Como parte do aperfeiçoamento dos produtos e serviços disponibilizados pelo INPE à sociedade, encontra-se em desenvolvimento o novo portal <a class="reference external" href="https://data.inpe.br/">https://data.inpe.br/</a>, que faz parte da modernização da infraestrutura de serviços para acesso às imagens de satélites do acervo do instituto. Esse portal foi criado com o intuito de facilitar a pesquisa e obtenção das imagens disponibilizadas gratuitamente. Esse novo serviço tem como base as tecnologias desenvolvidas no projeto Brazil Data Cube, e está ancorado dentro do Programa Base de Informações Georreferenciadas (BIG) do INPE. Para navegar pelas coleções disponibilizadas no serviço STAC do INPE, utilize a instância do <a class="reference external" href="https://data.inpe.br/stac/browser/">STAC Browser</a>.</p>
+</div>
+<p>Para demonstrar o acesso aos produtos de dados do Brazil Data Cube, serão utiizados os seguintes <em>Jupyter Notebooks</em>:</p>
+<ul class="open">
+<li><p><a class="reference external" href="https://www.kaggle.com/code/gqueiroz/tema4-stac-introducao">Introdução ao STAC: consultando e recuperando imagens de sensoriamento remoto associadas à região de uma gleba do Sicor</a>.</p></li>
+<li><p>Usando o STAC e o TMS para visualização de imagens.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="introducao-ser.html" class="btn btn-neutral float-left" title="6.1. Introdução ao Sensoriamento Remoto por Satélites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="scripts-analise.html" class="btn btn-neutral float-right" title="6.3. Scripts para suporte à análise de imagens" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7fce6b7eb310>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

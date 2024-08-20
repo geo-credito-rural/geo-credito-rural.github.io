@@ -1,0 +1,77 @@
+.. include:: ../def.rst
+
+
+.. _sec_series_temporais_filtragem:
+
+Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite
+======================================================================
+
+
+Uma série temporal oriunda das imagens de satélite podem estar sujeita a ocorrência de ruídos oriundos de diversos fatores como a presença de nuvens, falhas do detector, geometria de iluminação e visada, dentre outros :cite:`jonsson:2002,eklundh:2016,hird:2009`. Para minimizar os efeitos dos ruídos em séries temporais foram criados diversos filtros. Neste sentido, :cite:t:`hird:2009` testaram seis filtros e concluíram que quatro filtros deles produziram bons resultados: a) 4253H twice :cite:`velleman:1977`; b) savitzky–Golay :cite:`savitzky:1964` c) função duplo-logística :cite:`beck:2006` e; d) gaussiano assimétrico :cite:`jonsson:2002`. Além deles, também podem ser utilizados os filtros Hants que tem por base a transformada de Fourier :cite:`roerink:2000`.
+
+
+4253H twice
+-----------
+
+
+Este filtro é uma adequação do filtro de mediana proposto por :cite:t:`velleman:1977`. A parte numérica do nome do filtro *4253* representa a largura da janela temporal utilizada para o cálculo da mediana. Por exemplo, inicialmente o filtro considera uma janela de quatro datas. A partir das quatro primeiras datas é calculado um valor da primeira de mediana. Na sequência a janela é deslocada uma data no tempo e, é composta pelos dados das três últimas datas da janela anterior mais a data seguinte e assim sucessivamente até a última data da série temporal do período considerado. Na segunda, terceira e quarta rodada do filtro as janelas tem tamanho de 2, 5 e 3 datas, respectivamente. O termo *H* do nome do filtro refere-se à função de Hann e o *twice* é devido à função ser aplicada tanto nos dados quanto nos resíduos. A função de Hann ou Hanning representa uma função simétrica utilizada para filtrar os dados, cujo maior peso é dado ao elemento central da janela. Para calcular os coeficientes da função de Hann, deve-se resolver a :eq:`eq:series-temporais:filtragem:hann`:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:hann
+
+    w(n) = 0.5 \left( 1 - \cos \left( 2 \pi \frac{n}{N} \right) \right), \quad 0 \leq n \leq N
+
+
+em que :math:`N` representa o número total de elementos da janela, :math:`n` o elemento que será calculado, e :math:`w` o valor do coeficiente calculado para o elemento :math:`n`.
+
+
+Inicialmente, o filtro de medianas, com as janelas (:math:`v`) de tamanho 4, 2, 5 e 3, é aplicado à série temporal (:math:`x_t`) no tempo :math:`t`. Para o caso de :math:`n` ser um número ímpar a :eq:`eq:series-temporais:filtragem:med-impar` deve ser utilizada:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:med-impar
+
+    y_t = \text{med} \left( x_{t-u}, \ldots, x_t, \ldots, x_{t+u} \right), \quad 0 \leq t \leq T
+
+
+em que :math:`v = 2u+1` e :math:`y_t` referem-se ao valor de mediana para o elemento na posição :math:`t`.
+
+
+quando :math:`v` for um número par, a :eq:`eq:series-temporais:filtragem:med-par` deve ser utilizada:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:med-par
+
+    y_{t+\frac{1}{2}} = \text{med} \left( x_{t-u+1}, \ldots, x_t, \ldots, x_{t+u-1} \right), \quad 0 \leq t \leq T
+
+
+em que :math:`v = 2u` e :math:`y_{t+\frac{1}{2}}` referem-se ao valor médio determinado a partir das duas posições centrais da janela.
+
+
+
+Na série filtrada resultante é aplicada a função de Hann com uma janela de tamanho 3 (:eq:`eq:series-temporais:filtragem:hann-tres`):
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:hann-tres
+
+    z_t = \frac{1}{4} y_{t-1} + \frac{1}{2} y_t + \frac{1}{4} y_{t+1}, \quad 0 \leq t \leq T
+
+
+em que :math:`z_t` refere-se ao valor do elemento e :math:`y_t` é o valor mediano no tempo :math:`t`.
+
+
+Após esta nova filtragem é calculado o resíduo entre os dados originais e os dados filtrados (:eq:`eq:series-temporais:filtragem:residuos-4253`):
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:residuos-4253
+
+    r_t = z_t - x_t
+
+
+em que :math:`r_t` refere-se ao valor do resíduo do elemento no tempo :math:`t`.
+
+A mesma seqüência de filtros é aplicada aos resíduos (:math:`r_t`) e o resultado da filtragem dos resíduos é somado aos dados filtrados :cite:`velleman:1977`.

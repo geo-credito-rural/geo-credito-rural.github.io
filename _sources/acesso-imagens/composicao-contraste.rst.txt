@@ -36,7 +36,7 @@ Para melhor visualizar a imagem, espera-se que a distribuição dos pixels maxim
     Q = (L - 1) \frac{P - \min_{pixel}}{\max_{pixel} - \min_{pixel}}
 
 
-onde: :math:`P` refere-se ao valor atual do pixel, :math:`Q` é o valor resultante da transformação, e :math:`\min_{pixel}, \max_{pixel}` são, respectivamente, os valores do maior e do menor valor de pixel encontrados na imagem original.
+onde: :math:`P` se refere ao valor atual do pixel, :math:`Q` é o valor resultante da transformação, e :math:`\min_{pixel}, \max_{pixel}` são, respectivamente, os valores do maior e do menor valor de pixel encontrados na imagem original.
 
 
 É possível também realizar outras transformações nas imagens, como por exemplo aplicar uma função matemática sobre todos os pixels, e assim a forma da função vai gerar uma alteração na relação entre os valores originais. Se aplicarmos a função raiz quadrada sobre cada pixel, conforme a :eq:`eq:acesso-imagens:composicao-contrate:contraste-raiz`, veremos que essa função tem uma angulação acentuada nos menores valores, e a angulação vai reduzindo conforme os valores aumentam. Isso acaba produzindo um efeito de gerar alto contraste nas áreas escuras da imagem, e um contraste reduzido nas áreas mais claras da imagem.
@@ -48,7 +48,7 @@ onde: :math:`P` refere-se ao valor atual do pixel, :math:`Q` é o valor resultan
     Q = \sqrt{L} * \sqrt{P}
 
 
-onde: :math:`P` refere-se ao valor atual do pixel, :math:`Q` é o valor resultante da transformação.
+onde: :math:`P` se refere ao valor atual do pixel, :math:`Q` é o valor resultante da transformação.
 
 
 De forma oposta, ao aplicar a função quadrado nos pixels da imagem, conforme a :eq:`eq:acesso-imagens:composicao-contrate:contraste-funcao-quadrado`, nota-se que a curva tem ângulo reduzida na região das áreas escuras da imagem, e um contraste acentuado nas áreas mais claras da imagem.
@@ -60,7 +60,7 @@ De forma oposta, ao aplicar a função quadrado nos pixels da imagem, conforme a
     Q = \frac{P^2}{L}
 
 
-onde: :math:`P` refere-se ao valor atual do pixel, :math:`Q` é o valor resultante da transformação.
+onde: :math:`P` se refere ao valor atual do pixel, :math:`Q` é o valor resultante da transformação.
 
 
 .. note::

@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>1.7. PostGIS Geometry &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/sql/postgis-geometry.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="1.8. Criando Tabelas" href="criando-tabelas.html" />
+    <link rel="prev" title="1.6. Tipos Geométricos" href="tipos-geometricos.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">1. Introdução à Linguagem de Consulta SQL</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação do Servidor PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conectando-bd.html">1.2. Conectando ao Servidor PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="criando-bd.html">1.3. Criando um Novo Banco de Dados no PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabelas.html">1.4. Conceitos do Modelo Relacional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-dados.html">1.5. Tipos de Dados SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-geometricos.html">1.6. Tipos Geométricos</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.7. PostGIS Geometry</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#representacao-wkt">1.7.1. Representação WKT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#criando-geometrias">1.7.2. Criando Geometrias</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operadores-metricos">1.7.3. Operadores Métricos</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#operadores-conjunto">1.7.4. Operadores Conjunto</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#relacionamentos-espaciais">1.7.5. Relacionamentos Espaciais</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.8. Criando Tabelas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.9. Inserindo Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.10. Consultas em SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">1. </span>Introdução à Linguagem de Consulta SQL</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">1.7. </span>PostGIS Geometry</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="tipos-geometricos.html" class="btn btn-neutral float-left" title="1.6. Tipos Geométricos" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="criando-tabelas.html" class="btn btn-neutral float-right" title="1.8. Criando Tabelas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="postgis-geometry">
+<span id="sec-sql-postgis-geometry"></span><h1><span class="section-number">1.7. </span>PostGIS Geometry<a class="headerlink" href="#postgis-geometry" title="Link permanente para este cabeçalho"></a></h1>
+<p>A extensão PostGIS introduz o tipo <strong>PostGIS Geometry</strong> para representação de geometrias no <strong>Plano Cartesiano</strong>. As operações sobre esse tipo são sempre realizadas em 2D, mesmo se a geometria possuir valores de coordenada <span class="math notranslate nohighlight">\(z\)</span> ou <span class="math notranslate nohighlight">\(m\)</span>. Além disso, as operações como área e perímetro são realizadas na unidade do sistema de referência espacial associada à geometria. Isso significa que se as coordenadas forem expressas em graus, por exemplo, é necessário realizar uma transformação para um sistema de coordenadas onde seja possível calcular essa área ou perímetro em uma unidade de medida métrica.</p>
+<section id="representacao-wkt">
+<h2><span class="section-number">1.7.1. </span>Representação WKT<a class="headerlink" href="#representacao-wkt" title="Link permanente para este cabeçalho"></a></h2>
+<p>A especificação OGC-SFS <span id="id1">[<a class="reference internal" href="../referencias.html#id55" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 1: common architecture. Technical Report 06-103r4, Open Geospatial Consortium Inc., May 2011. URL: http://www.opengeospatial.org/standards/sfa.">7</a>]</span> define uma notação textual conhecida por <strong>Well-Know Text</strong> ou <a class="reference internal" href="../glossary.html#term-WKT"><span class="xref std std-term">WKT</span></a>, que permite representar elementos geométricos tais como geometrias elementares (pontos, linhas e polígonos) e coleções homogêneas de geometrias (coleção de pontos, coleção de linhas e coleção de polígonos), conforme pode ser visto na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3</span></a>.</p>
+<table class="styled-table docutils align-center" id="tbl-sql-tipos-geometricos-wkt-geom" style="width: 100%">
+<caption><span class="caption-number">Tabela 1.3 - </span><span class="caption-text">Exemplos de geometrias.</span><a class="headerlink" href="#tbl-sql-tipos-geometricos-wkt-geom" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p>( a ) Geometrias Simples</p></td>
+<td class="center-align"><p>( b ) Coleções Pontos e Linhas</p></td>
+<td class="center-align"><p>( c ) Coleções Polígonos</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><img alt="fig:sql:tipos-geometricos:wkt-pt-lin-pol" src="../_images/wkt-pt-lin-pol.png" /></p></td>
+<td class="center-align"><p><img alt="fig:sql:tipos-geometricos:wkt-mpt-mlin" src="../_images/wkt-mpt-mlin.png" /></p></td>
+<td class="center-align"><p><img alt="fig:sql:tipos-geometricos:wkt-mpoly" src="../_images/wkt-mpoly.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>Na notação WKT, o ponto de coordenadas <span class="math notranslate nohighlight">\(x = 1\)</span> e <span class="math notranslate nohighlight">\(y = 8\)</span> mostrado na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>, é descrito pela seguinte cadeia de caracteres ou <em>string</em>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">POINT</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A linha definida a partir de interpolações lineares de três vértices consecutivos mostrada na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a> é descrita pela seguinte string:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">LINESTRING</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>O polígono simples, formado por um anel externo e um anel interno, mostrado na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a> é descrito pela seguinte string:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">POLYGON</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A coleção de pontos mostrada na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3b</span></a>, é descrita por:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">MULTIPOINT</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">9</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>A coleção de linhas (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3b</span></a>), é descrita por:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">MULTILINESTRING</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Finalmente, a coleção de polígonos (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3c</span></a>), é descrita por:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">MULTIPOLYGON</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="p">),</span>
+<span class="w">              </span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="criando-geometrias">
+<h2><span class="section-number">1.7.2. </span>Criando Geometrias<a class="headerlink" href="#criando-geometrias" title="Link permanente para este cabeçalho"></a></h2>
+<p>A função <code class="docutils literal notranslate"><span class="pre">ST_GeomFromText</span></code> permite criar uma geometria a partir de uma string na notação <strong>Well-Know Text</strong> ou <strong>WKT</strong>. Os exemplos de consulta SQL abaixo mostram como utilizar esta função para criação das geometrias apresentadas na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3</span></a>.</p>
+<p><strong>1.</strong> Criando um ponto de coordenadas <span class="math notranslate nohighlight">\(x = 1\)</span> e <span class="math notranslate nohighlight">\(y = 8\)</span> (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;POINT(1 8)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>2.</strong> Criando uma linha definida a partir de três vértices (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;LINESTRING(1 5, 3 6, 4 5)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>3.</strong> Criando um polígono simples com um anel externo e um anel interno (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1),</span>
+<span class="s1">                                 (3 2, 4 3, 4 2, 3 2) )&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>4.</strong> Criando uma coleção de pontos (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3b</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;MULTIPOINT(1 8, 3 7, 4 9, 2 9)&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>5.</strong> Criando uma coleção de linhas (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3b</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;MULTILINESTRING( (1 2, 3 3, 4 2),</span>
+<span class="s1">                                         (4 3, 6 2) )&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<p><strong>6.</strong> Criando uma coleção de polígonos (<a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3c</span></a>):</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="s1">&#39;MULTIPOLYGON( ( (1 4, 2 6, 4 5, 3 4, 1 4) ),</span>
+<span class="s1">                                      ( (1 1, 2 3, 5 4, 5 1, 1 1),</span>
+<span class="s1">                                        (3 2, 4 3, 4 2, 3 2) ) )&#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+</section>
+<section id="operadores-metricos">
+<h2><span class="section-number">1.7.3. </span>Operadores Métricos<a class="headerlink" href="#operadores-metricos" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>1.</strong> Qual a área do polígono mostrado na figura abaixo?</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><img alt="fig:sql:postgis-geometry:pgis-op-st_area" src="../_images/op-area.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span>
+<span class="w">           </span><span class="s1">&#39;POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1),</span>
+<span class="s1">                     (3 2, 4 3, 4 2, 3 2) )&#39;</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2.</strong> Qual o perímetro do polígono mostrado na figura abaixo?</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><img alt="fig:sql:postgis-geometry:pgis-op-st_area" src="../_images/op-area.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Perimeter</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span>
+<span class="w">               </span><span class="s1">&#39;POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1),</span>
+<span class="s1">                         (3 2, 4 3, 4 2, 3 2) )&#39;</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.</strong> Qual o comprimento da linha mostrada na figura abaixo?</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><img alt="fig:sql:postgis-geometry:pgis-op-st_length" src="../_images/op-comprimento.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Length</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;LINESTRING( 1 2, 3 3, 4 2 )&#39;</span><span class="w"> </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4.</strong> Qual a distância entre as geometrias A e B?</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><img alt="fig:sql:postgis-geometry:pgis-op-st_distance" src="../_images/op-distancia.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Distance</span><span class="p">(</span>
+<span class="w">           </span><span class="s1">&#39;LINESTRING( 1 5, 3 6, 4 5 )&#39;</span><span class="p">,</span>
+<span class="w">           </span><span class="s1">&#39;POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1),</span>
+<span class="s1">                     (3 2, 4 3, 4 2, 3 2) )&#39;</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="operadores-conjunto">
+<h2><span class="section-number">1.7.4. </span>Operadores Conjunto<a class="headerlink" href="#operadores-conjunto" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>1.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Intersection</span></code> computa a geometria de intersecção entre duas geometrias.</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_Intersection</span><span class="p">(</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>2.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Union</span></code> computa a geometria formada pela união de outras duas geometrias.</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_Union</span><span class="p">(</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Difference</span></code> computa a geometria formada pela diferença entre a geometria <code class="docutils literal notranslate"><span class="pre">A</span></code> e a geometria <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_Difference</span><span class="p">(</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_SymDifference</span></code> computa a geometria formada pela diferença simétrica entre duas geometrias.</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_SymDifference</span><span class="p">(</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="relacionamentos-espaciais">
+<h2><span class="section-number">1.7.5. </span>Relacionamentos Espaciais<a class="headerlink" href="#relacionamentos-espaciais" title="Link permanente para este cabeçalho"></a></h2>
+<p>Entre as operações definidas na OGC-SFS <span id="id2">[<a class="reference internal" href="../referencias.html#id55" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 1: common architecture. Technical Report 06-103r4, Open Geospatial Consortium Inc., May 2011. URL: http://www.opengeospatial.org/standards/sfa.">7</a>]</span>, existe um conjunto que merece uma atenção especial: os <strong>operadores topológicos</strong>. Esses operadores são amplamente utilizados na construção de <strong>consultas espaciais</strong> envolvendo o <strong>relacionamento espacial</strong> entre objetos geográficos.</p>
+<p>Suponha dois conjuntos de dados, um representando os limites municipais (<a class="reference internal" href="#tbl-sql-postgis-geometry-rel-espacial"><span class="std std-numref">Tabela 1.4a</span></a>) e outro os focos de queimadas na vegetação (<a class="reference internal" href="#tbl-sql-postgis-geometry-rel-espacial"><span class="std std-numref">Tabela 1.4b</span></a>). Para relacionar os focos de queimadas aos municípios, precisamos ser capazes de estabelecer um relacionamento espacial entre as geometrias dos municípios e as geometrias dos focos.</p>
+<table class="styled-table docutils align-center" id="tbl-sql-postgis-geometry-rel-espacial" style="width: 100%">
+<caption><span class="caption-number">Tabela 1.4 - </span><span class="caption-text">Relacionamento espacial entre dois conjuntos de dados.</span><a class="headerlink" href="#tbl-sql-postgis-geometry-rel-espacial" title="Link Permanente para essa tabela"></a></caption>
+<colgroup>
+<col style="width: 50%" />
+<col style="width: 50%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>( a ) Municípios Brasileiros</p></th>
+<th class="head center-align"><p>( b ) Focos de Queimadas na Vegetação</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:municipios" src="../_images/municipios.png" /></p></td>
+<td class="center-align"><p><img alt="fig:sql:postgis-geometry:focos" src="../_images/focos.png" /></p></td>
+</tr>
+</tbody>
+</table>
+<p>Todos os sistemas baseados em SQL suportam um conjunto com pelo menos 08 operadores: <code class="docutils literal notranslate"><span class="pre">Equals</span></code>, <code class="docutils literal notranslate"><span class="pre">Touches</span></code>, <code class="docutils literal notranslate"><span class="pre">Crosses</span></code>, <code class="docutils literal notranslate"><span class="pre">Within</span></code>, <code class="docutils literal notranslate"><span class="pre">Contains</span></code>, <code class="docutils literal notranslate"><span class="pre">Overlaps</span></code>, <code class="docutils literal notranslate"><span class="pre">Disjoint</span></code>, e <code class="docutils literal notranslate"><span class="pre">Intersects</span></code>.</p>
+<p><strong>1.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Overlaps</span></code> diz se duas geometrias se sobrepõem.</p>
+<table class="styled-table docutils align-center" style="width: 100%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_Intersection</span><span class="p">(</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">           </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Os operadores topológicos são definidos com base no formalismo matemático conhecido como <strong>Matriz de 9-Intersecções Estendida Dimensionalmente</strong> (DE-9IM) <span id="id3">[<a class="reference internal" href="../referencias.html#id38" title="Eliseo Clementini, Paolino Di Felice, and Peter van Oosterom. A small set of formal topological relationships suitable for end-user interaction. In David Abel and Beng Chin Ooi, editors, Advances in Spatial Databases, 277–295. Berlin, Heidelberg, 1993. Springer Berlin Heidelberg. doi:10.1007/3-540-56869-7_16.">13</a>]</span>.</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="tipos-geometricos.html" class="btn btn-neutral float-left" title="1.6. Tipos Geométricos" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="criando-tabelas.html" class="btn btn-neutral float-right" title="1.8. Criando Tabelas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7fce6b5efca0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

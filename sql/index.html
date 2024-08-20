@@ -27,7 +27,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="1.1. Conectando ao Servidor PostgreSQL" href="conectando-bd.html" />
+    <link rel="next" title="1.1. Instalação do Servidor PostgreSQL" href="instalacao.html" />
     <link rel="prev" title="Monitoramento de Operações de Crédito Rural por meio de Geotecnologias" href="../index.html" /> 
 </head>
 
@@ -57,13 +57,18 @@
 <p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">1. Introdução à Linguagem de Consulta SQL</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="conectando-bd.html">1.1. Conectando ao Servidor PostgreSQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="criando-bd.html">1.2. Criando um Novo Banco de Dados no PostgreSQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.3. Criando Tabelas</a></li>
-<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.4. Inserindo Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.5. Consultas em SQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.6. Alterando a Estrutura de uma Tabela</a></li>
-<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.7. Importando e Exportando Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="instalacao.html">1.1. Instalação do Servidor PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="conectando-bd.html">1.2. Conectando ao Servidor PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="criando-bd.html">1.3. Criando um Novo Banco de Dados no PostgreSQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tabelas.html">1.4. Conceitos do Modelo Relacional</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-dados.html">1.5. Tipos de Dados SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tipos-geometricos.html">1.6. Tipos Geométricos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="postgis-geometry.html">1.7. PostGIS Geometry</a></li>
+<li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.8. Criando Tabelas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.9. Inserindo Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consultas.html">1.10. Consultas em SQL</a></li>
+<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
+<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
@@ -71,6 +76,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -104,7 +111,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="../index.html" class="btn btn-neutral float-left" title="Monitoramento de Operações de Crédito Rural por meio de Geotecnologias" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="conectando-bd.html" class="btn btn-neutral float-right" title="1.1. Conectando ao Servidor PostgreSQL" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="instalacao.html" class="btn btn-neutral float-right" title="1.1. Instalação do Servidor PostgreSQL" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -112,13 +119,13 @@
            <div itemprop="articleBody">
              
   <section id="introducao-a-linguagem-de-consulta-sql">
-<h1><span class="section-number">1. </span>Introdução à Linguagem de Consulta SQL<a class="headerlink" href="#introducao-a-linguagem-de-consulta-sql" title="Link permanente para este cabeçalho"></a></h1>
+<span id="cap-sql"></span><h1><span class="section-number">1. </span>Introdução à Linguagem de Consulta SQL<a class="headerlink" href="#introducao-a-linguagem-de-consulta-sql" title="Link permanente para este cabeçalho"></a></h1>
 <p>Na última década, o uso de dados geoespaciais tem sido cada vez mais comum nas aplicações do cotidiano, bem como nas diversas áreas do conhecimento. Esses dados são fundamentais em tomadas de decisão, em problemas ambientais e socioeconômicos. O monitoramento de operações de crédito rural por meio de geotecnologias depende do tratameto e análise de diversos conjuntos de dados geoespaciais. Esses conjuntos de dados podem ter desde poucos Kilobytes, como no caso do cadastro de empregadores que submeteram trabalhadores a condições análogas à escravidão (<a class="reference internal" href="../bases-vetoriais/trabalho-analogo-escravidao.html#sec-bases-vetoriais-trabalho-analogo-escravidao"><span class="std std-numref">Seção 4.9</span></a>), até Gigabytes, como os microdados do Sicor (<a class="reference internal" href="../sicor/microdados/index.html#sec-sicor-microdados"><span class="std std-numref">Seção 3.1</span></a>). Logo, é imprescindível dominar e utilizar tecnologias que ajudem na organização de uma base de dados bem estruturada, que permita o seu compartilhamento e que também possibilite a extração de subconjuntos desses dados ou até mesmo a realização de análises.</p>
 <a class="reference internal image-reference" href="../_images/pg.svg"><img alt="PostgreSQL" class="align-right" src="../_images/pg.svg" width="48" /></a>
-<p>As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamente para atender esse tipo de demanda. Nessa seção, será apresentado o uso básico da linguagem SQL em um servidor típico de bancos de dados, o PostgreSQL. O <a class="reference external" href="http://www.postgresql.org">PostgreSQL</a> é um sistema gerenciador de banco de dados objeto-relacional, gratuito e de código fonte aberto, desenvolvido a partir do projeto Postgres, iniciado em 1986, na Universidade da Califórnia, em Berkeley, sob a liderança do professor <a class="reference external" href="https://en.wikipedia.org/wiki/Michael_Stonebraker">Michael Stonebraker</a>. O código fonte do núcleo do PostgreSQL encontra-se escrito na Linguagem de Programação C, o que garante grande portabilidade, estando disponível para as principais plataformas de hardware e sistemas operacionais como Linux, macOS e Microsoft Windows.</p>
+<p>As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamente para atender esse tipo de demanda. Neste capítulo, será apresentado o uso básico da linguagem SQL em um servidor típico de bancos de dados, o PostgreSQL. O <a class="reference external" href="http://www.postgresql.org">PostgreSQL</a> é um sistema gerenciador de banco de dados objeto-relacional, gratuito e de código fonte aberto, desenvolvido a partir do projeto Postgres, iniciado em 1986, na Universidade da Califórnia, em Berkeley, sob a liderança do professor <a class="reference external" href="https://en.wikipedia.org/wiki/Michael_Stonebraker">Michael Stonebraker</a> <span id="id1">[<a class="reference internal" href="../referencias.html#id114" title="Michael Stonebraker and Lawrence A. Rowe. The design of postgres. In Proceedings of the 1986 ACM SIGMOD International Conference on Management of Data, SIGMOD '86, 340–355. New York, NY, USA, 1986. Association for Computing Machinery. doi:10.1145/16894.16888.">4</a>, <a class="reference internal" href="../referencias.html#id115" title="Michael Stonebraker and Lawrence A. Rowe. The postgres papers. Technical Report, University of California at Berkeley, USA, 1987.">5</a>]</span>. O código fonte do núcleo do PostgreSQL encontra-se escrito na Linguagem de Programação C, o que garante grande portabilidade, estando disponível para as principais plataformas de hardware e sistemas operacionais como Linux, macOS e Microsoft Windows.</p>
 <a class="reference internal image-reference" href="../_images/postgis.png"><img alt="PostGIS" class="align-left" src="../_images/postgis.png" style="width: 48px;" /></a>
-<p>Esse SGBD fornece inúmeras facilidades e para trabalhar no <em>domínio geoespacial</em>, iremos utilizar a extensão <a class="reference external" href="https://postgis.net/">PostGIS</a>, que é uma biblioteca de software livre, sob a licença <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU GPL versão 2</a> (GPLv2). Inicialmente, esta extensão foi desenvolvida pela empresa Canadense <a class="reference external" href="http://postgis.refractions.net">Refractions Research</a>, para suportar os tipos geométricos e operadores espaciais da <em>OGC Simple Feature</em> (OGC-SFS) <span id="id1">[<a class="reference internal" href="../referencias.html#id34" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 1: common architecture. Technical Report 06-103r4, Open Geospatial Consortium Inc., May 2011. URL: http://www.opengeospatial.org/standards/sfa.">4</a>, <a class="reference internal" href="../referencias.html#id35" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 2: sql option. Technical Report 06-104r4, Open Geospatial Consortium Inc., August 2010. URL: http://www.opengeospatial.org/standards/sfs.">5</a>]</span>, bem como fornecer um mecanismo de indexação baseado nas Árvores-R <span id="id2">[<a class="reference internal" href="../referencias.html#id33" title="Antonin Guttman. R-trees: a dynamic index structure for spatial searching. In Proceedings of the 1984 ACM SIGMOD International Conference on Management of Data, SIGMOD '84, 47–57. New York, NY, USA, 1984. Association for Computing Machinery. doi:10.1145/602259.602266.">6</a>]</span>. No entanto, com a evolução dessa extensão, a implementação passou a adotar o padrão ISO/SQL, relativo a <em>SQL multimedia and application packages - Part 3: Spatial</em> <span id="id3">[<a class="reference internal" href="../referencias.html#id42" title="ISO/IEC. Iso/iec 13249-3:2016 information technology - database languages - sql multimedia and application packages - part 3: spatial. Technical Report 5th edition, ISO/IEC, May 2016. URL: https://www.iso.org/standard/60343.html.">7</a>]</span>. Assim, o PostGIS além de fornecer os tipos existentes na OGC-SFS, também suporta os tipos circulares e compostos da ISO/SQL.</p>
-<p>Nos últimos anos, a extensão PostGIS passou a integrar diversas outras funcionalidades, como suporte a dados matriciais através do módulo PostGIS Raster e o tratamento de dados em 3D com o módulo SFSCGAL. A <a class="reference internal" href="#fig-sql-index-arquitetura-postgis"><span class="std std-numref">Figura 1.1</span></a> mostra o PostGIS como uma extensão do SGBD PostgreSQL, integrando as bibliotecas <a class="reference external" href="https://libgeos.org/">GEOS</a> <span id="id4">[<a class="reference internal" href="../referencias.html#id32" title="Sandro Santilli, Paul Ramsey, Daniel Baston, Mateusz Łoskot, Martin Davis, Regina Obe, Charlie Savage, Yury Bychkov, Even Rouault, and Michael Toews. GEOS computational geometry library. Open Source Geospatial Foundation, 2021. URL: https://libgeos.org/, doi:https://doi.org/10.5281/zenodo.11396894.">8</a>]</span>, <a class="reference external" href="https://proj.org/">Proj</a>, <a class="reference external" href="https://gdal.org">GDAL</a> e <a class="reference external" href="https://www.cgal.org/">CGAL</a>. Repare que o servidor PostgreSQL possui todos os elementos para análise sintática das consultas, para definir os planos ou estratégias de execução das consultas, bem como cuidar do gerenciamento dos dados em disco e memória.</p>
+<p>Além das inúmeras funcionalidades, esse SGBD possui diversas extensões ou <em>plugins</em>. Uma delas é o <a class="reference external" href="https://postgis.net/">PostGIS</a>, que permite utilizar o PostgreSQL no <em>domínio geoespacial</em> através da inclusão de tipos geométricos e operadores espaciais capazes de tratar dados geográficos, além de um mecanismo de indexação baseado em Árvores-R <span id="id2">[<a class="reference internal" href="../referencias.html#id53" title="Antonin Guttman. R-trees: a dynamic index structure for spatial searching. In Proceedings of the 1984 ACM SIGMOD International Conference on Management of Data, SIGMOD '84, 47–57. New York, NY, USA, 1984. Association for Computing Machinery. doi:10.1145/602259.602266.">6</a>]</span> para acelerar as consultas espaciais. O PostGIS é uma biblioteca de software livre, sob a licença <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/gpl-2.0.html">GNU GPL versão 2</a> (GPLv2), inicialmente desenvolvida pela empresa Canadense <a class="reference external" href="http://postgis.refractions.net">Refractions Research</a> nos anos 2000. Esta extensão foi projetada e implementada com base na especificação  <em>OGC Simple Feature</em> (OGC-SFS), que é uma especificação aberta com requisitos de interoperabilidade em sistemas geoespaciais <span id="id3">[<a class="reference internal" href="../referencias.html#id55" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 1: common architecture. Technical Report 06-103r4, Open Geospatial Consortium Inc., May 2011. URL: http://www.opengeospatial.org/standards/sfa.">7</a>]</span>, incluindo os sistemas de bancos de dados espaciais baseados em SQL <span id="id4">[<a class="reference internal" href="../referencias.html#id56" title="John R. Herring. Opengis implementation standard for geographic information - simple feature access - part 2: sql option. Technical Report 06-104r4, Open Geospatial Consortium Inc., August 2010. URL: http://www.opengeospatial.org/standards/sfs.">8</a>]</span>. A ISO (International Organization for Standardization), responsável pela padronização da linguagem SQL, partiu da OGC-SFS para criar o documento denominado <em>SQL multimedia and application packages - Part 3: Spatial</em> <span id="id5">[<a class="reference internal" href="../referencias.html#id64" title="ISO/IEC. Iso/iec 13249-3:2016 information technology - database languages - sql multimedia and application packages - part 3: spatial. Technical Report 5th edition, ISO/IEC, May 2016. URL: https://www.iso.org/standard/60343.html.">9</a>]</span>, o qual estende os tipos geométricos a OGC-SFS com tipos circulares e compostos. Essa última especificação tem sido utilizada como referência na implementação do PostGIS.</p>
+<p>A extensão PostGIS atualmente contempla diversas outras funcionalidades, como suporte a dados matriciais, através do módulo <cite>PostGIS Raster</cite>, e o tratamento de dados em 3D, com o módulo <cite>SFSCGAL</cite>. A <a class="reference internal" href="#fig-sql-index-arquitetura-postgis"><span class="std std-numref">Figura 1.1</span></a> mostra o PostGIS como uma extensão do SGBD PostgreSQL, integrando as bibliotecas <a class="reference external" href="https://trac.osgeo.org/geos/">GEOS</a> <span id="id6">[<a class="reference internal" href="../referencias.html#id50" title="Sandro Santilli, Paul Ramsey, Daniel Baston, Mateusz Łoskot, Martin Davis, Regina Obe, Charlie Savage, Yury Bychkov, Even Rouault, and Michael Toews. GEOS computational geometry library. Technical Report, OSGEO, 2021. URL: https://libgeos.org/, doi:https://doi.org/10.5281/zenodo.11396894.">10</a>]</span>, que fornece o suporte à maioria das operações espaciais, como as topológicas, a biblioteca <a class="reference external" href="https://proj.org/">Proj</a>, usada para transformação entre sistemas de referência espaciais, a <a class="reference external" href="https://gdal.org">GDAL</a>, para tratamento de dados matriciais, e a <a class="reference external" href="https://www.cgal.org/">CGAL</a>, bibloteca de geometria computacional capaz de tratar dados tridimensionais. Repare que o servidor PostgreSQL fornece componentes para análise sintática das consultas, para definição dos planos ou estratégias de execução das consultas, bem como gerenciamento dos dados em disco e memória, enquanto o PostGIS acrescenta a capacidade de tratar os tipos geométricos e matricial com funcionalidades presentes em várias outras bibliotecas.</p>
 <figure class="align-center align-default" id="fig-sql-index-arquitetura-postgis">
 <a class="reference internal image-reference" href="../_images/arquitetura-postgis.png"><img alt="Arquitetura PostGIS" src="../_images/arquitetura-postgis.png" style="width: 50%;" /></a>
 <figcaption>
@@ -128,14 +135,23 @@
 <p>Neste capítulo será utilizado o PostgreSQL versão 16.4 e sua extensão geográfica PostGIS 3.4.2 para exemplificar as funcionalidades presentes em um servidor típico de bancos de dados capaz de suportar consultas SQL no domínio geoespacial.</p>
 <div class="toctree-wrapper compound">
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="conectando-bd.html">1.1. Conectando ao Servidor PostgreSQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="criando-bd.html">1.2. Criando um Novo Banco de Dados no PostgreSQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="criando-tabelas.html">1.3. Criando Tabelas</a></li>
-<li class="toctree-l1"><a class="reference internal" href="inserindo-dados.html">1.4. Inserindo Dados</a></li>
-<li class="toctree-l1"><a class="reference internal" href="consultas.html">1.5. Consultas em SQL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="alterando-estrutura-tabela.html">1.6. Alterando a Estrutura de uma Tabela</a></li>
-<li class="toctree-l1"><a class="reference internal" href="import-export.html">1.7. Importando e Exportando Dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="instalacao.html">1.1. Instalação do Servidor PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="conectando-bd.html">1.2. Conectando ao Servidor PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="criando-bd.html">1.3. Criando um Novo Banco de Dados no PostgreSQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tabelas.html">1.4. Conceitos do Modelo Relacional</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tipos-dados.html">1.5. Tipos de Dados SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tipos-geometricos.html">1.6. Tipos Geométricos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="postgis-geometry.html">1.7. PostGIS Geometry</a></li>
+<li class="toctree-l1"><a class="reference internal" href="criando-tabelas.html">1.8. Criando Tabelas</a></li>
+<li class="toctree-l1"><a class="reference internal" href="inserindo-dados.html">1.9. Inserindo Dados</a></li>
+<li class="toctree-l1"><a class="reference internal" href="consultas.html">1.10. Consultas em SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
+<li class="toctree-l1"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
 </ul>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Aviso</p>
+<p>Parte do material deste capítulo foi retirado do livro online <a class="reference external" href="https://gqueiroz.github.io/bdg/index.html">Bancos de Dados Geográficos - Teoria e Prática com PostgreSQL e PostGIS</a>, disponibilizado gratuitamente pelo autor Gilberto Ribeiro de Queiroz.</p>
 </div>
 </section>
 
@@ -144,7 +160,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="../index.html" class="btn btn-neutral float-left" title="Monitoramento de Operações de Crédito Rural por meio de Geotecnologias" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="conectando-bd.html" class="btn btn-neutral float-right" title="1.1. Conectando ao Servidor PostgreSQL" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="instalacao.html" class="btn btn-neutral float-right" title="1.1. Instalação do Servidor PostgreSQL" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -154,7 +170,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f0ee4c545e0>
+<jinja2.runtime.BlockReference object at 0x7fce6bfb7e80>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

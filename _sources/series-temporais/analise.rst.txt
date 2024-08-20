@@ -1,0 +1,23 @@
+.. include:: ../def.rst
+
+
+.. _sec_series_temporais_analise:
+
+Análise de Séries Temporais de Imagens
+======================================
+
+
+Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir: 
+(1) Classificação de Séries Temporais de Imagens; (2) Agrupamento de Séries Temporais de Imagens; 
+(3) Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens; e 
+(4) Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens.  
+
+
+.. figure:: ../img/series-temporais/analise-series-temporais.png
+   :alt: Métodos de Análise de Séries Temporais de Imagens 
+   :width: 95% 
+   :figclass: align-center 
+
+   Métodos de Análise de Séries Temporais de Imagens.
+
+   

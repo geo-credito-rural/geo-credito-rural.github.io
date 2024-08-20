@@ -68,6 +68,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -259,12 +261,12 @@
 </tr>
 </tbody>
 </table>
-<p>O Banco Central estabelece que o custeio agrícola está restrito aos empreendimentos conduzidos sob as condições do ZARC, condicionando à obrigação contratual de aplicação das recomendações técnicas referentes ao zoneamento <span id="id1">[<a class="reference internal" href="../referencias.html#id7" title="Banco Central do Brasil. Manual de crédito rural (mcr). Technical Report 694, Banco Central do Brasil, Maio 2021. URL: https://www3.bcb.gov.br/mcr.">18</a>]</span>. Com relação ao Proagro, estabelece diversas regras regularizando o uso do ZARC, como por exemplo, o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.</p>
+<p>O Banco Central estabelece que o custeio agrícola está restrito aos empreendimentos conduzidos sob as condições do ZARC, condicionando à obrigação contratual de aplicação das recomendações técnicas referentes ao zoneamento <span id="id1">[<a class="reference internal" href="../referencias.html#id12" title="Banco Central do Brasil. Manual de crédito rural (mcr). Technical Report 694, Banco Central do Brasil, Maio 2021. URL: https://www3.bcb.gov.br/mcr.">23</a>]</span>. Com relação ao Proagro, estabelece diversas regras regularizando o uso do ZARC, como por exemplo, o financiamento deve ser incluído o tipo de Clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.</p>
 <p>Os dados do ZARC podem ser acessados no seguinte endereço <cite>&lt;https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html&gt;</cite>, em que é possível formatar diversas consultas. Para este trabalho foram acessados os dados completos do ZARC, disponibilizados neste endereço <cite>&lt;http://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-
 dc8ff323b96f/resource/a8875ff8-fe4d-4c3c-b1a1-3b19c32916f1/download/dados-abertos-tabua-
 de-risco.csv&gt;</cite>, cuja estrutura de dados é apresentada na <a class="reference internal" href="#tbl-zarc-csv"><span class="std std-numref">Tabela 3.31</span></a> cujo <a class="reference external" href="https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf">dicionário de dados</a>  é replicado abaixo. As colunas alfanuméricas encontram-se codificadas em UTF8.</p>
 <table class="styled-table docutils align-center" id="tbl-zarc-csv">
-<caption><span class="caption-number">Tabela 3.31 - </span><span class="caption-text">Dicionário de dados do ZARC. <br/> <strong>Fonte:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id53" title="MAPA. Tábua de risco- zoneamento agrícola de risco climático. 2024. Online; acessado 02 de Agosto de 2024. URL: https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf.">19</a>]</span>.</span><a class="headerlink" href="#tbl-zarc-csv" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.31 - </span><span class="caption-text">Dicionário de dados do ZARC. <br/> <strong>Fonte:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id83" title="MAPA. Tábua de risco- zoneamento agrícola de risco climático. 2024. Online; acessado 02 de Agosto de 2024. URL: https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf.">24</a>]</span>.</span><a class="headerlink" href="#tbl-zarc-csv" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"><p>nome</p></th>
 <th class="head center-align"><p>descrição</p></th>
@@ -344,7 +346,7 @@ de-risco.csv&gt;</cite>, cuja estrutura de dados é apresentada na <a class="ref
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f0ee5d353d0>
+<jinja2.runtime.BlockReference object at 0x7fce6c878d90>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

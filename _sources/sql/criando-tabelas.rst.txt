@@ -1,3 +1,97 @@
+.. include:: ../def.rst
+
+
+.. _sec_sql_criando_tabelas:
+
 Criando Tabelas
 ===============
+
+
+O comando SQL :sql:`CREATE TABLE` permite criar novas tabelas no banco de dados. A sintaxe básica desse comando é mostrada abaixo:
+
+
+.. code-block:: text
+
+    CREATE TABLE <nome-tabela>
+    (
+        <nome-coluna> <tipo-dados> [<restrição-coluna>]
+        [, <nome-coluna> <tipo-dados> [<restrição-coluna>] ]
+        [, <restrição-tabela> [, <restrição-tabela> ] ]
+    );
+
+
+Onde:
+
+.. rst-class:: open
+
+- ``nome-tabela``: O nome de uma tabela deve começar por uma letra (``a-z``) ou pelo caracter sublinhado ``_``, e os demais caracteres podem ser letras, dígitos (``0-9``) ou o caracter sublinhado ``_``. Alguns exemplos de nomes válidos são: ``foco``, ``foco_v2``, ``estudante_disciplina``, ``populacao_1940``. Opcionalmente, o nome de uma tabela pode ser qualificado com o nome de um esquema. Neste caso usamos a sintaxe ``nome-esquema.nome-tabela``. Como exemplo de nomes de tabelas qualificados com o esquema, podemos citar: ``public.foco``, ``geo.lote``, ``ibge.populacao_brasil``.
+
+    .. note::
+
+        Outro detalhe importante sobre o nome de tabelas consiste no uso de delimitadores com aspas duplas (``"``). Neste caso, podemos criar identificadores contendo caracteres especiais, além de diferenciar letras maiúsculas e minúsculas. Exemplos: ``"Foco"``, ``"Foco v2"``, ``ibge."População do Brasil"``.
+
+
+        No entanto, esse recurso deve ser utilizado com moderação para não dificultar o uso dos identificadores na construção de consultas, uma vez que será necessário empregar os delimitadores (``"``).
+
+
+    .. note::
+
+        Os nomes de tabelas são limitados a no máximo 63 bytes. Logo, se usarmos apenas letras (``a-z``), dígitos (``0-9``) ou sublinhado (``_``), isto significa um identificador de 63 caracteres.
+
+
+- ``nome-coluna``: O nome de colunas segue a mesma regra do nome de tabelas. A única diferença nesse caso é que não usamos a qualificação com o nome do esquema para colunas.
+
+
+- ``tipo-dados``: Podemos usar os tipos de dados discutidos nas Seções :numref:`%s <sec_sql_tipos_dados>` e :numref:`%s <sec_sql_tipos_geometricos>`.
+
+
+- ``restrição-coluna``: É possível especificar restrições de integridade a serem mantidas pelo SGBD em relação ao valores da coluna. Os tipos mais comuns de restrições incluem:
+
+    - ``NOT NULL``: Especifica que a coluna é obrigatória.
+    - ``NULL``: Especifica que podemos armazenar valores ``NULL`` na coluna.
+    - ``CHECK ( expressão )``: Uma expressão lógica envolvendo o valor a ser inserido ou atualizado na coluna que deva ser avaliado como verdadeiro para que o valor seja considerado válido. Usaremos este tipo de restrição nas tabelas que criaremos nessa seção.
+    - ``DEFAULT expressão``: Um valor padrão caso a coluna seja omitida nas inserções.
+    - ``GENERATED { ALWAYS | BY DEFAULT } AS IDENTITY``: Será usado um valor gerado a partir de uma sequência autoincremental.
+    - ``UNIQUE``: Indica que a coluna deverá ter valores únicos.
+    - ``PRIMARY KEY``: Indica que a coluna é chave primária e, portanto, possui valores únicos.
+    - ``REFERENCES``: Permite definir a coluna como uma chave estrangeira, referenciando a coluna de outra tabela.
+
+
+- ``restrição-tabela``: Após as declarações das colunas, podemos incluir restrições que se aplicam à linha da tabela. Neste caso, podemos ter chaves primárias compostas, chaves estrangeiras compostas, chaves únicas compostas e retrições que envolvam valores de várias colunas. Portanto, podemos declarar as seguintes retrições:
+
+    - ``CHECK ( expressão )``: Uma expressão lógica que deve ser avaliada como verdadeiro para que os valores sendo inseridos na linha sejam considerados válidos.
+    - ``UNIQUE``: Lista de colunas que formam uma chave única composta.
+    - ``PRIMARY KEY``: Lista de colunas que formam uma chave primária composta.
+    - ``FOREIGN KEY``: Lista de colunas que formam uma chave estrangeira composta.
+
+
+Estudo de Caso
+--------------
+
+
+.. Considere o **diagrama Entidade-Relacionamento** (**ER**) mostrado na :numref:`Figura %s <fig:sql:criando-tabelas:diagrama-er>`.
+
+
+.. .. figure:: ../img/sql/criando-tabelas/diagrama-er.png
+..     :alt: Diagrama ER - Operações de crédito rural e glebas.
+..     :width: 100%
+..     :figclass: align-center
+..     :name: fig:sql:criando-tabelas:diagrama-er
+..
+..     Diagrama ER - Operações de crédito rural e glebas.
+
+
+Nesse diagrama temos as seguintes informações:
+
+.. rst-class:: open
+
+- Um contrato de financiamento possui propriedades como: número do contrato, CPF do contratante, valor emprestado, data da realização do empréstimo. O atributo destacado ``numero_contrato`` indica que os valores nessa coluna são únicos e, portanto, identifica unicamente um determinado contrato.
+
+- Uma gleba possui propriedades como: identificador da gleba (gid), número do contrato associado e o polígono representando os limites da área da gleba.
+
+- O relacionamento entre ``contrato`` e ``gleba`` possui uma cardinalidade de ``1:N`` (``1`` para ``N``), isto é, um contrato pode referenciar uma ou mais glebas e uma gleba somente pode estar associada a um contrato.
+
+- Um municipio possui propriedades como: identificador, nome, e o polígono representando os limites da área do município.
+
+- Não um um relacionamento explícito através de atributos entre as tabelas ``municipio`` e ``gleba``. No entanto, existe um relacionamento espacial entre os polígonos dos municípios e das glebas, pois toda gleba deve estar contida nos limites de um município.
 

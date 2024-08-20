@@ -1,0 +1,44 @@
+.. include:: ../def.rst
+
+
+.. _cap_series_temporais:
+
+Acesso e Análise de Séries Temporais de Imagens de Satélites
+============================================================
+
+
+Uma série temporal pode ser entendida como um conjunto de observações ordenadas no tempo (:math:`t`). Um exemplo é a série temporal de temperatura do ar (:math:`ºC`) de um determinado local (latitude e longitude). Em qualquer instante (:math:`t`), pode ser obtida uma medida da temperatura. Com isto, pode-se dizer que uma série temporal é multivariada, pois pode ser localizada no tempo e no espaço. A análise de séries temporais consiste em modelar a autocorrelação entre as observações. Para modelar esta dependência pode-se adotar dois enfoques, um no domínio do tempo, por meio de modelos paramétricos tais como o *Autoregressive Integrated Moving Average* (Arima), e outro no domínio da freqüência, por meio de modelos não paramétrico tais como a transformada de Fourier. Os principais objetivos para analisar uma série temporal são: a) investigar o mecanismo gerador da série temporal; b) fazer previsões dos valores futuros da série; c) descrever o comportamento da série, tais como sazonalidade e tendência; d) procurar periodicidades relevantes nestes dados; e e) identificar quebras de padrões :cite:`morettin:2004`. 
+
+
+A análise de séries temporais de imagens de satélites possibilita acompanhar o ciclo de culturas agrícolas, ou até mesmo monitorar a cultura em um dado período de tempo. Neste contexto, diversos estudos utilizaram perfis temporais obtidos a partir de séries de imagens de satélite para acompanhar as iterações fenológicas ou para detectar mudança do uso e da cobertura do solo :cite:`roerink:2000, zeng:2020, jonsson:2002, jonsson:2004, eklundh:2016, picoli:2018, maus:2016, verbesselt:2010`. Segundo estes autores, alterações nos valores de índices de vegetação (vide :numref:`Seção %s - Índices Espectrais <sec_acesso_imagens_indices_espectrais>`), por exemplo, podem indicar mudanças sazonais da vegetação, tanto estrutural quanto fisiológica, o que permite estimar, por exemplo, início de dormência, duração do ciclo vegetativo, clímax, dentre outras. Já as mudanças abruptas nestes valores podem ter relação com a alteração de uso e cobertura da terra.
+
+
+Atualmente, muitas agências espaciais e governos de diferentes países estão adotando uma política de dados abertos e disponibilizando, sem custo para a sociedade, grandes volumes de imagens de satélites de observação da Terra, com diferentes resoluções espaciais, temporais e espectrais. Somente em 2019, forma produzidos mais de 4 petabytes de imagens abertas pelos satélites Landsat-7 e Landsat-8, MODIS (Terra e Aqua) e as três primeiras missões do Sentinel (Sentinel-1, -2 e -3) :cite:`soille:2018`.
+
+
+Esse grande volume de imagens disponíveis para uma mesma região na superfícia da Terra ao longo do tempo possibilita o uso de análise de séries temporais extraídas dessas imagens.  Nos últimos anos, séries temporais derivadas de imagens de sensoriamento remoto (*satellite image time series*) e métodos de aprendizado de máquina (*machine learning*) têm sido amplamente utilizados para identificação e classificação de uso e cobertura da terra, incluindo culturas agrícolas :cite:`gomez:2016, belgiu:2018, picoli:2018, simoes:2021`.
+
+
+Como ilustrado na :numref:`Figura %s <fig:series-temporais:serie-temporal>`, dado uma sequência de imagens de uma mesma região, uma série temporal de imagens representa a variação do valor de um atributo ao longo do tempo associado a um pixel, onde esse atributo pode ser uma banda espectral ou um índice espectral calculado a partir de diferentes bandas. 
+
+
+.. figure:: ../img/series-temporais/serie-temporal.png
+   :alt: Série temporal de imagens 
+   :width: 80% 
+   :figclass: align-center
+   :name: fig:series-temporais:serie-temporal
+
+   Array 3-D de imagens de satélites e série temporal de índice de vegetação I para o pixel (x,y). |br| **Fonte:** :cite:`maus:2016`.
+
+
+Para suportar análises de séries temporais, imagens de sensoriamento remoto têm sido modeladas como cubo de dados multidimensionais. Esses cubos de dados possuem três ou mais dimensões que incluem espaço, tempo e propriedades espectrais, podendo ser definidos como um conjunto de séries temporais associadas a pixels alinhados espacialmente, prontos para análise :cite:`appel:2019`.
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./cubos-de-dados
+    ./filtragem
+    ./analise
+    ./wtss

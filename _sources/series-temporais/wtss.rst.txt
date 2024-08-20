@@ -1,0 +1,50 @@
+.. include:: ../def.rst
+
+
+.. _sec_series_temporais_wtss:
+
+Web Time Series Service (WTSS)
+==============================
+
+
+O **W**\ eb **T**\ ime **S**\ eries **S**\ ervice ou **WTSS** é um serviço web voltado para extração de séries temporais a partir de imagens de sensoriamento remoto organizadas na forma de cubos de dados :cite:`vinhas:2017`. Dada uma localização ou região do espaço geográfico e um intervalo de tempo, a API deste serviço permite que os clientes requisitem as séries temporais para os produtos de dados do `Brazil Data Cube <https://data.inpe.br/bdc/web/>`__ (:numref:`Figura %s <fig:series-temporais:wtss:overview>`). Esse serviço pode ser utilizado a partir de pacotes construídos para linguagens de programação como `Python <https://github.com/brazil-data-cube/wtss.py>`__ e `R <https://github.com/e-sensing/Rwtss>`__, ou pode ser usado diretamente em interfaces gráficas com o usuário, por meio de `plugin do QGIS <https://github.com/brazil-data-cube/wtss-qgis>`__ ou de componente gráfico de aplicações como o `Data Cube Explorer <https://data.inpe.br/bdc/explorer/>`__ e `TerraCollect <https://data.inpe.br/bdc/terracollect/>`__.
+
+
+.. figure:: ../img/series-temporais/wtss/overview.png
+    :alt: Visão geral do serviço WTSS
+    :width: 80%
+    :figclass: align-center
+    :name: fig:series-temporais:wtss:overview
+
+    Visão geral do serviço WTSS.
+
+
+O WTSS é baseado em três operações (:numref:`Figura %s <fig:series-temporais:wtss:operacoes>`):
+
+.. rst-class:: open
+
+- ``list_coverages``: retorna a lista de produtos de dados disponíveis no serviço para consulta.
+
+- ``describe_coverage``: retorna os metadados para um dado produto.
+
+- ``time_series``: consulta a lista de valores associadas a uma dada localização ou região do espaço geográfico e um intervalo de tempo.
+
+
+.. figure:: ../img/series-temporais/wtss/operacoes.png
+    :alt: Operações do serviço WTSS
+    :width: 60%
+    :figclass: align-center
+    :name: fig:series-temporais:wtss:operacoes
+
+    Operações do serviço WTSS.
+
+
+Os seguintes *Jupyter Notebooks* serão usados para introduzir o uso desse serviço:
+
+.. rst-class:: open
+
+- Introdução ao WTSS: extração e visualização de séries temporais.
+
+- Recuperação de séries temporais associadas a glebas da safra 2022/2023.
+
+- Filtragem em Séries Temporais.

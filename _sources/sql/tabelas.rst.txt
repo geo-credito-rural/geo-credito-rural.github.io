@@ -1,0 +1,35 @@
+.. include:: ../def.rst
+
+
+Conceitos do Modelo Relacional
+==============================
+
+
+O **modelo de dados relacional**, introduzido por `Codd <https://en.wikipedia.org/wiki/Edgar_F._Codd>`__ em 1970 :cite:`codd:1970`, representa um banco de dados como uma coleção de **relações**, que informalmente, podem ser chamadas de **tabelas**. Uma tabela é um conjunto de elementos de dados particionados em linhas (horizontal) e colunas (vertical). As linhas também são chamadas de **tuplas**. Uma tabela possui um número fixo de colunas, e os valores das linhas ao longo dessas colunas (células) devem respeitar o conjunto de valores pertencentes ao tipo de dados definido na especificação da coluna. O termo **esquema de uma tabela** refere-se à estrutura da tabela, isto é, o seu nome, o nome das colunas e os tipos de dados definidos como domínio dos valores nas colunas. A :numref:`Figura %s <fig:sql:tabelas:feature-collection>` ilustra uma tabela denominada ``unidades_federativas``.
+
+
+.. figure:: ../img/sql/tabelas/feature-collection-uf.png
+    :alt: Coleção de Feições (Feature Collection)
+    :width: 480
+    :figclass: align-center
+    :name: fig:sql:tabelas:feature-collection
+
+    Coleção de Feições (*Feature Collection*).
+
+
+Na tabela acima, o esquema denominado ``unidades_federativas`` possui o seguinte conjunto de colunas:
+
+.. rst-class:: open
+
+- ``ufid``: código do IBGE, um número inteiro usado para identificar as unidades federativas.
+
+- ``nome``: nome da unidade federativa, uma string.
+
+- ``populacao``: total da população da unidade federativa, um número inteiro.
+
+- ``e_vida``: expectativa de vida, um número real.
+
+- ``fronteira``: limite da unidade federativa, representada por um tipo geométrico (ex: ``MultiPolygon``).
+
+
+O **cálculo relacional** e a **álgebra relacional** introduzidos pelo trabalho de Codd :cite:`codd:1970` possibilitaram a criação de uma linguagem declarativa de alto nível e de domínio específico, usada para gerenciamento de dados, denominada **Structured Query Language** ou **SQL** :cite:`chamberlin:2012`. A linguagem SQL é padronizada pela ISO e encontra-se presente em todos os sistemas gerenciadores de bancos de dados relacionais e objetos relacionais. A SQL possui comandos de definição de dados, como o comando :sql:`CREATE TABLE`, usado para criação de tabelas, e comandos de manipulação de dados, como o comando :sql:`INSERT`, para inserção de valores nas tabelas, e o comando :sql:`SELECT`, para recuperação de valores das tabelas. Nas próximas seções iremos conhecer os tipos de dados disponíveis no PostgreSQL para definição das colunas das tabelas e os principais comandos SQL para manipulação de dados.

@@ -28,7 +28,7 @@
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
     <link rel="next" title="2.1. Introdução" href="introducao.html" />
-    <link rel="prev" title="1.7. Importando e Exportando Dados" href="../sql/import-export.html" /> 
+    <link rel="prev" title="1.12. Importando e Exportando Dados" href="../sql/import-export.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -66,6 +66,8 @@
 <li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -98,7 +100,7 @@
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
-        <a href="../sql/import-export.html" class="btn btn-neutral float-left" title="1.7. Importando e Exportando Dados" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sql/import-export.html" class="btn btn-neutral float-left" title="1.12. Importando e Exportando Dados" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
         <a href="introducao.html" class="btn btn-neutral float-right" title="2.1. Introdução" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
@@ -110,7 +112,7 @@
 <span id="cap-jupyter"></span><h1><span class="section-number">2. </span>Ambiente de Computação Interativa<a class="headerlink" href="#ambiente-de-computacao-interativa" title="Link permanente para este cabeçalho"></a></h1>
 <a class="reference internal image-reference" href="../_images/jupyter.svg"><img alt="Jupyter" class="align-right" src="../_images/jupyter.svg" width="72" /></a>
 <p><br/></p>
-<p>Atualmente, o ambiente de computação interativa denominado <a class="reference external" href="https://jupyter.org/">Jupyter</a> tem recebido grande aceitação, tanto pela comunidade acadêmica quanto da indústria, para realização de pesquisas e trabalhos que envolvam o emprego de métodos computacionais. Esse ambiente permite criar documentos chamados <strong>Jupyter Notebooks</strong>, que podem conter narrativas computacionais que incluem códigos, anotações textuais, fórmulas matemáticas compatíveis com LaTeX, elementos HTML, gráficos e outros tipos de visualizações <span id="id1">[<a class="reference internal" href="../referencias.html#id48" title="Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, and Jupyter development team. Jupyter notebooks - a publishing format for reproducible computational workflows. In Fernando Loizides and Birgit Scmidt, editors, Positioning and Power in Academic Publishing: Players, Agents and Agendas, 87–90. IOS Press, 2016. URL: https://eprints.soton.ac.uk/403913/.">9</a>]</span>. Este capítulo apresenta em detalhes como utilizar essa tecnologia, que pode ser utilizada tanto ambientes de nuvem, como os fornecidos pelo <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, <a class="reference external" href="https://www.kaggle.com/">Kaggle</a> e <a class="reference external" href="https://data.inpe.br/bdc/lab">BDC-Lab</a>, quanto através da distribuição Python chamada <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
+<p>Atualmente, o ambiente de computação interativa denominado <a class="reference external" href="https://jupyter.org/">Jupyter</a> tem recebido grande aceitação, tanto pela comunidade acadêmica quanto da indústria, para realização de pesquisas e trabalhos que envolvam o emprego de métodos computacionais. Esse ambiente permite criar documentos chamados <strong>Jupyter Notebooks</strong>, que podem conter narrativas computacionais que incluem códigos, anotações textuais, fórmulas matemáticas compatíveis com LaTeX, elementos HTML, gráficos e outros tipos de visualizações <span id="id1">[<a class="reference internal" href="../referencias.html#id76" title="Thomas Kluyver, Benjamin Ragan-Kelley, Fernando Pérez, Brian Granger, Matthias Bussonnier, Jonathan Frederic, Kyle Kelley, Jessica Hamrick, Jason Grout, Sylvain Corlay, Paul Ivanov, Damián Avila, Safia Abdalla, Carol Willing, and Jupyter development team. Jupyter notebooks - a publishing format for reproducible computational workflows. In Fernando Loizides and Birgit Scmidt, editors, Positioning and Power in Academic Publishing: Players, Agents and Agendas, 87–90. IOS Press, 2016. URL: https://eprints.soton.ac.uk/403913/.">14</a>]</span>. Este capítulo apresenta em detalhes como utilizar essa tecnologia, que pode ser utilizada tanto ambientes de nuvem, como os fornecidos pelo <a class="reference external" href="https://colab.research.google.com/">Google Colab</a>, <a class="reference external" href="https://www.kaggle.com/">Kaggle</a> e <a class="reference external" href="https://data.inpe.br/bdc/lab">BDC-Lab</a>, quanto através da distribuição Python chamada <a class="reference external" href="https://www.anaconda.com/products/individual">Anaconda</a>.</p>
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Tópicos</span></p>
 <ul>
@@ -124,7 +126,7 @@
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
-        <a href="../sql/import-export.html" class="btn btn-neutral float-left" title="1.7. Importando e Exportando Dados" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../sql/import-export.html" class="btn btn-neutral float-left" title="1.12. Importando e Exportando Dados" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
         <a href="introducao.html" class="btn btn-neutral float-right" title="2.1. Introdução" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
@@ -135,7 +137,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f0ee4c54e80>
+<jinja2.runtime.BlockReference object at 0x7fce6b584280>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

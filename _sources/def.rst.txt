@@ -3,6 +3,10 @@
     <br/>
 
 
+.. role:: postgresql(code)
+   :language: postgresql
+
+
 .. role:: python(code)
    :language: python
 

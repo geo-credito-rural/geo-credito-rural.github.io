@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>7.2. Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/series-temporais/filtragem.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="7.3. Análise de Séries Temporais de Imagens" href="analise.html" />
+    <link rel="prev" title="7.1. Cubos de Dados de Imagens" href="cubos-de-dados.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="cubos-de-dados.html">7.1. Cubos de Dados de Imagens</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.2. Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#h-twice">7.2.1. 4253H twice</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="analise.html">7.3. Análise de Séries Temporais de Imagens</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wtss.html">7.4. Web Time Series Service (WTSS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">7. </span>Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">7.2. </span>Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="cubos-de-dados.html" class="btn btn-neutral float-left" title="7.1. Cubos de Dados de Imagens" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analise.html" class="btn btn-neutral float-right" title="7.3. Análise de Séries Temporais de Imagens" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="filtragem-de-dados-oriundos-de-series-temporais-de-imagens-de-satelite">
+<span id="sec-series-temporais-filtragem"></span><h1><span class="section-number">7.2. </span>Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite<a class="headerlink" href="#filtragem-de-dados-oriundos-de-series-temporais-de-imagens-de-satelite" title="Link permanente para este cabeçalho"></a></h1>
+<p>Uma série temporal oriunda das imagens de satélite podem estar sujeita a ocorrência de ruídos oriundos de diversos fatores como a presença de nuvens, falhas do detector, geometria de iluminação e visada, dentre outros <span id="id1">[<a class="reference internal" href="../referencias.html#id68" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id45" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>, <a class="reference internal" href="../referencias.html#id57" title="Jennifer N. Hird and Gregory John McDermid. Noise reduction of ndvi time series: an empirical comparison of selected techniques. Remote Sensing of Environment, 113:248-258, 2009. doi:10.1016/J.RSE.2008.09.003.">99</a>]</span>. Para minimizar os efeitos dos ruídos em séries temporais foram criados diversos filtros. Neste sentido, <span id="id2">Hird and McDermid [<a class="reference internal" href="../referencias.html#id57" title="Jennifer N. Hird and Gregory John McDermid. Noise reduction of ndvi time series: an empirical comparison of selected techniques. Remote Sensing of Environment, 113:248-258, 2009. doi:10.1016/J.RSE.2008.09.003.">99</a>]</span> testaram seis filtros e concluíram que quatro filtros deles produziram bons resultados: a) 4253H twice <span id="id3">[<a class="reference internal" href="../referencias.html#id120" title="Paul F. Velleman. Robust nonlinear data smoothers: definitions and recommendations. Proceedings of the National Academy of Sciences of the United States of America, 74 2:434-6, 1977. doi:https://doi.org/10.1073/PNAS.74.2.434.">100</a>]</span>; b) savitzky–Golay <span id="id4">[<a class="reference internal" href="../referencias.html#id106" title="Abraham. Savitzky and M. J. E. Golay. Smoothing and differentiation of data by simplified least squares procedures. Analytical Chemistry, 36(8):1627-1639, 1964. doi:10.1021/ac60214a047.">101</a>]</span> c) função duplo-logística <span id="id5">[<a class="reference internal" href="../referencias.html#id16" title="Pieter S. A. Beck, Clement Atzberger, Kjell Arild Høgda, Bernt Johansen, and Andrew K. Skidmore. Improved monitoring of vegetation dynamics at very high latitudes: a new method using modis ndvi. Remote Sensing of Environment, 100:321-334, 2006. doi:10.1016/J.RSE.2005.10.021.">102</a>]</span> e; d) gaussiano assimétrico <span id="id6">[<a class="reference internal" href="../referencias.html#id68" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>]</span>. Além deles, também podem ser utilizados os filtros Hants que tem por base a transformada de Fourier <span id="id7">[<a class="reference internal" href="../referencias.html#id98" title="Gerbert Roerink, Massimo Menenti, and Wouter Verhoef. Reconstructing cloudfree ndvi composites using fourier analysis of time series. International Journal of Remote Sensing, 21:1911 - 1917, 2000. URL: https://doi.org/10.1080/014311600209814.">83</a>]</span>.</p>
+<section id="h-twice">
+<h2><span class="section-number">7.2.1. </span>4253H twice<a class="headerlink" href="#h-twice" title="Link permanente para este cabeçalho"></a></h2>
+<p>Este filtro é uma adequação do filtro de mediana proposto por <span id="id8">Velleman [<a class="reference internal" href="../referencias.html#id120" title="Paul F. Velleman. Robust nonlinear data smoothers: definitions and recommendations. Proceedings of the National Academy of Sciences of the United States of America, 74 2:434-6, 1977. doi:https://doi.org/10.1073/PNAS.74.2.434.">100</a>]</span>. A parte numérica do nome do filtro <em>4253</em> representa a largura da janela temporal utilizada para o cálculo da mediana. Por exemplo, inicialmente o filtro considera uma janela de quatro datas. A partir das quatro primeiras datas é calculado um valor da primeira de mediana. Na sequência a janela é deslocada uma data no tempo e, é composta pelos dados das três últimas datas da janela anterior mais a data seguinte e assim sucessivamente até a última data da série temporal do período considerado. Na segunda, terceira e quarta rodada do filtro as janelas tem tamanho de 2, 5 e 3 datas, respectivamente. O termo <em>H</em> do nome do filtro refere-se à função de Hann e o <em>twice</em> é devido à função ser aplicada tanto nos dados quanto nos resíduos. A função de Hann ou Hanning representa uma função simétrica utilizada para filtrar os dados, cujo maior peso é dado ao elemento central da janela. Para calcular os coeficientes da função de Hann, deve-se resolver a <a class="reference internal" href="#equation-eq-series-temporais-filtragem-hann">Equação 7.1</a>:</p>
+<div class="math notranslate nohighlight" id="equation-eq-series-temporais-filtragem-hann">
+<span class="eqno">(7.1)<a class="headerlink" href="#equation-eq-series-temporais-filtragem-hann" title="Link permanente para essa equação"></a></span>\[w(n) = 0.5 \left( 1 - \cos \left( 2 \pi \frac{n}{N} \right) \right), \quad 0 \leq n \leq N\]</div>
+<p>em que <span class="math notranslate nohighlight">\(N\)</span> representa o número total de elementos da janela, <span class="math notranslate nohighlight">\(n\)</span> o elemento que será calculado, e <span class="math notranslate nohighlight">\(w\)</span> o valor do coeficiente calculado para o elemento <span class="math notranslate nohighlight">\(n\)</span>.</p>
+<p>Inicialmente, o filtro de medianas, com as janelas (<span class="math notranslate nohighlight">\(v\)</span>) de tamanho 4, 2, 5 e 3, é aplicado à série temporal (<span class="math notranslate nohighlight">\(x_t\)</span>) no tempo <span class="math notranslate nohighlight">\(t\)</span>. Para o caso de <span class="math notranslate nohighlight">\(n\)</span> ser um número ímpar a <a class="reference internal" href="#equation-eq-series-temporais-filtragem-med-impar">Equação 7.2</a> deve ser utilizada:</p>
+<div class="math notranslate nohighlight" id="equation-eq-series-temporais-filtragem-med-impar">
+<span class="eqno">(7.2)<a class="headerlink" href="#equation-eq-series-temporais-filtragem-med-impar" title="Link permanente para essa equação"></a></span>\[y_t = \text{med} \left( x_{t-u}, \ldots, x_t, \ldots, x_{t+u} \right), \quad 0 \leq t \leq T\]</div>
+<p>em que <span class="math notranslate nohighlight">\(v = 2u+1\)</span> e <span class="math notranslate nohighlight">\(y_t\)</span> referem-se ao valor de mediana para o elemento na posição <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>quando <span class="math notranslate nohighlight">\(v\)</span> for um número par, a <a class="reference internal" href="#equation-eq-series-temporais-filtragem-med-par">Equação 7.3</a> deve ser utilizada:</p>
+<div class="math notranslate nohighlight" id="equation-eq-series-temporais-filtragem-med-par">
+<span class="eqno">(7.3)<a class="headerlink" href="#equation-eq-series-temporais-filtragem-med-par" title="Link permanente para essa equação"></a></span>\[y_{t+\frac{1}{2}} = \text{med} \left( x_{t-u+1}, \ldots, x_t, \ldots, x_{t+u-1} \right), \quad 0 \leq t \leq T\]</div>
+<p>em que <span class="math notranslate nohighlight">\(v = 2u\)</span> e <span class="math notranslate nohighlight">\(y_{t+\frac{1}{2}}\)</span> referem-se ao valor médio determinado a partir das duas posições centrais da janela.</p>
+<p>Na série filtrada resultante é aplicada a função de Hann com uma janela de tamanho 3 (<a class="reference internal" href="#equation-eq-series-temporais-filtragem-hann-tres">Equação 7.4</a>):</p>
+<div class="math notranslate nohighlight" id="equation-eq-series-temporais-filtragem-hann-tres">
+<span class="eqno">(7.4)<a class="headerlink" href="#equation-eq-series-temporais-filtragem-hann-tres" title="Link permanente para essa equação"></a></span>\[z_t = \frac{1}{4} y_{t-1} + \frac{1}{2} y_t + \frac{1}{4} y_{t+1}, \quad 0 \leq t \leq T\]</div>
+<p>em que <span class="math notranslate nohighlight">\(z_t\)</span> refere-se ao valor do elemento e <span class="math notranslate nohighlight">\(y_t\)</span> é o valor mediano no tempo <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>Após esta nova filtragem é calculado o resíduo entre os dados originais e os dados filtrados (<a class="reference internal" href="#equation-eq-series-temporais-filtragem-residuos-4253">Equação 7.5</a>):</p>
+<div class="math notranslate nohighlight" id="equation-eq-series-temporais-filtragem-residuos-4253">
+<span class="eqno">(7.5)<a class="headerlink" href="#equation-eq-series-temporais-filtragem-residuos-4253" title="Link permanente para essa equação"></a></span>\[r_t = z_t - x_t\]</div>
+<p>em que <span class="math notranslate nohighlight">\(r_t\)</span> refere-se ao valor do resíduo do elemento no tempo <span class="math notranslate nohighlight">\(t\)</span>.</p>
+<p>A mesma seqüência de filtros é aplicada aos resíduos (<span class="math notranslate nohighlight">\(r_t\)</span>) e o resultado da filtragem dos resíduos é somado aos dados filtrados <span id="id9">[<a class="reference internal" href="../referencias.html#id120" title="Paul F. Velleman. Robust nonlinear data smoothers: definitions and recommendations. Proceedings of the National Academy of Sciences of the United States of America, 74 2:434-6, 1977. doi:https://doi.org/10.1073/PNAS.74.2.434.">100</a>]</span>.</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="cubos-de-dados.html" class="btn btn-neutral float-left" title="7.1. Cubos de Dados de Imagens" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="analise.html" class="btn btn-neutral float-right" title="7.3. Análise de Séries Temporais de Imagens" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7fce6ca80880>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

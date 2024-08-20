@@ -1,0 +1,9 @@
+.. _sec_sql_instalacao:
+
+Instalação do Servidor PostgreSQL
+=================================
+
+
+.. warning::
+
+    Para mais detalhes da instalação do PostgreSQL no Windows ou Linux, consulte as seguinte notas de aula: `Instalando e Configurando o Ambiente de Trabalho <https://gqueiroz.github.io/bdg/instalacao/index.html>`__.

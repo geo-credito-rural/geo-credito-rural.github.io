@@ -62,6 +62,8 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     bases-vetoriais/index
     uso-cobertura-terra/index
     acesso-imagens/index
+    series-temporais/index
+    fenologia/index
 
 
 .. toctree::

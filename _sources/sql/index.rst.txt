@@ -1,3 +1,8 @@
+.. include:: ../def.rst
+
+
+.. _cap_sql:
+
 Introdução à Linguagem de Consulta SQL
 ======================================
 
@@ -11,7 +16,7 @@ Na última década, o uso de dados geoespaciais tem sido cada vez mais comum nas
     :align: right
 
 
-As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamente para atender esse tipo de demanda. Nessa seção, será apresentado o uso básico da linguagem SQL em um servidor típico de bancos de dados, o PostgreSQL. O `PostgreSQL <http://www.postgresql.org>`_ é um sistema gerenciador de banco de dados objeto-relacional, gratuito e de código fonte aberto, desenvolvido a partir do projeto Postgres, iniciado em 1986, na Universidade da Califórnia, em Berkeley, sob a liderança do professor `Michael Stonebraker <https://en.wikipedia.org/wiki/Michael_Stonebraker>`__. O código fonte do núcleo do PostgreSQL encontra-se escrito na Linguagem de Programação C, o que garante grande portabilidade, estando disponível para as principais plataformas de hardware e sistemas operacionais como Linux, macOS e Microsoft Windows.
+As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamente para atender esse tipo de demanda. Neste capítulo, será apresentado o uso básico da linguagem SQL em um servidor típico de bancos de dados, o PostgreSQL. O `PostgreSQL <http://www.postgresql.org>`_ é um sistema gerenciador de banco de dados objeto-relacional, gratuito e de código fonte aberto, desenvolvido a partir do projeto Postgres, iniciado em 1986, na Universidade da Califórnia, em Berkeley, sob a liderança do professor `Michael Stonebraker <https://en.wikipedia.org/wiki/Michael_Stonebraker>`__ :cite:`stonebraker:1986, stonebraker:1987`. O código fonte do núcleo do PostgreSQL encontra-se escrito na Linguagem de Programação C, o que garante grande portabilidade, estando disponível para as principais plataformas de hardware e sistemas operacionais como Linux, macOS e Microsoft Windows.
 
 
 .. image:: ../img/logos/postgis.png
@@ -20,10 +25,10 @@ As tecnologias de bancos de dados foram desenvolvidas nos anos 70 e 80, justamen
     :align: left
 
 
-Esse SGBD fornece inúmeras facilidades e para trabalhar no *domínio geoespacial*, iremos utilizar a extensão `PostGIS <https://postgis.net/>`__, que é uma biblioteca de software livre, sob a licença `GNU GPL versão 2 <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>`__ (GPLv2). Inicialmente, esta extensão foi desenvolvida pela empresa Canadense `Refractions Research <http://postgis.refractions.net>`__, para suportar os tipos geométricos e operadores espaciais da *OGC Simple Feature* (OGC-SFS) :cite:`herring:2011:a,herring:2011:b`, bem como fornecer um mecanismo de indexação baseado nas Árvores-R :cite:`guttman:1984`. No entanto, com a evolução dessa extensão, a implementação passou a adotar o padrão ISO/SQL, relativo a *SQL multimedia and application packages - Part 3: Spatial* :cite:`iso:2016`. Assim, o PostGIS além de fornecer os tipos existentes na OGC-SFS, também suporta os tipos circulares e compostos da ISO/SQL.
+Além das inúmeras funcionalidades, esse SGBD possui diversas extensões ou *plugins*. Uma delas é o `PostGIS <https://postgis.net/>`__, que permite utilizar o PostgreSQL no *domínio geoespacial* através da inclusão de tipos geométricos e operadores espaciais capazes de tratar dados geográficos, além de um mecanismo de indexação baseado em Árvores-R :cite:`guttman:1984` para acelerar as consultas espaciais. O PostGIS é uma biblioteca de software livre, sob a licença `GNU GPL versão 2 <https://www.gnu.org/licenses/old-licenses/gpl-2.0.html>`__ (GPLv2), inicialmente desenvolvida pela empresa Canadense `Refractions Research <http://postgis.refractions.net>`__ nos anos 2000. Esta extensão foi projetada e implementada com base na especificação  *OGC Simple Feature* (OGC-SFS), que é uma especificação aberta com requisitos de interoperabilidade em sistemas geoespaciais :cite:`herring:2011:a`, incluindo os sistemas de bancos de dados espaciais baseados em SQL :cite:`herring:2011:b`. A ISO (International Organization for Standardization), responsável pela padronização da linguagem SQL, partiu da OGC-SFS para criar o documento denominado *SQL multimedia and application packages - Part 3: Spatial* :cite:`iso:2016`, o qual estende os tipos geométricos a OGC-SFS com tipos circulares e compostos. Essa última especificação tem sido utilizada como referência na implementação do PostGIS.
 
 
-Nos últimos anos, a extensão PostGIS passou a integrar diversas outras funcionalidades, como suporte a dados matriciais através do módulo PostGIS Raster e o tratamento de dados em 3D com o módulo SFSCGAL. A :numref:`Figura %s <fig:sql:index:arquitetura-postgis>` mostra o PostGIS como uma extensão do SGBD PostgreSQL, integrando as bibliotecas `GEOS <https://libgeos.org/>`__ :cite:`geos:2021`, `Proj <https://proj.org/>`__, `GDAL <https://gdal.org>`__ e `CGAL <https://www.cgal.org/>`__. Repare que o servidor PostgreSQL possui todos os elementos para análise sintática das consultas, para definir os planos ou estratégias de execução das consultas, bem como cuidar do gerenciamento dos dados em disco e memória.
+A extensão PostGIS atualmente contempla diversas outras funcionalidades, como suporte a dados matriciais, através do módulo `PostGIS Raster`, e o tratamento de dados em 3D, com o módulo `SFSCGAL`. A :numref:`Figura %s <fig:sql:index:arquitetura-postgis>` mostra o PostGIS como uma extensão do SGBD PostgreSQL, integrando as bibliotecas `GEOS <https://trac.osgeo.org/geos/>`__ :cite:`geos:2021`, que fornece o suporte à maioria das operações espaciais, como as topológicas, a biblioteca `Proj <https://proj.org/>`__, usada para transformação entre sistemas de referência espaciais, a `GDAL <https://gdal.org>`__, para tratamento de dados matriciais, e a `CGAL <https://www.cgal.org/>`__, bibloteca de geometria computacional capaz de tratar dados tridimensionais. Repare que o servidor PostgreSQL fornece componentes para análise sintática das consultas, para definição dos planos ou estratégias de execução das consultas, bem como gerenciamento dos dados em disco e memória, enquanto o PostGIS acrescenta a capacidade de tratar os tipos geométricos e matricial com funcionalidades presentes em várias outras bibliotecas.
 
 
 .. figure:: ../img/sql/index/arquitetura-postgis.png
@@ -42,11 +47,20 @@ Neste capítulo será utilizado o PostgreSQL versão 16.4 e sua extensão geogr�
     :maxdepth: 1
     :titlesonly:
 
+    ./instalacao
     ./conectando-bd
     ./criando-bd
+    ./tabelas
+    ./tipos-dados
+    ./tipos-geometricos
+    ./postgis-geometry
     ./criando-tabelas
     ./inserindo-dados
     ./consultas
     ./alterando-estrutura-tabela
     ./import-export
 
+
+.. warning::
+
+    Parte do material deste capítulo foi retirado do livro online `Bancos de Dados Geográficos - Teoria e Prática com PostgreSQL e PostGIS <https://gqueiroz.github.io/bdg/index.html>`__, disponibilizado gratuitamente pelo autor Gilberto Ribeiro de Queiroz.

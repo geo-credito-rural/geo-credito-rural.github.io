@@ -1,0 +1,129 @@
+.. include:: ../def.rst
+
+
+.. _sec_sql_tipos_dados:
+
+Tipos de Dados SQL
+==================
+
+
+Um **tipo de dado** (**data type**) é definido por um conjunto de valores e um conjunto de operações sobre esses valores. No PostgreSQL, toda coluna de uma tabela é associada a um tipo, que define as operações que podem ser realizadas sobre os valores dessa coluna. O **core** do PostgreSQL contém um conjunto de tipos de dados chamados de **fundamentais** ou **primitivos** (**built-in types**), para manipulação de valores numéricos, lógicos (ou booleanos), strings (cadeia de caracteres), data e hora, entre outros.
+
+
+A :numref:`Tabela %s <tbl:sql:tipos-dados:sql>` apresenta alguns tipos suportados pelo PostgreSQL.
+
+
+.. table:: Tipos de Dados do PostgreSQL
+    :name: tbl:sql:tipos-dados:sql
+    :header-alignment: center center center center
+    :column-alignment: left left left left
+    :widths: 25 25 25 25
+
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+    | Tipo                                                                                                                   | Descrição                                       | nomes alternativos |
+    +=================================================================================+======================================+=================================================+====================+
+    |                                                                                 | integer                              | Número inteiro com sinal                        | int, int4          |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | bigint                               | Número inteiro com sinal                        | int8               |
+    + `Números Inteiros <https://www.postgresql.org/docs/14/datatype-numeric.html>`__ +--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | serial                               | Número inteiro com sinal (autoincremental)      | serial4            |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | bigserial                            | Número inteiro com sinal (autoincremental)      | serial8            |
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | real                                 | Números em ponto flutuante de precisão simples  | float4             |
+    + `Números reais <https://www.postgresql.org/docs/14/datatype-numeric.html>`__    +--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | double precision                     | Números em ponto flutuante de precisão dupla    | float8             |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    |                                                                                 | numeric [(p, s)]                     | Números exatos com precisão controlada          |                    |
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+    | `Booleano <https://www.postgresql.org/docs/14/datatype-boolean.html>`__         | boolean                              | valores ``true`` ou ``false``                   | bool               |
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | character [(n)]                      | Cadeia de caracteres de tamanho fixo            | char [(n)]         |
+    + `Strings <https://www.postgresql.org/docs/14/datatype-character.html>`__        +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | character varying [(n)]              | Cadeia de caracteres de tamanho variável        | varchar [(n)]      |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | text                                 | Cadeia de caracteres de tamanho variável        |                    |
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | timestamp [(p)] [without time zone]  | Data e hora sem fuso horário                    |                    |
+    + `Data e Hora <https://www.postgresql.org/docs/14/datatype-datetime.html>`__     +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | timestamp [(p)] with time zone       | Data e hora com fuso horário                    | timestamptz        |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | date                                 | Data                                            |                    |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | time [ (p) ] [ without time zone ]   | Hora do dia sem fuso horário                    |                    |
+    +                                                                                 +--------------------------------------+-------------------------------------------------+--------------------+
+    +                                                                                 | time [ (p) ] with time zone          | Hora do dia com fuso horário                    |                    |
+    +---------------------------------------------------------------------------------+--------------------------------------+-------------------------------------------------+--------------------+
+
+
+.. note::
+
+    Os valores individuais de cada tipo são chamados de **literais** ou **constantes**.
+
+
+Podemos realizar consultas SQL no PostgreSQL usando apenas a cláusula :sql:`SELECT`. Abaixo, são apresentados alguns exemplos da notação empregada para valores literais de alguns dos tipos de dados listados na :numref:`Tabela %s <tbl:sql:tipos-dados:sql>`:
+
+
+.. code-block:: sql
+
+    SELECT 473;           -- número inteiro
+
+
+.. code-block:: sql
+
+    SELECT 4.1;           -- numeric
+
+
+.. code-block:: sql
+
+    SELECT true;          -- valor lógico verdadeiro
+
+
+.. code-block:: sql
+
+    SELECT 'Satélite';    -- sequência de caracteres
+
+
+.. code-block:: sql
+
+    SELECT TIMESTAMP WITH TIME ZONE '2022-10-11 06:15:00-03';  -- data e hora com fuso horário
+
+
+.. note::
+
+    Nos exemplos acima, os carcteres ``--`` são usados para escrita de comentários. Todo o conteúdo da linha após esses caracteres não são tratados como comandos e, portanto, são desconsiderados pelo interpretador de consultas do PostgreSQL. Esse tipo de comentário é conhecido como **comentário de linha**. É possível também utilizar os delimitadores ``/*`` e ``*/`` para criar comentários que se expandem por múltiplas linhas, que são chamados de **comentários de bloco**.
+
+
+No PostgreSQL podemos utilizar a função ``pg_typeof`` para obter o tipo de dado associado a um determinado valor:
+
+
+.. code-block:: sql
+
+    SELECT pg_typeof(30);
+
+
+.. code-block:: sql
+
+    SELECT pg_typeof(22.5);
+
+
+.. code-block:: sql
+
+    SELECT pg_typeof(5 / 2 + 4 * 5);
+
+
+.. code-block:: sql
+
+    SELECT pg_typeof(TIMESTAMP WITH TIME ZONE '2022-10-11 06:15:00-03');
+
+
+.. code-block:: sql
+
+    SELECT pg_typeof('Eduardo');
+
+
+.. tip::
+
+    A lista completa dos tipos básicos do PostgreSQL pode ser consultada em `Data Types <https://www.postgresql.org/docs/14/datatype.html>`__.
+
+
