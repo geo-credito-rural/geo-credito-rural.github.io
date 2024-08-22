@@ -151,6 +151,7 @@ Este filtro usa a função logística com dois parâmetros de ajuste para filtra
 
 
 .. math::
-    :label:eq:series-temporais:filtragem:duplo-logística
+    :label: eq:series-temporais:filtragem:duplo-logística
+
     IV^* = w_{IV} + (m_{IV} - w_{IV}) \left( \frac{1}{1 + \exp(-\Delta s (t - s))} \right) + \frac{1}{1 + \exp(\Delta a (t - a))} - 1
 
