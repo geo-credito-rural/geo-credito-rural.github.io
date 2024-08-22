@@ -23,7 +23,7 @@ Este filtro é uma adequação do filtro de mediana proposto por :cite:t:`vellem
     w(n) = 0.5 \left( 1 - \cos \left( 2 \pi \frac{n}{N} \right) \right), \quad 0 \leq n \leq N
 
 
-em que :math:`N` representa o número total de elementos da janela, :math:`n` o elemento que será calculado, e :math:`w` o valor do coeficiente calculado para o elemento :math:`n`.
+em que: :math:`N` representa o número total de elementos da janela, :math:`n` o elemento que será calculado, e :math:`w` o valor do coeficiente calculado para o elemento :math:`n`.
 
 
 Inicialmente, o filtro de medianas, com as janelas (:math:`v`) de tamanho 4, 2, 5 e 3, é aplicado à série temporal (:math:`x_t`) no tempo :math:`t`. Para o caso de :math:`n` ser um número ímpar a :eq:`eq:series-temporais:filtragem:med-impar` deve ser utilizada:
@@ -50,7 +50,6 @@ quando :math:`v` for um número par, a :eq:`eq:series-temporais:filtragem:med-pa
 em que :math:`v = 2u` e :math:`y_{t+\frac{1}{2}}` referem-se ao valor médio determinado a partir das duas posições centrais da janela.
 
 
-
 Na série filtrada resultante é aplicada a função de Hann com uma janela de tamanho 3 (:eq:`eq:series-temporais:filtragem:hann-tres`):
 
 
@@ -60,7 +59,7 @@ Na série filtrada resultante é aplicada a função de Hann com uma janela de t
     z_t = \frac{1}{4} y_{t-1} + \frac{1}{2} y_t + \frac{1}{4} y_{t+1}, \quad 0 \leq t \leq T
 
 
-em que :math:`z_t` refere-se ao valor do elemento e :math:`y_t` é o valor mediano no tempo :math:`t`.
+em que: :math:`z_t` refere-se ao valor do elemento e :math:`y_t` é o valor mediano no tempo :math:`t`.
 
 
 Após esta nova filtragem é calculado o resíduo entre os dados originais e os dados filtrados (:eq:`eq:series-temporais:filtragem:residuos-4253`):
@@ -75,3 +74,83 @@ Após esta nova filtragem é calculado o resíduo entre os dados originais e os 
 em que :math:`r_t` refere-se ao valor do resíduo do elemento no tempo :math:`t`.
 
 A mesma seqüência de filtros é aplicada aos resíduos (:math:`r_t`) e o resultado da filtragem dos resíduos é somado aos dados filtrados :cite:`velleman:1977`.
+
+
+Savitzky–Golay
+--------------
+
+
+O filtro de *Savitzky–Golay* :cite:`savitzky:1964` é um clássico entre os filtros de suavização de sinais analíticos, de séries temporais ou de sinais. A equação para o filtro Savitzky-Golay é baseada em um ajuste polinomial de uma janela deslizante de dados. Para aplicar este filtro, os seguintes passos devem ser realizados: i) definir a largura da janela temporal; ii) remover o ponto central do intervalo abrangido pela janela; iii) ajustar, pelo método dos mínimos quadrados, um polinômio de grau variável aos dados restantes; iv) utilizar o polinômio para estimar o valor do ponto removido e substituir este valor; v) deslocar a janela para o próximo ponto e repetir o processo anterior. A equação geral deste filtro é apresentada na :eq:`eq:series-temporais:filtragem:savitzky–golay`:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:savitzky–golay
+
+    y_t = \frac{1}{v} \sum_{i=-u}^{u} c_i x_{t+i}
+
+
+em que: :math:`y_t` refere-se ao valor filtrado no tempo :math:`t`; :math:`x_{t+i}` são os valores dos dados nas posições em torno de :math:`t`, com :math:`i` variando entre :math:`-u` e :math:`u`; :math:`v` é uma constante de normalização (:eq:`eq:series-temporais:filtragem:savitzky–golay-v`) que é a soma dos coeficientes, garantindo que a média dos coeficientes seja igua a 1.
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:savitzky–golay-v
+    
+    v = \sum_{i=-u}^{u} c_i
+
+
+:math:`c_i` são os coeficientes do polinômio definidos pela pelos passos abaixo:
+
+
+1. Defina a Matriz de Design **:math:`A`**. A matriz de design **:math:`A`** é formada com base nos termos do polinômio para cada posição na janela. Para um tamanho de janela de :math:`2u + 1` e um polinômio de ordem :math:`m`:
+
+
+   .. math::
+      A = \begin{bmatrix}
+      1 & -u & (-u)^2 & \cdots & (-u)^m \\
+      1 & -(u-1) & (u-1)^2 & \cdots & (u-1)^m \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      1 & u & u^2 & \cdots & u^m
+      \end{bmatrix}
+
+
+2. Calcule o produto da matriz **:math:`A^T`** e **:math:`A`**.
+
+
+   .. math::
+      A^T A = \begin{bmatrix}
+      \sum_{i=-u}^{u} 1^2 & \sum_{i=-u}^{u} i & \sum_{i=-u}^{u} i^2 & \cdots & \sum_{i=-u}^{u} i^m \\
+      \sum_{i=-u}^{u} i & \sum_{i=-u}^{u} i^2 & \sum_{i=-u}^{u} i^3 & \cdots & \sum_{i=-u}^{u} i^{m+1} \\
+      \vdots & \vdots & \vdots & \ddots & \vdots \\
+      \sum_{i=-u}^{u} i^m & \sum_{i=-u}^{u} i^{m+1} & \cdots & \cdots & \sum_{i=-u}^{u} i^{2m}
+      \end{bmatrix}
+
+
+3. Calcule a inversa da matriz **:math:`(A^T A)^{-1}`**
+
+   Encontre  \( A^T A \):
+
+   .. math::
+      (A^T A)^{-1}
+
+4. Calcule a Matriz de Coeficientes **:math:`C`**
+
+
+   .. math::
+      C = (A^T A)^{-1} A^T
+
+5. Extraia os Coeficientes **:math:`c_i`**
+
+   Os coeficientes :math:`c_i` para o filtro são obtidos da primeira linha da matriz :math:`C`. Normalize os coeficientes, se necessário, para que a soma deles seja igual a 1.
+
+
+Duplo-logística
+---------------
+
+
+Este filtro usa a função logística com dois parâmetros de ajuste para filtrar os dados e foi proposto por :cite:t:`beck:2006` para modelar o comportamento temporal do NDVI em áreas de alta latitude (tundra e taiga). Posteriormente, :cite:t:`julien:2009, julien:2010` utilizaram este filtro nos dados de NDVI para estimar os parâmetros fenológicos da vegetação de todo o globo terrestre. Para utilizar este filtro é necessário definir 6 parâmetros: i) valor mínimo do índice espectral :math:`(w_{IV})`; ii) valor máximo do índice espectral :math:`(m_{IV})`; iii) ponto de inflexão da curva quando ela está acendente :math:`(s)`; iv) ponto de inflexão da curva, um quando ela começa a descendente :math:`(a)`; v) a taxa de incremento em :math:`s (\Delta s)`  e vi) a taxa de decréscimo em :math:`a (\Delta a)`. A equação do filtro é apresentada na (:eq:`eq:series-temporais:filtragem:duplo-logística`):
+
+
+.. math::
+    :label:eq:series-temporais:filtragem:duplo-logística
+    IV^* = w_{IV} + (m_{IV} - w_{IV}) \left( \frac{1}{1 + \exp(-\Delta s (t - s))} \right) + \frac{1}{1 + \exp(\Delta a (t - a))} - 1
+

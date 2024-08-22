@@ -49,12 +49,12 @@ A especificação conceitual do STAC permite dois tipos de implementações:
     Como parte do aperfeiçoamento dos produtos e serviços disponibilizados pelo INPE à sociedade, encontra-se em desenvolvimento o novo portal https://data.inpe.br/, que faz parte da modernização da infraestrutura de serviços para acesso às imagens de satélites do acervo do instituto. Esse portal foi criado com o intuito de facilitar a pesquisa e obtenção das imagens disponibilizadas gratuitamente. Esse novo serviço tem como base as tecnologias desenvolvidas no projeto Brazil Data Cube, e está ancorado dentro do Programa Base de Informações Georreferenciadas (BIG) do INPE. Para navegar pelas coleções disponibilizadas no serviço STAC do INPE, utilize a instância do `STAC Browser <https://data.inpe.br/stac/browser/>`__.
 
 
-Para demonstrar o acesso aos produtos de dados do Brazil Data Cube, serão utiizados os seguintes *Jupyter Notebooks*:
+Para demonstrar o acesso aos produtos de dados do Brazil Data Cube, serão utilizados os seguintes *Jupyter Notebooks*:
 
 .. rst-class:: open
 
-- `Introdução ao STAC: consultando e recuperando imagens de sensoriamento remoto associadas à região de uma gleba do Sicor <https://www.kaggle.com/code/gqueiroz/tema4-stac-introducao>`__.
+- `Introdução ao Serviço de Descoberta e Acesso a Imagens de Satélite - STAC <https://www.kaggle.com/code/gqueiroz/tema4-stac-introducao>`__.
 
-- Usando o STAC e o TMS para visualização de imagens.
+- `Usando o serviço Tile Map Service (TMS) para visualização de imagens <https://www.kaggle.com/code/gqueiroz/tema4-tms-introducao>`__.
 
 
