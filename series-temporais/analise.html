@@ -65,7 +65,13 @@
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="cubos-de-dados.html">7.1. Cubos de Dados de Imagens</a></li>
 <li class="toctree-l2"><a class="reference internal" href="filtragem.html">7.2. Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">7.3. Análise de Séries Temporais de Imagens</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">7.3. Análise de Séries Temporais de Imagens</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#classificacao-de-series-temporais-de-imagens">7.3.1. Classificação de Séries Temporais de Imagens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#agrupamento-de-series-temporais-de-imagens">7.3.2. Agrupamento de Séries Temporais de Imagens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens">7.3.3. Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens">7.3.4. Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="wtss.html">7.4. Web Time Series Service (WTSS)</a></li>
 </ul>
 </li>
@@ -113,16 +119,63 @@
              
   <section id="analise-de-series-temporais-de-imagens">
 <span id="sec-series-temporais-analise"></span><h1><span class="section-number">7.3. </span>Análise de Séries Temporais de Imagens<a class="headerlink" href="#analise-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h1>
+<p>Séries temporais de imagens de satélites nos permitem detectar processos complexos difíceis de identificar usando abordagens tradicionais de detecção de mudanças entre duas imagens em tempos distintos <span id="id1">[<a class="reference internal" href="../referencias.html#id101" title="Valerie J Pasquarella, Christopher E Holden, Les Kaufman, and Curtis E Woodcock. From imagery to ecology: leveraging time series of all available landsat observations to map and monitor ecosystem state and dynamics. Remote Sensing in Ecology and Conservation, 2(3):152–170, 2016.">106</a>]</span> <span id="id2">[<a class="reference internal" href="../referencias.html#id56" title="Cristina Gómez, Joanne C White, and Michael A Wulder. Optical remotely sensed time series data for land cover classification: a review. ISPRS Journal of photogrammetry and Remote Sensing, 116:55–72, 2016.">92</a>]</span>.
+A Figura a seguir apresenta quatro séries temporais NDVI, associadas à localizações distintas, extraídas do cubo de dados de imagens Sentinel-2 produzido pelo projeto Brazil Data Cube.
+Considerando todos os valores dessas séries é possível identificar as mudanças que ocorrem nessas localizações ao longo do tempo.</p>
+<figure class="align-center align-default">
+<a class="reference internal image-reference" href="../_images/timeseries-01.png"><img alt="Métodos de Análise de Séries Temporais de Imagens" src="../_images/timeseries-01.png" style="width: 90%;" /></a>
+</figure>
+<figure class="align-center align-default">
+<a class="reference internal image-reference" href="../_images/timeseries-02.png"><img alt="Métodos de Análise de Séries Temporais de Imagens" src="../_images/timeseries-02.png" style="width: 90%;" /></a>
+</figure>
+<figure class="align-center align-default" id="id13">
+<a class="reference internal image-reference" href="../_images/timeseries-03.png"><img alt="Métodos de Análise de Séries Temporais de Imagens" src="../_images/timeseries-03.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 7.5 - </span><span class="caption-text">Séries temporais NDVI extraídas do cubo de dados de imagens Sentinel-2 associadas à quatro localizações distintas.</span><a class="headerlink" href="#id13" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
 <p>Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir:
 (1) Classificação de Séries Temporais de Imagens; (2) Agrupamento de Séries Temporais de Imagens;
 (3) Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens; e
 (4) Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens.</p>
-<figure class="align-center align-default" id="id1">
+<figure class="align-center align-default" id="id14">
 <a class="reference internal image-reference" href="../_images/analise-series-temporais.png"><img alt="Métodos de Análise de Séries Temporais de Imagens" src="../_images/analise-series-temporais.png" style="width: 95%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 7.4 - </span><span class="caption-text">Métodos de Análise de Séries Temporais de Imagens.</span><a class="headerlink" href="#id1" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 7.6 - </span><span class="caption-text">Métodos de Análise de Séries Temporais de Imagens.</span><a class="headerlink" href="#id14" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
+<section id="classificacao-de-series-temporais-de-imagens">
+<h2><span class="section-number">7.3.1. </span>Classificação de Séries Temporais de Imagens<a class="headerlink" href="#classificacao-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
+<p>Atualmente, métodos de aprendizado de máquina (<em>machine learning</em>) e de aprendizado profundo (<em>deep learning</em>) têm sido amplamente
+utilizados para classificar séries temporais de imagens e produzir mapas de uso e cobertura da terra com resultados promissores <span id="id3">[<a class="reference internal" href="../referencias.html#id92" title="Victor Maus, Gilberto Câmara, Ricardo Cartaxo, Alber Sanchez, Fernando M Ramos, and Gilberto R De Queiroz. A time-weighted dynamic time warping method for land-use and land-cover mapping. IEEE Journal of Selected Topics in Applied Earth Observations and Remote Sensing, 9(8):3729–3739, 2016.">89</a>]</span> <span id="id4">[<a class="reference internal" href="../referencias.html#id56" title="Cristina Gómez, Joanne C White, and Michael A Wulder. Optical remotely sensed time series data for land cover classification: a review. ISPRS Journal of photogrammetry and Remote Sensing, 116:55–72, 2016.">92</a>]</span> <span id="id5">[<a class="reference internal" href="../referencias.html#id17" title="Mariana Belgiu and Ovidiu Csillik. Sentinel-2 cropland mapping using pixel-based and object-based time-weighted dynamic time warping analysis. Remote sensing of environment, 204:509-523, 2018.">93</a>]</span> <span id="id6">[<a class="reference internal" href="../referencias.html#id103" title="Michelle Cristina Araujo Picoli, Gilberto Camara, Ieda Sanches, Rolf Simões, Alexandre Carvalho, Adeline Maciel, Alexandre Coutinho, Julio Esquerdo, João Antunes, Rodrigo Anzolin Begotti, and others. Big earth observation time series analysis for monitoring brazilian agriculture. ISPRS journal of photogrammetry and remote sensing, 145:328–339, 2018.">88</a>]</span> <span id="id7">[<a class="reference internal" href="../referencias.html#id121" title="Rolf Simoes, Gilberto Camara, Gilberto Queiroz, Felipe Souza, Pedro R. Andrade, Lorena Santos, Alexandre Carvalho, and Karine Ferreira. Satellite image time series analysis for big earth observation data. Remote Sensing, 2021. URL: https://www.mdpi.com/2072-4292/13/13/2428, doi:10.3390/rs13132428.">70</a>]</span>.
+Esses métodos incluem Randon Forest, SVM (<em>Support Vector Machine</em>), TempCNN (<em>Temporal Convolutional Neural Network</em>) e TWDTW (<em>Time-Weighted Dynamic Time Warping</em>).</p>
+<p>Os mapas de uso e cobertura da terra lançados em agosto de 2024 pelo projeto <a class="reference internal" href="../uso-cobertura-terra/terraclass.html#sec-uso-cobertura-terra-terraclass"><span class="std std-ref">TerraClass</span></a>, para os biomas Cerrado e Amazônia, foram produzidos utilizando
+métodos de aprendizado de máquina e séries temporais de imagens, como descrito
+na <a class="reference external" href="https://www.embrapa.br/busca-de-noticias/-/noticia/91356370/terraclass-apresenta-resultados-do-mapeamento-da-cobertura-e-do-uso-da-terra-na-amazonia-e-cerrado">Notícia de Lançamento do TerraClass</a>.
+Esses mapas foram gerados utilizando a plataforma Brazil Data Cube, seus cubos de dados de imagens e pacote SITS (Satellite Image Time Series) <span id="id8">[<a class="reference internal" href="../referencias.html#id121" title="Rolf Simoes, Gilberto Camara, Gilberto Queiroz, Felipe Souza, Pedro R. Andrade, Lorena Santos, Alexandre Carvalho, and Karine Ferreira. Satellite image time series analysis for big earth observation data. Remote Sensing, 2021. URL: https://www.mdpi.com/2072-4292/13/13/2428, doi:10.3390/rs13132428.">70</a>]</span>.</p>
+<p>A maioria desses métodos utilizados são <em>supervisionados</em> e, portanto, necessitam de amostras de treinamento de boa qualidade para gerar modelos assertivos.
+A qualidade desse conjunto de amostras é crucial no processo de classificação. Amostras que são bem representativas das classes a serem identificadas
+resultam em boas classificações. Na classificação de uso e cobertura da terra, amostras de boa qualidade tem impacto direto na acurácia dos mapas gerados
+<span id="id9">[<a class="reference internal" href="../referencias.html#id56" title="Cristina Gómez, Joanne C White, and Michael A Wulder. Optical remotely sensed time series data for land cover classification: a review. ISPRS Journal of photogrammetry and Remote Sensing, 116:55–72, 2016.">92</a>]</span>. As amostras de treinamento devem descrever adequadamente a diversidade e a representatividade das classes de uso e cobertura da terra que devem ser
+identificadas pelo classificador. Além disso, essas amostras devem representar adequadamente a alta variabilidade das classes de uso e cobertura da terra
+em grandes áreas, capturando seus distintos padrões espaço-temporais <span id="id10">[<a class="reference internal" href="../referencias.html#id115" title="Lorena Alves Santos, Karine Ferreira, Michelle Picoli, Gilberto Camara, Raul Zurita-Milla, and Ellen-Wien Augustijn. Identifying spatiotemporal patterns in land use and cover samples from satellite image time series. Remote Sensing, 13(5):974, 2021.">107</a>]</span>.</p>
+<p>Para analisar amostras de uso e cobertura da terra associadas a séries temporais de imagens, Santos et al. <span id="id11">[<a class="reference internal" href="../referencias.html#id114" title="Lorena A Santos, Karine R Ferreira, Gilberto Camara, Michelle CA Picoli, and Rolf E Simoes. Quality control and class noise reduction of satellite image time series. ISPRS Journal of Photogrammetry and Remote Sensing, 177:75–88, 2021.">108</a>]</span> propõem um método baseado na
+rede neural <em>Self-Organizing Maps</em> (SOM) e inferência bayesiana. SOM é uma técnica de cluster muito utilizada para agrupamento de séries temporais.
+O método proposto produz métricas que indicam a qualidade das amostras de uso e cobertura da terra, usando o SOM para gerar clusters ou agrupamentos
+de séries temporais de imagens e inferência bayesiana para avaliar as similaridades <em>intra-cluster</em> e <em>inter-cluster</em> <span id="id12">[<a class="reference internal" href="../referencias.html#id114" title="Lorena A Santos, Karine R Ferreira, Gilberto Camara, Michelle CA Picoli, and Rolf E Simoes. Quality control and class noise reduction of satellite image time series. ISPRS Journal of Photogrammetry and Remote Sensing, 177:75–88, 2021.">108</a>]</span>.</p>
+</section>
+<section id="agrupamento-de-series-temporais-de-imagens">
+<h2><span class="section-number">7.3.2. </span>Agrupamento de Séries Temporais de Imagens<a class="headerlink" href="#agrupamento-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
+<p>Um método bastante utilizado para agrupamento de séries temporais de imagens é a rede neural <em>Self-Organizing Maps</em> (SOM), devido a suas duas
+características principais: (1) a capacidade de mapear o espaço de entrada de alta dimensão para uma grade bidimensional; e
+(2) a preservação topológica da vizinhança, que gera grupos espaciais de padrões semelhantes no espaço de saída.</p>
+</section>
+<section id="deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens">
+<h2><span class="section-number">7.3.3. </span>Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens<a class="headerlink" href="#deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
+</section>
+<section id="extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens">
+<h2><span class="section-number">7.3.4. </span>Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens<a class="headerlink" href="#extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
+</section>
 </section>
 
 
@@ -140,7 +193,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f29cca69490>
+<jinja2.runtime.BlockReference object at 0x7f8d59b9a9a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

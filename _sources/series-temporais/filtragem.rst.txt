@@ -101,44 +101,46 @@ em que: :math:`y_t` refere-se ao valor filtrado no tempo :math:`t`; :math:`x_{t+
 :math:`c_i` são os coeficientes do polinômio definidos pela pelos passos abaixo:
 
 
-1. Defina a Matriz de Design **:math:`A`**. A matriz de design **:math:`A`** é formada com base nos termos do polinômio para cada posição na janela. Para um tamanho de janela de :math:`2u + 1` e um polinômio de ordem :math:`m`:
+1. Defina a Matriz de Design :math:`A` (:eq:`eq:series-temporais:filtragem:matriz-design`) . A matriz de design :math:`A` é formada com base nos termos do polinômio para cada posição na janela. Para um tamanho de janela de :math:`2u + 1` e um polinômio de ordem :math:`m`:
 
 
-   .. math::
-      A = \begin{bmatrix}
-      1 & -u & (-u)^2 & \cdots & (-u)^m \\
-      1 & -(u-1) & (u-1)^2 & \cdots & (u-1)^m \\
-      \vdots & \vdots & \vdots & \ddots & \vdots \\
-      1 & u & u^2 & \cdots & u^m
-      \end{bmatrix}
+.. math::
+     :label: eq:series-temporais:filtragem:matriz-design
+
+        A = \begin{bmatrix}
+        1 & -u & (-u)^2 & \cdots & (-u)^m \\
+        1 & -(u-1) & (u-1)^2 & \cdots & (u-1)^m \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        1 & u & u^2 & \cdots & u^m
+        \end{bmatrix}
 
 
-2. Calcule o produto da matriz **:math:`A^T`** e **:math:`A`**.
+2. Calcule o produto da matriz :math:`A^T` e :math:`A`.
 
 
    .. math::
       A^T A = \begin{bmatrix}
-      \sum_{i=-u}^{u} 1^2 & \sum_{i=-u}^{u} i & \sum_{i=-u}^{u} i^2 & \cdots & \sum_{i=-u}^{u} i^m \\
-      \sum_{i=-u}^{u} i & \sum_{i=-u}^{u} i^2 & \sum_{i=-u}^{u} i^3 & \cdots & \sum_{i=-u}^{u} i^{m+1} \\
+      \sum_{i=-u}^{u} i^0 & \sum_{i=-u}^{u} i & \sum_{i=-u}^{u} i^2 & \cdots & \sum_{i=-u}^{u} i^m \\
+      \sum_{i=-u}^{u} i^1 & \sum_{i=-u}^{u} i^2 & \sum_{i=-u}^{u} i^3 & \cdots & \sum_{i=-u}^{u} i^{m+1} \\
       \vdots & \vdots & \vdots & \ddots & \vdots \\
       \sum_{i=-u}^{u} i^m & \sum_{i=-u}^{u} i^{m+1} & \cdots & \cdots & \sum_{i=-u}^{u} i^{2m}
       \end{bmatrix}
 
 
-3. Calcule a inversa da matriz **:math:`(A^T A)^{-1}`**
+3. Calcule a inversa da matriz :math:`(A^T A)^{-1}`
 
-   Encontre  \( A^T A \):
+   Encontre  :math:`A^T A`:
 
    .. math::
       (A^T A)^{-1}
 
-4. Calcule a Matriz de Coeficientes **:math:`C`**
+4. Calcule a Matriz de Coeficientes :math:`C`
 
 
    .. math::
       C = (A^T A)^{-1} A^T
 
-5. Extraia os Coeficientes **:math:`c_i`**
+5. Extraia os Coeficientes :math:`c_i`
 
    Os coeficientes :math:`c_i` para o filtro são obtidos da primeira linha da matriz :math:`C`. Normalize os coeficientes, se necessário, para que a soma deles seja igual a 1.
 
@@ -147,11 +149,90 @@ Duplo-logística
 ---------------
 
 
-Este filtro usa a função logística com dois parâmetros de ajuste para filtrar os dados e foi proposto por :cite:t:`beck:2006` para modelar o comportamento temporal do NDVI em áreas de alta latitude (tundra e taiga). Posteriormente, :cite:t:`julien:2009, julien:2010` utilizaram este filtro nos dados de NDVI para estimar os parâmetros fenológicos da vegetação de todo o globo terrestre. Para utilizar este filtro é necessário definir 6 parâmetros: i) valor mínimo do índice espectral :math:`(w_{IV})`; ii) valor máximo do índice espectral :math:`(m_{IV})`; iii) ponto de inflexão da curva quando ela está acendente :math:`(s)`; iv) ponto de inflexão da curva, um quando ela começa a descendente :math:`(a)`; v) a taxa de incremento em :math:`s (\Delta s)`  e vi) a taxa de decréscimo em :math:`a (\Delta a)`. A equação do filtro é apresentada na (:eq:`eq:series-temporais:filtragem:duplo-logística`):
+Este filtro usa a função logística com dois parâmetros de ajuste para filtrar os dados e foi proposto por :cite:t:`beck:2006` para modelar o comportamento temporal do NDVI em áreas de alta latitude (tundra e taiga). Posteriormente, :cite:t:`julien:2009, julien:2010` utilizaram este filtro nos dados de NDVI para estimar os parâmetros fenológicos da vegetação de todo o globo terrestre. Para utilizar este filtro é necessário definir 6 parâmetros: i) valor mínimo do índice espectral :math:`(w_{IV})`; ii) valor máximo do índice espectral :math:`(m_{IV})`; iii) ponto de inflexão da curva quando ela está acendente :math:`(s)`; iv) ponto de inflexão da curva, um quando ela começa a descendente :math:`(a)`; v) a taxa de incremento em :math:`s (\Delta s)`  e vi) a taxa de decréscimo em :math:`a (\Delta a)`. A equação do filtro é apresentada na :eq:`eq:series-temporais:filtragem:duplo-logistica`:
 
 
 .. math::
-    :label: eq:series-temporais:filtragem:duplo-logística
+    :label: eq:series-temporais:filtragem:duplo-logistica
 
-    IV^* = w_{IV} + (m_{IV} - w_{IV}) \left( \frac{1}{1 + \exp(-\Delta s (t - s))} \right) + \frac{1}{1 + \exp(\Delta a (t - a))} - 1
+     IV^* = w_{IV} + (m_{IV} - w_{IV}) \left( \frac{1}{1 + \exp(-\Delta s (t - s))} \right) + \frac{1}{1 + \exp(\Delta a (t - a))} - 1
+
+
+Séries de Fourier
+-----------------
+
+
+As séries de Fourier ou Análise harmônica receberam este nome em homenagem a Jean-Baptiste Joseph Fourier, matemático e físico Frances que iniciou a investigação sobre a decomposição de funções periódicas em séries trigonométricas convergentes chamadas séries de Fourier e a sua aplicação aos problemas da condução do calor. Atualmente esta técnica é aplicada as mais diversas áreas do conhecimento :cite:`roerink:2000,morettin:2004`.
+
+
+As séries de Fourier permitem representar uma função complexa por uma somatória de ondas (termos) senoidais e cossenoidais, em que cada onda é definida por um valor único de amplitude e de fase. A amplitude corresponde à metade do valor em que a função é maximizada e a fase (ou ângulo de fase) é o deslocamento entre a origem e o pico da onda no intervalo de :math:`0` até :math:`2 \pi`. Cada termo designa o número de ciclos completados por uma onda num determinado intervalo: o primeiro harmônico ou harmônico fundamental tem um período :math:`T` igual ao período total em estudo; o segundo harmônico tem um período igual à metade do período do primeiro harmônico :math:`\frac{T}{2}`, o terceiro harmônico igual à terceira parte do período :math:`\frac{T}{3}` e assim sucessivamente. A somatória dos termos produz uma curva complexa, em que cada componente (termo) representa um percentual do total da variância da série original :cite:`roerink:2000,morettin:2004,jakubauskas:2002`. A representação gráfica desse processo pode ser observada na :numref:`Figura %s <fig:series-temporais:fourrier-harmonicos>`.
+
+
+.. figure:: ../img/series-temporais/fourrier-harmonicos.png
+    :alt: Séries de Fourier e harmônicos
+    :width: 80%
+    :figclass: align-center
+    :name: fig:series-temporais:fourrier-harmonicos
+
+    Séries de Fourier e harmônicos. (a) Curva de cosseno representando o primeiro harmônico; (b) curvas para os primeiros três harmônicos; (c) curva resultante da somatória dos três harmônicos. 
+
+
+Uma série temporal de :math:`N` amostras eqüidistantes, de uma variável :math:`y`, pode ser representada por uma função harmônica. Esta função pode ser utilizada então para a estimativa de valores ao longo do tempo (:math:`t`), permitindo a reconstrução da curva :cite:`roerink:2000,morettin:2004,jakubauskas:2002`. Neste caso, um valor da variável :math:`y`, em uma data :math:`i` pode ser estimado por meio da :eq:`eq:series-temporais:filtragem:fourrier-estimativa`:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-estimativa
+
+    y_i = \overline{y} + \sum_{j=1}^{N/2} C_j \cos(\omega_j t - \phi_j)
+
+
+em que: :math:`\overline{y}` representa a média dos valores da série de dados, :math:`C_j` representa a amplitude, :math:`\omega_j` representa a frequência, :math:`\phi_j` o ângulo de fase.
+
+
+É possível escrever a equação anterior utilizando a função seno. No entanto, a função cosseno é geralmente utilizada, pois o ângulo de fase pode ser facilmente determinado como correspondendo ao tempo (t) no qual a função harmônica é maximizada (:eq:`eq:series-temporais:filtragem:fourrier-angulo-fase`)
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-angulo-fase
+
+    t = \frac{\phi_j N}{2 \pi}
+
+
+A amplitude (:math:`C_j`) é estimada por meio da :eq:`eq:series-temporais:filtragem:fourrier-amplitude`
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-amplitude
+
+    C_j = \sqrt{A_j^2 + B_j^2}
+
+
+em que :math:`A_j` obtido pela :eq:`eq:series-temporais:filtragem:fourrier-amplitude-aj` e :math:`B_j` obtido pela :eq:`eq:series-temporais:filtragem:fourrier-amplitude-aj` são as componentes de cosseno e seno do vetor amplitude, respectivamente:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-amplitude-aj
+
+    A_j = \frac{2}{N} \sum_{t=1}^{N} y_t \cos\left(\frac{2\pi t}{N}\right)
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-amplitude-bj
+
+    A_j = \frac{2}{N} \sum_{t=1}^{N} y_t \sin\left(\frac{2\pi t}{N}\right)
+
+
+O ângulo de fase (:math:`\phi_j`) é definido por meio da :eq:`eq:series-temporais:filtragem:fourrier-fase-case`:
+
+
+.. math::
+    :label: eq:series-temporais:filtragem:fourrier-fase-case
+
+    \phi_j = 
+    \begin{cases} 
+        \tan^{-1}\left(\frac{B_j}{A_j}\right) & \text{se } A_j > 0 \\
+        \tan^{-1}\left(\frac{B_j}{A_j}\right) \pm \pi & \text{se } A_j < 0 \\
+        \frac{\pi}{2} & \text{se } A_j = 0
+    \end{cases}
+
 

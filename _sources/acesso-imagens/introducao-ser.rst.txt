@@ -360,7 +360,7 @@ Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente
             :name: tbl:acesso-imagens:introducao-ser:cbers-4-pan-mux-wfi
             :align: center
             :header-alignment: center center center center
-            :column-alignment: center center center center
+            :column-alignment: left left center center
             :widths: 10 20 35 35
 
 
@@ -403,7 +403,7 @@ Características de Alguns Sensores com Imagens Disponibilizadas Gratuitamente
             :name: tbl:acesso-imagens:introducao-ser:cbers-4a-wpm-mux-wfi
             :align: center
             :header-alignment: center center center center
-            :column-alignment: center center center center
+            :column-alignment: left left center center
             :widths: 10 20 35 35
 
             +----------+----------------------+---------------------------+--------------------+

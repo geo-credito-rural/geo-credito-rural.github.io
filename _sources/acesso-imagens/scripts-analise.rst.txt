@@ -121,7 +121,7 @@ A :numref:`Figura %s <fig:acesso-imagens:scripts-analise:quatro-bandas>` abaixo 
 
 .. figure:: ../img/acesso-imagens/scripts-analise/quatro-bandas.png
     :alt: Visualização das 4 bandas carregadas, em tons de cinza
-    :width: 80%
+    :width: 90%
     :figclass: align-center
     :name: fig:acesso-imagens:scripts-analise:quatro-bandas
 
@@ -136,7 +136,7 @@ A :numref:`Figura %s <fig:acesso-imagens:scripts-analise:quatro-bandas-recorte>`
 
 .. figure:: ../img/acesso-imagens/scripts-analise/quatro-bandas-recorte.png
     :alt: Visualização de um recorte das 4 bandas carregadas, em tons de cinza
-    :width: 80%
+    :width: 90%
     :figclass: align-center
     :name: fig:acesso-imagens:scripts-analise:quatro-bandas-recorte
 
@@ -154,7 +154,7 @@ A :numref:`Figura %s <fig:acesso-imagens:scripts-analise:quatro-bandas-histogram
 
 .. figure:: ../img/acesso-imagens/scripts-analise/quatro-bandas-histograma.png
     :alt: Visualização do histograma composto pelas 4 bandas carregadas
-    :width: 80%
+    :width: 90%
     :figclass: align-center
     :name: fig:acesso-imagens:scripts-analise:quatro-bandas-histograma
 
@@ -225,3 +225,11 @@ Um dos produtos disponíveis no acervo do BDC é o resultado da função de comp
                 for item in items.items():
                     print(f"{i}: imagem da data {item.properties['datetime']}, link B04 {item.assets['B04'].href}")
                     i += 1
+
+
+Para demonstrar os scripts de análise de imagens apresentados nesta seção, veja o seguinte *Jupyter Notebook*:
+
+.. rst-class:: open
+
+- `Scripts para suporte à análise de imagens <https://www.kaggle.com/code/thalessehnkorting/tema4-scripts-analise>`__.
+

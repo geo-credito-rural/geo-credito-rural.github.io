@@ -1,0 +1,430 @@
+.. include:: ../def.rst
+
+
+.. _sec_culturas_anuais:
+
+Fenologia de culturas com ciclo anual
+=====================================
+
+
+As escalas fenológicas foram criadas para auxiliar a padronizar a observação e a documentação as fases de crescimento das culturas agrícolas. Elas permitem comparações e análises em diferentes condições e práticas de cultivo. A escala **BBCH estendida** é um sistema para a codificação uniforme dos estágios de crescimento fenológicos semelhantes de todas as espécies de plantas monocotiledôneas e dicotiledôneas. BBCH é uma sigla resultante do nome das três organizações que desenvolveram essa escala, "**B**\iologische Bundesanstalt, **B**\undessortenamt und **CH**\emische Industrie". Essa escala usa por base o código decimal para desenvolvimento de cereais desenvolvido por :cite:t:`zadoks:1974`, evitando mudanças significativas em relação a esta chave fenológica amplamente utilizada. Nesta escala, o ciclo total de desenvolvimento das plantas é subdividido em dez fases de mais longas, claramente reconhecíveis e distintas. Esses estádios principais de crescimento são descritos usando números que variam de **0** a **9** em ordem crescente e estão descritos na :numref:`Tabela %s <tbl:fenologia:bbch-estendida-principal>`. Devido à grande variedade de espécies de plantas, pode haver variações no curso do desenvolvimento ou alguns estágios podem até ser omitidos :cite:`meier:2018`.
+
+
+.. table:: Escala BBCH estendida com os principais estadios de crescimento. |br| **Fonte:** Adaptada de :cite:t:`meier:2018`.
+    :header-alignment: center center 
+    :column-alignment: center center 
+    :name: tbl:fenologia:bbch-estendida-principal
+
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | Nº | Descrição dos Estádios fenológicos                                                                                   |
+    +====+======================================================================================================================+
+    | 0  | Germinação / brotação / desenvolvimento de brotos                                                                    |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 1  | Desenvolvimento das folhas (caule principal)                                                                         |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 2  | Formação de ramos laterais / perfilhamento                                                                           |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 3  | Alongamento do caule ou crescimento em roseta / desenvolvimento dos brotos (caule principal)                         |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 4  | Desenvolvimento de partes vegetativas colhíveis ou órgãos propagados vegetativamente / espigamento (caule principal) |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 5  | Emergência da inflorescência (caule principal) / espigamento                                                         |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 6  | Floração (caule principal)                                                                                           |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 7  | Desenvolvimento do fruto                                                                                             |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 8  | Maturação ou amadurecimento do fruto e semente                                                                       |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+    | 9  | Senescência ou início da dormência                                                                                   |
+    +----+----------------------------------------------------------------------------------------------------------------------+
+
+
+Se dois ou mais estádios principais de crescimento ocorrem em paralelo, ambos podem ser indicados usando uma barra diagonal (exemplo 3/4), mas se apenas um estádio puder ser indicado, deve-se escolher o mais avançado ou o estádio principal de interesse particular, dependendo da espécie de planta. Os estágios secundários são usados quando pontos específicos de tempo ou etapas no desenvolvimento da planta devem ser indicados com precisão. Em contraste com os estágios principais de crescimento, os estágios secundários são definidos como passos curtos de desenvolvimento característicos da respectiva espécie de planta, que são passados sucessivamente durante o estágio principal de crescimento correspondente. Eles também são codificados usando os números de 0 a 9. A combinação dos números para os estádios principais e secundários resulta em um código de dois dígitos que oferece a possibilidade de definir com precisão todos os estádios fenológicos de crescimento para a maioria das espécies de plantas, conforme apresentado na :numref:`Tabela %s <tbl:fenologia:bbch-estendida-secundario>` :cite:`meier:2018`.
+
+
+.. table:: Escala BBCH estendida com os estádios principais e secundários de crescimento. |br| **Fonte:** Adaptada de :cite:t:`meier:2018`.
+    :header-alignment: center center center
+    :column-alignment: center center center
+    :name: tbl:fenologia:bbch-estendida-secundario
+
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | Código  |      | Descrição dos Estádios fenológicos                                                                                        |
+    +=========+======+===========================================================================================================================+
+    | **0**   |      | **Germinação, brotação, desenvolvimento de brotos**                                                                       |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 00      |      | Semente seca (tratamento da semente ocorre no estágio 00)                                                                 |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Dormência de inverno ou período de repouso                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 01      |      | Início da imbibição da semente                                                                                            |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Início do inchaço dos brotos                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 03      |      | Imbibição da semente completa                                                                                             |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Fim do inchaço dos brotos                                                                                                 |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 05      |      | Radícula (raiz) emergida da semente                                                                                       |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Órgãos perenes formando raízes                                                                                            |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 06      |      | Alongamento da radícula, formação de pelos radiculares e/ou raízes laterais                                               |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 07      | G    | Coleóptilo emergido da cariopse                                                                                           |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | D, M | Hipocótilo com cotilédones ou broto rompendo o tegumento da semente                                                       |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Início da brotação ou rompimento dos brotos                                                                               |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 08      | D    | Hipocótilo com cotilédones crescendo em direção à superfície do solo                                                      |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P, V | Broto crescendo em direção à superfície do solo                                                                           |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 09      | G    | Emergência: Coleóptilo rompe a superfície do solo                                                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | D, M | Emergência: Cotilédones rompem a superfície do solo (exceto germinação hipogeal)                                          |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | D, V | Emergência: Broto/folha rompe a superfície do solo                                                                        |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P    | Broto mostra pontas verdes                                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **1**   |      | **Desenvolvimento das folhas (caule principal)**                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 10      | G    | Primeiro folha verdadeira emergida do coleóptilo                                                                          |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | D, M | Cotilédones completamente desdobrados                                                                                     |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P    | Primeiras folhas separadas                                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 11      |      | Primeira folha verdadeira, par de folhas ou verticilo desdobrados                                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P    | Primeiras folhas desdobradas                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 12      |      | 2 folhas verdadeiras, pares de folhas ou verticilos desdobrados                                                           |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 13      |      | 3 folhas verdadeiras, pares de folhas ou verticilos desdobrados                                                           |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 1...    |      | Estádios contínuos até . . .                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 19      |      | 9 ou mais folhas verdadeiras, pares de folhas ou verticilos desdobrados                                                   |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **2**   |      | **Formação de ramos laterais/perfilhamento**                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 21      |      | Primeiro ramo lateral visível                                                                                             |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Primeiro perfilho visível                                                                                                 |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 22      |      | 2 ramos laterais visíveis                                                                                                 |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 2 perfilhos visíveis                                                                                                      |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 23      |      | 3 ramos laterais visíveis                                                                                                 |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 3 perfilhos visíveis                                                                                                      |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 2...    |      | Estádios contínuos até . . .                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 29      |      | 9 ou mais ramos laterais visíveis                                                                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 9 ou mais perfilhos visíveis                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **3**   |      | **Alongamento do caule ou crescimento da roseta, desenvolvimento do broto (caule principal)**                             |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 31      |      | Caule (roseta) com 10% do comprimento (diâmetro) final                                                                    |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    |  1 nó detectável                                                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 32      |      | Caule (roseta) com 20% do comprimento (diâmetro) final                                                                    |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 2 nós detectáveis                                                                                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 33      |      | Caule (roseta) com 30% do comprimento (diâmetro) final                                                                    |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 3 nós detectáveis                                                                                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 3...    |      | Estádios contínuos até . . .                                                                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 39      |      | Comprimento máximo do caule ou diâmetro máximo da roseta alcançado                                                        |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | 9 ou mais nós detectáveis                                                                                                 |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **4**   |      | **Desenvolvimento de órgãos vegetativos colhíveis ou órgãos propagados vegetativamente/enfolhamento (caule principal)**   |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 40      |      | Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente começam a se desenvolver                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 41      | G    | Bainha da folha bandeira em expansão                                                                                      |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 43      |      | Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 30% do tamanho final                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Bainha da folha bandeira apenas visivelmente inchada (meio de encano)                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 45      |      | Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 50% do tamanho final                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Bainha da folha bandeira inchada (final de encano)                                                                        |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 47      |      | Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 70% do tamanho final                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Bainha da folha bandeira abrindo                                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 49      |      | Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram o tamanho final                              |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Primeiros estigmas visíveis                                                                                               |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **5**   |      | **Emergência da inflorescência (caule principal) / espigamento**                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 51      |      | Inflorescência ou botões florais visíveis                                                                                 |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Início da espigação                                                                                                       |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 55      |      | Primeiras flores individuais visíveis (ainda fechadas)                                                                    |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Metade da inflorescência emergida (meio da espigação)                                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 59      |      | Primeiras pétalas de flores visíveis (em formas com pétalas)                                                              |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Inflorescência totalmente emergida (fim da espigação)                                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **6**   |      | **Florescimento (caule principal)**                                                                                       |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 60      |      | Primeiras flores abertas (esporadicamente)                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 61      |      | Início da floração: 10% das flores abertas                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 62      |      | 20% das flores abertas                                                                                                    |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 63      |      | 30% das flores abertas                                                                                                    |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 64      |      | 40% das flores abertas                                                                                                    |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 65      |      | Floração completa: 50% das flores abertas, primeiras pétalas podem ter caído                                              |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 67      |      | Floração terminando: maioria das pétalas caídas ou secas                                                                  |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 69      |      | Fim da floração: frutificação visível                                                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **7**   |      | **Frutificação**                                                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 71      |      | 10% dos frutos alcançaram o tamanho final ou o fruto atingiu 10% do tamanho final                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Cariopse em estágio de maturação líquida                                                                                  |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 72      |      | 20% dos frutos alcançaram o tamanho final ou o fruto atingiu 20% do tamanho final                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 73      |      | 30% dos frutos alcançaram o tamanho final ou o fruto atingiu 30% do tamanho final                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Maturação inicial em leite                                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 74      |      | 40% dos frutos alcançaram o tamanho final ou o fruto atingiu 40% do tamanho final                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 75      |      | 50% dos frutos alcançaram o tamanho final ou o fruto atingiu 50% do tamanho final                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Maturação em leite, leite médio                                                                                           |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 76      |      | 60% dos frutos alcançaram o tamanho final ou o fruto atingiu 60% do tamanho final                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 77      |      | 70% dos frutos alcançaram o tamanho final ou o fruto atingiu 70% do tamanho final                                         |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Maturação avançada em leite pastoso                                                                                       |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 78      |      | 80% dos frutos alcançaram o tamanho final ou o fruto atingiu 80% do tamanho final                                         |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 79      |      | Quase todos os frutos alcançaram o tamanho final                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **8**   |      | **Amadurecimento ou maturidade de frutos e sementes**                                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 81      |      | Início da maturação ou coloração do fruto                                                                                 |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 85      |      | Maturação avançada ou coloração do fruto                                                                                  |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | G    | Estágio de massa                                                                                                          |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 87      |      | O fruto começa a amolecer (espécies com fruto carnoso)                                                                    |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 89      |      | Totalmente maduro: fruto mostra a cor madura, início da abscisão do fruto                                                 |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | **9**   |      | **Senescência, início da dormência**                                                                                      |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 91      |      | Desenvolvimento dos brotos completado, folhagem ainda verde                                                               |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 93      |      | Início da queda das folhas                                                                                                |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 95      |      | 50% das folhas caídas                                                                                                     |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 97      |      | Fim da queda das folhas, plantas ou partes aéreas mortas ou dormentes                                                     |
+    +         +------+---------------------------------------------------------------------------------------------------------------------------+
+    |         | P    | Planta em repouso ou dormente                                                                                             |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    | 99      |      | Produto colhido (tratamento pós-colheita ou armazenamento é aplicado no estágio 99)                                       |
+    +---------+------+---------------------------------------------------------------------------------------------------------------------------+
+    |  **D** = Dicotiledônia; **M** = Monocotiledônia; **V** = Desenvolvimento a partir de partes vegetativas ou órgãos propagados;              |
+    |  **G** = Gramínea; **P** = Plantas perenes                                                                                                 |
+    +--------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+Estádios fenológicos da soja
+----------------------------
+
+
+O ciclo fenológico da soja pode variar da germinação até a maturação completa de 90 a 200 dias. De acordo com o tempo de duração do ciclo, os cultivares podem ser agrupados em: precoce (até 115 dias), semi-precoce (116 a 125 dias), médio (126 a 137 dias), semi-tardio (138 a 150 dias) e tardio (mais de 150 dias) :cite:`farias:2000`. O ciclo da soja é dividido em dois períodos principais: o período vegetativo (V) e o período reprodutivo (R). O período vegetativo inicia-se com a emergência da plântula e termina com a abertura da primeira flor. A partir daí, inicia-se o período reprodutivo, que vai até a maturação da planta. Cada período é dividido em diferentes estádios fenológicos conforme mostrado  A :numref:`Figura %s <fig:fenologia:soja-estadios>` e descrito na :numref:`Tabela %s <tbl:fenologia:estadio-soja>` :cite:`fehr:1977`.
+
+
+.. figure:: ../img/fenologia/estadios-soja.png
+    :alt: Estádios de desenvolvimento da soja
+    :width: 80%
+    :figclass: align-center
+    :name: fig:fenologia:soja-estadios
+
+    Estádios de desenvolvimento da soja. |br| **Fonte:** Adaptado de `Kansas State University <https://bookstore.ksre.ksu.edu/pubs/soybean-growth-and-development-poster_MF3339.pdf>`__.
+
+
+.. table:: Estádios fenológicos da soja. |br| **Fonte:** Adaptada de :cite:t:`fehr:1977`.
+    :header-alignment: center center center center
+    :column-alignment: center center center center
+    :name: tbl:fenologia:estadio-soja
+
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | BBCH  | Código | Denominação           | Descrição dos Estádios fenológicos                                               |
+    +=======+========+=======================+==================================================================================+
+    |            Estádios vegetativos                                                                                           |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 00-09 | VE     | Emergência            | Os cotilédones estão acima da superfície do solo.                                |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 10-19 | VC     | Cotilédone            | Os cotilédones apresentam-se bem abertos e as folhas unifolhadas estão           |
+    |       |        | desenvolvido          | suficientemente abertas, de tal modo que as bordas de cada folíolo não estão     |
+    |       |        |                       | se tocando.                                                                      |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 20-49 | V1     | Primeiro nó maduro    | As folhas unifolhadas estão estendidas e a primeira folha trifolhada está        |
+    |       |        |                       | suficientemente aberta, de tal modo que as bordas de cada folíolo não estão      |
+    |       |        |                       | se tocando.                                                                      |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V2     | Segundo nó maduro     | A primeira folha trifolhada está estendida, isto é, com os três folíolos         |
+    |       |        |                       | expandidos e a segunda folha trifolhada está suficientemente aberta, de tal      |
+    |       |        |                       | modo que as bordas de cada folíolo não estão se tocando.                         |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V3     | Terceiro nó maduro    | A segunda folha trifolhada está estendida, isto é, com os três folíolos          |
+    |       |        |                       | expandidos e a terceira folha trifolhada está suficientemente aberta, de tal     |
+    |       |        |                       | modo que as bordas de cada folíolo não estão se tocando.                         |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V(n)   | Enésimo nó maduro     | A enésima folha trifolhada está estendida, isto é, com os três folíolos          |
+    |       |        |                       | expandidos e a “n+1” folha trifolhada está suficientemente aberta, de tal        |
+    |       |        |                       | modo que as bordas de cada folíolo não estão se tocando.                         |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    |          Estádios reprodutivos                                                                                            |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 50-59 | R1     | Início do             | Uma flor aberta em qualquer nó da haste principal.                               |
+    |       |        | florescimento         |                                                                                  |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R2     | Florescimento pleno   | Uma flor aberta em um dos dois últimos nós da haste principal, com a folha       |
+    |       |        |                       | completamente desenvolvida.                                                      |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 60-69 | R3     | Início da             | Vagem com 5 mm de comprimento em um dos quatro últimos nós superiores sobre      |
+    |       |        | frutificação          | a haste principal com a folha completamente desenvolvida.                        |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R4     | Vagem formada         | Vagem com 20 mm de comprimento em um dos quatro últimos nós superiores sobre     |
+    |       |        |                       | a haste principal com a folha completamente desenvolvida.                        |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 70-79 | R5     | Início da formação    | Sementes com 3 mm de comprimento em uma vagem localizada em um dos quatro        |
+    |       |        | da semente /          | últimos nós superiores sobre a haste principal com a folha completamente         |
+    |       |        | granação              | desenvolvida.                                                                    |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R6     | Semente desenvolvida  | Vagem verde, contendo semente verde que preencha a cavidade da vagem localizada  |
+    |       |        | / granação plena      | em um dos quatro últimos nós superiores sobre a haste principal com a folha      |
+    |       |        |                       | completamente desenvolvida.                                                      |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 80-89 | R7     | Início da maturação   | Uma vagem normal sobre a haste principal que tenha atingido a cor de vagem       |
+    |       |        | maturação fisiológica | madura.                                                                          |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 90-99 | R8     | Maturação plena       | 95% das vagens atingem a cor da vagem madura.                                    |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+
+
+Estádios fenológicos do milho
+-----------------------------
+
+
+O milho é uma cultura cujo desenvolvimento é limitado pela água, temperatura e radiação solar ou luminosidade. No caso do milho, a temperatura regula o metabolismo, sendo que a temperatura ideal para o desenvolvimento do milho, da emergência à floração, está compreendida entre 24 e 30ºC. Abaixo de 10ºC, por períodos longos, o crescimento da planta é quase nulo. Com temperaturas superiores a 30ºC, durante longos períodos à noite reduz a produtividade em função do consumo dos produtos metabólicos elaborados durante o dia. Assim, as cultivares precoces, necessitam de até 780 graus-dias \ [#]_ , as de ciclo médio necessitam de 780 a 860 graus-dias e as de ciclo tardio necesitam mais do que 860 graus-dias entre a emergência e o início da polinização. Ao converter esses valores para dias temos que as cultivares precoces tem um ciclo menor do que 110 dias, as de ciclo médio o ciclo varia entre entre 110 e 145 dias e as de ciclo longo mais de 145 dias contados entre a emergência e a maturação fisiológica. O ciclo do milho também é dividido em dois períodos principais: o período vegetativo (V) e o período reprodutivo (R). O período vegetativo inicia-se com a emergência dos  coleóptilos acima da superfície do solo e termina com o pendoamento. A partir daí, inicia-se o período reprodutivo, que vai até a maturação da planta. Cada período é dividido em diferentes estádios fenológicos conforme mostrado na :numref:`Figura %s <fig:fenologia:milho-estadios>` e descrito na :numref:`Tabela %s <tbl:fenologia:estadio-milho>` :cite:`cruz:2010`.
+
+
+.. figure:: ../img/fenologia/estadios-milho.png
+    :alt: Estádios de desenvolvimento do milho
+    :width: 80%
+    :figclass: align-center
+    :name: fig:fenologia:milho-estadios
+
+    Estádios de desenvolvimento do milho. |br| **Fonte:** Adaptado de `Kansas State University <https://bookstore.ksre.ksu.edu/download/corn-growth-and-development-poster-20x30_MF3305>`__.
+
+
+.. table:: Estádios fenológicos do milho. |br| **Fonte:** Adaptada de :cite:t:`ciampitti:2024`.
+    :header-alignment: center center center center
+    :column-alignment: center center center center
+    :name: tbl:fenologia:estadio-milho
+
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | BBCH  | Código | Denominação           | Descrição dos Estádios fenológicos                                               |
+    +=======+========+=======================+==================================================================================+
+    |            Estádios vegetativos                                                                                           |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 00-09 | VE     | Emergência            | Os cotilédones estão acima da superfície do solo.                                |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 10-19 | V1     | Primeira folha        | Primeira folha com colar visível (estrutura encontrada na base da folha) e ponta |
+    |       |        |                       | arredondada. O ponto de crescimento (meristema apical) da planta é localizado    |
+    |       |        |                       | abaixo da superfície do solo até o estádio V5.                                   |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V2     | Segunda folha         | Raízes nodais começam a crescer abaixo do solo, e as raizes seminais começam     |
+    |       |        |                       | a senescer.                                                                      |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V4     | Quarta folha          | As raízes nodais são dominantes, ocupando maior volume de solo em comparação com |
+    |       |        |                       | as raízes seminais. As folhas ainda se desenvolvem no meristema apical           |
+    |       |        |                       | (ponto de crescimento da planta).                                                |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 30-39 | V6     | Sexta folha           | Seis folhas com colar visível. A primeira folha com ponta arredondada entra      |
+    |       |        |                       | em senescência, mas mesmo assim deve ser levada em consideração na contagem.     |
+    |       |        |                       | Nesta fase, o ponto de crescimento emerge e todas as estruturas da planta já     |
+    |       |        |                       | tiveram seu crescimento iniciado.                                                |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | V(n)   | Enésima folha         | Enésima folha com colar visível. O milho usualmente atinge V18 a V20 para        |
+    |       |        |                       | o pendoamento.                                                                   |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 50-59 | VT     | Pendoamento           | As espigas estão visíveis e ocorre a emergência da inflorescência, preparando    |
+    |       |        |                       | a panta para a frutificação. O último ramo do pendão é visível no topo da        |
+    |       |        |                       | planta. O estilo-estigma (“cabelos”) do milho pode ou não terem aparecido nesta  |
+    |       |        |                       | fase.                                                                            |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    |          Estádios reprodutivos                                                                                            |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 60-69 | R1     | Início do             | O florescimento começa quando os “cabelos” se projetam para fora da palha, os    |
+    |       |        | florescimento         | primeiros a emergirem são responsáveis pela polinização dos grãos da base da     |
+    |       |        |                       | espiga. . O pólen vai do pendão até o “cabelo” do milho, fertilizando o óvulo    |
+    |       |        |                       | e, assim, produzindo um embrião.                                                 |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R2     | Grão Bolha D’água     | O “cabelo” do milho escurece e começa a secar (aproximadamente 12 dias após R1). |
+    |       |        |                       | O grão se assemelha a uma bolha com coloração branca e fluido transparente em    |
+    |       |        |                       | seu interior. Inicia-se o enchimento de grão.                                    |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 70-79 | R3     | Grão Leitoso          | “Cabelo” do milho seca (aproximadamente 20 dias após R1). O grão torna-se        |
+    |       |        |                       | amarelado e um fluido semelhante ao leite pode ser extraído quando este é        |
+    |       |        |                       | esmagado com os dedos.                                                           |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R4     | Grão Pastoso          | Pelo acúmulo de amido o grão apresenta consistência pastosa (aproximadamente 26  |
+    |       |        |                       | a 30 dias após R1). Nesta fase, ocorre um rápido acúmulo de nutrientes e amido;  |
+    |       |        |                       | o grão possuí 70% de umidade e começa a se apresentar dentado no topo.           |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 70-79 | R5     | Formação de Dente     | A maior parte dos grãos estão dentados, a umidade do grão cai para 55% (38 a     |
+    |       |        |                       | 42 dias após R1) e o conteúdo de amido aumenta.                                  |
+    +       +--------+-----------------------+----------------------------------------------------------------------------------+
+    |       | R6     | Maturidade            | A camada preta se forma na base do grão, bloqueando o movimento de matéria seca  |
+    |       |        | Fisiológica           | e nutrientes da planta para os grãos (50 a 60 dias após R1). O grão atinge a     |
+    |       |        |                       | sua maior massa seca (30 a 35% de umidade) e estão maduros fisiologicamente.     |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 80-89 | R7     | Início da maturação   | O estágio de maturação inicia-se quando a coroa do grão desenvolve uma dureza    |
+    |       |        | maturação fisiológica | e a característica tonalidade amarelo-escuro brilhante dos grãos maduros.        |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+    | 90-99 | R8     | Maturação plena       | Senescência                                                                      |
+    +-------+--------+-----------------------+----------------------------------------------------------------------------------+
+
+
+-----
+
+
+.. [#] Graus-dia é uma unidade de medida usada para estimar o crescimento das plantas com base na temperatura. Ela representa a soma das temperaturas médias diárias acima de um ponto base necessário para o crescimento das plantas. Por exemplo, se a temperatura mínima de um dia é 12°C e a máxima é 22°C. No caso do milho a temperatura base é de 10°C. Assim, a :math:`média = \frac{12 + 22}{2} \therefore 17°C`. Para converter para graus-dia a média deve ser retirada da temperatura de base da cultura :math:`Graus-dia = 17-10`. Assim, nesse dia, o milho teve 7 graus-dia.

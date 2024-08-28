@@ -7,7 +7,9 @@
 ==============================================
 
 
-Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e da interação delas com a radiação eletromagnética. Entretanto, efeitos ligados à geometria de iluminação, de visada e ambientais também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados fitossanitário da vegetação, crescimento urbano, áreas queimadas, entre outros :cite:`montero:2023`. Para ressaltar essas assinaturas, bem como para reduzir para reduzir a dimensionalidade dos dados, realçar a resposta espectral da vegetação com relação a do solo, dentre outras funcionalidades foram gerados os índices espectrais. Os índices espectrais foram idealizados a partir da resposta espectral característica da vegetação verde, combinando a baixa refletância nos comprimentos de onda do visível com a alta refletância nos comprimentos de onda do infravermelho próximo do espectro eletromagnético. O objetivo desta combinação foi de estabelecer uma relação entre a resposta espectral e as variáveis biofísicas da vegetação :cite:`dorigo:2007`. Um índices espectrais ideal deve ser capaz de responder a pequenas variações no desenvolvimento fenológico da vegetação e não pode ser muito influenciado por variações de tipo de solo, do ângulo de visada do sensor, do ângulo solar e das condições atmosféricas :cite:`jackson:1991`. Uma série de variáveis biofísicas são passíveis de serem estimadas por meio de índices espectrais, tais como o índice de área foliar, evapotranspiração, dentre outras. Entretanto, o uso de índices espectrais deve ser visto com certo cuidado, pois foram desenvolvidos para atender a necessidades particulares e sob condições específicas. Desta forma, os resultados dos índices espectrais podem ser diferentes, quando aplicados em condições diferentes. Por exemplo, o problema de usar índices espectrais para estimar índice de área foliar maior do que três, pois a relação é exponencial e ocorre a saturação. Além disto, a cor e a textura do solo, o espaçamento, a orientação do plantio, a latitude, a data e hora da observação podem influenciar os resultados da interpretação dos índices espectrais :cite:`dorigo:2007,jackson:1991`. 
+Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e da interação delas com a radiação eletromagnética. Entretanto, efeitos ligados à geometria de iluminação, de visada e ambientais também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados fitossanitário da vegetação, crescimento urbano, áreas queimadas, entre outros :cite:`montero:2023`. Para ressaltar essas assinaturas, bem como para reduzir para reduzir a dimensionalidade dos dados, realçar a resposta espectral da vegetação com relação a do solo, dentre outras funcionalidades foram gerados os índices espectrais. Os índices espectrais foram idealizados a partir da resposta espectral característica da vegetação verde, combinando a baixa refletância nos comprimentos de onda do visível com a alta refletância nos comprimentos de onda do infravermelho próximo do espectro eletromagnético. O objetivo desta combinação foi de estabelecer uma relação entre a resposta espectral e as variáveis biofísicas da vegetação :cite:`dorigo:2007`. 
+
+Um índice espectral ideal deve ser capaz de responder a pequenas variações no desenvolvimento fenológico da vegetação e não pode ser muito influenciado por variações de tipo de solo, do ângulo de visada do sensor, do ângulo solar e das condições atmosféricas :cite:`jackson:1991`. Uma série de variáveis biofísicas são passíveis de serem estimadas por meio de índices espectrais, tais como o índice de área foliar, evapotranspiração, dentre outras. Entretanto, o uso de índices espectrais deve ser visto com certo cuidado, pois foram desenvolvidos para atender a necessidades particulares e sob condições específicas. Desta forma, os resultados dos índices espectrais podem ser diferentes, quando aplicados em condições diferentes. Por exemplo, o problema de usar índices espectrais para estimar índice de área foliar maior do que três, pois a relação é exponencial e ocorre a saturação. Além disto, a cor e a textura do solo, o espaçamento, a orientação do plantio, a latitude, a data e hora da observação podem influenciar os resultados da interpretação dos índices espectrais :cite:`dorigo:2007,jackson:1991`. 
 
 
 
@@ -126,29 +128,37 @@ Os índices espectrais são importantes ferramentas de análise multitemporal. C
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t1.png
 
-        Recorte da imagem Sentinel-2 de 01/01/2023, indicando a área de uma gleba, para visualização em série temporal.
+        Recorte da imagem Sentinel-2 de 18/02/2024, indicando a área de uma gleba, para visualização em série temporal.
 
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t2.png
 
-        Recorte da imagem Sentinel-2 de 17/01/2023, indicando a área de uma gleba, para visualização em série temporal. 
+        Recorte da imagem Sentinel-2 de 05/03/2024, indicando a área de uma gleba, para visualização em série temporal. 
 
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t3.png
 
-        Recorte da imagem Sentinel-2 de 02/02/2023, indicando a área de uma gleba, para visualização em série temporal. 
+        Recorte da imagem Sentinel-2 de 21/03/2024, indicando a área de uma gleba, para visualização em série temporal. 
 
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t4.png
 
-        Recorte da imagem Sentinel-2 de 18/02/2023, indicando a área de uma gleba, para visualização em série temporal. 
+        Recorte da imagem Sentinel-2 de 22/04/2024, indicando a área de uma gleba, para visualização em série temporal. 
 
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t5.png
 
-        Recorte da imagem Sentinel-2 de 06/03/2023, indicando a área de uma gleba, para visualização em série temporal. 
+        Recorte da imagem Sentinel-2 de 08/05/2024, indicando a área de uma gleba, para visualização em série temporal. 
 
 
     .. figure:: ../img/acesso-imagens/indices-espectrais/exemplo_serie_temporal_t6.png
 
-        Recorte da imagem Sentinel-2 de 22/03/2023, indicando a área de uma gleba, para visualização em série temporal. 
+        Recorte da imagem Sentinel-2 de 25/06/2024, indicando a área de uma gleba, para visualização em série temporal. 
+
+
+Para demonstrar os scripts de geração de índices espectrais e visualização, veja o seguinte *Jupyter Notebook*:
+
+.. rst-class:: open
+
+- `Geração de índices espectrais e visualização <https://www.kaggle.com/code/thalessehnkorting/tema4-indices-espectrais>`__.
+

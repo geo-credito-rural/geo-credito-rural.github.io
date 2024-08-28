@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.1. Fenologia de culturas com ciclo anual &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenologia/culturas-anuais.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="8.2. Métricas Fenológicas" href="metricas.html" />
+    <link rel="prev" title="8. Fenologia" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Fenologia</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.1. Fenologia de culturas com ciclo anual</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#estadios-fenologicos-da-soja">8.1.1. Estádios fenológicos da soja</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#estadios-fenologicos-do-milho">8.1.2. Estádios fenológicos do milho</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="metricas.html">8.2. Métricas Fenológicas</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">8. </span>Fenologia</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8.1. </span>Fenologia de culturas com ciclo anual</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="8. Fenologia" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="metricas.html" class="btn btn-neutral float-right" title="8.2. Métricas Fenológicas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="fenologia-de-culturas-com-ciclo-anual">
+<span id="sec-culturas-anuais"></span><h1><span class="section-number">8.1. </span>Fenologia de culturas com ciclo anual<a class="headerlink" href="#fenologia-de-culturas-com-ciclo-anual" title="Link permanente para este cabeçalho"></a></h1>
+<p>As escalas fenológicas foram criadas para auxiliar a padronizar a observação e a documentação as fases de crescimento das culturas agrícolas. Elas permitem comparações e análises em diferentes condições e práticas de cultivo. A escala <strong>BBCH estendida</strong> é um sistema para a codificação uniforme dos estágios de crescimento fenológicos semelhantes de todas as espécies de plantas monocotiledôneas e dicotiledôneas. BBCH é uma sigla resultante do nome das três organizações que desenvolveram essa escala, “<strong>B</strong>iologische Bundesanstalt, <strong>B</strong>undessortenamt und <strong>CH</strong>emische Industrie”. Essa escala usa por base o código decimal para desenvolvimento de cereais desenvolvido por <span id="id1">Zadoks [<a class="reference internal" href="../referencias.html#id136" title="Jan C. Zadoks. A decimal code for the growth stages of cereals. 1974. URL: https://doi.org/10.1111/J.1365-3180.1974.TB01084.X.">126</a>]</span>, evitando mudanças significativas em relação a esta chave fenológica amplamente utilizada. Nesta escala, o ciclo total de desenvolvimento das plantas é subdividido em dez fases de mais longas, claramente reconhecíveis e distintas. Esses estádios principais de crescimento são descritos usando números que variam de <strong>0</strong> a <strong>9</strong> em ordem crescente e estão descritos na <a class="reference internal" href="#tbl-fenologia-bbch-estendida-principal"><span class="std std-numref">Tabela 8.1</span></a>. Devido à grande variedade de espécies de plantas, pode haver variações no curso do desenvolvimento ou alguns estágios podem até ser omitidos <span id="id2">[<a class="reference internal" href="../referencias.html#id94" title="Uwe Meier. Growth stages of mono- and dicotyledonous plants: bbch monograph. 2018. URL: https://doi.org/10.5073/20180906-074619.">127</a>]</span>.</p>
+<table class="styled-table docutils align-default" id="tbl-fenologia-bbch-estendida-principal">
+<caption><span class="caption-number">Tabela 8.1 - </span><span class="caption-text">Escala BBCH estendida com os principais estadios de crescimento. <br/> <strong>Fonte:</strong> Adaptada de <span id="id3">Meier [<a class="reference internal" href="../referencias.html#id94" title="Uwe Meier. Growth stages of mono- and dicotyledonous plants: bbch monograph. 2018. URL: https://doi.org/10.5073/20180906-074619.">127</a>]</span>.</span><a class="headerlink" href="#tbl-fenologia-bbch-estendida-principal" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Nº</p></th>
+<th class="head center-align"><p>Descrição dos Estádios fenológicos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p>0</p></td>
+<td class="center-align"><p>Germinação / brotação / desenvolvimento de brotos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>1</p></td>
+<td class="center-align"><p>Desenvolvimento das folhas (caule principal)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>2</p></td>
+<td class="center-align"><p>Formação de ramos laterais / perfilhamento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>3</p></td>
+<td class="center-align"><p>Alongamento do caule ou crescimento em roseta / desenvolvimento dos brotos (caule principal)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>4</p></td>
+<td class="center-align"><p>Desenvolvimento de partes vegetativas colhíveis ou órgãos propagados vegetativamente / espigamento (caule principal)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>5</p></td>
+<td class="center-align"><p>Emergência da inflorescência (caule principal) / espigamento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>6</p></td>
+<td class="center-align"><p>Floração (caule principal)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>7</p></td>
+<td class="center-align"><p>Desenvolvimento do fruto</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>8</p></td>
+<td class="center-align"><p>Maturação ou amadurecimento do fruto e semente</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>9</p></td>
+<td class="center-align"><p>Senescência ou início da dormência</p></td>
+</tr>
+</tbody>
+</table>
+<p>Se dois ou mais estádios principais de crescimento ocorrem em paralelo, ambos podem ser indicados usando uma barra diagonal (exemplo 3/4), mas se apenas um estádio puder ser indicado, deve-se escolher o mais avançado ou o estádio principal de interesse particular, dependendo da espécie de planta. Os estágios secundários são usados quando pontos específicos de tempo ou etapas no desenvolvimento da planta devem ser indicados com precisão. Em contraste com os estágios principais de crescimento, os estágios secundários são definidos como passos curtos de desenvolvimento característicos da respectiva espécie de planta, que são passados sucessivamente durante o estágio principal de crescimento correspondente. Eles também são codificados usando os números de 0 a 9. A combinação dos números para os estádios principais e secundários resulta em um código de dois dígitos que oferece a possibilidade de definir com precisão todos os estádios fenológicos de crescimento para a maioria das espécies de plantas, conforme apresentado na <a class="reference internal" href="#tbl-fenologia-bbch-estendida-secundario"><span class="std std-numref">Tabela 8.2</span></a> <span id="id4">[<a class="reference internal" href="../referencias.html#id94" title="Uwe Meier. Growth stages of mono- and dicotyledonous plants: bbch monograph. 2018. URL: https://doi.org/10.5073/20180906-074619.">127</a>]</span>.</p>
+<table class="styled-table docutils align-default" id="tbl-fenologia-bbch-estendida-secundario">
+<caption><span class="caption-number">Tabela 8.2 - </span><span class="caption-text">Escala BBCH estendida com os estádios principais e secundários de crescimento. <br/> <strong>Fonte:</strong> Adaptada de <span id="id5">Meier [<a class="reference internal" href="../referencias.html#id94" title="Uwe Meier. Growth stages of mono- and dicotyledonous plants: bbch monograph. 2018. URL: https://doi.org/10.5073/20180906-074619.">127</a>]</span>.</span><a class="headerlink" href="#tbl-fenologia-bbch-estendida-secundario" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Código</p></th>
+<th class="head center-align"></th>
+<th class="head center-align"><p>Descrição dos Estádios fenológicos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>0</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Germinação, brotação, desenvolvimento de brotos</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>00</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Semente seca (tratamento da semente ocorre no estágio 00)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Dormência de inverno ou período de repouso</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>01</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Início da imbibição da semente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Início do inchaço dos brotos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>03</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Imbibição da semente completa</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Fim do inchaço dos brotos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>05</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Radícula (raiz) emergida da semente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Órgãos perenes formando raízes</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>06</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Alongamento da radícula, formação de pelos radiculares e/ou raízes laterais</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="3"><p>07</p></td>
+<td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Coleóptilo emergido da cariopse</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>D, M</p></td>
+<td class="center-align"><p>Hipocótilo com cotilédones ou broto rompendo o tegumento da semente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Início da brotação ou rompimento dos brotos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>08</p></td>
+<td class="center-align"><p>D</p></td>
+<td class="center-align"><p>Hipocótilo com cotilédones crescendo em direção à superfície do solo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P, V</p></td>
+<td class="center-align"><p>Broto crescendo em direção à superfície do solo</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="4"><p>09</p></td>
+<td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Emergência: Coleóptilo rompe a superfície do solo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>D, M</p></td>
+<td class="center-align"><p>Emergência: Cotilédones rompem a superfície do solo (exceto germinação hipogeal)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>D, V</p></td>
+<td class="center-align"><p>Emergência: Broto/folha rompe a superfície do solo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P</p></td>
+<td class="center-align"><p>Broto mostra pontas verdes</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>1</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Desenvolvimento das folhas (caule principal)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="3"><p>10</p></td>
+<td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Primeiro folha verdadeira emergida do coleóptilo</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>D, M</p></td>
+<td class="center-align"><p>Cotilédones completamente desdobrados</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P</p></td>
+<td class="center-align"><p>Primeiras folhas separadas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>11</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Primeira folha verdadeira, par de folhas ou verticilo desdobrados</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>P</p></td>
+<td class="center-align"><p>Primeiras folhas desdobradas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>12</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>2 folhas verdadeiras, pares de folhas ou verticilos desdobrados</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>13</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>3 folhas verdadeiras, pares de folhas ou verticilos desdobrados</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>1…</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Estádios contínuos até …</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>19</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>9 ou mais folhas verdadeiras, pares de folhas ou verticilos desdobrados</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>2</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Formação de ramos laterais/perfilhamento</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>21</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Primeiro ramo lateral visível</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Primeiro perfilho visível</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>22</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>2 ramos laterais visíveis</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>2 perfilhos visíveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>23</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>3 ramos laterais visíveis</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>3 perfilhos visíveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>2…</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Estádios contínuos até …</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>29</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>9 ou mais ramos laterais visíveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>9 ou mais perfilhos visíveis</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>3</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Alongamento do caule ou crescimento da roseta, desenvolvimento do broto (caule principal)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>31</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Caule (roseta) com 10% do comprimento (diâmetro) final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>1 nó detectável</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>32</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Caule (roseta) com 20% do comprimento (diâmetro) final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>2 nós detectáveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>33</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Caule (roseta) com 30% do comprimento (diâmetro) final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>3 nós detectáveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>3…</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Estádios contínuos até …</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>39</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Comprimento máximo do caule ou diâmetro máximo da roseta alcançado</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>9 ou mais nós detectáveis</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>4</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Desenvolvimento de órgãos vegetativos colhíveis ou órgãos propagados vegetativamente/enfolhamento (caule principal)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>40</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente começam a se desenvolver</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>41</p></td>
+<td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Bainha da folha bandeira em expansão</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>43</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 30% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Bainha da folha bandeira apenas visivelmente inchada (meio de encano)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>45</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 50% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Bainha da folha bandeira inchada (final de encano)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>47</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram 70% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Bainha da folha bandeira abrindo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>49</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Órgãos vegetativos colhíveis ou órgãos propagados vegetativamente alcançaram o tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Primeiros estigmas visíveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>5</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Emergência da inflorescência (caule principal) / espigamento</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>51</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Inflorescência ou botões florais visíveis</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Início da espigação</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>55</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Primeiras flores individuais visíveis (ainda fechadas)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Metade da inflorescência emergida (meio da espigação)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>59</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Primeiras pétalas de flores visíveis (em formas com pétalas)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Inflorescência totalmente emergida (fim da espigação)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p><strong>6</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Florescimento (caule principal)</strong></p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>60</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Primeiras flores abertas (esporadicamente)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>61</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Início da floração: 10% das flores abertas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>62</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>20% das flores abertas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>63</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>30% das flores abertas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>64</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>40% das flores abertas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>65</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Floração completa: 50% das flores abertas, primeiras pétalas podem ter caído</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>67</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Floração terminando: maioria das pétalas caídas ou secas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>69</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Fim da floração: frutificação visível</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>7</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Frutificação</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>71</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>10% dos frutos alcançaram o tamanho final ou o fruto atingiu 10% do tamanho final</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Cariopse em estágio de maturação líquida</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>72</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>20% dos frutos alcançaram o tamanho final ou o fruto atingiu 20% do tamanho final</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>73</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>30% dos frutos alcançaram o tamanho final ou o fruto atingiu 30% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Maturação inicial em leite</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>74</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>40% dos frutos alcançaram o tamanho final ou o fruto atingiu 40% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>75</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>50% dos frutos alcançaram o tamanho final ou o fruto atingiu 50% do tamanho final</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Maturação em leite, leite médio</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>76</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>60% dos frutos alcançaram o tamanho final ou o fruto atingiu 60% do tamanho final</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>77</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>70% dos frutos alcançaram o tamanho final ou o fruto atingiu 70% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Maturação avançada em leite pastoso</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>78</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>80% dos frutos alcançaram o tamanho final ou o fruto atingiu 80% do tamanho final</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>79</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Quase todos os frutos alcançaram o tamanho final</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>8</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Amadurecimento ou maturidade de frutos e sementes</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>81</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Início da maturação ou coloração do fruto</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>85</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Maturação avançada ou coloração do fruto</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>G</p></td>
+<td class="center-align"><p>Estágio de massa</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>87</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>O fruto começa a amolecer (espécies com fruto carnoso)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>89</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Totalmente maduro: fruto mostra a cor madura, início da abscisão do fruto</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p><strong>9</strong></p></td>
+<td class="center-align"></td>
+<td class="center-align"><p><strong>Senescência, início da dormência</strong></p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>91</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Desenvolvimento dos brotos completado, folhagem ainda verde</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>93</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Início da queda das folhas</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>95</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>50% das folhas caídas</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>97</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Fim da queda das folhas, plantas ou partes aéreas mortas ou dormentes</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>P</p></td>
+<td class="center-align"><p>Planta em repouso ou dormente</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>99</p></td>
+<td class="center-align"></td>
+<td class="center-align"><p>Produto colhido (tratamento pós-colheita ou armazenamento é aplicado no estágio 99)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" colspan="3"><p><strong>D</strong> = Dicotiledônia; <strong>M</strong> = Monocotiledônia; <strong>V</strong> = Desenvolvimento a partir de partes vegetativas ou órgãos propagados;
+<strong>G</strong> = Gramínea; <strong>P</strong> = Plantas perenes</p></td>
+</tr>
+</tbody>
+</table>
+<section id="estadios-fenologicos-da-soja">
+<h2><span class="section-number">8.1.1. </span>Estádios fenológicos da soja<a class="headerlink" href="#estadios-fenologicos-da-soja" title="Link permanente para este cabeçalho"></a></h2>
+<p>O ciclo fenológico da soja pode variar da germinação até a maturação completa de 90 a 200 dias. De acordo com o tempo de duração do ciclo, os cultivares podem ser agrupados em: precoce (até 115 dias), semi-precoce (116 a 125 dias), médio (126 a 137 dias), semi-tardio (138 a 150 dias) e tardio (mais de 150 dias) <span id="id6">[<a class="reference internal" href="../referencias.html#id48" title="J. R. B. Farias, A.F. Neponuceno, N. Neumaier, and T. Oya. A cultura da soja no brasil. 2020. URL: https://doi.org/10.5281/zenodo.3588294.">128</a>]</span>. O ciclo da soja é dividido em dois períodos principais: o período vegetativo (V) e o período reprodutivo (R). O período vegetativo inicia-se com a emergência da plântula e termina com a abertura da primeira flor. A partir daí, inicia-se o período reprodutivo, que vai até a maturação da planta. Cada período é dividido em diferentes estádios fenológicos conforme mostrado  A <a class="reference internal" href="#fig-fenologia-soja-estadios"><span class="std std-numref">Figura 8.2</span></a> e descrito na <a class="reference internal" href="#tbl-fenologia-estadio-soja"><span class="std std-numref">Tabela 8.3</span></a> <span id="id7">[<a class="reference internal" href="../referencias.html#id50" title="Walter R. Fehr and Charles E. Caviness. Stages of soybean development. 1977. URL: https://dr.lib.iastate.edu/handle/20.500.12876/90239.">129</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-fenologia-soja-estadios">
+<a class="reference internal image-reference" href="../_images/estadios-soja.png"><img alt="Estádios de desenvolvimento da soja" src="../_images/estadios-soja.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.2 - </span><span class="caption-text">Estádios de desenvolvimento da soja. <br/> <strong>Fonte:</strong> Adaptado de <a class="reference external" href="https://bookstore.ksre.ksu.edu/pubs/soybean-growth-and-development-poster_MF3339.pdf">Kansas State University</a>.</span><a class="headerlink" href="#fig-fenologia-soja-estadios" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<table class="styled-table docutils align-default" id="tbl-fenologia-estadio-soja">
+<caption><span class="caption-number">Tabela 8.3 - </span><span class="caption-text">Estádios fenológicos da soja. <br/> <strong>Fonte:</strong> Adaptada de <span id="id8">Fehr and Caviness [<a class="reference internal" href="../referencias.html#id50" title="Walter R. Fehr and Charles E. Caviness. Stages of soybean development. 1977. URL: https://dr.lib.iastate.edu/handle/20.500.12876/90239.">129</a>]</span>.</span><a class="headerlink" href="#tbl-fenologia-estadio-soja" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>BBCH</p></th>
+<th class="head center-align"><p>Código</p></th>
+<th class="head center-align"><p>Denominação</p></th>
+<th class="head center-align"><p>Descrição dos Estádios fenológicos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align" colspan="4"><p>Estádios vegetativos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>00-09</p></td>
+<td class="center-align"><p>VE</p></td>
+<td class="center-align"><p>Emergência</p></td>
+<td class="center-align"><p>Os cotilédones estão acima da superfície do solo.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>10-19</p></td>
+<td class="center-align"><p>VC</p></td>
+<td class="center-align"><p>Cotilédone
+desenvolvido</p></td>
+<td class="center-align"><p>Os cotilédones apresentam-se bem abertos e as folhas unifolhadas estão
+suficientemente abertas, de tal modo que as bordas de cada folíolo não estão
+se tocando.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="4"><p>20-49</p></td>
+<td class="center-align"><p>V1</p></td>
+<td class="center-align"><p>Primeiro nó maduro</p></td>
+<td class="center-align"><p>As folhas unifolhadas estão estendidas e a primeira folha trifolhada está
+suficientemente aberta, de tal modo que as bordas de cada folíolo não estão
+se tocando.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>V2</p></td>
+<td class="center-align"><p>Segundo nó maduro</p></td>
+<td class="center-align"><p>A primeira folha trifolhada está estendida, isto é, com os três folíolos
+expandidos e a segunda folha trifolhada está suficientemente aberta, de tal
+modo que as bordas de cada folíolo não estão se tocando.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>V3</p></td>
+<td class="center-align"><p>Terceiro nó maduro</p></td>
+<td class="center-align"><p>A segunda folha trifolhada está estendida, isto é, com os três folíolos
+expandidos e a terceira folha trifolhada está suficientemente aberta, de tal
+modo que as bordas de cada folíolo não estão se tocando.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>V(n)</p></td>
+<td class="center-align"><p>Enésimo nó maduro</p></td>
+<td class="center-align"><p>A enésima folha trifolhada está estendida, isto é, com os três folíolos
+expandidos e a “n+1” folha trifolhada está suficientemente aberta, de tal
+modo que as bordas de cada folíolo não estão se tocando.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" colspan="4"><p>Estádios reprodutivos</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>50-59</p></td>
+<td class="center-align"><p>R1</p></td>
+<td class="center-align"><p>Início do
+florescimento</p></td>
+<td class="center-align"><p>Uma flor aberta em qualquer nó da haste principal.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>R2</p></td>
+<td class="center-align"><p>Florescimento pleno</p></td>
+<td class="center-align"><p>Uma flor aberta em um dos dois últimos nós da haste principal, com a folha
+completamente desenvolvida.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>60-69</p></td>
+<td class="center-align"><p>R3</p></td>
+<td class="center-align"><p>Início da
+frutificação</p></td>
+<td class="center-align"><p>Vagem com 5 mm de comprimento em um dos quatro últimos nós superiores sobre
+a haste principal com a folha completamente desenvolvida.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>R4</p></td>
+<td class="center-align"><p>Vagem formada</p></td>
+<td class="center-align"><p>Vagem com 20 mm de comprimento em um dos quatro últimos nós superiores sobre
+a haste principal com a folha completamente desenvolvida.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="2"><p>70-79</p></td>
+<td class="center-align"><p>R5</p></td>
+<td class="center-align"><p>Início da formação
+da semente /
+granação</p></td>
+<td class="center-align"><p>Sementes com 3 mm de comprimento em uma vagem localizada em um dos quatro
+últimos nós superiores sobre a haste principal com a folha completamente
+desenvolvida.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>R6</p></td>
+<td class="center-align"><p>Semente desenvolvida
+/ granação plena</p></td>
+<td class="center-align"><p>Vagem verde, contendo semente verde que preencha a cavidade da vagem localizada
+em um dos quatro últimos nós superiores sobre a haste principal com a folha
+completamente desenvolvida.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>80-89</p></td>
+<td class="center-align"><p>R7</p></td>
+<td class="center-align"><p>Início da maturação
+maturação fisiológica</p></td>
+<td class="center-align"><p>Uma vagem normal sobre a haste principal que tenha atingido a cor de vagem
+madura.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>90-99</p></td>
+<td class="center-align"><p>R8</p></td>
+<td class="center-align"><p>Maturação plena</p></td>
+<td class="center-align"><p>95% das vagens atingem a cor da vagem madura.</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="estadios-fenologicos-do-milho">
+<h2><span class="section-number">8.1.2. </span>Estádios fenológicos do milho<a class="headerlink" href="#estadios-fenologicos-do-milho" title="Link permanente para este cabeçalho"></a></h2>
+<p>O milho é uma cultura cujo desenvolvimento é limitado pela água, temperatura e radiação solar ou luminosidade. No caso do milho, a temperatura regula o metabolismo, sendo que a temperatura ideal para o desenvolvimento do milho, da emergência à floração, está compreendida entre 24 e 30ºC. Abaixo de 10ºC, por períodos longos, o crescimento da planta é quase nulo. Com temperaturas superiores a 30ºC, durante longos períodos à noite reduz a produtividade em função do consumo dos produtos metabólicos elaborados durante o dia. Assim, as cultivares precoces, necessitam de até 780 graus-dias <a class="footnote-reference brackets" href="#id12" id="id9" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a> , as de ciclo médio necessitam de 780 a 860 graus-dias e as de ciclo tardio necesitam mais do que 860 graus-dias entre a emergência e o início da polinização. Ao converter esses valores para dias temos que as cultivares precoces tem um ciclo menor do que 110 dias, as de ciclo médio o ciclo varia entre entre 110 e 145 dias e as de ciclo longo mais de 145 dias contados entre a emergência e a maturação fisiológica. O ciclo do milho também é dividido em dois períodos principais: o período vegetativo (V) e o período reprodutivo (R). O período vegetativo inicia-se com a emergência dos  coleóptilos acima da superfície do solo e termina com o pendoamento. A partir daí, inicia-se o período reprodutivo, que vai até a maturação da planta. Cada período é dividido em diferentes estádios fenológicos conforme mostrado na <a class="reference internal" href="#fig-fenologia-milho-estadios"><span class="std std-numref">Figura 8.3</span></a> e descrito na <a class="reference internal" href="#tbl-fenologia-estadio-milho"><span class="std std-numref">Tabela 8.4</span></a> <span id="id10">[<a class="reference internal" href="../referencias.html#id42" title="José Carlos Cruz, Israel Alexandre Pereira Filho, Ramon Costa Alvarenga, Miguel M. Gontijo Neto, João Herbert Moreira Viana, Maurílio Fernandes de Oliveira, Walter José Rodrigues Matrangolo, and Manoel Ricardo de Albuquerque Filho. Cultivo do milho. Technical Report, EMBRAPA, Setembro 2010. URL: https://ainfo.cnptia.embrapa.br/digital/bitstream/item/27037/1/Plantio.pdf.">130</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-fenologia-milho-estadios">
+<a class="reference internal image-reference" href="../_images/estadios-milho.png"><img alt="Estádios de desenvolvimento do milho" src="../_images/estadios-milho.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.3 - </span><span class="caption-text">Estádios de desenvolvimento do milho. <br/> <strong>Fonte:</strong> Adaptado de <a class="reference external" href="https://bookstore.ksre.ksu.edu/download/corn-growth-and-development-poster-20x30_MF3305">Kansas State University</a>.</span><a class="headerlink" href="#fig-fenologia-milho-estadios" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<table class="styled-table docutils align-default" id="tbl-fenologia-estadio-milho">
+<caption><span class="caption-number">Tabela 8.4 - </span><span class="caption-text">Estádios fenológicos do milho. <br/> <strong>Fonte:</strong> Adaptada de <span id="id11">Ciampitti <em>et al.</em> [<a class="reference internal" href="../referencias.html#id38" title="I. A. Ciampitti, R. W. Elmore, and J. Lauer. Fases do desenvolvimento da cultura do milho. Agosto 2024. Online; acessado 25 de Agosto de 2024. URL: https://bookstore.ksre.ksu.edu/download/corn-growth-and-development-poster-20x30_MF3305.">131</a>]</span>.</span><a class="headerlink" href="#tbl-fenologia-estadio-milho" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>BBCH</p></th>
+<th class="head center-align"><p>Código</p></th>
+<th class="head center-align"><p>Denominação</p></th>
+<th class="head center-align"><p>Descrição dos Estádios fenológicos</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align" colspan="4"><p>Estádios vegetativos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>00-09</p></td>
+<td class="center-align"><p>VE</p></td>
+<td class="center-align"><p>Emergência</p></td>
+<td class="center-align"><p>Os cotilédones estão acima da superfície do solo.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" rowspan="3"><p>10-19</p></td>
+<td class="center-align"><p>V1</p></td>
+<td class="center-align"><p>Primeira folha</p></td>
+<td class="center-align"><p>Primeira folha com colar visível (estrutura encontrada na base da folha) e ponta
+arredondada. O ponto de crescimento (meristema apical) da planta é localizado
+abaixo da superfície do solo até o estádio V5.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>V2</p></td>
+<td class="center-align"><p>Segunda folha</p></td>
+<td class="center-align"><p>Raízes nodais começam a crescer abaixo do solo, e as raizes seminais começam
+a senescer.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>V4</p></td>
+<td class="center-align"><p>Quarta folha</p></td>
+<td class="center-align"><p>As raízes nodais são dominantes, ocupando maior volume de solo em comparação com
+as raízes seminais. As folhas ainda se desenvolvem no meristema apical
+(ponto de crescimento da planta).</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>30-39</p></td>
+<td class="center-align"><p>V6</p></td>
+<td class="center-align"><p>Sexta folha</p></td>
+<td class="center-align"><p>Seis folhas com colar visível. A primeira folha com ponta arredondada entra
+em senescência, mas mesmo assim deve ser levada em consideração na contagem.
+Nesta fase, o ponto de crescimento emerge e todas as estruturas da planta já
+tiveram seu crescimento iniciado.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>V(n)</p></td>
+<td class="center-align"><p>Enésima folha</p></td>
+<td class="center-align"><p>Enésima folha com colar visível. O milho usualmente atinge V18 a V20 para
+o pendoamento.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>50-59</p></td>
+<td class="center-align"><p>VT</p></td>
+<td class="center-align"><p>Pendoamento</p></td>
+<td class="center-align"><p>As espigas estão visíveis e ocorre a emergência da inflorescência, preparando
+a panta para a frutificação. O último ramo do pendão é visível no topo da
+planta. O estilo-estigma (“cabelos”) do milho pode ou não terem aparecido nesta
+fase.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align" colspan="4"><p>Estádios reprodutivos</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>60-69</p></td>
+<td class="center-align"><p>R1</p></td>
+<td class="center-align"><p>Início do
+florescimento</p></td>
+<td class="center-align"><p>O florescimento começa quando os “cabelos” se projetam para fora da palha, os
+primeiros a emergirem são responsáveis pela polinização dos grãos da base da
+espiga. . O pólen vai do pendão até o “cabelo” do milho, fertilizando o óvulo
+e, assim, produzindo um embrião.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>R2</p></td>
+<td class="center-align"><p>Grão Bolha D’água</p></td>
+<td class="center-align"><p>O “cabelo” do milho escurece e começa a secar (aproximadamente 12 dias após R1).
+O grão se assemelha a uma bolha com coloração branca e fluido transparente em
+seu interior. Inicia-se o enchimento de grão.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>70-79</p></td>
+<td class="center-align"><p>R3</p></td>
+<td class="center-align"><p>Grão Leitoso</p></td>
+<td class="center-align"><p>“Cabelo” do milho seca (aproximadamente 20 dias após R1). O grão torna-se
+amarelado e um fluido semelhante ao leite pode ser extraído quando este é
+esmagado com os dedos.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>R4</p></td>
+<td class="center-align"><p>Grão Pastoso</p></td>
+<td class="center-align"><p>Pelo acúmulo de amido o grão apresenta consistência pastosa (aproximadamente 26
+a 30 dias após R1). Nesta fase, ocorre um rápido acúmulo de nutrientes e amido;
+o grão possuí 70% de umidade e começa a se apresentar dentado no topo.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align" rowspan="2"><p>70-79</p></td>
+<td class="center-align"><p>R5</p></td>
+<td class="center-align"><p>Formação de Dente</p></td>
+<td class="center-align"><p>A maior parte dos grãos estão dentados, a umidade do grão cai para 55% (38 a
+42 dias após R1) e o conteúdo de amido aumenta.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>R6</p></td>
+<td class="center-align"><p>Maturidade
+Fisiológica</p></td>
+<td class="center-align"><p>A camada preta se forma na base do grão, bloqueando o movimento de matéria seca
+e nutrientes da planta para os grãos (50 a 60 dias após R1). O grão atinge a
+sua maior massa seca (30 a 35% de umidade) e estão maduros fisiologicamente.</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>80-89</p></td>
+<td class="center-align"><p>R7</p></td>
+<td class="center-align"><p>Início da maturação
+maturação fisiológica</p></td>
+<td class="center-align"><p>O estágio de maturação inicia-se quando a coroa do grão desenvolve uma dureza
+e a característica tonalidade amarelo-escuro brilhante dos grãos maduros.</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>90-99</p></td>
+<td class="center-align"><p>R8</p></td>
+<td class="center-align"><p>Maturação plena</p></td>
+<td class="center-align"><p>Senescência</p></td>
+</tr>
+</tbody>
+</table>
+<hr class="docutils" />
+<aside class="footnote-list brackets">
+<aside class="footnote brackets" id="id12" role="note">
+<span class="label"><span class="fn-bracket">[</span><a role="doc-backlink" href="#id9">1</a><span class="fn-bracket">]</span></span>
+<p>Graus-dia é uma unidade de medida usada para estimar o crescimento das plantas com base na temperatura. Ela representa a soma das temperaturas médias diárias acima de um ponto base necessário para o crescimento das plantas. Por exemplo, se a temperatura mínima de um dia é 12°C e a máxima é 22°C. No caso do milho a temperatura base é de 10°C. Assim, a <span class="math notranslate nohighlight">\(média = \frac{12 + 22}{2} \therefore 17°C\)</span>. Para converter para graus-dia a média deve ser retirada da temperatura de base da cultura <span class="math notranslate nohighlight">\(Graus-dia = 17-10\)</span>. Assim, nesse dia, o milho teve 7 graus-dia.</p>
+</aside>
+</aside>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="8. Fenologia" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="metricas.html" class="btn btn-neutral float-right" title="8.2. Métricas Fenológicas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f8d589ff1c0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

@@ -7,6 +7,32 @@ Análise de Séries Temporais de Imagens
 ======================================
 
 
+Séries temporais de imagens de satélites nos permitem detectar processos complexos difíceis de identificar usando abordagens tradicionais de detecção de mudanças entre duas imagens em tempos distintos :cite:`pasquarella:2016` :cite:`gomez:2016`. 
+A Figura a seguir apresenta quatro séries temporais NDVI, associadas à localizações distintas, extraídas do cubo de dados de imagens Sentinel-2 produzido pelo projeto Brazil Data Cube. 
+Considerando todos os valores dessas séries é possível identificar as mudanças que ocorrem nessas localizações ao longo do tempo. 
+
+
+.. figure:: ../img/series-temporais/timeseries-01.png
+   :alt: Métodos de Análise de Séries Temporais de Imagens 
+   :width: 90% 
+   :figclass: align-center 
+
+
+.. figure:: ../img/series-temporais/timeseries-02.png
+   :alt: Métodos de Análise de Séries Temporais de Imagens 
+   :width: 90% 
+   :figclass: align-center 
+
+
+.. figure:: ../img/series-temporais/timeseries-03.png
+   :alt: Métodos de Análise de Séries Temporais de Imagens 
+   :width: 90% 
+   :figclass: align-center 
+
+   
+   Séries temporais NDVI extraídas do cubo de dados de imagens Sentinel-2 associadas à quatro localizações distintas.
+
+
 Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir: 
 (1) Classificação de Séries Temporais de Imagens; (2) Agrupamento de Séries Temporais de Imagens; 
 (3) Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens; e 
@@ -19,5 +45,51 @@ Podemos classificar os métodos de análise de séries temporais de imagens em q
    :figclass: align-center 
 
    Métodos de Análise de Séries Temporais de Imagens.
+
+
+Classificação de Séries Temporais de Imagens
+--------------------------------------------
+
+
+Atualmente, métodos de aprendizado de máquina (*machine learning*) e de aprendizado profundo (*deep learning*) têm sido amplamente 
+utilizados para classificar séries temporais de imagens e produzir mapas de uso e cobertura da terra com resultados promissores :cite:`maus:2016` :cite:`gomez:2016` :cite:`belgiu:2018` :cite:`picoli:2018` :cite:`simoes:2021`. 
+Esses métodos incluem Randon Forest, SVM (*Support Vector Machine*), TempCNN (*Temporal Convolutional Neural Network*) e TWDTW (*Time-Weighted Dynamic Time Warping*).  
+
+
+Os mapas de uso e cobertura da terra lançados em agosto de 2024 pelo projeto :ref:`TerraClass <sec_uso_cobertura_terra_terraclass>`, para os biomas Cerrado e Amazônia, foram produzidos utilizando 
+métodos de aprendizado de máquina e séries temporais de imagens, como descrito 
+na `Notícia de Lançamento do TerraClass <https://www.embrapa.br/busca-de-noticias/-/noticia/91356370/terraclass-apresenta-resultados-do-mapeamento-da-cobertura-e-do-uso-da-terra-na-amazonia-e-cerrado>`__.  
+Esses mapas foram gerados utilizando a plataforma Brazil Data Cube, seus cubos de dados de imagens e pacote SITS (Satellite Image Time Series) :cite:`simoes:2021`.
+
+
+A maioria desses métodos utilizados são *supervisionados* e, portanto, necessitam de amostras de treinamento de boa qualidade para gerar modelos assertivos. 
+A qualidade desse conjunto de amostras é crucial no processo de classificação. Amostras que são bem representativas das classes a serem identificadas 
+resultam em boas classificações. Na classificação de uso e cobertura da terra, amostras de boa qualidade tem impacto direto na acurácia dos mapas gerados 
+:cite:`gomez:2016`. As amostras de treinamento devem descrever adequadamente a diversidade e a representatividade das classes de uso e cobertura da terra que devem ser 
+identificadas pelo classificador. Além disso, essas amostras devem representar adequadamente a alta variabilidade das classes de uso e cobertura da terra 
+em grandes áreas, capturando seus distintos padrões espaço-temporais :cite:`santos:2021b`.
+
+
+Para analisar amostras de uso e cobertura da terra associadas a séries temporais de imagens, Santos et al. :cite:`santos:2021` propõem um método baseado na 
+rede neural *Self-Organizing Maps* (SOM) e inferência bayesiana. SOM é uma técnica de cluster muito utilizada para agrupamento de séries temporais. 
+O método proposto produz métricas que indicam a qualidade das amostras de uso e cobertura da terra, usando o SOM para gerar clusters ou agrupamentos 
+de séries temporais de imagens e inferência bayesiana para avaliar as similaridades *intra-cluster* e *inter-cluster* :cite:`santos:2021`. 
+
+
+Agrupamento de Séries Temporais de Imagens
+------------------------------------------
+
+Um método bastante utilizado para agrupamento de séries temporais de imagens é a rede neural *Self-Organizing Maps* (SOM), devido a suas duas 
+características principais: (1) a capacidade de mapear o espaço de entrada de alta dimensão para uma grade bidimensional; e 
+(2) a preservação topológica da vizinhança, que gera grupos espaciais de padrões semelhantes no espaço de saída. 
+
+
+Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens
+--------------------------------------------------------------
+
+
+Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens
+-------------------------------------------------------------------------------------
+
 
    
