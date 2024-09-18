@@ -3,8 +3,8 @@
 
 .. _sec_uso_cobertura_terra:
 
-Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor
-===========================================================================
+Uso e Cobertura da Terra
+========================
 
 
 Informações sobre uso e cobertura da terra são essenciais para apoiar governos na tomada de decisões sobre o impacto das atividades humanas no meio ambiente, no planejamento do uso dos recursos naturais, na conservação da biodiversidade, no monitoramento das mudanças climáticas e na avaliação da segurança alimentar :cite:`brown:2016`. O uso da terra é resultado das atividades humanas na superfície terrestre, muitas vezes tendo relação com fatores socioeconômicos, históricos e culturais. Está diretamente associado à cobertura da terra, que vem sendo alterada, e, devido a isso, impacta os ambientes naturais muitas vezes negativamente, moldando-os para atender as demadas da sociedade :cite:`ibge:2024:a`.

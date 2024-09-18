@@ -1,5 +1,5 @@
-Acesso e Análise dos Dados do Sicor
-===================================
+Dados do Sicor
+==============
 
 
 O Crédito Rural é o financiamento para viabilizar as atividades agropecuárias e envolve os diversos setores que atuam nesse segmento, desde os produtores rurais e suas cooperativas, agentes envolvidos com a pesquisa e outros serviços ligados à agropecuária, servindo também para o escoamento da produção. Os produtores rurais utilizam os recursos concedidos pelas instituições financeiras nessa linha de crédito de diversas maneiras na sua propriedade. Por exemplo, podem investir em novos equipamentos e animais ou custear matéria prima para o cultivo. Podem ainda utilizar esses recursos para comercializar e industrializar a produção. São as chamadas finalidades do crédito rural.

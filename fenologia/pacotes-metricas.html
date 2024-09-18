@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.3. Softwares para extração de Métricas Fenológicas &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenologia/pacotes-metricas.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" href="wcpms.html" />
+    <link rel="prev" title="8.2. Métricas Fenológicas" href="metricas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Fenologia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="culturas-anuais.html">8.1. Fenologia de culturas com ciclo anual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metricas.html">8.2. Métricas Fenológicas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.3. Softwares para extração de Métricas Fenológicas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#timesat">8.3.1. TIMESAT</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#phenex">8.3.2. PHENEX</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#greenbrown">8.3.3. Greenbrown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cropphenology">8.3.4. CropPhenology</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="wcpms.html">8.4. Web Crop Phenology Metrics Service (WCPMS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">8. </span>Fenologia</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8.3. </span>Softwares para extração de Métricas Fenológicas</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="metricas.html" class="btn btn-neutral float-left" title="8.2. Métricas Fenológicas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="wcpms.html" class="btn btn-neutral float-right" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="softwares-para-extracao-de-metricas-fenologicas">
+<span id="sec-pacote-metricas"></span><h1><span class="section-number">8.3. </span>Softwares para extração de Métricas Fenológicas<a class="headerlink" href="#softwares-para-extracao-de-metricas-fenologicas" title="Link permanente para este cabeçalho"></a></h1>
+<p>Diversos métodos foram criados para obter a fenologia utilizando imagens obtidas por satélites de observação da Terra <span id="id1">[<a class="reference internal" href="../referencias.html#id138" title="Linglin Zeng, Brian D. Wardlow, Daxiang Xiang, Shun Hu, and Deren Li. A review of vegetation phenological metrics extraction using time-series, multispectral satellite data. Remote Sensing of Environment, 237:111511, 2020. doi:https://doi.org/10.1016/j.rse.2019.111511.">84</a>, <a class="reference internal" href="../referencias.html#id73" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id74" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>, <a class="reference internal" href="../referencias.html#id48" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>, <a class="reference internal" href="../referencias.html#id7" title="Sofanit Araya, Bertram Ostendorf, Gregory Lyle, and Megan Lewis. Cropphenology: an r package for extracting crop phenology from time series remotely sensed vegetation index imagery. Ecological Informatics, 46:45-56, 2018. doi:https://doi.org/10.1016/j.ecoinf.2018.05.006.">132</a>, <a class="reference internal" href="../referencias.html#id45" title="Daniel Doktor and Maximilian Lange. Phenological metrics for protected area &quot;ohridprespa&quot;, modis aqua tile h19v04. Agosto 2024. Online; acessado 18 de Agosto de 2024. URL: https://doi.org/10.5281/zenodo.3588294.">133</a>, <a class="reference internal" href="../referencias.html#id84" title="Dongdong Kong, Tim R. McVicar, Mingzhong Xiao, Yongqiang Zhang, Jorge L. Peña-Arancibia, Gianluca Filippa, Yuxuan Xie, and Xihui Gu. Phenofit: an r package for extracting vegetation phenology from time series remote sensing. Methods in Ecology and Evolution, 13(7):1508-1527, 2022. doi:https://doi.org/10.1111/2041-210X.13870.">134</a>, <a class="reference internal" href="../referencias.html#id53" title="Matthias Forkel, Nuno Carvalhais, Jan Verbesselt, Miguel D. Mahecha, Christopher S. R. Neigh, and Markus Reichstein. Trend change detection in ndvi time series: effects of inter-annual variability and methodology. Remote. Sens., 5:2113-2144, 2013. doi:https://doi.org/10.3390/rs5052113.">135</a>]</span>. O primeiro software de extração de fenologia, lançado no início dos anos 2002, foi o TIMESAT <span id="id2">[<a class="reference internal" href="../referencias.html#id73" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id74" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>, <a class="reference internal" href="../referencias.html#id48" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>]</span> e com base nele, foram implementadas diversas outras metodologias para extração de da fenologia da vegetação, como CropPhenology <span id="id3">[<a class="reference internal" href="../referencias.html#id7" title="Sofanit Araya, Bertram Ostendorf, Gregory Lyle, and Megan Lewis. Cropphenology: an r package for extracting crop phenology from time series remotely sensed vegetation index imagery. Ecological Informatics, 46:45-56, 2018. doi:https://doi.org/10.1016/j.ecoinf.2018.05.006.">132</a>]</span>, phenex <span id="id4">[<a class="reference internal" href="../referencias.html#id45" title="Daniel Doktor and Maximilian Lange. Phenological metrics for protected area &quot;ohridprespa&quot;, modis aqua tile h19v04. Agosto 2024. Online; acessado 18 de Agosto de 2024. URL: https://doi.org/10.5281/zenodo.3588294.">133</a>]</span>, phenofit <span id="id5">[<a class="reference internal" href="../referencias.html#id84" title="Dongdong Kong, Tim R. McVicar, Mingzhong Xiao, Yongqiang Zhang, Jorge L. Peña-Arancibia, Gianluca Filippa, Yuxuan Xie, and Xihui Gu. Phenofit: an r package for extracting vegetation phenology from time series remote sensing. Methods in Ecology and Evolution, 13(7):1508-1527, 2022. doi:https://doi.org/10.1111/2041-210X.13870.">134</a>]</span>, greenbrown <span id="id6">[<a class="reference internal" href="../referencias.html#id53" title="Matthias Forkel, Nuno Carvalhais, Jan Verbesselt, Miguel D. Mahecha, Christopher S. R. Neigh, and Markus Reichstein. Trend change detection in ndvi time series: effects of inter-annual variability and methodology. Remote. Sens., 5:2113-2144, 2013. doi:https://doi.org/10.3390/rs5052113.">135</a>]</span>. Para preencher a lacuna na compreensão da robustez desses algoritmos quando inseridos com diferentes fontes de dados foi executada uma pesquisa utilizando dados oriundos do sensor Modis e do MSI do Sentinel-2 <span id="id7">[<a class="reference internal" href="../referencias.html#id106" title="Grazieli Rodigheri, Ieda Del’Arco Sanches, Jonathan Richetti, Rodrigo Yoiti Tsukahara, Roger Lawes, Hugo do Nascimento Bendini, and Marcos Adami. Estimating crop sowing and harvesting dates using satellite vegetation index: a comparative analysis. Remote Sensing, 2023. doi:10.3390/rs15225366.">124</a>]</span>. Segundo os autores, os softwares TIMESAT e phenex apresentaram as estimativas mais precisas de métricas fenológicas para datas de semeadura e colheita, respectivamente. TIMESAT foi menos sensível a mudanças em mudanças espaciais, temporais, espectrais e radiométricas, enquanto os outros métodos foram sensíveis a mudanças na entrada de dados. No geral, os erros nas datas de semeadura e colheita extraídas dos índices de vegetação de satélite estão entre 10 e 20 dias. Informam ainda que a sua aplicabilidade é limitada para tomada de decisão que necessite maior precisão na estimativa dessas datas. Abaixo serão apresentados alguns desses softwares.</p>
+<section id="timesat">
+<h2><span class="section-number">8.3.1. </span>TIMESAT<a class="headerlink" href="#timesat" title="Link permanente para este cabeçalho"></a></h2>
+<p>O <strong>TIMESAT</strong> é um software especializado desenvolvido para estimar as estações de crescimento a partir de dados de séries temporais de satélites e calcular métricas fenológicas <span id="id8">[<a class="reference internal" href="../referencias.html#id73" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id74" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>, <a class="reference internal" href="../referencias.html#id48" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>]</span>. As principais implementações do TIMESAT estão disponíveis em Fortran e Matlab. Ele é reconhecido como uma das bibliotecas mais estabelecidas para extrair métricas fenológicas e foi adaptado para outras linguagens de programação, como R, com o pacote rTIMESAT. O TIMESAT detecta um total de 18 métricas fenológicas, incluindo:</p>
+<ol class="loweralpha open">
+<li><p>Início da estação (SOS)</p></li>
+<li><p>Pico da estação (POS)</p></li>
+<li><p>Fim da estação (EOS)</p></li>
+<li><p>Duração da estação (LOS)</p></li>
+<li><p>Integral curta (SIOS) e longa (LIOS)</p></li>
+</ol>
+</section>
+<section id="phenex">
+<h2><span class="section-number">8.3.2. </span>PHENEX<a class="headerlink" href="#phenex" title="Link permanente para este cabeçalho"></a></h2>
+<p>o <strong>Phenex</strong> é um pacote do R com funções auxiliares para a análise de dados fenológicos. Ele oferece algumas funções fáceis de usar para análises espaciais de conjuntos de dados fenológicos (de plantas) e observações por satélite da vegetação <span id="id9">[<a class="reference internal" href="../referencias.html#id46" title="Maximilian Lange and Daniel Doktor. Phenex: auxiliary functions for phenological data analysis. 2024. R package version 1.4-5. URL: https://cran.r-project.org/web/packages/phenex/index.html.">136</a>]</span>. O pacote calcula 10 métricas de fenologia da superfície terrestre e de verdor baseadas no NDVI, e dentre elas estão:</p>
+<ol class="loweralpha open">
+<li><p>Início da estação (SOS)</p></li>
+<li><p>Pico da estação (POS)</p></li>
+<li><p>Fim da estação (EOS)</p></li>
+<li><p>Duração da estação (LOS)</p></li>
+</ol>
+</section>
+<section id="greenbrown">
+<h2><span class="section-number">8.3.3. </span>Greenbrown<a class="headerlink" href="#greenbrown" title="Link permanente para este cabeçalho"></a></h2>
+<p>O <strong>Greenbrown</strong> também é um pacote do R com uma coleção de funções para analisar tendências, mudanças de tendência e eventos fenológicos em séries temporais utilizando séries temporais de imagens de satélites ou simulações de modelos climáticos <span id="id10">[<a class="reference internal" href="../referencias.html#id53" title="Matthias Forkel, Nuno Carvalhais, Jan Verbesselt, Miguel D. Mahecha, Christopher S. R. Neigh, and Markus Reichstein. Trend change detection in ndvi time series: effects of inter-annual variability and methodology. Remote. Sens., 5:2113-2144, 2013. doi:https://doi.org/10.3390/rs5052113.">135</a>]</span>. O pacote calcula 13 métricas de fenologia da superfície terrestre e de verdor baseadas no NDVI, e além das listadas acima tem:</p>
+<ol class="loweralpha open">
+<li><p>Metade da estação (MOS)</p></li>
+<li><p>Taxa de crescimento (ROI)</p></li>
+<li><p>Taxa de decrescimento (ROD)</p></li>
+</ol>
+</section>
+<section id="cropphenology">
+<h2><span class="section-number">8.3.4. </span>CropPhenology<a class="headerlink" href="#cropphenology" title="Link permanente para este cabeçalho"></a></h2>
+<p>O <strong>CropPhenology</strong> é um pacote do R criado para extrair fenologia de cultivos agrícola a partir de séries temporais do índice de vegetação <span id="id11">[<a class="reference internal" href="../referencias.html#id7" title="Sofanit Araya, Bertram Ostendorf, Gregory Lyle, and Megan Lewis. Cropphenology: an r package for extracting crop phenology from time series remotely sensed vegetation index imagery. Ecological Informatics, 46:45-56, 2018. doi:https://doi.org/10.1016/j.ecoinf.2018.05.006.">132</a>]</span>. O pacote calcula 15 métricas fenológicas baseadas no NDVI ao longo da temporada, e dentre as métricas estão:</p>
+<ol class="loweralpha open">
+<li><p>Início da estação (SOS)</p></li>
+<li><p>Pico da estação (POS)</p></li>
+<li><p>Fim da estação (EOS)</p></li>
+<li><p>Taxa de crescimento (ROI)</p></li>
+<li><p>Taxa de decrescimento (ROD)</p></li>
+</ol>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="metricas.html" class="btn btn-neutral float-left" title="8.2. Métricas Fenológicas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="wcpms.html" class="btn btn-neutral float-right" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7ff0e45a5bb0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

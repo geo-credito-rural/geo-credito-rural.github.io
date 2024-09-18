@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>8.4. Web Crop Phenology Metrics Service (WCPMS) &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/fenologia/wcpms.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="9. Padrões em Séries Temporais de Imagens de Satélites" href="../padroes-series-temporais/index.html" />
+    <link rel="prev" title="8.3. Softwares para extração de Métricas Fenológicas" href="pacotes-metricas.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Fenologia</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="culturas-anuais.html">8.1. Fenologia de culturas com ciclo anual</a></li>
+<li class="toctree-l2"><a class="reference internal" href="metricas.html">8.2. Métricas Fenológicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pacotes-metricas.html">8.3. Softwares para extração de Métricas Fenológicas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">8.4. Web Crop Phenology Metrics Service (WCPMS)</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">8. </span>Fenologia</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">8.4. </span>Web Crop Phenology Metrics Service (WCPMS)</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="pacotes-metricas.html" class="btn btn-neutral float-left" title="8.3. Softwares para extração de Métricas Fenológicas" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../padroes-series-temporais/index.html" class="btn btn-neutral float-right" title="9. Padrões em Séries Temporais de Imagens de Satélites" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="web-crop-phenology-metrics-service-wcpms">
+<span id="sec-fenologia-wcpms"></span><h1><span class="section-number">8.4. </span>Web Crop Phenology Metrics Service (WCPMS)<a class="headerlink" href="#web-crop-phenology-metrics-service-wcpms" title="Link permanente para este cabeçalho"></a></h1>
+<p>O <strong>W</strong>eb <strong>C</strong>rop <strong>P</strong>henology <strong>M</strong>etrics <strong>S</strong>ervice ou <strong>WCPMS</strong> é um serviço web aberto para calcular e retornar métricas fenológicas a partir de grandes volumes de imagens de satélites modeladas como cubos de dados, disponíveis pelo projeto <a class="reference external" href="https://data.inpe.br/bdc/web/">Brazil Data Cube</a> . Esse serviço permite que usuários facilmente calculem métricas fenológicas a partir de cubos de dados de imagens, sem a necessidade de baixar grandes volumes de dados para seus computadores pessoais.</p>
+<p>WCPMS é desenvolvido e mantido pelo Instituto Nacional de Pesquisas Espaciais (INPE), no contexto do projeto <a class="reference external" href="https://data.inpe.br/bdc/web/">Brazil Data Cube</a>. A arquitetura do serviço WCPMS tem duas partes: (1) server-side (lado do servidor) e (2) client-side (lado do cliente), como ilustrado na <a class="reference internal" href="#fig-fenologia-wcpms-arq"><span class="std std-numref">Figura 8.5</span></a>.
+O serviço roda nos servidores do INPE (server-side) para calcular as métricas fenológicas a partir de grandes volumes de imagens
+modeladas como cubos de dados, sem a necessidade de baixar essas imagens para computadores locais dos usuários. Todos os sistemas de software associados ao serviço WCMPS estão instalados no lado do servidor (server-side).
+Assim, usuários podem usá-lo, através do seu cliente em <a class="reference external" href="https://github.com/brazil-data-cube/wcpms.py">Python</a> ou de interfaces gráficas do portal web <a class="reference external" href="https://data.inpe.br/bdc/explorer/">Data Cube Explorer</a>, sem a necessidade de
+instalar pacotes ou sistemas em suas máquinas locais e sem precisar ter conhecimentos de programação.</p>
+<figure class="align-center align-default" id="fig-fenologia-wcpms-arq">
+<a class="reference internal image-reference" href="../_images/wcpms_arq.png"><img alt="Arquitetura do serviço WCPMS" src="../_images/wcpms_arq.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.5 - </span><span class="caption-text">Arquitetura do serviço WCPMS.</span><a class="headerlink" href="#fig-fenologia-wcpms-arq" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Dado uma localização espacial ou uma região de interesse, o WCPMS retorna as métricas fenológicas associadas a um deteminado
+período e cubo de dados, como ilustrado na <a class="reference internal" href="#fig-fenologia-wcpms-work"><span class="std std-numref">Figura 8.6</span></a>. O WCPMS é baseado no seviço <a class="reference internal" href="../series-temporais/wtss.html#sec-series-temporais-wtss"><span class="std std-numref">Seção 7.4 - Web Time Series Service (WTSS)</span></a>.
+Para calcular as métricas fenológicas, o WCPMS utiliza o pacote <a class="reference external" href="https://github.com/lewistrotter/Phenolopy">Phenolopy</a>, baseado no sistema <a class="reference internal" href="pacotes-metricas.html#sec-pacote-metricas"><span class="std std-numref">Seção 8.3 - TIMESAT</span></a>.</p>
+<figure class="align-center align-default" id="fig-fenologia-wcpms-work">
+<a class="reference internal image-reference" href="../_images/wcpms_work.png"><img alt="Funcionamento do serviço WCPMS" src="../_images/wcpms_work.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.6 - </span><span class="caption-text">Funcionamento do serviço WCPMS.</span><a class="headerlink" href="#fig-fenologia-wcpms-work" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>O WCPMS é baseado em quatro operações:</p>
+<ul class="open">
+<li><p><code class="docutils literal notranslate"><span class="pre">get_collections</span></code>: retorna uma lista de cubos de dados disponíveis no Brazil Data Cube a partir do serviço <a class="reference internal" href="../acesso-imagens/stac.html#sec-acesso-imagens-stac"><span class="std std-numref">Seção 6.2 - SpatioTemporal Asset Catalogs (STAC)</span></a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_description</span></code>: retorna, em formato de dicionário, as informações de cada métrica fenológica, tais como código, nome, descrição e método.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_phenometrics</span></code>: calcula e retorna, em formato de dicionário, as métricas fenológicas para uma dada localização espacial.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">get_phenometrics_region</span></code>: calcula e retorna, em formato de dicionário, as métricas fenológicas para cada localização espacial dentro de uma dada região. Essas localizações dentro da região podem ser selecionadas de três maneiras: <code class="docutils literal notranslate"><span class="pre">all</span></code>, <code class="docutils literal notranslate"><span class="pre">systematic</span> <span class="pre">grid</span></code> or <code class="docutils literal notranslate"><span class="pre">random</span> <span class="pre">grid</span></code>.</p></li>
+</ul>
+<p>A <a class="reference internal" href="#fig-fenologia-wcpms-plot"><span class="std std-numref">Figura 8.7</span></a> ilustra um exemplo de visualização do resultado do serviço WCPMS.</p>
+<figure class="align-center align-default" id="fig-fenologia-wcpms-plot">
+<a class="reference internal image-reference" href="../_images/wcpms_plot.png"><img alt="Exemplo de visualização do resultado do serviço WCPMS." src="../_images/wcpms_plot.png" style="width: 70%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.7 - </span><span class="caption-text">Exemplo de visualização do resultado do serviço WCPMS.</span><a class="headerlink" href="#fig-fenologia-wcpms-plot" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A Figura a seguir mostra o resultado da operação <code class="docutils literal notranslate"><span class="pre">get_description</span></code>.</p>
+<figure class="align-center align-default" id="fig-fenologia-wcpms-metricas">
+<a class="reference internal image-reference" href="../_images/wcpms_metricas.png"><img alt="Descrição das métricas retornadas pelo serviço WCPMS." src="../_images/wcpms_metricas.png" style="width: 100%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 8.8 - </span><span class="caption-text">Descrição das métricas retornadas pelo serviço WCPMS.</span><a class="headerlink" href="#fig-fenologia-wcpms-metricas" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>O seguinte <em>Jupyter Notebook</em> será usado para introduzir o uso desse serviço:</p>
+<ul class="open">
+<li><p>Fenologia das glebas. Disponível como <em>Code</em> de nome <em>tema6-glebas-fenologia</em> em <a class="reference external" href="https://www.kaggle.com/organizations/geocreditorural">Kaggle - Geo Credito Rural</a>.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="pacotes-metricas.html" class="btn btn-neutral float-left" title="8.3. Softwares para extração de Métricas Fenológicas" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../padroes-series-temporais/index.html" class="btn btn-neutral float-right" title="9. Padrões em Séries Temporais de Imagens de Satélites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7ff0e452d430>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

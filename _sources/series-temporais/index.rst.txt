@@ -3,8 +3,8 @@
 
 .. _cap_series_temporais:
 
-Acesso e Análise de Séries Temporais de Imagens de Satélites
-============================================================
+Séries Temporais de Imagens de Satélites
+========================================
 
 
 Uma série temporal pode ser entendida como um conjunto de observações ordenadas no tempo (:math:`t`). Um exemplo é a série temporal de temperatura do ar (:math:`ºC`) de um determinado local (latitude e longitude). Em qualquer instante (:math:`t`), pode ser obtida uma medida da temperatura. Com isto, pode-se dizer que uma série temporal é multivariada, pois pode ser localizada no tempo e no espaço. A análise de séries temporais consiste em modelar a autocorrelação entre as observações. Para modelar esta dependência pode-se adotar dois enfoques, um no domínio do tempo, por meio de modelos paramétricos tais como o *Autoregressive Integrated Moving Average* (Arima), e outro no domínio da freqüência, por meio de modelos não paramétrico tais como a transformada de Fourier. Os principais objetivos para analisar uma série temporal são: a) investigar o mecanismo gerador da série temporal; b) fazer previsões dos valores futuros da série; c) descrever o comportamento da série, tais como sazonalidade e tendência; d) procurar periodicidades relevantes nestes dados; e e) identificar quebras de padrões :cite:`morettin:2004`. 

@@ -7,7 +7,7 @@ Métricas Fenológicas
 ====================
 
 
-A fenologia está sendo cada vez mais utilizada pelas mais diversas áreas da ciência, entretanto, sua obtenção é lenta e onerosa. Para agilizar a obtenção dessas informações em larga escala e reduzir os custos, são utilizadas séries temporais de imagens de satélite de onde se extraem as métricas fenológicas. Assim, **métricas fenológicas** podem ser definidas por um conjunto de medidas associadas às curvas temporais obtidas das imagens de sensoriamento remoto que permitem a estimativa das fases ou estádios fenológicos. Neste sentido, diversos métodos estão sendo desenvolvidos para obter as métricas fenológicas oriundas de séries de imagens de sensoriamento remoto. Esses métodos para extração de métricas fenológicas podem ser agrupados em: limiares, derivadas, algoritmos de suavização e modelos matemáticos :cite:`you:2013`. Já as métricas mais frequentemente extraídas têm sido: início e final do ciclo, bem como a sua duração; taxa de crescimento e de senescência, produtividade total e sazonal, valores do mínimo e máximo, comprimento e amplitude alcançados no início, meio e fim das estações, entre outras :cite:`eklundh:2016`. 
+A fenologia está sendo cada vez mais utilizada pelas mais diversas áreas da ciência, entretanto, sua obtenção é lenta e onerosa. Para agilizar a obtenção dessas informações em larga escala e reduzir os custos, são utilizadas séries temporais de imagens de satélite de onde se extraem as métricas fenológicas. Assim, **métricas fenológicas** podem ser definidas por um conjunto de medidas associadas às curvas temporais obtidas das imagens de sensoriamento remoto que permitem a estimativa das fases ou estádios fenológicos. Neste sentido, diversos métodos estão sendo desenvolvidos para obter as métricas fenológicas oriundas de séries de imagens de sensoriamento remoto. Esses métodos para extração de métricas fenológicas podem ser agrupados em: limiares, derivadas, algoritmos de suavização e modelos matemáticos :cite:`you:2013`. 
 
 
 Entretanto, como visto na :numref:`Section %s <sec_series_temporais_filtragem>`, as séries temporais de imagens de satélite possuem ruídos que devem ser tratados utilizando processos de filtragem, garantindo assim o espaçamento uniforme entre os dados, a remoção dos ruídos e o preenchimento de falhas, para que se possa obter as métricas fenológicas. Um exemplo apresentando uma série temporal antes de depois da filtragem, bem como as métricas fenológicas associadas a elas pode ser visualizado na :numref:`Figura %s <fig:fenologia:timesat-parameters>`. Nesta figura pode ser observado que os valores das estimativas de métricas fenológicas (letras :math:`a..i`) usam a curva filtrada (em vermelho) e todos os atributos são calculados a partir dela.
@@ -19,7 +19,63 @@ Entretanto, como visto na :numref:`Section %s <sec_series_temporais_filtragem>`,
     :figclass: align-center
     :name: fig:fenologia:timesat-parameters
 
-    Métricas fenológicas. A linha em azul representa os dados obtidos por sensoriamento remoto sem filtragem. A linha em vermelho representa o resultado da filtragem dos dados e são representados palas letras: (a) início do ciclo, (b) fim do ciclo, (c) duração do ciclo, (d) valor base, (e) tempo do meio do ciclo, (f) valor máximo, (g) amplitude, (h) pequeno valor integrado, (h+i) grande valor integrado. |br| **Fonte:** Adaptada de :cite:t:`jonsson:2004`
+    Métricas fenológicas. A linha em azul representa os dados obtidos por sensoriamento remoto sem filtragem. A linha em vermelho representa o resultado da filtragem dos dados e são representados palas letras: (a) início da estação, (b) fim da estação, (c) duração da estação, (d) valor base, (e) tempo do meio da estação, (f) valor máximo, (g) amplitude, (h) pequeno valor integrado, (h+i) grande valor integrado. |br| **Fonte:** Adaptada de :cite:t:`jonsson:2004`
 
 
-Diversos métodos foram criados para obter a fenologia utilizando imagens obtidas por satélites de observação da Terra :cite:`zeng:2020,jonsson:2002,jonsson:2004,eklundh:2016,araya:2018,doktor:2019, kong:2022,forkel:2013`. O primeiro software de extração de fenologia, lançado no início dos anos 2002, foi o TIMESAT :cite:`jonsson:2002,jonsson:2004,eklundh:2016` e com base nele, foram implementadas diversas outras metodologias para extração de da fenologia da vegetação, como CropPhenology :cite:`araya:2018`, phenex :cite:`doktor:2019`, phenofit :cite:`kong:2022`, greenbrown :cite:`forkel:2013`. Para preencher a lacuna na compreensão da robustez desses algoritmos quando inseridos com diferentes fontes de dados foi executada uma pesquisa utilizando dados oriundos do sensor Modis e do MSI do Sentinel-2 :cite:`rodigheri:2023`. Segundo os autores, os softwares TIMESAT e phenex apresentaram as estimativas mais precisas de métricas fenológicas para datas de semeadura e colheita, respectivamente. TIMESAT foi menos sensível a mudanças em mudanças espaciais, temporais, espectrais e radiométricas, enquanto os outros métodos foram sensíveis a mudanças na entrada de dados. No geral, os erros nas datas de semeadura e colheita extraídas dos índices de vegetação de satélite estão entre 10 e 20 dias. Informam ainda que a sua aplicabilidade é limitada para tomada de decisão que necessite maior precisão na estimativa dessas datas.
+Já as métricas mais frequentemente extraídas têm sido: início e final da estação, bem como a sua duração; taxa de crescimento e de senescência, produtividade total e sazonal, valores do mínimo e máximo, comprimento e amplitude alcançados no início, meio e fim das estações, entre outras :cite:`eklundh:2016`. Algumas destas métricas são apresentadas na :numref:`Tabela %s <tbl:fenologia:metrica-fenologica-sazonais>`, bem como suas descrições e métodos de obtenção.
+
+
+.. table:: Metricas Fenológicas e parâmetros sazonais. |br| **Fonte:** Adaptada de :cite:t:`jonsson:2004`.
+    :header-alignment: center center center center
+    :column-alignment: center center center center
+    :name: tbl:fenologia:metrica-fenologica-sazonais
+
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | Sigla | Nome da métrica    | Descrição                            | Método                                                       |
+    +=======+====================+======================================+==============================================================+
+    | SOS   | Início da estação  | Valor do índice espectral e data da  | Seis métodos utilizados: 1) Amplitude sazonal; 2) Amplitude  |
+    |       |                    | ocorrência no início da estação      | absoluta; 3) Amplitude relativa; 4) Linha de tendência LOESS |
+    |       |                    |                                      | STL; 5) Primeiro valor do declive positivo; 6) Valor mediano |
+    |       |                    |                                      | do declive positivo                                          |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | POS   | Pico da estação    | Maior valor do índice espectral e    | Valor máximo local do índice espectral levando em conta a    |
+    |       |                    | data de ocorrência                   | duração da estação de crescimento da planta                  |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | MOS   | Metade da estação  | Valor médio dos 80% dos maiores      | Valor máximo relacionado com o período em que os valores dos |
+    |       |                    | índices espectrais                   | índices espectrais atingiram os valores 80% superiores       |
+    |       |                    |                                      | durante a estação de crescimento da planta                   |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | EOS   | Fim da estação     | Valor do índice espectral e data da  | Seis métodos utilizados: 1) Amplitude sazonal; 2)Amplitude   |
+    |       |                    | ocorrência no final da estação       | absoluta; 3) Amplitude relativa; 4) Linha de tendência LOESS |
+    |       |                    |                                      | STL; 5) Primeiro valor do declive negativo; 6) Valor mediano |
+    |       |                    |                                      | do declive negativo                                          |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | VOS   | Vale da estação    | Menor valor do índice espectral e    | Valor mínimo local do índice espectral levando em conta a    |
+    |       |                    | data de ocorrência                   | duração da estação de crescimento da planta                  |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | BSE   | Base da estação    | Média dos menores valores do índice  | Valor médio dos mínimos dos índices espectrais à esquerda e  |
+    |       |                    | espectral                            | direita da curva durante a estação de crescimento da planta  |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | LOS   | Duração da estação | Número de dias entre SOS e EOS       | Diferença em número de dias entre a data de ocorrência do    |
+    |       |                    |                                      | início (SOS) e o final da estação (EOS)                      |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | ROI   | Taxa de            | Taxa de crescimento da vegetação     | Taxa de crescimento calculada utilizando o tempo que demora  |
+    |       | crescimento        | durante o início da estação          | para que os valores dos índices espectrais atinjam 20% e 80% |
+    |       |                    |                                      | durante o início da estação de crescimento                   |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | ROD   | Taxa de            | Taxa de decrescimento da vegetação   | Taxa de crescimento calculada utilizando o tempo que demora  |
+    |       | Decrescimento      | durante o final da estação           | para que os valores dos índices espectrais atinjam 80% e 20% |
+    |       |                    |                                      | durante o final da estação de crescimento                    |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | AOS   | Amplitude da       | Amplitude dos valores dos índices    | Diferença entre o valor máximo (POS) e o valor de base (BOS) |
+    |       | estação            | espectrais durante a estação         |                                                              |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | SIOS  | Integral curta da  | Integração dos valores dos índices   | Integração dos valores dos índices espectrais entre o início |
+    |       | estação            | espectrais durante a estação         | (SOS) e o final da estação (EOS) levando em conta a linha de |
+    |       |                    |                                      | base da estação (BSE)                                        |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+    | LIOS  | Integral longa da  | Integração dos valores dos índices   | Integração dos valores dos índices espectrais entre o início |
+    |       | estação            | espectrais durante a estação         | (SOS) e o final da estação (EOS) utilizando os valores       |
+    |       |                    |                                      | totais                                                       |
+    +-------+--------------------+--------------------------------------+--------------------------------------------------------------+
+

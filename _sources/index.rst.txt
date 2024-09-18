@@ -64,6 +64,7 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     acesso-imagens/index
     series-temporais/index
     fenologia/index
+    padroes-series-temporais/index
 
 
 .. toctree::

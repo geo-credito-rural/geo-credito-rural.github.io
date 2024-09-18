@@ -3,8 +3,8 @@
 
 .. _cap_acesso_imagens:
 
-Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor
-============================================================================
+Imagens de Satélites
+====================
 
 
 Atualmente existem diversas fontes de dados geoespaciais, como os satélites de observação da Terra mostrados na :numref:`Figura %s <fig:acesso-imagens:index:earthsat-hd>`. Sensores a bordo de satélites como Terra e Aqua e da série Landsat, têm sido importantes instrumentos de coleta de dados sobre nosso planeta. Esses satélites produzem dados sobre superfície, oceanos, atmosfera, entre outros, servindo de insumo básico para a construção de diversas aplicações. No INPE, as imagens da série Landsat são utilizadas, por exemplo, no sistema de monitoramento da Floresta Amazônica. Através dessas imagens, o PRODES (:numref:`Seção %s <sec_uso_cobertura_terra_prodes>`) mantém o inventário de todo o desmatamento por corte raso na vegatação natural ocorrido na Amazônia Legal desde 1988.

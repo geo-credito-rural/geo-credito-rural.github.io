@@ -1,0 +1,85 @@
+.. include:: ../def.rst
+
+
+.. _sec_fenologia_wcpms:
+
+Web Crop Phenology Metrics Service (WCPMS)
+==========================================
+
+
+O **W**\ eb **C**\ rop **P**\ henology **M**\ etrics **S**\ ervice ou **WCPMS** é um serviço web aberto para calcular e retornar métricas fenológicas a partir de grandes volumes de imagens de satélites modeladas como cubos de dados, disponíveis pelo projeto `Brazil Data Cube <https://data.inpe.br/bdc/web/>`__ . Esse serviço permite que usuários facilmente calculem métricas fenológicas a partir de cubos de dados de imagens, sem a necessidade de baixar grandes volumes de dados para seus computadores pessoais.
+
+
+WCPMS é desenvolvido e mantido pelo Instituto Nacional de Pesquisas Espaciais (INPE), no contexto do projeto `Brazil Data Cube <https://data.inpe.br/bdc/web/>`__. A arquitetura do serviço WCPMS tem duas partes: (1) server-side (lado do servidor) e (2) client-side (lado do cliente), como ilustrado na :numref:`Figura %s <fig:fenologia:wcpms:arq>`. 
+O serviço roda nos servidores do INPE (server-side) para calcular as métricas fenológicas a partir de grandes volumes de imagens 
+modeladas como cubos de dados, sem a necessidade de baixar essas imagens para computadores locais dos usuários. Todos os sistemas de software associados ao serviço WCMPS estão instalados no lado do servidor (server-side). 
+Assim, usuários podem usá-lo, através do seu cliente em `Python <https://github.com/brazil-data-cube/wcpms.py>`__ ou de interfaces gráficas do portal web `Data Cube Explorer <https://data.inpe.br/bdc/explorer/>`__, sem a necessidade de 
+instalar pacotes ou sistemas em suas máquinas locais e sem precisar ter conhecimentos de programação. 
+
+
+.. figure:: ../img/fenologia/wcpms_arq.png
+    :alt: Arquitetura do serviço WCPMS
+    :width: 80%
+    :figclass: align-center
+    :name: fig:fenologia:wcpms:arq
+
+    Arquitetura do serviço WCPMS.
+
+
+Dado uma localização espacial ou uma região de interesse, o WCPMS retorna as métricas fenológicas associadas a um deteminado 
+período e cubo de dados, como ilustrado na :numref:`Figura %s <fig:fenologia:wcpms:work>`. O WCPMS é baseado no seviço :numref:`Seção %s - Web Time Series Service (WTSS) <sec_series_temporais_wtss>`.
+Para calcular as métricas fenológicas, o WCPMS utiliza o pacote `Phenolopy <https://github.com/lewistrotter/Phenolopy>`__, baseado no sistema :numref:`Seção %s - TIMESAT<sec_pacote_metricas>`.
+
+
+.. figure:: ../img/fenologia/wcpms_work.png
+    :alt: Funcionamento do serviço WCPMS
+    :width: 80%
+    :figclass: align-center
+    :name: fig:fenologia:wcpms:work
+
+    Funcionamento do serviço WCPMS.
+
+
+O WCPMS é baseado em quatro operações:
+
+.. rst-class:: open
+
+- ``get_collections``: retorna uma lista de cubos de dados disponíveis no Brazil Data Cube a partir do serviço :numref:`Seção %s - SpatioTemporal Asset Catalogs (STAC) <sec_acesso_imagens_stac>`.
+
+- ``get_description``: retorna, em formato de dicionário, as informações de cada métrica fenológica, tais como código, nome, descrição e método. 
+
+- ``get_phenometrics``: calcula e retorna, em formato de dicionário, as métricas fenológicas para uma dada localização espacial. 
+
+- ``get_phenometrics_region``: calcula e retorna, em formato de dicionário, as métricas fenológicas para cada localização espacial dentro de uma dada região. Essas localizações dentro da região podem ser selecionadas de três maneiras: ``all``, ``systematic grid`` or ``random grid``.
+
+
+A :numref:`Figura %s <fig:fenologia:wcpms:plot>` ilustra um exemplo de visualização do resultado do serviço WCPMS. 
+
+
+.. figure:: ../img/fenologia/wcpms_plot.png
+    :alt: Exemplo de visualização do resultado do serviço WCPMS.
+    :width: 70%
+    :figclass: align-center
+    :name: fig:fenologia:wcpms:plot
+
+    Exemplo de visualização do resultado do serviço WCPMS.
+
+
+A Figura a seguir mostra o resultado da operação ``get_description``. 
+
+
+.. figure:: ../img/fenologia/wcpms_metricas.png
+    :alt: Descrição das métricas retornadas pelo serviço WCPMS.
+    :width: 100%
+    :figclass: align-center
+    :name: fig:fenologia:wcpms:metricas
+
+    Descrição das métricas retornadas pelo serviço WCPMS.
+
+
+O seguinte *Jupyter Notebook* será usado para introduzir o uso desse serviço:
+
+.. rst-class:: open
+
+- Fenologia das glebas. Disponível como *Code* de nome *tema6-glebas-fenologia* em `Kaggle - Geo Credito Rural <https://www.kaggle.com/organizations/geocreditorural>`__. 
+

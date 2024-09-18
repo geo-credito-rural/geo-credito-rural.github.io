@@ -32,7 +32,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="7. Acesso e Análise de Séries Temporais de Imagens de Satélites" href="../series-temporais/index.html" />
+    <link rel="next" title="7. Séries Temporais de Imagens de Satélites" href="../series-temporais/index.html" />
     <link rel="prev" title="6.4. Composição colorida e Contraste" href="composicao-contraste.html" /> 
 </head>
 
@@ -63,10 +63,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
-<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">6. Imagens de Satélites</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introducao-ser.html">6.1. Introdução ao Sensoriamento Remoto por Satélites</a></li>
 <li class="toctree-l2"><a class="reference internal" href="stac.html">6.2. Catálogo de Coleções de Imagem de Sensoriamento Remoto</a></li>
 <li class="toctree-l2"><a class="reference internal" href="scripts-analise.html">6.3. Scripts para suporte à análise de imagens</a></li>
@@ -74,8 +74,9 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">6.5. Índices espectrais obtidos a partir de imagens</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -104,13 +105,13 @@
           <div role="navigation" aria-label="Navegação da página">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">6. </span>Imagens de Satélites</a></li>
       <li class="breadcrumb-item active"><span class="section-number">6.5. </span>Índices espectrais obtidos a partir de imagens</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="composicao-contraste.html" class="btn btn-neutral float-left" title="6.4. Composição colorida e Contraste" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../series-temporais/index.html" class="btn btn-neutral float-right" title="7. Acesso e Análise de Séries Temporais de Imagens de Satélites" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../series-temporais/index.html" class="btn btn-neutral float-right" title="7. Séries Temporais de Imagens de Satélites" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -119,9 +120,9 @@
              
   <section id="indices-espectrais-obtidos-a-partir-de-imagens">
 <span id="sec-acesso-imagens-indices-espectrais"></span><h1><span class="section-number">6.5. </span>Índices espectrais obtidos a partir de imagens<a class="headerlink" href="#indices-espectrais-obtidos-a-partir-de-imagens" title="Link permanente para este cabeçalho"></a></h1>
-<p>Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e da interação delas com a radiação eletromagnética. Entretanto, efeitos ligados à geometria de iluminação, de visada e ambientais também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados fitossanitário da vegetação, crescimento urbano, áreas queimadas, entre outros <span id="id1">[<a class="reference internal" href="../referencias.html#id96" title="David Montero, César Aybar, Miguel D Mahecha, Francesco Martinuzzi, Maximilian Söchting, and Sebastian Wieneke. A standardized catalogue of spectral indices to advance the use of remote sensing in earth system research. Scientific Data, 10(1):1–20, 2023.">78</a>]</span>. Para ressaltar essas assinaturas, bem como para reduzir para reduzir a dimensionalidade dos dados, realçar a resposta espectral da vegetação com relação a do solo, dentre outras funcionalidades foram gerados os índices espectrais. Os índices espectrais foram idealizados a partir da resposta espectral característica da vegetação verde, combinando a baixa refletância nos comprimentos de onda do visível com a alta refletância nos comprimentos de onda do infravermelho próximo do espectro eletromagnético. O objetivo desta combinação foi de estabelecer uma relação entre a resposta espectral e as variáveis biofísicas da vegetação <span id="id2">[<a class="reference internal" href="../referencias.html#id46" title="Wouter Arnoud Dorigo, Raúl Zurita-Milla, Allard de Wit, Jason Brazile, Ranvir Singh, and Michael E. Schaepman. A review on reflective remote sensing and data assimilation techniques for enhanced agroecosystem modeling. Int. J. Appl. Earth Obs. Geoinformation, 9:165-193, 2007. doi:https://doi.org/10.1016/j.jag.2006.05.003.">79</a>]</span>.</p>
-<p>Um índice espectral ideal deve ser capaz de responder a pequenas variações no desenvolvimento fenológico da vegetação e não pode ser muito influenciado por variações de tipo de solo, do ângulo de visada do sensor, do ângulo solar e das condições atmosféricas <span id="id3">[<a class="reference internal" href="../referencias.html#id69" title="Ray D. Jackson and Alfredo R. Huete. Interpreting vegetation indices. Preventive Veterinary Medicine, 11:185-200, 1991. doi:https://doi.org/10.1016/S0167-5877%2805%2980004-2.">80</a>]</span>. Uma série de variáveis biofísicas são passíveis de serem estimadas por meio de índices espectrais, tais como o índice de área foliar, evapotranspiração, dentre outras. Entretanto, o uso de índices espectrais deve ser visto com certo cuidado, pois foram desenvolvidos para atender a necessidades particulares e sob condições específicas. Desta forma, os resultados dos índices espectrais podem ser diferentes, quando aplicados em condições diferentes. Por exemplo, o problema de usar índices espectrais para estimar índice de área foliar maior do que três, pois a relação é exponencial e ocorre a saturação. Além disto, a cor e a textura do solo, o espaçamento, a orientação do plantio, a latitude, a data e hora da observação podem influenciar os resultados da interpretação dos índices espectrais <span id="id4">[<a class="reference internal" href="../referencias.html#id46" title="Wouter Arnoud Dorigo, Raúl Zurita-Milla, Allard de Wit, Jason Brazile, Ranvir Singh, and Michael E. Schaepman. A review on reflective remote sensing and data assimilation techniques for enhanced agroecosystem modeling. Int. J. Appl. Earth Obs. Geoinformation, 9:165-193, 2007. doi:https://doi.org/10.1016/j.jag.2006.05.003.">79</a>, <a class="reference internal" href="../referencias.html#id69" title="Ray D. Jackson and Alfredo R. Huete. Interpreting vegetation indices. Preventive Veterinary Medicine, 11:185-200, 1991. doi:https://doi.org/10.1016/S0167-5877%2805%2980004-2.">80</a>]</span>.</p>
-<p>Um dos índices mais conhecidos é o <em>Normalized Difference Vegetation Index</em>, NDVI (<a class="reference internal" href="#equation-eq-acesso-imagens-indices-espectrais-ndvi">Equação 6.4</a>), que é um índice da diferença normalizada entre as bandas do infravermelho próximo e do vermelho <span id="id5">[<a class="reference internal" href="../referencias.html#id107" title="John Wilson Rouse, Rüdiger H Haas, John A Schell, and Donald W Deering. Monitoring vegetation systems in the great plains with erts. NASA Spec. Publ, 351(1):309, 1974.">81</a>]</span>, e é geralmente utilizado para representar a quantidade de resposta espectral típica de alvos de vegetação encontrada numa imagem:</p>
+<p>Os elementos presentes na cobertura da terra possuem assinaturas espectrais características, devido a suas propriedades físicas e da interação delas com a radiação eletromagnética. Entretanto, efeitos ligados à geometria de iluminação, de visada e ambientais também podem alterar essas interações, de modo que as assinaturas espectrais podem dar indícios de diferentes processos, como estados fitossanitário da vegetação, crescimento urbano, áreas queimadas, entre outros <span id="id1">[<a class="reference internal" href="../referencias.html#id97" title="David Montero, César Aybar, Miguel D Mahecha, Francesco Martinuzzi, Maximilian Söchting, and Sebastian Wieneke. A standardized catalogue of spectral indices to advance the use of remote sensing in earth system research. Scientific Data, 10(1):1–20, 2023.">78</a>]</span>. Para ressaltar essas assinaturas, bem como para reduzir para reduzir a dimensionalidade dos dados, realçar a resposta espectral da vegetação com relação a do solo, dentre outras funcionalidades foram gerados os índices espectrais. Os índices espectrais foram idealizados a partir da resposta espectral característica da vegetação verde, combinando a baixa refletância nos comprimentos de onda do visível com a alta refletância nos comprimentos de onda do infravermelho próximo do espectro eletromagnético. O objetivo desta combinação foi de estabelecer uma relação entre a resposta espectral e as variáveis biofísicas da vegetação <span id="id2">[<a class="reference internal" href="../referencias.html#id47" title="Wouter Arnoud Dorigo, Raúl Zurita-Milla, Allard de Wit, Jason Brazile, Ranvir Singh, and Michael E. Schaepman. A review on reflective remote sensing and data assimilation techniques for enhanced agroecosystem modeling. Int. J. Appl. Earth Obs. Geoinformation, 9:165-193, 2007. doi:https://doi.org/10.1016/j.jag.2006.05.003.">79</a>]</span>.</p>
+<p>Um índice espectral ideal deve ser capaz de responder a pequenas variações no desenvolvimento fenológico da vegetação e não pode ser muito influenciado por variações de tipo de solo, do ângulo de visada do sensor, do ângulo solar e das condições atmosféricas <span id="id3">[<a class="reference internal" href="../referencias.html#id70" title="Ray D. Jackson and Alfredo R. Huete. Interpreting vegetation indices. Preventive Veterinary Medicine, 11:185-200, 1991. doi:https://doi.org/10.1016/S0167-5877%2805%2980004-2.">80</a>]</span>. Uma série de variáveis biofísicas são passíveis de serem estimadas por meio de índices espectrais, tais como o índice de área foliar, evapotranspiração, dentre outras. Entretanto, o uso de índices espectrais deve ser visto com certo cuidado, pois foram desenvolvidos para atender a necessidades particulares e sob condições específicas. Desta forma, os resultados dos índices espectrais podem ser diferentes, quando aplicados em condições diferentes. Por exemplo, o problema de usar índices espectrais para estimar índice de área foliar maior do que três, pois a relação é exponencial e ocorre a saturação. Além disto, a cor e a textura do solo, o espaçamento, a orientação do plantio, a latitude, a data e hora da observação podem influenciar os resultados da interpretação dos índices espectrais <span id="id4">[<a class="reference internal" href="../referencias.html#id47" title="Wouter Arnoud Dorigo, Raúl Zurita-Milla, Allard de Wit, Jason Brazile, Ranvir Singh, and Michael E. Schaepman. A review on reflective remote sensing and data assimilation techniques for enhanced agroecosystem modeling. Int. J. Appl. Earth Obs. Geoinformation, 9:165-193, 2007. doi:https://doi.org/10.1016/j.jag.2006.05.003.">79</a>, <a class="reference internal" href="../referencias.html#id70" title="Ray D. Jackson and Alfredo R. Huete. Interpreting vegetation indices. Preventive Veterinary Medicine, 11:185-200, 1991. doi:https://doi.org/10.1016/S0167-5877%2805%2980004-2.">80</a>]</span>.</p>
+<p>Um dos índices mais conhecidos é o <em>Normalized Difference Vegetation Index</em>, NDVI (<a class="reference internal" href="#equation-eq-acesso-imagens-indices-espectrais-ndvi">Equação 6.4</a>), que é um índice da diferença normalizada entre as bandas do infravermelho próximo e do vermelho <span id="id5">[<a class="reference internal" href="../referencias.html#id108" title="John Wilson Rouse, Rüdiger H Haas, John A Schell, and Donald W Deering. Monitoring vegetation systems in the great plains with erts. NASA Spec. Publ, 351(1):309, 1974.">81</a>]</span>, e é geralmente utilizado para representar a quantidade de resposta espectral típica de alvos de vegetação encontrada numa imagem:</p>
 <div class="math notranslate nohighlight" id="equation-eq-acesso-imagens-indices-espectrais-ndvi">
 <span class="eqno">(6.4)<a class="headerlink" href="#equation-eq-acesso-imagens-indices-espectrais-ndvi" title="Link permanente para essa equação"></a></span>\[NDVI = \frac{IV - V}{IV + V}\]</div>
 <p>onde IV representa a banda do infravermelho próximo, e V a banda do vermelho.</p>
@@ -260,7 +261,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="composicao-contraste.html" class="btn btn-neutral float-left" title="6.4. Composição colorida e Contraste" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../series-temporais/index.html" class="btn btn-neutral float-right" title="7. Acesso e Análise de Séries Temporais de Imagens de Satélites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="../series-temporais/index.html" class="btn btn-neutral float-right" title="7. Séries Temporais de Imagens de Satélites" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -270,7 +271,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8d58b69d60>
+<jinja2.runtime.BlockReference object at 0x7ff0e2da2430>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

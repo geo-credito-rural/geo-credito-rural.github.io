@@ -1,0 +1,73 @@
+.. include:: ../def.rst
+
+
+.. _sec_pacote_metricas:
+
+Softwares para extração de Métricas Fenológicas
+===============================================
+
+
+Diversos métodos foram criados para obter a fenologia utilizando imagens obtidas por satélites de observação da Terra :cite:`zeng:2020,jonsson:2002,jonsson:2004,eklundh:2016,araya:2018,doktor:2019, kong:2022,forkel:2013`. O primeiro software de extração de fenologia, lançado no início dos anos 2002, foi o TIMESAT :cite:`jonsson:2002,jonsson:2004,eklundh:2016` e com base nele, foram implementadas diversas outras metodologias para extração de da fenologia da vegetação, como CropPhenology :cite:`araya:2018`, phenex :cite:`doktor:2019`, phenofit :cite:`kong:2022`, greenbrown :cite:`forkel:2013`. Para preencher a lacuna na compreensão da robustez desses algoritmos quando inseridos com diferentes fontes de dados foi executada uma pesquisa utilizando dados oriundos do sensor Modis e do MSI do Sentinel-2 :cite:`rodigheri:2023`. Segundo os autores, os softwares TIMESAT e phenex apresentaram as estimativas mais precisas de métricas fenológicas para datas de semeadura e colheita, respectivamente. TIMESAT foi menos sensível a mudanças em mudanças espaciais, temporais, espectrais e radiométricas, enquanto os outros métodos foram sensíveis a mudanças na entrada de dados. No geral, os erros nas datas de semeadura e colheita extraídas dos índices de vegetação de satélite estão entre 10 e 20 dias. Informam ainda que a sua aplicabilidade é limitada para tomada de decisão que necessite maior precisão na estimativa dessas datas. Abaixo serão apresentados alguns desses softwares.
+
+
+TIMESAT
+-------
+
+
+O **TIMESAT** é um software especializado desenvolvido para estimar as estações de crescimento a partir de dados de séries temporais de satélites e calcular métricas fenológicas :cite:`jonsson:2002,jonsson:2004,eklundh:2016`. As principais implementações do TIMESAT estão disponíveis em Fortran e Matlab. Ele é reconhecido como uma das bibliotecas mais estabelecidas para extrair métricas fenológicas e foi adaptado para outras linguagens de programação, como R, com o pacote rTIMESAT. O TIMESAT detecta um total de 18 métricas fenológicas, incluindo:
+
+
+.. rst-class:: open
+
+a) Início da estação (SOS)
+b) Pico da estação (POS)
+c) Fim da estação (EOS)
+d) Duração da estação (LOS)
+e) Integral curta (SIOS) e longa (LIOS) 
+
+
+PHENEX
+------
+
+
+o **Phenex** é um pacote do R com funções auxiliares para a análise de dados fenológicos. Ele oferece algumas funções fáceis de usar para análises espaciais de conjuntos de dados fenológicos (de plantas) e observações por satélite da vegetação :cite:`phenex:2024`. O pacote calcula 10 métricas de fenologia da superfície terrestre e de verdor baseadas no NDVI, e dentre elas estão:
+
+
+.. rst-class:: open
+
+a) Início da estação (SOS)
+b) Pico da estação (POS)
+c) Fim da estação (EOS)
+d) Duração da estação (LOS)
+
+
+Greenbrown
+----------
+
+
+O **Greenbrown** também é um pacote do R com uma coleção de funções para analisar tendências, mudanças de tendência e eventos fenológicos em séries temporais utilizando séries temporais de imagens de satélites ou simulações de modelos climáticos :cite:`forkel:2013`. O pacote calcula 13 métricas de fenologia da superfície terrestre e de verdor baseadas no NDVI, e além das listadas acima tem:
+
+
+.. rst-class:: open
+
+a) Metade da estação (MOS)
+b) Taxa de crescimento (ROI)
+c) Taxa de decrescimento (ROD)
+
+
+
+CropPhenology
+-------------
+
+
+O **CropPhenology** é um pacote do R criado para extrair fenologia de cultivos agrícola a partir de séries temporais do índice de vegetação :cite:`araya:2018`. O pacote calcula 15 métricas fenológicas baseadas no NDVI ao longo da temporada, e dentre as métricas estão:
+
+
+.. rst-class:: open
+
+a) Início da estação (SOS)
+b) Pico da estação (POS)
+c) Fim da estação (EOS)
+d) Taxa de crescimento (ROI)
+e) Taxa de decrescimento (ROD)
+

@@ -28,7 +28,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Referências Bibliográficas" href="../referencias.html" />
+    <link rel="next" title="8.3. Softwares para extração de Métricas Fenológicas" href="pacotes-metricas.html" />
     <link rel="prev" title="8.1. Fenologia de culturas com ciclo anual" href="culturas-anuais.html" /> 
 </head>
 
@@ -59,16 +59,19 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Acesso e Análise dos Dados do Sicor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Análise dos Dados do Sicor com base em Dados Vetoriais</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Análise dos Tipos de Uso e Cobertura da Terra Associados aos Dados do Sicor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Acesso e análise das imagens de satélite disponíveis para as glebas do Sicor</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Acesso e Análise de Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">8. Fenologia</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="culturas-anuais.html">8.1. Fenologia de culturas com ciclo anual</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">8.2. Métricas Fenológicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="pacotes-metricas.html">8.3. Softwares para extração de Métricas Fenológicas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="wcpms.html">8.4. Web Crop Phenology Metrics Service (WCPMS)</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -103,7 +106,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="culturas-anuais.html" class="btn btn-neutral float-left" title="8.1. Fenologia de culturas com ciclo anual" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pacotes-metricas.html" class="btn btn-neutral float-right" title="8.3. Softwares para extração de Métricas Fenológicas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -112,15 +115,123 @@
              
   <section id="metricas-fenologicas">
 <span id="sec-fenologia-metricas"></span><h1><span class="section-number">8.2. </span>Métricas Fenológicas<a class="headerlink" href="#metricas-fenologicas" title="Link permanente para este cabeçalho"></a></h1>
-<p>A fenologia está sendo cada vez mais utilizada pelas mais diversas áreas da ciência, entretanto, sua obtenção é lenta e onerosa. Para agilizar a obtenção dessas informações em larga escala e reduzir os custos, são utilizadas séries temporais de imagens de satélite de onde se extraem as métricas fenológicas. Assim, <strong>métricas fenológicas</strong> podem ser definidas por um conjunto de medidas associadas às curvas temporais obtidas das imagens de sensoriamento remoto que permitem a estimativa das fases ou estádios fenológicos. Neste sentido, diversos métodos estão sendo desenvolvidos para obter as métricas fenológicas oriundas de séries de imagens de sensoriamento remoto. Esses métodos para extração de métricas fenológicas podem ser agrupados em: limiares, derivadas, algoritmos de suavização e modelos matemáticos <span id="id1">[<a class="reference internal" href="../referencias.html#id135" title="Xingzhi You, Jihua Meng, Miao Zhang, and Taifeng Dong. Remote sensing based detection of crop phenology for agricultural zones in china using a new threshold method. Remote. Sens., 5:3190-3211, 2013. doi:https://doi.org/10.3390/rs5073190.">121</a>]</span>. Já as métricas mais frequentemente extraídas têm sido: início e final do ciclo, bem como a sua duração; taxa de crescimento e de senescência, produtividade total e sazonal, valores do mínimo e máximo, comprimento e amplitude alcançados no início, meio e fim das estações, entre outras <span id="id2">[<a class="reference internal" href="../referencias.html#id47" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>]</span>.</p>
+<p>A fenologia está sendo cada vez mais utilizada pelas mais diversas áreas da ciência, entretanto, sua obtenção é lenta e onerosa. Para agilizar a obtenção dessas informações em larga escala e reduzir os custos, são utilizadas séries temporais de imagens de satélite de onde se extraem as métricas fenológicas. Assim, <strong>métricas fenológicas</strong> podem ser definidas por um conjunto de medidas associadas às curvas temporais obtidas das imagens de sensoriamento remoto que permitem a estimativa das fases ou estádios fenológicos. Neste sentido, diversos métodos estão sendo desenvolvidos para obter as métricas fenológicas oriundas de séries de imagens de sensoriamento remoto. Esses métodos para extração de métricas fenológicas podem ser agrupados em: limiares, derivadas, algoritmos de suavização e modelos matemáticos <span id="id1">[<a class="reference internal" href="../referencias.html#id136" title="Xingzhi You, Jihua Meng, Miao Zhang, and Taifeng Dong. Remote sensing based detection of crop phenology for agricultural zones in china using a new threshold method. Remote. Sens., 5:3190-3211, 2013. doi:https://doi.org/10.3390/rs5073190.">121</a>]</span>.</p>
 <p>Entretanto, como visto na <a class="reference internal" href="../series-temporais/filtragem.html#sec-series-temporais-filtragem"><span class="std std-numref">Section 7.2</span></a>, as séries temporais de imagens de satélite possuem ruídos que devem ser tratados utilizando processos de filtragem, garantindo assim o espaçamento uniforme entre os dados, a remoção dos ruídos e o preenchimento de falhas, para que se possa obter as métricas fenológicas. Um exemplo apresentando uma série temporal antes de depois da filtragem, bem como as métricas fenológicas associadas a elas pode ser visualizado na <a class="reference internal" href="#fig-fenologia-timesat-parameters"><span class="std std-numref">Figura 8.4</span></a>. Nesta figura pode ser observado que os valores das estimativas de métricas fenológicas (letras <span class="math notranslate nohighlight">\(a..i\)</span>) usam a curva filtrada (em vermelho) e todos os atributos são calculados a partir dela.</p>
 <figure class="align-center align-default" id="fig-fenologia-timesat-parameters">
 <a class="reference internal image-reference" href="../_images/timesat-parameters.png"><img alt="Métricas fenológicas estimadas usando dados de sensoriamento remoto" src="../_images/timesat-parameters.png" style="width: 60%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 8.4 - </span><span class="caption-text">Métricas fenológicas. A linha em azul representa os dados obtidos por sensoriamento remoto sem filtragem. A linha em vermelho representa o resultado da filtragem dos dados e são representados palas letras: (a) início do ciclo, (b) fim do ciclo, (c) duração do ciclo, (d) valor base, (e) tempo do meio do ciclo, (f) valor máximo, (g) amplitude, (h) pequeno valor integrado, (h+i) grande valor integrado. <br/> <strong>Fonte:</strong> Adaptada de <span id="id3">Jönsson and Eklundh [<a class="reference internal" href="../referencias.html#id73" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>]</span></span><a class="headerlink" href="#fig-fenologia-timesat-parameters" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 8.4 - </span><span class="caption-text">Métricas fenológicas. A linha em azul representa os dados obtidos por sensoriamento remoto sem filtragem. A linha em vermelho representa o resultado da filtragem dos dados e são representados palas letras: (a) início da estação, (b) fim da estação, (c) duração da estação, (d) valor base, (e) tempo do meio da estação, (f) valor máximo, (g) amplitude, (h) pequeno valor integrado, (h+i) grande valor integrado. <br/> <strong>Fonte:</strong> Adaptada de <span id="id2">Jönsson and Eklundh [<a class="reference internal" href="../referencias.html#id74" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>]</span></span><a class="headerlink" href="#fig-fenologia-timesat-parameters" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>Diversos métodos foram criados para obter a fenologia utilizando imagens obtidas por satélites de observação da Terra <span id="id4">[<a class="reference internal" href="../referencias.html#id137" title="Linglin Zeng, Brian D. Wardlow, Daxiang Xiang, Shun Hu, and Deren Li. A review of vegetation phenological metrics extraction using time-series, multispectral satellite data. Remote Sensing of Environment, 237:111511, 2020. doi:https://doi.org/10.1016/j.rse.2019.111511.">84</a>, <a class="reference internal" href="../referencias.html#id72" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id73" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>, <a class="reference internal" href="../referencias.html#id47" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>, <a class="reference internal" href="../referencias.html#id7" title="Sofanit Araya, Bertram Ostendorf, Gregory Lyle, and Megan Lewis. Cropphenology: an r package for extracting crop phenology from time series remotely sensed vegetation index imagery. Ecological Informatics, 46:45-56, 2018. doi:https://doi.org/10.1016/j.ecoinf.2018.05.006.">132</a>, <a class="reference internal" href="../referencias.html#id45" title="Daniel Doktor and Maximilian Lange. Phenological metrics for protected area &quot;ohridprespa&quot;, modis aqua tile h19v04. Agosto 2024. Online; acessado 18 de Agosto de 2024. URL: https://doi.org/10.5281/zenodo.3588294.">133</a>, <a class="reference internal" href="../referencias.html#id83" title="Dongdong Kong, Tim R. McVicar, Mingzhong Xiao, Yongqiang Zhang, Jorge L. Peña-Arancibia, Gianluca Filippa, Yuxuan Xie, and Xihui Gu. Phenofit: an r package for extracting vegetation phenology from time series remote sensing. Methods in Ecology and Evolution, 13(7):1508-1527, 2022. doi:https://doi.org/10.1111/2041-210X.13870.">134</a>, <a class="reference internal" href="../referencias.html#id52" title="Matthias Forkel, Nuno Carvalhais, Jan Verbesselt, Miguel D. Mahecha, Christopher S. R. Neigh, and Markus Reichstein. Trend change detection in ndvi time series: effects of inter-annual variability and methodology. Remote. Sens., 5:2113-2144, 2013. doi:https://doi.org/10.3390/rs5052113.">135</a>]</span>. O primeiro software de extração de fenologia, lançado no início dos anos 2002, foi o TIMESAT <span id="id5">[<a class="reference internal" href="../referencias.html#id72" title="P. Jonsson and L. Eklundh. Seasonality extraction by function fitting to time-series of satellite sensor data. IEEE Transactions on Geoscience and Remote Sensing, 40(8):1824-1832, 2002. doi:10.1109/TGRS.2002.802519.">85</a>, <a class="reference internal" href="../referencias.html#id73" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>, <a class="reference internal" href="../referencias.html#id47" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>]</span> e com base nele, foram implementadas diversas outras metodologias para extração de da fenologia da vegetação, como CropPhenology <span id="id6">[<a class="reference internal" href="../referencias.html#id7" title="Sofanit Araya, Bertram Ostendorf, Gregory Lyle, and Megan Lewis. Cropphenology: an r package for extracting crop phenology from time series remotely sensed vegetation index imagery. Ecological Informatics, 46:45-56, 2018. doi:https://doi.org/10.1016/j.ecoinf.2018.05.006.">132</a>]</span>, phenex <span id="id7">[<a class="reference internal" href="../referencias.html#id45" title="Daniel Doktor and Maximilian Lange. Phenological metrics for protected area &quot;ohridprespa&quot;, modis aqua tile h19v04. Agosto 2024. Online; acessado 18 de Agosto de 2024. URL: https://doi.org/10.5281/zenodo.3588294.">133</a>]</span>, phenofit <span id="id8">[<a class="reference internal" href="../referencias.html#id83" title="Dongdong Kong, Tim R. McVicar, Mingzhong Xiao, Yongqiang Zhang, Jorge L. Peña-Arancibia, Gianluca Filippa, Yuxuan Xie, and Xihui Gu. Phenofit: an r package for extracting vegetation phenology from time series remote sensing. Methods in Ecology and Evolution, 13(7):1508-1527, 2022. doi:https://doi.org/10.1111/2041-210X.13870.">134</a>]</span>, greenbrown <span id="id9">[<a class="reference internal" href="../referencias.html#id52" title="Matthias Forkel, Nuno Carvalhais, Jan Verbesselt, Miguel D. Mahecha, Christopher S. R. Neigh, and Markus Reichstein. Trend change detection in ndvi time series: effects of inter-annual variability and methodology. Remote. Sens., 5:2113-2144, 2013. doi:https://doi.org/10.3390/rs5052113.">135</a>]</span>. Para preencher a lacuna na compreensão da robustez desses algoritmos quando inseridos com diferentes fontes de dados foi executada uma pesquisa utilizando dados oriundos do sensor Modis e do MSI do Sentinel-2 <span id="id10">[<a class="reference internal" href="../referencias.html#id105" title="Grazieli Rodigheri, Ieda Del’Arco Sanches, Jonathan Richetti, Rodrigo Yoiti Tsukahara, Roger Lawes, Hugo do Nascimento Bendini, and Marcos Adami. Estimating crop sowing and harvesting dates using satellite vegetation index: a comparative analysis. Remote Sensing, 2023. doi:10.3390/rs15225366.">124</a>]</span>. Segundo os autores, os softwares TIMESAT e phenex apresentaram as estimativas mais precisas de métricas fenológicas para datas de semeadura e colheita, respectivamente. TIMESAT foi menos sensível a mudanças em mudanças espaciais, temporais, espectrais e radiométricas, enquanto os outros métodos foram sensíveis a mudanças na entrada de dados. No geral, os erros nas datas de semeadura e colheita extraídas dos índices de vegetação de satélite estão entre 10 e 20 dias. Informam ainda que a sua aplicabilidade é limitada para tomada de decisão que necessite maior precisão na estimativa dessas datas.</p>
+<p>Já as métricas mais frequentemente extraídas têm sido: início e final da estação, bem como a sua duração; taxa de crescimento e de senescência, produtividade total e sazonal, valores do mínimo e máximo, comprimento e amplitude alcançados no início, meio e fim das estações, entre outras <span id="id3">[<a class="reference internal" href="../referencias.html#id48" title="Lars Eklundh and Per&quot; Jönsson. TIMESAT for Processing Time-Series Data from Satellite Sensors for Land Surface Monitoring, pages 177-194. Springer International Publishing, 2016. doi:10.1007/978-3-319-47037-5_9.">87</a>]</span>. Algumas destas métricas são apresentadas na <a class="reference internal" href="#tbl-fenologia-metrica-fenologica-sazonais"><span class="std std-numref">Tabela 8.5</span></a>, bem como suas descrições e métodos de obtenção.</p>
+<table class="styled-table docutils align-default" id="tbl-fenologia-metrica-fenologica-sazonais">
+<caption><span class="caption-number">Tabela 8.5 - </span><span class="caption-text">Metricas Fenológicas e parâmetros sazonais. <br/> <strong>Fonte:</strong> Adaptada de <span id="id4">Jönsson and Eklundh [<a class="reference internal" href="../referencias.html#id74" title="Per Jönsson and Lars Eklundh. Timesat - a program for analyzing time-series of satellite sensor data. Comput. Geosci., 30:833-845, 2004. doi:https://doi.org/10.1016/j.cageo.2004.05.006.">86</a>]</span>.</span><a class="headerlink" href="#tbl-fenologia-metrica-fenologica-sazonais" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"><p>Sigla</p></th>
+<th class="head center-align"><p>Nome da métrica</p></th>
+<th class="head center-align"><p>Descrição</p></th>
+<th class="head center-align"><p>Método</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p>SOS</p></td>
+<td class="center-align"><p>Início da estação</p></td>
+<td class="center-align"><p>Valor do índice espectral e data da
+ocorrência no início da estação</p></td>
+<td class="center-align"><p>Seis métodos utilizados: 1) Amplitude sazonal; 2) Amplitude
+absoluta; 3) Amplitude relativa; 4) Linha de tendência LOESS
+STL; 5) Primeiro valor do declive positivo; 6) Valor mediano
+do declive positivo</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>POS</p></td>
+<td class="center-align"><p>Pico da estação</p></td>
+<td class="center-align"><p>Maior valor do índice espectral e
+data de ocorrência</p></td>
+<td class="center-align"><p>Valor máximo local do índice espectral levando em conta a
+duração da estação de crescimento da planta</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>MOS</p></td>
+<td class="center-align"><p>Metade da estação</p></td>
+<td class="center-align"><p>Valor médio dos 80% dos maiores
+índices espectrais</p></td>
+<td class="center-align"><p>Valor máximo relacionado com o período em que os valores dos
+índices espectrais atingiram os valores 80% superiores
+durante a estação de crescimento da planta</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>EOS</p></td>
+<td class="center-align"><p>Fim da estação</p></td>
+<td class="center-align"><p>Valor do índice espectral e data da
+ocorrência no final da estação</p></td>
+<td class="center-align"><p>Seis métodos utilizados: 1) Amplitude sazonal; 2)Amplitude
+absoluta; 3) Amplitude relativa; 4) Linha de tendência LOESS
+STL; 5) Primeiro valor do declive negativo; 6) Valor mediano
+do declive negativo</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>VOS</p></td>
+<td class="center-align"><p>Vale da estação</p></td>
+<td class="center-align"><p>Menor valor do índice espectral e
+data de ocorrência</p></td>
+<td class="center-align"><p>Valor mínimo local do índice espectral levando em conta a
+duração da estação de crescimento da planta</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>BSE</p></td>
+<td class="center-align"><p>Base da estação</p></td>
+<td class="center-align"><p>Média dos menores valores do índice
+espectral</p></td>
+<td class="center-align"><p>Valor médio dos mínimos dos índices espectrais à esquerda e
+direita da curva durante a estação de crescimento da planta</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>LOS</p></td>
+<td class="center-align"><p>Duração da estação</p></td>
+<td class="center-align"><p>Número de dias entre SOS e EOS</p></td>
+<td class="center-align"><p>Diferença em número de dias entre a data de ocorrência do
+início (SOS) e o final da estação (EOS)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>ROI</p></td>
+<td class="center-align"><p>Taxa de
+crescimento</p></td>
+<td class="center-align"><p>Taxa de crescimento da vegetação
+durante o início da estação</p></td>
+<td class="center-align"><p>Taxa de crescimento calculada utilizando o tempo que demora
+para que os valores dos índices espectrais atinjam 20% e 80%
+durante o início da estação de crescimento</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>ROD</p></td>
+<td class="center-align"><p>Taxa de
+Decrescimento</p></td>
+<td class="center-align"><p>Taxa de decrescimento da vegetação
+durante o final da estação</p></td>
+<td class="center-align"><p>Taxa de crescimento calculada utilizando o tempo que demora
+para que os valores dos índices espectrais atinjam 80% e 20%
+durante o final da estação de crescimento</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>AOS</p></td>
+<td class="center-align"><p>Amplitude da
+estação</p></td>
+<td class="center-align"><p>Amplitude dos valores dos índices
+espectrais durante a estação</p></td>
+<td class="center-align"><p>Diferença entre o valor máximo (POS) e o valor de base (BOS)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"><p>SIOS</p></td>
+<td class="center-align"><p>Integral curta da
+estação</p></td>
+<td class="center-align"><p>Integração dos valores dos índices
+espectrais durante a estação</p></td>
+<td class="center-align"><p>Integração dos valores dos índices espectrais entre o início
+(SOS) e o final da estação (EOS) levando em conta a linha de
+base da estação (BSE)</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"><p>LIOS</p></td>
+<td class="center-align"><p>Integral longa da
+estação</p></td>
+<td class="center-align"><p>Integração dos valores dos índices
+espectrais durante a estação</p></td>
+<td class="center-align"><p>Integração dos valores dos índices espectrais entre o início
+(SOS) e o final da estação (EOS) utilizando os valores
+totais</p></td>
+</tr>
+</tbody>
+</table>
 </section>
 
 
@@ -128,7 +239,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="culturas-anuais.html" class="btn btn-neutral float-left" title="8.1. Fenologia de culturas com ciclo anual" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pacotes-metricas.html" class="btn btn-neutral float-right" title="8.3. Softwares para extração de Métricas Fenológicas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -138,7 +249,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8d59934e80>
+<jinja2.runtime.BlockReference object at 0x7ff0e463bfd0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

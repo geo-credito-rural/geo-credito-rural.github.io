@@ -1,0 +1,9 @@
+.. include:: ../def.rst
+
+
+.. _cap_padroes_series_temporais:
+
+Padrões em Séries Temporais de Imagens de Satélites
+===================================================
+
+
