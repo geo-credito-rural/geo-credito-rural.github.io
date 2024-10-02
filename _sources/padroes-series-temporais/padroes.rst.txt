@@ -1,0 +1,89 @@
+.. include:: ../def.rst
+
+
+.. _sec_padroes_series_temporais_metodologia:
+
+Metodologia para Descoberta de Padrões em Séries Temporais de Imagens
+=====================================================================
+
+
+No contexto dessa capacitação, nós propomos duas metodologias usando *SOM (Self-Organizing Maps)* e *Hierarquical Cluster*, baseado
+nos trabalhos anteriores :cite:`santos:2021b` e :cite:`silva:2022`, para descobrir padrões em séries temporais de imagens dentro de 
+uma gleba, apresentado na :numref:`Figura %s <fig:padroes-series:padroes-series-uma-gleba>`, 
+e em múltiplas glebas do Sicor, apresentado na :numref:`Figura %s <fig:padroes-series:padroes-series-multiplas-glebas>`.
+
+
+.. figure:: ../img/padroes-series/padroes-series-uma-gleba.png
+   :alt: Metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor 
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:padroes-series-uma-gleba
+
+   Metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor.
+
+
+.. figure:: ../img/padroes-series/padroes-series-multiplas-glebas.png
+   :alt: Metodologia para descoberta de padrões em séries temporais de imagens em múltiplas glebas do Sicor 
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:padroes-series-multiplas-glebas
+
+   Metodologia para descoberta de padrões em séries temporais de imagens em múltiplas glebas do Sicor.
+
+
+As duas metodologias acessam os cubos de dados de imagens produzidos pelo do projeto `Brazil Data Cube <https://data.inpe.br/bdc/web/>`__ 
+e disponíveis através do serviço :numref:`Seção %s - SpatioTemporal Asset Catalogs (STAC) <sec_acesso_imagens_stac>`. As duas metodologias
+utilizam o método :numref:`Seção %s - SOM (Self-Organizing Maps) <sec_padroes_series_temporais_som>` para agrupar as séries temporais similares
+na grade de saída, utilizando a :numref:`Seção %s - Distância Euclidiana <sec_padroes_series_temporais_distancias>`. Como o número de séries temporais e o número de possíveis padrões são maiores na segunda metodologia para múltiplas glebas, usamos o método
+*Hierarquical Cluster* para agrupar os vetores de peso do mapa SOM, utilizando a :numref:`Seção %s - Distância DTW <sec_padroes_series_temporais_distancias>`.
+
+
+Os resultados da metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor são mostrados nas
+Figuras :numref:`%s <fig:padroes-series:padroes-result-gleba-01>`, :numref:`%s <fig:padroes-series:padroes-result-gleba-01-clusters>`,
+:numref:`%s <fig:padroes-series:padroes-result-gleba-02>` e :numref:`%s <fig:padroes-series:padroes-result-gleba-02-clusters>`.  
+
+
+.. figure:: ../img/padroes-series/padroes-result-gleba-01.png
+    :alt: Resultado para gleba 1 da metodologia para descoberta de padrões em séries temporais de imagens 
+    :width: 90% 
+    :figclass: align-center
+    :name: fig:padroes-series:padroes-result-gleba-01
+
+    Resultado da metodologia para descoberta de padrões em séries temporais de imagens para a gleba 1: (A) imagem de alta resolução da gleba 1; e (B) os grupos semelhantes ou *clusters* gerados dentro da gleba 1 a partir de suas séries temporais de imagens.
+
+
+
+.. figure:: ../img/padroes-series/padroes-result-gleba-01-clusters.png
+    :alt: Resultado para gleba 1 da metodologia para descoberta de padrões em séries temporais de imagens. 
+    :width: 90% 
+    :figclass: align-center
+    :name: fig:padroes-series:padroes-result-gleba-01-clusters
+
+    As séries temporais de imagens dos 9 grupos ou *clusters* gerados para a gleba 1 usando a metodologia: (A) imagem de alta resolução da gleba 1 e seus grupos; e (B) os vetores de peso e as séries temporais de cada neurônio no mapa de saída do SOM.
+
+
+
+.. figure:: ../img/padroes-series/padroes-result-gleba-02.png
+    :alt: Resultado para gleba 2 da metodologia para descoberta de padrões em séries temporais de imagens
+    :width: 90% 
+    :figclass: align-center
+    :name: fig:padroes-series:padroes-result-gleba-02
+
+    Resultado da metodologia para descoberta de padrões em séries temporais de imagens para a gleba 2: (A) imagem de alta resolução da gleba 2; e (B) os grupos semelhantes ou *clusters* gerados dentro da gleba 2 a partir de suas séries temporais de imagens.
+
+
+
+.. figure:: ../img/padroes-series/padroes-result-gleba-02-clusters.png
+    :alt: Resultado para gleba 2 da metodologia para descoberta de padrões em séries temporais de imagens 
+    :width: 90% 
+    :figclass: align-center
+    :name: fig:padroes-series:padroes-result-gleba-02-clusters
+
+    As séries temporais de imagens dos 9 grupos ou *clusters* gerados para a gleba 2 usando a metodologia: (A) imagem de alta resolução da gleba 1 e seus grupos; e (B) os vetores de peso e as séries temporais de cada neurônio no mapa de saída do SOM.
+
+
+O seguinte *Jupyter Notebook* implementa essas metodologias com dados das glebas: 
+
+.. rst-class:: open
+
+- Padrões de séries temporais de imagens. Disponível como *Code* de nome *tema7-padroes-series-temporais-imagensia* em `Kaggle - Geo Credito Rural <https://www.kaggle.com/organizations/geocreditorural>`__. 

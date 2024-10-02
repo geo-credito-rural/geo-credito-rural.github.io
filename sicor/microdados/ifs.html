@@ -157,7 +157,7 @@
 <tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>segmento_if</p></td>
 <td class="center-align"><p>text</p></td>
-<td class="left-align"><p>Classificação da IF quanto a natureza jurídica</p></td>
+<td class="left-align"><p>Classificação da IF quanto à natureza jurídica</p></td>
 </tr>
 </tbody>
 </table>
@@ -172,7 +172,7 @@
 <p><strong>Consulta 1.</strong> Determinar o número de instituições financeiras por cada natureza jurídica.</p>
 <details class="summary-solucao" open>
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>A Classificação da instituição financeira quanto a natureza jurídica refere-se à coluna <code class="docutils literal notranslate"><span class="pre">segmento_if</span></code>. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>A Classificação da instituição financeira quanto à natureza jurídica refere-se à coluna <code class="docutils literal notranslate"><span class="pre">segmento_if</span></code>. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">segmento_if</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">natureza</span><span class="p">,</span>
 <span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_ifs</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">ifssicor</span>
@@ -233,7 +233,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7ff0e2ed81c0>
+<jinja2.runtime.BlockReference object at 0x7f85eff570d0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

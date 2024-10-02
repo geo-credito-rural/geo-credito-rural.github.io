@@ -79,17 +79,21 @@ de séries temporais de imagens e inferência bayesiana para avaliar as similari
 Agrupamento de Séries Temporais de Imagens
 ------------------------------------------
 
-Um método bastante utilizado para agrupamento de séries temporais de imagens é a rede neural *Self-Organizing Maps* (SOM), devido a suas duas 
-características principais: (1) a capacidade de mapear o espaço de entrada de alta dimensão para uma grade bidimensional; e 
-(2) a preservação topológica da vizinhança, que gera grupos espaciais de padrões semelhantes no espaço de saída. 
+
+Métodos de agrupamentos de séries temporais são descritos no :ref:`Capítulo sobre Padrões de Séries Temporais <cap_padroes_series_temporais>`.
 
 
 Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens
 --------------------------------------------------------------
 
 
+
 Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens
 -------------------------------------------------------------------------------------
+
+
+Métodos para extração de métricas fenológicas de séries temporais de imagens são descritos no :ref:`Capítulo sobre Fenologia <cap_fenologia>`.
+
 
 
    

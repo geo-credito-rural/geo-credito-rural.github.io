@@ -23,7 +23,7 @@ O arquivo `SICOR_LISTA_IFS.csv <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SI
     +---------+-------------------------+----------+-------------------------------------------------------+
     |         | nome_if                 | text     | Nome do concedente do crédito                         |
     +---------+-------------------------+----------+-------------------------------------------------------+
-    |         | segmento_if             | text     | Classificação da IF quanto a natureza jurídica        |
+    |         | segmento_if             | text     | Classificação da IF quanto à natureza jurídica        |
     +---------+-------------------------+----------+-------------------------------------------------------+
     
 
@@ -55,7 +55,7 @@ Consultas
         .. tab:: SQL
 
 
-            A Classificação da instituição financeira quanto a natureza jurídica refere-se à coluna ``segmento_if``. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:
+            A Classificação da instituição financeira quanto à natureza jurídica refere-se à coluna ``segmento_if``. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:
 
 
             .. code-block:: sql

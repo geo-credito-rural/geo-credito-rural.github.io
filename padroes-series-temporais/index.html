@@ -24,10 +24,11 @@
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
         <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="Referências Bibliográficas" href="../referencias.html" />
+    <link rel="next" title="9.1. Medidas de Similaridade entre Séries Temporais" href="distancias.html" />
     <link rel="prev" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" href="../fenologia/wcpms.html" /> 
 </head>
 
@@ -64,7 +65,12 @@
 <li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">9. Padrões em Séries Temporais de Imagens de Satélites</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="distancias.html">9.1. Medidas de Similaridade entre Séries Temporais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="som.html">9.2. Métodos de Agrupamento para Séries Temporais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="padroes.html">9.3. Metodologia para Descoberta de Padrões em Séries Temporais de Imagens</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -98,7 +104,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="../fenologia/wcpms.html" class="btn btn-neutral float-left" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="distancias.html" class="btn btn-neutral float-right" title="9.1. Medidas de Similaridade entre Séries Temporais" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -107,6 +113,60 @@
              
   <section id="padroes-em-series-temporais-de-imagens-de-satelites">
 <span id="cap-padroes-series-temporais"></span><h1><span class="section-number">9. </span>Padrões em Séries Temporais de Imagens de Satélites<a class="headerlink" href="#padroes-em-series-temporais-de-imagens-de-satelites" title="Link permanente para este cabeçalho"></a></h1>
+<p>As técnicas de agrupamento, ou <em>clustering</em>, são ferramentas amplamente utilizadas para identificar padrões em conjuntos de dados não rotulados
+através da organização dos dados em grupos. Esses grupos são formados por elementos ou objetos que possuem a máxima semelhança entre si, e a mínima
+semelhança com elementos de outros grupos <span id="id1">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>, <a class="reference internal" href="../referencias.html#id54" title="Philippe Esling and Carlos Agon. Time-series data mining. ACM Computing Surveys (CSUR), 45(1):1–34, 2012.">138</a>]</span>.</p>
+<p><strong>Definição</strong>: Dado um conjunto de séries temporais <span class="math notranslate nohighlight">\(DB\)</span> e uma medida de similaridade <span class="math notranslate nohighlight">\(D (T_a, T_b)\)</span>, encontre um conjunto de grupos ou <em>clusters</em>
+<span class="math notranslate nohighlight">\(C = \{ c_i \}\)</span> onde <span class="math notranslate nohighlight">\(c_i = \{ T_k | T_k \in DB \}\)</span>  que maximize a distância <em>intercluster</em> e minimize a variância <em>intracluster</em>.
+Mais formalmente, <span class="math notranslate nohighlight">\(\forall i_1,i_2, j\)</span> such that <span class="math notranslate nohighlight">\(T_{i1}, T_{i2} \in c_i\)</span>  and  <span class="math notranslate nohighlight">\(T_j \in c_j\)</span>  <span class="math notranslate nohighlight">\(D(T_{i1}, T_j) \gg D(T_{i1},T_{i2})\)</span>.
+A <a class="reference internal" href="#fig-padroes-series-clusters"><span class="std std-numref">Figura 9.1</span></a> ilustra dois agrupamentos no mesmo conjunto de dados, (a) com três grupos (N = 3) e (b) com oito grupos (N = 8).</p>
+<figure class="align-center align-default" id="fig-padroes-series-clusters">
+<a class="reference internal image-reference" href="../_images/clusters.png"><img alt="Exemplos de dois agrupamentos" src="../_images/clusters.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.1 - </span><span class="caption-text">Exemplos de dois agrupamentos no mesmo conjunto de dados: (a) N = 3 e (b) N = 8, onde N representa a quantidade de grupos. <br/> <strong>Adaptado de:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id54" title="Philippe Esling and Carlos Agon. Time-series data mining. ACM Computing Surveys (CSUR), 45(1):1–34, 2012.">138</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-clusters" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Segundo <span id="id3">[<a class="reference internal" href="../referencias.html#id65" title="Jiawei Han, Jian Pei, and Micheline Kamber. Data mining: concepts and techniques. Elsevier, 2011.">139</a>]</span>, além de aplicações convencionais como descoberta de padrões, detecção de <em>outliers</em> e análise de
+distribuições intrínsecas nos dados; as técnicas de agrupamento podem ser usadas em etapas de pré-processamento para outros algoritmos,
+por exemplo, na caracterização, seleção de subconjuntos de atributos e classificação.
+Pesquisas em técnicas de agrupamentos concentram-se na escalabilidade dos métodos de agrupamento, na
+eficácia dos métodos para agrupar formas complexas (por exemplo, não-convexas) e nos tipos de dados (por exemplo, texto, gráficos e imagens),
+nas técnicas de agrupamento de alta dimensão (por exemplo, objetos de agrupamento com milhares de atributos) e em métodos para agrupar dados
+numéricos e nominais em grandes bases de dados.</p>
+<p>Para séries temporais, o agrupamento pode ser dividido em três categoriais: agrupamento por <em>séries temporais completas</em>,
+agrupamento por <em>subsequências</em> e agrupamento por <em>pontos temporais</em> <span id="id4">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>]</span>, apresentada na <a class="reference internal" href="#fig-padroes-series-clusters-tipos"><span class="std std-numref">Figura 9.2</span></a>.
+O agrupamento por séries temporais completas considera todos os valores das séries temporais. O agrupamento por subsequências
+considera alguns segmentos extraídos das séries temporais através de uma janela deslizante. O agrupamento por pontos temporais
+considera alguns pontos extraídos das séries temporais. Técnicas baseadas nas categorias de agrupamento por subsequência e de pontos
+temporais não produzem grupos de séries temporais, e sim, grupos de determinados pontos extraídos da série temporal.
+Segundo <span id="id5">[<a class="reference internal" href="../referencias.html#id90" title="Eamonn Keogh and Jessica Lin. Clustering of time-series subsequences is meaningless: implications for previous and future research. Knowledge and information systems, 8(2):154–177, 2005.">140</a>]</span>, o agrupamento por subsequência produz grupos aleatórios, pois os algoritmos desta categoria são
+totalmente independentes dos dados de entrada. Portanto, a melhor abordagem para séries temporais de imagens é o agrupamento baseados
+em séries completas (ou <em>raw</em>).</p>
+<figure class="align-center align-default" id="fig-padroes-series-clusters-tipos">
+<a class="reference internal image-reference" href="../_images/clusters-tipos.png"><img alt="Taxonomia de agrupamento de séries temporais" src="../_images/clusters-tipos.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.2 - </span><span class="caption-text">Taxonomia de agrupamento de séries temporais. <br/> <strong>Adaptado de:</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>, <a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">141</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-clusters-tipos" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>Para agrupamento de séries temporais completas (ou <em>raw</em>), os autores <span id="id7">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>]</span> descrevem três abordagens: <em>baseado em forma</em>,
+<em>em características</em> e <em>em modelos</em>, como ilustrado na <a class="reference internal" href="#fig-padroes-series-clusters-raw-sits"><span class="std std-numref">Figura 9.3</span></a>. Na abordagem baseada em forma, em geral, usa-se o método de agrupamento
+diretamente nas séries temporais “cruas” (do inglês, <em>raw time-series</em>), ou seja, não é aplicado nenhuma transformação nos dados.
+Por outro lado, na abordagem baseada em características o agrupamento é realizado em atributos extraídos das séries temporais.
+Por fim, na abordagem baseada em modelo, considera-se que cada série temporal é gerada por algum tipo de modelo ou por uma mistura de
+distribuições de probabilidade. Assim, os agrupamentos são realizados nos coeficientes ou resíduos utilizados neste modelo <span id="id8">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>, <a class="reference internal" href="../referencias.html#id99" title="T Warren Liao. Clustering of time series data—a survey. Pattern recognition, 38(11):1857–1874, 2005.">142</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-padroes-series-clusters-raw-sits">
+<a class="reference internal image-reference" href="../_images/clusters-raw-sits.png"><img alt="Abordagens para o agrupamento de séries temporais" src="../_images/clusters-raw-sits.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.3 - </span><span class="caption-text">Abordagens para o agrupamento de séries temporais: (a) abordagem baseada na forma da série temporal; (b) baseado nas características e (c) baseado em um modelo. <br/> <strong>Adaptado de:</strong> <span id="id9">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-clusters-raw-sits" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="distancias.html">9.1. Medidas de Similaridade entre Séries Temporais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="som.html">9.2. Métodos de Agrupamento para Séries Temporais</a></li>
+<li class="toctree-l1"><a class="reference internal" href="padroes.html">9.3. Metodologia para Descoberta de Padrões em Séries Temporais de Imagens</a></li>
+</ul>
+</div>
 </section>
 
 
@@ -114,7 +174,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="../fenologia/wcpms.html" class="btn btn-neutral float-left" title="8.4. Web Crop Phenology Metrics Service (WCPMS)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="distancias.html" class="btn btn-neutral float-right" title="9.1. Medidas de Similaridade entre Séries Temporais" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -124,7 +184,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7ff0e437b730>
+<jinja2.runtime.BlockReference object at 0x7f85eff9fbb0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

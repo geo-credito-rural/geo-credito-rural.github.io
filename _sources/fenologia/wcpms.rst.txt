@@ -77,7 +77,7 @@ A Figura a seguir mostra o resultado da operação ``get_description``.
     Descrição das métricas retornadas pelo serviço WCPMS.
 
 
-O seguinte *Jupyter Notebook* será usado para introduzir o uso desse serviço:
+O seguinte *Jupyter Notebook* ilustra como usar esse serviço com as glebas: 
 
 .. rst-class:: open
 

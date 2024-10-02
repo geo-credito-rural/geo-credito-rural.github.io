@@ -2,4 +2,6 @@ Análise da Qualidade dos Dados do Sicor
 =======================================
 
 
-**Em desenvolvimento...**
+.. warning::
+
+    Esta seção **encontra-se em desenvolvimento**.

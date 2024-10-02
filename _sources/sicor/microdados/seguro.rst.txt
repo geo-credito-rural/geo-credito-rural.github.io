@@ -25,7 +25,7 @@ Como todo contrato, o financiamento rural também conta com uma forma de garanti
     +---------+-------------------------+----------+-------------------------------------------------------+
 
 
-A coluna ``cd_tipo_seguro`` contém um código único para cada tio de seguro, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os tipos de seguro aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
+A coluna ``cd_tipo_seguro`` contém um código único para cada tipo de seguro, sendo a chave primária dos registros desse conjunto de dados. Essa coluna é utilizada para relacionar os tipos de seguro aos contratos, como será visto na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`.
 
 
 .. note::

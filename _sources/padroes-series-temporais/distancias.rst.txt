@@ -1,0 +1,127 @@
+.. include:: ../def.rst
+
+
+.. _sec_padroes_series_temporais_distancias:
+
+Medidas de Similaridade entre Séries Temporais
+==============================================
+
+
+Existem diferentes medidas de similaridade para séries temporais :cite:`aghabozorgi:2015`, como mostrado na :numref:`Figura %s <fig:padroes-series:distances>`. 
+Essas medidas incluem Hausdorff, Modified Hausdorff (MODH), HMM-based distance, Dynamic Time Warping (DTW), 
+Euclidean distance, Euclidean distance in a PCA subspace, and Longest Common Sub-Sequence (LCSS). 
+
+
+.. figure:: ../img/padroes-series/distances-sits.png
+   :alt: Medidas de similaridades entre séries temporais  
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:distances
+
+   Medidas de similaridades entre séries temporais baseadas na forma. |br| **Adaptado de:** :cite:`aghabozorgi:2015`.  
+
+
+A escolha de uma abordagem de distância adequada depende das características das séries temporais, da duração das séries, do método de 
+representação e do objetivo do agrupamento (similaridade no tempo, na forma ou na mudança). As distâncias mais utilizadas para 
+similaridade entre séries temporais são: Euclidiana e DTW (e suas variações). 
+:numref:`Figura %s <fig:padroes-series:dist-ED-DTW-01>` e :numref:`Figura %s <fig:padroes-series:dist-ED-DTW-02>` ilustram a diferença entre as distâncias DTW e Euclidiana 
+entre duas séries temporais.
+
+
+.. figure:: ../img/padroes-series/dist-ED-DTW-01.png
+   :alt: Distâncias DTW e Euclidiana entre duas séries temporais  
+   :width: 80% 
+   :figclass: align-center
+   :name: fig:padroes-series:dist-ED-DTW-01
+
+   Distâncias DTW e Euclidiana entre duas séries temporais. |br| **Fonte:** :cite:`keogh:2005`. 
+
+
+.. figure:: ../img/padroes-series/dist-ED-DTW-02.png
+   :alt: Distâncias DTW e Euclidiana entre duas séries temporais  
+   :width: 80% 
+   :figclass: align-center
+   :name: fig:padroes-series:dist-ED-DTW-02
+
+   Distâncias DTW e Euclidiana entre duas séries temporais calculadas no ambinete R utilizadno o pacote TSDist. 
+
+
+Distância Euclidiana
+--------------------
+
+
+A distância euclidiana e suas variações, como *Manhattan*, são amplamente utilizadas em métodos de agrupamento devido suas simplicidades e 
+eficiência linear :math:`O(n)`. Baseada em comparações ponto a ponto (*lock-step*), em que assume que o *i*-ésimo ponto de uma série esteja 
+alinhado com o *i*-ésimo ponto na outra série, como ilustrado nas figuras anteriores, a distância euclidiana é limitada a séries temporais 
+com a mesma linha de base, escala e comprimento. Além disso, ela ignora os desalinhamentos nos eixos temporais.
+
+
+**Definição**: Dado duas séries temporais :math:`i = (x_{i1}, x_{i2},...,x_{in})` e :math:`j = (x_{j1}, x_{j2},...,x_{jn})` com *n* valores. 
+
+
+A distância euclidiana entre essas duas séries é definida como:
+
+
+.. math::
+    :label: eq:padores-series:distancia-ed
+
+     d(i,j) = \sqrt{(x_{i1} - x_{j1})^2 + (x_{i2} - x_{j2})^2 + ... + (x_{in} - x_{jn})^2}
+
+
+A distância manhattan entre essas duas séries é definida como:
+
+.. math::
+    :label: eq:padores-series:distancia-mr
+
+     d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + ... + |x_{in} - x_{jn}|
+
+
+Distância DTW (Dynamic Time Warping)
+------------------------------------
+
+
+Dado duas séries temporais, a distância DTW (*Dynamic Time Warping*) as esticam ou comprimem localmente para fazer com que uma se pareça 
+com a outra o máximo possível :cite:`berndt:1994`. Por isso a distância DTW é chamada de elástica. Ela contorna o problema de desalinhamento 
+temporal, pois permite uma mudança elástica no eixo do tempo, como ilustrado na :numref:`Figura %s <fig:padroes-series:dist-DTW>`. A distância entre as duas séries é computada 
+após o alongamento, somando as distâncias entre os elementos alinhados. Essa distância baseia-se em técnicas de programação dinâmica, 
+sendo mais robusta que a distância euclidiana, no entanto, sem otimizações possui complexidade de :math:`O(n^2)` :cite:`keogh:2005`.
+
+
+.. figure:: ../img/padroes-series/dist-DTW.png
+   :alt: Distância DTW (Dynamic Time Warping) entre duas séries temporais  
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:dist-DTW
+
+   Distância DTW (Dynamic Time Warping) entre duas séries temporais. |br| **Adaptada de:** :cite:`keogh:2005`. 
+
+
+**Definição**: Dado duas séries temporais :math:`Q = q_1, q_2,..., q_n` e :math:`C = c_1, c_2,...,c_m`. Para alinhar ambas sequências, uma matriz :math:`n` x :math:`m` 
+é construída, em que cada elemento :math:`(i_{th}, j_{th})` contém a distância entre :math:`q_i` e :math:`c_j`, como por exemplo  :math:`d(q_i, c_j) = (q_i - c_j)^2`. 
+Cada elemento :math:`(i,j)` da matriz corresponde ao alinhamento entre os pontos :math:`q_i` e :math:`c_j`. 
+Uma via de deformação (ou *Warping Path*) :math:`W` é um traçado de elementos contíguos na matriz, que define um mapeamento entre :math:`Q` e :math:`C`. 
+O elemento :math:`k^{th}` de :math:`W` é definido como :math:`w_k = (i,j)_k`. Assim, :math:`W = w_1, w_2,...,w_k` é obtido com 
+:math:`\max(m,n) \leq K < m + n - 1`. Geralmente, o caminho na matriz é diagonal, começando em extremos opostos da matriz, 
+por exemplo :math:`w_1 = (1, 1)` e :math:`w_k = (m,n)`. Desta forma, o objetivo é selecionar o caminho que minimize o custo da via de deformação:
+
+
+.. math::
+    :label: eq:padores-series:distancia-dtw
+
+     DTW(Q,C) = \min \left(\sqrt{\sum_{k = 1}^{K} w_k}\right)
+
+
+Para restringir o quanto a via de deformação (ou *Warping Path*) pode desviar da diagonal da matriz,
+é possível definir a janela de deformação (ou *Warping Window*). A :numref:`Figura %s <fig:padroes-series:dist-DTW-WW>` ilustra dois tipos
+de janelas mais usadas como restrição global no DTW: Sakoe-Chiba Band and the Itakura Parallelogram.
+
+
+.. figure:: ../img/padroes-series/dist-DTW-WarpingWindow.png
+   :alt: Janela de deformação (ou *Warping Window*) do DTW (Dynamic Time Warping)   
+   :width: 80% 
+   :figclass: align-center
+   :name: fig:padroes-series:dist-DTW-WW
+
+   Janela de deformação (ou *Warping Window*) do DTW (Dynamic Time Warping). |br| **Fonte:** :cite:`keogh:2005`. 
+
+

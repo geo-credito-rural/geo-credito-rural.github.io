@@ -11,7 +11,7 @@ Considerando apenas a forma das glebas, é possível calcular métricas que pode
 
 .. rst-class:: open
 
-- **area_gleba:** Coluna numérica com a área da gleba em m\ :sup:`2`. Para computar a área será usada a função ``ST_Area``. No entanto, será necessário transformar o SRS dos polígonos das glebas do EPSG:4674 para um SRS que possa ser possível computar a área em metros.
+- **area_gleba:** Coluna numérica com a área da gleba em m\ :sup:`2`. Para computar a área será usada a função ``ST_Area``. No entanto, será necessário transformar o SRS dos polígonos das glebas do EPSG:4674 para um SRS que permita computar a área em metros.
 
 - **perimetro_gleba:** Coluna numérica com o perímetro da gleba em metros. Para computar o perímetro será usada a função ``ST_Perimeter``. Assim como no cálculo de área, para que essa função produza um valor em metros é necessário transformar o SRS usado nas coordenadas da geometria para um SRS que permita computar distâncias em metros.
 

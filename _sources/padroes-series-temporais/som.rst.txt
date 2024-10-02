@@ -1,0 +1,125 @@
+.. include:: ../def.rst
+
+
+.. _sec_padroes_series_temporais_som:
+
+Métodos de Agrupamento para Séries Temporais
+============================================
+
+
+Na literatura, existem diferentes métodos para agrupamento de dados. Segundo :cite:`xu:2015`, esses métodos podem ser classificados em: (1) Métodos baseados em partição que criam partições ortogonais em um conjunto de dados (ex.: *K-means*); (2) Métodos baseados em hierarquia que criam uma decomposição hierárquica em conjunto de dados (ex.: *Hierarchical Clustering)*; (3) Métodos que criam grupos com base em densidade (ex.: *DBSCAN*); e (4) Métodos baseados em Redes Neurais (ex. *SOM*).
+
+
+Para agrupamento de séries temporais, um dos métodos mais utilizado é o SOM (*Self-Organizing Maps*), ou *Mapas Auto-organizáveis* em português, que é uma rede neural artificial :cite:`aghabozorgi:2015`. As redes neurais artificiais (do inglês, *Artificial Neural Networks*, ANNs) são métodos inspirados em redes neurais biológicas e possui aplicações tanto em tarefas de classificação como em agrupamento :cite:`samarasinghe:2006`. Algumas características das ANNs que são importantes nos métodos de agrupamento são: processamento de vetores numéricos; arquiteturas de processamento inerentemente paralelas e distribuídas e aprendizado a partir de pesos por interconexões.
+
+
+SOM (Self-Organizing Maps)
+--------------------------
+
+
+O SOM (Self-Organizing Map) é uma rede neural não supervisionada, que aplica o procedimento de aprendizado competitivo para mapear os 
+vetores de entrada multidimensionais para uma grade bidimensional retangular ou hexagonal de baixa dimensão :cite:`kohonen:2001`.  
+SOM mapeia um espaço de alta dimensão para um espaço de baixa dimensão preservando sua topologia de vizinhança. 
+Ele é composto por uma camada de entrada (*input layer*) e uma de saída (*output layer*), sendo esta última geralmente uma grade 
+bidimensional onde cada elemento é chamado de neurônio (*2-D Neuron Grid*). Uma propriedade importante do SOM é que os neurônios são 
+organizados de forma que eles mantenham uma vizinhança similar, ou seja, neurônios que têm características similares estão próximos na 
+camada de saída. :numref:`Figura %s <fig:padroes-series:som-layers>` e  :numref:`Figura %s <fig:padroes-series:som-similaridade>` ilustram as camadas do SOM e a similaridade entre neurônios vizinhos.
+
+
+.. figure:: ../img/padroes-series/som-layers.png
+   :alt: Camadas de entrada e saída do SOM (Self-Organizing Map) 
+   :width: 60% 
+   :figclass: align-center
+   :name: fig:padroes-series:som-layers
+
+   Camadas de entrada (*input layer*) e saída (*output layer*) do SOM (Self-Organizing Map). No mapa ou camada de saída, os neurônios pintados em laranja são vizinhos do neurônio amarelo.
+
+
+.. figure:: ../img/padroes-series/som-similaridade.png
+   :alt: Similaridade entre neurônios vizinhos no SOM (Self-Organizing Map) 
+   :width: 50% 
+   :figclass: align-center
+   :name: fig:padroes-series:som-similaridade
+
+   Um exemplo de uma mapa SOM 4x4. O vetor de entrada (*input*) é mapeado para uma grade de saída composta por neuônios (*2-D Neuron Grid*). O neurônio mais similar ao vetor de entrada adapta seu vetor de peso (*weight vector*) e dos seus neurônios vizinhos, gerando uma vizinhança similar. |br| **Fonte:** :cite:`adeu:2020`. 
+
+
+Cada neurônio :math:`j` tem um vetor de peso (*weight vector*) *n*-dimensional :math:`w_j=[w_{1},\ldots,w_{n} ]`. Um vetor de entrada 
+:math:`x(t)=[x(t)_1,\ldots,x(t)_n ]` é associado ao neurônio mais similiar a ele, segundo uma certa métrica de distância, 
+como Euclidiana e DTW. A distância :math:`D_j` é computada entre o vetor de entrada e o vetor de peso de cada neurônio :math:`j`, para todos os neurônios da 
+camada de saída:
+
+
+.. math::
+    :label: eq:padores-series:som-dist
+
+     D_{j}=\sum_{i=1}^{N}{\sqrt{(x(t)_i{-}w_{j})^{2}}}.
+
+
+Depois de computar todas as distâncias entre o vetor de entrada e todos os neurônios, a menor dessas distâncias identifica o 
+*Best-Matching-Unit* (BMU). O BMU é o neurônio :math:`d_{b}` cujo vetor de peso é o mais próximo, ou mais similar, a :math:`x(t)`:
+
+
+.. math::
+    :label: eq:padores-series:som-bmu
+
+      d_{b}= min \left\{D_1,\ldots, D_j \right\}.
+
+
+Os vetores de peso do BMU e de seus vizinhos dentro de um raio :math:`r` são alterados para aumentar a similaridade com o vetor de 
+entrada: 
+
+.. math::
+    :label: eq:padores-series:som-viz
+
+       w_{j}(t)=  w_{j}(t){+}\alpha(t) \times h_{b,j}(t)[x(t)_i{-}w_{j}(t)],
+
+
+onde :math:`\alpha(t)` representa a taxa de aprendizado (*learning rate*), com valores entre 0 e 1 (:math:`0<\alpha(t)<1`), e :math:`h_{b,j}` é uma função de vizinhança (*neighborhood function*).
+ 
+
+O SOM termina quando todos os vetores de entrada são representados na camada de saída. Ao longo do tempo, o valor de :math:`\alpha(t)` e o raio da vizinhança devem ser reduzidos e existem diferenteres abordagens para reduzir esses valores :cite:`natita:2016`.
+
+
+Em resumo, no mapa SOM os neurônios competem entre si pelos vetores de entrada. Ao final de cada iteração é determinado o neurônio vencedor (*BMU*, do inglês *Best Match Unit*), aquele que possui a menor distância com o vetor de entrada apresentado na iteração. Após a escolha do BMU, todos os neurônios vizinhos em um determinado raio atualizam seus vetores de peso, para se aproximarem do padrão escolhido no BMU :cite:`kohonen:2001`. A :numref:`Figura %s <fig:padroes-series:som-structure>` a seguir apresenta uma visão geral da estrutura do SOM.
+
+
+.. figure:: ../img/padroes-series/som-structure.png
+   :alt: Estrutura geral do SOM (Self-Organizing Map) 
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:som-structure
+
+
+   Estrutura geral do SOM (Self-Organizing Map). |br| **Adaptado de:** :cite:`santos:2021b`
+
+
+Evolving SOM (Self-Organizing Maps)
+-----------------------------------
+
+
+No SOM, o tamanho da grade ou da camada de saída é fixo e definido *a priori*. Muitos trabalhos na literatura apontam que a definição do tamanho dessa grade é um processo empírico. A quantidade de vetores de entrada influencia no tamanho da grade :cite:`kohonen:2001`. Grade superestimada implica em neurônios vazios sem nenhum vetor de entrada associado, ou neurônios sem capacidades de generalização, com um único vetor de entrada associado. Subestimar a grade implica em neurônios generalistas e erros de agrupamento.
+
+
+Para tentar resolver essa questão do tamanho da grade fixa do SOM, algumas variações do SOM são propostas para evoluir a grade dinamicamente ao invés de definir seu tamanho inicialmente. Essas abordagens são chamadas de *Evolving SOM* e alguns exemplos são: (1) Growing hierarchical self-organizing maps (GHSOM) :cite:`dittenbach:2003`; (2)  Growing cell structure of map (GCS) :cite:`wu:2003`; e (3) Growing SOM (GSOM) :cite:`alahakoon:2000`. 
+
+
+A :numref:`Figura %s <fig:padroes-series:som-gsom>` mostra mapas gerados pelo SOM e pelo GSOM para séries temporais de imagens, resultado do trabalho de Adeu et. al :cite:`adeu:2020`.
+
+
+.. figure:: ../img/padroes-series/som-gsom.png
+   :alt: Mapas gerados pelo SOM e GSOM 
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:som-gsom
+
+
+   A topologia do mapa do SOM (a), do GSOM com *initial neighborhood influence* 0.6 (b) e com *initial neighborhood influence* 1.0 (c). O aumento do parâmetro do GSOM *initial neighborhood influence* resulta em *clusters* mais concisos e agrupados. |br| **Adaptado de:** :cite:`adeu:2020`
+
+
+
+
+
+
+
+

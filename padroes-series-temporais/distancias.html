@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.1. Medidas de Similaridade entre Séries Temporais &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/padroes-series-temporais/distancias.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+        <script async="async" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="9.2. Métodos de Agrupamento para Séries Temporais" href="som.html" />
+    <link rel="prev" title="9. Padrões em Séries Temporais de Imagens de Satélites" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.1. Medidas de Similaridade entre Séries Temporais</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#distancia-euclidiana">9.1.1. Distância Euclidiana</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#distancia-dtw-dynamic-time-warping">9.1.2. Distância DTW (Dynamic Time Warping)</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="som.html">9.2. Métodos de Agrupamento para Séries Temporais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="padroes.html">9.3. Metodologia para Descoberta de Padrões em Séries Temporais de Imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">9. </span>Padrões em Séries Temporais de Imagens de Satélites</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9.1. </span>Medidas de Similaridade entre Séries Temporais</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="index.html" class="btn btn-neutral float-left" title="9. Padrões em Séries Temporais de Imagens de Satélites" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="som.html" class="btn btn-neutral float-right" title="9.2. Métodos de Agrupamento para Séries Temporais" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="medidas-de-similaridade-entre-series-temporais">
+<span id="sec-padroes-series-temporais-distancias"></span><h1><span class="section-number">9.1. </span>Medidas de Similaridade entre Séries Temporais<a class="headerlink" href="#medidas-de-similaridade-entre-series-temporais" title="Link permanente para este cabeçalho"></a></h1>
+<p>Existem diferentes medidas de similaridade para séries temporais <span id="id1">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>]</span>, como mostrado na <a class="reference internal" href="#fig-padroes-series-distances"><span class="std std-numref">Figura 9.4</span></a>.
+Essas medidas incluem Hausdorff, Modified Hausdorff (MODH), HMM-based distance, Dynamic Time Warping (DTW),
+Euclidean distance, Euclidean distance in a PCA subspace, and Longest Common Sub-Sequence (LCSS).</p>
+<figure class="align-center align-default" id="fig-padroes-series-distances">
+<a class="reference internal image-reference" href="../_images/distances-sits.png"><img alt="Medidas de similaridades entre séries temporais" src="../_images/distances-sits.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.4 - </span><span class="caption-text">Medidas de similaridades entre séries temporais baseadas na forma. <br/> <strong>Adaptado de:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">137</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-distances" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>A escolha de uma abordagem de distância adequada depende das características das séries temporais, da duração das séries, do método de
+representação e do objetivo do agrupamento (similaridade no tempo, na forma ou na mudança). As distâncias mais utilizadas para
+similaridade entre séries temporais são: Euclidiana e DTW (e suas variações).
+<a class="reference internal" href="#fig-padroes-series-dist-ed-dtw-01"><span class="std std-numref">Figura 9.5</span></a> e <a class="reference internal" href="#fig-padroes-series-dist-ed-dtw-02"><span class="std std-numref">Figura 9.6</span></a> ilustram a diferença entre as distâncias DTW e Euclidiana
+entre duas séries temporais.</p>
+<figure class="align-center align-default" id="fig-padroes-series-dist-ed-dtw-01">
+<a class="reference internal image-reference" href="../_images/dist-ED-DTW-01.png"><img alt="Distâncias DTW e Euclidiana entre duas séries temporais" src="../_images/dist-ED-DTW-01.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.5 - </span><span class="caption-text">Distâncias DTW e Euclidiana entre duas séries temporais. <br/> <strong>Fonte:</strong> <span id="id3">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">141</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-ed-dtw-01" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center align-default" id="fig-padroes-series-dist-ed-dtw-02">
+<a class="reference internal image-reference" href="../_images/dist-ED-DTW-02.png"><img alt="Distâncias DTW e Euclidiana entre duas séries temporais" src="../_images/dist-ED-DTW-02.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.6 - </span><span class="caption-text">Distâncias DTW e Euclidiana entre duas séries temporais calculadas no ambinete R utilizadno o pacote TSDist.</span><a class="headerlink" href="#fig-padroes-series-dist-ed-dtw-02" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<section id="distancia-euclidiana">
+<h2><span class="section-number">9.1.1. </span>Distância Euclidiana<a class="headerlink" href="#distancia-euclidiana" title="Link permanente para este cabeçalho"></a></h2>
+<p>A distância euclidiana e suas variações, como <em>Manhattan</em>, são amplamente utilizadas em métodos de agrupamento devido suas simplicidades e
+eficiência linear <span class="math notranslate nohighlight">\(O(n)\)</span>. Baseada em comparações ponto a ponto (<em>lock-step</em>), em que assume que o <em>i</em>-ésimo ponto de uma série esteja
+alinhado com o <em>i</em>-ésimo ponto na outra série, como ilustrado nas figuras anteriores, a distância euclidiana é limitada a séries temporais
+com a mesma linha de base, escala e comprimento. Além disso, ela ignora os desalinhamentos nos eixos temporais.</p>
+<p><strong>Definição</strong>: Dado duas séries temporais <span class="math notranslate nohighlight">\(i = (x_{i1}, x_{i2},...,x_{in})\)</span> e <span class="math notranslate nohighlight">\(j = (x_{j1}, x_{j2},...,x_{jn})\)</span> com <em>n</em> valores.</p>
+<p>A distância euclidiana entre essas duas séries é definida como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-padores-series-distancia-ed">
+<span class="eqno">(9.1)<a class="headerlink" href="#equation-eq-padores-series-distancia-ed" title="Link permanente para essa equação"></a></span>\[ d(i,j) = \sqrt{(x_{i1} - x_{j1})^2 + (x_{i2} - x_{j2})^2 + ... + (x_{in} - x_{jn})^2}\]</div>
+<p>A distância manhattan entre essas duas séries é definida como:</p>
+<div class="math notranslate nohighlight" id="equation-eq-padores-series-distancia-mr">
+<span class="eqno">(9.2)<a class="headerlink" href="#equation-eq-padores-series-distancia-mr" title="Link permanente para essa equação"></a></span>\[ d(i,j) = |x_{i1} - x_{j1}| + |x_{i2} - x_{j2}| + ... + |x_{in} - x_{jn}|\]</div>
+</section>
+<section id="distancia-dtw-dynamic-time-warping">
+<h2><span class="section-number">9.1.2. </span>Distância DTW (Dynamic Time Warping)<a class="headerlink" href="#distancia-dtw-dynamic-time-warping" title="Link permanente para este cabeçalho"></a></h2>
+<p>Dado duas séries temporais, a distância DTW (<em>Dynamic Time Warping</em>) as esticam ou comprimem localmente para fazer com que uma se pareça
+com a outra o máximo possível <span id="id4">[<a class="reference internal" href="../referencias.html#id22" title="Donald J Berndt and James Clifford. Using dynamic time warping to find patterns in time series. In KDD workshop, volume 10, 359–370. Seattle, WA, 1994.">143</a>]</span>. Por isso a distância DTW é chamada de elástica. Ela contorna o problema de desalinhamento
+temporal, pois permite uma mudança elástica no eixo do tempo, como ilustrado na <a class="reference internal" href="#fig-padroes-series-dist-dtw"><span class="std std-numref">Figura 9.7</span></a>. A distância entre as duas séries é computada
+após o alongamento, somando as distâncias entre os elementos alinhados. Essa distância baseia-se em técnicas de programação dinâmica,
+sendo mais robusta que a distância euclidiana, no entanto, sem otimizações possui complexidade de <span class="math notranslate nohighlight">\(O(n^2)\)</span> <span id="id5">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">141</a>]</span>.</p>
+<figure class="align-center align-default" id="fig-padroes-series-dist-dtw">
+<a class="reference internal image-reference" href="../_images/dist-DTW.png"><img alt="Distância DTW (Dynamic Time Warping) entre duas séries temporais" src="../_images/dist-DTW.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.7 - </span><span class="caption-text">Distância DTW (Dynamic Time Warping) entre duas séries temporais. <br/> <strong>Adaptada de:</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">141</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p><strong>Definição</strong>: Dado duas séries temporais <span class="math notranslate nohighlight">\(Q = q_1, q_2,..., q_n\)</span> e <span class="math notranslate nohighlight">\(C = c_1, c_2,...,c_m\)</span>. Para alinhar ambas sequências, uma matriz <span class="math notranslate nohighlight">\(n\)</span> x <span class="math notranslate nohighlight">\(m\)</span>
+é construída, em que cada elemento <span class="math notranslate nohighlight">\((i_{th}, j_{th})\)</span> contém a distância entre <span class="math notranslate nohighlight">\(q_i\)</span> e <span class="math notranslate nohighlight">\(c_j\)</span>, como por exemplo  <span class="math notranslate nohighlight">\(d(q_i, c_j) = (q_i - c_j)^2\)</span>.
+Cada elemento <span class="math notranslate nohighlight">\((i,j)\)</span> da matriz corresponde ao alinhamento entre os pontos <span class="math notranslate nohighlight">\(q_i\)</span> e <span class="math notranslate nohighlight">\(c_j\)</span>.
+Uma via de deformação (ou <em>Warping Path</em>) <span class="math notranslate nohighlight">\(W\)</span> é um traçado de elementos contíguos na matriz, que define um mapeamento entre <span class="math notranslate nohighlight">\(Q\)</span> e <span class="math notranslate nohighlight">\(C\)</span>.
+O elemento <span class="math notranslate nohighlight">\(k^{th}\)</span> de <span class="math notranslate nohighlight">\(W\)</span> é definido como <span class="math notranslate nohighlight">\(w_k = (i,j)_k\)</span>. Assim, <span class="math notranslate nohighlight">\(W = w_1, w_2,...,w_k\)</span> é obtido com
+<span class="math notranslate nohighlight">\(\max(m,n) \leq K &lt; m + n - 1\)</span>. Geralmente, o caminho na matriz é diagonal, começando em extremos opostos da matriz,
+por exemplo <span class="math notranslate nohighlight">\(w_1 = (1, 1)\)</span> e <span class="math notranslate nohighlight">\(w_k = (m,n)\)</span>. Desta forma, o objetivo é selecionar o caminho que minimize o custo da via de deformação:</p>
+<div class="math notranslate nohighlight" id="equation-eq-padores-series-distancia-dtw">
+<span class="eqno">(9.3)<a class="headerlink" href="#equation-eq-padores-series-distancia-dtw" title="Link permanente para essa equação"></a></span>\[ DTW(Q,C) = \min \left(\sqrt{\sum_{k = 1}^{K} w_k}\right)\]</div>
+<p>Para restringir o quanto a via de deformação (ou <em>Warping Path</em>) pode desviar da diagonal da matriz,
+é possível definir a janela de deformação (ou <em>Warping Window</em>). A <a class="reference internal" href="#fig-padroes-series-dist-dtw-ww"><span class="std std-numref">Figura 9.8</span></a> ilustra dois tipos
+de janelas mais usadas como restrição global no DTW: Sakoe-Chiba Band and the Itakura Parallelogram.</p>
+<figure class="align-center align-default" id="fig-padroes-series-dist-dtw-ww">
+<a class="reference internal image-reference" href="../_images/dist-DTW-WarpingWindow.png"><img alt="Janela de deformação (ou *Warping Window*) do DTW (Dynamic Time Warping)" src="../_images/dist-DTW-WarpingWindow.png" style="width: 80%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.8 - </span><span class="caption-text">Janela de deformação (ou <em>Warping Window</em>) do DTW (Dynamic Time Warping). <br/> <strong>Fonte:</strong> <span id="id7">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">141</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw-ww" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="index.html" class="btn btn-neutral float-left" title="9. Padrões em Séries Temporais de Imagens de Satélites" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="som.html" class="btn btn-neutral float-right" title="9.2. Métodos de Agrupamento para Séries Temporais" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f85f0efe040>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

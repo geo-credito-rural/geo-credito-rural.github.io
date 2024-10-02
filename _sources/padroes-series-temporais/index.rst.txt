@@ -7,3 +7,82 @@ Padrões em Séries Temporais de Imagens de Satélites
 ===================================================
 
 
+As técnicas de agrupamento, ou *clustering*, são ferramentas amplamente utilizadas para identificar padrões em conjuntos de dados não rotulados 
+através da organização dos dados em grupos. Esses grupos são formados por elementos ou objetos que possuem a máxima semelhança entre si, e a mínima 
+semelhança com elementos de outros grupos :cite:`aghabozorgi:2015, esling:2012`. 
+
+
+**Definição**: Dado um conjunto de séries temporais :math:`DB` e uma medida de similaridade :math:`D (T_a, T_b)`, encontre um conjunto de grupos ou *clusters* 
+:math:`C = \{ c_i \}` onde :math:`c_i = \{ T_k | T_k \in DB \}`  que maximize a distância *intercluster* e minimize a variância *intracluster*. 
+Mais formalmente, :math:`\forall i_1,i_2, j` such that :math:`T_{i1}, T_{i2} \in c_i`  and  :math:`T_j \in c_j`  :math:`D(T_{i1}, T_j) \gg D(T_{i1},T_{i2})`. 
+A :numref:`Figura %s <fig:padroes-series:clusters>` ilustra dois agrupamentos no mesmo conjunto de dados, (a) com três grupos (N = 3) e (b) com oito grupos (N = 8).   
+
+
+.. figure:: ../img/padroes-series/clusters.png
+   :alt: Exemplos de dois agrupamentos  
+   :width: 80% 
+   :figclass: align-center
+   :name: fig:padroes-series:clusters
+
+   Exemplos de dois agrupamentos no mesmo conjunto de dados: (a) N = 3 e (b) N = 8, onde N representa a quantidade de grupos. |br| **Adaptado de:** :cite:`esling:2012`.  
+
+
+Segundo :cite:`han:2011`, além de aplicações convencionais como descoberta de padrões, detecção de *outliers* e análise de 
+distribuições intrínsecas nos dados; as técnicas de agrupamento podem ser usadas em etapas de pré-processamento para outros algoritmos, 
+por exemplo, na caracterização, seleção de subconjuntos de atributos e classificação. 
+Pesquisas em técnicas de agrupamentos concentram-se na escalabilidade dos métodos de agrupamento, na 
+eficácia dos métodos para agrupar formas complexas (por exemplo, não-convexas) e nos tipos de dados (por exemplo, texto, gráficos e imagens), 
+nas técnicas de agrupamento de alta dimensão (por exemplo, objetos de agrupamento com milhares de atributos) e em métodos para agrupar dados 
+numéricos e nominais em grandes bases de dados.
+
+
+Para séries temporais, o agrupamento pode ser dividido em três categoriais: agrupamento por *séries temporais completas*, 
+agrupamento por *subsequências* e agrupamento por *pontos temporais* :cite:`aghabozorgi:2015`, apresentada na :numref:`Figura %s <fig:padroes-series:clusters-tipos>`. 
+O agrupamento por séries temporais completas considera todos os valores das séries temporais. O agrupamento por subsequências 
+considera alguns segmentos extraídos das séries temporais através de uma janela deslizante. O agrupamento por pontos temporais 
+considera alguns pontos extraídos das séries temporais. Técnicas baseadas nas categorias de agrupamento por subsequência e de pontos 
+temporais não produzem grupos de séries temporais, e sim, grupos de determinados pontos extraídos da série temporal. 
+Segundo :cite:`keogh:2005:b`, o agrupamento por subsequência produz grupos aleatórios, pois os algoritmos desta categoria são 
+totalmente independentes dos dados de entrada. Portanto, a melhor abordagem para séries temporais de imagens é o agrupamento baseados 
+em séries completas (ou *raw*).
+
+
+.. figure:: ../img/padroes-series/clusters-tipos.png
+   :alt: Taxonomia de agrupamento de séries temporais  
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:clusters-tipos
+
+   Taxonomia de agrupamento de séries temporais. |br| **Adaptado de:** :cite:`aghabozorgi:2015, keogh:2005`.  
+
+
+Para agrupamento de séries temporais completas (ou *raw*), os autores :cite:`aghabozorgi:2015` descrevem três abordagens: *baseado em forma*, 
+*em características* e *em modelos*, como ilustrado na :numref:`Figura %s <fig:padroes-series:clusters-raw-sits>`. Na abordagem baseada em forma, em geral, usa-se o método de agrupamento 
+diretamente nas séries temporais “cruas” (do inglês, *raw time-series*), ou seja, não é aplicado nenhuma transformação nos dados. 
+Por outro lado, na abordagem baseada em características o agrupamento é realizado em atributos extraídos das séries temporais. 
+Por fim, na abordagem baseada em modelo, considera-se que cada série temporal é gerada por algum tipo de modelo ou por uma mistura de 
+distribuições de probabilidade. Assim, os agrupamentos são realizados nos coeficientes ou resíduos utilizados neste modelo :cite:`aghabozorgi:2015, liao:2005`. 
+
+
+.. figure:: ../img/padroes-series/clusters-raw-sits.png
+   :alt: Abordagens para o agrupamento de séries temporais  
+   :width: 90% 
+   :figclass: align-center
+   :name: fig:padroes-series:clusters-raw-sits
+
+   Abordagens para o agrupamento de séries temporais: (a) abordagem baseada na forma da série temporal; (b) baseado nas características e (c) baseado em um modelo. |br| **Adaptado de:** :cite:`aghabozorgi:2015`.  
+
+
+.. toctree::
+    :maxdepth: 1
+    :titlesonly:
+
+    ./distancias
+    ./som
+    ./padroes
+
+
+
+
+
+

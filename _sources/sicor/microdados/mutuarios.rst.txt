@@ -12,7 +12,7 @@ Mutuários
     Esta seção **encontra-se em desenvolvimento**.
 
 
-O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz>` contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas ``ref_bacen`` que liga esta tabela a tabela  ``sicor_operacao_basica_estado`` descrita na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Inclui tambèm a coluna ``cd_cpf_cnpj``, contendo o CPF ou CNPJ do mutuário, a ``cd_sexo``, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna ``cd_dap`` que contém o código da Declaração de Aptidão ao Pronaf (DAP), ``cd_primeiro`` que informa o codigo do primeiro mutuário informado e o ``cd_tipo_beneficiario`` contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`.
+O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz>` contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas ``ref_bacen`` que liga esta tabela à tabela  ``sicor_operacao_basica_estado`` descrita na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Inclui também a coluna ``cd_cpf_cnpj``, contendo o CPF ou CNPJ do mutuário, a ``cd_sexo``, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna ``cd_dap`` que contém o código da Declaração de Aptidão ao Pronaf (DAP), ``cd_primeiro`` que informa o código do primeiro mutuário informado e o ``cd_tipo_beneficiario`` contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`.
 
 
 .. table:: Estrutura do arquivo contendo a lista de mutuários.
@@ -38,10 +38,10 @@ O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/Dados
     +----------------------+-------------------------+----------+-------------------------------------------------------+
 
 
-Como pode ser observado na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`, o campo ``ref_bacen`` permite a ligação do mutuário com os contrato, possibilitando verificar o acesso ao financiamento.  
+Como pode ser observado na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`, o campo ``ref_bacen`` permite a ligação do mutuário com os contratos, possibilitando verificar o acesso ao financiamento.  
 
 
-De acordo com o Manual do Crédito Rural (MCR) :cite:`bcb:2024:c`, os beneficiários podem são classificados pelos seguintes tipos:
+De acordo com o Manual do Crédito Rural (MCR) :cite:`bcb:2024:c`, os beneficiários podem ser classificados pelos seguintes tipos:
 
 .. rst-class:: open
     

@@ -57,7 +57,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura dess
     |         |              |                             |  (CNPJ) ou Cadastro de Pessoa Física (CPF) da pessoa  |
     |         |              |                             |  embargada com delimitadores                          |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         |  cpf_cnpj_S  | varchar(25)                 |  Número de Cadastro Nacional de Pessoa Jurídica       |
+    |         |  cpf_cnpj_s  | varchar(25)                 |  Número de Cadastro Nacional de Pessoa Jurídica       |
     |         |              |                             |  (CNPJ) ou Cadastro de Pessoa Física (CPF) da pessoa  |
     |         |              |                             |  embargada (somente os números)                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
@@ -74,3 +74,66 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura dess
     |         |  seq_tad     | bigint                      |  Telefone da pessoa identificada como responsável     |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do conjunto de dados relacionados com os embargos efetuados pelo ICMBIO. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `embargos_icmbio.zip <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/autos_infracao_icmbio.zip>`__.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:emb-icmbio
+    
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador do embargo                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da área embargada                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | vw_num_emb   | double precision            |  Identificador do embargo                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | serie        | varchar(254)                |  Série do embargo (A, B, [] )                         |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | origem       | varchar(254)                |  Informa a mídia de origem                            |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | numero_ai    | varchar(254)                |  Informa o identificador do auto de infração          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         |  cpf_cnpj    | varchar(254)                |  Número de Cadastro Nacional de Pessoa Jurídica       |
+    |         |              |                             |  (CNPJ) ou Cadastro de Pessoa Física (CPF) da pessoa  |
+    |         |              |                             |  embargada (somente os números)                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | autuado      | varchar(254)                |  Informa o nome ou a razão do autuado                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | desc_infra   | varchar(254)                |  Descrição do auto de infração                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | desc_sanc    | varchar(254)                |  Descrição da sanção                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | artigo_1     | varchar(254)                |  Artigo que dá base para o auto de infração           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | artigo_2     | varchar(254)                |  Artigo que dá base para o auto de infração           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | tipo_infra   | varchar(254)                |  Tipo da infração                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome_uc      | varchar(254)                |  Nome da UC em que ocorreu a infração                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cnuc         | varchar(254)                |  Codigo CNUC                                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | municipio    | varchar(254)                |  Nome do município                                    |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf           | varchar(254)                |  Sigla do estado                                      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data         | date                        |  Data do embargo                                      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ano          | varchar(254)                |  Ano do embargo                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | julgamento   | varchar(254)                |  Informações sobre andamento do processo              |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | area         | varchar(254)                |  Área do embargo com unidade                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | processo     | varchar(254)                |  Número do processo                                   |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+
+
+
+

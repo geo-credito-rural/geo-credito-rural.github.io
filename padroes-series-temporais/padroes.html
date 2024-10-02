@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>9.3. Metodologia para Descoberta de Padrões em Séries Temporais de Imagens &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/padroes-series-temporais/padroes.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="Referências Bibliográficas" href="../referencias.html" />
+    <link rel="prev" title="9.2. Métodos de Agrupamento para Séries Temporais" href="som.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="distancias.html">9.1. Medidas de Similaridade entre Séries Temporais</a></li>
+<li class="toctree-l2"><a class="reference internal" href="som.html">9.2. Métodos de Agrupamento para Séries Temporais</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">9.3. Metodologia para Descoberta de Padrões em Séries Temporais de Imagens</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">9. </span>Padrões em Séries Temporais de Imagens de Satélites</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">9.3. </span>Metodologia para Descoberta de Padrões em Séries Temporais de Imagens</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="som.html" class="btn btn-neutral float-left" title="9.2. Métodos de Agrupamento para Séries Temporais" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="metodologia-para-descoberta-de-padroes-em-series-temporais-de-imagens">
+<span id="sec-padroes-series-temporais-metodologia"></span><h1><span class="section-number">9.3. </span>Metodologia para Descoberta de Padrões em Séries Temporais de Imagens<a class="headerlink" href="#metodologia-para-descoberta-de-padroes-em-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h1>
+<p>No contexto dessa capacitação, nós propomos duas metodologias usando <em>SOM (Self-Organizing Maps)</em> e <em>Hierarquical Cluster</em>, baseado
+nos trabalhos anteriores <span id="id1">[<a class="reference internal" href="../referencias.html#id128" title="Lorena Alves Santos, Karine Ferreira, Michelle Picoli, Gilberto Camara, Raul Zurita-Milla, and Ellen-Wien Augustijn. Identifying spatiotemporal patterns in land use and cover samples from satellite image time series. Remote Sensing, 13(5):974, 2021.">107</a>]</span> e <span id="id2">[<a class="reference internal" href="../referencias.html#id135" title="BLC Silva, FC Souza, KR Ferreira, GR Queiroz, and LA Santos. Spatiotemporal segmentation of satellite image time series using self-organizing map. ISPRS Annals of the Photogrammetry, Remote Sensing and Spatial Information Sciences, 3:255–261, 2022.">152</a>]</span>, para descobrir padrões em séries temporais de imagens dentro de
+uma gleba, apresentado na <a class="reference internal" href="#fig-padroes-series-padroes-series-uma-gleba"><span class="std std-numref">Figura 9.13</span></a>,
+e em múltiplas glebas do Sicor, apresentado na <a class="reference internal" href="#fig-padroes-series-padroes-series-multiplas-glebas"><span class="std std-numref">Figura 9.14</span></a>.</p>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-series-uma-gleba">
+<a class="reference internal image-reference" href="../_images/padroes-series-uma-gleba.png"><img alt="Metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor" src="../_images/padroes-series-uma-gleba.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.13 - </span><span class="caption-text">Metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor.</span><a class="headerlink" href="#fig-padroes-series-padroes-series-uma-gleba" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-series-multiplas-glebas">
+<a class="reference internal image-reference" href="../_images/padroes-series-multiplas-glebas.png"><img alt="Metodologia para descoberta de padrões em séries temporais de imagens em múltiplas glebas do Sicor" src="../_images/padroes-series-multiplas-glebas.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.14 - </span><span class="caption-text">Metodologia para descoberta de padrões em séries temporais de imagens em múltiplas glebas do Sicor.</span><a class="headerlink" href="#fig-padroes-series-padroes-series-multiplas-glebas" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>As duas metodologias acessam os cubos de dados de imagens produzidos pelo do projeto <a class="reference external" href="https://data.inpe.br/bdc/web/">Brazil Data Cube</a>
+e disponíveis através do serviço <a class="reference internal" href="../acesso-imagens/stac.html#sec-acesso-imagens-stac"><span class="std std-numref">Seção 6.2 - SpatioTemporal Asset Catalogs (STAC)</span></a>. As duas metodologias
+utilizam o método <a class="reference internal" href="som.html#sec-padroes-series-temporais-som"><span class="std std-numref">Seção 9.2 - SOM (Self-Organizing Maps)</span></a> para agrupar as séries temporais similares
+na grade de saída, utilizando a <a class="reference internal" href="distancias.html#sec-padroes-series-temporais-distancias"><span class="std std-numref">Seção 9.1 - Distância Euclidiana</span></a>. Como o número de séries temporais e o número de possíveis padrões são maiores na segunda metodologia para múltiplas glebas, usamos o método
+<em>Hierarquical Cluster</em> para agrupar os vetores de peso do mapa SOM, utilizando a <a class="reference internal" href="distancias.html#sec-padroes-series-temporais-distancias"><span class="std std-numref">Seção 9.1 - Distância DTW</span></a>.</p>
+<p>Os resultados da metodologia para descoberta de padrões em séries temporais de imagens dentro de uma gleba do Sicor são mostrados nas
+Figuras <a class="reference internal" href="#fig-padroes-series-padroes-result-gleba-01"><span class="std std-numref">9.15</span></a>, <a class="reference internal" href="#fig-padroes-series-padroes-result-gleba-01-clusters"><span class="std std-numref">9.16</span></a>,
+<a class="reference internal" href="#fig-padroes-series-padroes-result-gleba-02"><span class="std std-numref">9.17</span></a> e <a class="reference internal" href="#fig-padroes-series-padroes-result-gleba-02-clusters"><span class="std std-numref">9.18</span></a>.</p>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-result-gleba-01">
+<a class="reference internal image-reference" href="../_images/padroes-result-gleba-01.png"><img alt="Resultado para gleba 1 da metodologia para descoberta de padrões em séries temporais de imagens" src="../_images/padroes-result-gleba-01.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.15 - </span><span class="caption-text">Resultado da metodologia para descoberta de padrões em séries temporais de imagens para a gleba 1: (A) imagem de alta resolução da gleba 1; e (B) os grupos semelhantes ou <em>clusters</em> gerados dentro da gleba 1 a partir de suas séries temporais de imagens.</span><a class="headerlink" href="#fig-padroes-series-padroes-result-gleba-01" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-result-gleba-01-clusters">
+<a class="reference internal image-reference" href="../_images/padroes-result-gleba-01-clusters.png"><img alt="Resultado para gleba 1 da metodologia para descoberta de padrões em séries temporais de imagens." src="../_images/padroes-result-gleba-01-clusters.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.16 - </span><span class="caption-text">As séries temporais de imagens dos 9 grupos ou <em>clusters</em> gerados para a gleba 1 usando a metodologia: (A) imagem de alta resolução da gleba 1 e seus grupos; e (B) os vetores de peso e as séries temporais de cada neurônio no mapa de saída do SOM.</span><a class="headerlink" href="#fig-padroes-series-padroes-result-gleba-01-clusters" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-result-gleba-02">
+<a class="reference internal image-reference" href="../_images/padroes-result-gleba-02.png"><img alt="Resultado para gleba 2 da metodologia para descoberta de padrões em séries temporais de imagens" src="../_images/padroes-result-gleba-02.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.17 - </span><span class="caption-text">Resultado da metodologia para descoberta de padrões em séries temporais de imagens para a gleba 2: (A) imagem de alta resolução da gleba 2; e (B) os grupos semelhantes ou <em>clusters</em> gerados dentro da gleba 2 a partir de suas séries temporais de imagens.</span><a class="headerlink" href="#fig-padroes-series-padroes-result-gleba-02" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<figure class="align-center align-default" id="fig-padroes-series-padroes-result-gleba-02-clusters">
+<a class="reference internal image-reference" href="../_images/padroes-result-gleba-02-clusters.png"><img alt="Resultado para gleba 2 da metodologia para descoberta de padrões em séries temporais de imagens" src="../_images/padroes-result-gleba-02-clusters.png" style="width: 90%;" /></a>
+<figcaption>
+<p><span class="caption-number">Figura 9.18 - </span><span class="caption-text">As séries temporais de imagens dos 9 grupos ou <em>clusters</em> gerados para a gleba 2 usando a metodologia: (A) imagem de alta resolução da gleba 1 e seus grupos; e (B) os vetores de peso e as séries temporais de cada neurônio no mapa de saída do SOM.</span><a class="headerlink" href="#fig-padroes-series-padroes-result-gleba-02-clusters" title="Link Permanente para essa imagem"></a></p>
+</figcaption>
+</figure>
+<p>O seguinte <em>Jupyter Notebook</em> implementa essas metodologias com dados das glebas:</p>
+<ul class="open">
+<li><p>Padrões de séries temporais de imagens. Disponível como <em>Code</em> de nome <em>tema7-padroes-series-temporais-imagensia</em> em <a class="reference external" href="https://www.kaggle.com/organizations/geocreditorural">Kaggle - Geo Credito Rural</a>.</p></li>
+</ul>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="som.html" class="btn btn-neutral float-left" title="9.2. Métodos de Agrupamento para Séries Temporais" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="../referencias.html" class="btn btn-neutral float-right" title="Referências Bibliográficas" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f85effc3fd0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

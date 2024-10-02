@@ -87,7 +87,7 @@ A coluna ``cd_empreendimento`` contém um código único para cada empreendiment
 
 .. note::
 
-    Alguns códigos de empreendimentos possuem relação com os códigos da cultura presentes nos dados do `Zarc <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, como será visto na :numref:`Seção %s - Zoneamento Agrícola de Risco Climático (ZARC) <sec_sicor_zarc>`.
+    Alguns códigos de empreendimentos possuem relação com os códigos da cultura presentes nos dados do `ZARC <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, como será visto na :numref:`Seção %s - Zoneamento Agrícola de Risco Climático (ZARC) <sec_sicor_zarc>`.
 
 
 .. note::

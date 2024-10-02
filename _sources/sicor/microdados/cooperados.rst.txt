@@ -37,4 +37,4 @@ O arquivo `SICOR_LISTA_COOPERADOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBru
     +---------------+-------------------------+----------+-------------------------------------------------------+
 
 
-As colunas ``ref_bacen`` e ``nu_ordem`` ligam os cooperados ao contrato e a sua com a destinação ou a finalidade, conforme descrito na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Além disto, é possível saber a ligação do recurso com o Programa ou Linha de Crédito, como descrito na :numref:`Seção %s - Programas ou Linhas de Crédito <sec_sicor_microdados_programa>`.
+As colunas ``ref_bacen`` e ``nu_ordem`` ligam os cooperados ao contrato e a destinação ou a finalidade, conforme descrito na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Além disto, é possível saber a ligação do recurso com o Programa ou Linha de Crédito, como descrito na :numref:`Seção %s - Programas ou Linhas de Crédito <sec_sicor_microdados_programa>`.

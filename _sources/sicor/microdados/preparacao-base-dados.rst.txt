@@ -30,7 +30,7 @@ Preparação da Base de Dados Sicor
             :name: code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql
 
 
-        **3.** Por último, faça o *download* do arquivo :download:`sicor-pos-carga-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`. Este arquivo contem instruções para criação de chaves primárias, chaves estrangeiras e índices (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
+        **3.** Por último, faça o *download* do arquivo :download:`sicor-pos-carga-ddl.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`. Este arquivo contém instruções para criação de chaves primárias, chaves estrangeiras e índices (:numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:sicor-carga-dados.sql>`).
 
         .. literalinclude:: ../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql
             :language: sql

@@ -148,7 +148,7 @@ A coluna ``gt_geometria`` , portanto, pode conter elementos geométricos descrit
 
 .. tip::
 
-    As geotecnologias que utilizam códigos EPSG para referenciar **sistemas de referecial espacial (SRS)** definem o código EPSG:4674 para coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
+    As geotecnologias que utilizam códigos EPSG para indicar **sistemas de referência espacial (SRS)** definem o código EPSG:4674 para coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
 
 
 Os arquivos listados acima foram carregados na tabela ``sicor_glebas_wkt`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:er-sicor-glebas-wkt>` apresenta o relacionamento dessa tabela com a tabela de operações contratadas.

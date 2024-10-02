@@ -84,3 +84,86 @@ Apesar dos problemas apontados anteriormente, muitas propriedades foram cadastra
 
     Localização das propriedades certificadas e registradas no SNCI.
 
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do conjunto de dados do SIGEF. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `SIGEF-BRASIL.zip`.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:sigef-vetor
+
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4326) |  Geometria da propriedade rural                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+   
+    |         | parecela_co  | varchar(64)                 |  Código da propriedade                                |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | rt           | varchar(4)                  |  Responsável técnico                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | art          | varchar(80)                 |  Anotação de responsabilidade técnica                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | situacao_i   | varchar(25)                 |  Situação da titulação e registro da propriedade      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | codigo_imo   | varchar(13)                 |  Código do imóvel no Sistema Nacional de Cadastro     | 
+    |         |              |                             |      Rural (SNCR)                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_submi   | date                        |  Data da submissão                                    |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_aprov   | date                        |  Data da aprovação                                    |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | status       | varchar(32)                 |  Informa se a propriedade está certificada ou         |
+    |         |              |                             |  Registrada                                           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome_area    | varchar(254)                |  Nome da propriedade                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | registro_m   | varchar(254)                |  Registro                                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | registro_d   | date                        |  Data do registro                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | municipio    | integer                     |  Código do município                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf_id        | integer                     |  Código do estado                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do conjunto de dados do SNCI. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Imóvel certificado SNCI Brasil.zip`.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:snci-vetor
+
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4326) |  Geometria da propriedade rural                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+   
+    |         | num_proces   | varchar(50)                 |  Número do processo                                   |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | sr           | varchar(2)                  |  Superintendência Regional                            |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | num_certif   | varchar(15)                 |  Número do certificado                                |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_certi   | date                        |  Data da certificação                                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | qtd_area_p   | varchar(50)                 |  área da propriedade                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cod_profis   | varchar(3)                  |  Código do responsável técnico                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cod_imovel   | varchar(4)                  |  Código do imóvel                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome_imove   | varchar(254)                |  Nome do imóvel                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf_municip   | varchar(2)                  |  Sigla da unidade da federação                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+
+   

@@ -164,7 +164,7 @@ O número de geometrias inválidas em cada ano é muito pequeno, como mostrado n
               ON glebas_com_geom_validas.ano = glebas_com_geom_invalidas.ano;
 
 
-Essa consulta irá produzir um resultado semelhante ao mostradao abaixo:
+Essa consulta irá produzir um resultado semelhante ao mostrado abaixo:
 
 
 .. code-block:: text
@@ -246,7 +246,7 @@ O resultado dessa consulta aponta que os casos considerados inválidos são ocas
     (26 rows)
 
 
-A :numref:`Figura %s <fig:sicor:microdados:glebas-topologia:gleba-invalida-gid-39042>` destaca o vértice que apresenta o local da auto-intesecção para a gleba com o identificador (``gid``) 39042.
+A :numref:`Figura %s <fig:sicor:microdados:glebas-topologia:gleba-invalida-gid-39042>` destaca o vértice que apresenta o local da auto-intersecção para a gleba com o identificador (``gid``) 39042.
 
 
 .. figure:: ../../img/sicor/microdados/glebas-topologia/gleba-invalida-gid-39042.png
@@ -359,3 +359,7 @@ Resultado:
 Relacionamentos Espaciais
 -------------------------
 
+
+.. warning::
+
+    Esta seção **encontra-se em desenvolvimento**.

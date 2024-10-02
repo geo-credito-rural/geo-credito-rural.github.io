@@ -22,7 +22,7 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (:term:`COP`) e
 - O evento adverso originador da solicitação, como geada, granizo, seca e enchentes, entre outros. A lista completa dos tipos de eventos adversos geradores de pedidos de cobertura encontra-se disponível no arquivo `EventoProagro.csv <https://www.bcb.gov.br/htms/sicor/EventoProagro.csv>`__, cuja estrutura é apresentada na :numref:`Tabela %s <tbl:sicor:microdados:eventoproagro>`.
 
 
-    .. table:: Estrutura do arquivo com os posśiveis eventos geradores de pedidos do Proagro.
+    .. table:: Estrutura do arquivo com os possíveis eventos geradores de pedidos do Proagro.
         :align: center
         :header-alignment: center center center center
         :column-alignment: center left center left
@@ -76,7 +76,7 @@ No Sicor, os microdados sobre os pedidos de cobertura do Proagro (:term:`COP`) e
 - Situação do pedido de cobertura: ``em análise``, ``deferida``, ``indeferida``, ``desistida``, ``cancelada`` e ``inválida``. A lista completa dos possíveis estados de um pedido de cobertura encontra-se disponível no arquivo `StatusCOPProagro.csv <https://www.bcb.gov.br/htms/sicor/StatusCOPProagro.csv>`__, cuja estrutura é apresentada na :numref:`Tabela %s <tbl:sicor:microdados:statuscopproagro>`.
 
 
-    .. table::  Estrutura do arquivo com os possíveis estados dos pedido de cobertura do Proagro.
+    .. table::  Estrutura do arquivo com os possíveis estados dos pedidos de cobertura do Proagro.
         :align: center
         :header-alignment: center center center center
         :column-alignment: center left center left
@@ -423,7 +423,7 @@ Consultas
 ---------
 
 
-**Consulta 1.** Quais as culturas que mais solicitam proagro?
+**Consulta 1.** Quais as culturas que mais solicitam Proagro?
 
 
 .. collapse:: Solução:
@@ -788,7 +788,7 @@ Consultas
                  WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
 
 
-    Por último, podemos calcular o valor pago de Proagro por municipio, atualizando a coluna ``valor_pago_proagro``:
+    Por último, podemos calcular o valor pago de Proagro por município, atualizando a coluna ``valor_pago_proagro``:
 
 
     .. tabs::
@@ -842,7 +842,7 @@ Consultas
         :name: tbl:sicor:microdados:proagro:numero-pedidos-x-valor-pago
 
         +-----------------------------------------------------------------+-------------------------------------------------------------+
-        | **(a) Número de pedidos de Proagro por município**              | **(b) Valor pago pelo Proagro em cada muncípio**            |
+        | **(a) Número de pedidos de Proagro por município**              | **(b) Valor pago pelo Proagro em cada município**           |
         +-----------------------------------------------------------------+-------------------------------------------------------------+
         | |fig:sicor:microdados:proagro:proagro-numero-pedidos-municipio| | |fig:sicor:microdados:proagro:proagro-valor-pago-municipio| |
         +-----------------------------------------------------------------+-------------------------------------------------------------+

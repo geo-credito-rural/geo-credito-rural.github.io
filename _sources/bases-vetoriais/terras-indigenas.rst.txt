@@ -25,6 +25,60 @@ A Fundação Nacional dos Povos Indígenas (FUNAI) é a instituição responsáv
 
 As terras indígenas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do :download:`Acervo da FUNAI <https://www.gov.br/funai/pt-br/atuacao/terras-indigenas/geoprocessamento-e-mapas>` e inseridas na tabela ``terras_indigenas``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`.
 
+A :numref:`Tabela %s <tbl:bases-vetoriais:tishp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+
+
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `tis_poligonais.zip <https://geoserver.funai.gov.br/geoserver/Funai/ows?service=WFS&version=1.0.0&request=GetFeature&typeName=Funai%3Atis_poligonais&maxFeatures=10000&outputFormat=SHAPE-ZIP>`__.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:tishp
+    
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador da TI                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da TI                                      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | gid          | integer                     |  Identificador                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | terrai_cod   | integer                     |  Identificador da TI                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | terrai_nom   | varchar(254)                |  Nome da TI                                           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | etnia_nom    | varchar(254)                |  Etnia na TI                                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | municipio    | varchar(254)                |  Município da TI                                      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uf_sigla     | varchar(254)                |  Sigla da Unidade da Federação                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | superficie   | double precision            |  Área da TI                                           |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | fase_ti      | varchar(254)                |  Fase do processo para regularização da TI            |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | modalidade   | varchar(254)                |  Modalidade da TI                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | reestudo_t   | varchar(254)                |  Informa se foi solicitado um reestudo TI             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cr           | varchar(254)                |  Coordenação regional                                 |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | faixa_fron   | varchar(254)                |  Informa se a TI se localiza na faixa de fronteira    |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | undadm_cod   | double precision            |  Código da unidade administrativa                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | undadm_nom   | varchar(254)                |  Nome da unidade administrativa                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | undadm_sig   | double precision            |  Sigla da unidade administrativa                      |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | dominio_un   | varchar(254)                |  boleano (t/f)                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | data_atual   | varchar(254)                |  Data da atualização                                  |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | epsg         | integer                     |  Campo vazio                                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    
+
 
 Consultas
 ---------
