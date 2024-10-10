@@ -42,7 +42,7 @@ pgAdmin
 -------
 
 
-Para conseguir se conectar a um servidor com o `pgAdmin`, você precisará ter esse servidor registrado na árvore de objetos. No *menu* de atalho do objeto ``Servers``, selecione a opção ``Register | Server...`` como indicado na :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-menu-register-server>`.
+Para criar uma conexão ao servidor PostgreSQL é necessário registrar esse servidor na árvore de objetos do pgAdmin. Para isso, no *menu* de atalho do objeto ``Servers``, selecione a opção ``Register | Server...`` como indicado na :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-menu-register-server>`.
 
 
 .. figure:: ../img/sql/pgadmin4/menu-register-server.png
@@ -54,7 +54,7 @@ Para conseguir se conectar a um servidor com o `pgAdmin`, você precisará ter e
     Menu para registro da conexão a um novo servidor PostgreSQL.
 
 
-Na janela apresentada, deve ser informado um nome que será usado para identificar o servidor na árvore de objetos do pgAdmin (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-general>`).
+Na janela apresentada (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-general>`) deve ser informado um nome que será usado para identificar o servidor na árvore de objetos do pgAdmin.
 
 
 .. figure:: ../img/sql/pgadmin4/register-server-general.png
@@ -66,7 +66,7 @@ Na janela apresentada, deve ser informado um nome que será usado para identific
     Registrando um novo servidor PostgreSQL.
 
 
-Na aba ``Connection``, forneça as informações de conexão ao servidor (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-connection>`).
+Na aba ``Connection`` (:numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-register-server-connection>`) forneça as informações de conexão ao servidor.
 
 
 .. figure:: ../img/sql/pgadmin4/register-server-connection.png
@@ -78,7 +78,7 @@ Na aba ``Connection``, forneça as informações de conexão ao servidor (:numre
     Informações de conexão ao servidor PostgreSQL
 
 
-Ao pressionar o botão ``Save``, deverá ser apresentada uma tela como a da :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-local-server>`.
+Ao pressionar o botão ``Save`` deverá ser apresentada uma tela como a da :numref:`Figura %s <fig:sql:conectando-bd:pgadmin4-local-server>`, com a árvore de objetos à esquerda listando o banco de dados e seus objetos, e o painel à direita, com atividades do servidor.
 
 
 .. figure:: ../img/sql/pgadmin4/local-server.png

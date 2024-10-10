@@ -65,33 +65,136 @@ Onde:
     - ``FOREIGN KEY``: Lista de colunas que formam uma chave estrangeira composta.
 
 
+Exemplo Criação de Tabela
+-------------------------
+
+
+Vamos criar uma tabela de exemplo chamada ``sedes_municipais`` com a seguinte estrutura:
+
+
+.. table:: ``sedes_municipais``.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+
+    +-------------+----------------------------+-----------------------------------------------------+
+    | nome tabela: **sedes_municipais**                                                              +
+    +-------------+----------------------------+-----------------------------------------------------+
+    | colunas     | tipo de dados              | modificadores                                       |
+    +=============+============================+=====================================================+
+    | gid         | número inteiro             | chave primária                                      |
+    +-------------+----------------------------+-----------------------------------------------------+
+    | nome        | texto de tamanho variável  | limitado a 50 caracteres                            |
+    +-------------+----------------------------+-----------------------------------------------------+
+    | localizacao | geometria                  | geometrias do subtipo ponto associados ao SRID 4326 |
+    +-------------+----------------------------+-----------------------------------------------------+
+
+
+O comando de criação dessa tabela é mostrado abaixo:
+
+
+.. code-block:: sql
+
+    CREATE TABLE sedes_municipais
+    (
+        gid          SERIAL PRIMARY KEY,
+        nome         VARCHAR(50),
+        localizacao  GEOMETRY(POINT, 4326)
+    );
+
+
+Para inserir tuplas (linhas ou registros) na tabela ``sedes_municipais``:
+
+
+.. code-block:: sql
+
+    INSERT INTO sedes_municipais (nome, localizacao)
+         VALUES ('São Carlos', ST_GeomFromText('POINT(-47.88497 -22.02557)', 4326) ),
+                ('Ouro Preto', ST_GeomFromText('POINT(-43.51592 -20.38144)', 4326) ),
+                ('São José dos Campos', ST_GeomFromText('POINT(-45.90245 -23.20000)', 4326) );
+
+
+Para consultar os metadados da tabela com feições denominada ``sedes_municipais``:
+
+
+.. code-block:: sql
+
+    SELECT * FROM geometry_columns WHERE f_table_name = 'sedes_municipais';
+
+
+-----
+
+**Exercício:** Visualizar a tabela acima no QGIS.
+
+
 Estudo de Caso
 --------------
 
 
-.. Considere o **diagrama Entidade-Relacionamento** (**ER**) mostrado na :numref:`Figura %s <fig:sql:criando-tabelas:diagrama-er>`.
+Considere o **diagrama Entidade-Relacionamento** (**ER**) mostrado na :numref:`Figura %s <fig:sql:criando-tabelas:diagrama-er>`.
 
 
-.. .. figure:: ../img/sql/criando-tabelas/diagrama-er.png
-..     :alt: Diagrama ER - Operações de crédito rural e glebas.
-..     :width: 100%
-..     :figclass: align-center
-..     :name: fig:sql:criando-tabelas:diagrama-er
-..
-..     Diagrama ER - Operações de crédito rural e glebas.
+.. figure:: ../img/sql/criando-tabelas/diagrama-er.png
+    :alt: Diagrama ER - Operações de crédito rural e glebas.
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:criando-tabelas:diagrama-er
+
+    Diagrama ER - Operações de crédito rural contratadas por pessoas físicas.
 
 
 Nesse diagrama temos as seguintes informações:
 
 .. rst-class:: open
 
-- Um contrato de financiamento possui propriedades como: número do contrato, CPF do contratante, valor emprestado, data da realização do empréstimo. O atributo destacado ``numero_contrato`` indica que os valores nessa coluna são únicos e, portanto, identifica unicamente um determinado contrato.
+- Um *Contratante* possui propriedades como: CPF, nome, gênero, classificação ou porte do agricultor e a data de seu cadastro no banco de dados. O atributo destacado ``cpf`` indica que os valores nessa coluna são únicos e, portanto, identifica unicamente um determinado contratante.
 
-- Uma gleba possui propriedades como: identificador da gleba (gid), número do contrato associado e o polígono representando os limites da área da gleba.
+- Uma *Operação*, ou contrato de financiamento, possui propriedades como: número do contrato, valor do financiamento, o período do contrato (data de início e fim). O atributo destacado ``numero_contrato`` indica que os valores nessa coluna são únicos e, portanto, identifica unicamente um determinado contrato.
 
-- O relacionamento entre ``contrato`` e ``gleba`` possui uma cardinalidade de ``1:N`` (``1`` para ``N``), isto é, um contrato pode referenciar uma ou mais glebas e uma gleba somente pode estar associada a um contrato.
+- O relacionamento entre *Contratante* e *Operação* possui uma cardinalidade de ``M:N`` (``M`` para ``N``), isto é, um certo contratante pode contratar uma ou mais operações e uma operação pode estar associada a um ou mais contratantes. Além disso, esse relacionamento possui um atributo que corresponde à data de assinatura do contrato pelo contratante.
 
-- Um municipio possui propriedades como: identificador, nome, e o polígono representando os limites da área do município.
+- Uma *Gleba* possui duas propriedades: identificador da gleba (``gid``) e a geometria representando os limites da área da gleba.
 
-- Não um um relacionamento explícito através de atributos entre as tabelas ``municipio`` e ``gleba``. No entanto, existe um relacionamento espacial entre os polígonos dos municípios e das glebas, pois toda gleba deve estar contida nos limites de um município.
+- O relacionamento entre *Operação* e *Gleba* possui uma cardinalidade de ``1:N`` (``1`` para ``N``), isto é, um contrato pode referenciar uma ou mais glebas e uma gleba somente pode estar associada a um contrato.
+
+- Um *Município* possui propriedades como: identificador (``gid``), código do IBGE (``geocodigo``), nome e ogeometria representando os limites da área do município.
+
+- O relacionamento entre *Gleba* e *Município* é um relacionamento espacial, indicado de "maneira informal" pelas linhas tracejadas.
+
+
+.. note::
+
+    A notação do Diagrama ER não permite representar relacionamentos espaciais. No exemplo acima, fizemos uma adaptação para ilustrar as informações que vamos manipular mais adiante.
+
+
+A :numref:`Figura %s <fig:sql:criando-tabelas:cardinalidade-er>` apresenta a cardinalidade envolvida nos relacionamentos do diagrama acima:
+
+
+.. figure:: ../img/sql/criando-tabelas/cardinalidade-er.png
+    :alt: Exemplo da cardinalidade dos relacionamento do Diagrama ER - Operações de crédito rural contratadas por pessoas físicas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:criando-tabelas:cardinalidade-er
+
+    Exemplo da cardinalidade dos relacionamento do Diagrama ER - Operações de crédito rural contratadas por pessoas físicas.
+
+
+A partir da compreensão do diagrama ER, podemos criar um novo diagrama mais próximo da implementação que faremos no PostgreSQL (:numref:`Figura %s <fig:sql:criando-tabelas:modelo-logico>`):
+
+
+.. figure:: ../img/sql/criando-tabelas/modelo-logico.png
+    :alt: Modelo lógico - Operações de crédito rural contratadas por pessoas físicas
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:criando-tabelas:modelo-logico
+
+    Modelo lógico - Operações de crédito rural contratadas por pessoas físicas.
+
+
+Comandos de Definição de Dados
+++++++++++++++++++++++++++++++
+
+
+Agora que temos o modelo das tabelas que queremos criar e sabemos a sintaxe básica do comando ``CREATE TABLE``, vamos definir as tabelas ``contratante``, ``contratante_operacao``, ``operacao``, ``gleba`` e ``municipio`` usando SQL.
+
 

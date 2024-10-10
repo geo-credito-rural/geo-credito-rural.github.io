@@ -41,7 +41,7 @@ A especificação OGC-SFS :cite:`herring:2011:a` define uma notação textual co
     +----------------------------------------------+--------------------------------------------+-----------------------------------------+
 
 
-Na notação WKT, o ponto de coordenadas :math:`x = 1` e :math:`y = 8` mostrado na :numref:`Tabela %sa <tbl:sql:tipos-geometricos:wkt-geom>`, é descrito pela seguinte cadeia de caracteres ou *string*:
+Na notação WKT, o ponto de coordenadas :math:`x = 1` e :math:`y = 8`, mostrado na :numref:`Tabela %sa <tbl:sql:tipos-geometricos:wkt-geom>`, é descrito pela seguinte cadeia de caracteres ou *string*:
 
 
 .. code-block:: sql
@@ -238,24 +238,32 @@ Operadores Conjunto
 -------------------
 
 
+.. |fig:sql:postgis-geometry:st-intersection| image:: ../img/sql/postgis-geometry/st-intersection.png
+
+.. |fig:sql:postgis-geometry:st-union| image:: ../img/sql/postgis-geometry/st-union.png
+
+.. |fig:sql:postgis-geometry:st-difference| image:: ../img/sql/postgis-geometry/st-difference.png
+
+
 **1.** O operador ``ST_Intersection`` computa a geometria de intersecção entre duas geometrias.
 
 
 .. table::
-    :widths: 35 65
-    :width: 100%
+    :width: 80%
     :align: center
 
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-    | **FIGURA**                                     |  .. code-block:: sql                                                           |
-    |                                                |                                                                                |
-    |                                                |      SELECT ST_AsText(                                                         |
-    |                                                |                 ST_Intersection(                                               |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )' ), |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )' )  |
-    |                                                |                 )                                                              |
-    |                                                |             );                                                                 |
-    +------------------------------------------------+--------------------------------------------------------------------------------+
+    +--------------------------------------------------------------------------------+
+    + |fig:sql:postgis-geometry:st-intersection|                                     +
+    +--------------------------------------------------------------------------------+
+    | .. code-block:: sql                                                            |
+    |                                                                                |
+    |     SELECT ST_AsText(                                                          |
+    |                ST_Intersection(                                                |
+    |                    ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ),  |
+    |                    ST_GeomFromText( 'POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )' )   |
+    |                )                                                               |
+    |            );                                                                  |
+    +--------------------------------------------------------------------------------+
 
 
 **2.** O operador ``ST_Union`` computa a geometria formada pela união de outras duas geometrias.
@@ -263,62 +271,47 @@ Operadores Conjunto
 
 
 .. table::
-    :widths: 35 65
-    :width: 100%
+    :width: 80%
     :align: center
 
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-    | **FIGURA**                                     |  .. code-block:: sql                                                           |
-    |                                                |                                                                                |
-    |                                                |      SELECT ST_AsText(                                                         |
-    |                                                |                 ST_Union(                                                      |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )' ), |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )' )  |
-    |                                                |                 )                                                              |
-    |                                                |             );                                                                 |
-    +------------------------------------------------+--------------------------------------------------------------------------------+
+    +--------------------------------------------------------------------------------+
+    + |fig:sql:postgis-geometry:st-union|                                            +
+    +--------------------------------------------------------------------------------+
+    |  .. code-block:: sql                                                           |
+    |                                                                                |
+    |      SELECT ST_AsText(                                                         |
+    |                 ST_Union(                                                      |
+    |                     ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ), |
+    |                     ST_GeomFromText( 'POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )' )  |
+    |                 )                                                              |
+    |             );                                                                 |
+    +--------------------------------------------------------------------------------+
 
 
 **3.** O operador ``ST_Difference`` computa a geometria formada pela diferença entre a geometria ``A`` e a geometria ``B``.
 
 
 .. table::
-    :widths: 35 65
-    :width: 100%
+    :width: 80%
     :align: center
 
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-    | **FIGURA**                                     |  .. code-block:: sql                                                           |
-    |                                                |                                                                                |
-    |                                                |      SELECT ST_AsText(                                                         |
-    |                                                |                 ST_Difference(                                                 |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )' ), |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )' )  |
-    |                                                |                 )                                                              |
-    |                                                |             );                                                                 |
-    +------------------------------------------------+--------------------------------------------------------------------------------+
+    +--------------------------------------------------------------------------------+
+    + |fig:sql:postgis-geometry:st-difference|                                       +
+    +--------------------------------------------------------------------------------+
+    |  .. code-block:: sql                                                           |
+    |                                                                                |
+    |      SELECT ST_AsText(                                                         |
+    |                 ST_Difference(                                                 |
+    |                     ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ), |
+    |                     ST_GeomFromText( 'POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )' )  |
+    |                 )                                                              |
+    |             );                                                                 |
+    +--------------------------------------------------------------------------------+
 
 
-**4.** O operador ``ST_SymDifference`` computa a geometria formada pela diferença simétrica entre duas geometrias.
+.. note::
 
-
-.. table::
-    :widths: 35 65
-    :width: 100%
-    :align: center
-
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-    | **FIGURA**                                     |  .. code-block:: sql                                                           |
-    |                                                |                                                                                |
-    |                                                |      SELECT ST_AsText(                                                         |
-    |                                                |                 ST_SymDifference(                                              |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )' ), |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )' )  |
-    |                                                |                 )                                                              |
-    |                                                |             );                                                                 |
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-
-
+    O operador ``ST_SymDifference`` computa a geometria formada pela diferença simétrica entre duas geometrias.
 
 
 Relacionamentos Espaciais
@@ -355,24 +348,127 @@ Suponha dois conjuntos de dados, um representando os limites municipais (:numref
 Todos os sistemas baseados em SQL suportam um conjunto com pelo menos 08 operadores: ``Equals``, ``Touches``, ``Crosses``, ``Within``, ``Contains``, ``Overlaps``, ``Disjoint``, e ``Intersects``.
 
 
-**1.** O relacionamento espacial ``ST_Overlaps`` diz se duas geometrias se sobrepõem.
+.. |fig:sql:postgis-geometry:st-equals| image:: ../img/sql/postgis-geometry/st-equals.png
+
+.. |fig:sql:postgis-geometry:st-touches| image:: ../img/sql/postgis-geometry/st-touches.png
+
+.. |fig:sql:postgis-geometry:st-crosses| image:: ../img/sql/postgis-geometry/st-crosses.png
+
+.. |fig:sql:postgis-geometry:st-within| image:: ../img/sql/postgis-geometry/st-within.png
+
+.. |fig:sql:postgis-geometry:st-overlaps| image:: ../img/sql/postgis-geometry/st-overlaps.png
+
+
+**1.** O relacionamento espacial ``ST_Equals`` permite saber se duas geometrias ``A`` e ``B`` são toplogicamente iguais.
 
 
 .. table::
-    :widths: 35 65
-    :width: 100%
+    :width: 80%
     :align: center
+    :column-alignment: center left
+    :widths: 35 65
 
-    +------------------------------------------------+--------------------------------------------------------------------------------+
-    | **FIGURA**                                     |  .. code-block:: sql                                                           |
-    |                                                |                                                                                |
-    |                                                |      SELECT ST_AsText(                                                         |
-    |                                                |                 ST_Intersection(                                               |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )' ), |
-    |                                                |                     ST_GeomFromText( 'POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )' )  |
-    |                                                |                 )                                                              |
-    |                                                |             );                                                                 |
-    +------------------------------------------------+--------------------------------------------------------------------------------+
+    +---------------------------------------+-----------------------------------------------------------------------------------------------+
+    | |fig:sql:postgis-geometry:st-equals|  | .. code-block:: sql                                                                           |
+    |                                       |                                                                                               |
+    |                                       |     SELECT ST_Equals(                                                                         |
+    |                                       |                ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ),                     |
+    |                                       |                ST_GeomFromText( 'POLYGON( (1 2, 1 3, 1 4, 2 4, 3 4, 3 3, 3 2, 2 2, 1 2) )' )  |
+    |                                       |            );                                                                                 |
+    +---------------------------------------+-----------------------------------------------------------------------------------------------+
+
+
+**2.** O relacionamento espacial ``ST_Touches`` diz se duas geometrias se tocam.
+
+
+.. table::
+    :width: 80%
+    :align: center
+    :column-alignment: center left
+    :widths: 35 65
+
+    +---------------------------------------+----------------------------------------------------------------------------+
+    | |fig:sql:postgis-geometry:st-touches| | .. code-block:: sql                                                        |
+    |                                       |                                                                            |
+    |                                       |     SELECT ST_Touches(                                                     |
+    |                                       |                ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ),  |
+    |                                       |                ST_GeomFromText( 'POLYGON( (3 1, 3 3, 5 3, 5 1, 3 1) )' )   |
+    |                                       |            );                                                              |
+    +---------------------------------------+----------------------------------------------------------------------------+
+
+
+**3.** O relacionamento espacial ``ST_Crosses`` diz se duas geometrias se cruzam.
+
+
+.. table::
+    :width: 80%
+    :align: center
+    :column-alignment: center left
+    :widths: 35 65
+
+    +---------------------------------------+----------------------------------------------------------------------------+
+    | |fig:sql:postgis-geometry:st-crosses| | .. code-block:: sql                                                        |
+    |                                       |                                                                            |
+    |                                       |     SELECT ST_Crosses(                                                     |
+    |                                       |                ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ),  |
+    |                                       |                ST_GeomFromText( 'LINESTRING( 2 3, 4 3, 5 1 )' )            |
+    |                                       |            );                                                              |
+    +---------------------------------------+----------------------------------------------------------------------------+
+
+
+**4.** O relacionamento espacial ``ST_Within`` diz se a geometria ``A`` encontra-se dentro da geometria ``B``.
+
+
+.. table::
+    :width: 80%
+    :align: center
+    :column-alignment: center left
+    :widths: 35 65
+
+    +--------------------------------------+----------------------------------------------------------------------------+
+    | |fig:sql:postgis-geometry:st-within| | .. code-block:: sql                                                        |
+    |                                      |                                                                            |
+    |                                      |     SELECT ST_Within(                                                      |
+    |                                      |                ST_GeomFromText( 'POLYGON( (2 2, 2 3, 3 3, 3 2, 2 2) )' ),  |
+    |                                      |                ST_GeomFromText( 'POLYGON( (1 1, 1 4, 5 4, 5 1, 1 1) )' )   |
+    |                                      |            );                                                              |
+    |                                      |                                                                            |
+    |                                      |                                                                            |
+    |                                      | .. code-block:: sql                                                        |
+    |                                      |                                                                            |
+    |                                      |     SELECT ST_Within(                                                      |
+    |                                      |                ST_GeomFromText( 'POLYGON( (4 2, 4 3, 5 3, 5 2, 4 2) )' ),  |
+    |                                      |                ST_GeomFromText( 'POLYGON( (1 1, 1 4, 5 4, 5 1, 1 1) )' )   |
+    |                                      |            );                                                              |
+    +--------------------------------------+----------------------------------------------------------------------------+
+
+
+**5.** O relacionamento espacial ``ST_Contains`` diz se a geometria ``A`` contém a geometria ``B``.
+
+
+**6.** O relacionamento espacial ``ST_Overlaps`` diz se duas geometrias se sobrepõem.
+
+
+.. table::
+    :width: 80%
+    :align: center
+    :column-alignment: center left
+    :widths: 35 65
+
+    +----------------------------------------+----------------------------------------------------------------------------+
+    | |fig:sql:postgis-geometry:st-overlaps| | .. code-block:: sql                                                        |
+    |                                        |                                                                            |
+    |                                        |     SELECT ST_Overlaps(                                                    |
+    |                                        |                ST_GeomFromText( 'POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )' ),  |
+    |                                        |                ST_GeomFromText( 'POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )' )   |
+    |                                        |            );                                                              |
+    +----------------------------------------+----------------------------------------------------------------------------+
+
+
+**7.** O relacionamento espacial ``ST_Disjoint`` diz se duas geometrias são disjuntas, isto é, se elas não possuem nenhuma interação espacial.
+
+
+**8.** O relacionamento espacial ``ST_Intersects`` diz se a geometria ``A`` possui algum tipo de interação espacial com a geometria ``B``.
 
 
 .. note::

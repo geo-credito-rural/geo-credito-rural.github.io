@@ -124,6 +124,4 @@ No PostgreSQL podemos utilizar a função ``pg_typeof`` para obter o tipo de dad
 
 .. tip::
 
-    A lista completa dos tipos básicos do PostgreSQL pode ser consultada em `Data Types <https://www.postgresql.org/docs/14/datatype.html>`__.
-
-
+    A lista completa dos tipos básicos pode ser consultada no manual do PostgreSQL na seção `Data Types <https://www.postgresql.org/docs/14/datatype.html>`__.

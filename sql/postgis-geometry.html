@@ -77,6 +77,7 @@
 <li class="toctree-l2"><a class="reference internal" href="consultas.html">1.10. Consultas em SQL</a></li>
 <li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
 <li class="toctree-l2"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consideracoes.html">1.13. Considerações Finais</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
@@ -152,7 +153,7 @@
 </tr>
 </tbody>
 </table>
-<p>Na notação WKT, o ponto de coordenadas <span class="math notranslate nohighlight">\(x = 1\)</span> e <span class="math notranslate nohighlight">\(y = 8\)</span> mostrado na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>, é descrito pela seguinte cadeia de caracteres ou <em>string</em>:</p>
+<p>Na notação WKT, o ponto de coordenadas <span class="math notranslate nohighlight">\(x = 1\)</span> e <span class="math notranslate nohighlight">\(y = 8\)</span>, mostrado na <a class="reference internal" href="#tbl-sql-tipos-geometricos-wkt-geom"><span class="std std-numref">Tabela 1.3a</span></a>, é descrito pela seguinte cadeia de caracteres ou <em>string</em>:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="n">POINT</span><span class="p">(</span><span class="mi">1</span><span class="w"> </span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
@@ -288,17 +289,15 @@
 <section id="operadores-conjunto">
 <h2><span class="section-number">1.7.4. </span>Operadores Conjunto<a class="headerlink" href="#operadores-conjunto" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>1.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Intersection</span></code> computa a geometria de intersecção entre duas geometrias.</p>
-<table class="styled-table docutils align-center" style="width: 100%">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
+<table class="styled-table docutils align-center" style="width: 80%">
 <tbody>
-<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
-<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<tr class="row-odd"><td class="left-align" rowspan="2"><p><img alt="fig:sql:postgis-geometry:st-intersection" src="../_images/st-intersection.png" /></p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
 <span class="w">           </span><span class="n">ST_Intersection</span><span class="p">(</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
 <span class="w">           </span><span class="p">)</span>
 <span class="w">       </span><span class="p">);</span>
 </pre></div>
@@ -308,17 +307,15 @@
 </tbody>
 </table>
 <p><strong>2.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Union</span></code> computa a geometria formada pela união de outras duas geometrias.</p>
-<table class="styled-table docutils align-center" style="width: 100%">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
+<table class="styled-table docutils align-center" style="width: 80%">
 <tbody>
-<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
-<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<tr class="row-odd"><td class="left-align" rowspan="2"><p><img alt="fig:sql:postgis-geometry:st-union" src="../_images/st-union.png" /></p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
 <span class="w">           </span><span class="n">ST_Union</span><span class="p">(</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
 <span class="w">           </span><span class="p">)</span>
 <span class="w">       </span><span class="p">);</span>
 </pre></div>
@@ -328,17 +325,15 @@
 </tbody>
 </table>
 <p><strong>3.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_Difference</span></code> computa a geometria formada pela diferença entre a geometria <code class="docutils literal notranslate"><span class="pre">A</span></code> e a geometria <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
-<table class="styled-table docutils align-center" style="width: 100%">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
+<table class="styled-table docutils align-center" style="width: 80%">
 <tbody>
-<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
-<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
+<tr class="row-odd"><td class="left-align" rowspan="2"><p><img alt="fig:sql:postgis-geometry:st-difference" src="../_images/st-difference.png" /></p></td>
+</tr>
+<tr class="row-even"></tr>
+<tr class="row-odd"><td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
 <span class="w">           </span><span class="n">ST_Difference</span><span class="p">(</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
 <span class="w">           </span><span class="p">)</span>
 <span class="w">       </span><span class="p">);</span>
 </pre></div>
@@ -347,26 +342,10 @@
 </tr>
 </tbody>
 </table>
-<p><strong>4.</strong> O operador <code class="docutils literal notranslate"><span class="pre">ST_SymDifference</span></code> computa a geometria formada pela diferença simétrica entre duas geometrias.</p>
-<table class="styled-table docutils align-center" style="width: 100%">
-<colgroup>
-<col style="width: 35%" />
-<col style="width: 65%" />
-</colgroup>
-<tbody>
-<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
-<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
-<span class="w">           </span><span class="n">ST_SymDifference</span><span class="p">(</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">           </span><span class="p">)</span>
-<span class="w">       </span><span class="p">);</span>
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O operador <code class="docutils literal notranslate"><span class="pre">ST_SymDifference</span></code> computa a geometria formada pela diferença simétrica entre duas geometrias.</p>
 </div>
-</td>
-</tr>
-</tbody>
-</table>
 </section>
 <section id="relacionamentos-espaciais">
 <h2><span class="section-number">1.7.5. </span>Relacionamentos Espaciais<a class="headerlink" href="#relacionamentos-espaciais" title="Link permanente para este cabeçalho"></a></h2>
@@ -390,19 +369,17 @@
 </tbody>
 </table>
 <p>Todos os sistemas baseados em SQL suportam um conjunto com pelo menos 08 operadores: <code class="docutils literal notranslate"><span class="pre">Equals</span></code>, <code class="docutils literal notranslate"><span class="pre">Touches</span></code>, <code class="docutils literal notranslate"><span class="pre">Crosses</span></code>, <code class="docutils literal notranslate"><span class="pre">Within</span></code>, <code class="docutils literal notranslate"><span class="pre">Contains</span></code>, <code class="docutils literal notranslate"><span class="pre">Overlaps</span></code>, <code class="docutils literal notranslate"><span class="pre">Disjoint</span></code>, e <code class="docutils literal notranslate"><span class="pre">Intersects</span></code>.</p>
-<p><strong>1.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Overlaps</span></code> diz se duas geometrias se sobrepõem.</p>
-<table class="styled-table docutils align-center" style="width: 100%">
+<p><strong>1.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Equals</span></code> permite saber se duas geometrias <code class="docutils literal notranslate"><span class="pre">A</span></code> e <code class="docutils literal notranslate"><span class="pre">B</span></code> são toplogicamente iguais.</p>
+<table class="styled-table docutils align-center" style="width: 80%">
 <colgroup>
 <col style="width: 35%" />
 <col style="width: 65%" />
 </colgroup>
 <tbody>
-<tr class="row-odd"><td class="left-align"><p><strong>FIGURA</strong></p></td>
-<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_AsText</span><span class="p">(</span>
-<span class="w">           </span><span class="n">ST_Intersection</span><span class="p">(</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 4, 5 4, 5 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
-<span class="w">               </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 1, 4 3, 7 3, 7 1, 4 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
-<span class="w">           </span><span class="p">)</span>
+<tr class="row-odd"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:st-equals" src="../_images/st-equals.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Equals</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 3, 1 4, 2 4, 3 4, 3 3, 3 2, 2 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">)</span>
 <span class="w">       </span><span class="p">);</span>
 </pre></div>
 </div>
@@ -410,6 +387,87 @@
 </tr>
 </tbody>
 </table>
+<p><strong>2.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Touches</span></code> diz se duas geometrias se tocam.</p>
+<table class="styled-table docutils align-center" style="width: 80%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:st-touches" src="../_images/st-touches.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Touches</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (3 1, 3 3, 5 3, 5 1, 3 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>3.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Crosses</span></code> diz se duas geometrias se cruzam.</p>
+<table class="styled-table docutils align-center" style="width: 80%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:st-crosses" src="../_images/st-crosses.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Crosses</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;LINESTRING( 2 3, 4 3, 5 1 )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>4.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Within</span></code> diz se a geometria <code class="docutils literal notranslate"><span class="pre">A</span></code> encontra-se dentro da geometria <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<table class="styled-table docutils align-center" style="width: 80%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:st-within" src="../_images/st-within.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 2, 2 3, 3 3, 3 2, 2 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 1, 1 4, 5 4, 5 1, 1 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (4 2, 4 3, 5 3, 5 2, 4 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 1, 1 4, 5 4, 5 1, 1 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>5.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Contains</span></code> diz se a geometria <code class="docutils literal notranslate"><span class="pre">A</span></code> contém a geometria <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
+<p><strong>6.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Overlaps</span></code> diz se duas geometrias se sobrepõem.</p>
+<table class="styled-table docutils align-center" style="width: 80%">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<tbody>
+<tr class="row-odd"><td class="center-align"><p><img alt="fig:sql:postgis-geometry:st-overlaps" src="../_images/st-overlaps.png" /></p></td>
+<td class="left-align"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_Overlaps</span><span class="p">(</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (1 2, 1 4, 3 4, 3 2, 1 2) )&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">           </span><span class="n">ST_GeomFromText</span><span class="p">(</span><span class="w"> </span><span class="s1">&#39;POLYGON( (2 1, 2 3, 4 3, 4 1, 2 1) )&#39;</span><span class="w"> </span><span class="p">)</span>
+<span class="w">       </span><span class="p">);</span>
+</pre></div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<p><strong>7.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Disjoint</span></code> diz se duas geometrias são disjuntas, isto é, se elas não possuem nenhuma interação espacial.</p>
+<p><strong>8.</strong> O relacionamento espacial <code class="docutils literal notranslate"><span class="pre">ST_Intersects</span></code> diz se a geometria <code class="docutils literal notranslate"><span class="pre">A</span></code> possui algum tipo de interação espacial com a geometria <code class="docutils literal notranslate"><span class="pre">B</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Os operadores topológicos são definidos com base no formalismo matemático conhecido como <strong>Matriz de 9-Intersecções Estendida Dimensionalmente</strong> (DE-9IM) <span id="id3">[<a class="reference internal" href="../referencias.html#id43" title="Eliseo Clementini, Paolino Di Felice, and Peter van Oosterom. A small set of formal topological relationships suitable for end-user interaction. In David Abel and Beng Chin Ooi, editors, Advances in Spatial Databases, 277–295. Berlin, Heidelberg, 1993. Springer Berlin Heidelberg. doi:10.1007/3-540-56869-7_16.">13</a>]</span>.</p>
@@ -432,7 +490,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f85f1314790>
+<jinja2.runtime.BlockReference object at 0x7f427bd2d940>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
