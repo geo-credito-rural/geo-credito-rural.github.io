@@ -270,6 +270,86 @@
 <section id="comandos-de-definicao-de-dados">
 <h3><span class="section-number">1.8.2.1. </span>Comandos de Definição de Dados<a class="headerlink" href="#comandos-de-definicao-de-dados" title="Link permanente para este cabeçalho"></a></h3>
 <p>Agora que temos o modelo das tabelas que queremos criar e sabemos a sintaxe básica do comando <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code>, vamos definir as tabelas <code class="docutils literal notranslate"><span class="pre">contratante</span></code>, <code class="docutils literal notranslate"><span class="pre">contratante_operacao</span></code>, <code class="docutils literal notranslate"><span class="pre">operacao</span></code>, <code class="docutils literal notranslate"><span class="pre">gleba</span></code> e <code class="docutils literal notranslate"><span class="pre">municipio</span></code> usando SQL.</p>
+<hr class="docutils" />
+<p><strong>Tabela:</strong> <code class="docutils literal notranslate"><span class="pre">contratante:</span></code></p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">estudante</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">matricula</span><span class="w">        </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nome</span><span class="w">             </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">data_nascimento</span><span class="w">  </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">genero</span><span class="w">           </span><span class="nb">CHAR</span><span class="p">(</span><span class="mf">1</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">genero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;M&#39;</span><span class="w"> </span><span class="k">OR</span><span class="w"> </span><span class="n">genero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;F&#39;</span><span class="w"> </span><span class="p">),</span>
+<span class="w">    </span><span class="n">data_matricula</span><span class="w">   </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_DATE</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<p>Na definição da tabela <code class="docutils literal notranslate"><span class="pre">contratante_operacao</span></code> temos:</p>
+<ul class="open">
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">matricula</span></code> foi definida como chave primária (<code class="docutils literal notranslate"><span class="pre">PRIMARY</span> <span class="pre">KEY</span></code>), comportando valores do tipo inteiro (<code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>) gerados sequencialmente e automaticamente pelo servidor (<code class="docutils literal notranslate"><span class="pre">GENERATED</span> <span class="pre">ALWAYS</span> <span class="pre">AS</span> <span class="pre">IDENTITY</span></code>).</p></li>
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">nome</span></code> foi definida como uma cadeia de caracteres de tamanho variável limitada a no máximo 30 caracteres, sendo os valores dessa coluna obrigatórios (<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>).</p></li>
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">data_nascimento</span></code> foi definida como sendo do tipo data (<code class="docutils literal notranslate"><span class="pre">DATE</span></code>) e obrigatória (<code class="docutils literal notranslate"><span class="pre">NOT</span> <span class="pre">NULL</span></code>).</p></li>
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">genero</span></code> foi definida como um caracter de tamanho 1, com uma <strong>restrição</strong> (<strong>check constraint</strong>) de uso apenas dos caracteres <code class="docutils literal notranslate"><span class="pre">M</span></code> ou <code class="docutils literal notranslate"><span class="pre">F</span></code>.</p></li>
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">data_matricula</span></code> terá o valor padrão da data corrente do sistema no caso de ser omitida na inserção.</p></li>
+</ul>
+<hr class="docutils" />
+<p><strong>Tabela:</strong> <code class="docutils literal notranslate"><span class="pre">operacao</span></code></p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">professor</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">codigo</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">nome</span><span class="w">     </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<span class="p">);</span>
+</pre></div>
+</div>
+<hr class="docutils" />
+<p><strong>Tabela:</strong> <code class="docutils literal notranslate"><span class="pre">gleba</span></code></p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">disciplina</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">codigo</span><span class="w">           </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">titulo</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">creditos</span><span class="w">         </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">creditos</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">creditos</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">6</span><span class="w"> </span><span class="p">),</span>
+<span class="hll"><span class="w">    </span><span class="n">professor_codigo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">professor</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+</span><span class="hll"><span class="w">                                          </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="k">ACTION</span>
+</span><span class="hll"><span class="w">                                          </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span>
+</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Nessa tabela temos a definição de uma <strong>chave estrangeira</strong>, impondo um relacionamento de <strong>integridade referencial</strong> entre as tabelas <code class="docutils literal notranslate"><span class="pre">professor</span></code> e <code class="docutils literal notranslate"><span class="pre">disciplina</span></code> nas colunas <code class="docutils literal notranslate"><span class="pre">codigo</span></code> e <code class="docutils literal notranslate"><span class="pre">professor_codigo</span></code>. A sentença <code class="docutils literal notranslate"><span class="pre">ON</span> <span class="pre">DELETE</span> <span class="pre">NO</span> <span class="pre">ACTION</span></code> indica que no caso de remoção de linhas da tabela <code class="docutils literal notranslate"><span class="pre">professor</span></code> que tenham disciplinas associadas, deverá ser gerado um erro, impedindo a remoção das linhas da tabela <code class="docutils literal notranslate"><span class="pre">professor</span></code>. A setença <code class="docutils literal notranslate"><span class="pre">ON</span> <span class="pre">UPDATE</span> <span class="pre">CASCADE</span></code>, define que no caso de atualização da chave primária na tabela <code class="docutils literal notranslate"><span class="pre">professor</span></code>, o novo valor deva ser propagado automaticamente para as linhas relacionadas na tabela <code class="docutils literal notranslate"><span class="pre">disciplina</span></code>.</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Abaixo apresentamos como criar a chave estrangeira na seção dedicada a restrições da linha:</p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">disciplina2</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">codigo</span><span class="w">           </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="k">GENERATED</span><span class="w"> </span><span class="k">ALWAYS</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="k">IDENTITY</span><span class="p">,</span>
+<span class="w">    </span><span class="n">titulo</span><span class="w">           </span><span class="nb">VARCHAR</span><span class="p">(</span><span class="mf">30</span><span class="p">)</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="w">    </span><span class="n">creditos</span><span class="w">         </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">CHECK</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">creditos</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mf">1</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="n">creditos</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mf">6</span><span class="w"> </span><span class="p">),</span>
+<span class="w">    </span><span class="n">professor_codigo</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span>
+<span class="hll"><span class="w">    </span><span class="k">FOREIGN</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">professor_codigo</span><span class="p">)</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">professor</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+</span><span class="hll"><span class="w">                                   </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="k">ACTION</span>
+</span><span class="hll"><span class="w">                                   </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span>
+</span><span class="p">);</span>
+</pre></div>
+</div>
+</div>
+<hr class="docutils" />
+<p><strong>Tabela:</strong> <code class="docutils literal notranslate"><span class="pre">municipio</span></code></p>
+<div class="highlight-postgresql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">estudante_disciplina</span>
+<span class="p">(</span>
+<span class="w">    </span><span class="n">matricula</span><span class="w">   </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">estudante</span><span class="p">(</span><span class="n">matricula</span><span class="p">)</span>
+<span class="w">                                        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="k">ACTION</span>
+<span class="w">                                        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="n">codigo</span><span class="w">       </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">REFERENCES</span><span class="w"> </span><span class="n">disciplina</span><span class="p">(</span><span class="n">codigo</span><span class="p">)</span>
+<span class="w">                                        </span><span class="k">ON</span><span class="w"> </span><span class="k">DELETE</span><span class="w"> </span><span class="k">NO</span><span class="w"> </span><span class="k">ACTION</span>
+<span class="w">                                        </span><span class="k">ON</span><span class="w"> </span><span class="k">UPDATE</span><span class="w"> </span><span class="k">CASCADE</span><span class="p">,</span>
+<span class="w">    </span><span class="k">data</span><span class="w">         </span><span class="nb">DATE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="k">CURRENT_DATE</span><span class="p">,</span>
+<span class="hll"><span class="w">    </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">matricula</span><span class="p">,</span><span class="w"> </span><span class="n">codigo</span><span class="p">)</span>
+</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Repare na definição da tabela acima que:</p>
+<ul class="open">
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">matricula</span></code> pois uma restrição de chave estrangeira, referenciando a coluna <code class="docutils literal notranslate"><span class="pre">matricula</span></code> na tabela <code class="docutils literal notranslate"><span class="pre">estudante</span></code>.</p></li>
+<li><p>A coluna <code class="docutils literal notranslate"><span class="pre">codigo</span></code> também possui uma restrição de chave estrangeira, referenciando a coluna <code class="docutils literal notranslate"><span class="pre">codigo</span></code> na tabela <code class="docutils literal notranslate"><span class="pre">disciplina</span></code>.</p></li>
+<li><p>A <strong>chave primária</strong> dessa tabela é <strong>composta</strong> e, por isso, foi definida logo após a declaração de todas as colunas. Desta forma, podemos especificar as colunas <code class="docutils literal notranslate"><span class="pre">matricula</span></code> e <code class="docutils literal notranslate"><span class="pre">codigo</span></code> como a chave primária.</p></li>
+</ul>
 </section>
 </section>
 </section>
@@ -289,7 +369,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f427c1e81c0>
+<jinja2.runtime.BlockReference object at 0x7f053d2aa550>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

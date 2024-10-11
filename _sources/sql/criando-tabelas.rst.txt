@@ -198,3 +198,125 @@ Comandos de Definição de Dados
 Agora que temos o modelo das tabelas que queremos criar e sabemos a sintaxe básica do comando ``CREATE TABLE``, vamos definir as tabelas ``contratante``, ``contratante_operacao``, ``operacao``, ``gleba`` e ``municipio`` usando SQL.
 
 
+-----
+
+
+**Tabela:** ``contratante:``
+
+
+.. code-block:: postgresql
+
+    CREATE TABLE estudante
+    (
+        matricula        INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        nome             VARCHAR(30) NOT NULL,
+        data_nascimento  DATE NOT NULL,
+        genero           CHAR(1) NOT NULL CHECK ( genero = 'M' OR genero = 'F' ),
+        data_matricula   DATE NOT NULL DEFAULT CURRENT_DATE
+    );
+
+
+Na definição da tabela ``contratante_operacao`` temos:
+
+.. rst-class:: open
+
+- A coluna ``matricula`` foi definida como chave primária (``PRIMARY KEY``), comportando valores do tipo inteiro (``INTEGER``) gerados sequencialmente e automaticamente pelo servidor (``GENERATED ALWAYS AS IDENTITY``).
+
+- A coluna ``nome`` foi definida como uma cadeia de caracteres de tamanho variável limitada a no máximo 30 caracteres, sendo os valores dessa coluna obrigatórios (``NOT NULL``).
+
+- A coluna ``data_nascimento`` foi definida como sendo do tipo data (``DATE``) e obrigatória (``NOT NULL``).
+
+- A coluna ``genero`` foi definida como um caracter de tamanho 1, com uma **restrição** (**check constraint**) de uso apenas dos caracteres ``M`` ou ``F``.
+
+- A coluna ``data_matricula`` terá o valor padrão da data corrente do sistema no caso de ser omitida na inserção.
+
+
+-----
+
+
+**Tabela:** ``operacao``
+
+
+.. code-block:: postgresql
+
+    CREATE TABLE professor
+    (
+        codigo   INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        nome     VARCHAR(30) NOT NULL
+    );
+
+
+-----
+
+
+**Tabela:** ``gleba``
+
+
+.. code-block:: postgresql
+    :emphasize-lines: 6-8
+
+    CREATE TABLE disciplina
+    (
+        codigo           INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        titulo           VARCHAR(30) NOT NULL,
+        creditos         INTEGER NOT NULL CHECK ( creditos >= 1 AND creditos <= 6 ),
+        professor_codigo INTEGER NOT NULL REFERENCES professor(codigo)
+                                              ON DELETE NO ACTION
+                                              ON UPDATE CASCADE
+    );
+
+
+Nessa tabela temos a definição de uma **chave estrangeira**, impondo um relacionamento de **integridade referencial** entre as tabelas ``professor`` e ``disciplina`` nas colunas ``codigo`` e ``professor_codigo``. A sentença ``ON DELETE NO ACTION`` indica que no caso de remoção de linhas da tabela ``professor`` que tenham disciplinas associadas, deverá ser gerado um erro, impedindo a remoção das linhas da tabela ``professor``. A setença ``ON UPDATE CASCADE``, define que no caso de atualização da chave primária na tabela ``professor``, o novo valor deva ser propagado automaticamente para as linhas relacionadas na tabela ``disciplina``.
+
+
+.. note::
+
+    Abaixo apresentamos como criar a chave estrangeira na seção dedicada a restrições da linha:
+
+    .. code-block:: postgresql
+        :emphasize-lines: 7-9
+
+        CREATE TABLE disciplina2
+        (
+            codigo           INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            titulo           VARCHAR(30) NOT NULL,
+            creditos         INTEGER NOT NULL CHECK ( creditos >= 1 AND creditos <= 6 ),
+            professor_codigo INTEGER NOT NULL,
+            FOREIGN KEY (professor_codigo) REFERENCES professor(codigo)
+                                           ON DELETE NO ACTION
+                                           ON UPDATE CASCADE
+        );
+
+
+-----
+
+
+**Tabela:** ``municipio``
+
+
+.. code-block:: postgresql
+    :emphasize-lines: 10
+
+
+    CREATE TABLE estudante_disciplina
+    (
+        matricula   INTEGER REFERENCES estudante(matricula)
+                                            ON DELETE NO ACTION
+                                            ON UPDATE CASCADE,
+        codigo       INTEGER REFERENCES disciplina(codigo)
+                                            ON DELETE NO ACTION
+                                            ON UPDATE CASCADE,
+        data         DATE NOT NULL DEFAULT CURRENT_DATE,
+        PRIMARY KEY (matricula, codigo)
+    );
+
+
+Repare na definição da tabela acima que:
+
+.. rst-class:: open
+
+- A coluna ``matricula`` pois uma restrição de chave estrangeira, referenciando a coluna ``matricula`` na tabela ``estudante``.
+
+- A coluna ``codigo`` também possui uma restrição de chave estrangeira, referenciando a coluna ``codigo`` na tabela ``disciplina``.
+
+- A **chave primária** dessa tabela é **composta** e, por isso, foi definida logo após a declaração de todas as colunas. Desta forma, podemos especificar as colunas ``matricula`` e ``codigo`` como a chave primária.
