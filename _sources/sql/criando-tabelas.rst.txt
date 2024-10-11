@@ -124,7 +124,7 @@ Para consultar os metadados da tabela com feições denominada ``sedes_municipai
 
 -----
 
-**Exercício:** Visualizar a tabela acima no QGIS.
+**Exercício:** Visualizar os dados da tabela ``sedes_municipais`` no QGIS.
 
 
 Estudo de Caso
@@ -167,7 +167,7 @@ Nesse diagrama temos as seguintes informações:
     A notação do Diagrama ER não permite representar relacionamentos espaciais. No exemplo acima, fizemos uma adaptação para ilustrar as informações que vamos manipular mais adiante.
 
 
-A :numref:`Figura %s <fig:sql:criando-tabelas:cardinalidade-er>` apresenta a cardinalidade envolvida nos relacionamentos do diagrama acima:
+A :numref:`Figura %s <fig:sql:criando-tabelas:cardinalidade-er>` apresenta a cardinalidade envolvida nos relacionamentos do diagrama acima.
 
 
 .. figure:: ../img/sql/criando-tabelas/cardinalidade-er.png
@@ -179,7 +179,7 @@ A :numref:`Figura %s <fig:sql:criando-tabelas:cardinalidade-er>` apresenta a car
     Exemplo da cardinalidade dos relacionamento do Diagrama ER - Operações de crédito rural contratadas por pessoas físicas.
 
 
-A partir da compreensão do diagrama ER, podemos criar um novo diagrama mais próximo da implementação que faremos no PostgreSQL (:numref:`Figura %s <fig:sql:criando-tabelas:modelo-logico>`):
+A partir da compreensão do diagrama ER, podemos criar um novo diagrama mais próximo da implementação que faremos no PostgreSQL. O diagrama mostrado na :numref:`Figura %s <fig:sql:criando-tabelas:modelo-logico>` apresenta o modelo lógico que usaremos na criação das tabelas. Para cada entidade do diagrama ER da :numref:`Figura %s <fig:sql:criando-tabelas:diagrama-er>`, criamos uma relação ou tabela. Logo, as tabelas ``contratante``, ``operacao``, ``gleba`` e ``municipio`` no novo diagrama refletem esse processo. Os atributos darão origem às colunas nesse mapeamento, que já estarão associadas aos tipos de dados SQL suportados pelo PostgreSQL. Os atributos identificadores serão as chaves primárias, indicadas em negrito e com o símbolo ``PK``. Nos relacionamentos ``1:N``, os identificadores do lado ``1`` são incluídos também na tabela do lado ``N`` para materializar o relacionamento entre as tabelas. Essa coluna que materializa o relacionamento é definida como uma chave estrangeira, indicada pelo símbolo ``FK``. Esse processo ocorreu na tabela ``gleba``, que agora possui a coluna ``operacao_numero`` como uma chave estrangeira, relacionando as linhas da tabela ``gleba`` com linhas da tabela ``operacao``. Por último, os relacionamentos com cardinalidade ``M:N`` dão origem a novas tabelas, como o caso da tabela ``contratante_oeracao``, com colunas formadas pelos identificadores das outras duas tabelas e mais o atributo do relacionamento.
 
 
 .. figure:: ../img/sql/criando-tabelas/modelo-logico.png
@@ -206,29 +206,27 @@ Agora que temos o modelo das tabelas que queremos criar e sabemos a sintaxe bás
 
 .. code-block:: postgresql
 
-    CREATE TABLE estudante
+    CREATE TABLE contratante
     (
-        matricula        INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        nome             VARCHAR(30) NOT NULL,
-        data_nascimento  DATE NOT NULL,
-        genero           CHAR(1) NOT NULL CHECK ( genero = 'M' OR genero = 'F' ),
-        data_matricula   DATE NOT NULL DEFAULT CURRENT_DATE
+        cpf              CHAR(11) PRIMARY KEY,
+        nome             VARCHAR(80) NOT NULL,
+        genero           CHAR(1) NOT NULL CHECK ( genero = 'm' OR genero = 'f' ),
+        classificacao    VARCHAR(20) NOT NULL CHECK (classificacao IN ('pequeno produtor', 'médio produtor', 'grande produtor')),
+        data_cadastro    DATE NOT NULL DEFAULT CURRENT_DATE
     );
 
 
-Na definição da tabela ``contratante_operacao`` temos:
+Na definição da tabela ``contratante`` temos:
 
 .. rst-class:: open
 
-- A coluna ``matricula`` foi definida como chave primária (``PRIMARY KEY``), comportando valores do tipo inteiro (``INTEGER``) gerados sequencialmente e automaticamente pelo servidor (``GENERATED ALWAYS AS IDENTITY``).
+- A coluna ``cpf`` foi definida como uma cadeia de caracteres de tamanho fixo (11) além de ser indicada como chave primária (``PRIMARY KEY``).
 
-- A coluna ``nome`` foi definida como uma cadeia de caracteres de tamanho variável limitada a no máximo 30 caracteres, sendo os valores dessa coluna obrigatórios (``NOT NULL``).
+- A coluna ``nome`` foi definida como uma cadeia de caracteres de tamanho variável limitada a no máximo 80 caracteres, sendo os valores dessa coluna obrigatórios (``NOT NULL``).
 
-- A coluna ``data_nascimento`` foi definida como sendo do tipo data (``DATE``) e obrigatória (``NOT NULL``).
+- A coluna ``genero`` foi definida como um caracter de tamanho 1, com uma **restrição** (**check constraint**) de uso apenas dos caracteres ``m`` ou ``f``.
 
-- A coluna ``genero`` foi definida como um caracter de tamanho 1, com uma **restrição** (**check constraint**) de uso apenas dos caracteres ``M`` ou ``F``.
-
-- A coluna ``data_matricula`` terá o valor padrão da data corrente do sistema no caso de ser omitida na inserção.
+- A coluna ``data_cadastro`` terá o valor padrão da data corrente do sistema no caso de ser omitida na inserção.
 
 
 -----
@@ -239,11 +237,23 @@ Na definição da tabela ``contratante_operacao`` temos:
 
 .. code-block:: postgresql
 
-    CREATE TABLE professor
+    CREATE TABLE operacao
     (
-        codigo   INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        nome     VARCHAR(30) NOT NULL
+        numero       INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        valor        NUMERIC(10,2) NOT NULL,
+        data_inicio  DATE NOT NULL,
+        data_fim     DATE NOT NULL
     );
+
+Na definição da tabela ``operacao`` temos:
+
+.. rst-class:: open
+
+- A coluna ``numero`` foi definida como chave primária (``PRIMARY KEY``), comportando valores do tipo inteiro (``INTEGER``) gerados sequencialmente e automaticamente pelo servidor (``GENERATED ALWAYS AS IDENTITY``).
+
+- A coluna ``valor`` foi definida como um número real de 10 dígitos com dois deles para casas decimais. Os valores dessa coluna são obrigatórios (``NOT NULL``).
+
+- As colunas ``data_inicio`` e ``data_fim`` foram definidas como datas e são campos obrigatórios.
 
 
 -----
@@ -253,39 +263,83 @@ Na definição da tabela ``contratante_operacao`` temos:
 
 
 .. code-block:: postgresql
-    :emphasize-lines: 6-8
+    :emphasize-lines: 5-7
 
-    CREATE TABLE disciplina
+    CREATE TABLE gleba
     (
-        codigo           INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-        titulo           VARCHAR(30) NOT NULL,
-        creditos         INTEGER NOT NULL CHECK ( creditos >= 1 AND creditos <= 6 ),
-        professor_codigo INTEGER NOT NULL REFERENCES professor(codigo)
+        gid              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        geom             GEOMETRY(MULTIPOLYGON, 4674) NOT NULL,
+        operacao_numero  INTEGER NOT NULL REFERENCES operacao(numero)
                                               ON DELETE NO ACTION
                                               ON UPDATE CASCADE
     );
 
 
-Nessa tabela temos a definição de uma **chave estrangeira**, impondo um relacionamento de **integridade referencial** entre as tabelas ``professor`` e ``disciplina`` nas colunas ``codigo`` e ``professor_codigo``. A sentença ``ON DELETE NO ACTION`` indica que no caso de remoção de linhas da tabela ``professor`` que tenham disciplinas associadas, deverá ser gerado um erro, impedindo a remoção das linhas da tabela ``professor``. A setença ``ON UPDATE CASCADE``, define que no caso de atualização da chave primária na tabela ``professor``, o novo valor deva ser propagado automaticamente para as linhas relacionadas na tabela ``disciplina``.
+Na definição da tabela ``gleba`` temos:
+
+.. rst-class:: open
+
+- A coluna ``gid`` foi definida como chave primária (``PRIMARY KEY``), comportando valores do tipo inteiro (``INTEGER``) gerados sequencialmente e automaticamente pelo servidor (``GENERATED ALWAYS AS IDENTITY``).
+
+- A coluna ``geom`` foi definida como um tipo geométrico, mais especificamente com o subtipo MultiPolygon com coordenadas associadas ao CRS EPSG:4674.
+
+- A coluna ``operacao_numero`` foi definida como um tipo inteiro e obrigatório.
+
+- Nessa tabela temos a definição de uma **chave estrangeira**, impondo um relacionamento de **integridade referencial** entre as tabelas ``operacao`` e ``gleba`` nas colunas ``numero`` (tabela ``operacao``) e ``operacao_numero`` (tabela ``gleba``). A sentença ``ON DELETE NO ACTION`` indica que no caso de remoção de linhas da tabela ``operacao`` que tenham glebas associadas, deverá ser gerado um erro, impedindo a remoção das linhas da tabela ``operacao``. A setença ``ON UPDATE CASCADE`` define que no caso de atualização da chave primária na tabela ``operacao``, o novo valor deva ser propagado automaticamente para as linhas relacionadas na tabela ``gleba``.
 
 
 .. note::
 
-    Abaixo apresentamos como criar a chave estrangeira na seção dedicada a restrições da linha:
+    A definição de chave estrangeira pode ser indicada separadamente, como mostrado no exemplo abaixo:
 
     .. code-block:: postgresql
-        :emphasize-lines: 7-9
+        :emphasize-lines: 6-8
 
-        CREATE TABLE disciplina2
+        CREATE TABLE gleba
         (
-            codigo           INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-            titulo           VARCHAR(30) NOT NULL,
-            creditos         INTEGER NOT NULL CHECK ( creditos >= 1 AND creditos <= 6 ),
-            professor_codigo INTEGER NOT NULL,
-            FOREIGN KEY (professor_codigo) REFERENCES professor(codigo)
+            gid              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+            geom             GEOMETRY(MULTIPOLYGON, 4674) NOT NULL,
+            operacao_numero  INTEGER NOT NULL,
+            FOREIGN KEY (operacao_numero) REFERENCES operacao(numero)
                                            ON DELETE NO ACTION
                                            ON UPDATE CASCADE
         );
+
+
+-----
+
+
+**Tabela:** ``contratante_operacao``
+
+
+.. code-block:: postgresql
+    :emphasize-lines: 10
+
+
+    CREATE TABLE contratante_operacao
+    (
+        cpf              CHAR(11) REFERENCES contratante(cpf)
+                                                 ON DELETE NO ACTION
+                                                 ON UPDATE CASCADE,
+        numero           INTEGER REFERENCES operacao(numero)
+                                                ON DELETE NO ACTION
+                                                ON UPDATE CASCADE,
+        data_assinatura  DATE NOT NULL DEFAULT CURRENT_DATE,
+        PRIMARY KEY (cpf, numero)
+    );
+
+
+Repare na definição da tabela acima que:
+
+.. rst-class:: open
+
+- A coluna ``cpf`` possui uma restrição de chave estrangeira, referenciando a coluna ``cpf`` na tabela ``contratante``.
+
+- A coluna ``numero`` também possui uma restrição de chave estrangeira, referenciando a coluna ``numero`` na tabela ``operacao``.
+
+- A coluna ``data_assinatura`` irá registrar a data em que o contratante assinou o contrato de financiamento.
+
+- A **chave primária** dessa tabela é **composta** e, por isso, foi definida logo após a declaração de todas as colunas. Desta forma, podemos especificar as colunas ``cpf`` e ``numero`` como a chave primária.
 
 
 -----
@@ -295,19 +349,13 @@ Nessa tabela temos a definição de uma **chave estrangeira**, impondo um relaci
 
 
 .. code-block:: postgresql
-    :emphasize-lines: 10
 
-
-    CREATE TABLE estudante_disciplina
+    CREATE TABLE municipio
     (
-        matricula   INTEGER REFERENCES estudante(matricula)
-                                            ON DELETE NO ACTION
-                                            ON UPDATE CASCADE,
-        codigo       INTEGER REFERENCES disciplina(codigo)
-                                            ON DELETE NO ACTION
-                                            ON UPDATE CASCADE,
-        data         DATE NOT NULL DEFAULT CURRENT_DATE,
-        PRIMARY KEY (matricula, codigo)
+        gid              INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+        geocodigo        CHAR(7) NOT NULL,
+        nome             VARCHAR(50) NOT NULL,
+        geom             GEOMETRY(MULTIPOLYGON, 4674) NOT NULL
     );
 
 
@@ -315,8 +363,12 @@ Repare na definição da tabela acima que:
 
 .. rst-class:: open
 
-- A coluna ``matricula`` pois uma restrição de chave estrangeira, referenciando a coluna ``matricula`` na tabela ``estudante``.
+- A coluna ``gid`` foi definida como chave primária (``PRIMARY KEY``), comportando valores do tipo inteiro (``INTEGER``) gerados sequencialmente e automaticamente pelo servidor (``GENERATED ALWAYS AS IDENTITY``).
 
-- A coluna ``codigo`` também possui uma restrição de chave estrangeira, referenciando a coluna ``codigo`` na tabela ``disciplina``.
+- A coluna ``geocodigo`` foi definida como uma cadeia de caracteres de tamanho fixo (7) e com valores obrigatórios (``NOT NULL``).
 
-- A **chave primária** dessa tabela é **composta** e, por isso, foi definida logo após a declaração de todas as colunas. Desta forma, podemos especificar as colunas ``matricula`` e ``codigo`` como a chave primária.
+- A coluna ``nome`` foi definida como uma cadeia de caracteres de tamanho variável limitada a no máximo 50 caracteres, sendo os valores dessa coluna obrigatórios (``NOT NULL``).
+
+- A coluna ``geom`` foi definida como um tipo geométrico, mais especificamente com o subtipo MultiPolygon com coordenadas associadas ao CRS EPSG:4674.
+
+- O relacionamento espacial não será materializado em uma coluna pois iremos computar *on-the-fly* com os operadores topológicos suportados pelo PostGIS.

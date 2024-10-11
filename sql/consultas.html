@@ -27,7 +27,7 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
     <link rel="search" title="Buscar" href="../search.html" />
-    <link rel="next" title="1.11. Alterando a Estrutura de uma Tabela" href="alterando-estrutura-tabela.html" />
+    <link rel="next" title="1.11. Importando e Exportando Dados" href="import-export.html" />
     <link rel="prev" title="1.9. Inserindo Dados" href="inserindo-dados.html" /> 
 </head>
 
@@ -66,10 +66,17 @@
 <li class="toctree-l2"><a class="reference internal" href="postgis-geometry.html">1.7. PostGIS Geometry</a></li>
 <li class="toctree-l2"><a class="reference internal" href="criando-tabelas.html">1.8. Criando Tabelas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="inserindo-dados.html">1.9. Inserindo Dados</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">1.10. Consultas em SQL</a></li>
-<li class="toctree-l2"><a class="reference internal" href="alterando-estrutura-tabela.html">1.11. Alterando a Estrutura de uma Tabela</a></li>
-<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.12. Importando e Exportando Dados</a></li>
-<li class="toctree-l2"><a class="reference internal" href="consideracoes.html">1.13. Considerações Finais</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">1.10. Consultas em SQL</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#consultas-simples">1.10.1. Consultas Simples</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#juncao-de-tabelas">1.10.2. Junção de Tabelas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consultas-de-agregacao">1.10.3. Consultas de Agregação</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#funcoes-de-janela-window-functions">1.10.4. Funções de Janela (Window Functions)</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#consultas-espaciais">1.10.5. Consultas Espaciais</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#criando-tabelas-a-partir-de-consultas">1.10.6. Criando Tabelas a partir de Consultas</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="import-export.html">1.11. Importando e Exportando Dados</a></li>
+<li class="toctree-l2"><a class="reference internal" href="consideracoes.html">1.12. Considerações Finais</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
@@ -114,7 +121,7 @@
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
         <a href="inserindo-dados.html" class="btn btn-neutral float-left" title="1.9. Inserindo Dados" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="alterando-estrutura-tabela.html" class="btn btn-neutral float-right" title="1.11. Alterando a Estrutura de uma Tabela" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="import-export.html" class="btn btn-neutral float-right" title="1.11. Importando e Exportando Dados" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
   </div>
   <hr/>
 </div>
@@ -122,7 +129,523 @@
            <div itemprop="articleBody">
              
   <section id="consultas-em-sql">
-<h1><span class="section-number">1.10. </span>Consultas em SQL<a class="headerlink" href="#consultas-em-sql" title="Link permanente para este cabeçalho"></a></h1>
+<span id="sec-sql-consultas"></span><h1><span class="section-number">1.10. </span>Consultas em SQL<a class="headerlink" href="#consultas-em-sql" title="Link permanente para este cabeçalho"></a></h1>
+<p>Na linguagem <code class="docutils literal notranslate"><span class="pre">SQL</span></code>, o comando <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> é utilizado para recuperação de dados das tabelas. A sintaxe geral deste comando é a seguinte:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    SELECT [ ALL | DISTINCT [ ON ( expressão [, ...] ) ] ]
+           [ * | expressão [ [ AS ] rótulo ] [, ...] ]
+
+[     FROM from_item [, ...] ]
+
+[    WHERE condição ]
+
+[ GROUP BY elemento_agrupamento [, ...] ]
+
+[   HAVING condição [, ...] ]
+
+[ ORDER BY expressão [ ASC | DESC ] [, ...] ]
+
+[    LIMIT { quantidade | ALL } ]
+
+[   OFFSET início [ ROW | ROWS ] ]
+</pre></div>
+</div>
+<p>O comando <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> é formado por várias cláusulas: <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, <code class="docutils literal notranslate"><span class="pre">WHERE</span></code>, <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">HAVING</span></code>, <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code>, <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> e <code class="docutils literal notranslate"><span class="pre">OFFSET</span></code>. Cada uma dessas cláusulas tem um papel importante na definição dos objetivos de uma consulta. Portanto, na sintaxe mostrada acima temos que:</p>
+<ul class="open">
+<li><p>Tudo que está entre os pares de colchetes (<code class="docutils literal notranslate"><span class="pre">[</span></code> e <code class="docutils literal notranslate"><span class="pre">]</span></code>) é opcional.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> permite especificar a lista de expressões, isto é, nomes de colunas ou fórmulas matemáticas ou chamadas de função ou até mesmo sub-consultas, que farão parte das linhas de saída da consulta. A palavra-chave <code class="docutils literal notranslate"><span class="pre">DISTINCT</span></code> faz com que linhas com valores duplicados sejam removidas do resultado, ficando apenas uma linha do grupo de linhas repetidas. <code class="docutils literal notranslate"><span class="pre">DISTINCT</span> <span class="pre">ON</span> <span class="pre">(</span> <span class="pre">expressão</span> <span class="pre">[,</span> <span class="pre">...])</span></code> tem um comportamento semelhante, mas considerando apenas a lista de expressões fornecida. A palavra-chave <code class="docutils literal notranslate"><span class="pre">ALL</span></code> inclui todas as linhas do resultado, que é o comportamento padrão e, portanto, pode ser omitida. A palavra-chave <code class="docutils literal notranslate"><span class="pre">AS</span></code> possibilita renomear uma coluna ou expressão com um novo <code class="docutils literal notranslate"><span class="pre">rótulo</span></code>. O caractere <code class="docutils literal notranslate"><span class="pre">*</span></code> é uma abreviação para a lista de todas as colunas dos conjuntos de dados presentes na cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> especifica uma ou mais tabelas como fonte dos dados da consulta. Caso múltiplas tabelas sejam especificadas, o resultado é um produto cartesiano (ou <code class="docutils literal notranslate"><span class="pre">CROSS</span> <span class="pre">JOIN</span></code>) de todas as tabelas envolvidas. No entanto, é muito comum o uso de uma cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> para restringir as linhas retornadas a um subconjunto menor desse produto cartesiano. Vale ressaltar que na cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code>, o <code class="docutils literal notranslate"><span class="pre">from_item</span></code> pode ser o nome de uma tabela do banco de dados, o nome de uma <em>view</em> (visão), uma sub-consulta, ou até mesmo uma chamada de função que produza valores que são tratados como um conjunto de linhas. Portanto, a cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> faz o produto cartesiano dos conjuntos de dados informados.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> permite definir uma <code class="docutils literal notranslate"><span class="pre">condição</span></code>, isto é, uma <code class="docutils literal notranslate"><span class="pre">expressão</span> <span class="pre">lógica</span></code> ou <code class="docutils literal notranslate"><span class="pre">predicado</span></code>, para filtrar o conjunto de linhas da consulta. As linhas que não satisfaçam esse predicado serão eliminadas do resultado.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> é utilizada para criar grupos de linhas que são condensadas em uma única linha através das operações de agregação tais como: <code class="docutils literal notranslate"><span class="pre">SUM</span></code>, <code class="docutils literal notranslate"><span class="pre">MIN</span></code>, <code class="docutils literal notranslate"><span class="pre">MAX</span></code>, <code class="docutils literal notranslate"><span class="pre">AVG</span></code>, <code class="docutils literal notranslate"><span class="pre">COUNT</span></code>, entre outras. O <code class="docutils literal notranslate"><span class="pre">elemento_agrupamento</span></code> pode ser o nome de uma coluna ou uma expressão formada a partir das colunas. Também podemos usar os nomes das colunas de saída da consulta nessa cláusula ou até mesmo a posição ordinal da coluna de saída. Quando esta cláusula está presente, apenas as colunas listadas nela ou funções de agregação podem ser usadas na lista da cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> permite definir uma <code class="docutils literal notranslate"><span class="pre">condição</span></code>, isto é, uma <code class="docutils literal notranslate"><span class="pre">expressão</span> <span class="pre">lógica</span></code> ou <code class="docutils literal notranslate"><span class="pre">predicado</span></code>, para filtrar o resutado dos grupos de linhas. Dessa maneira, as linhas resultantes de agrupamentos que não satisfaçam essa condição, são eliminadas do resultado final.</p></li>
+<li><p>A cláusula <code class="docutils literal notranslate"><span class="pre">ORDER</span> <span class="pre">BY</span></code> ordena o resultado final de acordo com a expressão fornecida. Lembrando que a expressão pode ser uma lista de colunas, expressões matemáticas, chamadas de função, ou a posição das colunas de saída de acordo com a lista da cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>.</p></li>
+<li><p>As cláusulas <code class="docutils literal notranslate"><span class="pre">LIMIT</span></code> e <code class="docutils literal notranslate"><span class="pre">OFFSET</span></code> permitem, respectivamente, definir o número máximo de linhas a serem retornadas e o ponto onde esta contagem começa a valer.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>A sintaxe do comando de seleção apresentada acima foi feita de maneira simplificada. Para a versão completa, consulte o seguite tópico do manual do PostgreSQL: <a class="reference external" href="https://www.postgresql.org/docs/16/sql-select.html">SELECT</a>.</p>
+</div>
+<section id="consultas-simples">
+<h2><span class="section-number">1.10.1. </span>Consultas Simples<a class="headerlink" href="#consultas-simples" title="Link permanente para este cabeçalho"></a></h2>
+<p>Nesta seção veremos exemplos de consultas que envolvem uma única tabela como entrada.</p>
+<p><strong>1.</strong> Recuperar os dados do contrantante <code class="docutils literal notranslate"><span class="pre">Leonardo</span></code>:</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">nome</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Leonardo&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     |   nome   | genero |  classificacao  | data_cadastro
+-------------+----------+--------+-----------------+---------------
+ 55555555501 | Leonardo | m      | grande produtor | 2024-10-10
+(1 row)
+</pre></div>
+</div>
+<p>Nessa consulta usamos três cláusulas:</p>
+<ul class="open">
+<li><p><code class="docutils literal notranslate"><span class="pre">SELECT</span></code>: Nesta cláusula usamos o caracter especial <code class="docutils literal notranslate"><span class="pre">*</span></code> que é expandido para a lista de todas as colunas e, por isso, obtivemos uma linha com 05 valores como mostrado acima.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">FROM</span></code>: Nesta cláusula especificamos a tabela <code class="docutils literal notranslate"><span class="pre">contratante</span></code> como fonte da consulta.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">WHERE</span></code>: Nesta cláusula especificamos uma expressão lógica que realiza o filtro das linhas desejadas. No exemplo acima, temos apenas um contratante com o nome <code class="docutils literal notranslate"><span class="pre">Leonardo</span></code> e, portanto, somente uma linha satisfaz a condição <code class="docutils literal notranslate"><span class="pre">nome</span> <span class="pre">=</span> <span class="pre">'Leonardo'</span></code>.</p></li>
+</ul>
+</details><hr class="docutils" />
+<p><strong>2.</strong> Recuperar o CPF e nome dos contratantes classificados como “grande produtor” rural:</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">classificacao</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;grande produtor&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     |   nome
+-------------+----------
+ 22222222201 | Karine
+ 55555555501 | Leonardo
+(2 rows)
+</pre></div>
+</div>
+<p>A cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> da consulta acima contém um subconjunto das colunas da tabela <code class="docutils literal notranslate"><span class="pre">contratante</span></code>: <code class="docutils literal notranslate"><span class="pre">cpf</span></code> e <code class="docutils literal notranslate"><span class="pre">nome</span></code>. Utilizamos o separador <code class="docutils literal notranslate"><span class="pre">,</span></code> para listar as colunas nessa cláusula. Essa cláusula nos permite, entre outra coisas, controlar a ordem de apresentação das colunas.</p>
+</details><hr class="docutils" />
+<p><strong>3.</strong>  Recuperar o CPF e os três primeiros caracteres do nome dos contratantes registrados no ano de 2022 do gênero masculino (<code class="docutils literal notranslate"><span class="pre">m</span></code>):</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="k">left</span><span class="p">(</span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">iniciais_nome</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="n">genero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;m&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">AND</span><span class="w"> </span><span class="p">(</span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_cadastro</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2022</span><span class="p">);</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     | iniciais_nome
+-------------+---------------
+ 11111111101 | Gil
+ 44444444401 | Tha
+(2 rows)
+</pre></div>
+</div>
+<p>Na consulta acima:</p>
+<ul class="open">
+<li><p>O segundo elemento da cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> utilizou uma função chamada <code class="docutils literal notranslate"><span class="pre">left</span></code> para extrair no máximo três caracteres de um nome. Nesse elemento, também utilizamos a palavra-chave <code class="docutils literal notranslate"><span class="pre">AS</span></code> para criar um novo rótulo para a coluna de saída: <code class="docutils literal notranslate"><span class="pre">iniciais_nome</span></code>.</p></li>
+<li><p>A clausula <code class="docutils literal notranslate"><span class="pre">WHERE</span></code> possui uma expressão usando o <strong>e-lógico</strong> (<code class="docutils literal notranslate"><span class="pre">AND</span></code>). Portanto, apenas as linhas que tenham simultaneamente o caracter <code class="docutils literal notranslate"><span class="pre">m</span></code> como gênero e a parte do ano da data de cadastro igual a 2022 serão selecionadas no resultado final.</p></li>
+</ul>
+</details></section>
+<hr class="docutils" />
+<section id="juncao-de-tabelas">
+<h2><span class="section-number">1.10.2. </span>Junção de Tabelas<a class="headerlink" href="#juncao-de-tabelas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Nesta seção veremos exemplos de consultas que envolvem duas ou mais tabelas como entrada.</p>
+<p><strong>4.</strong> Fazer o produto cartesiano entre as tabelas <code class="docutils literal notranslate"><span class="pre">operacao</span></code> e <code class="docutils literal notranslate"><span class="pre">gleba</span></code>:</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> numero |   valor   | data_inicio |  data_fim  | gid |         geom           | operacao_numero
+--------+-----------+-------------+------------+-----+------------------------+-----------------
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   2 | 0106000020421200000... |               2
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+    ... |       ... |        ...  |        ... | ... |                    ... |             ...
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |   8 | 0106000020421200000... |               7
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |   9 | 0106000020421200000... |               7
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+(99 rows)
+</pre></div>
+</div>
+<p>A cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> permite especificar uma lista de tabelas (ou itens de dados). Na consulta acima, a cláusula <code class="docutils literal notranslate"><span class="pre">FROM</span></code> realizou o produto cartesiano entre as duas tabelas. Como temos 09 operações de crédito e 11 glebas, o resultado contém 99 linhas, isto é, todas as linhas da tabela <code class="docutils literal notranslate"><span class="pre">operacao</span></code> pareadas com todas as linhas da tabela <code class="docutils literal notranslate"><span class="pre">gleba</span></code>.</p>
+<p>Repare também que por termos usado o caractere <code class="docutils literal notranslate"><span class="pre">*</span></code> na cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code>, todas as colunas das duas tabelas participaram do resultado final. Na cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> é possível controlar a lista de colunas de saída especificando o nome qualificado da coluna, isto é, o <code class="docutils literal notranslate"><span class="pre">nome-tabela.nome-coluna</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">gid</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> numero |   valor   | data_inicio |  data_fim  | gid
+--------+-----------+-------------+------------+-----
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   2
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   3
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   4
+    ... |       ... |        ...  |        ... | ...
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |   8
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |   9
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  10
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11
+(99 rows)
+</pre></div>
+</div>
+<p>Nesse último exemplo, o item <code class="docutils literal notranslate"><span class="pre">operacao.*</span></code> na cláusula <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> é expandido para todas as colunas da tabela <code class="docutils literal notranslate"><span class="pre">operacao</span></code>, isto é, as colunas <code class="docutils literal notranslate"><span class="pre">numero</span></code>, <code class="docutils literal notranslate"><span class="pre">valor</span></code>, <code class="docutils literal notranslate"><span class="pre">data_inicio</span></code> e <code class="docutils literal notranslate"><span class="pre">data_fim</span></code>. Já a expressão <code class="docutils literal notranslate"><span class="pre">gleba.gid</span></code> indica que queremos apenas a coluna <code class="docutils literal notranslate"><span class="pre">gid</span></code> da tabela <code class="docutils literal notranslate"><span class="pre">gleba</span></code> no resultado.</p>
+</details><hr class="docutils" />
+<p><strong>5.</strong> Juntar as linhas correlatas das tabelas <code class="docutils literal notranslate"><span class="pre">operacao</span></code> e <code class="docutils literal notranslate"><span class="pre">gleba</span></code>:</p>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>Chamamos este tipo de consulta de <strong>junção entre tabelas</strong>.</p>
+</div>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">operacao_numero</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> numero |   valor   | data_inicio |  data_fim  | gid |       geom             | operacao_numero
+--------+-----------+-------------+------------+-----+------------------------+-----------------
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+      2 | 110000.45 | 2023-04-01  | 2023-10-30 |   2 | 0106000020421200000... |               2
+      3 | 730000.00 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+      3 | 730000.00 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+      4 | 200000.99 | 2021-05-01  | 2021-11-30 |   5 | 0106000020421200000... |               4
+      5 | 205000.98 | 2022-03-01  | 2022-12-31 |   6 | 0106000020421200000... |               5
+      6 | 243000.97 | 2023-06-01  | 2023-09-30 |   7 | 0106000020421200000... |               6
+      7 |  50000.12 | 2022-05-01  | 2022-11-30 |   8 | 0106000020421200000... |               7
+      7 |  50000.12 | 2022-05-01  | 2022-11-30 |   9 | 0106000020421200000... |               7
+      8 | 900000.73 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+(11 rows)
+</pre></div>
+</div>
+<p>Repare na saída acima que agora os valores nas linhas para a primeira coluna <code class="docutils literal notranslate"><span class="pre">numero</span></code> são iguais na coluna <code class="docutils literal notranslate"><span class="pre">operacao_numero</span></code>. Esse exemplo mostra como usar colunas relacionadas para busca da informação apropriada.</p>
+<p>Outra forma de realizar a consulta acima é utilizar a palavra-chave <code class="docutils literal notranslate"><span class="pre">INNER</span> <span class="pre">JOIN</span></code>, como indicado abaixo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">gleba</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">operacao_numero</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> numero |   valor   | data_inicio |  data_fim  | gid |       geom             | operacao_numero
+--------+-----------+-------------+------------+-----+------------------------+-----------------
+      1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+      2 | 110000.45 | 2023-04-01  | 2023-10-30 |   2 | 0106000020421200000... |               2
+      3 | 730000.00 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+      3 | 730000.00 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+      4 | 200000.99 | 2021-05-01  | 2021-11-30 |   5 | 0106000020421200000... |               4
+      5 | 205000.98 | 2022-03-01  | 2022-12-31 |   6 | 0106000020421200000... |               5
+      6 | 243000.97 | 2023-06-01  | 2023-09-30 |   7 | 0106000020421200000... |               6
+      7 |  50000.12 | 2022-05-01  | 2022-11-30 |   8 | 0106000020421200000... |               7
+      7 |  50000.12 | 2022-05-01  | 2022-11-30 |   9 | 0106000020421200000... |               7
+      8 | 900000.73 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+      9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+(11 rows)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>6.</strong> Quais os contratos realizados no CPF <code class="docutils literal notranslate"><span class="pre">55555555501</span></code>?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">contratante</span><span class="p">.</span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">,</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="n">numero</span><span class="p">,</span><span class="w"> </span><span class="n">valor</span>
+
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span><span class="p">,</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="p">,</span><span class="w"> </span><span class="n">operacao</span>
+
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">contratante</span><span class="p">.</span><span class="n">cpf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="p">.</span><span class="n">cpf</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="p">.</span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="n">numero</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">contratante</span><span class="p">.</span><span class="n">cpf</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;55555555501&#39;</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     |   nome   | numero |   valor
+-------------+----------+--------+-----------
+ 55555555501 | Leonardo |      8 | 900000.73
+(1 row)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para mais detalhes das consultas com junção entre tabelas, consulte o manual do PostgreSQL nas seções <a class="reference external" href="https://www.postgresql.org/docs/16/tutorial-join.html">2.6. Joins Between Tables</a> e <a class="reference external" href="https://www.postgresql.org/docs/16/queries-table-expressions.html">7.2. Table Expressions</a>.</p>
+</div>
+</section>
+<section id="consultas-de-agregacao">
+<h2><span class="section-number">1.10.3. </span>Consultas de Agregação<a class="headerlink" href="#consultas-de-agregacao" title="Link permanente para este cabeçalho"></a></h2>
+<p>Temos vários operadores que trabalham com grupos de registros, sendo muito úteis para uso com a cláusula <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code>:</p>
+<ul class="open">
+<li><p><code class="docutils literal notranslate"><span class="pre">AVG</span></code>: média dos valores da coluna.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">SUM</span></code>: soma dos valores da coluna.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">COUNT</span></code>: número de valores na coluna.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MAX</span></code>: maior valor na coluna.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">MIN</span></code>: menor valor na coluna.</p></li>
+</ul>
+<p>Nesta seção vamos explorar o uso das cláusulas <code class="docutils literal notranslate"><span class="pre">GROUP</span> <span class="pre">BY</span></code> e <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> na construção de consultas que permitam realizar uma sumarização de valores a partir de grupos de linhas.</p>
+<hr class="docutils" />
+<p><strong>7.</strong> Quantos contratos existem?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Neste caso precisamos apenas usar uma função de agregação que conte o número de linhas de uma tabela, tratando todas as linhas como um único grupo. A função de agregação <code class="docutils literal notranslate"><span class="pre">COUNT</span></code> pode ser usada para esta finalidade:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_contratos</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> num_contratos
+---------------
+             9
+(1 row)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>8.</strong> Qual o número de operacões por ano?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_inicio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w">  </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_inicio</span><span class="p">)</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  | num_operacoes
+------+---------------
+ 2021 |             1
+ 2022 |             4
+ 2023 |             4
+(3 rows)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>9.</strong> Quantas operações cada CPF realizou?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">cpf</span><span class="p">)</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     | num_operacoes
+-------------+---------------
+ 11111111101 |             3
+ 22222222201 |             1
+ 33333333301 |             3
+ 44444444401 |             1
+ 55555555501 |             1
+ 66666666601 |             1
+(6 rows)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>10.</strong> Quais CPF’s realizaram mais do que um empréstimo?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Esta consulta precisará contar o número de operações para cada pessoa e em seguida aplicar um filtro no resultado do grupo. Isto indica que precisaremos utilizar a cláusula <code class="docutils literal notranslate"><span class="pre">HAVING</span></code> como mostrado abaixo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">contratante</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">cpf</span><span class="p">)</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span>
+
+<span class="hll"><span class="w">  </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     | num_operacoes
+-------------+---------------
+ 11111111101 |             3
+ 33333333301 |             3
+(2 rows)
+</pre></div>
+</div>
+</details></section>
+<section id="funcoes-de-janela-window-functions">
+<h2><span class="section-number">1.10.4. </span>Funções de Janela (Window Functions)<a class="headerlink" href="#funcoes-de-janela-window-functions" title="Link permanente para este cabeçalho"></a></h2>
+<p>Além das funções de agregação existem funções que operam em um conjunto relacionado de linhas. Essas funções são chamadas de <strong>funções de janela</strong> (<strong>window functions</strong>). Duas funções de janela muito úteis são: <code class="docutils literal notranslate"><span class="pre">rank</span></code> e <code class="docutils literal notranslate"><span class="pre">dense_rank</span></code>. Vamos explorar o uso da função <code class="docutils literal notranslate"><span class="pre">dense_rank</span></code> nessa seção.</p>
+<p><strong>11.</strong> Qual a posição (<em>ranking</em>) de cada CPF em relação ao valor de empréstimos realizados ao longo dos anos?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Vamos começar construindo uma consulta que liste o ano de matricula, número de matrícula, nome e total de créditos cursados por cada estudante:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span>
+<span class="w">         </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_inicio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="k">SUM</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_emprestimo</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     cpf     | ano  | total_emprestimo
+-------------+------+------------------
+ 11111111101 | 2022 |        150000.66
+ 11111111101 | 2023 |        110000.45
+ 22222222201 | 2022 |        730000.00
+ 33333333301 | 2021 |        200000.99
+ 33333333301 | 2022 |        205000.98
+ 33333333301 | 2023 |        243000.97
+ 44444444401 | 2022 |         50000.12
+ 55555555501 | 2023 |        900000.73
+ 66666666601 | 2023 |        234000.56
+(9 rows)
+</pre></div>
+</div>
+<p>Em seguida, vamos construir uma nova consulta que utilize a consulta acima como subconsulta para podermos utilizar a função de janela <code class="docutils literal notranslate"><span class="pre">dense_rank</span></code> para criar partições no resultado:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">contratos</span><span class="p">.</span><span class="o">*</span><span class="p">,</span>
+<span class="hll"><span class="w">         </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">total_emprestimo</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">rank_valor</span>
+</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_inicio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">                 </span><span class="k">SUM</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_emprestimo</span>
+
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">operacao</span><span class="w"> </span><span class="k">INNER</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">contratante_operacao</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="p">(</span><span class="n">numero</span><span class="p">)</span>
+
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span>
+
+<span class="w">        </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">cpf</span><span class="p">,</span><span class="w"> </span><span class="n">ano</span>
+
+<span class="w">         </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w">  </span><span class="n">contratos</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">rank_valor</span><span class="w"> </span><span class="k">ASC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span><span class="linenos"> 1</span>     cpf     | ano  | total_emprestimo | rank_valor
+<span class="linenos"> 2</span>-------------+------+------------------+------------
+<span class="hll"><span class="linenos"> 3</span> 33333333301 | 2021 |        200000.99 |          1
+</span><span class="linenos"> 4</span> 22222222201 | 2022 |        730000.00 |          1
+<span class="linenos"> 5</span> 33333333301 | 2022 |        205000.98 |          2
+<span class="linenos"> 6</span> 11111111101 | 2022 |        150000.66 |          3
+<span class="linenos"> 7</span> 44444444401 | 2022 |         50000.12 |          4
+<span class="hll"><span class="linenos"> 8</span> 55555555501 | 2023 |        900000.73 |          1
+</span><span class="hll"><span class="linenos"> 9</span> 33333333301 | 2023 |        243000.97 |          2
+</span><span class="hll"><span class="linenos">10</span> 66666666601 | 2023 |        234000.56 |          3
+</span><span class="hll"><span class="linenos">11</span> 11111111101 | 2023 |        110000.45 |          4
+</span><span class="linenos">12</span>(9 rows)
+</pre></div>
+</div>
+<p>Repare na consulta que a função de janela <code class="docutils literal notranslate"><span class="pre">dense_rank()</span></code> particiona as linhas resultantes da subconsulta pela coluna de saída <code class="docutils literal notranslate"><span class="pre">ano</span></code> e cria um <em>ranking</em> baseado na ordem dentro de cada partição pelo valor da coluna <code class="docutils literal notranslate"><span class="pre">total_emprestimo</span></code>.</p>
+</details><hr class="docutils" />
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Para mais detalhes das consultas de janela, consulte o manual do PostgreSQL nas seções <a class="reference external" href="https://www.postgresql.org/docs/16/tutorial-window.html">3.5. Window Functions</a> e <a class="reference external" href="https://www.postgresql.org/docs/16/functions-window.html">9.22. Window Functions</a>.</p>
+</div>
+</section>
+<section id="consultas-espaciais">
+<h2><span class="section-number">1.10.5. </span>Consultas Espaciais<a class="headerlink" href="#consultas-espaciais" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>12.</strong> Qual a área em hectares de cada gleba?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">gleba</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> gid |          area
+-----+------------------------
+   1 | 1.0874952000010346e-05
+   2 | 1.9811417999996206e-05
+   3 |  3.292848000000658e-05
+   4 |  2.306288000001502e-05
+   5 |  8.811599999997503e-06
+   6 |   3.23872467915163e-06
+   7 | 2.5555322999988482e-05
+   8 |  0.0001896014250000293
+   9 |  1.989994500000845e-05
+  10 | 3.0835349999948616e-06
+  11 |   1.85541250005088e-05
+(11 rows)
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">INSERT</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">spatial_ref_sys</span><span class="w"> </span><span class="p">(</span><span class="n">srid</span><span class="p">,</span><span class="w"> </span><span class="n">proj4text</span><span class="p">)</span>
+<span class="w">    </span><span class="k">VALUES</span><span class="w"> </span><span class="p">(</span><span class="mi">100000</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;+proj=aea +lat_1=-2 +lat_2=-22 +lat_0=-12 +lon_0=-54 +x_0=5000000 +y_0=10000000 +ellps=GRS80 +units=m +no_defs &#39;</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">gleba</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> gid |        area
+-----+--------------------
+   1 | 12.072867606637685
+   2 | 21.993748629081985
+   3 |  36.67122515757885
+   4 | 25.759911019875354
+   5 |  9.845611033112005
+   6 |  3.616752242092826
+   7 | 28.555074776128993
+   8 | 209.41624609146064
+   9 | 21.965721476803974
+  10 |  3.436200736973672
+  11 | 20.679512542366254
+(11 rows)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>13.</strong> Listar o nome do município onde cada gleba encontra-se localizada.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">municipio</span><span class="p">,</span>
+<span class="w">       </span><span class="n">gleba</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">municipio</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> gid | geocodigo |       nome
+-----+-----------+------------------
+   1 | 4105409   | Chopinzinho
+   2 | 4105409   | Chopinzinho
+   3 | 4109401   | Guarapuava
+   4 | 4109401   | Guarapuava
+   5 | 4117057   | Nova Laranjeiras
+   6 | 4117057   | Nova Laranjeiras
+   7 | 4117057   | Nova Laranjeiras
+   8 | 4117602   | Palmas
+   9 | 4117602   | Palmas
+  10 | 4127007   | Teixeira Soares
+  11 | 4127007   | Teixeira Soares
+(11 rows)
+</pre></div>
+</div>
+</details><hr class="docutils" />
+<p><strong>14.</strong> Qual o valor do financiamento anual em cada município?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_inicio</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">       </span><span class="n">geocodigo</span><span class="p">,</span>
+<span class="w">       </span><span class="n">nome</span><span class="p">,</span>
+<span class="w">       </span><span class="k">SUM</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total</span><span class="p">,</span>
+<span class="w">       </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">municipio</span><span class="p">,</span>
+<span class="w">       </span><span class="n">gleba</span><span class="p">,</span>
+<span class="w">       </span><span class="n">operacao</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">operacao</span><span class="p">.</span><span class="n">numero</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">operacao_numero</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">ST_Contains</span><span class="p">(</span><span class="n">municipio</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">gleba</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span><span class="w"> </span><span class="n">nome</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  | geocodigo |       nome       |   total    | num_operacoes
+------+-----------+------------------+------------+---------------
+ 2021 | 4117057   | Nova Laranjeiras |  200000.99 |             1
+ 2022 | 4105409   | Chopinzinho      |  100000.54 |             1
+ 2022 | 4109401   | Guarapuava       | 1460000.00 |             2
+ 2022 | 4117057   | Nova Laranjeiras |  205000.98 |             1
+ 2022 | 4117602   | Palmas           |  100000.24 |             2
+ 2023 | 4105409   | Chopinzinho      |  110000.45 |             1
+ 2023 | 4117057   | Nova Laranjeiras |  243000.97 |             1
+ 2023 | 4127007   | Teixeira Soares  | 1134001.29 |             2
+(8 rows)
+</pre></div>
+</div>
+</details></section>
+<hr class="docutils" />
+<section id="criando-tabelas-a-partir-de-consultas">
+<h2><span class="section-number">1.10.6. </span>Criando Tabelas a partir de Consultas<a class="headerlink" href="#criando-tabelas-a-partir-de-consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p>Podemos utilizar os comandos <code class="docutils literal notranslate"><span class="pre">CREATE</span> <span class="pre">TABLE</span></code> e <code class="docutils literal notranslate"><span class="pre">SELECT</span></code> em conjunto para criar tabelas a partir do resultado de consultas.</p>
+<p>A sintaxe básica desse comando é a seguinte:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>CREATE TABLE nome-tabela AS consulta;
+</pre></div>
+</div>
+<p>Vamos criar uma nova tabela chamada <code class="docutils literal notranslate"><span class="pre">buffer_gleba</span></code> que conterá um <em>buffer negativo</em> de 30 metros das geometrias das glebas:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">buffer_gleba</span><span class="w"> </span><span class="k">AS</span>
+<span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
+<span class="w">           </span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">ST_Buffer</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">),</span><span class="w"> </span><span class="o">-</span><span class="mi">30</span><span class="p">),</span><span class="w"> </span><span class="mi">4674</span><span class="p">)::</span><span class="n">geometry</span><span class="p">(</span><span class="n">multipolygon</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+<span class="w">      </span><span class="k">FROM</span><span class="w"> </span><span class="n">gleba</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>SELECT 11
+</pre></div>
+</div>
+</section>
 </section>
 
 
@@ -130,7 +653,7 @@
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
         <a href="inserindo-dados.html" class="btn btn-neutral float-left" title="1.9. Inserindo Dados" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
-        <a href="alterando-estrutura-tabela.html" class="btn btn-neutral float-right" title="1.11. Alterando a Estrutura de uma Tabela" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="import-export.html" class="btn btn-neutral float-right" title="1.11. Importando e Exportando Dados" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
@@ -140,7 +663,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f053d552a90>
+<jinja2.runtime.BlockReference object at 0x7ff3cff650d0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

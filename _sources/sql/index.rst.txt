@@ -57,7 +57,6 @@ Neste capítulo será utilizado o PostgreSQL versão 16.4 e sua extensão geogr�
     ./criando-tabelas
     ./inserindo-dados
     ./consultas
-    ./alterando-estrutura-tabela
     ./import-export
     ./consideracoes
 

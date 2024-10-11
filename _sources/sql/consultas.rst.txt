@@ -1,3 +1,796 @@
+.. include:: ../def.rst
+
+
+.. _sec_sql_consultas:
+
 Consultas em SQL
 ================
+
+
+Na linguagem ``SQL``, o comando ``SELECT`` é utilizado para recuperação de dados das tabelas. A sintaxe geral deste comando é a seguinte:
+
+
+.. code-block:: text
+
+        SELECT [ ALL | DISTINCT [ ON ( expressão [, ...] ) ] ]
+               [ * | expressão [ [ AS ] rótulo ] [, ...] ]
+
+    [     FROM from_item [, ...] ]
+
+    [    WHERE condição ]
+
+    [ GROUP BY elemento_agrupamento [, ...] ]
+
+    [   HAVING condição [, ...] ]
+
+    [ ORDER BY expressão [ ASC | DESC ] [, ...] ]
+
+    [    LIMIT { quantidade | ALL } ]
+
+    [   OFFSET início [ ROW | ROWS ] ]
+
+
+O comando ``SELECT`` é formado por várias cláusulas: ``SELECT``, ``FROM``, ``WHERE``, ``GROUP BY``, ``HAVING``, ``ORDER BY``, ``LIMIT`` e ``OFFSET``. Cada uma dessas cláusulas tem um papel importante na definição dos objetivos de uma consulta. Portanto, na sintaxe mostrada acima temos que:
+
+.. rst-class:: open
+
+- Tudo que está entre os pares de colchetes (``[`` e ``]``) é opcional.
+
+- A cláusula ``SELECT`` permite especificar a lista de expressões, isto é, nomes de colunas ou fórmulas matemáticas ou chamadas de função ou até mesmo sub-consultas, que farão parte das linhas de saída da consulta. A palavra-chave ``DISTINCT`` faz com que linhas com valores duplicados sejam removidas do resultado, ficando apenas uma linha do grupo de linhas repetidas. ``DISTINCT ON ( expressão [, ...])`` tem um comportamento semelhante, mas considerando apenas a lista de expressões fornecida. A palavra-chave ``ALL`` inclui todas as linhas do resultado, que é o comportamento padrão e, portanto, pode ser omitida. A palavra-chave ``AS`` possibilita renomear uma coluna ou expressão com um novo ``rótulo``. O caractere ``*`` é uma abreviação para a lista de todas as colunas dos conjuntos de dados presentes na cláusula ``FROM``.
+
+- A cláusula ``FROM`` especifica uma ou mais tabelas como fonte dos dados da consulta. Caso múltiplas tabelas sejam especificadas, o resultado é um produto cartesiano (ou ``CROSS JOIN``) de todas as tabelas envolvidas. No entanto, é muito comum o uso de uma cláusula ``WHERE`` para restringir as linhas retornadas a um subconjunto menor desse produto cartesiano. Vale ressaltar que na cláusula ``FROM``, o ``from_item`` pode ser o nome de uma tabela do banco de dados, o nome de uma *view* (visão), uma sub-consulta, ou até mesmo uma chamada de função que produza valores que são tratados como um conjunto de linhas. Portanto, a cláusula ``FROM`` faz o produto cartesiano dos conjuntos de dados informados.
+
+- A cláusula ``WHERE`` permite definir uma ``condição``, isto é, uma ``expressão lógica`` ou ``predicado``, para filtrar o conjunto de linhas da consulta. As linhas que não satisfaçam esse predicado serão eliminadas do resultado.
+
+- A cláusula ``GROUP BY`` é utilizada para criar grupos de linhas que são condensadas em uma única linha através das operações de agregação tais como: ``SUM``, ``MIN``, ``MAX``, ``AVG``, ``COUNT``, entre outras. O ``elemento_agrupamento`` pode ser o nome de uma coluna ou uma expressão formada a partir das colunas. Também podemos usar os nomes das colunas de saída da consulta nessa cláusula ou até mesmo a posição ordinal da coluna de saída. Quando esta cláusula está presente, apenas as colunas listadas nela ou funções de agregação podem ser usadas na lista da cláusula ``SELECT``.
+
+- A cláusula ``HAVING`` permite definir uma ``condição``, isto é, uma ``expressão lógica`` ou ``predicado``, para filtrar o resutado dos grupos de linhas. Dessa maneira, as linhas resultantes de agrupamentos que não satisfaçam essa condição, são eliminadas do resultado final.
+
+- A cláusula ``ORDER BY`` ordena o resultado final de acordo com a expressão fornecida. Lembrando que a expressão pode ser uma lista de colunas, expressões matemáticas, chamadas de função, ou a posição das colunas de saída de acordo com a lista da cláusula ``SELECT``.
+
+- As cláusulas ``LIMIT`` e ``OFFSET`` permitem, respectivamente, definir o número máximo de linhas a serem retornadas e o ponto onde esta contagem começa a valer.
+
+
+.. note::
+
+    A sintaxe do comando de seleção apresentada acima foi feita de maneira simplificada. Para a versão completa, consulte o seguite tópico do manual do PostgreSQL: `SELECT <https://www.postgresql.org/docs/16/sql-select.html>`__.
+
+
+Consultas Simples
+-----------------
+
+
+Nesta seção veremos exemplos de consultas que envolvem uma única tabela como entrada.
+
+
+**1.** Recuperar os dados do contrantante ``Leonardo``:
+
+
+.. collapse:: Solução:
+
+    .. code-block:: sql
+
+        SELECT *
+          FROM contratante
+         WHERE nome = 'Leonardo';
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+             cpf     |   nome   | genero |  classificacao  | data_cadastro
+        -------------+----------+--------+-----------------+---------------
+         55555555501 | Leonardo | m      | grande produtor | 2024-10-10
+        (1 row)
+
+
+    Nessa consulta usamos três cláusulas:
+
+    .. rst-class:: open
+
+    - ``SELECT``: Nesta cláusula usamos o caracter especial ``*`` que é expandido para a lista de todas as colunas e, por isso, obtivemos uma linha com 05 valores como mostrado acima.
+
+    - ``FROM``: Nesta cláusula especificamos a tabela ``contratante`` como fonte da consulta.
+
+    - ``WHERE``: Nesta cláusula especificamos uma expressão lógica que realiza o filtro das linhas desejadas. No exemplo acima, temos apenas um contratante com o nome ``Leonardo`` e, portanto, somente uma linha satisfaz a condição ``nome = 'Leonardo'``.
+
+
+-----
+
+
+**2.** Recuperar o CPF e nome dos contratantes classificados como "grande produtor" rural:
+
+
+.. collapse:: Solução:
+
+    .. code-block:: sql
+
+        SELECT cpf, nome
+          FROM contratante
+         WHERE classificacao = 'grande produtor';
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+             cpf     |   nome
+        -------------+----------
+         22222222201 | Karine
+         55555555501 | Leonardo
+        (2 rows)
+
+
+    A cláusula ``SELECT`` da consulta acima contém um subconjunto das colunas da tabela ``contratante``: ``cpf`` e ``nome``. Utilizamos o separador ``,`` para listar as colunas nessa cláusula. Essa cláusula nos permite, entre outra coisas, controlar a ordem de apresentação das colunas.
+
+
+-----
+
+
+**3.**  Recuperar o CPF e os três primeiros caracteres do nome dos contratantes registrados no ano de 2022 do gênero masculino (``m``):
+
+
+.. collapse:: Solução:
+
+    .. code-block:: sql
+
+        SELECT cpf, left(nome, 3) AS iniciais_nome
+          FROM contratante
+         WHERE (genero = 'm') AND (extract(YEAR FROM data_cadastro) = 2022);
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+             cpf     | iniciais_nome
+        -------------+---------------
+         11111111101 | Gil
+         44444444401 | Tha
+        (2 rows)
+
+
+    Na consulta acima:
+
+    .. rst-class:: open
+
+    - O segundo elemento da cláusula ``SELECT`` utilizou uma função chamada ``left`` para extrair no máximo três caracteres de um nome. Nesse elemento, também utilizamos a palavra-chave ``AS`` para criar um novo rótulo para a coluna de saída: ``iniciais_nome``.
+
+    - A clausula ``WHERE`` possui uma expressão usando o **e-lógico** (``AND``). Portanto, apenas as linhas que tenham simultaneamente o caracter ``m`` como gênero e a parte do ano da data de cadastro igual a 2022 serão selecionadas no resultado final.
+
+
+-----
+
+
+Junção de Tabelas
+-----------------
+
+
+Nesta seção veremos exemplos de consultas que envolvem duas ou mais tabelas como entrada.
+
+
+**4.** Fazer o produto cartesiano entre as tabelas ``operacao`` e ``gleba``:
+
+
+.. collapse:: Solução:
+
+    .. code-block:: sql
+
+        SELECT *
+          FROM operacao, gleba;
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+         numero |   valor   | data_inicio |  data_fim  | gid |         geom           | operacao_numero
+        --------+-----------+-------------+------------+-----+------------------------+-----------------
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   2 | 0106000020421200000... |               2
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+            ... |       ... |        ...  |        ... | ... |                    ... |             ...
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |   8 | 0106000020421200000... |               7
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |   9 | 0106000020421200000... |               7
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+        (99 rows)
+
+
+    A cláusula ``FROM`` permite especificar uma lista de tabelas (ou itens de dados). Na consulta acima, a cláusula ``FROM`` realizou o produto cartesiano entre as duas tabelas. Como temos 09 operações de crédito e 11 glebas, o resultado contém 99 linhas, isto é, todas as linhas da tabela ``operacao`` pareadas com todas as linhas da tabela ``gleba``.
+
+
+    Repare também que por termos usado o caractere ``*`` na cláusula ``SELECT``, todas as colunas das duas tabelas participaram do resultado final. Na cláusula ``SELECT`` é possível controlar a lista de colunas de saída especificando o nome qualificado da coluna, isto é, o ``nome-tabela.nome-coluna``:
+
+
+    .. code-block:: sql
+
+        SELECT operacao.*, gleba.gid
+          FROM operacao, gleba;
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+         numero |   valor   | data_inicio |  data_fim  | gid
+        --------+-----------+-------------+------------+-----
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   2
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   3
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   4
+            ... |       ... |        ...  |        ... | ...
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |   8
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |   9
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  10
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11
+        (99 rows)
+
+
+    Nesse último exemplo, o item ``operacao.*`` na cláusula ``SELECT`` é expandido para todas as colunas da tabela ``operacao``, isto é, as colunas ``numero``, ``valor``, ``data_inicio`` e ``data_fim``. Já a expressão ``gleba.gid`` indica que queremos apenas a coluna ``gid`` da tabela ``gleba`` no resultado.
+
+
+-----
+
+
+**5.** Juntar as linhas correlatas das tabelas ``operacao`` e ``gleba``:
+
+
+.. note::
+
+    Chamamos este tipo de consulta de **junção entre tabelas**.
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+        SELECT *
+          FROM operacao, gleba
+         WHERE operacao.numero = gleba.operacao_numero;
+
+
+    Saída:
+
+    .. code-block:: text
+
+         numero |   valor   | data_inicio |  data_fim  | gid |       geom             | operacao_numero
+        --------+-----------+-------------+------------+-----+------------------------+-----------------
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+              2 | 110000.45 | 2023-04-01  | 2023-10-30 |   2 | 0106000020421200000... |               2
+              3 | 730000.00 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+              3 | 730000.00 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+              4 | 200000.99 | 2021-05-01  | 2021-11-30 |   5 | 0106000020421200000... |               4
+              5 | 205000.98 | 2022-03-01  | 2022-12-31 |   6 | 0106000020421200000... |               5
+              6 | 243000.97 | 2023-06-01  | 2023-09-30 |   7 | 0106000020421200000... |               6
+              7 |  50000.12 | 2022-05-01  | 2022-11-30 |   8 | 0106000020421200000... |               7
+              7 |  50000.12 | 2022-05-01  | 2022-11-30 |   9 | 0106000020421200000... |               7
+              8 | 900000.73 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+        (11 rows)
+
+
+    Repare na saída acima que agora os valores nas linhas para a primeira coluna ``numero`` são iguais na coluna ``operacao_numero``. Esse exemplo mostra como usar colunas relacionadas para busca da informação apropriada.
+
+
+    Outra forma de realizar a consulta acima é utilizar a palavra-chave ``INNER JOIN``, como indicado abaixo:
+
+
+    .. code-block:: sql
+
+        SELECT *
+          FROM operacao INNER JOIN gleba ON operacao.numero = gleba.operacao_numero;
+
+
+    Saída:
+
+    .. code-block:: text
+
+         numero |   valor   | data_inicio |  data_fim  | gid |       geom             | operacao_numero
+        --------+-----------+-------------+------------+-----+------------------------+-----------------
+              1 | 100000.54 | 2022-05-01  | 2022-11-30 |   1 | 0106000020421200000... |               1
+              2 | 110000.45 | 2023-04-01  | 2023-10-30 |   2 | 0106000020421200000... |               2
+              3 | 730000.00 | 2022-05-01  | 2022-11-30 |   3 | 0106000020421200000... |               3
+              3 | 730000.00 | 2022-05-01  | 2022-11-30 |   4 | 0106000020421200000... |               3
+              4 | 200000.99 | 2021-05-01  | 2021-11-30 |   5 | 0106000020421200000... |               4
+              5 | 205000.98 | 2022-03-01  | 2022-12-31 |   6 | 0106000020421200000... |               5
+              6 | 243000.97 | 2023-06-01  | 2023-09-30 |   7 | 0106000020421200000... |               6
+              7 |  50000.12 | 2022-05-01  | 2022-11-30 |   8 | 0106000020421200000... |               7
+              7 |  50000.12 | 2022-05-01  | 2022-11-30 |   9 | 0106000020421200000... |               7
+              8 | 900000.73 | 2023-05-01  | 2023-11-30 |  10 | 0106000020421200000... |               8
+              9 | 234000.56 | 2023-05-01  | 2023-11-30 |  11 | 0106000020421200000... |               9
+        (11 rows)
+
+
+-----
+
+
+**6.** Quais os contratos realizados no CPF ``55555555501``?
+
+
+.. collapse:: Solução:
+
+    .. code-block:: sql
+
+        SELECT contratante.cpf, nome, operacao.numero, valor
+
+          FROM contratante, contratante_operacao, operacao
+
+         WHERE contratante.cpf = contratante_operacao.cpf
+           AND contratante_operacao.numero = operacao.numero
+           AND contratante.cpf = '55555555501';
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+             cpf     |   nome   | numero |   valor
+        -------------+----------+--------+-----------
+         55555555501 | Leonardo |      8 | 900000.73
+        (1 row)
+
+
+-----
+
+
+.. tip::
+
+    Para mais detalhes das consultas com junção entre tabelas, consulte o manual do PostgreSQL nas seções `2.6. Joins Between Tables <https://www.postgresql.org/docs/16/tutorial-join.html>`__ e `7.2. Table Expressions <https://www.postgresql.org/docs/16/queries-table-expressions.html>`__.
+
+
+Consultas de Agregação
+----------------------
+
+
+Temos vários operadores que trabalham com grupos de registros, sendo muito úteis para uso com a cláusula ``GROUP BY``:
+
+.. rst-class:: open
+
+- ``AVG``: média dos valores da coluna.
+
+- ``SUM``: soma dos valores da coluna.
+
+- ``COUNT``: número de valores na coluna.
+
+- ``MAX``: maior valor na coluna.
+
+- ``MIN``: menor valor na coluna.
+
+
+Nesta seção vamos explorar o uso das cláusulas ``GROUP BY`` e ``HAVING`` na construção de consultas que permitam realizar uma sumarização de valores a partir de grupos de linhas.
+
+
+-----
+
+
+**7.** Quantos contratos existem?
+
+
+.. collapse:: Solução:
+
+
+    Neste caso precisamos apenas usar uma função de agregação que conte o número de linhas de uma tabela, tratando todas as linhas como um único grupo. A função de agregação ``COUNT`` pode ser usada para esta finalidade:
+
+
+    .. code-block:: sql
+
+        SELECT COUNT(*) AS num_contratos
+          FROM operacao;
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+         num_contratos
+        ---------------
+                     9
+        (1 row)
+
+
+-----
+
+
+**8.** Qual o número de operacões por ano?
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+           SELECT extract(YEAR FROM data_inicio) AS ano,
+                  COUNT(*) AS num_operacoes
+             FROM operacao
+         GROUP BY  extract(YEAR FROM data_inicio)
+         ORDER BY ano;
+
+
+    Saída:
+
+
+    .. code-block:: text
+
+         ano  | num_operacoes
+        ------+---------------
+         2021 |             1
+         2022 |             4
+         2023 |             4
+        (3 rows)
+
+
+-----
+
+
+**9.** Quantas operações cada CPF realizou?
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+          SELECT cpf, COUNT(*) AS num_operacoes
+
+            FROM contratante INNER JOIN contratante_operacao USING (cpf)
+
+        GROUP BY cpf
+
+        ORDER BY cpf;
+
+    Saída:
+
+
+    .. code-block:: text
+
+             cpf     | num_operacoes
+        -------------+---------------
+         11111111101 |             3
+         22222222201 |             1
+         33333333301 |             3
+         44444444401 |             1
+         55555555501 |             1
+         66666666601 |             1
+        (6 rows)
+
+
+-----
+
+
+**10.** Quais CPF's realizaram mais do que um empréstimo?
+
+
+.. collapse:: Solução:
+
+
+    Esta consulta precisará contar o número de operações para cada pessoa e em seguida aplicar um filtro no resultado do grupo. Isto indica que precisaremos utilizar a cláusula ``HAVING`` como mostrado abaixo:
+
+
+    .. code-block:: sql
+        :emphasize-lines: 7
+
+        SELECT cpf, COUNT(*) AS num_operacoes
+
+            FROM contratante INNER JOIN contratante_operacao USING (cpf)
+
+        GROUP BY cpf
+
+          HAVING COUNT(*) > 1
+
+        ORDER BY cpf;
+
+
+    Resultado:
+
+
+    .. code-block:: text
+
+             cpf     | num_operacoes
+        -------------+---------------
+         11111111101 |             3
+         33333333301 |             3
+        (2 rows)
+
+
+Funções de Janela (Window Functions)
+------------------------------------
+
+
+Além das funções de agregação existem funções que operam em um conjunto relacionado de linhas. Essas funções são chamadas de **funções de janela** (**window functions**). Duas funções de janela muito úteis são: ``rank`` e ``dense_rank``. Vamos explorar o uso da função ``dense_rank`` nessa seção.
+
+
+**11.** Qual a posição (*ranking*) de cada CPF em relação ao valor de empréstimos realizados ao longo dos anos?
+
+
+.. collapse:: Solução:
+
+
+    Vamos começar construindo uma consulta que liste o ano de matricula, número de matrícula, nome e total de créditos cursados por cada estudante:
+
+
+    .. code-block:: sql
+
+          SELECT cpf,
+                 extract(YEAR FROM data_inicio) AS ano,
+                 SUM(valor) AS total_emprestimo
+
+            FROM operacao INNER JOIN contratante_operacao USING (numero)
+
+        GROUP BY cpf, ano
+
+        ORDER BY cpf, ano;
+
+
+    Resultado:
+
+
+    .. code-block:: text
+
+             cpf     | ano  | total_emprestimo
+        -------------+------+------------------
+         11111111101 | 2022 |        150000.66
+         11111111101 | 2023 |        110000.45
+         22222222201 | 2022 |        730000.00
+         33333333301 | 2021 |        200000.99
+         33333333301 | 2022 |        205000.98
+         33333333301 | 2023 |        243000.97
+         44444444401 | 2022 |         50000.12
+         55555555501 | 2023 |        900000.73
+         66666666601 | 2023 |        234000.56
+        (9 rows)
+
+
+
+    Em seguida, vamos construir uma nova consulta que utilize a consulta acima como subconsulta para podermos utilizar a função de janela ``dense_rank`` para criar partições no resultado:
+
+
+    .. code-block:: sql
+        :emphasize-lines: 2
+
+          SELECT contratos.*,
+                 dense_rank() OVER (PARTITION BY ano ORDER BY total_emprestimo DESC) AS rank_valor
+
+            FROM (
+
+                  SELECT cpf,
+                         extract(YEAR FROM data_inicio) AS ano,
+                         SUM(valor) AS total_emprestimo
+
+                    FROM operacao INNER JOIN contratante_operacao USING (numero)
+
+                GROUP BY cpf, ano
+
+                ORDER BY cpf, ano
+
+                 ) AS  contratos
+
+        ORDER BY ano ASC, rank_valor ASC;
+
+
+    Resultado:
+
+
+    .. code-block:: text
+        :emphasize-lines: 3, 8-11
+        :linenos:
+
+             cpf     | ano  | total_emprestimo | rank_valor
+        -------------+------+------------------+------------
+         33333333301 | 2021 |        200000.99 |          1
+         22222222201 | 2022 |        730000.00 |          1
+         33333333301 | 2022 |        205000.98 |          2
+         11111111101 | 2022 |        150000.66 |          3
+         44444444401 | 2022 |         50000.12 |          4
+         55555555501 | 2023 |        900000.73 |          1
+         33333333301 | 2023 |        243000.97 |          2
+         66666666601 | 2023 |        234000.56 |          3
+         11111111101 | 2023 |        110000.45 |          4
+        (9 rows)
+
+
+    Repare na consulta que a função de janela ``dense_rank()`` particiona as linhas resultantes da subconsulta pela coluna de saída ``ano`` e cria um *ranking* baseado na ordem dentro de cada partição pelo valor da coluna ``total_emprestimo``.
+
+
+-----
+
+
+.. tip::
+
+    Para mais detalhes das consultas de janela, consulte o manual do PostgreSQL nas seções `3.5. Window Functions <https://www.postgresql.org/docs/16/tutorial-window.html>`__ e `9.22. Window Functions <https://www.postgresql.org/docs/16/functions-window.html>`__.
+
+
+Consultas Espaciais
+-------------------
+
+
+**12.** Qual a área em hectares de cada gleba?
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+        SELECT gid,
+               ST_Area(geom) AS area
+          FROM gleba;
+
+
+    Resultado:
+
+
+    .. code-block:: text
+
+         gid |          area
+        -----+------------------------
+           1 | 1.0874952000010346e-05
+           2 | 1.9811417999996206e-05
+           3 |  3.292848000000658e-05
+           4 |  2.306288000001502e-05
+           5 |  8.811599999997503e-06
+           6 |   3.23872467915163e-06
+           7 | 2.5555322999988482e-05
+           8 |  0.0001896014250000293
+           9 |  1.989994500000845e-05
+          10 | 3.0835349999948616e-06
+          11 |   1.85541250005088e-05
+        (11 rows)
+
+
+    .. code-block:: sql
+
+        INSERT INTO spatial_ref_sys (srid, proj4text)
+            VALUES (100000, '+proj=aea +lat_1=-2 +lat_2=-22 +lat_0=-12 +lon_0=-54 +x_0=5000000 +y_0=10000000 +ellps=GRS80 +units=m +no_defs ');
+
+
+    .. code-block:: sql
+
+        SELECT gid,
+               ST_Area(ST_Transform(geom, 100000)) / 10000.0 AS area
+          FROM gleba;
+
+
+    Resultado:
+
+
+    .. code-block:: text
+
+         gid |        area
+        -----+--------------------
+           1 | 12.072867606637685
+           2 | 21.993748629081985
+           3 |  36.67122515757885
+           4 | 25.759911019875354
+           5 |  9.845611033112005
+           6 |  3.616752242092826
+           7 | 28.555074776128993
+           8 | 209.41624609146064
+           9 | 21.965721476803974
+          10 |  3.436200736973672
+          11 | 20.679512542366254
+        (11 rows)
+
+
+-----
+
+
+**13.** Listar o nome do município onde cada gleba encontra-se localizada.
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+        SELECT gleba.gid, geocodigo, nome
+          FROM municipio,
+               gleba
+         WHERE ST_Contains(municipio.geom, gleba.geom);
+
+
+    .. code-block:: text
+
+         gid | geocodigo |       nome
+        -----+-----------+------------------
+           1 | 4105409   | Chopinzinho
+           2 | 4105409   | Chopinzinho
+           3 | 4109401   | Guarapuava
+           4 | 4109401   | Guarapuava
+           5 | 4117057   | Nova Laranjeiras
+           6 | 4117057   | Nova Laranjeiras
+           7 | 4117057   | Nova Laranjeiras
+           8 | 4117602   | Palmas
+           9 | 4117602   | Palmas
+          10 | 4127007   | Teixeira Soares
+          11 | 4127007   | Teixeira Soares
+        (11 rows)
+
+
+-----
+
+
+**14.** Qual o valor do financiamento anual em cada município?
+
+
+.. collapse:: Solução:
+
+
+    .. code-block:: sql
+
+        SELECT extract(YEAR FROM data_inicio) AS ano,
+               geocodigo,
+               nome,
+               SUM(valor) AS total,
+               COUNT(*) AS num_operacoes
+          FROM municipio,
+               gleba,
+               operacao
+         WHERE operacao.numero = gleba.operacao_numero
+           AND ST_Contains(municipio.geom, gleba.geom)
+        GROUP BY ano, geocodigo, nome
+        ORDER BY ano, geocodigo, nome;
+
+
+    .. code-block:: text
+
+         ano  | geocodigo |       nome       |   total    | num_operacoes
+        ------+-----------+------------------+------------+---------------
+         2021 | 4117057   | Nova Laranjeiras |  200000.99 |             1
+         2022 | 4105409   | Chopinzinho      |  100000.54 |             1
+         2022 | 4109401   | Guarapuava       | 1460000.00 |             2
+         2022 | 4117057   | Nova Laranjeiras |  205000.98 |             1
+         2022 | 4117602   | Palmas           |  100000.24 |             2
+         2023 | 4105409   | Chopinzinho      |  110000.45 |             1
+         2023 | 4117057   | Nova Laranjeiras |  243000.97 |             1
+         2023 | 4127007   | Teixeira Soares  | 1134001.29 |             2
+        (8 rows)
+
+
+-----
+
+
+Criando Tabelas a partir de Consultas
+-------------------------------------
+
+
+Podemos utilizar os comandos ``CREATE TABLE`` e ``SELECT`` em conjunto para criar tabelas a partir do resultado de consultas.
+
+
+A sintaxe básica desse comando é a seguinte:
+
+
+.. code-block:: text
+
+    CREATE TABLE nome-tabela AS consulta;
+
+
+Vamos criar uma nova tabela chamada ``buffer_gleba`` que conterá um *buffer negativo* de 30 metros das geometrias das glebas:
+
+
+.. code-block:: sql
+
+    CREATE TABLE buffer_gleba AS
+        SELECT gid,
+               ST_Transform(ST_Buffer(ST_Transform(geom, 100000), -30), 4674)::geometry(multipolygon, 4674) AS geom
+          FROM gleba;
+
+
+Saída:
+
+
+.. code-block:: text
+
+    SELECT 11
+
 
