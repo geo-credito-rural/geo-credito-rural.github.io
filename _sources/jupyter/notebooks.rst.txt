@@ -1,122 +1,152 @@
 .. _sec_jupyter_notebooks:
 
-Notebooks
-=========
+Jupyter Notebooks
+=================
 
 
-Vamos utilizar o ambiente do JupyterLab para criar um documento Notebook. Para isso, na janela principal do JupyterLab (:numref:`Figura %s <fig:jupyter:notebooks:jupyterlab-frontend>`), no navegador, selecione a opção :menuselection:`Python 3`.
+Um documento *Jupyter Notebook* possui a extensão ``.ipynb``, organizado em **células** que podem ser de **texto** ou de **código**.
 
 
-.. figure:: ../img/jupyter/jupyterlab-frontend.png
-    :alt: Janela inicial do JupyterLab
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:jupyterlab-frontend
-
-    Janela inicial do JupyterLab.
+Este documento apresenta alguns exemplos que podem ser usados para criação de células de texto, que serão renderizadas como **HTML** a partir da formatação **Markdown** ou de fórmulas **LaTeX**, e de células de código.
 
 
-Uma nova aba com o título ``Untitled.ipynb`` será apresentada (:numref:`Figura %s <fig:jupyter:notebooks:notebook-01>`).
+Células Markdown
+----------------
 
 
-.. figure:: ../img/jupyter/notebook-01.png
-    :alt: Criando um novo Notebook
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-01
-
-    Criando um novo Notebook.
+A primeira célula que vamos criar no nosso notebook é uma célula Markdown com o título do documento: "Criando um Jupyter Notebook".
 
 
-Salve esse novo notebook, que por padrão possui o nome ``Untitled.ipynb``, com o nome ``meu-primeiro-notebook.ipynb``. Para isso, selecione a opção de menu :menuselection:`File --> Save Notebook As...`. Por padrão, esse novo documento é criado contendo uma única célula, onde podemos escrever um código Python, como mostrado na :numref:`Figura %s <fig:jupyter:notebooks:notebook-02>`.
+Em Markdown, usamos um caracter ``#`` para indicar um texto de cabeçalho de nível 1, dois `##` para o nível 2 e assim por diante:
 
 
-.. figure:: ../img/jupyter/notebook-02.png
-    :alt: Célula de código Python
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-02
+.. code-block:: markdown
 
-    Célula de código Python.
+    # Título Nível 1
 
+    ## Título Nível 2
 
-Uma **célula** é uma **caixa de texto multilinha**, cujo conteúdo pode ser executado pressionando-se ``Shift-Enter`` ou clicando no botão ``Run`` na barra de botões, ou através do menu :menuselection:`Run --> Run Selected Cells` na barra de menus. A :numref:`Figura %s <fig:jupyter:notebooks:notebook-02>` mostra o resultado da execução dessa célula.
+    ### Título Nível 3
 
-
-.. figure:: ../img/jupyter/notebook-03.png
-    :alt: Resultado da execução da célula com código Python
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-03
-
-    Resultado da execução da célula com código Python.
+    #### Título Nível 4
 
 
-O **tipo da célula** irá determinar o comportamento de sua interpretação. Essencialmente, temos três tipos de células: células de código, células com textos formatados em Markdown, e células *raw*. Toda nova célula é definida, por padrão, como sendo do tipo código, podendo esse tipo ser alterado através da ``drop-down list`` na barra de botões ou através de teclas de atalho.
+Logo, nossa primeira célula conterá o seguinte texto:
 
 
-Vamos adicionar uma nova célula, desta vez como uma célula contendo textos na notação Markdown, como mostrado na :numref:`Figura %s <fig:jupyter:notebooks:notebook-04>`.
+.. code-block:: markdown
+
+    # Criando um Jupyter Notebook
 
 
-.. figure:: ../img/jupyter/notebook-04.png
-    :alt: Célula do tipo Markdown
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-04
-
-    Célula do tipo Markdown.
+Em seguida, vamos definir uma nova célula com a subseção "Células com Texto em Markdown":
 
 
-Uma célula do tipo Markdown, quando executada produz apenas uma renderização, como mostrada na :numref:`Figura %s <fig:jupyter:notebooks:notebook-05>`.
+.. code-block:: markdown
+
+    ## Células com Texto em Markdown
 
 
-.. figure:: ../img/jupyter/notebook-05.png
-    :alt: Resultado da execução de uma célula do tipo Markdown
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-05
+A próxima célula conterá o seguinte texto:
 
-    Resultado da execução de uma célula do tipo Markdown.
+.. code-block:: markdown
 
+    Esta célula é do tipo **`Markdown`**, o que significa que ela contém textos que poderão ser renderizados em HTML.
 
-As células do tipo Markdown aceitam também trechos em LaTeX. Na :numref:`Figura %s <fig:jupyter:notebooks:notebook-06>` a equação de Haversine encontra-se entre as marcações ``$$...$$``, e o resultado da execução dessa célula pode ser visto na :numref:`Figura %s <fig:jupyter:notebooks:notebook-07>`.
+    A sintaxe Markdown é bastante concisa e pode ser consultada em: [Markdown Cheatsheet](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).
 
 
-.. figure:: ../img/jupyter/notebook-06.png
-    :alt: Célula do tipo Markdown com trecho LaTeX
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-06
-
-    Célula do tipo Markdown com trecho LaTeX.
+Em Markdown um link pode ser criado com a seguinte sintaxe:
 
 
-.. figure:: ../img/jupyter/notebook-07.png
-    :alt: Resultado da execução de uma célula do tipo Markdown com trecho em LaTeX
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-07
+.. code-block:: markdown
 
-    Resultado da execução de uma célula do tipo Markdown com trecho em LaTeX.
+    [Introdução à Programação com Dados Geoespaciais](https://prog-geo.github.io)
 
 
-De maneira similar, podemos usar trechos em HTML, como por exemplo para escrever uma tabela formatada. As Figuras :numref:`%s <fig:jupyter:notebooks:notebook-08>` e :numref:`%s <fig:jupyter:notebooks:notebook-09>` mostram, respectivamente, como escrever um texto HTML e como será o resultado produzido pela execução da célula.
+Vamos criar uma célula com o seguint texo:
 
 
-.. figure:: ../img/jupyter/notebook-08.png
-    :alt: Célula do tipo Markdown com trecho HTML
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-08
+.. code-block:: markdown
 
-    Célula do tipo Markdown com trecho HTML.
+    Link do curso [Introdução à Programação com Dados Geoespaciais](https://prog-geo.github.io).
 
 
-.. figure:: ../img/jupyter/notebook-09.png
-    :alt: Resultado da execução de uma célula do tipo Markdown com trecho em HTML
-    :width: 100%
-    :figclass: align-center
-    :name: fig:jupyter:notebooks:notebook-09
+Podemos incluir fórmulas em [LaTeX](https://www.latex-project.org/), como a fórmula da distância de Haversine mostrada abaixo:
 
-    Resultado da execução de uma célula do tipo Markdown com trecho em HTML.
 
+.. code-block:: markdown
+
+    Distância de Haversine:
+
+    $$
+    d(p, q) = 2r \arcsin{\sqrt{\sin^2({\frac{\phi_2 - \phi_1}{2}}) + \cos{\phi_1} \cos{\phi_2} \sin^2({\frac{\lambda_2 - \lambda_1}{2}})}}
+    $$
+
+
+Podemos incluir eleentos HTML junto com o código Markdown. O trecho abaixo cria uma tabela em HTML:
+
+
+.. code-block:: markdown
+
+    Exemplo de tabela em HTML:
+
+    <table style="width: 50%; margin: 0; padding: 0; border: 0;">
+        <caption>Tabela 1 - Uma tabela usando HTML.</caption>
+        <tr>
+            <th style="text-align: center; border: 1px solid black">Coluna 1</th>
+            <th style="text-align: center; border: 1px solid black">Coluna 2</th>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black">Linha 1 Coluna 1</td>
+            <td style="text-align: center; border: 1px solid black">Linha 1 Coluna 2</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black">Linha 2 Coluna 1</td>
+            <td style="text-align: center; border: 1px solid black">Linha 2 Coluna 2</td>
+        </tr>
+        <tr>
+            <td style="text-align: center; border: 1px solid black">Linha 3 Coluna 1</td>
+            <td style="text-align: center; border: 1px solid black">Linha 3 Coluna 2</td>
+        </tr>
+    </table>
+
+
+Células contendo vídeos podem ser criadas com o comando mágico de célula ``%%HTML``. Vamos incluir um vídeo do Youtube:
+
+
+.. code-block:: ipython
+
+    %%HTML
+
+    <iframe width="80%" height="640" src="https://www.youtube-nocookie.com/embed/OQPeRrd81a8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+Células de Código Python
+------------------------
+
+
+A célula abaixo possui códigos em Python.
+
+
+.. code-block:: python
+
+    #
+    # Esta célula é do tipo "código",
+    # logo você pode escrever qualquer código Python válido!
+    #
+    # Para executar essa célula, tecle SHIFT+ENTER
+    #
+
+    lista_quadrados = [ x**2 for x in range( 1, 11 ) ]
+
+    soma_quadrados = sum( lista_quadrados )
+
+    print( "Lista =", lista_quadrados )
+
+    print( "Soma:", soma_quadrados )
+
+
+.. note::
+
+    O jupyter Notebook dessa seção pode ser baixado do seguinte link: :download:`exemplo-notebook.ipynb <../code/jupyter/exemplo-notebook.ipynb>`.

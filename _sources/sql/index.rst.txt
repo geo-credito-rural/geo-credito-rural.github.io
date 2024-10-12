@@ -63,4 +63,4 @@ Neste capítulo será utilizado o PostgreSQL versão 16.4 e sua extensão geogr�
 
 .. warning::
 
-    Parte do material deste capítulo foi retirado do livro online `Bancos de Dados Geográficos - Teoria e Prática com PostgreSQL e PostGIS <https://gqueiroz.github.io/bdg/index.html>`__, disponibilizado gratuitamente pelo autor Gilberto Ribeiro de Queiroz.
+    Parte do material deste capítulo foi retirado do livro online `Bancos de Dados Geográficos - Teoria e Prática com PostgreSQL e PostGIS <https://gqueiroz.github.io/bdg/index.html>`__ :cite:`queiroz:2024`.

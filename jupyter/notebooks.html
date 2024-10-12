@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>2.2. Notebooks &mdash; GeoCreditoRural</title>
+  <title>2.2. Jupyter Notebooks &mdash; GeoCreditoRural</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
@@ -59,7 +59,11 @@
 <li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="index.html">2. Ambiente de Computação Interativa</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="introducao.html">2.1. Introdução</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Notebooks</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">2.2. Jupyter Notebooks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#celulas-markdown">2.2.1. Células Markdown</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#celulas-de-codigo-python">2.2.2. Células de Código Python</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../sicor/index.html">3. Dados do Sicor</a></li>
@@ -98,7 +102,7 @@
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
           <li class="breadcrumb-item"><a href="index.html"><span class="section-number">2. </span>Ambiente de Computação Interativa</a></li>
-      <li class="breadcrumb-item active"><span class="section-number">2.2. </span>Notebooks</li>
+      <li class="breadcrumb-item active"><span class="section-number">2.2. </span>Jupyter Notebooks</li>
       <li class="wy-breadcrumbs-aside">
       </li>
   </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
@@ -110,77 +114,108 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="notebooks">
-<span id="sec-jupyter-notebooks"></span><h1><span class="section-number">2.2. </span>Notebooks<a class="headerlink" href="#notebooks" title="Link permanente para este cabeçalho"></a></h1>
-<p>Vamos utilizar o ambiente do JupyterLab para criar um documento Notebook. Para isso, na janela principal do JupyterLab (<a class="reference internal" href="#fig-jupyter-notebooks-jupyterlab-frontend"><span class="std std-numref">Figura 2.7</span></a>), no navegador, selecione a opção <span class="menuselection">Python 3</span>.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-jupyterlab-frontend">
-<a class="reference internal image-reference" href="../_images/jupyterlab-frontend.png"><img alt="Janela inicial do JupyterLab" src="../_images/jupyterlab-frontend.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.7 - </span><span class="caption-text">Janela inicial do JupyterLab.</span><a class="headerlink" href="#fig-jupyter-notebooks-jupyterlab-frontend" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>Uma nova aba com o título <code class="docutils literal notranslate"><span class="pre">Untitled.ipynb</span></code> será apresentada (<a class="reference internal" href="#fig-jupyter-notebooks-notebook-01"><span class="std std-numref">Figura 2.8</span></a>).</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-01">
-<a class="reference internal image-reference" href="../_images/notebook-01.png"><img alt="Criando um novo Notebook" src="../_images/notebook-01.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.8 - </span><span class="caption-text">Criando um novo Notebook.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-01" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>Salve esse novo notebook, que por padrão possui o nome <code class="docutils literal notranslate"><span class="pre">Untitled.ipynb</span></code>, com o nome <code class="docutils literal notranslate"><span class="pre">meu-primeiro-notebook.ipynb</span></code>. Para isso, selecione a opção de menu <span class="menuselection">File ‣ Save Notebook As…</span>. Por padrão, esse novo documento é criado contendo uma única célula, onde podemos escrever um código Python, como mostrado na <a class="reference internal" href="#fig-jupyter-notebooks-notebook-02"><span class="std std-numref">Figura 2.9</span></a>.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-02">
-<a class="reference internal image-reference" href="../_images/notebook-02.png"><img alt="Célula de código Python" src="../_images/notebook-02.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.9 - </span><span class="caption-text">Célula de código Python.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-02" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>Uma <strong>célula</strong> é uma <strong>caixa de texto multilinha</strong>, cujo conteúdo pode ser executado pressionando-se <code class="docutils literal notranslate"><span class="pre">Shift-Enter</span></code> ou clicando no botão <code class="docutils literal notranslate"><span class="pre">Run</span></code> na barra de botões, ou através do menu <span class="menuselection">Run ‣ Run Selected Cells</span> na barra de menus. A <a class="reference internal" href="#fig-jupyter-notebooks-notebook-02"><span class="std std-numref">Figura 2.9</span></a> mostra o resultado da execução dessa célula.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-03">
-<a class="reference internal image-reference" href="../_images/notebook-03.png"><img alt="Resultado da execução da célula com código Python" src="../_images/notebook-03.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.10 - </span><span class="caption-text">Resultado da execução da célula com código Python.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-03" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>O <strong>tipo da célula</strong> irá determinar o comportamento de sua interpretação. Essencialmente, temos três tipos de células: células de código, células com textos formatados em Markdown, e células <em>raw</em>. Toda nova célula é definida, por padrão, como sendo do tipo código, podendo esse tipo ser alterado através da <code class="docutils literal notranslate"><span class="pre">drop-down</span> <span class="pre">list</span></code> na barra de botões ou através de teclas de atalho.</p>
-<p>Vamos adicionar uma nova célula, desta vez como uma célula contendo textos na notação Markdown, como mostrado na <a class="reference internal" href="#fig-jupyter-notebooks-notebook-04"><span class="std std-numref">Figura 2.11</span></a>.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-04">
-<a class="reference internal image-reference" href="../_images/notebook-04.png"><img alt="Célula do tipo Markdown" src="../_images/notebook-04.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.11 - </span><span class="caption-text">Célula do tipo Markdown.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-04" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>Uma célula do tipo Markdown, quando executada produz apenas uma renderização, como mostrada na <a class="reference internal" href="#fig-jupyter-notebooks-notebook-05"><span class="std std-numref">Figura 2.12</span></a>.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-05">
-<a class="reference internal image-reference" href="../_images/notebook-05.png"><img alt="Resultado da execução de uma célula do tipo Markdown" src="../_images/notebook-05.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.12 - </span><span class="caption-text">Resultado da execução de uma célula do tipo Markdown.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-05" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>As células do tipo Markdown aceitam também trechos em LaTeX. Na <a class="reference internal" href="#fig-jupyter-notebooks-notebook-06"><span class="std std-numref">Figura 2.13</span></a> a equação de Haversine encontra-se entre as marcações <code class="docutils literal notranslate"><span class="pre">$$...$$</span></code>, e o resultado da execução dessa célula pode ser visto na <a class="reference internal" href="#fig-jupyter-notebooks-notebook-07"><span class="std std-numref">Figura 2.14</span></a>.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-06">
-<a class="reference internal image-reference" href="../_images/notebook-06.png"><img alt="Célula do tipo Markdown com trecho LaTeX" src="../_images/notebook-06.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.13 - </span><span class="caption-text">Célula do tipo Markdown com trecho LaTeX.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-06" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-07">
-<a class="reference internal image-reference" href="../_images/notebook-07.png"><img alt="Resultado da execução de uma célula do tipo Markdown com trecho em LaTeX" src="../_images/notebook-07.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.14 - </span><span class="caption-text">Resultado da execução de uma célula do tipo Markdown com trecho em LaTeX.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-07" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<p>De maneira similar, podemos usar trechos em HTML, como por exemplo para escrever uma tabela formatada. As Figuras <a class="reference internal" href="#fig-jupyter-notebooks-notebook-08"><span class="std std-numref">2.15</span></a> e <a class="reference internal" href="#fig-jupyter-notebooks-notebook-09"><span class="std std-numref">2.16</span></a> mostram, respectivamente, como escrever um texto HTML e como será o resultado produzido pela execução da célula.</p>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-08">
-<a class="reference internal image-reference" href="../_images/notebook-08.png"><img alt="Célula do tipo Markdown com trecho HTML" src="../_images/notebook-08.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.15 - </span><span class="caption-text">Célula do tipo Markdown com trecho HTML.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-08" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
-<figure class="align-center align-default" id="fig-jupyter-notebooks-notebook-09">
-<a class="reference internal image-reference" href="../_images/notebook-09.png"><img alt="Resultado da execução de uma célula do tipo Markdown com trecho em HTML" src="../_images/notebook-09.png" style="width: 100%;" /></a>
-<figcaption>
-<p><span class="caption-number">Figura 2.16 - </span><span class="caption-text">Resultado da execução de uma célula do tipo Markdown com trecho em HTML.</span><a class="headerlink" href="#fig-jupyter-notebooks-notebook-09" title="Link Permanente para essa imagem"></a></p>
-</figcaption>
-</figure>
+  <section id="jupyter-notebooks">
+<span id="sec-jupyter-notebooks"></span><h1><span class="section-number">2.2. </span>Jupyter Notebooks<a class="headerlink" href="#jupyter-notebooks" title="Link permanente para este cabeçalho"></a></h1>
+<p>Um documento <em>Jupyter Notebook</em> possui a extensão <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, organizado em <strong>células</strong> que podem ser de <strong>texto</strong> ou de <strong>código</strong>.</p>
+<p>Este documento apresenta alguns exemplos que podem ser usados para criação de células de texto, que serão renderizadas como <strong>HTML</strong> a partir da formatação <strong>Markdown</strong> ou de fórmulas <strong>LaTeX</strong>, e de células de código.</p>
+<section id="celulas-markdown">
+<h2><span class="section-number">2.2.1. </span>Células Markdown<a class="headerlink" href="#celulas-markdown" title="Link permanente para este cabeçalho"></a></h2>
+<p>A primeira célula que vamos criar no nosso notebook é uma célula Markdown com o título do documento: “Criando um Jupyter Notebook”.</p>
+<p>Em Markdown, usamos um caracter <code class="docutils literal notranslate"><span class="pre">#</span></code> para indicar um texto de cabeçalho de nível 1, dois <cite>##</cite> para o nível 2 e assim por diante:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Título Nível 1</span>
+
+<span class="gu">## Título Nível 2</span>
+
+<span class="gu">### Título Nível 3</span>
+
+<span class="gu">#### Título Nível 4</span>
+</pre></div>
+</div>
+<p>Logo, nossa primeira célula conterá o seguinte texto:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gh"># Criando um Jupyter Notebook</span>
+</pre></div>
+</div>
+<p>Em seguida, vamos definir uma nova célula com a subseção “Células com Texto em Markdown”:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span><span class="gu">## Células com Texto em Markdown</span>
+</pre></div>
+</div>
+<p>A próxima célula conterá o seguinte texto:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Esta célula é do tipo <span class="gs">**`Markdown`**</span>, o que significa que ela contém textos que poderão ser renderizados em HTML.
+
+A sintaxe Markdown é bastante concisa e pode ser consultada em: [<span class="nt">Markdown Cheatsheet</span>](<span class="na">https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet</span>).
+</pre></div>
+</div>
+<p>Em Markdown um link pode ser criado com a seguinte sintaxe:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>[<span class="nt">Introdução à Programação com Dados Geoespaciais</span>](<span class="na">https://prog-geo.github.io</span>)
+</pre></div>
+</div>
+<p>Vamos criar uma célula com o seguint texo:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Link do curso [<span class="nt">Introdução à Programação com Dados Geoespaciais</span>](<span class="na">https://prog-geo.github.io</span>).
+</pre></div>
+</div>
+<p>Podemos incluir fórmulas em [LaTeX](<a class="reference external" href="https://www.latex-project.org/">https://www.latex-project.org/</a>), como a fórmula da distância de Haversine mostrada abaixo:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Distância de Haversine:
+
+$$
+d(p, q) = 2r \arcsin{\sqrt{\sin^2({\frac{\phi_2 - \phi_1}{2}}) + \cos{\phi_1} \cos{\phi_2} \sin^2({\frac{\lambda_2 - \lambda_1}{2}})}}
+$$
+</pre></div>
+</div>
+<p>Podemos incluir eleentos HTML junto com o código Markdown. O trecho abaixo cria uma tabela em HTML:</p>
+<div class="highlight-markdown notranslate"><div class="highlight"><pre><span></span>Exemplo de tabela em HTML:
+
+&lt;table style=&quot;width: 50%; margin: 0; padding: 0; border: 0;&quot;&gt;
+    &lt;caption&gt;Tabela 1 - Uma tabela usando HTML.&lt;/caption&gt;
+    &lt;tr&gt;
+        &lt;th style=&quot;text-align: center; border: 1px solid black&quot;&gt;Coluna 1&lt;/th&gt;
+        &lt;th style=&quot;text-align: center; border: 1px solid black&quot;&gt;Coluna 2&lt;/th&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 1 Coluna 1&lt;/td&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 1 Coluna 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 2 Coluna 1&lt;/td&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 2 Coluna 2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 3 Coluna 1&lt;/td&gt;
+        &lt;td style=&quot;text-align: center; border: 1px solid black&quot;&gt;Linha 3 Coluna 2&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/table&gt;
+</pre></div>
+</div>
+<p>Células contendo vídeos podem ser criadas com o comando mágico de célula <code class="docutils literal notranslate"><span class="pre">%%HTML</span></code>. Vamos incluir um vídeo do Youtube:</p>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%%HTML</span>
+
+<span class="p">&lt;</span><span class="nt">iframe</span> <span class="na">width</span><span class="o">=</span><span class="s">&quot;80%&quot;</span> <span class="na">height</span><span class="o">=</span><span class="s">&quot;640&quot;</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;https://www.youtube-nocookie.com/embed/OQPeRrd81a8&quot;</span> <span class="na">frameborder</span><span class="o">=</span><span class="s">&quot;0&quot;</span> <span class="na">allow</span><span class="o">=</span><span class="s">&quot;accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture&quot;</span> <span class="na">allowfullscreen</span><span class="p">&gt;&lt;/</span><span class="nt">iframe</span><span class="p">&gt;</span>
+</pre></div>
+</div>
+</section>
+<section id="celulas-de-codigo-python">
+<h2><span class="section-number">2.2.2. </span>Células de Código Python<a class="headerlink" href="#celulas-de-codigo-python" title="Link permanente para este cabeçalho"></a></h2>
+<p>A célula abaixo possui códigos em Python.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="c1">#</span>
+<span class="c1"># Esta célula é do tipo &quot;código&quot;,</span>
+<span class="c1"># logo você pode escrever qualquer código Python válido!</span>
+<span class="c1">#</span>
+<span class="c1"># Para executar essa célula, tecle SHIFT+ENTER</span>
+<span class="c1">#</span>
+
+<span class="n">lista_quadrados</span> <span class="o">=</span> <span class="p">[</span> <span class="n">x</span><span class="o">**</span><span class="mi">2</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">11</span> <span class="p">)</span> <span class="p">]</span>
+
+<span class="n">soma_quadrados</span> <span class="o">=</span> <span class="nb">sum</span><span class="p">(</span> <span class="n">lista_quadrados</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Lista =&quot;</span><span class="p">,</span> <span class="n">lista_quadrados</span> <span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span> <span class="s2">&quot;Soma:&quot;</span><span class="p">,</span> <span class="n">soma_quadrados</span> <span class="p">)</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O jupyter Notebook dessa seção pode ser baixado do seguinte link: <a class="reference download internal" download="" href="../_downloads/ae92ecfad834cfa5982df5cd2cbcff6d/exemplo-notebook.ipynb"><code class="xref download docutils literal notranslate"><span class="pre">exemplo-notebook.ipynb</span></code></a>.</p>
+</div>
+</section>
 </section>
 
 
@@ -198,7 +233,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f95a78248b0>
+<jinja2.runtime.BlockReference object at 0x7f6fafa31430>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
