@@ -1,2 +1,273 @@
+.. include:: ../def.rst
+
+
+.. _sec_sql_import_export:
+
 Importando e Exportando Dados
 =============================
+
+
+O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando trata arquivos no formato texto, CSV e binários. As ferramentas clientes, como o *psql* e o *pgAdmin*, fornecem recursos que utilizam esse comando para copiar dados entre o cliente e o servidor. Nesta seção, vamos explorar esse comando de importação e exportação de dados diretamente do lado servidor bem como através das ferramentas *psql*, com o meta-comando ``\copy``, e pela interface gráfica do *pgAdmin*.
+
+
+Importando arquivos CSV
+-----------------------
+
+
+Considere o arquivo :download:`glebas-2024-subconjunto.csv <../data/sql/glebas-2024-subconjunto.csv>`, mostrado parcialmente abaixo, e que contém dados sobre 50 glebas de operações de crédito rural com recursos públicos do ano de 2024.
+
+
+.. literalinclude:: ../data/sql/glebas-2024-subconjunto.csv
+    :lines: 1-11
+    :caption: :download:`glebas-2024-subconjunto.csv <../data/sql/glebas-2024-subconjunto.csv>`.
+    :name: data:sql:glebas-2024-subconjunto
+
+
+.. note::
+
+    Os dados apresentados nesse arquivo foram extraídos do `Portal do Banco Central do Brasil - Tabelas e Microdados do Crédito Rural e do Proagro <https://www.bcb.gov.br/estabilidadefinanceira/tabelas-credito-rural-proagro/>`__.
+
+
+.. note::
+
+    O arquivo CSV completo com dados de 2024 pode ser baixado do seguinte link :download:`sicor_glebas_wkt_2024.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/sicor_glebas_wkt_2024.gz>`.
+
+
+Repare que esse arquivo possui uma primeira linha com um cabeçalho, indicando as colunas presentes:
+
+
+.. code-block:: text
+
+    #REF_BACEN;NU_ORDEM;NU_INDICE;GT_GEOMETRIA
+
+
+Os campos encontram-se separados pelo caractere ``;``:
+
+
+.. code-block:: text
+
+    517254553;1;0;POLYGON ((-43.902034 -21.309695999999899, ...))
+
+
+Para importar esse arquivo para o banco de dados usando o comando ``COPY`` ou o metacomando ``\copy``, primeiro devemos criar uma tabela capaz de armazenar esses dados:
+
+
+.. code-block:: sql
+
+    CREATE TABLE glebas
+    (
+        ref_bacen    INTEGER,
+        nu_ordem     INTEGER,
+        nu_indice    INTEGER,
+        geom         GEOMETRY(POLYGONZ, 4674)
+    );
+
+
+.. note::
+
+    Repare que não incluímos restrições na definição da tabela acima. Além disso, definimos nomes para os campos diferente dos que aparecem no cabeçalho do arquivo CSV.
+
+
+Comando ``COPY``
+++++++++++++++++
+
+
+Para copiar o arquivo acima para a nova tabela criada, podemos utilizar o comando ``COPY`` indicando na cláusula ``FROM`` o caminho completo para que o servidor encontre o arquivo de dados, como mostrado abaixo:
+
+
+.. code-block:: postgresql
+
+    COPY glebas(ref_bacen, nu_ordem, nu_indice, geom)
+    FROM '/data/glebas-2024-subconjunto.csv'
+    WITH (DELIMITER ';', FORMAT CSV, HEADER true);
+
+
+Resultado:
+
+
+.. code-block:: text
+
+    COPY 50
+
+
+No comando acima o nome da tabela para onde importaremos o dado é especificado logo após a palavra-chave ``COPY``. Se a tabela possuir colunas com tipos compatíveis com a mesma estrutura do arquivo CSV, então podemos omitir a lista de colunas, caso contrário, as colunas para as quais copiaremos os dados deverão aperecer entre parênteses. O caminho do arquivo CSV é colocado logo após a palavra-chave ``FROM``. Ao final do comando podemos especificar algumas opções, tais como: o delimitador de valores usado no arquivo (``;``), o formato do arquivo (``CSV``) e a presença de uma linha de cabeçalho no início do arquivo (``HEADER``).
+
+
+Se o comando acima for bem sucedido, você receberá uma mensagem indicando que ``50`` linhas foram copiadas para a tabela ``glebas``.
+
+
+.. note::
+
+    O exemplo acima também poderia ser realizado sem especificar as colunas da tabela de destino:
+
+
+    .. code-block:: postgresql
+
+        COPY glebas
+        FROM '/data/glebas-2024-subconjunto.csv'
+        WITH (DELIMITER ';', FORMAT CSV, HEADER true);
+
+
+.. tip::
+
+    Para saber mais sobre o comando ``COPY``, consulte o manual do PostgreSQL na Seção `COPY <https://www.postgresql.org/docs/16/sql-copy.html>`__.
+
+
+Usando o Meta-comando ``\copy``
++++++++++++++++++++++++++++++++
+
+
+Um detalhe importante sobre o comando ``COPY`` é que o arquivo de dados informado será lido pelo servidor PostgreSQL e, portanto, deve estar em um caminho acessível por ele. Isso significa que o arquivo precisa estar num sistema de arquivos acessível pelo servidor e que o usuário que executa o processo do servidor PostgreSQL precisará ter privilégios de leitura tanto no diretório quanto no arquivo de dados. Para relaxar essa restrição, as aplicações clientes, como o *psql* e o *pgAdmin*, utilizam uma variante desse comando que realiza a leitura e escrita para a entrada/saída padrão (``COPY FROM STDIN`` ou ``COPY TO STDOUT``).
+
+
+No caso do psql, ele fornece um meta-comando chamado ``\copy`` que pode ser usado de maneira análoga ao comando ``COPY``. A diferença essencial é que o ``\copy`` realiza a leitura do arquivo no lado cliente, isto é, onde o *psql* é executado, e este é que de fato envia os dados pela rede de comunicação com o servidor PostgreSQL usando nos bastidores o comando ``COPY FROM STDIN``. Portanto, o exemplo da seção anterior poderia ser construído com o *psql* da seguinte forma:
+
+
+.. code-block:: psql
+
+    \copy glebas FROM '/data/glebas-2024-subconjunto.csv' WITH (DELIMITER ';', FORMAT CSV, HEADER);
+
+
+.. tip::
+
+    Uma forma simples de limpar o conteúdo de uma tabela é usar o comando ``TRUNCATE TABLE``, como mostrado abaixo:
+
+
+    .. code-block:: sql
+
+        TRUNCATE TABLE glebas;
+
+
+.. tip::
+
+    Para saber mais sobre o meta-comando ``\copy``, veja o `manual do psql <https://www.postgresql.org/docs/16/app-psql.html>`__.
+
+
+Importando Dados pelo pgAdmin
++++++++++++++++++++++++++++++
+
+
+Pela interface gráfica do pgAdmin é possível importar arquivos CSV. Ao selecionar a tabela para a qual se deseja copiar os dados, selecione o menu ``Import/Export Data...``, como mostrado na figura abaixo:
+
+
+.. figure:: ../img/sql/import-export/import-csv-01.png
+    :alt: Importando dados para a tabela focos
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-01
+
+    Importando dados para a tabela ``glebas``.
+
+
+Na janela aberta, com a opção ``Import`` selecionada, devemos indicar o arquivo a ser carregado:
+
+
+.. figure:: ../img/sql/import-export/import-csv-02.png
+    :alt: Importando dados para a tabela focos
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-02
+
+    Importando dados para a tabela ``glebas``.
+
+
+O arquivo pode ser indicado de diversas formas. Uma delas consiste em fazer o *upload* do arquivo:
+
+
+.. figure:: ../img/sql/import-export/import-csv-03.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-03
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-04.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-04
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-05.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-05
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-06.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 60%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-06
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-07.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-07
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-08.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-08
+
+    Importando dados para a tabela ``glebas``.
+
+
+.. figure:: ../img/sql/import-export/import-csv-09.png
+    :alt: Fazendo o upload de um arquivo CSV
+    :width: 80%
+    :figclass: align-center
+    :name: fig:sql:import-export:import-csv-09
+
+    Importando dados para a tabela ``glebas``.
+
+
+Exportando para Arquivos CSV
+----------------------------
+
+
+Vamos usar o meta-comando ``\copy`` para exportar os dados da tabela ``glebas`` para um arquivo denominado ``/data/glebas.csv``, onde a primeira linha será de cabeçalho e os valores em cada uma das linhas exportadas serão separados por ``;``:
+
+
+.. code-block:: psql
+
+    \copy glebas TO '/data/glebas.csv' WITH (DELIMITER ';', FORMAT CSV, HEADER true);
+
+
+Resultado:
+
+
+.. code-block:: text
+
+    COPY 50
+
+
+Podemos também exportar o resultado de uma consulta:
+
+
+.. code-block:: psql
+
+    \copy (SELECT ref_bacen, nu_ordem, nu_indice, ST_AsText(ST_Force2D(geom)) FROM glebas WHERE ref_bacen = '517254582') TO '/data/gleba-517254582.csv' WITH (DELIMITER ';', FORMAT CSV, HEADER true);
+
+
+Resultado:
+
+
+.. code-block:: text
+
+    COPY 1
