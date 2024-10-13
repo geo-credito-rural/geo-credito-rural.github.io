@@ -24,6 +24,7 @@ Atualmente, o ambiente de computação interativa denominado `Jupyter <https://j
 
     ./introducao
     ./notebooks
+    ./python
 ..    ./jupyter/ipython
 ..    ./jupyter/funcoes-magicas
 ..    ./jupyter/comandos-sistema

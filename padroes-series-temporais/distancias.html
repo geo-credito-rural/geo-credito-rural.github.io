@@ -118,13 +118,13 @@
              
   <section id="medidas-de-similaridade-entre-series-temporais">
 <span id="sec-padroes-series-temporais-distancias"></span><h1><span class="section-number">9.1. </span>Medidas de Similaridade entre Séries Temporais<a class="headerlink" href="#medidas-de-similaridade-entre-series-temporais" title="Link permanente para este cabeçalho"></a></h1>
-<p>Existem diferentes medidas de similaridade para séries temporais <span id="id1">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">138</a>]</span>, como mostrado na <a class="reference internal" href="#fig-padroes-series-distances"><span class="std std-numref">Figura 9.4</span></a>.
+<p>Existem diferentes medidas de similaridade para séries temporais <span id="id1">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">142</a>]</span>, como mostrado na <a class="reference internal" href="#fig-padroes-series-distances"><span class="std std-numref">Figura 9.4</span></a>.
 Essas medidas incluem Hausdorff, Modified Hausdorff (MODH), HMM-based distance, Dynamic Time Warping (DTW),
 Euclidean distance, Euclidean distance in a PCA subspace, and Longest Common Sub-Sequence (LCSS).</p>
 <figure class="align-center align-default" id="fig-padroes-series-distances">
 <a class="reference internal image-reference" href="../_images/distances-sits.png"><img alt="Medidas de similaridades entre séries temporais" src="../_images/distances-sits.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 9.4 - </span><span class="caption-text">Medidas de similaridades entre séries temporais baseadas na forma. <br/> <strong>Adaptado de:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">138</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-distances" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 9.4 - </span><span class="caption-text">Medidas de similaridades entre séries temporais baseadas na forma. <br/> <strong>Adaptado de:</strong> <span id="id2">[<a class="reference internal" href="../referencias.html#id2" title="Saeed Aghabozorgi, Ali Seyed Shirkhorshidi, and Teh Ying Wah. Time-series clustering–a decade review. Information Systems, 53:16–38, 2015.">142</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-distances" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p>A escolha de uma abordagem de distância adequada depende das características das séries temporais, da duração das séries, do método de
@@ -135,7 +135,7 @@ entre duas séries temporais.</p>
 <figure class="align-center align-default" id="fig-padroes-series-dist-ed-dtw-01">
 <a class="reference internal image-reference" href="../_images/dist-ED-DTW-01.png"><img alt="Distâncias DTW e Euclidiana entre duas séries temporais" src="../_images/dist-ED-DTW-01.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 9.5 - </span><span class="caption-text">Distâncias DTW e Euclidiana entre duas séries temporais. <br/> <strong>Fonte:</strong> <span id="id3">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">142</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-ed-dtw-01" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 9.5 - </span><span class="caption-text">Distâncias DTW e Euclidiana entre duas séries temporais. <br/> <strong>Fonte:</strong> <span id="id3">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">146</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-ed-dtw-01" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <figure class="align-center align-default" id="fig-padroes-series-dist-ed-dtw-02">
@@ -161,14 +161,14 @@ com a mesma linha de base, escala e comprimento. Além disso, ela ignora os desa
 <section id="distancia-dtw-dynamic-time-warping">
 <h2><span class="section-number">9.1.2. </span>Distância DTW (Dynamic Time Warping)<a class="headerlink" href="#distancia-dtw-dynamic-time-warping" title="Link permanente para este cabeçalho"></a></h2>
 <p>Dado duas séries temporais, a distância DTW (<em>Dynamic Time Warping</em>) as esticam ou comprimem localmente para fazer com que uma se pareça
-com a outra o máximo possível <span id="id4">[<a class="reference internal" href="../referencias.html#id22" title="Donald J Berndt and James Clifford. Using dynamic time warping to find patterns in time series. In KDD workshop, volume 10, 359–370. Seattle, WA, 1994.">144</a>]</span>. Por isso a distância DTW é chamada de elástica. Ela contorna o problema de desalinhamento
+com a outra o máximo possível <span id="id4">[<a class="reference internal" href="../referencias.html#id22" title="Donald J Berndt and James Clifford. Using dynamic time warping to find patterns in time series. In KDD workshop, volume 10, 359–370. Seattle, WA, 1994.">148</a>]</span>. Por isso a distância DTW é chamada de elástica. Ela contorna o problema de desalinhamento
 temporal, pois permite uma mudança elástica no eixo do tempo, como ilustrado na <a class="reference internal" href="#fig-padroes-series-dist-dtw"><span class="std std-numref">Figura 9.7</span></a>. A distância entre as duas séries é computada
 após o alongamento, somando as distâncias entre os elementos alinhados. Essa distância baseia-se em técnicas de programação dinâmica,
-sendo mais robusta que a distância euclidiana, no entanto, sem otimizações possui complexidade de <span class="math notranslate nohighlight">\(O(n^2)\)</span> <span id="id5">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">142</a>]</span>.</p>
+sendo mais robusta que a distância euclidiana, no entanto, sem otimizações possui complexidade de <span class="math notranslate nohighlight">\(O(n^2)\)</span> <span id="id5">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">146</a>]</span>.</p>
 <figure class="align-center align-default" id="fig-padroes-series-dist-dtw">
 <a class="reference internal image-reference" href="../_images/dist-DTW.png"><img alt="Distância DTW (Dynamic Time Warping) entre duas séries temporais" src="../_images/dist-DTW.png" style="width: 90%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 9.7 - </span><span class="caption-text">Distância DTW (Dynamic Time Warping) entre duas séries temporais. <br/> <strong>Adaptada de:</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">142</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 9.7 - </span><span class="caption-text">Distância DTW (Dynamic Time Warping) entre duas séries temporais. <br/> <strong>Adaptada de:</strong> <span id="id6">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">146</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 <p><strong>Definição</strong>: Dado duas séries temporais <span class="math notranslate nohighlight">\(Q = q_1, q_2,..., q_n\)</span> e <span class="math notranslate nohighlight">\(C = c_1, c_2,...,c_m\)</span>. Para alinhar ambas sequências, uma matriz <span class="math notranslate nohighlight">\(n\)</span> x <span class="math notranslate nohighlight">\(m\)</span>
@@ -186,7 +186,7 @@ de janelas mais usadas como restrição global no DTW: Sakoe-Chiba Band and the 
 <figure class="align-center align-default" id="fig-padroes-series-dist-dtw-ww">
 <a class="reference internal image-reference" href="../_images/dist-DTW-WarpingWindow.png"><img alt="Janela de deformação (ou *Warping Window*) do DTW (Dynamic Time Warping)" src="../_images/dist-DTW-WarpingWindow.png" style="width: 80%;" /></a>
 <figcaption>
-<p><span class="caption-number">Figura 9.8 - </span><span class="caption-text">Janela de deformação (ou <em>Warping Window</em>) do DTW (Dynamic Time Warping). <br/> <strong>Fonte:</strong> <span id="id7">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">142</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw-ww" title="Link Permanente para essa imagem"></a></p>
+<p><span class="caption-number">Figura 9.8 - </span><span class="caption-text">Janela de deformação (ou <em>Warping Window</em>) do DTW (Dynamic Time Warping). <br/> <strong>Fonte:</strong> <span id="id7">[<a class="reference internal" href="../referencias.html#id89" title="Eamonn Keogh and Chotirat Ann Ratanamahatana. Exact indexing of dynamic time warping. Knowledge and information systems, 7(3):358–386, 2005.">146</a>]</span>.</span><a class="headerlink" href="#fig-padroes-series-dist-dtw-ww" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
 </section>
@@ -207,7 +207,7 @@ de janelas mais usadas como restrição global no DTW: Sakoe-Chiba Band and the 
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fbc1e0c12b0>
+<jinja2.runtime.BlockReference object at 0x7f674d2653a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
