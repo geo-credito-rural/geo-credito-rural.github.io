@@ -57,19 +57,6 @@ Consultas
                 ORDER BY descricao;
 
 
-        .. tab:: Python
-
-
-            O pacote `sicor` possui uma operação demominada ``seguros`` que fornece um atalho para recuperação dos tipos de seguro na forma de um objeto ``Series`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                seguros = sicor.seguros()
-
-
 .. collapse:: Resultado:
 
 
@@ -89,6 +76,3 @@ Consultas
                  1              | proagro tradicional
                  9              | sem adesão a seguro
                 (5 rows)
-
-
-        .. tab:: Python

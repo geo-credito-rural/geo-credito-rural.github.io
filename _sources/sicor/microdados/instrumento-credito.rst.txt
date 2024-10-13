@@ -59,19 +59,6 @@ Consultas
                 ORDER BY descricao;
 
 
-        .. tab:: Python
-
-
-            O pacote `sicor` possui uma operação demominada ``instrumentos_credito`` que fornece um atalho para recuperação dos tipos de instrumentos de crédito na forma de um ``DataFrame`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                instr_cred = sicor.instrumentos_credito()
-
-
 .. collapse:: Resultado:
 
 
@@ -98,5 +85,3 @@ Consultas
                               99 | termo de adesão ao proagro                     | TAP
                 (11 rows)
 
-
-        .. tab:: Python

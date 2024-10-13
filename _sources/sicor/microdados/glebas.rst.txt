@@ -67,83 +67,12 @@ A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:micr
     +------------+--------------+---------+-------------------------------------------------------+
 
 
-No Sicor, as glebas são representadas textualmente utilizando uma notação conhecida por **Well-Know Text** ou :term:`WKT`, que permite representar elementos geométricos tais como geometrias elementares (pontos, linhas e polígonos) e coleções homogêneas de geometrias (coleção de pontos, coleção de linhas e coleção de polígonos), conforme pode ser visto na :numref:`Tabela %s <tbl:sicor:microdados:glebas:wkt:geom>`.
+A coluna ``gt_geometria`` contem elementos geométricos descritos no formato WKT. As geometrias no Sicor são codificadas em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
 
 
-.. |fig:sicor:microdados:glebas:wkt-pt-lin-pol| image:: ../../img/sicor/microdados/glebas/wkt-pt-lin-pol.png
+.. note::
 
-
-.. |fig:sicor:microdados:glebas:wkt-mpt-mlin| image:: ../../img/sicor/microdados/glebas/wkt-mpt-mlin.png
-
-
-.. |fig:sicor:microdados:glebas:wkt-mpoly| image:: ../../img/sicor/microdados/glebas/wkt-mpoly.png
-
-
-.. table:: Exemplos de geometrias.
-    :widths: 33 33 33
-    :width: 100%
-    :header-alignment: left left left
-    :column-alignment: center center center
-    :align: center
-    :name: tbl:sicor:microdados:glebas:wkt:geom
-
-    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
-    |  ( a ) Geometrias Simples                    | ( b ) Coleções Pontos e Linhas             | ( c ) Coleções Polígonos                |
-    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
-    | |fig:sicor:microdados:glebas:wkt-pt-lin-pol| | |fig:sicor:microdados:glebas:wkt-mpt-mlin| | |fig:sicor:microdados:glebas:wkt-mpoly| |
-    +----------------------------------------------+--------------------------------------------+-----------------------------------------+
-
-
-Na notação WKT, o ponto de coordenadas :math:`x = 1` e :math:`y = 8` mostrado na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>`, é descrito pela seguinte cadeia de caracteres ou *string*:
-
-
-.. code-block:: sql
-
-    'POINT(1 8)'
-
-
-A linha definida a partir de interpolações lineares de três vértices consecutivos mostrada na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>` é descrita pela seguinte string:
-
-
-.. code-block:: sql
-
-    'LINESTRING(1 5, 3 6, 4 5)'
-
-
-O polígono simples, formado por um anel externo e um anel interno, mostrado na :numref:`Tabela %sa <tbl:sicor:microdados:glebas:wkt:geom>` é descrito pela seguinte string:
-
-
-.. code-block:: sql
-
-    'POLYGON( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) )'
-
-
-A coleção de pontos mostrada na :numref:`Tabela %sb <tbl:sicor:microdados:glebas:wkt:geom>`, é descrita por:
-
-
-.. code-block:: sql
-
-    'MULTIPOINT(1 8, 3 7, 4 9, 2 9)'
-
-
-A coleção de linhas (:numref:`Tabela %sb <tbl:sicor:microdados:glebas:wkt:geom>`), é descrita por:
-
-
-.. code-block:: sql
-
-    'MULTILINESTRING( (1 2, 3 3, 4 2), (4 3, 6 2) )'
-
-
-Finalmente, a coleção de polígonos (:numref:`Tabela %sc <tbl:sicor:microdados:glebas:wkt:geom>`), é descrita por:
-
-
-.. code-block:: sql
-
-    'MULTIPOLYGON( ( (1 4, 2 6, 4 5, 3 4, 1 4) ),
-                   ( (1 1, 2 3, 5 4, 5 1, 1 1), (3 2, 4 3, 4 2, 3 2) ) )'
-
-
-A coluna ``gt_geometria`` , portanto, pode conter elementos geométricos descritos no formato WKT. As geometrias no Sicor são codificadas em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000.
+    Para mais detalhes sobre a notação WKT, consulte a :numref:`Seção %s - Representação WKT <sec_sql_postgis_geometry_wkt>`.
 
 
 .. tip::
@@ -205,7 +134,7 @@ A organização dos dados nessa tabela de glebas permite que mais de uma geometr
 
 .. tip::
 
-    O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando permite lidar com arquivos texto, CSV e binários. Esse comando de importação e exportação de dados é usado pelo meta-comando ``\copy`` dos aplicativos *psql* e *pgAdmin*. Portanto, para carregar o arquivo CSV contendo as glebas do ano de 2022 para a tabela ``sicor_glebas_wkt`` podemos usar o seguinte comando:
+    O PostgreSQL fornece um comando para uso via SQL chamado ``COPY`` que permite mover dados de arquivos para tabelas do banco de dados e vice-versa. Este comando permite lidar com arquivos texto, CSV e binários. Esse comando de importação e exportação de dados é usado pelo meta-comando ``\copy`` do aplicativo *psql* e pelo *pgAdmin*. Portanto, para carregar o arquivo CSV contendo as glebas do ano de 2022 para a tabela ``sicor_glebas_wkt`` podemos usar o seguinte comando:
 
 
     .. code-block:: psql
@@ -213,6 +142,8 @@ A organização dos dados nessa tabela de glebas permite que mais de uma geometr
         \copy sicor_glebas_wkt FROM '/dados/sicor_glebas_wkt_2022.csv'
                                WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
 
+
+    Para mais detalhes sobre importação de dados, consulte a :numref:`Seção %s <sec_sql_import_export>`.
 
 A representação WKT trata-se apenas de um texto e como tal, não permite realizar operações geométricas diretamente, como o cálculo de área e de perímetro. Logo, o formato WKT usado pelo Sicor na representação das glebas precisa ser transformado em um tipo de dado do PostgreSQL que permita realizar essas operações. O tipo **PostGIS Geometry** permite representar geometrias no **Plano Cartesiano** e pode ser construído a partir de um texto WKT através de uma operação de **coerção de tipo**, que consiste na transformação da string WKT em um objeto geométrico do PostGIS utilizando o operador de **cast** ``::``. Por exemplo, para converter um polígono representado em WKT para uma geometria do PostGIS do tipo *polygon* associado ao *SRS 4674*, podemos fazer:
 

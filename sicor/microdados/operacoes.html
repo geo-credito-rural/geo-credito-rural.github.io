@@ -390,6 +390,11 @@
 <td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do tipo do solo</p></td>
 </tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>pc_bonus_car</p></td>
+<td class="center-align"><p>numeric</p></td>
+<td class="left-align"><p>Percentual de bonus do CAR</p></td>
+</tr>
 </tbody>
 </table>
 <p>Os arquivos listados acima foram carregados na tabela <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> do banco de dados PostgreSQL. A <a class="reference internal" href="#fig-sicor-microdados-er-sicor-operacao-basica-estado"><span class="std std-numref">Figura 3.4</span></a> apresenta os relacionamentos dessa tabela e as demais tabelas auxiliares (ou de domínio).</p>
@@ -458,8 +463,8 @@
 <details class="summary-solucao">
 <summary>Solução:</summary><p>Para se obter o número de contratos relativos ao custeio de lavouras de soja ao longo dos anos, é necessário construir uma consulta envolvendo as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> e <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code>, uma vez que a tabela <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code> contém a lista dos possíveis produtos a serem contratados nas operações de crédito.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.5 - </span><span class="caption-text">Número de contratos de custeio de lavouras de soja.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano" title="Link Permanente para esse código"></a></div>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.4 - </span><span class="caption-text">Número de contratos de custeio de lavouras de soja.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-contratos-soja-ano" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_contratos</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span>
@@ -474,13 +479,6 @@
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
-
-<span class="n">contratos</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">operacoes</span><span class="p">(</span><span class="n">finalidade</span><span class="o">=</span><span class="s1">&#39;custeio&#39;</span><span class="p">,</span> <span class="n">modalidade</span><span class="o">=</span><span class="s1">&#39;lavoura&#39;</span><span class="p">,</span> <span class="n">produto</span><span class="o">=</span><span class="s1">&#39;soja&#39;</span><span class="p">)</span>
-
-<span class="c1"># ... processamento no Pandas com agrupamento por ano</span>
-</pre></div>
 </div>
 </div></div>
 </details><details class="summary-resultado">
@@ -514,8 +512,8 @@
 <p><strong>Consulta 2.</strong> Qual o número de operações e valor por cultura por ano?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-2-2-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-2-2-1" name="2-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.6 - </span><span class="caption-text">Número de operações e valor por cultura por ano.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano" title="Link Permanente para esse código"></a></div>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.5 - </span><span class="caption-text">Número de operações e valor por cultura por ano.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-operacoes-cultura-ano" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
 <span class="w">         </span><span class="n">produto</span><span class="p">,</span>
 <span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_operacoes</span><span class="p">,</span>
@@ -530,26 +528,6 @@
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">valor_total</span><span class="w"> </span><span class="k">DESC</span><span class="p">,</span><span class="w"> </span><span class="n">produto</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-</div><div aria-labelledby="tab-2-2-1" class="sphinx-tabs-panel" hidden="true" id="panel-2-2-1" name="2-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
-
-<span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;SELECT extract(YEAR FROM dt_emissao) AS ano,</span>
-<span class="s1">                     produto,</span>
-<span class="s1">                     COUNT(*) AS num_operacoes,</span>
-<span class="s1">                     SUM(vl_parc_credito) AS valor_total</span>
-<span class="s1">                FROM empreendimento,</span>
-<span class="s1">                     sicor_operacao_basica_estado AS operacoes</span>
-<span class="s1">               WHERE empreendimento.cd_empreendimento = operacoes.cd_empreendimento</span>
-<span class="s1">                 AND finalidade = &#39;custeio&#39;</span>
-<span class="s1">                 AND atividade = &#39;agrícola&#39;</span>
-<span class="s1">                 AND modalidade = &#39;lavoura&#39;</span>
-<span class="s1">            GROUP BY ano, produto</span>
-<span class="s1">            ORDER BY ano, valor_total DESC, produto&#39;&#39;&#39;</span>
-
-<span class="n">operacoes</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span>
-
-<span class="c1"># ... processamento no Pandas</span>
-</pre></div>
 </div>
 </div></div>
 </details><details class="summary-resultado">
@@ -583,8 +561,8 @@
 <p><strong>Consulta 3.</strong> Quais são as 10 culturas com maior valor de contratação ao longo dos anos e o <em>ranking</em> delas no número de operações e no valor por operação?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-4-4-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-4-4-1" name="4-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.7 - </span><span class="caption-text"><em>Ranking</em> das operações por cultura.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano" title="Link Permanente para esse código"></a></div>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="literal-block-wrapper docutils container" id="code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano">
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.6 - </span><span class="caption-text"><em>Ranking</em> das operações por cultura.</span><a class="headerlink" href="#code-sicor-microdados-sicor-operacao-basica-estado-sql-ranking-cultura-ano" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span>
@@ -613,13 +591,6 @@
 <span class="w">    </span><span class="k">OR</span><span class="w"> </span><span class="n">rank_valor_operacao</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="mi">10</span><span class="p">;</span>
 </pre></div>
 </div>
-</div>
-</div><div aria-labelledby="tab-4-4-1" class="sphinx-tabs-panel" hidden="true" id="panel-4-4-1" name="4-1" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
-
-<span class="n">operacoes</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s1">&#39;sql&#39;</span><span class="p">)</span>
-
-<span class="c1"># ... processamento no Pandas</span>
-</pre></div>
 </div>
 </div></div>
 </details><details class="summary-resultado">
@@ -683,7 +654,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f6fae9676d0>
+<jinja2.runtime.BlockReference object at 0x7fbc1f3fc550>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

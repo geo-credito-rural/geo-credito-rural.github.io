@@ -11,6 +11,8 @@ ALTER TABLE categoriaemitente ADD CONSTRAINT categoriaemitente_pkey PRIMARY KEY 
 
 ALTER TABLE fonterecursos ADD CONSTRAINT fonterecursos_pkey PRIMARY KEY (cd_fonte_recurso);
 
+ALTER TABLE fonterecursospublicos ADD CONSTRAINT fonterecursospublicos_pkey PRIMARY KEY (cd_fonte_recurso);
+
 ALTER TABLE tipogarantiaempreendimento ADD CONSTRAINT tipogarantiaempreendimento_pkey PRIMARY KEY (cd_tipo_seguro);
 
 ALTER TABLE empreendimento ADD CONSTRAINT empreendimento_pkey PRIMARY KEY (cd_empreendimento);
@@ -81,9 +83,9 @@ ALTER TABLE sicor_mutuarios ADD CONSTRAINT sicor_mutuarios_pkey PRIMARY KEY (ref
 
 ALTER TABLE sicor_lista_cooperados ADD CONSTRAINT sicor_lista_cooperados_pkey PRIMARY KEY (ref_bacen, nu_ordem, cpf_cnpj);
 
-ALTER TABLE sicor_rcp_glebas_wkt ADD CONSTRAINT sicor_rcp_glebas_wkt_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
+ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
 
-ALTER TABLE sicor_complemento_cop ADD CONSTRAINT sicor_complemento_cop_pkey  PRIMARY KEY (ref_bacen, nu_ordem, cd_evento);
+-- ALTER TABLE sicor_complemento_cop ADD CONSTRAINT sicor_complemento_cop_pkey  PRIMARY KEY (ref_bacen, nu_ordem, cd_evento);
 
 ALTER TABLE sicor_complemento_rcp ADD CONSTRAINT sicor_complemento_rcp_pkey  PRIMARY KEY (ref_bacen, nu_ordem);
 
@@ -322,7 +324,7 @@ ALTER TABLE sicor_lista_cooperados ADD CONSTRAINT sicor_lista_cooperados_ref_bac
 --        ON UPDATE CASCADE
 --        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_rcp_glebas_wkt ADD CONSTRAINT sicor_rcp_glebas_wkt_ref_bacen_fkey
+--ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_ref_bacen_fkey
 --    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
 --        ON UPDATE CASCADE
 --        ON DELETE NO ACTION;
@@ -341,8 +343,12 @@ ALTER TABLE sicor_lista_cooperados ADD CONSTRAINT sicor_lista_cooperados_ref_bac
 --
 -- Criação de índices
 --
-CREATE INDEX sicor_complemento_cop_idx ON sicor_complemento_cop(ref_bacen, nu_ordem, cd_evento);
-
 CREATE INDEX sicor_operacao_basica_estado_dt_emissao ON sicor_operacao_basica_estado(Extract(YEAR FROM dt_emissao));
+
+CREATE INDEX sicor_operacao_basica_estado_cd_empreendimento ON sicor_operacao_basica_estado(cd_empreendimento);
+
+CREATE INDEX sicor_cop_basico_dt_emissao ON sicor_cop_basico(extract(YEAR FROM dt_comunicacao));
+
+CREATE INDEX sicor_complemento_cop_idx ON sicor_complemento_cop(ref_bacen, nu_ordem, cd_evento);
 
 END;

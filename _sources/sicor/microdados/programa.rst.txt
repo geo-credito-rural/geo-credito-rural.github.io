@@ -64,19 +64,6 @@ Consultas
                 ORDER BY data_inicio, descricao;
 
 
-        .. tab:: Python
-
-
-            O pacote `sicor` possui uma operação demominada ``programas`` que fornece um atalho para recuperação dos programas na forma de um ``DataFrame`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                seguros = sicor.programas(ativos=True)
-
-
 .. collapse:: Resultado:
 
 
@@ -105,6 +92,3 @@ Consultas
                  0163        | pca - programa para construção e ampliação de armazéns                                              | 2013-07-01  | 2099-12-31 | pode ser utilizado em financiamentos
                  0222        | renovagro - programa de financiamento a sistemas de produção agropecuária sustentáveis              | 2023-07-01  | 2099-12-31 | pode ser utilizado em financiamentos
                 (14 rows)
-
-
-        .. tab:: Python

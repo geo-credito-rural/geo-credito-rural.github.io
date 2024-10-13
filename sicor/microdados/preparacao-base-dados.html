@@ -133,12 +133,8 @@
              
   <section id="preparacao-da-base-de-dados-sicor">
 <h1><span class="section-number">3.1.1. </span>Preparação da Base de Dados Sicor<a class="headerlink" href="#preparacao-da-base-de-dados-sicor" title="Link permanente para este cabeçalho"></a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Aviso</p>
-<p>Os códigos mostrados nesta seção <strong>encontram-se em desenvolvimento</strong>. Tanto os <em>scripts</em> SQL quanto o pacote Python denominado <code class="docutils literal notranslate"><span class="pre">sicor</span></code> serão atualizados e disponibilizados em breve.</p>
-</div>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p><strong>1.</strong> Faça o <em>download</em> do arquivo <a class="reference download internal" download="" href="../../_downloads/1fc028cd9ac1ee4ae8c93f6e1ec9ee10/sicor-esquema-ddl.sql"><code class="xref download docutils literal notranslate"><span class="pre">sicor-esquema-ddl.sql</span></code></a>. Este arquivo contém as instruções de criação das tabelas que serão usadas para armazenar os microdados do Sicor (<a class="reference internal" href="#code-sicor-microdados-preparacao-base-dados-sicor-esquema-ddl-sql"><span class="std std-numref">Trecho de Código 3.1</span></a>).</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p><strong>1.</strong> Faça o <em>download</em> do arquivo <a class="reference download internal" download="" href="../../_downloads/1fc028cd9ac1ee4ae8c93f6e1ec9ee10/sicor-esquema-ddl.sql"><code class="xref download docutils literal notranslate"><span class="pre">sicor-esquema-ddl.sql</span></code></a>. Este arquivo contém as instruções de criação das tabelas que serão usadas para armazenar os microdados do Sicor (<a class="reference internal" href="#code-sicor-microdados-preparacao-base-dados-sicor-esquema-ddl-sql"><span class="std std-numref">Trecho de Código 3.1</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-preparacao-base-dados-sicor-esquema-ddl-sql">
 <div class="code-block-caption"><span class="caption-number">Trecho de Código 3.1 - </span><span class="caption-text">Comandos de criação das tabelas para armazenamento de dados do Sicor (<a class="reference download internal" download="" href="../../_downloads/1fc028cd9ac1ee4ae8c93f6e1ec9ee10/sicor-esquema-ddl.sql"><code class="xref download docutils literal notranslate"><span class="pre">sicor-esquema-ddl.sql</span></code></a>).</span><a class="headerlink" href="#code-sicor-microdados-preparacao-base-dados-sicor-esquema-ddl-sql" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">BEGIN</span><span class="p">;</span>
@@ -165,15 +161,16 @@
 <p><strong>2.</strong> Em seguida, baixe o arquivo <a class="reference download internal" download="" href="../../_downloads/d45090e7e31bbc47a20729e709ce4c8d/sicor-carga-dados.sql"><code class="xref download docutils literal notranslate"><span class="pre">sicor-carga-dados.sql</span></code></a>, contendo as instruções de carga dos arquivos CSV dos microdados do Sicor (<a class="reference internal" href="#code-sicor-microdados-preparacao-base-dados-sicor-carga-dados-sql"><span class="std std-numref">Trecho de Código 3.2</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-preparacao-base-dados-sicor-carga-dados-sql">
 <div class="code-block-caption"><span class="caption-number">Trecho de Código 3.2 - </span><span class="caption-text">Comandos de importação dos microdados do Sicor (<a class="reference download internal" download="" href="../../_downloads/d45090e7e31bbc47a20729e709ce4c8d/sicor-carga-dados.sql"><code class="xref download docutils literal notranslate"><span class="pre">sicor-carga-dados.sql</span></code></a>).</span><a class="headerlink" href="#code-sicor-microdados-preparacao-base-dados-sicor-carga-dados-sql" title="Link Permanente para esse código"></a></div>
-<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="kp">\copy</span><span class="w"> </span><span class="ss">ifssicor</span><span class="w"> </span><span class="ss">FROM</span><span class="w"> </span><span class="s1">&#39;/dados/SICOR_LISTA_IFS.csv&#39;</span><span class="w"> </span><span class="ss">WITH</span><span class="w"> </span><span class="ss">(DELIMITER</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="ss">,</span><span class="w"> </span><span class="ss">FORMAT</span><span class="w"> </span><span class="ss">CSV,</span><span class="w"> </span><span class="ss">HEADER,</span><span class="w"> </span><span class="ss">ENCODING</span><span class="w"> </span><span class="s1">&#39;WIN1252&#39;</span><span class="ss">);</span>
+<div class="highlight-psql notranslate"><div class="highlight"><pre><span></span><span class="kp">\copy</span><span class="w"> </span><span class="ss">ifssicor</span><span class="w"> </span><span class="ss">FROM</span><span class="w"> </span><span class="s1">&#39;/shared-data/TCU/SICOR_LISTA_IFS.csv&#39;</span><span class="w"> </span><span class="ss">WITH</span><span class="w"> </span><span class="ss">(DELIMITER</span><span class="w"> </span><span class="s1">&#39;;&#39;</span><span class="ss">,</span><span class="w"> </span><span class="ss">FORMAT</span><span class="w"> </span><span class="ss">CSV,</span><span class="w"> </span><span class="ss">HEADER,</span><span class="w"> </span><span class="ss">ENCODING</span><span class="w"> </span><span class="s1">&#39;WIN1252&#39;</span><span class="ss">);</span>
 
-<span class="go">\copy instrumentocredito FROM &#39;/dados/InstrumentoCredito.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;);</span>
-
-<span class="go">SET DATESTYLE TO European;</span>
-<span class="go">\copy categoriaemitente FROM &#39;/dados/CategoriaEmitente.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;, QUOTE &#39;&quot;&#39;, ESCAPE &#39;&quot;&#39;);</span>
+<span class="go">\copy instrumentocredito FROM &#39;/shared-data/TCU/InstrumentoCredito.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;);</span>
 
 <span class="go">SET DATESTYLE TO European;</span>
-<span class="go">\copy fonterecursos FROM &#39;/dados/FonteRecursos.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;);</span>
+<span class="go">\copy categoriaemitente FROM &#39;/shared-data/TCU/CategoriaEmitente.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;, QUOTE &#39;&quot;&#39;, ESCAPE &#39;&quot;&#39;);</span>
+
+<span class="go">SET DATESTYLE TO European;</span>
+<span class="go">\copy fonterecursos FROM &#39;/shared-data/TCU/FonteRecursos.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;);</span>
+<span class="go">--\copy fonterecursospublicos FROM &#39;/shared-data/TCU/FonteRecursosPublicos.csv&#39; WITH (DELIMITER &#39;,&#39;, FORMAT CSV, HEADER, ENCODING &#39;WIN1252&#39;);</span>
 </pre></div>
 </div>
 </div>
@@ -190,19 +187,6 @@
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">instrumentocredito</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">instrumentocredito_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">cd_inst_credito</span><span class="p">);</span>
 
 <span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">categoriaemitente</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">categoriaemitente_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">cd_categ_emitente</span><span class="p">);</span>
-</pre></div>
-</div>
-</div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>O pacote denominado <a class="reference external" href="https://github.com/geo-credito-rural/sicor">sicor</a> pode ser utilizado no Python para criação e preparação da base de dados do Sicor. O <a class="reference internal" href="#code-sicor-microdados-preparacao-base-dados-criacao-e-carga-tabelas"><span class="std std-numref">Trecho de Código 3.4</span></a> mostra como utilizar esse pacote para criação do modelo de dados do Sicor, <em>download</em> automático dos microdads e carga em um banco de dados PostgreSQL com a extensão PostGIS.</p>
-<div class="literal-block-wrapper docutils container" id="code-sicor-microdados-preparacao-base-dados-criacao-e-carga-tabelas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.4 - </span><span class="caption-text">Preparação da base de dados do Sicor.</span><a class="headerlink" href="#code-sicor-microdados-preparacao-base-dados-criacao-e-carga-tabelas" title="Link Permanente para esse código"></a></div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span>    <span class="kn">import</span> <span class="nn">sicor</span>
-<span class="linenos">2</span>
-<span class="linenos">3</span>    <span class="n">sicor</span><span class="o">.</span><span class="n">use_db</span><span class="p">(</span><span class="s2">&quot;postgresql://usuario:senha@endereco-servidor/sicor&quot;</span><span class="p">)</span>
-<span class="linenos">4</span>
-<span class="linenos">5</span>    <span class="n">sicor</span><span class="o">.</span><span class="n">db</span><span class="o">.</span><span class="n">create_tables</span><span class="p">()</span>
-<span class="linenos">6</span>
-<span class="linenos">7</span>    <span class="n">sicor</span><span class="o">.</span><span class="n">load_data</span><span class="p">(</span><span class="n">ano</span><span class="o">=</span><span class="mi">2024</span><span class="p">)</span>
 </pre></div>
 </div>
 </div>
@@ -224,7 +208,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f6faf2f29d0>
+<jinja2.runtime.BlockReference object at 0x7fbc1f1c79d0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

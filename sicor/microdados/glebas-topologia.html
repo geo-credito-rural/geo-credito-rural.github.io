@@ -139,9 +139,9 @@
 <p><span class="caption-number">Figura 3.10 - </span><span class="caption-text">Tabela com coluna geométrica para tratamento das glebas.</span><a class="headerlink" href="#fig-sicor-microdados-er-sicor-glebas" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>O comando apresentado no <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas"><span class="std std-numref">Techo de Código 3.13</span></a> mostra como podemos criar essa tabela.</p>
+<p>O comando apresentado no <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas"><span class="std std-numref">Techo de Código 3.12</span></a> mostra como podemos criar essa tabela.</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.13 - </span><span class="caption-text">Criação da tabela de glebas com coluna geométrica.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.12 - </span><span class="caption-text">Criação da tabela de glebas com coluna geométrica.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-create-sicor-glebas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span>
 <span class="w">    </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
 <span class="w">           </span><span class="n">glebas</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
@@ -173,9 +173,9 @@
 </div>
 <section id="verificacao-das-geometrias">
 <h2><span class="section-number">3.1.11.1. </span>Verificação das Geometrias<a class="headerlink" href="#verificacao-das-geometrias" title="Link permanente para este cabeçalho"></a></h2>
-<p>A partir da tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> podemos avaliar a existência de glebas com geometrias inválidas com o uso da função <code class="docutils literal notranslate"><span class="pre">ST_IsValid</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-invalidas"><span class="std std-numref">Trecho de Código 3.14</span></a>).</p>
+<p>A partir da tabela <code class="docutils literal notranslate"><span class="pre">sicor_glebas</span></code> podemos avaliar a existência de glebas com geometrias inválidas com o uso da função <code class="docutils literal notranslate"><span class="pre">ST_IsValid</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-invalidas"><span class="std std-numref">Trecho de Código 3.13</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-glebas-geom-invalidas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.14 - </span><span class="caption-text">Glebas com geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-invalidas" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.13 - </span><span class="caption-text">Glebas com geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-invalidas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span><span class="w"> </span><span class="n">nu_indice</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span>
 <span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
@@ -240,9 +240,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 (26 rows)
 </pre></div>
 </div>
-<p>O número de geometrias inválidas em cada ano é muito pequeno, como mostrado no resultado da consulta abaixo (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas"><span class="std std-numref">Trecho de Código 3.15</span></a>).</p>
+<p>O número de geometrias inválidas em cada ano é muito pequeno, como mostrado no resultado da consulta abaixo (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas"><span class="std std-numref">Trecho de Código 3.14</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.15 - </span><span class="caption-text">Glebas com geometrias válidas e inválidas em cada ano.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.14 - </span><span class="caption-text">Glebas com geometrias válidas e inválidas em cada ano.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-glebas-geom-validas-e-invalidas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">WITH</span><span class="w"> </span><span class="n">glebas_com_geom_invalidas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
 <span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
 <span class="w">             </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geom_invalidas</span>
@@ -286,9 +286,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 (12 rows)
 </pre></div>
 </div>
-<p>Vamos criar uma tabela auxiliar denominada <code class="docutils literal notranslate"><span class="pre">glebas_geom_invalidas</span></code> para estudar os casos de glebas com geometrias inválidas de maneira mais fácil (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-invalidas"><span class="std std-numref">Trecho de Código 3.16</span></a>).</p>
+<p>Vamos criar uma tabela auxiliar denominada <code class="docutils literal notranslate"><span class="pre">glebas_geom_invalidas</span></code> para estudar os casos de glebas com geometrias inválidas de maneira mais fácil (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-invalidas"><span class="std std-numref">Trecho de Código 3.15</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-invalidas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.16 - </span><span class="caption-text">Tabela de glebas com geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-invalidas" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.15 - </span><span class="caption-text">Tabela de glebas com geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-invalidas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_geom_invalidas</span><span class="w"> </span><span class="k">AS</span>
 <span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span>
@@ -296,9 +296,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 </pre></div>
 </div>
 </div>
-<p>A função <code class="docutils literal notranslate"><span class="pre">ST_IsValidReason</span></code> pode ser usada para determinar a razão da geometria ser considerada inválida. A consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-motivo-geom-invalida"><span class="std std-numref">Trecho de Código 3.17</span></a> mostra como usar essa função.</p>
+<p>A função <code class="docutils literal notranslate"><span class="pre">ST_IsValidReason</span></code> pode ser usada para determinar a razão da geometria ser considerada inválida. A consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-motivo-geom-invalida"><span class="std std-numref">Trecho de Código 3.16</span></a> mostra como usar essa função.</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-motivo-geom-invalida">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.17 - </span><span class="caption-text">Motivo das geometrias das glebas serem consideradas inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-motivo-geom-invalida" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.16 - </span><span class="caption-text">Motivo das geometrias das glebas serem consideradas inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-motivo-geom-invalida" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ST_IsValidReason</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">motivo</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_geom_invalidas</span><span class="p">;</span>
 </pre></div>
@@ -343,9 +343,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 <p><span class="caption-number">Figura 3.11 - </span><span class="caption-text">Gleba com geometria inválida.</span><a class="headerlink" href="#fig-sicor-microdados-glebas-topologia-gleba-invalida-gid-39042" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>A geometria da gleba mostrada acima possui apenas um anel exterior, como mostrado na consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-num-rings"><span class="std std-numref">Trecho de Código 3.18</span></a>.</p>
+<p>A geometria da gleba mostrada acima possui apenas um anel exterior, como mostrado na consulta do <a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-num-rings"><span class="std std-numref">Trecho de Código 3.17</span></a>.</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-num-rings">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.18 - </span><span class="caption-text">Motivo das geometrias das glebas serem consideradas inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-num-rings" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.17 - </span><span class="caption-text">Motivo das geometrias das glebas serem consideradas inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-num-rings" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ST_NRings</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_aneis</span><span class="p">,</span>
 <span class="w">       </span><span class="n">ST_AsText</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">wkt</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_geom_invalidas</span>
@@ -360,9 +360,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 (1 row)
 </pre></div>
 </div>
-<p>Esse tipo de problema geométrico pode ser corrigido através da função <code class="docutils literal notranslate"><span class="pre">ST_MakeValid</span></code>. Para ilustrar o uso dessa função, vamos criar uma nova tabela denominada <code class="docutils literal notranslate"><span class="pre">glebas_geom_validas</span></code> a partir da tabela <code class="docutils literal notranslate"><span class="pre">glebas_geom_invalidas</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas"><span class="std std-numref">Trecho de Código 3.19</span></a>).</p>
+<p>Esse tipo de problema geométrico pode ser corrigido através da função <code class="docutils literal notranslate"><span class="pre">ST_MakeValid</span></code>. Para ilustrar o uso dessa função, vamos criar uma nova tabela denominada <code class="docutils literal notranslate"><span class="pre">glebas_geom_validas</span></code> a partir da tabela <code class="docutils literal notranslate"><span class="pre">glebas_geom_invalidas</span></code> (<a class="reference internal" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas"><span class="std std-numref">Trecho de Código 3.18</span></a>).</p>
 <div class="literal-block-wrapper docutils container" id="code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas">
-<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.19 - </span><span class="caption-text">Correção das geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas" title="Link Permanente para esse código"></a></div>
+<div class="code-block-caption"><span class="caption-number">Trecho de Código 3.18 - </span><span class="caption-text">Correção das geometrias inválidas.</span><a class="headerlink" href="#code-sicor-microdados-glebas-topologia-sql-tbl-glebas-geom-validas" title="Link Permanente para esse código"></a></div>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_geom_validas</span><span class="w"> </span><span class="k">AS</span>
 <span class="w">                </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span><span class="w"> </span><span class="n">nu_indice</span><span class="p">,</span><span class="w"> </span><span class="n">data_emissao_contrato</span><span class="p">,</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
 <span class="w">                  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_geom_invalidas</span><span class="p">;</span>
@@ -384,9 +384,9 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 (1 row)
 </pre></div>
 </div>
-<p>Como pode ser observado nas figuras da <a class="reference internal" href="#tbl-sicor-microdados-glebas-topologia-geometria-invalida-x-valida"><span class="std std-numref">Tabela 3.13</span></a>, visualmente a correção realizada pela função <cite>ST_MakeValid`</cite> é imperceptível pois apenas um anel interno foi adicionado.</p>
+<p>Como pode ser observado nas figuras da <a class="reference internal" href="#tbl-sicor-microdados-glebas-topologia-geometria-invalida-x-valida"><span class="std std-numref">Tabela 3.12</span></a>, visualmente a correção realizada pela função <cite>ST_MakeValid`</cite> é imperceptível pois apenas um anel interno foi adicionado.</p>
 <table class="styled-table docutils align-center" id="tbl-sicor-microdados-glebas-topologia-geometria-invalida-x-valida" style="width: 100%">
-<caption><span class="caption-number">Tabela 3.13 - </span><span class="caption-text">Comparação do antes e depois da correção geométrica.</span><a class="headerlink" href="#tbl-sicor-microdados-glebas-topologia-geometria-invalida-x-valida" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 3.12 - </span><span class="caption-text">Comparação do antes e depois da correção geométrica.</span><a class="headerlink" href="#tbl-sicor-microdados-glebas-topologia-geometria-invalida-x-valida" title="Link Permanente para essa tabela"></a></caption>
 <colgroup>
 <col style="width: 50%" />
 <col style="width: 50%" />
@@ -406,13 +406,6 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
 </pre></div>
 </div>
 </section>
-<section id="relacionamentos-espaciais">
-<h2><span class="section-number">3.1.11.2. </span>Relacionamentos Espaciais<a class="headerlink" href="#relacionamentos-espaciais" title="Link permanente para este cabeçalho"></a></h2>
-<div class="admonition warning">
-<p class="admonition-title">Aviso</p>
-<p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
-</div>
-</section>
 </section>
 
 
@@ -430,7 +423,7 @@ NOTICE:  Ring Self-intersection at or near point -54.85163923695 -28.17846815837
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f6faf6d9220>
+<jinja2.runtime.BlockReference object at 0x7fbc1f3a4940>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

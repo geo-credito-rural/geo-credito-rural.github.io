@@ -353,13 +353,3 @@ Resultado:
 .. code-block:: text
 
     UPDATE 26
-
-
-
-Relacionamentos Espaciais
--------------------------
-
-
-.. warning::
-
-    Esta seção **encontra-se em desenvolvimento**.

@@ -67,26 +67,6 @@ Consultas
                 ORDER BY segmento_if;
 
 
-        .. tab:: Python + SQL
-
-
-            Utilizando a operação ``query`` do pacote `sicor` é possível obter um ``DataFrame`` do `Pandas` como resultado da consulta SQL:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                consulta = '''
-                      SELECT DISTINCT segmento_if AS natureza,
-                             COUNT(*) AS numero_if
-                        FROM ifssicor
-                    GROUP BY segmento_if
-                '''
-
-                ifs_segmento = sicor.query(consulta)
-
-
 .. collapse:: Resultado:
 
 
@@ -119,6 +99,3 @@ Consultas
                 :name: fig:sicor:microdados:ifs:ifs-natureza
 
                 Natureza das instituições financeiras.
-
-
-        .. tab:: Python + SQL

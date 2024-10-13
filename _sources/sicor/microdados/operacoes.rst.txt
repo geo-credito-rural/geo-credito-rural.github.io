@@ -128,6 +128,8 @@ A estrutura desses arquivos pode ser vista na :numref:`Tabela %s <tbl:sicor:micr
     +---------------+---------------------------+----------+-------------------------------------------------------+
     | FK\ :sub:`17` | cd_tipo_solo              | integer  | Código do tipo do solo                                |
     +---------------+---------------------------+----------+-------------------------------------------------------+
+    |               | pc_bonus_car              | numeric  | Percentual de bonus do CAR                            |
+    +---------------+---------------------------+----------+-------------------------------------------------------+
 
 
 Os arquivos listados acima foram carregados na tabela ``sicor_operacao_basica_estado`` do banco de dados PostgreSQL. A :numref:`Figura %s <fig:sicor:microdados:er-sicor-operacao-basica-estado>` apresenta os relacionamentos dessa tabela e as demais tabelas auxiliares (ou de domínio).
@@ -239,17 +241,6 @@ Consultas
                 ORDER BY ano;
 
 
-        .. tab:: Python
-
-            .. code-block:: python
-
-                import sicor
-
-                contratos = sicor.operacoes(finalidade='custeio', modalidade='lavoura', produto='soja')
-
-                # ... processamento no Pandas com agrupamento por ano
-
-
 .. collapse:: Resultado:
 
 
@@ -319,30 +310,6 @@ Consultas
                      AND modalidade = 'lavoura'
                 GROUP BY ano, produto
                 ORDER BY ano, valor_total DESC, produto;
-
-
-        .. tab:: Python
-
-            .. code-block:: python
-
-                import sicor
-
-                consulta = '''SELECT extract(YEAR FROM dt_emissao) AS ano,
-                                     produto,
-                                     COUNT(*) AS num_operacoes,
-                                     SUM(vl_parc_credito) AS valor_total
-                                FROM empreendimento,
-                                     sicor_operacao_basica_estado AS operacoes
-                               WHERE empreendimento.cd_empreendimento = operacoes.cd_empreendimento
-                                 AND finalidade = 'custeio'
-                                 AND atividade = 'agrícola'
-                                 AND modalidade = 'lavoura'
-                            GROUP BY ano, produto
-                            ORDER BY ano, valor_total DESC, produto'''
-
-                operacoes = sicor.query(consulta)
-
-                # ... processamento no Pandas
 
 
 .. collapse:: Resultado:
@@ -425,17 +392,6 @@ Consultas
                  WHERE rank_valor <= 10
                     OR rank_operacoes <= 10
                     OR rank_valor_operacao <= 10;
-
-
-        .. tab:: Python
-
-            .. code-block:: python
-
-                import sicor
-
-                operacoes = sicor.query('sql')
-
-                # ... processamento no Pandas
 
 
 .. collapse:: Resultado:

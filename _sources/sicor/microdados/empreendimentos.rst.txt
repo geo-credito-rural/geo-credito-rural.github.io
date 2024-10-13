@@ -180,37 +180,6 @@ Consultas
                  WHERE finalidade = 'custeio' AND modalidade = 'lavoura' AND produto = 'soja';
 
 
-        .. tab:: Python
-
-            O pacote `sicor` possui uma operação demominada ``empreendimentos`` que fornece um atalho para recuperação dos empreendimentos na forma de um ``DataFrame`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                empreendimentos = sicor.empreendimentos(finalidade='custeio', modalidade='lavoura', produto='soja')
-
-
-        .. tab:: Python + SQL
-
-
-            O pacote `sicor` também pode ser utilizado para submeter uma consulta SQL através da operação ``query`` e obter um ``DataFrame`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                consulta = '''
-                    SELECT *
-                      FROM empreendimento
-                     WHERE finalidade = 'custeio' AND modalidade = 'lavoura' AND produto = 'soja';
-                '''
-
-                empreendimentos = sicor.query(consulta)
-
-
 .. collapse:: Resultado:
 
 
@@ -247,10 +216,6 @@ Consultas
             O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: :download:`empreendimentos-custeio-lavoura-soja.csv <../../data/sicor/resultados/empreendimentos-custeio-lavoura-soja.csv>`.
 
 
-        .. tab:: Python
-
-
-        .. tab:: Python + SQL
 
 
 

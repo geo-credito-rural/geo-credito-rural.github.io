@@ -2,11 +2,6 @@ Preparação da Base de Dados Sicor
 =================================
 
 
-.. warning::
-
-    Os códigos mostrados nesta seção **encontram-se em desenvolvimento**. Tanto os *scripts* SQL quanto o pacote Python denominado ``sicor`` serão atualizados e disponibilizados em breve.
-
-
 .. tabs::
 
     .. tab:: SQL
@@ -38,21 +33,3 @@ Preparação da Base de Dados Sicor
             :caption: Definição de restrições e índices do esquema Sicor (:download:`sicor-carga-dados.sql <../../code/sicor/preparacao-base-dados/sql/sicor-pos-carga-ddl.sql>`).
             :name: code:sicor:microdados:preparacao-base-dados:sicor-pos-carga-ddl.sql
 
-
-    .. tab:: Python
-
-        O pacote denominado `sicor <https://github.com/geo-credito-rural/sicor>`__ pode ser utilizado no Python para criação e preparação da base de dados do Sicor. O :numref:`Trecho de Código %s <code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas>` mostra como utilizar esse pacote para criação do modelo de dados do Sicor, *download* automático dos microdads e carga em um banco de dados PostgreSQL com a extensão PostGIS.
-
-
-        .. code-block:: python
-            :linenos:
-            :caption: Preparação da base de dados do Sicor.
-            :name: code:sicor:microdados:preparacao-base-dados:criacao-e-carga-tabelas
-
-                import sicor
-
-                sicor.use_db("postgresql://usuario:senha@endereco-servidor/sicor")
-
-                sicor.db.create_tables()
-
-                sicor.load_data(ano=2024)

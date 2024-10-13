@@ -10,6 +10,8 @@ PostGIS Geometry
 A extensão PostGIS introduz o tipo **PostGIS Geometry** para representação de geometrias no **Plano Cartesiano**. As operações sobre esse tipo são sempre realizadas em 2D, mesmo se a geometria possuir valores de coordenada :math:`z` ou :math:`m`. Além disso, as operações como área e perímetro são realizadas na unidade do sistema de referência espacial associada à geometria. Isso significa que se as coordenadas forem expressas em graus, por exemplo, é necessário realizar uma transformação para um sistema de coordenadas onde seja possível calcular essa área ou perímetro em uma unidade de medida métrica.
 
 
+.. _sec_sql_postgis_geometry_wkt:
+
 Representação WKT
 -----------------
 

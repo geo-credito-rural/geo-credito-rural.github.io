@@ -62,19 +62,6 @@ Consultas
                   FROM fonterecursos;
 
 
-        .. tab:: Python
-
-
-            O pacote `sicor` possui uma operação demominada ``fonte_recursos`` que fornece um atalho para recuperação das fontes de recursos na forma de um ``DataFrame`` do `Pandas`:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                recursos = sicor.fonte_recursos()
-
-
 .. collapse:: Resultado:
 
 
@@ -125,9 +112,6 @@ Consultas
                 (34 rows)
 
 
-        .. tab:: Python
-
-
 -----
 
 
@@ -147,19 +131,6 @@ Consultas
 
                 SELECT *
                   FROM fonterecursospublicos;
-
-
-        .. tab:: Python
-
-
-            A operação ``fonte_recursos`` aceita um parâmetro booleano para recuperação apenas das fontes públicas:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                recursos = sicor.fonte_recursos(publicos=True)
 
 
 .. collapse:: Resultado:

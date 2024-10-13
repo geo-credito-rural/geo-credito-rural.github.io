@@ -84,6 +84,16 @@ COMMENT ON COLUMN fonterecursos.data_fim IS 'Fim de validade da fonte de recurso
 
 
 --
+-- Tabela: Fontes de recursos públicos do crédito rural
+--
+CREATE TABLE fonterecursospublicos
+(
+  cd_fonte_recurso  CHAR(4), 
+  descricao         TEXT NOT NULL
+);
+
+
+--
 -- Tabela: Tipo de garantia do empreendimento (seguro)
 --
 CREATE TABLE tipogarantiaempreendimento
@@ -332,8 +342,8 @@ CREATE TABLE sicor_operacao_basica_estado
   cd_ref_bacen_investimento           CHAR(11) NULL,
   cd_tipo_seguro                      CHAR(1) NOT NULL,
   cd_empreendimento                   CHAR(14) NOT NULL,
-  cd_programa                         CHAR(4) NOT NULL,
-  cd_tipo_encarg_financ               INTEGER NOT NULL,
+  cd_programa                         CHAR(4) NULL,
+  cd_tipo_encarg_financ               INTEGER NULL,
   cd_tipo_irrigacao                   CHAR(2) NOT NULL,
   cd_tipo_agricultura                 CHAR(1) NOT NULL,
   cd_fase_ciclo_producao              CHAR(2) NOT NULL,
@@ -363,8 +373,9 @@ CREATE TABLE sicor_operacao_basica_estado
   cd_contrato_stn                     CHAR(13) NULL, -- REVER se é FK
   cd_cnpj_cadastrante                 CHAR(8) NULL,  -- REVER se é FK
   vl_area_informada                   NUMERIC NULL,
-  cd_ciclo_cultivar                   INTEGER NOT NULL,
-  cd_tipo_solo                        INTEGER NOT NULL
+  cd_ciclo_cultivar                   INTEGER NULL,
+  cd_tipo_solo                        INTEGER NULL,
+  pc_bonus_car                        NUMERIC NULL
 );
 
 COMMENT ON TABLE sicor_operacao_basica_estado IS 'Operações do Sicor';
@@ -415,6 +426,7 @@ COMMENT ON COLUMN sicor_operacao_basica_estado.cd_cnpj_cadastrante IS 'IF cadast
 COMMENT ON COLUMN sicor_operacao_basica_estado.vl_area_informada IS 'Área empreendimento informada';
 COMMENT ON COLUMN sicor_operacao_basica_estado.cd_ciclo_cultivar IS 'Código do ciclo do cultivar';
 COMMENT ON COLUMN sicor_operacao_basica_estado.cd_tipo_solo IS 'Código do tipo do solo';
+COMMENT ON COLUMN sicor_operacao_basica_estado.pc_bonus_car IS 'Percentual de bonus do CAR';
 
 
 --
@@ -900,7 +912,7 @@ CREATE TABLE sicor_lista_cooperados
 --
 -- Tabela: Glebas da Comprovação de Perdas de operações contratadas
 --
-CREATE TABLE sicor_rcp_glebas_wkt
+CREATE TABLE sicor_rcp_glebas
 (
   ref_bacen     INTEGER NOT NULL,
   nu_ordem      INTEGER NOT NULL,

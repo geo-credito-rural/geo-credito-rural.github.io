@@ -172,7 +172,7 @@
 <p><strong>Consulta 1.</strong> Determinar o número de instituições financeiras por cada natureza jurídica.</p>
 <details class="summary-solucao" open>
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>A Classificação da instituição financeira quanto à natureza jurídica refere-se à coluna <code class="docutils literal notranslate"><span class="pre">segmento_if</span></code>. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:</p>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><p>A Classificação da instituição financeira quanto à natureza jurídica refere-se à coluna <code class="docutils literal notranslate"><span class="pre">segmento_if</span></code>. Logo, a seguinte consulta SQL pode ser usada para determinar o número de cada tipo de instituição:</p>
 <div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">segmento_if</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">natureza</span><span class="p">,</span>
 <span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_ifs</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">ifssicor</span>
@@ -180,23 +180,10 @@
 <span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">segmento_if</span><span class="p">;</span>
 </pre></div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Utilizando a operação <code class="docutils literal notranslate"><span class="pre">query</span></code> do pacote <cite>sicor</cite> é possível obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite> como resultado da consulta SQL:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
-
-<span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">      SELECT DISTINCT segmento_if AS natureza,</span>
-<span class="s1">             COUNT(*) AS numero_if</span>
-<span class="s1">        FROM ifssicor</span>
-<span class="s1">    GROUP BY segmento_if</span>
-<span class="s1">&#39;&#39;&#39;</span>
-
-<span class="n">ifs_segmento</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span>
-</pre></div>
-</div>
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                      natureza                      | numero_ifs
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                      natureza                      | numero_ifs
 ----------------------------------------------------+------------
  banco de desenvolvimento e agência de fomento      |         10
  banco privado                                      |         43
@@ -214,7 +201,7 @@
 <p><span class="caption-number">Figura 3.3 - </span><span class="caption-text">Natureza das instituições financeiras.</span><a class="headerlink" href="#fig-sicor-microdados-ifs-ifs-natureza" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</div></div>
 </details></section>
 </section>
 
@@ -233,7 +220,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f6faea81bb0>
+<jinja2.runtime.BlockReference object at 0x7fbc1dff6460>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
