@@ -1120,7 +1120,7 @@ Nesse caso, precisamos realizar uma operação que agrupe as linha pelos valores
     grupo_linhas['ref_bacen'].count()
 
 
-Saída:
+Saída::
 
 .. code-block:: python
 

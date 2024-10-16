@@ -80,7 +80,6 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc-db.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
-<li class="toctree-l2"><a class="reference internal" href="../analises.html">3.3. Análise da Qualidade dos Dados do Sicor</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
@@ -133,10 +132,6 @@
              
   <section id="pedidos-de-cobertura-do-proagro-cop">
 <span id="sec-sicor-microdados-pedidos-cobertura-proagro"></span><h1><span class="section-number">3.1.13. </span>Pedidos de cobertura do Proagro (COP)<a class="headerlink" href="#pedidos-de-cobertura-do-proagro-cop" title="Link permanente para este cabeçalho"></a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Aviso</p>
-<p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
-</div>
 <p>O <a class="reference internal" href="../../glossary.html#term-Proagro"><span class="xref std std-term">Proagro</span></a> é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle <span id="id1">[<a class="reference internal" href="../../referencias.html#id13" title="Banco Central do Brasil. Proagro – programa de garantia da atividade agropecuária. Technical Report 8, Banco Central do Brasil, Outubro 2023. URL: https://www.bcb.gov.br/content/estabilidadefinanceira/proagro_docs/resumo_instrucoes_Proagro.pdf.">27</a>]</span>. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.</p>
 <p>No Sicor, os microdados sobre os pedidos de cobertura do Proagro (<a class="reference internal" href="../../glossary.html#term-COP"><span class="xref std std-term">COP</span></a>) estão disponíveis no formato CSV no arquivo <a class="reference external" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_COP_BASICO.gz">SICOR_COP_BASICO.gz</a>. Esses pedidos registram:</p>
 <ul class="open">
@@ -788,7 +783,7 @@
 <details class="summary-solucao">
 <summary>Solução:</summary><p>Os empreendimentos que serão avaliados consistem de financiamentos de custeio agrícola para lavoura.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-0-0-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-0-0-1" name="0-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span>
 <span class="w">               </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">valor_total</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rank_valor</span><span class="p">,</span>
@@ -837,20 +832,10 @@
 </pre></div>
 </div>
 </div>
-</div><div aria-labelledby="tab-0-0-1" class="sphinx-tabs-panel" hidden="true" id="panel-0-0-1" name="0-1" role="tabpanel" tabindex="0"><p>Utilizando a operação <code class="docutils literal notranslate"><span class="pre">query</span></code> do pacote <cite>sicor</cite> é possível obter um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> do <cite>Pandas</cite> como resultado da consulta SQL:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">sicor</span>
-
-<span class="n">consulta</span> <span class="o">=</span> <span class="s1">&#39;&#39;&#39;</span>
-<span class="s1">    ...</span>
-<span class="s1">&#39;&#39;&#39;</span>
-
-<span class="n">pedidos_proagro</span> <span class="o">=</span> <span class="n">sicor</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="n">consulta</span><span class="p">)</span>
-</pre></div>
-</div>
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button><button aria-controls="panel-1-1-1" aria-selected="false" class="sphinx-tabs-tab" id="tab-1-1-1" name="1-1" role="tab" tabindex="-1">Python + SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             produto              | num_pedidos_proagro |  valor_total   |  valor_medio_proagro   | rank_valor | rank_pedidos | rank_valor_medio
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             produto              | num_pedidos_proagro |  valor_total   |  valor_medio_proagro   | rank_valor | rank_pedidos | rank_valor_medio
 ------+----------------------------------+---------------------+----------------+------------------------+------------+--------------+------------------
  2013 | milho                            |              173309 |  269125887.990 |  1552.8673524744819946 |          1 |            1 |               16
  2013 | trigo                            |               33561 |  199561956.860 |  5946.2458466672625965 |          2 |            4 |                3
@@ -870,7 +855,7 @@
 </pre></div>
 </div>
 <p>O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: <a class="reference download internal" download="" href="../../_downloads/26c2e1263f0e927f69024b4365ef9187/culturas-proagro.csv"><code class="xref download docutils literal notranslate"><span class="pre">culturas-proagro.csv</span></code></a>.</p>
-</div><div aria-labelledby="tab-1-1-1" class="sphinx-tabs-panel" hidden="true" id="panel-1-1-1" name="1-1" role="tabpanel" tabindex="0"></div></div>
+</div></div>
 </details><hr class="docutils" />
 <p><strong>Consulta 2.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?</p>
 <details class="summary-solucao">
@@ -1142,7 +1127,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f674dea9130>
+<jinja2.runtime.BlockReference object at 0x7ff6bc597910>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

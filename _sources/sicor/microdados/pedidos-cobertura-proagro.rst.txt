@@ -7,11 +7,6 @@ Pedidos de cobertura do Proagro (COP)
 =====================================
 
 
-.. warning::
-
-    Esta seção **encontra-se em desenvolvimento**.
-
-
 O :term:`Proagro` é um programa do Governo Federal que garante o pagamento de financiamentos rurais de custeio agrícola quando a lavoura amparada tiver sua receita reduzida por causa de eventos climáticos ou pragas e doenças sem controle :cite:`bcb:2024:a`. Ele é uma das formas de garantia do financiamento e quando da ocorrência de um evento adverso o produtor rural que optou por essa garantia pode solicitar seu pagamento.
 
 
@@ -491,23 +486,6 @@ Consultas
                     \copy (consulta) to '/tmp/culturas-proagro.csv' WITH (FORMAT CSV, HEADER, DELIMITER ';', ENCODING 'UTF8');
 
 
-        .. tab:: Python + SQL
-
-
-            Utilizando a operação ``query`` do pacote `sicor` é possível obter um ``DataFrame`` do `Pandas` como resultado da consulta SQL:
-
-
-            .. code-block:: python
-
-                import sicor
-
-                consulta = '''
-                    ...
-                '''
-
-                pedidos_proagro = sicor.query(consulta)
-
-
 .. collapse:: Resultado:
 
 
@@ -539,9 +517,6 @@ Consultas
 
 
             O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: :download:`culturas-proagro.csv <../../data/sicor/resultados/culturas-proagro.csv>`.
-
-
-        .. tab:: Python + SQL
 
 
 -----

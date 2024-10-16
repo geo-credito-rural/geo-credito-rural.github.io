@@ -176,7 +176,7 @@ Resultado:
     (1 row)
 
 
-A :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-perimetroarea-3classes>` detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente pequena em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.
+A :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-perimetroarea-3classes>` detalha uma região específica da área de estudo com os três grupos representados novamente em verde, amarelo e vermelho (ordenados da maior relação para a menor relação). Pode-se perceber que o grupo vermelho, com os menores valores, indica glebas com uma área relativamente grande em comparação ao perímetro. Essa métrica pode ser um indicativo de glebas irregulares, ou ainda glebas válidas topologicamente mas que podem não refletir a geometria real da gleba.
 
 
 .. figure:: ../../img/sicor/microdados/glebas-forma/detalhe-metrica-perimetroarea-3classes.png
@@ -211,7 +211,7 @@ Resultado:
     (1 row)
 
 
-No exemplo da :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-retangularfit-3classes>`, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são irregulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa área, devido à topografia do terreno, glebas de formato irregular podem ser frequentes.
+No exemplo da :numref:`Figura %s <fig:sicor:microdados:glebas-forma:detalhe-metrica-retangularfit-3classes>`, com mais destaque ainda, e portanto menos glebas para serem apresentadas, notamos o atributo que compara o formato da gleba a um retângulo. Os elementos do grupo verde são mais retangulares, ao passo que os vermelhos são menos retangulares, e os amarelos um formato intermediário. Espera-se que as glebas agrícolas de uma maneira geral tendam a ter formatos mais retangulares e intermediários, para facilitar o manejo do maquinário agrícola. Entretanto, nessa região, devido à topografia do terreno, glebas de formato "menos retangulares" podem ser frequentes.
 
 
 .. figure:: ../../img/sicor/microdados/glebas-forma/detalhe-metrica-retangularfit-3classes.png
