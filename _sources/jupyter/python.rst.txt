@@ -40,6 +40,7 @@ Python apresenta as seguintes características:
 
 - Suporta diversos paradigmas de programação: estruturado, orientado a objetos, funcional.
 
+Podemos experimentar a linguagem Python em plataformas gratuitas na internet. O portal Kaggle disponibiliza um ambiente de programação em Python, no qual o usuário apresenta um script e observa os resultados gerados. `No endereço <https://www.kaggle.com/code/thalessehnkorting/tema2-python-pandas>`__ temos alguns comandos em Python e Markdown, e o resultado obtido. Como mencionado acima, a linguagem disponbiliza várias bibliotecas, e vamos apresentar alguns exemplos da biblioteca Pandas, que é muito útil para lidar com dados tabulares.
 
 Computando NDVI
 ---------------
@@ -69,7 +70,7 @@ O índice de vegetação por diferença normalizada, conhecido como **Normalized
 .. collapse:: Solução:
 
 
-    .. code-block:: python
+    .. code-block:: ipython
         :linenos:
 
         red = 168
@@ -158,7 +159,7 @@ Por convenção importamos as funcionalidades do Pandas da seguinte forma:
 
 .. code-block:: ipython
 
-    In [1]: import pandas as pd
+    import pandas as pd
 
 
 Criando uma Série
@@ -170,23 +171,22 @@ Vamos criar uma série semelhante aos dados apresentados na :numref:`Tabela %s <
 
 .. code-block:: ipython
 
-    In [2]: dados = [
-       ...:     '517365140', 
-       ...:     '517257321', 
-       ...:     '517256416', 
-       ...:     '517256416', 
-       ...:     '517256501', 
-       ...: ]
+    dados = [
+     '517365140', 
+     '517257321', 
+     '517256416', 
+     '517256416', 
+     '517256501']
+    
+
+.. code-block:: ipython
+
+    indices = [ 'e', 'b', 'd', 'c', 'a' ]
 
 
 .. code-block:: ipython
 
-    In [3]: indices = [ 'e', 'b', 'd', 'c', 'a' ]
-
-
-.. code-block:: ipython
-
-    In [4]: serie = pd.Series(data=dados, index=indices, name='Operações')
+    serie = pd.Series(data=dados, index=indices, name='Operações')
 
 
 No ambiente de computação interativa do Jupyter, podemos apresentar os valores dessa série simplesmente criando uma célula com a seguinte expressão:
@@ -194,8 +194,11 @@ No ambiente de computação interativa do Jupyter, podemos apresentar os valores
 
 .. code-block:: ipython
 
-    In [5]: serie
-    Out[5]:
+    serie
+
+
+.. code-block:: ipython
+
     e    517365140
     b    517257321
     d    517256416
@@ -213,8 +216,11 @@ Podemos utilizar a função ``head`` para obter valores da série a partir do se
 
 .. code-block:: ipython
 
-    In [6]: serie.head(2)
-    Out[6]:
+    serie.head(2)
+
+
+.. code-block:: ipython
+
     e    517365140
     b    517257321
     Name: Operações, dtype: object
@@ -225,8 +231,11 @@ A função ``tail`` permite obter valores ao final da série:
 
 .. code-block:: ipython
 
-    In [7]: serie.tail(2)
-    Out[7]:
+    serie.tail(2)
+
+
+.. code-block:: ipython
+
     c    517256416
     a    517256501
     Name: Operações, dtype: object
@@ -237,14 +246,21 @@ O ``operador []`` (operador de indexação) permite acessar elementos específic
 
 .. code-block:: ipython
 
-    In [8]: serie['a']
-    Out[8]: '517256501'
+    serie['a']
 
 
 .. code-block:: ipython
 
-    In [9]: serie[0:3]
-    Out[9]:
+    '517256501'
+
+
+.. code-block:: ipython
+
+    serie[0:3]
+
+
+.. code-block:: ipython
+
     e    517365140
     b    517257321
     d    517256416
@@ -253,8 +269,11 @@ O ``operador []`` (operador de indexação) permite acessar elementos específic
 
 .. code-block:: ipython
 
-    In [10]: serie[-2:]
-    Out[10]:
+    serie[-2:]
+
+
+.. code-block:: ipython
+
     c    517256416
     a    517256501
     Name: Operações, dtype: object
@@ -265,8 +284,11 @@ O atributo ``loc`` permite acessar grupos de valores da série (linhas) através
 
 .. code-block:: ipython
 
-    In [11]: serie.loc[ ['a','b'] ]
-    Out[11]:
+    serie.loc[ ['a','b'] ]
+
+
+.. code-block:: ipython
+
     a    517256501
     b    517257321
     Name: Operações, dtype: object
@@ -277,8 +299,11 @@ Vamos usar um *array* de valores lógicos para selecionar linhas alternadas da s
 
 .. code-block:: ipython
 
-    In [12]: serie.loc[ [True, False, True, False, True] ]
-    Out[12]:
+    serie.loc[ [True, False, True, False, True] ]
+
+
+.. code-block:: ipython
+
     e    517365140
     d    517256416
     a    517256501
@@ -290,8 +315,11 @@ A propriedade ``iloc`` permite a seleção dos valores da série de maneira posi
 
 .. code-block:: ipython
 
-    In [13]: serie.iloc[ [1, 3] ]
-    Out[13]:
+    serie.iloc[ [1, 3] ]
+
+
+.. code-block:: ipython
+
     b    517257321
     c    517256416
     Name: Operações, dtype: object
@@ -306,8 +334,12 @@ Para acessar o eixo dos rótulos associados aos valores da série, utiliza-se o 
 
 .. code-block:: ipython
 
-    In [14]: serie.index
-    Out[14]: Index(['e', 'b', 'd', 'c', 'a'], dtype='object')
+    serie.index
+    
+
+.. code-block:: ipython
+
+    Index(['e', 'b', 'd', 'c', 'a'], dtype='object')
 
 
 Os valores da série podem ser acessados na forma de um ``ndarray`` do NumPy através do atributo ``values``:
@@ -315,8 +347,11 @@ Os valores da série podem ser acessados na forma de um ``ndarray`` do NumPy atr
 
 .. code-block:: ipython
 
-    In [15]: serie.values
-    Out[15]:
+    serie.values
+
+
+.. code-block:: ipython
+
     array(['517365140', '517257321', '517256416', '517256416', '517256501'], 
           dtype=object)
 
@@ -326,8 +361,12 @@ O retorno do atributo ``values`` é um ``numpy.ndarray``, conforme podemos ver n
 
 .. code-block:: ipython
 
-    In [16]: type(serie.values)
-    Out[16]: numpy.ndarray
+    type(serie.values)
+
+
+.. code-block:: ipython
+
+    numpy.ndarray
 
 
 Ordenando os Valores de uma Série
@@ -338,8 +377,11 @@ Podemos ordenar a série pelos seus valores através da operação ``sort_values
 
 .. code-block:: ipython
 
-    In [17]: serie.sort_values(ascending=True)
-    Out[17]:
+    serie.sort_values(ascending=True)
+
+
+.. code-block:: ipython
+
     d   517256416
     c   517256416
     a   517256501
@@ -353,8 +395,11 @@ Ou, podemos ordenar a série pelos rótulos do índice dos valores:
 
 .. code-block:: ipython
 
-    In [18]: serie.sort_index()
-    Out[18]:
+    serie.sort_index()
+
+
+.. code-block:: ipython
+
     a   517256501
     b   517257321
     c   517256416
@@ -368,13 +413,16 @@ Note que as duas operações acima criam novas séries ordenadas. Para alterar a
 
 .. code-block:: ipython
 
-    In [19]: serie.sort_values(ascending=True, inplace=True)
+    serie.sort_values(ascending=True, inplace=True)
 
 
 .. code-block:: ipython
 
-    In [20]: serie
-    Out[20]:
+    serie
+
+
+.. code-block:: ipython
+
     d   517256416
     c   517256416
     a   517256501
@@ -407,8 +455,11 @@ Podemos construir gráficos rapidamente a partir das séries. O tipo ``Series`` 
 
 .. code-block:: ipython
 
-    In [24]: serie_empreendimentos
-    Out[24]:
+    serie_empreendimentos
+
+
+.. code-block:: ipython
+
     2000    5
     2001    0
     2002    28
@@ -439,26 +490,17 @@ Podemos construir gráficos rapidamente a partir das séries. O tipo ``Series`` 
 
 .. code-block:: ipython
 
-    In [25]: %matplotlib inline
-
-
-.. code-block:: ipython
-
-    In [26]: import matplotlib.pyplot as plt
-
-
-.. code-block:: ipython
-
-    In [27]: serie_empreendimentos.plot.bar()
+    %matplotlib inline
+    import matplotlib.pyplot as plt
+    serie_empreendimentos.plot.bar()
 
 
 Saída:
 
-
 .. image:: ../img/jupyter/empreendimentos-x-anos.png
     :alt: Plotando uma Série
-    :width: 50%
-    :align: left
+    :width: 75%
+    :align: center
 
 
 .. note::
@@ -468,12 +510,7 @@ Saída:
 
 .. note::
 
-    Consulte `aqui <https://pandas.pydata.org/docs/reference/series.html#plotting>`_ outras opções de construção de gráficos a partir de uma série.
-
-
-.. note::
-
-    Para saber as demais propriedades e operações disponíveis para a estrutura ``Series``, consulte a seguinte documentação: `pandas.Series <https://pandas.pydata.org/docs/reference/api/pandas.Series.html>`_.
+    Consulte `aqui <https://pandas.pydata.org/docs/reference/series.html#plotting>`_ outras opções de construção de gráficos a partir de uma série. Para saber as demais propriedades e operações disponíveis para a estrutura ``Series``, consulte a seguinte documentação: `pandas.Series <https://pandas.pydata.org/docs/reference/api/pandas.Series.html>`_.
 
 
 Criando um ``DataFrame``
@@ -485,37 +522,27 @@ Para compreender a estrutura de um ``DataFrame``, vamos criar um, baseando-se no
 
 .. code-block:: ipython
 
-    In [28]: ref_bacens = [ '517365140', '517257321', '517256416', '517256416', '517256501', '517256502', '517256503', '517256507', '517256511', '517256511' ]
-
-    In [29]: dts_emissao = [ '2024-01-29', '2024-01-03', '2024-01-02', '2024-01-02', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03' ]
-
-    In [30]: dts_vencimento = [ '2027-01-27', '2027-01-03', '2027-01-02', '2027-01-02', '2025-01-02', '2025-01-02', '2024-12-23', '2024-12-20', '2024-12-15', '2024-12-15' ]
-
-    In [32]: cd_estados = [ 'PI', 'MA', 'MG', 'MG', 'SC', 'SP', 'PE', 'MT', 'RS', 'RS' ]
-
-    In [33]: vls_parc_credito = [ '4000.00', '12000.00', '6000.00', '2500.00', '61542.18', '13327.57', '44986.50', '38666.07', '5395.90', '9216.72' ]
+    ref_bacens = [ '517365140', '517257321', '517256416', '517256416', '517256501', '517256502', '517256503', '517256507', '517256511', '517256511' ]
+    dts_emissao = [ '2024-01-29', '2024-01-03', '2024-01-02', '2024-01-02', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03', '2024-01-03' ]
+    dts_vencimento = [ '2027-01-27', '2027-01-03', '2027-01-02', '2027-01-02', '2025-01-02', '2025-01-02', '2024-12-23', '2024-12-20', '2024-12-15', '2024-12-15' ]
+    cd_estados = [ 'PI', 'MA', 'MG', 'MG', 'SC', 'SP', 'PE', 'MT', 'RS', 'RS' ]
+    vls_parc_credito = [ '4000.00', '12000.00', '6000.00', '2500.00', '61542.18', '13327.57', '44986.50', '38666.07', '5395.90', '9216.72' ]
 
 
 .. code-block:: ipython
 
-    In [34]: dados = {
-        ...:     'ref_bacen': ref_bacens,
-        ...:     'dt_emissao': dts_emissao,
-        ...:     'dt_vencimento': dts_vencimento,
-        ...:     'cd_estado': cd_estados,
-        ...:     'vl_parc_credito': vls_parc_credito
-        ...: }
+    dados = {
+        'ref_bacen': ref_bacens,
+        'dt_emissao': dts_emissao,
+        'dt_vencimento': dts_vencimento,
+        'cd_estado': cd_estados,
+        'vl_parc_credito': vls_parc_credito}        
+    df = pd.DataFrame(data=dados)
+    df
 
 
 .. code-block:: ipython
 
-    In [35]: df = pd.DataFrame(data=dados)
-
-
-.. code-block:: ipython
-
-    In [36]: df
-    Out[36]:
         ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito
     0   517365140   2024-01-29  2027-01-27      PI          4000.00
     1   517257321   2024-01-03  2027-01-03      MA          12000.00
@@ -538,8 +565,11 @@ Para selecionar os valores da primeira coluna, rotulada com a string ``ref_bacen
 
 .. code-block:: ipython
 
-    In [37]: df['ref_bacen']
-    Out[37]:
+    df['ref_bacen']
+
+
+.. code-block:: ipython
+
     0   517365140
     1   517257321
     2   517256416
@@ -558,8 +588,11 @@ A mesma seleção pode ser realizada com o uso do operador ``.``:
 
 .. code-block:: ipython
 
-    In [38]: df.ref_bacen
-    Out[38]:
+    df.ref_bacen
+
+
+.. code-block:: ipython
+
     0   517365140
     1   517257321
     2   517256416
@@ -578,8 +611,11 @@ Múltiplas colunas podem ser selecionadas. Podemos usar uma lista para especific
 
 .. code-block:: ipython
 
-    In [39]: df[ ['ref_bacen', 'cd_estado' ] ]
-    Out[39]:
+    df[ ['ref_bacen', 'cd_estado' ] ]
+
+
+.. code-block:: ipython
+
         ref_bacen   cd_estado
     0   517365140   PI
     1   517257321   MA
@@ -598,8 +634,11 @@ Podemos usar o método ``filter`` para selecionar colunas baseada em seus nomes 
 
 .. code-block:: ipython
 
-    In [40]: df.filter(like='dt')
-    Out[40]:
+    df.filter(like='dt')
+
+
+.. code-block:: ipython
+
         dt_emissao  dt_vencimento
     0   2024-01-29  2027-01-27
     1   2024-01-03  2027-01-03
@@ -627,8 +666,12 @@ Para acessar os índices ou rótulos das linhas, podemos utilizar a propriedade 
 
 .. code-block:: ipython
 
-    In [41]: df.index
-    Out[41]: RangeIndex((start=0, stop=10, step=1)
+    df.index
+
+
+.. code-block:: ipython
+
+    RangeIndex((start=0, stop=10, step=1)
 
 
 Os rótulos das colunas podem ser recuperados através da propriedade ``columns``:
@@ -636,8 +679,12 @@ Os rótulos das colunas podem ser recuperados através da propriedade ``columns`
 
 .. code-block:: ipython
 
-    In [42]: df.columns
-    Out[42]: Index(['ref_bacen', 'dt_emissao', 'dt_vencimento', 'cd_estado', 'vl_parc_credito'], dtype='object')
+    df.columns
+
+
+.. code-block:: ipython
+
+    Index(['ref_bacen', 'dt_emissao', 'dt_vencimento', 'cd_estado', 'vl_parc_credito'], dtype='object')
 
 
 A operação ``to_numpy()`` retorna uma representação ``numpy.ndarray``, conforme podemos ver no exemplo abaixo:
@@ -645,8 +692,11 @@ A operação ``to_numpy()`` retorna uma representação ``numpy.ndarray``, confo
 
 .. code-block:: ipython
 
-    In [43]: df.to_numpy()
-    Out[43]:
+    df.to_numpy()
+
+
+.. code-block:: ipython
+
     array([['517365140', '2024-01-29', '2027-01-27', 'PI', '4000.00'],
            ['517257321', '2024-01-03', '2027-01-03', 'MA', '12000.00'],
            ['517256416', '2024-01-02', '2027-01-02', 'MG', '6000.00'],
@@ -659,14 +709,16 @@ A operação ``to_numpy()`` retorna uma representação ``numpy.ndarray``, confo
            ['517256511', '2024-01-03', '2024-12-15', 'RS', '9216.72']], dtype=object)
 
 
-
 O atributo ``axes`` retorna uma lista com os índices dos eixos do ``DataFrame``:
 
 
 .. code-block:: ipython
 
-    In [44]: df.axes
-    Out[44]:
+    df.axes
+
+
+.. code-block:: ipython
+
     [RangeIndex(start=0, stop=10, step=1),
      Index(['ref_bacen', 'dt_emissao', 'dt_vencimento', 'cd_estado', 'vl_parc_credito'], dtype='object')]
 
@@ -676,8 +728,11 @@ Podemos recuperar uma série com os tipos de dados de cada coluna. Nessa série,
 
 .. code-block:: ipython
 
-    In [45]: df.dtypes
-    Out[45]:
+    df.dtypes
+
+
+.. code-block:: ipython
+
     ref_bacen        object
     dt_emissao        object
     dt_vencimento    object
@@ -696,8 +751,12 @@ As dimensões do ``DataFrame`` podem ser obtidas através da propriedade ``shape
 
 .. code-block:: ipython
 
-    In [46]: df.shape
-    Out[46]: (10, 5)
+    df.shape
+
+
+.. code-block:: ipython
+
+    (10, 5)
 
 
 Selecionando valores do ``DataFrame``
@@ -709,8 +768,11 @@ A operação ``head`` permite obter valores do ``DataFrame`` a partir do seu in�
 
 .. code-block:: ipython
 
-    In [47]: df.head(2)
-    Out[47]:
+    df.head(2)
+
+
+.. code-block:: ipython
+
         ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito
     0   517365140   2024-01-29  2027-01-27      PI          4000.00
     1   517257321   2024-01-03  2027-01-03      MA          12000.00
@@ -720,9 +782,12 @@ A operação ``tail`` obtém valores ao final do ``DataFrame``:
 
 
 .. code-block:: ipython
+ 
+    df.tail(2)
 
-    In [48]: df.tail(2)
-    Out[48]:
+
+.. code-block:: ipython
+
         ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito
     8   517256511   2024-01-03  2024-12-15      RS          5395.90
     9   517256511   2024-01-03  2024-12-15      RS          9216.72
@@ -736,13 +801,15 @@ O trecho de código abaixo utiliza a propriedade ``loc`` para recuperar os valor
 
 .. code-block:: ipython
 
-    In [49]: df.loc[ 1:3, [ 'cd_estado', 'vl_parc_credito' ] ]
-    Out[49]:
+    df.loc[ 1:3, [ 'cd_estado', 'vl_parc_credito' ] ]
+
+
+.. code-block:: ipython
+
         cd_estado   vl_parc_credito
     1   MA          12000.00
     2   MG          6000.00
     3   MG          2500.00
-
 
 
 .. note::
@@ -755,8 +822,11 @@ Também podemos utilizar um *array* de valores lógicos nas propriedades ``loc``
 
 .. code-block:: ipython
 
-    In [50]: df.loc[ [True, True, True, False, False, False, False, False, True, True], 'dt_vencimento':'vl_parc_credito' ]
-    Out[50]:
+    df.loc[ [True, True, True, False, False, False, False, False, True, True], 'dt_vencimento':'vl_parc_credito' ]
+
+
+.. code-block:: ipython
+
         dt_vencimento   cd_estado   vl_parc_credito
     0   2027-01-27      PI          4000.00
     1   2027-01-03      MA          12000.00
@@ -765,14 +835,16 @@ Também podemos utilizar um *array* de valores lógicos nas propriedades ``loc``
     9   2024-12-15      RS          9216.72
 
 
-
 A propriedade ``iloc`` permite a seleção dos valores da série de maneira posicional, isto é, utilizamos números inteiros para especificar uma ou mais linhas e colunas a serem selecionadas. De maneira semelhante à propriedade ``loc``, aceita um array de valores lógicos para seleção:
 
 
 .. code-block:: ipython
 
-    In [51]: df.iloc[ [True, True, True, False, False, False, False, False, True, True], 2:5 ]
-    Out[51]:
+    df.iloc[ [True, True, True, False, False, False, False, False, True, True], 2:5 ]
+
+
+.. code-block:: ipython
+
         dt_vencimento   cd_estado   vl_parc_credito
     0   2027-01-27      PI          4000.00
     1   2027-01-03      MA          12000.00
@@ -795,11 +867,14 @@ A operação ``items`` permite iterarmos nos conjuntos de valores de cada coluna
 
 .. code-block:: ipython
 
-    In [52]: for rotulo, serie in df.items():
-        ...:     print(f'Série da Coluna: {rotulo}')
-        ...:     print(serie)
-        ...:     print('--------\n')
-        ...:
+    for rotulo, serie in df.items():
+        print(f'Série da Coluna: {rotulo}')
+        print(serie)
+        print('--------\n')
+    
+
+.. code-block:: ipython
+
     Série da Coluna: ref_bacen
     0    517365140
     1    517257321
@@ -836,11 +911,14 @@ O operador ``iterrows()`` permite iterarmos nas linhas do ``DataFrame`` como se 
 
 .. code-block:: ipython
 
-    In [53]: for index, row in df.iterrows():
-        ...:     print(f'Série da Linha: {index}')
-        ...:     print(row)
-        ...:     print('--------')
-        ...:
+    for index, row in df.iterrows():
+        print(f'Série da Linha: {index}')
+        print(row)
+        print('--------')
+
+
+.. code-block:: ipython
+
     Série da Linha: 0
     ref_bacen           517365140
     dt_emissao         2024-01-29
@@ -864,11 +942,14 @@ O operador ``iterrows()`` permite iterarmos nas linhas do ``DataFrame`` como se 
 Uma forma melhor de iterar nas linhas é através da operação ``itertuples``:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
-    In [54]: for row in df.itertuples():
-        ...:     print(row)
-        ...:
+    for row in df.itertuples():
+        print(row)
+
+
+.. code-block:: ipython
+
     Pandas(Index=0, ref_bacen='517365140', dt_emissao='2024-01-29', dt_vencimento='2027-01-27', cd_estado='PI', vl_parc_credito='4000.00')
     Pandas(Index=1, ref_bacen='517257321', dt_emissao='2024-01-03', dt_vencimento='2027-01-03', cd_estado='MA', vl_parc_credito='12000.00')
     Pandas(Index=2, ref_bacen='517256416', dt_emissao='2024-01-02', dt_vencimento='2027-01-02', cd_estado='MG', vl_parc_credito='6000.00')
@@ -900,8 +981,11 @@ Uma técnica útil para construir uma máscara de valores booleanos é utilizar 
 
 .. code-block:: ipython
 
-    In [55]: df['dt_vencimento'] > '2025-01-01'
-    Out[55]:
+    df['dt_vencimento'] > '2025-01-01'
+
+
+.. code-block:: ipython
+
     0   True
     1   True
     2   True
@@ -920,8 +1004,11 @@ Podemos usar uma expressão como acima para selecionar as linhas de um ``DataFra
 
 .. code-block:: ipython
 
-    In [56]: df[ df['dt_vencimento'] > '2025-01-01' ]
-    Out[56]:
+    df[ df['dt_vencimento'] > '2025-01-01' ]
+
+
+.. code-block:: ipython
+
         ref_bacen   dt_emissao   dt_vencimento   cd_estado   vl_parc_credito
     0   517365140   2024-01-29   2027-01-27      PI          4000.00
     1   517257321   2024-01-03   2027-01-03      MA          12000.00
@@ -929,7 +1016,6 @@ Podemos usar uma expressão como acima para selecionar as linhas de um ``DataFra
     3   517256416   2024-01-02   2027-01-02      MG          2500.00
     4   517256501   2024-01-03   2025-01-02      SC          61542.18
     5   517256502   2024-01-03   2025-01-02      SP          13327.57
-
 
 
 .. note::
@@ -946,17 +1032,12 @@ Para abrir um arquivo ``CSV`` basta utilizar a função ``read_csv``. Como a est
 
 .. code-block:: ipython
 
-    In [57]: operacoes = pd.read_csv('operacoes-2024-subconjunto.csv', sep=';')
+    operacoes = pd.read_csv('operacoes-2024-subconjunto.csv', sep=';')
 
 
 .. note::
 
-    Baixe o arquivo :download:`operacoes-2024-subconjunto.csv <../data/jupyter/operacoes-2024-subconjunto.csv>`, o qual contém um subconjunto de 1024 registros de operações de crédito rural contratadas com recursos públicos ou privados, no ano de 2024.
-
-
-.. note::
-
-    O Pandas fornece diversas funções de entrada/saída. Consulte o seguinte documento para maiores informações: `Input/output <https://pandas.pydata.org/docs/reference/io.html>`_.
+    Baixe o arquivo :download:`operacoes-2024-subconjunto.csv <../data/jupyter/operacoes-2024-subconjunto.csv>`, o qual contém um subconjunto de 1024 registros de operações de crédito rural contratadas com recursos públicos ou privados, no ano de 2024. O Pandas fornece diversas funções de entrada/saída. Consulte o seguinte documento para maiores informações: `Input/output <https://pandas.pydata.org/docs/reference/io.html>`_.
 
 
 Análise de Dados com o Pandas
@@ -966,9 +1047,12 @@ Análise de Dados com o Pandas
 Vamos começar nossa análise, do conjunto de dados lido do arquivo ``operacoes-2024-subconjunto.csv``, por uma estatística descritiva. Vamos combinar a operação ``filter()``, já vista anteriormente, para escolher somente algumas colunas e apresentar um resumo dos valores presentes em todas as linhas.
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes.filter(like='area').describe()
+
+
+.. code-block:: ipython
 
             vl_area_financ   vl_area_informada
     count   1023.000000      1023.000000
@@ -979,7 +1063,6 @@ Vamos começar nossa análise, do conjunto de dados lido do arquivo ``operacoes-
     50%     0.000000         0.000000
     75%     6.915000         7.035000
     max     667.410000       667.410000
-
 
 
 A operação ``describe`` apresenta um sumário do conjunto de dados do ``DataFrame``, mostrando sua tendência central, dispersão e forma. Essa operação cosidera apenas valores numéricos ou que possam ser transformados em valores numéricos, excluindo valores que não possam ser convertidos para números válidos. Além disso, existe um valor especial chamado ``NaN`` (``Not-a-Number``) que indica a ausência de valor naquela célula.
@@ -1008,14 +1091,14 @@ Na saída da operação ``describe()`` podemos ver que o resultado inclui um sum
 **Q1.** Quantos valores diferentes existem em cada coluna do ``DataFrame``?
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes.nunique()
 
 
 Saída::
 
-.. code-block:: python
+.. code-block:: ipython
 
     ref_bacen                    781
     nu_ordem                     6
@@ -1078,7 +1161,7 @@ Saída::
 **Q2.** Quantos valores diferentes existem para a coluna ``ref_bacen``?
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes['ref_bacen'].nunique()
 
@@ -1091,14 +1174,14 @@ Saída::
 Para obter os valores únicos podemos utilizar a operação ``unique`` como mostrado abaixo:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes['cd_estado'].unique()
 
 
 Saída::
 
-.. code-block:: python
+.. code-block:: ipython
 
     array(['PI', 'MA', 'MG', 'SC', 'ES', 'MT', 'RS', 'PR', 'PB', 'GO', 'MS',
            'PE', 'CE', 'RO', 'BA', 'SP', 'TO', 'AL', 'SE', 'RN', 'RJ', 'PA'], dtype=object)
@@ -1113,16 +1196,15 @@ Saída::
 Nesse caso, precisamos realizar uma operação que agrupe as linha pelos valores da coluna ``cd_estado`` e então relize a contagem. O trecho de código abaixo utiliza o operador ``groupby`` para retornar um objeto que contém informação sobre grupos. Esse objeto é associado ao identificador ``grupo_linhas``.
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     grupo_linhas = operacoes.groupby(by='cd_estado')
-
     grupo_linhas['ref_bacen'].count()
 
 
 Saída:
 
-.. code-block:: python
+.. code-block:: ipython
 
                  ref_bacen
     cd_estado	
@@ -1153,7 +1235,7 @@ Saída:
 Veja que utilizamos a contagem somente da coluna ``ref_bacen`` para reduzir o tamanho da saída. Se você estiver interessado na contagem apenas de todas as colunas, pode usar a seguinte estratégia:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     grupo_linhas.count()
 
@@ -1169,14 +1251,11 @@ Veja que utilizamos a contagem somente da coluna ``ref_bacen`` para reduzir o ta
 **Q4.** Apresentar um gráfico de barras com a contagem de quantas operações estão registradas para cada estado:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     %matplotlib inline
-
     import matplotlib.pyplot as plt
-
     contagem = grupo_linhas['cd_estado'].count()
-
     contagem.plot(kind='bar');
 
 
@@ -1184,7 +1263,8 @@ Saída:
 
 .. image:: ../img/jupyter/operacoes-x-estados.png
     :alt: Plot
-    :width: 50%
+    :width: 75%
+    :align: center
 
 
 ------------
@@ -1196,15 +1276,15 @@ Saída:
 Os métodos ``isnull`` e ``notnull`` das estruturas de dados do ``Pandas`` possibilitam trabalhar a ocorrência de valores nulos. Essas duas operações retornam uma máscara booleana, onde valores ``True`` para o método ``isnull`` indicam valores faltantes, ou nulos; e ``False`` valores presentes. O contrário ocorre para o método ``notnull``. Podemos combinar essas operações com o método ``sum()`` que realiza uma contagem por coluna, e assim conseguimos ter uma informação compilada sobre a quantidade de valores faltantes.
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes.isnull().sum()
 
 
-Saída:
+Saída::
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     ref_bacen                  0
     nu_ordem                   0
@@ -1224,16 +1304,14 @@ Saída:
     pc_bonus_car               1024
 
 
-
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes.notnull().sum()
 
 
-Saída:
+Saída::
 
-
-.. code-block:: python
+.. code-block:: ipython
 
     ref_bacen                   1024
     nu_ordem                    1024
@@ -1253,14 +1331,13 @@ Saída:
     pc_bonus_car                0
 
 
-
 ------------
 
 
 **Q6.** Quais as linhas que possuem ``NaN`` na coluna ``cnpj_agente_invest``:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes[ operacoes['cnpj_agente_invest'].isnull() ]
 
@@ -1282,10 +1359,9 @@ Saída:
 Através da operação ``dropna`` podemos criar um novo ``DataFrame`` contendo apenas colunas que não contenham valores ``NaN``:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     ndf = operacoes.dropna(axis=1)
-
     ndf
 
 
@@ -1294,7 +1370,7 @@ Saída:
 
 .. image:: ../img/jupyter/dataframe-dropna.png
     :alt: isnull
-    :width: 50%
+    :width: 10%
 
 
 ------------
@@ -1303,7 +1379,7 @@ Saída:
 **Q8.** Adicionar uma nova coluna chamada ``porcentagem_area_financiada`` que seja a relação entre as colunas ``vl_area_financ`` e ``vl_area_informada``:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     operacoes['porcentagem_area_financiada'] = 100 * operacoes['vl_area_financ'] / operacoes['vl_area_informada']
 
@@ -1311,12 +1387,13 @@ Saída:
 Podemos utilizar a nova coluna ``porcentagem_area_financiada`` do nosso ``DataFrame``, e realizar consultas sobre ela, como por exemplo saber a quantidade (método ``len``) de operações com a porcentagem inferior a 60%:
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     len(operacoes[operacoes['porcentagem_area_financiada'] < 60])
 
 
-Saída:
+Saída::
+
 
     5
 
@@ -1326,7 +1403,7 @@ Saída:
 **Q9.** Copiar um ``DataFrame`` para outro DataFrame
 
 
-.. code-block:: python
+.. code-block:: ipython
 
     copia_df = operacoes.copy()
 

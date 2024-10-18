@@ -148,6 +148,7 @@
 <li><p>É extensível.</p></li>
 <li><p>Suporta diversos paradigmas de programação: estruturado, orientado a objetos, funcional.</p></li>
 </ul>
+<p>Podemos experimentar a linguagem Python em plataformas gratuitas na internet. O portal Kaggle disponibiliza um ambiente de programação em Python, no qual o usuário apresenta um script e observa os resultados gerados. <a class="reference external" href="https://www.kaggle.com/code/thalessehnkorting/tema2-python-pandas">No endereço</a> temos alguns comandos em Python e Markdown, e o resultado obtido. Como mencionado acima, a linguagem disponbiliza várias bibliotecas, e vamos apresentar alguns exemplos da biblioteca Pandas, que é muito útil para lidar com dados tabulares.</p>
 <section id="computando-ndvi">
 <h2><span class="section-number">2.3.1. </span>Computando NDVI<a class="headerlink" href="#computando-ndvi" title="Link permanente para este cabeçalho"></a></h2>
 <p>O índice de vegetação por diferença normalizada, conhecido como <strong>Normalized Difference Vegetation Index</strong> (<strong>NDVI</strong>), pode ser computado usando a reflectância das bandas do vermelho (<em>red</em>) e infravermelho próximo (<em>nir</em>), como mostrado na <a class="reference internal" href="#equation-eq-jupyter-ndvi">Equação 2.1</a>:</p>
@@ -163,7 +164,7 @@
 </div>
 <p><strong>Exercício:</strong> Escrever um programa para computar o NDVI a partir dos valores de reflectância: <span class="math notranslate nohighlight">\(\rho_{red}=168\)</span> e <span class="math notranslate nohighlight">\(\rho_{nir}=2346\)</span>.</p>
 <details class="summary-solucao">
-<summary>Solução:</summary><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">red</span> <span class="o">=</span> <span class="mi">168</span>
+<summary>Solução:</summary><div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="linenos">1</span><span class="n">red</span> <span class="o">=</span> <span class="mi">168</span>
 <span class="linenos">2</span>
 <span class="linenos">3</span><span class="n">nir</span> <span class="o">=</span> <span class="mi">2346</span>
 <span class="linenos">4</span>
@@ -292,160 +293,177 @@
 <section id="usando-o-pandas">
 <h2><span class="section-number">2.3.3. </span>Usando o Pandas<a class="headerlink" href="#usando-o-pandas" title="Link permanente para este cabeçalho"></a></h2>
 <p>Por convenção importamos as funcionalidades do Pandas da seguinte forma:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [1]: </span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 </pre></div>
 </div>
 </section>
 <section id="criando-uma-serie">
 <h2><span class="section-number">2.3.4. </span>Criando uma Série<a class="headerlink" href="#criando-uma-serie" title="Link permanente para este cabeçalho"></a></h2>
 <p>Vamos criar uma série semelhante aos dados apresentados na <a class="reference internal" href="#tbl-jupyter-series"><span class="std std-numref">Tabela 2.1</span></a>, porém com os índices representados pelas letras de <code class="docutils literal notranslate"><span class="pre">a</span></code> a <code class="docutils literal notranslate"><span class="pre">e</span></code>, conforme o trecho de código abaixo:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [2]: </span><span class="n">dados</span> <span class="o">=</span> <span class="p">[</span>
-<span class="gp">   ...: </span>    <span class="s1">&#39;517365140&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="s1">&#39;517257321&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="s1">&#39;517256416&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="s1">&#39;517256416&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span>    <span class="s1">&#39;517256501&#39;</span><span class="p">,</span>
-<span class="gp">   ...: </span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">dados</span> <span class="o">=</span> <span class="p">[</span>
+ <span class="s1">&#39;517365140&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;517257321&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;517256416&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;517256416&#39;</span><span class="p">,</span>
+ <span class="s1">&#39;517256501&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [3]: </span><span class="n">indices</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span> <span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">indices</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span> <span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [4]: </span><span class="n">serie</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dados</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indices</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Operações&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dados</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">indices</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;Operações&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>No ambiente de computação interativa do Jupyter, podemos apresentar os valores dessa série simplesmente criando uma célula com a seguinte expressão:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [5]: </span><span class="n">serie</span>
-<span class="gh">Out[5]:</span>
-<span class="go">e    517365140</span>
-<span class="go">b    517257321</span>
-<span class="go">d    517256416</span>
-<span class="go">c    517256416</span>
-<span class="go">a    517256501</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>    <span class="mi">517365140</span>
+<span class="n">b</span>    <span class="mi">517257321</span>
+<span class="n">d</span>    <span class="mi">517256416</span>
+<span class="n">c</span>    <span class="mi">517256416</span>
+<span class="n">a</span>    <span class="mi">517256501</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 </section>
 <section id="selecionando-valores-da-serie">
 <h2><span class="section-number">2.3.5. </span>Selecionando Valores da Série<a class="headerlink" href="#selecionando-valores-da-serie" title="Link permanente para este cabeçalho"></a></h2>
 <p>Podemos utilizar a função <code class="docutils literal notranslate"><span class="pre">head</span></code> para obter valores da série a partir do seu início:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [6]: </span><span class="n">serie</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[6]:</span>
-<span class="go">e    517365140</span>
-<span class="go">b    517257321</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>    <span class="mi">517365140</span>
+<span class="n">b</span>    <span class="mi">517257321</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>A função <code class="docutils literal notranslate"><span class="pre">tail</span></code> permite obter valores ao final da série:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [7]: </span><span class="n">serie</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[7]:</span>
-<span class="go">c    517256416</span>
-<span class="go">a    517256501</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>    <span class="mi">517256416</span>
+<span class="n">a</span>    <span class="mi">517256501</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>O <code class="docutils literal notranslate"><span class="pre">operador</span> <span class="pre">[]</span></code> (operador de indexação) permite acessar elementos específicos ou partes da série:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [8]: </span><span class="n">serie</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
-<span class="gh">Out[8]: </span><span class="go">&#39;517256501&#39;</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [9]: </span><span class="n">serie</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
-<span class="gh">Out[9]:</span>
-<span class="go">e    517365140</span>
-<span class="go">b    517257321</span>
-<span class="go">d    517256416</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="s1">&#39;517256501&#39;</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [10]: </span><span class="n">serie</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
-<span class="gh">Out[10]:</span>
-<span class="go">c    517256416</span>
-<span class="go">a    517256501</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">3</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>    <span class="mi">517365140</span>
+<span class="n">b</span>    <span class="mi">517257321</span>
+<span class="n">d</span>    <span class="mi">517256416</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">c</span>    <span class="mi">517256416</span>
+<span class="n">a</span>    <span class="mi">517256501</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>O atributo <code class="docutils literal notranslate"><span class="pre">loc</span></code> permite acessar grupos de valores da série (linhas) através de rótulos ou por um <em>array</em> de valores lógicos:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [11]: </span><span class="n">serie</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="p">]</span>
-<span class="gh">Out[11]:</span>
-<span class="go">a    517256501</span>
-<span class="go">b    517257321</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">,</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>    <span class="mi">517256501</span>
+<span class="n">b</span>    <span class="mi">517257321</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>Vamos usar um <em>array</em> de valores lógicos para selecionar linhas alternadas da série através do atributo <code class="docutils literal notranslate"><span class="pre">loc</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [12]: </span><span class="n">serie</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span> <span class="p">]</span>
-<span class="gh">Out[12]:</span>
-<span class="go">e    517365140</span>
-<span class="go">d    517256416</span>
-<span class="go">a    517256501</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">e</span>    <span class="mi">517365140</span>
+<span class="n">d</span>    <span class="mi">517256416</span>
+<span class="n">a</span>    <span class="mi">517256501</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>A propriedade <code class="docutils literal notranslate"><span class="pre">iloc</span></code> permite a seleção dos valores da série de maneira posicional, isto é, utilizamos números inteiros para especificar uma ou mais linhas a serem selecionadas. De maneira semelhante à propriedade <code class="docutils literal notranslate"><span class="pre">loc</span></code>, aceita um <em>array</em> de valores lógicos para seleção:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [13]: </span><span class="n">serie</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">]</span>
-<span class="gh">Out[13]:</span>
-<span class="go">b    517257321</span>
-<span class="go">c    517256416</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">b</span>    <span class="mi">517257321</span>
+<span class="n">c</span>    <span class="mi">517256416</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 </section>
 <section id="acessando-a-estrutura-de-uma-serie">
 <h2><span class="section-number">2.3.6. </span>Acessando a Estrutura de uma Série<a class="headerlink" href="#acessando-a-estrutura-de-uma-serie" title="Link permanente para este cabeçalho"></a></h2>
 <p>Para acessar o eixo dos rótulos associados aos valores da série, utiliza-se o atributo <code class="docutils literal notranslate"><span class="pre">index</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [14]: </span><span class="n">serie</span><span class="o">.</span><span class="n">index</span>
-<span class="gh">Out[14]: </span><span class="go">Index([&#39;e&#39;, &#39;b&#39;, &#39;d&#39;, &#39;c&#39;, &#39;a&#39;], dtype=&#39;object&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;e&#39;</span><span class="p">,</span> <span class="s1">&#39;b&#39;</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Os valores da série podem ser acessados na forma de um <code class="docutils literal notranslate"><span class="pre">ndarray</span></code> do NumPy através do atributo <code class="docutils literal notranslate"><span class="pre">values</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [15]: </span><span class="n">serie</span><span class="o">.</span><span class="n">values</span>
-<span class="gh">Out[15]:</span>
-<span class="go">array([&#39;517365140&#39;, &#39;517257321&#39;, &#39;517256416&#39;, &#39;517256416&#39;, &#39;517256501&#39;],</span>
-<span class="go">      dtype=object)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">values</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([</span><span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="s1">&#39;517257321&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256501&#39;</span><span class="p">],</span>
+      <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>O retorno do atributo <code class="docutils literal notranslate"><span class="pre">values</span></code> é um <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>, conforme podemos ver no exemplo abaixo:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [16]: </span><span class="nb">type</span><span class="p">(</span><span class="n">serie</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
-<span class="gh">Out[16]: </span><span class="go">numpy.ndarray</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">serie</span><span class="o">.</span><span class="n">values</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">numpy</span><span class="o">.</span><span class="n">ndarray</span>
 </pre></div>
 </div>
 </section>
 <section id="ordenando-os-valores-de-uma-serie">
 <h2><span class="section-number">2.3.7. </span>Ordenando os Valores de uma Série<a class="headerlink" href="#ordenando-os-valores-de-uma-serie" title="Link permanente para este cabeçalho"></a></h2>
 <p>Podemos ordenar a série pelos seus valores através da operação <code class="docutils literal notranslate"><span class="pre">sort_values</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [17]: </span><span class="n">serie</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-<span class="gh">Out[17]:</span>
-<span class="go">d   517256416</span>
-<span class="go">c   517256416</span>
-<span class="go">a   517256501</span>
-<span class="go">b   517257321</span>
-<span class="go">e   517365140</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>   <span class="mi">517256416</span>
+<span class="n">c</span>   <span class="mi">517256416</span>
+<span class="n">a</span>   <span class="mi">517256501</span>
+<span class="n">b</span>   <span class="mi">517257321</span>
+<span class="n">e</span>   <span class="mi">517365140</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>Ou, podemos ordenar a série pelos rótulos do índice dos valores:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [18]: </span><span class="n">serie</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
-<span class="gh">Out[18]:</span>
-<span class="go">a   517256501</span>
-<span class="go">b   517257321</span>
-<span class="go">c   517256416</span>
-<span class="go">d   517256416</span>
-<span class="go">e   517365140</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">sort_index</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">a</span>   <span class="mi">517256501</span>
+<span class="n">b</span>   <span class="mi">517257321</span>
+<span class="n">c</span>   <span class="mi">517256416</span>
+<span class="n">d</span>   <span class="mi">517256416</span>
+<span class="n">e</span>   <span class="mi">517365140</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>Note que as duas operações acima criam novas séries ordenadas. Para alterar a própria série, sem criar uma cópia, é necessário utilizar o parâmetro <code class="docutils literal notranslate"><span class="pre">inplace</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [19]: </span><span class="n">serie</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span><span class="o">.</span><span class="n">sort_values</span><span class="p">(</span><span class="n">ascending</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [20]: </span><span class="n">serie</span>
-<span class="gh">Out[20]:</span>
-<span class="go">d   517256416</span>
-<span class="go">c   517256416</span>
-<span class="go">a   517256501</span>
-<span class="go">b   517257321</span>
-<span class="go">e   517365140</span>
-<span class="go">Name: Operações, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">d</span>   <span class="mi">517256416</span>
+<span class="n">c</span>   <span class="mi">517256416</span>
+<span class="n">a</span>   <span class="mi">517256501</span>
+<span class="n">b</span>   <span class="mi">517257321</span>
+<span class="n">e</span>   <span class="mi">517365140</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">Operações</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 </section>
@@ -461,166 +479,155 @@
 <div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [23]: </span><span class="n">serie_empreendimentos</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">Series</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">num_empreendimentos</span><span class="p">,</span> <span class="n">index</span><span class="o">=</span><span class="n">ano</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;#Empreendimentos x Ano&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [24]: </span><span class="n">serie_empreendimentos</span>
-<span class="gh">Out[24]:</span>
-<span class="go">2000    5</span>
-<span class="go">2001    0</span>
-<span class="go">2002    28</span>
-<span class="go">2003    78</span>
-<span class="go">2004    18</span>
-<span class="go">2005    31</span>
-<span class="go">2006    22</span>
-<span class="go">2007    18</span>
-<span class="go">2008    8</span>
-<span class="go">2009    50</span>
-<span class="go">2010    43</span>
-<span class="go">2011    19</span>
-<span class="go">2012    122</span>
-<span class="go">2013    134</span>
-<span class="go">2014    185</span>
-<span class="go">2015    190</span>
-<span class="go">2016    97</span>
-<span class="go">2017    373</span>
-<span class="go">2018    147</span>
-<span class="go">2019    211</span>
-<span class="go">2020    227</span>
-<span class="go">2021    161</span>
-<span class="go">2022    37</span>
-<span class="go">2023    118</span>
-<span class="go">2024    65</span>
-<span class="go">Name: #Empreendimentos x Ano, dtype: int64</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">serie_empreendimentos</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [25]: </span><span class="o">%</span><span class="k">matplotlib</span> inline
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="mi">2000</span>    <span class="mi">5</span>
+<span class="mi">2001</span>    <span class="mi">0</span>
+<span class="mi">2002</span>    <span class="mi">28</span>
+<span class="mi">2003</span>    <span class="mi">78</span>
+<span class="mi">2004</span>    <span class="mi">18</span>
+<span class="mi">2005</span>    <span class="mi">31</span>
+<span class="mi">2006</span>    <span class="mi">22</span>
+<span class="mi">2007</span>    <span class="mi">18</span>
+<span class="mi">2008</span>    <span class="mi">8</span>
+<span class="mi">2009</span>    <span class="mi">50</span>
+<span class="mi">2010</span>    <span class="mi">43</span>
+<span class="mi">2011</span>    <span class="mi">19</span>
+<span class="mi">2012</span>    <span class="mi">122</span>
+<span class="mi">2013</span>    <span class="mi">134</span>
+<span class="mi">2014</span>    <span class="mi">185</span>
+<span class="mi">2015</span>    <span class="mi">190</span>
+<span class="mi">2016</span>    <span class="mi">97</span>
+<span class="mi">2017</span>    <span class="mi">373</span>
+<span class="mi">2018</span>    <span class="mi">147</span>
+<span class="mi">2019</span>    <span class="mi">211</span>
+<span class="mi">2020</span>    <span class="mi">227</span>
+<span class="mi">2021</span>    <span class="mi">161</span>
+<span class="mi">2022</span>    <span class="mi">37</span>
+<span class="mi">2023</span>    <span class="mi">118</span>
+<span class="mi">2024</span>    <span class="mi">65</span>
+<span class="n">Name</span><span class="p">:</span> <span class="c1">#Empreendimentos x Ano, dtype: int64</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [26]: </span><span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-</pre></div>
-</div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [27]: </span><span class="n">serie_empreendimentos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
+<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="n">serie_empreendimentos</span><span class="o">.</span><span class="n">plot</span><span class="o">.</span><span class="n">bar</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<a class="reference internal image-reference" href="../_images/empreendimentos-x-anos.png"><img alt="Plotando uma Série" class="align-left" src="../_images/empreendimentos-x-anos.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/empreendimentos-x-anos.png"><img alt="Plotando uma Série" class="align-center" src="../_images/empreendimentos-x-anos.png" style="width: 75%;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
 <p>Por padrão, o <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> utiliza a Matplotlib para gerar os gráficos. No entanto, é possível utilizar outras bibliotecas.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Consulte <a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html#plotting">aqui</a> outras opções de construção de gráficos a partir de uma série.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>Para saber as demais propriedades e operações disponíveis para a estrutura <code class="docutils literal notranslate"><span class="pre">Series</span></code>, consulte a seguinte documentação: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a>.</p>
+<p>Consulte <a class="reference external" href="https://pandas.pydata.org/docs/reference/series.html#plotting">aqui</a> outras opções de construção de gráficos a partir de uma série. Para saber as demais propriedades e operações disponíveis para a estrutura <code class="docutils literal notranslate"><span class="pre">Series</span></code>, consulte a seguinte documentação: <a class="reference external" href="https://pandas.pydata.org/docs/reference/api/pandas.Series.html">pandas.Series</a>.</p>
 </div>
 </section>
 <section id="criando-um-dataframe">
 <h2><span class="section-number">2.3.9. </span>Criando um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#criando-um-dataframe" title="Link permanente para este cabeçalho"></a></h2>
 <p>Para compreender a estrutura de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, vamos criar um, baseando-se nos dados da <a class="reference internal" href="#tbl-jupyter-dataframe"><span class="std std-numref">Tabela 2.2</span></a>.</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [28]: </span><span class="n">ref_bacens</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="s1">&#39;517257321&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256501&#39;</span><span class="p">,</span> <span class="s1">&#39;517256502&#39;</span><span class="p">,</span> <span class="s1">&#39;517256503&#39;</span><span class="p">,</span> <span class="s1">&#39;517256507&#39;</span><span class="p">,</span> <span class="s1">&#39;517256511&#39;</span><span class="p">,</span> <span class="s1">&#39;517256511&#39;</span> <span class="p">]</span>
-
-<span class="gp">In [29]: </span><span class="n">dts_emissao</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;2024-01-29&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span> <span class="p">]</span>
-
-<span class="gp">In [30]: </span><span class="n">dts_vencimento</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;2027-01-27&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-23&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-20&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span> <span class="p">]</span>
-
-<span class="gp">In [32]: </span><span class="n">cd_estados</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;PI&#39;</span><span class="p">,</span> <span class="s1">&#39;MA&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;SC&#39;</span><span class="p">,</span> <span class="s1">&#39;SP&#39;</span><span class="p">,</span> <span class="s1">&#39;PE&#39;</span><span class="p">,</span> <span class="s1">&#39;MT&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span> <span class="p">]</span>
-
-<span class="gp">In [33]: </span><span class="n">vls_parc_credito</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;4000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;12000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;6000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;2500.00&#39;</span><span class="p">,</span> <span class="s1">&#39;61542.18&#39;</span><span class="p">,</span> <span class="s1">&#39;13327.57&#39;</span><span class="p">,</span> <span class="s1">&#39;44986.50&#39;</span><span class="p">,</span> <span class="s1">&#39;38666.07&#39;</span><span class="p">,</span> <span class="s1">&#39;5395.90&#39;</span><span class="p">,</span> <span class="s1">&#39;9216.72&#39;</span> <span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">ref_bacens</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="s1">&#39;517257321&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;517256501&#39;</span><span class="p">,</span> <span class="s1">&#39;517256502&#39;</span><span class="p">,</span> <span class="s1">&#39;517256503&#39;</span><span class="p">,</span> <span class="s1">&#39;517256507&#39;</span><span class="p">,</span> <span class="s1">&#39;517256511&#39;</span><span class="p">,</span> <span class="s1">&#39;517256511&#39;</span> <span class="p">]</span>
+<span class="n">dts_emissao</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;2024-01-29&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span> <span class="p">]</span>
+<span class="n">dts_vencimento</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;2027-01-27&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-23&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-20&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span> <span class="p">]</span>
+<span class="n">cd_estados</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;PI&#39;</span><span class="p">,</span> <span class="s1">&#39;MA&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;SC&#39;</span><span class="p">,</span> <span class="s1">&#39;SP&#39;</span><span class="p">,</span> <span class="s1">&#39;PE&#39;</span><span class="p">,</span> <span class="s1">&#39;MT&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span> <span class="p">]</span>
+<span class="n">vls_parc_credito</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;4000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;12000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;6000.00&#39;</span><span class="p">,</span> <span class="s1">&#39;2500.00&#39;</span><span class="p">,</span> <span class="s1">&#39;61542.18&#39;</span><span class="p">,</span> <span class="s1">&#39;13327.57&#39;</span><span class="p">,</span> <span class="s1">&#39;44986.50&#39;</span><span class="p">,</span> <span class="s1">&#39;38666.07&#39;</span><span class="p">,</span> <span class="s1">&#39;5395.90&#39;</span><span class="p">,</span> <span class="s1">&#39;9216.72&#39;</span> <span class="p">]</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [34]: </span><span class="n">dados</span> <span class="o">=</span> <span class="p">{</span>
-<span class="go">    ...:     &#39;ref_bacen&#39;: ref_bacens,</span>
-<span class="go">    ...:     &#39;dt_emissao&#39;: dts_emissao,</span>
-<span class="go">    ...:     &#39;dt_vencimento&#39;: dts_vencimento,</span>
-<span class="go">    ...:     &#39;cd_estado&#39;: cd_estados,</span>
-<span class="go">    ...:     &#39;vl_parc_credito&#39;: vls_parc_credito</span>
-<span class="go">    ...: }</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">dados</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;ref_bacen&#39;</span><span class="p">:</span> <span class="n">ref_bacens</span><span class="p">,</span>
+    <span class="s1">&#39;dt_emissao&#39;</span><span class="p">:</span> <span class="n">dts_emissao</span><span class="p">,</span>
+    <span class="s1">&#39;dt_vencimento&#39;</span><span class="p">:</span> <span class="n">dts_vencimento</span><span class="p">,</span>
+    <span class="s1">&#39;cd_estado&#39;</span><span class="p">:</span> <span class="n">cd_estados</span><span class="p">,</span>
+    <span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">:</span> <span class="n">vls_parc_credito</span><span class="p">}</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dados</span><span class="p">)</span>
+<span class="n">df</span>
 </pre></div>
 </div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [35]: </span><span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">dados</span><span class="p">)</span>
-</pre></div>
-</div>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [36]: </span><span class="n">df</span>
-<span class="gh">Out[36]:</span>
-<span class="go">    ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">0   517365140   2024-01-29  2027-01-27      PI          4000.00</span>
-<span class="go">1   517257321   2024-01-03  2027-01-03      MA          12000.00</span>
-<span class="go">2   517256416   2024-01-02  2027-01-02      MG          6000.00</span>
-<span class="go">3   517256416   2024-01-02  2027-01-02      MG          2500.00</span>
-<span class="go">4   517256501   2024-01-03  2025-01-02      SC          61542.18</span>
-<span class="go">5   517256502   2024-01-03  2025-01-02      SP          13327.57</span>
-<span class="go">6   517256503   2024-01-03  2024-12-23      PE          44986.50</span>
-<span class="go">7   517256507   2024-01-03  2024-12-20      MT          38666.07</span>
-<span class="go">8   517256511   2024-01-03  2024-12-15      RS          5395.90</span>
-<span class="go">9   517256511   2024-01-03  2024-12-15      RS          9216.72</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">ref_bacen</span>   <span class="n">dt_emissao</span>  <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">0</span>   <span class="mi">517365140</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>      <span class="n">PI</span>          <span class="mf">4000.00</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>      <span class="n">MA</span>          <span class="mf">12000.00</span>
+<span class="mi">2</span>   <span class="mi">517256416</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">6000.00</span>
+<span class="mi">3</span>   <span class="mi">517256416</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">2500.00</span>
+<span class="mi">4</span>   <span class="mi">517256501</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">SC</span>          <span class="mf">61542.18</span>
+<span class="mi">5</span>   <span class="mi">517256502</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">SP</span>          <span class="mf">13327.57</span>
+<span class="mi">6</span>   <span class="mi">517256503</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span>      <span class="n">PE</span>          <span class="mf">44986.50</span>
+<span class="mi">7</span>   <span class="mi">517256507</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">20</span>      <span class="n">MT</span>          <span class="mf">38666.07</span>
+<span class="mi">8</span>   <span class="mi">517256511</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">5395.90</span>
+<span class="mi">9</span>   <span class="mi">517256511</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">9216.72</span>
 </pre></div>
 </div>
 </section>
 <section id="selecionando-colunas-de-um-dataframe">
 <h2><span class="section-number">2.3.10. </span>Selecionando Colunas de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#selecionando-colunas-de-um-dataframe" title="Link permanente para este cabeçalho"></a></h2>
 <p>Para selecionar os valores da primeira coluna, rotulada com a string <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code>, podemos utilizar o <code class="docutils literal notranslate"><span class="pre">operador</span> <span class="pre">[]</span></code> (operador de indexação) como mostrado abaixo:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [37]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span>
-<span class="gh">Out[37]:</span>
-<span class="go">0   517365140</span>
-<span class="go">1   517257321</span>
-<span class="go">2   517256416</span>
-<span class="go">3   517256416</span>
-<span class="go">4   517256501</span>
-<span class="go">5   517256502</span>
-<span class="go">6   517256503</span>
-<span class="go">7   517256507</span>
-<span class="go">8   517256511</span>
-<span class="go">9   517256511</span>
-<span class="go">Name: ref_bacen, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>   <span class="mi">517365140</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>
+<span class="mi">2</span>   <span class="mi">517256416</span>
+<span class="mi">3</span>   <span class="mi">517256416</span>
+<span class="mi">4</span>   <span class="mi">517256501</span>
+<span class="mi">5</span>   <span class="mi">517256502</span>
+<span class="mi">6</span>   <span class="mi">517256503</span>
+<span class="mi">7</span>   <span class="mi">517256507</span>
+<span class="mi">8</span>   <span class="mi">517256511</span>
+<span class="mi">9</span>   <span class="mi">517256511</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">ref_bacen</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>A mesma seleção pode ser realizada com o uso do operador <code class="docutils literal notranslate"><span class="pre">.</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [38]: </span><span class="n">df</span><span class="o">.</span><span class="n">ref_bacen</span>
-<span class="gh">Out[38]:</span>
-<span class="go">0   517365140</span>
-<span class="go">1   517257321</span>
-<span class="go">2   517256416</span>
-<span class="go">3   517256416</span>
-<span class="go">4   517256501</span>
-<span class="go">5   517256502</span>
-<span class="go">6   517256503</span>
-<span class="go">7   517256507</span>
-<span class="go">8   517256511</span>
-<span class="go">9   517256511</span>
-<span class="go">Name: municipio, dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">ref_bacen</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>   <span class="mi">517365140</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>
+<span class="mi">2</span>   <span class="mi">517256416</span>
+<span class="mi">3</span>   <span class="mi">517256416</span>
+<span class="mi">4</span>   <span class="mi">517256501</span>
+<span class="mi">5</span>   <span class="mi">517256502</span>
+<span class="mi">6</span>   <span class="mi">517256503</span>
+<span class="mi">7</span>   <span class="mi">517256507</span>
+<span class="mi">8</span>   <span class="mi">517256511</span>
+<span class="mi">9</span>   <span class="mi">517256511</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">municipio</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <p>Múltiplas colunas podem ser selecionadas. Podemos usar uma lista para especificar os rótulos das colunas desejada na seleção:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [39]: </span><span class="n">df</span><span class="p">[</span> <span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span> <span class="p">]</span> <span class="p">]</span>
-<span class="gh">Out[39]:</span>
-<span class="go">    ref_bacen   cd_estado</span>
-<span class="go">0   517365140   PI</span>
-<span class="go">1   517257321   MA</span>
-<span class="go">2   517256416   MG</span>
-<span class="go">3   517256416   MG</span>
-<span class="go">4   517256501   SC</span>
-<span class="go">5   517256502   SP</span>
-<span class="go">6   517256503   PE</span>
-<span class="go">7   517256507   MT</span>
-<span class="go">8   517256511   RS</span>
-<span class="go">9   517256511   RS</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span> <span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span> <span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">ref_bacen</span>   <span class="n">cd_estado</span>
+<span class="mi">0</span>   <span class="mi">517365140</span>   <span class="n">PI</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>   <span class="n">MA</span>
+<span class="mi">2</span>   <span class="mi">517256416</span>   <span class="n">MG</span>
+<span class="mi">3</span>   <span class="mi">517256416</span>   <span class="n">MG</span>
+<span class="mi">4</span>   <span class="mi">517256501</span>   <span class="n">SC</span>
+<span class="mi">5</span>   <span class="mi">517256502</span>   <span class="n">SP</span>
+<span class="mi">6</span>   <span class="mi">517256503</span>   <span class="n">PE</span>
+<span class="mi">7</span>   <span class="mi">517256507</span>   <span class="n">MT</span>
+<span class="mi">8</span>   <span class="mi">517256511</span>   <span class="n">RS</span>
+<span class="mi">9</span>   <span class="mi">517256511</span>   <span class="n">RS</span>
 </pre></div>
 </div>
 <p>Podemos usar o método <code class="docutils literal notranslate"><span class="pre">filter</span></code> para selecionar colunas baseada em seus nomes ou rótulos:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [40]: </span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;dt&#39;</span><span class="p">)</span>
-<span class="gh">Out[40]:</span>
-<span class="go">    dt_emissao  dt_vencimento</span>
-<span class="go">0   2024-01-29  2027-01-27</span>
-<span class="go">1   2024-01-03  2027-01-03</span>
-<span class="go">2   2024-01-02  2027-01-02</span>
-<span class="go">3   2024-01-02  2027-01-02</span>
-<span class="go">4   2024-01-03  2025-01-02</span>
-<span class="go">5   2024-01-03  2025-01-02</span>
-<span class="go">6   2024-01-03  2024-12-23</span>
-<span class="go">7   2024-01-03  2024-12-20</span>
-<span class="go">8   2024-01-03  2024-12-15</span>
-<span class="go">9   2024-01-03  2024-12-15</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;dt&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">dt_emissao</span>  <span class="n">dt_vencimento</span>
+<span class="mi">0</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>
+<span class="mi">1</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>
+<span class="mi">2</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>
+<span class="mi">3</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>
+<span class="mi">4</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>
+<span class="mi">5</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>
+<span class="mi">6</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">23</span>
+<span class="mi">7</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">20</span>
+<span class="mi">8</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>
+<span class="mi">9</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -631,46 +638,53 @@
 <section id="acessando-a-estrutura-de-um-dataframe">
 <h2><span class="section-number">2.3.11. </span>Acessando a Estrutura de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#acessando-a-estrutura-de-um-dataframe" title="Link permanente para este cabeçalho"></a></h2>
 <p>Para acessar os índices ou rótulos das linhas, podemos utilizar a propriedade <code class="docutils literal notranslate"><span class="pre">index</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [41]: </span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
-<span class="gh">Out[41]: </span><span class="go">RangeIndex((start=0, stop=10, step=1)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">index</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">RangeIndex</span><span class="p">((</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>Os rótulos das colunas podem ser recuperados através da propriedade <code class="docutils literal notranslate"><span class="pre">columns</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [42]: </span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
-<span class="gh">Out[42]: </span><span class="go">Index([&#39;ref_bacen&#39;, &#39;dt_emissao&#39;, &#39;dt_vencimento&#39;, &#39;cd_estado&#39;, &#39;vl_parc_credito&#39;], dtype=&#39;object&#39;)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">columns</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">Index</span><span class="p">([</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;dt_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;dt_vencimento&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">,</span> <span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>A operação <code class="docutils literal notranslate"><span class="pre">to_numpy()</span></code> retorna uma representação <code class="docutils literal notranslate"><span class="pre">numpy.ndarray</span></code>, conforme podemos ver no exemplo abaixo:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [43]: </span><span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
-<span class="gh">Out[43]:</span>
-<span class="go">array([[&#39;517365140&#39;, &#39;2024-01-29&#39;, &#39;2027-01-27&#39;, &#39;PI&#39;, &#39;4000.00&#39;],</span>
-<span class="go">       [&#39;517257321&#39;, &#39;2024-01-03&#39;, &#39;2027-01-03&#39;, &#39;MA&#39;, &#39;12000.00&#39;],</span>
-<span class="go">       [&#39;517256416&#39;, &#39;2024-01-02&#39;, &#39;2027-01-02&#39;, &#39;MG&#39;, &#39;6000.00&#39;],</span>
-<span class="go">       [&#39;517256416&#39;, &#39;2024-01-02&#39;, &#39;2027-01-02&#39;, &#39;MG&#39;, &#39;2500.00&#39;],</span>
-<span class="go">       [&#39;517256501&#39;, &#39;2024-01-03&#39;, &#39;2025-01-02&#39;, &#39;SC&#39;, &#39;61542.18&#39;],</span>
-<span class="go">       [&#39;517256502&#39;, &#39;2024-01-03&#39;, &#39;2025-01-02&#39;, &#39;SP&#39;, &#39;13327.57&#39;],</span>
-<span class="go">       [&#39;517256503&#39;, &#39;2024-01-03&#39;, &#39;2024-12-23&#39;, &#39;PE&#39;, &#39;44986.50&#39;],</span>
-<span class="go">       [&#39;517256507&#39;, &#39;2024-01-03&#39;, &#39;2024-12-20&#39;, &#39;MT&#39;, &#39;38666.07&#39;],</span>
-<span class="go">       [&#39;517256511&#39;, &#39;2024-01-03&#39;, &#39;2024-12-15&#39;, &#39;RS&#39;, &#39;5395.90&#39;],</span>
-<span class="go">       [&#39;517256511&#39;, &#39;2024-01-03&#39;, &#39;2024-12-15&#39;, &#39;RS&#39;, &#39;9216.72&#39;]], dtype=object)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">array</span><span class="p">([[</span><span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-29&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-27&#39;</span><span class="p">,</span> <span class="s1">&#39;PI&#39;</span><span class="p">,</span> <span class="s1">&#39;4000.00&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517257321&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;MA&#39;</span><span class="p">,</span> <span class="s1">&#39;12000.00&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;6000.00&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="s1">&#39;2500.00&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256501&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;SC&#39;</span><span class="p">,</span> <span class="s1">&#39;61542.18&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256502&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2025-01-02&#39;</span><span class="p">,</span> <span class="s1">&#39;SP&#39;</span><span class="p">,</span> <span class="s1">&#39;13327.57&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256503&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-23&#39;</span><span class="p">,</span> <span class="s1">&#39;PE&#39;</span><span class="p">,</span> <span class="s1">&#39;44986.50&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256507&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-20&#39;</span><span class="p">,</span> <span class="s1">&#39;MT&#39;</span><span class="p">,</span> <span class="s1">&#39;38666.07&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256511&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;5395.90&#39;</span><span class="p">],</span>
+       <span class="p">[</span><span class="s1">&#39;517256511&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="s1">&#39;2024-12-15&#39;</span><span class="p">,</span> <span class="s1">&#39;RS&#39;</span><span class="p">,</span> <span class="s1">&#39;9216.72&#39;</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">object</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>O atributo <code class="docutils literal notranslate"><span class="pre">axes</span></code> retorna uma lista com os índices dos eixos do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [44]: </span><span class="n">df</span><span class="o">.</span><span class="n">axes</span>
-<span class="gh">Out[44]:</span>
-<span class="go">[RangeIndex(start=0, stop=10, step=1),</span>
-<span class="go"> Index([&#39;ref_bacen&#39;, &#39;dt_emissao&#39;, &#39;dt_vencimento&#39;, &#39;cd_estado&#39;, &#39;vl_parc_credito&#39;], dtype=&#39;object&#39;)]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">axes</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">RangeIndex</span><span class="p">(</span><span class="n">start</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">stop</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">step</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+ <span class="n">Index</span><span class="p">([</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">,</span> <span class="s1">&#39;dt_emissao&#39;</span><span class="p">,</span> <span class="s1">&#39;dt_vencimento&#39;</span><span class="p">,</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">,</span> <span class="s1">&#39;vl_parc_credito&#39;</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="s1">&#39;object&#39;</span><span class="p">)]</span>
 </pre></div>
 </div>
 <p>Podemos recuperar uma série com os tipos de dados de cada coluna. Nessa série, os índices serão os nomes das colunas e os valores, os tipos de dados de cada coluna:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [45]: </span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
-<span class="gh">Out[45]:</span>
-<span class="go">ref_bacen        object</span>
-<span class="go">dt_emissao        object</span>
-<span class="go">dt_vencimento    object</span>
-<span class="go">cd_estado        object</span>
-<span class="go">vl_parc_credito  object</span>
-<span class="go">dtype: object</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">dtypes</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">ref_bacen</span>        <span class="nb">object</span>
+<span class="n">dt_emissao</span>        <span class="nb">object</span>
+<span class="n">dt_vencimento</span>    <span class="nb">object</span>
+<span class="n">cd_estado</span>        <span class="nb">object</span>
+<span class="n">vl_parc_credito</span>  <span class="nb">object</span>
+<span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -678,37 +692,42 @@
 <p>Quando o <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> contém colunas de tipos diferentes (<em>mixed types</em>), o tipo definido pelo <code class="docutils literal notranslate"><span class="pre">dtype</span></code> é <code class="docutils literal notranslate"><span class="pre">object</span></code>.</p>
 </div>
 <p>As dimensões do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> podem ser obtidas através da propriedade <code class="docutils literal notranslate"><span class="pre">shape</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [46]: </span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
-<span class="gh">Out[46]: </span><span class="go">(10, 5)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">shape</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
 <section id="selecionando-valores-do-dataframe">
 <h2><span class="section-number">2.3.12. </span>Selecionando valores do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#selecionando-valores-do-dataframe" title="Link permanente para este cabeçalho"></a></h2>
 <p>A operação <code class="docutils literal notranslate"><span class="pre">head</span></code> permite obter valores do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> a partir do seu início:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [47]: </span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[47]:</span>
-<span class="go">    ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">0   517365140   2024-01-29  2027-01-27      PI          4000.00</span>
-<span class="go">1   517257321   2024-01-03  2027-01-03      MA          12000.00</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">head</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">ref_bacen</span>   <span class="n">dt_emissao</span>  <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">0</span>   <span class="mi">517365140</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>      <span class="n">PI</span>          <span class="mf">4000.00</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>      <span class="n">MA</span>          <span class="mf">12000.00</span>
 </pre></div>
 </div>
 <p>A operação <code class="docutils literal notranslate"><span class="pre">tail</span></code> obtém valores ao final do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [48]: </span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-<span class="gh">Out[48]:</span>
-<span class="go">    ref_bacen   dt_emissao  dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">8   517256511   2024-01-03  2024-12-15      RS          5395.90</span>
-<span class="go">9   517256511   2024-01-03  2024-12-15      RS          9216.72</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">tail</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">ref_bacen</span>   <span class="n">dt_emissao</span>  <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">8</span>   <span class="mi">517256511</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">5395.90</span>
+<span class="mi">9</span>   <span class="mi">517256511</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>  <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">9216.72</span>
 </pre></div>
 </div>
 <p>Assim como na estrutura <code class="docutils literal notranslate"><span class="pre">Series</span></code>, podemos utilizar as propriedades <code class="docutils literal notranslate"><span class="pre">iloc</span></code> e <code class="docutils literal notranslate"><span class="pre">loc</span></code> para acessar grupos de linhas e colunas.</p>
 <p>O trecho de código abaixo utiliza a propriedade <code class="docutils literal notranslate"><span class="pre">loc</span></code> para recuperar os valores compreendidos entre as linhas <code class="docutils literal notranslate"><span class="pre">1</span></code> e <code class="docutils literal notranslate"><span class="pre">3</span></code>, considerando apenas as colunas <code class="docutils literal notranslate"><span class="pre">cd_estado</span></code> e <code class="docutils literal notranslate"><span class="pre">vl_parc_credito</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [49]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">,</span> <span class="s1">&#39;vl_parc_credito&#39;</span> <span class="p">]</span> <span class="p">]</span>
-<span class="gh">Out[49]:</span>
-<span class="go">    cd_estado   vl_parc_credito</span>
-<span class="go">1   MA          12000.00</span>
-<span class="go">2   MG          6000.00</span>
-<span class="go">3   MG          2500.00</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="mi">1</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span> <span class="p">[</span> <span class="s1">&#39;cd_estado&#39;</span><span class="p">,</span> <span class="s1">&#39;vl_parc_credito&#39;</span> <span class="p">]</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">1</span>   <span class="n">MA</span>          <span class="mf">12000.00</span>
+<span class="mi">2</span>   <span class="n">MG</span>          <span class="mf">6000.00</span>
+<span class="mi">3</span>   <span class="n">MG</span>          <span class="mf">2500.00</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -716,25 +735,27 @@
 <p>A propriedade <code class="docutils literal notranslate"><span class="pre">loc</span></code> utiliza os índices ou rótulos dos eixos das linhas e colunas como forma de endereçamento dos elementos. Já o operador <code class="docutils literal notranslate"><span class="pre">iloc</span></code> utiliza números inteiros correspondentes à posição dos eixos (linhas e colunas). No exemplo de <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> usado, os índices (rótulos) das linhas são números inteiros sequenciais e logo não há diferença na forma de acesso entre <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code> quando nos referimos às linhas desse exemplo. No entanto, para o eixo das colunas, temos diferença, conforme será visto abaixo.</p>
 </div>
 <p>Também podemos utilizar um <em>array</em> de valores lógicos nas propriedades <code class="docutils literal notranslate"><span class="pre">loc</span></code> e <code class="docutils literal notranslate"><span class="pre">iloc</span></code>. O trecho de código abaixo seleciona linhas alternadas do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [50]: </span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="s1">&#39;dt_vencimento&#39;</span><span class="p">:</span><span class="s1">&#39;vl_parc_credito&#39;</span> <span class="p">]</span>
-<span class="gh">Out[50]:</span>
-<span class="go">    dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">0   2027-01-27      PI          4000.00</span>
-<span class="go">1   2027-01-03      MA          12000.00</span>
-<span class="go">2   2027-01-02      MG          6000.00</span>
-<span class="go">8   2024-12-15      RS          5395.90</span>
-<span class="go">9   2024-12-15      RS          9216.72</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="s1">&#39;dt_vencimento&#39;</span><span class="p">:</span><span class="s1">&#39;vl_parc_credito&#39;</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">0</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>      <span class="n">PI</span>          <span class="mf">4000.00</span>
+<span class="mi">1</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>      <span class="n">MA</span>          <span class="mf">12000.00</span>
+<span class="mi">2</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">6000.00</span>
+<span class="mi">8</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">5395.90</span>
+<span class="mi">9</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">9216.72</span>
 </pre></div>
 </div>
 <p>A propriedade <code class="docutils literal notranslate"><span class="pre">iloc</span></code> permite a seleção dos valores da série de maneira posicional, isto é, utilizamos números inteiros para especificar uma ou mais linhas e colunas a serem selecionadas. De maneira semelhante à propriedade <code class="docutils literal notranslate"><span class="pre">loc</span></code>, aceita um array de valores lógicos para seleção:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [51]: </span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span> <span class="p">]</span>
-<span class="gh">Out[51]:</span>
-<span class="go">    dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">0   2027-01-27      PI          4000.00</span>
-<span class="go">1   2027-01-03      MA          12000.00</span>
-<span class="go">2   2027-01-02      MG          6000.00</span>
-<span class="go">8   2024-12-15      RS          5395.90</span>
-<span class="go">9   2024-12-15      RS          9216.72</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span> <span class="p">[</span><span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">False</span><span class="p">,</span> <span class="kc">True</span><span class="p">,</span> <span class="kc">True</span><span class="p">],</span> <span class="mi">2</span><span class="p">:</span><span class="mi">5</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">0</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>      <span class="n">PI</span>          <span class="mf">4000.00</span>
+<span class="mi">1</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>      <span class="n">MA</span>          <span class="mf">12000.00</span>
+<span class="mi">2</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">6000.00</span>
+<span class="mi">8</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">5395.90</span>
+<span class="mi">9</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>      <span class="n">RS</span>          <span class="mf">9216.72</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -745,26 +766,27 @@
 <section id="iterando-nas-colunas-e-linhas-de-um-dataframe">
 <h2><span class="section-number">2.3.13. </span>Iterando nas colunas e linhas de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code><a class="headerlink" href="#iterando-nas-colunas-e-linhas-de-um-dataframe" title="Link permanente para este cabeçalho"></a></h2>
 <p>A operação <code class="docutils literal notranslate"><span class="pre">items</span></code> permite iterarmos nos conjuntos de valores de cada coluna, como se fossem uma série individual:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [52]: </span><span class="k">for</span> <span class="n">rotulo</span><span class="p">,</span> <span class="n">serie</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
-<span class="go">    ...:     print(f&#39;Série da Coluna: {rotulo}&#39;)</span>
-<span class="go">    ...:     print(serie)</span>
-<span class="go">    ...:     print(&#39;--------\n&#39;)</span>
-<span class="go">    ...:</span>
-<span class="go">Série da Coluna: ref_bacen</span>
-<span class="go">0    517365140</span>
-<span class="go">1    517257321</span>
-<span class="go">2    517256416</span>
-<span class="go">3    517256416</span>
-<span class="go">4    517256501</span>
-<span class="go">5    517256502</span>
-<span class="go">6    517256503</span>
-<span class="go">7    517256507</span>
-<span class="go">8    517256511</span>
-<span class="go">9    517256511</span>
-<span class="go">Name: ref_bacen, dtype: object</span>
-<span class="gt">--------</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">rotulo</span><span class="p">,</span> <span class="n">serie</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Série da Coluna: </span><span class="si">{</span><span class="n">rotulo</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">serie</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------</span><span class="se">\n</span><span class="s1">&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">Série</span> <span class="n">da</span> <span class="n">Coluna</span><span class="p">:</span> <span class="n">ref_bacen</span>
+<span class="mi">0</span>    <span class="mi">517365140</span>
+<span class="mi">1</span>    <span class="mi">517257321</span>
+<span class="mi">2</span>    <span class="mi">517256416</span>
+<span class="mi">3</span>    <span class="mi">517256416</span>
+<span class="mi">4</span>    <span class="mi">517256501</span>
+<span class="mi">5</span>    <span class="mi">517256502</span>
+<span class="mi">6</span>    <span class="mi">517256503</span>
+<span class="mi">7</span>    <span class="mi">517256507</span>
+<span class="mi">8</span>    <span class="mi">517256511</span>
+<span class="mi">9</span>    <span class="mi">517256511</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">ref_bacen</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">--------</span>
 <span class="o">...</span>
-<span class="gt">--------</span>
+<span class="o">--------</span>
 
 <span class="n">Série</span> <span class="n">da</span> <span class="n">Coluna</span><span class="p">:</span> <span class="n">vl_parc_credito</span>
 <span class="mi">0</span>     <span class="mf">4000.00</span>
@@ -777,41 +799,43 @@
 <span class="mi">7</span>    <span class="mf">38666.07</span>
 <span class="mi">8</span>     <span class="mf">5395.90</span>
 <span class="mi">9</span>     <span class="mf">9216.72</span>
-<span class="ne">Name</span>: vl_parc_credito, dtype: object
-<span class="gt">--------</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">vl_parc_credito</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">--------</span>
 </pre></div>
 </div>
 <p>O operador <code class="docutils literal notranslate"><span class="pre">iterrows()</span></code> permite iterarmos nas linhas do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> como se fossem uma série:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [53]: </span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
-<span class="go">    ...:     print(f&#39;Série da Linha: {index}&#39;)</span>
-<span class="go">    ...:     print(row)</span>
-<span class="go">    ...:     print(&#39;--------&#39;)</span>
-<span class="go">    ...:</span>
-<span class="go">Série da Linha: 0</span>
-<span class="go">ref_bacen           517365140</span>
-<span class="go">dt_emissao         2024-01-29</span>
-<span class="go">dt_vencimento      2027-01-27</span>
-<span class="go">cd_estado                  PI</span>
-<span class="go">vl_parc_credito       4000.00</span>
-<span class="go">Name: 0, dtype: object</span>
-<span class="gt">--------</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;Série da Linha: </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;--------&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">Série</span> <span class="n">da</span> <span class="n">Linha</span><span class="p">:</span> <span class="mi">0</span>
+<span class="n">ref_bacen</span>           <span class="mi">517365140</span>
+<span class="n">dt_emissao</span>         <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>
+<span class="n">dt_vencimento</span>      <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>
+<span class="n">cd_estado</span>                  <span class="n">PI</span>
+<span class="n">vl_parc_credito</span>       <span class="mf">4000.00</span>
+<span class="n">Name</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">--------</span>
 <span class="o">...</span>
-<span class="gt">--------</span>
+<span class="o">--------</span>
 <span class="n">Série</span> <span class="n">da</span> <span class="n">Linha</span><span class="p">:</span> <span class="mi">9</span>
 <span class="n">ref_bacen</span>           <span class="mi">517256511</span>
 <span class="n">dt_emissao</span>         <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>
 <span class="n">dt_vencimento</span>      <span class="mi">2024</span><span class="o">-</span><span class="mi">12</span><span class="o">-</span><span class="mi">15</span>
 <span class="n">cd_estado</span>                  <span class="n">RS</span>
 <span class="n">vl_parc_credito</span>       <span class="mf">9216.72</span>
-<span class="ne">Name</span>: 9, dtype: object
-<span class="gt">--------</span>
+<span class="n">Name</span><span class="p">:</span> <span class="mi">9</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">object</span>
+<span class="o">--------</span>
 </pre></div>
 </div>
 <p>Uma forma melhor de iterar nas linhas é através da operação <code class="docutils literal notranslate"><span class="pre">itertuples</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">In</span> <span class="p">[</span><span class="mi">54</span><span class="p">]:</span> <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
-    <span class="o">...</span><span class="p">:</span>     <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
-    <span class="o">...</span><span class="p">:</span>
-<span class="n">Pandas</span><span class="p">(</span><span class="n">Index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ref_bacen</span><span class="o">=</span><span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="n">dt_emissao</span><span class="o">=</span><span class="s1">&#39;2024-01-29&#39;</span><span class="p">,</span> <span class="n">dt_vencimento</span><span class="o">=</span><span class="s1">&#39;2027-01-27&#39;</span><span class="p">,</span> <span class="n">cd_estado</span><span class="o">=</span><span class="s1">&#39;PI&#39;</span><span class="p">,</span> <span class="n">vl_parc_credito</span><span class="o">=</span><span class="s1">&#39;4000.00&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">df</span><span class="o">.</span><span class="n">itertuples</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">Pandas</span><span class="p">(</span><span class="n">Index</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">ref_bacen</span><span class="o">=</span><span class="s1">&#39;517365140&#39;</span><span class="p">,</span> <span class="n">dt_emissao</span><span class="o">=</span><span class="s1">&#39;2024-01-29&#39;</span><span class="p">,</span> <span class="n">dt_vencimento</span><span class="o">=</span><span class="s1">&#39;2027-01-27&#39;</span><span class="p">,</span> <span class="n">cd_estado</span><span class="o">=</span><span class="s1">&#39;PI&#39;</span><span class="p">,</span> <span class="n">vl_parc_credito</span><span class="o">=</span><span class="s1">&#39;4000.00&#39;</span><span class="p">)</span>
 <span class="n">Pandas</span><span class="p">(</span><span class="n">Index</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">ref_bacen</span><span class="o">=</span><span class="s1">&#39;517257321&#39;</span><span class="p">,</span> <span class="n">dt_emissao</span><span class="o">=</span><span class="s1">&#39;2024-01-03&#39;</span><span class="p">,</span> <span class="n">dt_vencimento</span><span class="o">=</span><span class="s1">&#39;2027-01-03&#39;</span><span class="p">,</span> <span class="n">cd_estado</span><span class="o">=</span><span class="s1">&#39;MA&#39;</span><span class="p">,</span> <span class="n">vl_parc_credito</span><span class="o">=</span><span class="s1">&#39;12000.00&#39;</span><span class="p">)</span>
 <span class="n">Pandas</span><span class="p">(</span><span class="n">Index</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">ref_bacen</span><span class="o">=</span><span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="n">dt_emissao</span><span class="o">=</span><span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="n">dt_vencimento</span><span class="o">=</span><span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="n">cd_estado</span><span class="o">=</span><span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="n">vl_parc_credito</span><span class="o">=</span><span class="s1">&#39;6000.00&#39;</span><span class="p">)</span>
 <span class="n">Pandas</span><span class="p">(</span><span class="n">Index</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">ref_bacen</span><span class="o">=</span><span class="s1">&#39;517256416&#39;</span><span class="p">,</span> <span class="n">dt_emissao</span><span class="o">=</span><span class="s1">&#39;2024-01-02&#39;</span><span class="p">,</span> <span class="n">dt_vencimento</span><span class="o">=</span><span class="s1">&#39;2027-01-02&#39;</span><span class="p">,</span> <span class="n">cd_estado</span><span class="o">=</span><span class="s1">&#39;MG&#39;</span><span class="p">,</span> <span class="n">vl_parc_credito</span><span class="o">=</span><span class="s1">&#39;2500.00&#39;</span><span class="p">)</span>
@@ -835,31 +859,33 @@
 <section id="construindo-mascaras-booleanas-para-selecao-de-linhas">
 <h2><span class="section-number">2.3.14. </span>Construindo máscaras booleanas para seleção de linhas<a class="headerlink" href="#construindo-mascaras-booleanas-para-selecao-de-linhas" title="Link permanente para este cabeçalho"></a></h2>
 <p>Uma técnica útil para construir uma máscara de valores booleanos é utilizar expressões que retornem séries com valores booleanos:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [55]: </span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_vencimento&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2025-01-01&#39;</span>
-<span class="gh">Out[55]:</span>
-<span class="go">0   True</span>
-<span class="go">1   True</span>
-<span class="go">2   True</span>
-<span class="go">3   True</span>
-<span class="go">4   True</span>
-<span class="go">5   True</span>
-<span class="go">6   False</span>
-<span class="go">7   False</span>
-<span class="go">8   False</span>
-<span class="go">9   False</span>
-<span class="go">Name: dt_vencimento, dtype: bool</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_vencimento&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2025-01-01&#39;</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="mi">0</span>   <span class="kc">True</span>
+<span class="mi">1</span>   <span class="kc">True</span>
+<span class="mi">2</span>   <span class="kc">True</span>
+<span class="mi">3</span>   <span class="kc">True</span>
+<span class="mi">4</span>   <span class="kc">True</span>
+<span class="mi">5</span>   <span class="kc">True</span>
+<span class="mi">6</span>   <span class="kc">False</span>
+<span class="mi">7</span>   <span class="kc">False</span>
+<span class="mi">8</span>   <span class="kc">False</span>
+<span class="mi">9</span>   <span class="kc">False</span>
+<span class="n">Name</span><span class="p">:</span> <span class="n">dt_vencimento</span><span class="p">,</span> <span class="n">dtype</span><span class="p">:</span> <span class="nb">bool</span>
 </pre></div>
 </div>
 <p>Podemos usar uma expressão como acima para selecionar as linhas de um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [56]: </span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_vencimento&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2025-01-01&#39;</span> <span class="p">]</span>
-<span class="gh">Out[56]:</span>
-<span class="go">    ref_bacen   dt_emissao   dt_vencimento   cd_estado   vl_parc_credito</span>
-<span class="go">0   517365140   2024-01-29   2027-01-27      PI          4000.00</span>
-<span class="go">1   517257321   2024-01-03   2027-01-03      MA          12000.00</span>
-<span class="go">2   517256416   2024-01-02   2027-01-02      MG          6000.00</span>
-<span class="go">3   517256416   2024-01-02   2027-01-02      MG          2500.00</span>
-<span class="go">4   517256501   2024-01-03   2025-01-02      SC          61542.18</span>
-<span class="go">5   517256502   2024-01-03   2025-01-02      SP          13327.57</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">df</span><span class="p">[</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;dt_vencimento&#39;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="s1">&#39;2025-01-01&#39;</span> <span class="p">]</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>    <span class="n">ref_bacen</span>   <span class="n">dt_emissao</span>   <span class="n">dt_vencimento</span>   <span class="n">cd_estado</span>   <span class="n">vl_parc_credito</span>
+<span class="mi">0</span>   <span class="mi">517365140</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">29</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">27</span>      <span class="n">PI</span>          <span class="mf">4000.00</span>
+<span class="mi">1</span>   <span class="mi">517257321</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>      <span class="n">MA</span>          <span class="mf">12000.00</span>
+<span class="mi">2</span>   <span class="mi">517256416</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">6000.00</span>
+<span class="mi">3</span>   <span class="mi">517256416</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>   <span class="mi">2027</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">MG</span>          <span class="mf">2500.00</span>
+<span class="mi">4</span>   <span class="mi">517256501</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">SC</span>          <span class="mf">61542.18</span>
+<span class="mi">5</span>   <span class="mi">517256502</span>   <span class="mi">2024</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">03</span>   <span class="mi">2025</span><span class="o">-</span><span class="mi">01</span><span class="o">-</span><span class="mi">02</span>      <span class="n">SP</span>          <span class="mf">13327.57</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -870,24 +896,21 @@
 <section id="leitura-de-arquivos-csv">
 <h2><span class="section-number">2.3.15. </span>Leitura de Arquivos CSV<a class="headerlink" href="#leitura-de-arquivos-csv" title="Link permanente para este cabeçalho"></a></h2>
 <p>Para abrir um arquivo <code class="docutils literal notranslate"><span class="pre">CSV</span></code> basta utilizar a função <code class="docutils literal notranslate"><span class="pre">read_csv</span></code>. Como a estrutura do arquivo csv pode ter um separador diferente, como <code class="docutils literal notranslate"><span class="pre">;</span></code>, usamos o parâmetro <code class="docutils literal notranslate"><span class="pre">sep</span></code>:</p>
-<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="gp">In [57]: </span><span class="n">operacoes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;operacoes-2024-subconjunto.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s1">&#39;operacoes-2024-subconjunto.csv&#39;</span><span class="p">,</span> <span class="n">sep</span><span class="o">=</span><span class="s1">&#39;;&#39;</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Nota</p>
-<p>Baixe o arquivo <a class="reference download internal" download="" href="../_downloads/2712f32639df6033deb5638cdcc477da/operacoes-2024-subconjunto.csv"><code class="xref download docutils literal notranslate"><span class="pre">operacoes-2024-subconjunto.csv</span></code></a>, o qual contém um subconjunto de 1024 registros de operações de crédito rural contratadas com recursos públicos ou privados, no ano de 2024.</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Nota</p>
-<p>O Pandas fornece diversas funções de entrada/saída. Consulte o seguinte documento para maiores informações: <a class="reference external" href="https://pandas.pydata.org/docs/reference/io.html">Input/output</a>.</p>
+<p>Baixe o arquivo <a class="reference download internal" download="" href="../_downloads/2712f32639df6033deb5638cdcc477da/operacoes-2024-subconjunto.csv"><code class="xref download docutils literal notranslate"><span class="pre">operacoes-2024-subconjunto.csv</span></code></a>, o qual contém um subconjunto de 1024 registros de operações de crédito rural contratadas com recursos públicos ou privados, no ano de 2024. O Pandas fornece diversas funções de entrada/saída. Consulte o seguinte documento para maiores informações: <a class="reference external" href="https://pandas.pydata.org/docs/reference/io.html">Input/output</a>.</p>
 </div>
 </section>
 <section id="analise-de-dados-com-o-pandas">
 <h2><span class="section-number">2.3.16. </span>Análise de Dados com o Pandas<a class="headerlink" href="#analise-de-dados-com-o-pandas" title="Link permanente para este cabeçalho"></a></h2>
 <p>Vamos começar nossa análise, do conjunto de dados lido do arquivo <code class="docutils literal notranslate"><span class="pre">operacoes-2024-subconjunto.csv</span></code>, por uma estatística descritiva. Vamos combinar a operação <code class="docutils literal notranslate"><span class="pre">filter()</span></code>, já vista anteriormente, para escolher somente algumas colunas e apresentar um resumo dos valores presentes em todas as linhas.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
-
-        <span class="n">vl_area_financ</span>   <span class="n">vl_area_informada</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">like</span><span class="o">=</span><span class="s1">&#39;area&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">describe</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>        <span class="n">vl_area_financ</span>   <span class="n">vl_area_informada</span>
 <span class="n">count</span>   <span class="mf">1023.000000</span>      <span class="mf">1023.000000</span>
 <span class="n">mean</span>    <span class="mf">11.663998</span>        <span class="mf">11.852356</span>
 <span class="n">std</span>     <span class="mf">40.405765</span>        <span class="mf">40.606350</span>
@@ -910,11 +933,11 @@
 </ul>
 <hr class="docutils" />
 <p><strong>Q1.</strong> Quantos valores diferentes existem em cada coluna do <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">ipython</span>
 </pre></div>
 </div>
 <blockquote>
@@ -973,7 +996,7 @@ dtype: int64</p>
 </div>
 <hr class="docutils" />
 <p><strong>Q2.</strong> Quantos valores diferentes existem para a coluna <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code>?</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">nunique</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
@@ -981,11 +1004,11 @@ dtype: int64</p>
 </pre></div>
 </div>
 <p>Para obter os valores únicos podemos utilizar a operação <code class="docutils literal notranslate"><span class="pre">unique</span></code> como mostrado abaixo:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">unique</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">python</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">ipython</span>
 </pre></div>
 </div>
 <blockquote>
@@ -997,13 +1020,12 @@ dtype: int64</p>
 <hr class="docutils" />
 <p><strong>Q3.</strong> Quantas linhas de cada <code class="docutils literal notranslate"><span class="pre">cd_estado</span></code> existem no <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>?</p>
 <p>Nesse caso, precisamos realizar uma operação que agrupe as linha pelos valores da coluna <code class="docutils literal notranslate"><span class="pre">cd_estado</span></code> e então relize a contagem. O trecho de código abaixo utiliza o operador <code class="docutils literal notranslate"><span class="pre">groupby</span></code> para retornar um objeto que contém informação sobre grupos. Esse objeto é associado ao identificador <code class="docutils literal notranslate"><span class="pre">grupo_linhas</span></code>.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grupo_linhas</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">)</span>
-
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">grupo_linhas</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">groupby</span><span class="p">(</span><span class="n">by</span><span class="o">=</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">)</span>
 <span class="n">grupo_linhas</span><span class="p">[</span><span class="s1">&#39;ref_bacen&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span>             <span class="n">ref_bacen</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span>             <span class="n">ref_bacen</span>
 <span class="n">cd_estado</span>
 <span class="n">AL</span>           <span class="mi">3</span>
 <span class="n">BA</span>           <span class="mi">196</span>
@@ -1030,7 +1052,7 @@ dtype: int64</p>
 </pre></div>
 </div>
 <p>Veja que utilizamos a contagem somente da coluna <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> para reduzir o tamanho da saída. Se você estiver interessado na contagem apenas de todas as colunas, pode usar a seguinte estratégia:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">grupo_linhas</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">grupo_linhas</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -1039,67 +1061,70 @@ dtype: int64</p>
 </div>
 <hr class="docutils" />
 <p><strong>Q4.</strong> Apresentar um gráfico de barras com a contagem de quantas operações estão registradas para cada estado:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="n">matplotlib</span> <span class="n">inline</span>
-
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="o">%</span><span class="k">matplotlib</span> inline
 <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-
 <span class="n">contagem</span> <span class="o">=</span> <span class="n">grupo_linhas</span><span class="p">[</span><span class="s1">&#39;cd_estado&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">count</span><span class="p">()</span>
-
 <span class="n">contagem</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="s1">&#39;bar&#39;</span><span class="p">);</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<a class="reference internal image-reference" href="../_images/operacoes-x-estados.png"><img alt="Plot" src="../_images/operacoes-x-estados.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/operacoes-x-estados.png"><img alt="Plot" class="align-center" src="../_images/operacoes-x-estados.png" style="width: 75%;" /></a>
 <hr class="docutils" />
 <p><strong>Q5.</strong> Quantos valores estão faltando em cada coluna?</p>
 <p>Os métodos <code class="docutils literal notranslate"><span class="pre">isnull</span></code> e <code class="docutils literal notranslate"><span class="pre">notnull</span></code> das estruturas de dados do <code class="docutils literal notranslate"><span class="pre">Pandas</span></code> possibilitam trabalhar a ocorrência de valores nulos. Essas duas operações retornam uma máscara booleana, onde valores <code class="docutils literal notranslate"><span class="pre">True</span></code> para o método <code class="docutils literal notranslate"><span class="pre">isnull</span></code> indicam valores faltantes, ou nulos; e <code class="docutils literal notranslate"><span class="pre">False</span></code> valores presentes. O contrário ocorre para o método <code class="docutils literal notranslate"><span class="pre">notnull</span></code>. Podemos combinar essas operações com o método <code class="docutils literal notranslate"><span class="pre">sum()</span></code> que realiza uma contagem por coluna, e assim conseguimos ter uma informação compilada sobre a quantidade de valores faltantes.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ref_bacen</span>                  <span class="mi">0</span>
-<span class="n">nu_ordem</span>                   <span class="mi">0</span>
-<span class="n">cnpj_if</span>                    <span class="mi">0</span>
-<span class="n">dt_emissao</span>                 <span class="mi">0</span>
-<span class="n">dt_vencimento</span>              <span class="mi">0</span>
-<span class="n">cd_inst_credito</span>            <span class="mi">0</span>
-<span class="n">cd_categ_emitente</span>          <span class="mi">0</span>
-<span class="n">cd_fonte_recurso</span>           <span class="mi">0</span>
-<span class="n">cnpj_agente_invest</span>         <span class="mi">1014</span>
-<span class="n">cd_estado</span>                  <span class="mi">0</span>
-<span class="n">cd_ref_bacen_investimento</span>  <span class="mi">1014</span>
-<span class="o">...</span>
-<span class="n">vl_area_informada</span>          <span class="mi">1</span>
-<span class="n">cd_ciclo_cultivar</span>          <span class="mi">875</span>
-<span class="n">cd_tipo_solo</span>               <span class="mi">875</span>
-<span class="n">pc_bonus_car</span>               <span class="mi">1024</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">ipython</span>
 </pre></div>
 </div>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
+<blockquote>
+<div><p>ref_bacen                  0
+nu_ordem                   0
+cnpj_if                    0
+dt_emissao                 0
+dt_vencimento              0
+cd_inst_credito            0
+cd_categ_emitente          0
+cd_fonte_recurso           0
+cnpj_agente_invest         1014
+cd_estado                  0
+cd_ref_bacen_investimento  1014
+…
+vl_area_informada          1
+cd_ciclo_cultivar          875
+cd_tipo_solo               875
+pc_bonus_car               1024</p>
+</div></blockquote>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="o">.</span><span class="n">notnull</span><span class="p">()</span><span class="o">.</span><span class="n">sum</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ref_bacen</span>                   <span class="mi">1024</span>
-<span class="n">nu_ordem</span>                    <span class="mi">1024</span>
-<span class="n">cnpj_if</span>
-<span class="n">dt_emissao</span>                  <span class="mi">1024</span>
-<span class="n">dt_vencimento</span>               <span class="mi">1024</span>
-<span class="n">cd_inst_credito</span>             <span class="mi">1024</span>
-<span class="n">cd_categ_emitente</span>           <span class="mi">1024</span>
-<span class="n">cd_fonte_recurso</span>            <span class="mi">1024</span>
-<span class="n">cnpj_agente_invest</span>          <span class="mi">10</span>
-<span class="n">cd_estado</span>                   <span class="mi">1024</span>
-<span class="n">cd_ref_bacen_investimento</span>   <span class="mi">10</span>
-<span class="o">...</span>
-<span class="n">vl_area_informada</span>           <span class="mi">1023</span>
-<span class="n">cd_ciclo_cultivar</span>           <span class="mi">149</span>
-<span class="n">cd_tipo_solo</span>                <span class="mi">149</span>
-<span class="n">pc_bonus_car</span>                <span class="mi">0</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">..</span> <span class="n">code</span><span class="o">-</span><span class="n">block</span><span class="p">::</span> <span class="n">ipython</span>
 </pre></div>
 </div>
+<blockquote>
+<div><p>ref_bacen                   1024
+nu_ordem                    1024
+cnpj_if
+dt_emissao                  1024
+dt_vencimento               1024
+cd_inst_credito             1024
+cd_categ_emitente           1024
+cd_fonte_recurso            1024
+cnpj_agente_invest          10
+cd_estado                   1024
+cd_ref_bacen_investimento   10
+…
+vl_area_informada           1023
+cd_ciclo_cultivar           149
+cd_tipo_solo                149
+pc_bonus_car                0</p>
+</div></blockquote>
 <hr class="docutils" />
 <p><strong>Q6.</strong> Quais as linhas que possuem <code class="docutils literal notranslate"><span class="pre">NaN</span></code> na coluna <code class="docutils literal notranslate"><span class="pre">cnpj_agente_invest</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;cnpj_agente_invest&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;cnpj_agente_invest&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">isnull</span><span class="p">()</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>Saída:</p>
@@ -1107,29 +1132,28 @@ dtype: int64</p>
 <hr class="docutils" />
 <p><strong>Q7.</strong> Quantas observações estão completas, isto é, não estão faltando valores?</p>
 <p>Através da operação <code class="docutils literal notranslate"><span class="pre">dropna</span></code> podemos criar um novo <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> contendo apenas colunas que não contenham valores <code class="docutils literal notranslate"><span class="pre">NaN</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">ndf</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
-
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">ndf</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">dropna</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="n">ndf</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<a class="reference internal image-reference" href="../_images/dataframe-dropna.png"><img alt="isnull" src="../_images/dataframe-dropna.png" style="width: 50%;" /></a>
+<a class="reference internal image-reference" href="../_images/dataframe-dropna.png"><img alt="isnull" src="../_images/dataframe-dropna.png" style="width: 10%;" /></a>
 <hr class="docutils" />
 <p><strong>Q8.</strong> Adicionar uma nova coluna chamada <code class="docutils literal notranslate"><span class="pre">porcentagem_area_financiada</span></code> que seja a relação entre as colunas <code class="docutils literal notranslate"><span class="pre">vl_area_financ</span></code> e <code class="docutils literal notranslate"><span class="pre">vl_area_informada</span></code>:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;porcentagem_area_financiada&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;vl_area_financ&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;vl_area_informada&#39;</span><span class="p">]</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;porcentagem_area_financiada&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">100</span> <span class="o">*</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;vl_area_financ&#39;</span><span class="p">]</span> <span class="o">/</span> <span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;vl_area_informada&#39;</span><span class="p">]</span>
 </pre></div>
 </div>
 <p>Podemos utilizar a nova coluna <code class="docutils literal notranslate"><span class="pre">porcentagem_area_financiada</span></code> do nosso <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code>, e realizar consultas sobre ela, como por exemplo saber a quantidade (método <code class="docutils literal notranslate"><span class="pre">len</span></code>) de operações com a porcentagem inferior a 60%:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">operacoes</span><span class="p">[</span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;porcentagem_area_financiada&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">])</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="nb">len</span><span class="p">(</span><span class="n">operacoes</span><span class="p">[</span><span class="n">operacoes</span><span class="p">[</span><span class="s1">&#39;porcentagem_area_financiada&#39;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">60</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>Saída:</p>
-<blockquote>
-<div><p>5</p>
-</div></blockquote>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="mi">5</span>
+</pre></div>
+</div>
 <hr class="docutils" />
 <p><strong>Q9.</strong> Copiar um <code class="docutils literal notranslate"><span class="pre">DataFrame</span></code> para outro DataFrame</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">copia_df</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
+<div class="highlight-ipython notranslate"><div class="highlight"><pre><span></span><span class="n">copia_df</span> <span class="o">=</span> <span class="n">operacoes</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>
 </pre></div>
 </div>
 </section>
@@ -1150,7 +1174,7 @@ dtype: int64</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f3f0f327b50>
+<jinja2.runtime.BlockReference object at 0x7fe7d749a3a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
