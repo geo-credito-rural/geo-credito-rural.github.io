@@ -1,0 +1,776 @@
+.. include:: ../def.rst
+
+
+.. _sec_sicor_zarc:
+
+Zoneamento Agrícola de Risco Climático (ZARC)
+=============================================
+
+
+O Zoneamento Agrícola de Risco Climático (`ZARC <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico>`__) tem o objetivo de promover, coordenar e apoiar projetos, estudos e ações de pesquisa, de desenvolvimento, de operação ou manutenção de avaliação, quantificação e monitoramento de riscos agroclimáticos, bem como disponibilizar essas informações à sociedade. É um trabalho colaborativo que estima o risco de produção agrícola nas condições climáticas normais de cada região, com a finalidade de permitir a adequada avaliação da variabilidade climática de cada local, época e suas consequências para as culturas agrícolas. Para isso usa um elaborado sistema de análise de dados agrometeorológicos e de simulação matemática. Esse trabalho é coordenado pelo Ministério da Agricultura e Pecuária (MAPA) e tem como base uma rede de pesquisadores e técnicos da Embrapa e de várias outras instituições de pesquisa.
+
+
+A primeira publicação do ZARC foi o zoneamento para a cultura do trigo na safra de 1996. Atualmente, ele é publicado anualmente e o MAPA é o órgão responsável por sua publicação no Diário Oficial da União. As normas de publicação, de participação na formulação ou aperfeiçoamento na forma de divulgação estão estabelecidas por meio da `Portaria 412 do MAPA do dia 30 de dezembro de 2020 <https://www.in.gov.br/web/dou/-/portaria-mapa-n-412-de-30-de-dezembro-de-2020-296859190>`__. Sua atualização é sistemática e ocorre por meio desse sistema colaborativo entre os órgãos de pesquisa, agentes públicos e privados. Nesse sentido, as solicitações de formulações e/ou aperfeiçoamento podem ser apresentadas por órgãos governamentais, instituições de pesquisa agropecuária, entidades representativas dos produtores rurais, cooperativas agropecuárias, por pessoas jurídicas prestadoras de serviços de assistência técnica e extensão rural, por entidades representativas e de classe dos profissionais atuantes no setor agropecuário, agentes financeiros e pessoas jurídicas fornecedoras de insumos agropecuários. Essas propostas serão avaliadas tecnicamente por um período mínimo de 12 (doze) meses e caso aceitas, serão utilizadas nas safras seguintes. Por conta desse trabalho, o ZARC é utilizado no crédito rural, por meio de iniciativas como o Programa de Subvenção Federal ao Prêmio do Seguro Rural (PSR) e o Programa de Garantia da Atividade Agropecuária (Proagro), entre outras políticas governamentais de apoio à produção que exigem a adoção das janelas de plantio recomendadas. No âmbito privado, algumas instituições financeiras utilizam como critério para a concessão de financiamento agrícola.
+
+
+Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades da Federação. Inicialmente, ele estabelecia as zonas de acordo com a cultura, entretanto, com a publicação da `Instrução Normativa 16, de 9 de ABRIL de 2018 <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico/documentos/INSTRUONORMATIVAN16.pdf>`__ foram estabelecidas as regras para inclusão de cultivares. Além disto, inicialmente, o ZARC utilizava `três tipos de solo <https://in.gov.br/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-9-de-novembro-de-2021-359074246>`__ a serem definidos pela análise granulométrica, determinados pelas quantidades de argila, de areia e de silte existentes no solo. Assim, foram adotadas as seguintes especificações para solos:
+
+.. rst-class:: open
+
+- **SOLOS TIPO 1:** Solos de textura arenosa, com teor de argila variando de 10% até 15% ou com teor de argila igual ou maior do que 15%, nos quais a diferença entre o percentual de areia e o percentual de argila seja maior ou igual a 50%. Assim, adotando-se o percentual de :math:`argila=a`, e a diferença entre os percentuais de areia e argila iguais a :math:`\Delta`, temos para os solos tipo 1:
+
+    .. math::
+        :label: eq:sicor:zarc:solo1
+
+        \begin{cases}
+            10\% \leq a \lt 15\%
+
+            a \geq 15\%, \text{com } \Delta \geq 50\%
+        \end{cases}
+
+
+- **SOLOS TIPO 2:** Solos de textura média, com teor mínimo variando entre 15% e 35% de argila (:math:`a`), nos quais o :math:`\Delta` (diferença entre o percentual de areia e o percentual de argila) seja menor do que 50%. Assim, temos para os solos tipo 2:
+
+    .. math::
+        :label: eq:sicor:zarc:solo2
+
+        15\% \leq a lt 35% \text {com } \Delta \lt 50\%
+
+
+- **SOLOS TIPO 3:** Solos de textura argilosa, com teor de argila maior ou igual a 35%. Assim, adotando-se o percentual de :math:`argila=a`, temos para os solos tipo 3:
+
+    .. math::
+        :label: eq:sicor:zarc:solo3
+
+        a \geq 35\%
+
+
+Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo, conforme estabelecido pela `Instrução Normativa SPA/MAPA Nº 2, de 5 de agosto de 2022 <https://in.gov.br/en/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-5-de-agosto-de-2022-421241455>`__. A partir dessa instrução normativa passam a ser adotadas as seguintes classes de AD no solo, em milímetros de água por centímetro de solo (mm.cm\ :sup:`-1`) de acordo com a seguinte classificação:
+
+.. rst-class:: open
+
+-  **I - AD1:** para valores de AD maiores ou iguais a 0,34 e menores que 0,46 mm.cm\ :sup:`-1`;
+-  **II - AD2:** para valores de AD maiores ou iguais a 0,46 e menores que 0,61 mm.cm\ :sup:`-1`;
+-  **III - AD3:** para valores de AD maiores ou iguais a 0,61 e menores que 0,80 mm cm\ :sup:`-1`;
+-  **IV - AD4:** para valores de AD maiores ou iguais a 0,80 e menores que 1,06 mm cm\ :sup:`-1`;
+-  **V - AD5:** para valores de AD maiores ou iguais a 1,06 e menores que 1,40 mm cm\ :sup:`-1`;
+-  **VI – AD6:** para valores de AD maiores ou iguais a 1,40 mm cm\ :sup:`-1`.
+
+
+Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estão sendo revisados. Além disto estão ocorrendo investimentos na melhoria das bases de dados e avanços metodológicos na avaliação de risco climático das principais culturas agrícolas. Somado com a evolução contínua de ferramentas computacionais que têm apoiado o trabalho técnico e a comunicação das informações de risco, aplicando-se novas metodologias para o cálculo de múltiplos riscos à produção. Com isso, produtos de informações sobre clima, solos, manejo e características dos cultivos podem ser melhor explorados. Também estão sendo empregadas novas ferramentas para controle da produção de resultados e melhorias para fortalecimento da transparência e redução da incerteza. Desta maneira, com o aprimoramento metodológico, mais de 40 culturas têm o risco avaliado em todos os municípios do Brasil, em que são estimados os riscos em 20%, 30% e 40%, por decêndio (:numref:`Tabela %s <tbl:zarc:decendio>`). No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer uma quebra de safra é menor, em função das características edafoclimáticas e da cultura. 
+
+
+.. table:: Decêndio.
+    :header-alignment: center center center center center center center center center
+    :column-alignment: center center center center center center center center center
+    :name: tbl:zarc:decendio
+
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | Decêndio | Datas      | Mês       | Decêndio | Datas        | Mês        | Decêndio | Datas        | Mês        |
+    +==========+============+===========+==========+==============+============+==========+==============+============+
+    | 1º       | 01 a 10    |           | 13º      | 01 a 10      |            | 25º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 2º       | 11 a 20    | Janeiro   | 14º      | 11 a 20      | Maio       | 26º      | 11 a 20      | Setembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 3º       | 21 a 31    |           | 15º      | 21 a 31      |            | 27º      | 21 a 30      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 4º       | 01 a 10    |           | 16º      | 01 a 10      |            | 28º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 5º       | 11 a 20    | Fevereiro | 17º      | 11 a 20      | Junho      | 29º      | 11 a 20      | Outubro    |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 6º       | 21 a 28(9) |           | 18º      | 21 a 30      |            | 30º      | 21 a 31      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 7º       | 01 a 10    |           | 19º      | 01 a 10      |            | 31º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 8º       | 11 a 20    | Março     | 20º      | 11 a 20      | Julho      | 32º      | 11 a 20      | Novembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 9º       | 21 a 31    |           | 21º      | 21 a 31      |            | 33º      | 21 a 30      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    | 10º      | 01 a 10    |           | 22º      | 01 a 10      |            | 34º      | 01 a 10      |            |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 11º      | 11 a 20    | Abril     | 23º      | 11 a 20      | Agosto     | 35º      | 11 a 20      | Dezembro   |
+    +----------+------------+           +----------+--------------+            +----------+--------------+            +
+    | 12º      | 21 a 30    |           | 24º      | 21 a 31      |            | 36º      | 21 a 31      |            |
+    +----------+------------+-----------+----------+--------------+------------+----------+--------------+------------+
+    
+
+O Banco Central estabelece que o custeio agrícola está restrito aos empreendimentos conduzidos sob as condições do ZARC, condicionando à obrigação contratual de aplicação das recomendações técnicas referentes ao zoneamento :cite:`bcb:2024:c`. Com relação ao Proagro, estabelece diversas regras regularizando o uso do ZARC, como por exemplo, que no financiamento deve ser incluído o tipo de clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.
+
+
+Os dados do ZARC podem ser acessados no seguinte endereço: `Zoneamento Agrícola <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, em que é possível formatar diversas consultas.Os dados completos do ZARC são disponibilizados neste endereço: `Dados ZARC <http://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-
+dc8ff323b96f/resource/a8875ff8-fe4d-4c3c-b1a1-3b19c32916f1/download/dados-abertos-tabua-
+de-risco.csv>`__, cuja estrutura de dados é apresentada na :numref:`Tabela %s <tbl:zarc:csv>` cujo `dicionário de dados <https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf>`__  é replicado abaixo. As colunas alfanuméricas encontram-se codificadas em UTF8.
+
+
+.. table:: Dicionário de dados do ZARC. |br| **Fonte:** :cite:`mapa:2024:a`.
+    :align: center
+    :header-alignment: center center  
+    :column-alignment: center center 
+    :name: tbl:zarc:csv
+
+    +-----------------------+---------------------------------------------------------------+
+    | nome                  |  descrição                                                    |
+    +=======================+===============================================================+
+    | Nome_cultura          |  Nome da cultura zoneada                                      |
+    +-----------------------+---------------------------------------------------------------+
+    | SafraIni              |  Ano inicial da Safra                                         |
+    +-----------------------+---------------------------------------------------------------+
+    | SafraFin              |  Ano final da Safra                                           |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Cultura           |  Código da culura zoneada                                     |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Ciclo             |  Código do ciclo                                              |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Solo              |  Código do Solo                                               |
+    +-----------------------+---------------------------------------------------------------+
+    | geocodigo             |  Geocódigo do município no IBGE                               |
+    +-----------------------+---------------------------------------------------------------+
+    | UF                    |  Sigla da Unidade Federativa do município                     |
+    +-----------------------+---------------------------------------------------------------+
+    | municipio             |  Nome do município                                            |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Outros_Manejos    |  Código dos Tipos de Manejo                                   |
+    +-----------------------+---------------------------------------------------------------+
+    | Nome_Outros_Manejos   |  Nome dos Tipos de Manejo                                     |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Clima             |  Código do Clima                                              |
+    +-----------------------+---------------------------------------------------------------+
+    | Nome_Clima            |  Nome do Clima                                                |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Munic             |  Código do município no Bacen                                 |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Meso              |  Código da mesorregião do município no IBGE                   |
+    +-----------------------+---------------------------------------------------------------+
+    | Cod_Micro             |  Código da microrrfegião do município do IBGE                 |
+    +-----------------------+---------------------------------------------------------------+
+    | Portaria              |  Número e data da portaria de publicação de Zarc no D.O.U.    |
+    +-----------------------+---------------------------------------------------------------+
+    | dec1 a dec 36         |  Período de plantio no ano separado por decêndios de 1 a 36   |
+    +-----------------------+---------------------------------------------------------------+
+    
+    
+.. note::
+
+    Para esse trabalho foram acessadas as culturas de soja, milho safrinha e trigo para a safra 2022/2023.
+
+
+Tabelas do ZARC no Banco de Dados
+---------------------------------
+
+
+O banco de dados do curso possui duas tabelas com dados do ZARC. A primeira, chamada ``zarc_oficial``, contém os dados das culturas de soja, milho safrinha e trigo para a safra 2022/2023. Sua estrutura é mostrada na :numref:`Tabela %s <tbl:sicor:zarc:zarc-oficial>`.
+
+
+.. table:: Estrutura da tabela contendo dados do ZARC.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:zarc:zarc-oficial
+
+    +---------------+----------------+---------------+-----------+
+    |               | nome           | tipo          | descrição |
+    +===============+================+===============+===========+
+    |               | safra          | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | cod_cultura    | character(14) |           |
+    +---------------+----------------+---------------+-----------+
+    |               | cultura        | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | uf             | character(2)  |           |
+    +---------------+----------------+---------------+-----------+
+    |               | geocodigo      | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | cod_municipio  | character(6)  |           |
+    +---------------+----------------+---------------+-----------+
+    |               | municipio      | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | meso_regiao    | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | micro_regiao   | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | portaria       | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | grupo          | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | solo           | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | cod_solo       | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | outros_manejos | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | clima          | text          |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_1     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_2     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_3     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_4     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_5     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_6     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_7     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_8     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_9     | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_10    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_11    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_12    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_13    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_14    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_15    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_16    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_17    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_18    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_19    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_20    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_21    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_22    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_23    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_24    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_25    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_26    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_27    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_28    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_29    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_30    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_31    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_32    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_33    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_34    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_35    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+    |               | decendio_36    | integer       |           |
+    +---------------+----------------+---------------+-----------+
+
+
+A segunda tabela é denominada ``zarc`` e possui a seguinte estrutura (:numref:`Tabela %s <tbl:sicor:zarc:zarc>`).
+
+
+.. table:: Estrutura da tabela contendo dados do ZARC.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:sicor:zarc:zarc
+
+    +---------------+-----------------------+---------------+-----------+
+    |               | nome                  | tipo          | descrição |
+    +===============+=======================+===============+===========+
+    |               | id                    | integer       |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | safra                 | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | cod_cultura           | character(14) |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | cultura               | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | uf                    | character(2)  |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | geocodigo             | integer       |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | cod_municipio         | character(6)  |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | municipio             | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | meso_regiao           | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | micro_regiao          | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | portaria              | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | grupo                 | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | solo                  | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | cod_solo              | integer       |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | outros_manejos        | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | clima                 | text          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | decendio              | integer       |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | risco                 | integer       |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | data_inicial_decendio | date          |           |
+    +---------------+-----------------------+---------------+-----------+
+    |               | data_final_decendio   | date          |           |
+    +---------------+-----------------------+---------------+-----------+
+
+
+Essa tabela possui os mesmos dados da tabela ``zarc_oficial``, porém os registros de decendio foram transformados em linhas para facilitar a criação de consultas.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Quais são os tipos de solo dos pedidos de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT * FROM tiposoloproagro;
+
+
+            .. code-block:: sql
+
+                  SELECT extract(YEAR FROM dt_comunicacao) AS ano,
+                         cd_tipo_solo
+                    FROM sicor_cop_basico
+                GROUP BY ano, cd_tipo_solo
+                ORDER BY ano, cd_tipo_solo
+
+
+            .. code-block:: sql
+
+                  SELECT extract(YEAR FROM dt_comunicacao) AS ano,
+                         sicor_cop_basico.cd_tipo_solo,
+                         descricao_tipo_solo
+                    FROM sicor_cop_basico,
+                         tiposoloproagro
+                   WHERE sicor_cop_basico.cd_tipo_solo = tiposoloproagro.cd_tipo_solo
+                GROUP BY ano, sicor_cop_basico.cd_tipo_solo, descricao_tipo_solo
+                ORDER BY ano, cd_tipo_solo
+
+
+-----
+
+
+**Consulta 2.** Nos dados do ZARC, quais são os grupos e tipos de solo das culturas da safra 2022/2023?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT DISTINCT safra, cultura, grupo, cod_solo, solo
+                  FROM zarc_oficial
+                  WHERE safra = '2022\2023'
+
+
+-----
+
+
+**Consulta 3.** O que a tabela do Sicor ``ciclocultivarproagro`` tem haver com os dados do ZARC?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT * FROM public.ciclocultivarproagro
+
+
+-----
+
+
+**Consulta 4.** Relacionar o Zarc com os pedidos de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                   SELECT  cop.ref_bacen, cop.nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.cultura, zarc.grupo, zarc.solo
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc_oficial AS zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+
+                  ORDER BY cop.ref_bacen, cop.nu_ordem
+
+                     LIMIT 10000;
+
+
+-----
+
+
+**Consulta 5.** No resultado da consulta anterior, existem pedidos com mais de duas ligações com registros do ZARC? Por que?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT cop_ref_bacen, cop_nu_ordem, COUNT(*) repeticoes
+                  FROM
+                (
+                   SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.cultura, zarc.grupo, zarc.solo
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc_oficial AS zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+
+                  ORDER BY cop_ref_bacen, cop_nu_ordem
+
+                ) foo
+
+                GROUP BY cop_ref_bacen, cop_nu_ordem
+                HAVING COUNT(*) > 1
+                ORDER BY repeticoes DESC
+
+
+            Na tabela ``sicor_cop_basico``, um par ``ref_bacen`` e ``nu_ordem`` pode aparecer associado a mais de um tipo de evento, como mostrado abaixo:
+
+
+            .. code-block:: sql
+                :emphasize-lines: 39
+
+                SELECT cop_ref_bacen, cop_nu_ordem, COUNT(*) repeticoes
+                  FROM
+                (
+                   SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.cultura, zarc.grupo, zarc.solo
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc_oficial AS zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+
+                  ORDER BY cop_ref_bacen, cop_nu_ordem
+
+                ) foo
+
+                GROUP BY cop_ref_bacen, cop_nu_ordem, evento
+                HAVING COUNT(*) > 1
+                ORDER BY repeticoes DESC
+
+
+            Vejamos o caso do contrato de ``ref_bacen`` igual ``514092439``:
+
+
+            .. code-block:: sql
+                :emphasize-lines: 31
+
+                SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.cultura, zarc.grupo, zarc.solo
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc_oficial AS zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+                       AND cop.ref_bacen = 514092439
+
+                ORDER BY cop_ref_bacen, cop_nu_ordem
+
+
+-----
+
+
+**Consulta 6.** Como verifcar no ZARC o risco associado com a data do plantio informada num pedido de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.safra, zarc.cultura, zarc.grupo, zarc.solo,
+                           zarc.decendio, zarc.risco,
+                           zarc.data_inicial_decendio, zarc.data_final_decendio
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+                       --AND cop.ref_bacen = 514092439
+                       AND cop.dt_inicio_plantio <= zarc.data_final_decendio AND zarc.data_inicial_decendio <= cop.dt_fim_plantio
+
+                  ORDER BY cop_ref_bacen, cop_nu_ordem
+
+                     LIMIT 100
+
+
+-----
+
+
+**Consulta 7.** Quais os pedidos de Proagro com plantio fora da janela recomendada pelo ZARC?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                 SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.safra, zarc.cultura, zarc.grupo, zarc.solo,
+                           zarc.decendio, zarc.risco,
+                           zarc.data_inicial_decendio, zarc.data_final_decendio
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+                       --AND cop.ref_bacen = 514092439
+                       AND cop.dt_inicio_plantio <= zarc.data_final_decendio AND zarc.data_inicial_decendio <= cop.dt_fim_plantio
+                       AND risco = 0
+
+                  ORDER BY cop_ref_bacen, cop_nu_ordem
+
+                     LIMIT 10000
+
+
+            Vejamos o caso do contrato de ``ref_bacen`` igual ``514294341`` sem considerar a coluna ``risco`` no filtro da consulta:
+
+
+            .. code-block:: sql
+
+                SELECT  cop.ref_bacen AS cop_ref_bacen, cop.nu_ordem AS cop_nu_ordem,
+                           empreendimento.produto,
+                           eventoproagro.nome_evento AS evento,
+                           ciclocultivarproagro.descricao_ciclo,
+                           cop.dt_comunicacao,
+                           cop.dt_inicio_plantio, cop.dt_fim_plantio,
+                           cop.dt_inicio_colheita, cop.dt_fim_colheita,
+                           zarc.safra, zarc.cultura, zarc.grupo, zarc.solo,
+                           zarc.decendio, zarc.risco,
+                           zarc.data_inicial_decendio, zarc.data_final_decendio
+
+                      FROM sicor_cop_basico AS cop
+                INNER JOIN ciclocultivarproagro
+                        ON cop.cd_ciclo_cultivar = ciclocultivarproagro.cd_ciclo_cultivar
+                 LEFT JOIN zarc
+                        ON cop.cd_tipo_solo = zarc.cod_solo AND ciclocultivarproagro.descricao_ciclo = zarc.grupo
+                INNER JOIN sicor_operacao_basica_estado AS op
+                        ON op.ref_bacen = cop.ref_bacen AND op.nu_ordem = cop.nu_ordem
+                INNER JOIN sicor_complemento_operacao_basica AS op_complemento
+                        ON op.ref_bacen = op_complemento.ref_bacen AND op.nu_ordem = op_complemento.nu_ordem
+                INNER JOIN eventoproagro
+                        ON cop.cd_evento = eventoproagro.cd_evento
+                INNER JOIN empreendimento
+                        ON op.cd_empreendimento = empreendimento.cd_empreendimento
+
+                     WHERE op_complemento.cd_ibge_municipio = zarc.geocodigo
+                       AND extract(YEAR FROM op.dt_emissao) = 2022
+                       AND empreendimento.finalidade = 'custeio'
+                       AND empreendimento.atividade = 'agrícola'
+                       AND empreendimento.modalidade = 'lavoura'
+                       AND empreendimento.produto = 'soja'
+                       AND zarc.cultura = 'soja'
+                       AND cop.ref_bacen = 514294341
+                       AND cop.dt_inicio_plantio <= zarc.data_final_decendio AND zarc.data_inicial_decendio <= cop.dt_fim_plantio
+
+                  ORDER BY cop_ref_bacen, cop_nu_ordem
+
+
+.. tip::
+
+      Verificaçao de intervalos: :math:`x_{inicial} \le y_{final} \text{ e } y_{inicial} \le x_{final}`.
+

@@ -10,7 +10,7 @@
 
 A palavra **Quilombo** cujo significado provável está relacionado com *acampamento guerreiro na floresta* e pode ter sua etimologia da palavra derivada do Quimbundo (Kilombo) significando ‘acampamento’, ‘arraial’, ‘povoação’, ‘capital’, ‘união’ e ainda ‘exército’. Essa expressão e palavra amplamente utilizada em diversas circunstâncias da história do Brasil, foi primeiramente popularizada pela administração colonial, em suas leis, relatórios, atos e decretos para se referir às unidades de apoio mútuo criadas pelos rebeldes ao sistema escravista, bem como às suas lutas pelo fim da escravidão no país. Em seguida, foi também expressão dos afrodescendentes para designar a sua trajetória, conquista e liberdade, em amplas dimensões e significados. Mas, como observado, *Quilombo* está relacionado com a questão relevante desde os primeiros focos de resistência dos africanos ao escravismo colonial, posteriormente com a Frente Negra Brasileira (1930/40) e volta à cena política no final dos anos 1970, durante a redemocratização do país. Esse termo se relaciona com uma questão persistente, a luta dos afro-descendentes :cite:`leite:2000:a`.
 
-Por tanto, As comunidades quilombolas são grupos étnicos que se autodefinem a partir das relações específicas com a terra, o parentesco, o território, a ancestralidade, as tradições e práticas culturais próprias. Assim, são considerados como remanescentes das comunidades dos quilombos os grupos étnico-raciais, segundo critérios de auto-atribuição, com trajetória histórica própria, dotados de relações territoriais específicas, com presunção de ancestralidade negra relacionada com a resistência à opressão histórica sofrida. Segundo o `Decreto nº 4.887, de 2003 <https://www.planalto.gov.br/ccivil_03/decreto/2003/d4887.htm>`__ que regulamenta o procedimento para identificação, reconhecimento, delimitação, demarcação e titulação das terras ocupadas por remanescentes das comunidades dos quilombos, o Instituto Nacional de Colonização e Reforma  Agrária (INCRA) é a autarquia competente, na esfera federal, pela titulação dos territórios quilombolas. As terras ocupadas por remanescentes das comunidades dos quilombos são aquelas utilizadas para a garantia de sua reprodução física, social, econômica e cultural :cite:`brasil:2024:l`. 
+Por tanto, as comunidades quilombolas são grupos étnicos que se autodefinem a partir das relações específicas com a terra, o parentesco, o território, a ancestralidade, as tradições e práticas culturais próprias. Assim, são considerados como remanescentes das comunidades dos quilombos os grupos étnico-raciais, segundo critérios de auto-atribuição, com trajetória histórica própria, dotados de relações territoriais específicas, com presunção de ancestralidade negra relacionada com a resistência à opressão histórica sofrida. De tal maneira que as terras ocupadas por remanescentes das comunidades dos quilombos são aquelas utilizadas para a garantia de sua reprodução física, social, econômica e cultural :cite:`brasil:2024:l` e o Instituto Nacional de Colonização e Reforma  Agrária (INCRA) é a autarquia competente, na esfera federal, pela titulação dos territórios quilombolas, de acordo com o `Decreto nº 4.887, de 2003 <https://www.planalto.gov.br/ccivil_03/decreto/2003/d4887.htm>`__ que regulamenta o procedimento para identificação, reconhecimento, delimitação, demarcação e titulação das terras ocupadas por remanescentes das comunidades dos quilombos. 
 
 
 As áreas quilombolas utilizadas nesse curso foram baixadas, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``areas_quilombolas``. Para realizar o download desse dado, é necessário autenticar com a credencial do **gov.br**. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :numref:`Seção %s - Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. A :numref:`Figura %s <fig:bases-vetoriais:quilombos>` apresenta a distribuição das áreas quilombolas no Brasil.
@@ -170,12 +170,12 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT gle.ano, gle.gid
-                  FROM  areas_quilombolas as qui, sicor_glebas as gle
-                  WHERE ST_INTERSECTS(
-		              ST_Transform(qui.geom, 4674), gle.geom)
-		              AND ano > 2020
-                  ORDER BY gle.ano, gle.gid DESC
+                SELECT extract(YEAR FROM gle.data_emissao_contrato) AS ano, gle.gid, gle.geom
+                   FROM  areas_quilombolas as qui, sicor_glebas as gle
+                   WHERE ST_INTERSECTS(
+		                      ST_Transform(qui.geom, 4674), gle.geom)
+		                    AND extract(YEAR FROM gle.data_emissao_contrato) > 2020
+                   ORDER BY ano, gle.gid DESC
 
 
 

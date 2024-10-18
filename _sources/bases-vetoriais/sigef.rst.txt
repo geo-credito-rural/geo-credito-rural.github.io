@@ -61,7 +61,7 @@ Por meio do SIGEF é realizada a recepção, validação, organização, regular
 #. Pesquisa pública de parcelas certificadas, requerimentos e credenciados(as).
 
 
-Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s <sec_bases_vetoriais_car>`) são considerados como título para fins de reconhecimento do direito de propriedade ou posse, cumprimento do disposto no art. 2º da Lei nº 10.267, de 28 de agosto de 2001 :cite:`brasil:2024:e` pois ele faz parte do Sistema Nacional de Cadastro Rural (SNCR). Por isso, diversos instrumentos são utilizados para validar e garantir a qualidade dos dados. Estes dados estão disponibilizados na página de `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/acv.php>`__ do INCRA. A localização das propriedades certificadas e registradas no SIGEF estão apresentadas na :numref:`Figura %s <fig:bases-vetoriais:sigef>`.
+Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s <sec_bases_vetoriais_car>`), são considerados como título para fins de reconhecimento do direito de propriedade ou posse, cumprimento do disposto no art. 2º da `Lei nº 10.267, de 28 de agosto de 2001 <https://www.planalto.gov.br/ccivil_03/LEIS/LEIS_2001/L10267.htm>`__ :cite:`brasil:2024:e` pois ele faz parte do Sistema Nacional de Cadastro Rural (SNCR). Por isso, diversos instrumentos são utilizados para validar e garantir a qualidade dos dados. Estes dados estão disponibilizados na página de `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/acv.php>`__ do INCRA. A localização das propriedades certificadas e registradas no SIGEF estão apresentadas na :numref:`Figura %s <fig:bases-vetoriais:sigef>`.
 
 
 .. figure:: ../img/bases-vetoriais/sigef.png
@@ -85,7 +85,7 @@ Apesar dos problemas apontados anteriormente, muitas propriedades foram cadastra
     Localização das propriedades certificadas e registradas no SNCI.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do conjunto de dados do SIGEF. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do conjunto de dados do SIGEF. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `SIGEF-BRASIL.zip`.
@@ -131,7 +131,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do conjunto de dados do SNCI. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do conjunto de dados do SNCI. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Imóvel certificado SNCI Brasil.zip`.

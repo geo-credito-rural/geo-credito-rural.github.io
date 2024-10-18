@@ -7,7 +7,7 @@ Embargos
 ========
 
 
-O *embargo* é uma medida administrativa que tem por objetivo impedir a continuidade do dano ambiental, propiciar a regeneração do meio ambiente e dar viabilidade à recuperação da área degradada, devendo restringir-se exclusivamente ao local onde  efetivamente caracterizou-se a infração ambiental, não alcançando as demais atividades realizadas em áreas não embargadas da propriedade ou posse, ou não correlacionadas com a infração. Desta maneira, visa promover a recomposição ambiental da área em que ocorreu o dano ambiental :cite:`brasil:2024:b`. Se o embargo for desrespeitado, o infrator pode ser multado e além disso quem comprar, tiver posse, transportar ou comercializar os bens produzidos na área embargada pode ser multado e ter os bens confiscados :cite:`schmitt:2015`. A cessação das penalidades de suspensão e embargo dependerá de decisão da autoridade ambiental após a apresentação, por parte do autuado, de documentação que regularize a obra ou atividade :cite:`brasil:2024:b`.
+O *embargo* é uma medida administrativa que tem por objetivo impedir a continuidade do dano ambiental, propiciar a regeneração do meio ambiente e dar viabilidade à recuperação da área degradada, devendo restringir-se exclusivamente ao local onde efetivamente caracterizou-se a infração ambiental, não alcançando as demais atividades realizadas em áreas não embargadas da propriedade ou posse, ou não correlacionadas com a infração. Desta maneira, impedindo a continuidade do dano, o embargo visa promover a recomposição ambiental da área em que ocorreu o dano ambiental :cite:`brasil:2024:b`. Se o embargo for desrespeitado, o infrator pode ser multado e além disso quem comprar, tiver posse, transportar ou comercializar os bens produzidos na área embargada pode ser multado e ter os bens confiscados :cite:`schmitt:2015`. A cessação das penalidades de suspensão e embargo dependerá de decisão da autoridade ambiental após a apresentação, por parte do autuado, de documentação que regularize a obra ou atividade :cite:`brasil:2024:b`.
 
 
 As agências ambientais municipais, estaduais e federal podem embargar uma área, quando observado o dano ambiental. Entretanto, devido à dificuldade de conseguir os dados de áreas embargadas nas agências municipais e estaduais, para este trabalho serão utilizadas apenas as áreas embargadas pelo Instituto Brasileiro do Meio Ambiente e dos Recursos Naturais Renováveis (IBAMA) e Instituto Chico Mendes de Conservação da Biodiversidade (ICMBIO). Os embargos realizados pelo IBAMA estão disponibilizadas no :download:`seguinte endereço <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>` e os embargos efetuados pelo ICMBIO estão no :download:`seguinte endereço <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/embargos_icmbio.zip>`. A dispersão espacial dos embargos efetuados pelo IBAMA e pelo ICMBIO no território brasileiro pode ser observada nas figuras da :numref:`Tabela %s <tbl:bases-vetoriais:embargos>`.
@@ -32,10 +32,10 @@ As agências ambientais municipais, estaduais e federal podem embargar uma área
     +--------------------------------------+--------------------------------------+
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
-.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `adm_embargo_a.zip <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__.
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `adm_embargo_a.zip <http://siscom.ibama.gov.br/shpsiscom/adm_embargo_a.zip>`__ contendo os embargos efetuados pelo IBAMA.
     :align: center
     :header-alignment: center center center center
     :column-alignment: center left center left
@@ -75,10 +75,10 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do conjunto de dados relacionados com os embargos efetuados pelo ICMBIO. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do conjunto de dados relacionados com os embargos efetuados pelo ICMBIO. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
-.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `embargos_icmbio.zip <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/autos_infracao_icmbio.zip>`__.
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `embargos_icmbio.zip <https://www.gov.br/icmbio/pt-br/assuntos/dados_geoespaciais/mapa-tematico-e-dados-geoestatisticos-das-unidades-de-conservacao-federais/autos_infracao_icmbio.zip>`__ contendo os embargos efetuados pelo ICMBIO.
     :align: center
     :header-alignment: center center center center
     :column-alignment: center left center left
@@ -135,5 +135,63 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do 
     +---------+--------------+-----------------------------+-------------------------------------------------------+
 
 
+Consultas
+---------
 
 
+**Consulta 1.** Recuperar o número de áreas embargadas pelo IBAMA.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT COUNT(*)
+                  FROM embargo_ibama_20240508;
+
+
+**Consulta 2.** Recuperar as áreas embargadas pelo IBAMA após 2020 com todos os campos que possuam geometrias válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM embargo_ibama_20240508
+                 WHERE extract(YEAR from dat_embarg) >=2020
+                   AND ST_IsValid(geom);
+
+
+
+**Consulta 3.** Recuperar os identificadores (*ref_bacen*, *nu_ordem*) e as geometrias das glebas e os identificadores dos embargos com as seguintes restrições: i) glebas a partir de 2020; ii) intersectam os embargos efetuados pelo IBAMA em 2020, exclusivamente; iii) possuam geometrias válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT gle.ref_bacen as ref_bacen, gle.nu_ordem as nu_ordem, 
+                       emb.numero_tad as numero_tad, emb.num_auto_i as num_auto, gle.geom as geom
+                  FROM embargo_ibama_20240508 as emb, sicor_glebas as gle
+                 WHERE ST_INTERSECTS(
+                                  ST_Transform(emb.geom, 4674), gle.geom)
+                   AND extract(YEAR from emb.dat_embarg) = 2020
+                   AND extract(YEAR from gle.data_emissao_contrato) >= 2020
+                   AND ST_IsValid(gle.geom)
+                   AND ST_IsValid(emb.geom);

@@ -1120,7 +1120,7 @@ Nesse caso, precisamos realizar uma operação que agrupe as linha pelos valores
     grupo_linhas['ref_bacen'].count()
 
 
-Saída::
+Saída:
 
 .. code-block:: python
 
@@ -1323,9 +1323,10 @@ Saída:
 ------------
 
 
-**Q9.** Copiar um ``DataFrame``:
+**Q9.** Copiar um ``DataFrame`` para outro DataFrame
 
 
 .. code-block:: python
 
     copia_df = operacoes.copy()
+

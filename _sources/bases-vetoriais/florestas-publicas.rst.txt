@@ -7,7 +7,7 @@ Florestas Públicas
 ==================
 
 
-As **Florestas Públicas** designam áreas com cobertura florestal pertencentes ao governo brasileiro (federal, estadual, municipal ou distrital). Essas áreas podem estar localizadas em todos os biomas brasileiros: Amazônia, Cerrado, Mata Atlântica, Pantanal, Caatinga e Pampa. As florestas públicas podem ser naturais, plantadas ou a combinação das duas. A administração das florestas públicas assume a premissa de que elas pertencem ao domínio público e, portanto, devem ser preservadas e exploradas de maneira sustentável para o benefício da sociedade. Nesse contexto, a `Lei nº 11.284, de 2 de março de 2006 <https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11284.htm>`__ :cite:`brasil:2024:c` apresenta:
+As **Florestas Públicas** designam áreas com cobertura florestal pertencentes ao governo brasileiro (federal, estadual, municipal ou distrital). Essas áreas podem estar localizadas em todos os biomas brasileiros: Amazônia, Cerrado, Mata Atlântica, Pantanal, Caatinga e Pampa. As florestas públicas podem ser naturais, plantadas ou a combinação das duas. A administração das florestas públicas assume a premissa de que elas pertencem ao domínio público e, portanto, devem ser preservadas e exploradas de maneira sustentável para o benefício da sociedade. Nesse contexto, a `Lei nº 11.284, de 2 de março de 2006 <https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11284.htm>`__ :cite:`brasil:2024:c` apresenta os princípios da gestão de florestas públicas:
 
 .. rst-class:: open
 
@@ -21,7 +21,10 @@ As **Florestas Públicas** designam áreas com cobertura florestal pertencentes 
 - **VIII -** A garantia de condições estáveis e seguras que estimulem investimentos de longo prazo no manejo, na conservação e na recuperação das florestas.
 
 
-Além disto, por meio da Lei nº 11.284, de 2 de março de 2006 :cite:`brasil:2024:c` foi instituído o Serviço Florestal Brasileiro (SFB) que realizou o Cadastro Nacional de Florestas Públicas (CNFP), que é um instrumento de planejamento da gestão florestal. O CNFP reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados, com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, participação social e unificação das informações sobre as florestas públicas. O CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios, e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA) :cite:`sfb:2024:a`. Existem três tipos de florestas públicas federais, listadas a seguir:
+Além disto, por meio da `Lei nº 11.284, de 2 de março de 2006 <https://www.planalto.gov.br/ccivil_03/_Ato2004-2006/2006/Lei/L11284.htm>`__ :cite:`brasil:2024:c` foi instituído o Serviço Florestal Brasileiro (SFB) que realizou o Cadastro Nacional de Florestas Públicas (CNFP), que é um instrumento de planejamento da gestão florestal. O CNFP reúne dados georreferenciados sobre as florestas públicas brasileiras, de modo a oferecer aos gestores públicos e à população em geral uma base confiável de mapas, imagens e dados, com informações relevantes para a gestão florestal. Os dados do CNFP auxiliam os processos de destinação das florestas públicas para uso comunitário, criação de unidades de conservação e realização de concessões florestais. O Cadastro contribui para a transparência, participação social e unificação das informações sobre as florestas públicas. O CNFP é formado pelo Cadastro de Florestas Públicas da União, pelos Cadastros de Florestas Públicas dos estados, Distrito Federal e municípios, e está em processo de interligação ao Sistema Nacional de Cadastro Rural (SNCR) do Instituto Nacional de Colonização e Reforma Agrária (INCRA) :cite:`sfb:2024:a`. 
+
+
+Existem três tipos de florestas públicas federais, listadas a seguir:
 
 .. rst-class:: open
 
@@ -43,19 +46,19 @@ O cadastramento das florestas públicas segue três etapas:
 - **Demarcação:** Implantação de marcos topográficos e colocação de placas informativas no campo.
 
 
-Para este trabalho foram utilizados os dados do arquivo :download:`Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>`. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a espacialização das florestas públicas por destinação.
+Para este trabalho foram utilizados os dados do arquivo :download:`Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>` e inseridas na tabela ``cnfp_2022``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a espacialização das florestas públicas por destinação.
 
 
 .. figure:: ../img/bases-vetoriais/florestas-publicas.png
-    :alt: Florestas Públicas por tipo
+    :alt: Florestas Públicas por por destinação
     :width: 80%
     :figclass: align-center
     :name: fig:bases-vetoriais:florestas-publicas
 
-    Florestas Públicas por tipo.
+    Florestas Públicas por por destinação.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `CNFP_2022.zip`.

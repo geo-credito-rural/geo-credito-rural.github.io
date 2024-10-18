@@ -207,7 +207,7 @@ O arquivo `SICOR_COMPLEMENTO_OPERACAO_BASICA.gz <https://www.bcb.gov.br/htms/sic
 
 
 Consultas
-+++++++++
+---------
 
 
 **Consulta 1.** Qual o número de contratos de custeio de lavouras de soja ao longo dos anos?
