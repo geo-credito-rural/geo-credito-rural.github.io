@@ -912,7 +912,7 @@ CREATE TABLE sicor_lista_cooperados
 --
 -- Tabela: Glebas da Comprovação de Perdas de operações contratadas
 --
-CREATE TABLE sicor_rcp_glebas
+CREATE TABLE sicor_rcp_glebas_wkt
 (
   ref_bacen     INTEGER NOT NULL,
   nu_ordem      INTEGER NOT NULL,

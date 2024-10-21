@@ -113,8 +113,8 @@ SET DATESTYLE TO ISO, US;
 
 \copy sicor_lista_cooperados FROM '/shared-data/TCU/SICOR_LISTA_COOPERADOS.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
 
-\copy sicor_rcp_glebas FROM '/shared-data/TCU/SICOR_RCP_GLEBAS_2015_2020.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
-\copy sicor_rcp_glebas FROM '/shared-data/TCU/SICOR_RCP_GLEBAS_2021.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
+\copy sicor_rcp_glebas_wkt FROM '/shared-data/TCU/SICOR_RCP_GLEBAS_2015_2020.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
+\copy sicor_rcp_glebas_wkt FROM '/shared-data/TCU/SICOR_RCP_GLEBAS_2021.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
 
 \copy sicor_complemento_cop FROM '/shared-data/TCU/SICOR_COMPLEMENTO_COP.csv'  WITH (DELIMITER ';', FORMAT CSV, HEADER, ENCODING 'WIN1252');
 

@@ -83,7 +83,7 @@ ALTER TABLE sicor_mutuarios ADD CONSTRAINT sicor_mutuarios_pkey PRIMARY KEY (ref
 
 ALTER TABLE sicor_lista_cooperados ADD CONSTRAINT sicor_lista_cooperados_pkey PRIMARY KEY (ref_bacen, nu_ordem, cpf_cnpj);
 
-ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
+ALTER TABLE sicor_rcp_glebas_wkt ADD CONSTRAINT sicor_rcp_glebas_wkt_pkey  PRIMARY KEY (ref_bacen, nu_ordem, nu_indice);
 
 -- ALTER TABLE sicor_complemento_cop ADD CONSTRAINT sicor_complemento_cop_pkey  PRIMARY KEY (ref_bacen, nu_ordem, cd_evento);
 
@@ -173,15 +173,15 @@ ALTER TABLE sicor_operacao_basica_estado ADD CONSTRAINT sicor_operacao_basica_es
         ON UPDATE CASCADE
         ON DELETE NO ACTION;
 
---ALTER TABLE sicor_operacao_basica_estado ADD CONSTRAINT sicor_operacao_basica_estado_cd_ciclo_cultivar_fkey
---    FOREIGN KEY(cd_ciclo_cultivar) REFERENCES ciclocultivarproagro(cd_ciclo_cultivar)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_operacao_basica_estado ADD CONSTRAINT sicor_operacao_basica_estado_cd_ciclo_cultivar_fkey
+    FOREIGN KEY(cd_ciclo_cultivar) REFERENCES ciclocultivarproagro(cd_ciclo_cultivar)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_operacao_basica_estado ADD CONSTRAINT sicor_operacao_basica_estado_cd_tipo_solo_fkey
---    FOREIGN KEY(cd_tipo_solo) REFERENCES tiposoloproagro(cd_tipo_solo)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_operacao_basica_estado ADD CONSTRAINT sicor_operacao_basica_estado_cd_tipo_solo_fkey
+    FOREIGN KEY(cd_tipo_solo) REFERENCES tiposoloproagro(cd_tipo_solo)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
 ALTER TABLE sicor_saldos ADD CONSTRAINT sicor_saldos_cd_situacao_operacao_fkey
     FOREIGN KEY(cd_situacao_operacao) REFERENCES situacaooperacao(cd_situacao_operacao)
@@ -193,10 +193,10 @@ ALTER TABLE sicor_saldos ADD CONSTRAINT sicor_saldos_ref_bacen_fkey
         ON UPDATE CASCADE
         ON DELETE NO ACTION;
 
---ALTER TABLE sicor_liberacao_recursos ADD CONSTRAINT sicor_liberacao_recursos_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_liberacao_recursos ADD CONSTRAINT sicor_liberacao_recursos_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
 
 ALTER TABLE sicor_cop_basico ADD CONSTRAINT sicor_cop_basico_ref_bacen_fkey
@@ -249,10 +249,10 @@ ALTER TABLE sicor_rcp_basico ADD CONSTRAINT sicor_rcp_basico_cd_evento_fkey
 --        ON UPDATE CASCADE
 --        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_parcelas_proagro ADD CONSTRAINT sicor_parcelas_proagro_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_parcelas_proagro ADD CONSTRAINT sicor_parcelas_proagro_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
 ALTER TABLE sicor_parcelas_proagro ADD CONSTRAINT sicor_parcelas_proagro_cd_instancia_fkey
     FOREIGN KEY(cd_instancia) REFERENCES instanciaproagro(cd_instancia)
@@ -289,10 +289,10 @@ ALTER TABLE sicor_desclassificacao ADD CONSTRAINT sicor_desclassificacao_ref_bac
 --        ON UPDATE CASCADE
 --        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_complemento_operacao_basica ADD CONSTRAINT sicor_complemento_operacao_basica_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_complemento_operacao_basica ADD CONSTRAINT sicor_complemento_operacao_basica_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
 ALTER TABLE sicor_glebas_wkt ADD CONSTRAINT sicor_glebas_wkt_ref_bacen_fkey
     FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_operacao_basica_estado(ref_bacen, nu_ordem)
@@ -324,20 +324,20 @@ ALTER TABLE sicor_lista_cooperados ADD CONSTRAINT sicor_lista_cooperados_ref_bac
 --        ON UPDATE CASCADE
 --        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_rcp_glebas_wkt ADD CONSTRAINT sicor_rcp_glebas_wkt_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_complemento_cop ADD CONSTRAINT sicor_complemento_cop_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem, cd_evento) REFERENCES sicor_cop_basico(ref_bacen, nu_ordem, cd_evento)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_complemento_cop ADD CONSTRAINT sicor_complemento_cop_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem, cd_evento) REFERENCES sicor_cop_basico(ref_bacen, nu_ordem, cd_evento)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
---ALTER TABLE sicor_complemento_rcp ADD CONSTRAINT sicor_complemento_rcp_ref_bacen_fkey
---    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
---        ON UPDATE CASCADE
---        ON DELETE NO ACTION;
+ALTER TABLE sicor_complemento_rcp ADD CONSTRAINT sicor_complemento_rcp_ref_bacen_fkey
+    FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
+        ON UPDATE CASCADE
+        ON DELETE NO ACTION;
 
 
 --
