@@ -80,6 +80,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../consultas.html">3.3. Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../consideracoes.html">3.4. Considerações Finais</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
@@ -779,11 +781,199 @@
 </div>
 <section id="consultas">
 <h2><span class="section-number">3.1.13.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
-<p><strong>Consulta 1.</strong> Quais as culturas que mais solicitam Proagro?</p>
+<p><strong>Consulta 1.</strong> Existem contratos/destinaçõs com mais de um evento reportado no pedido de Proagro?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>A lista dos tipos de eventos que aparecem nos registros de pedidos de cobertura podem ser encontrados na tabela <code class="docutils literal notranslate"><span class="pre">eventoproagro</span></code>.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_eventos</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">nu_ordem</span>
+<span class="w">  </span><span class="k">HAVING</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">1</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">num_eventos</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ref_bacen | nu_ordem | num_eventos
+-----------+----------+-------------
+ 515729598 |        1 |           4
+ 516068998 |        1 |           4
+ 516533502 |        2 |           4
+       ... |      ... |         ...
+ 513259304 |        1 |           2
+ 513511692 |        1 |           2
+ 515290913 |        1 |           2
+(5398 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Quais são os eventos geradores de pedido de Proagro?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>A lista dos tipos de eventos, que aparecem nos registros de pedidos de cobertura, pode ser encontrada na tabela <code class="docutils literal notranslate"><span class="pre">eventoproagro</span></code>.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">eventoproagro</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">nome_evento</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_evento |             nome_evento
+-----------+-------------------------------------
+        17 | Chuva excessiva
+       135 | Chuva na colheita
+       110 | Doença ou praga
+       127 | Enchentes
+        24 | Geada
+        31 | Granizo
+       103 | Outros fenômenos naturais fortuitos
+        93 | Raio
+        48 | Seca
+        55 | Tromba de água
+        86 | Variação excessiva de temperatura
+        61 | Vendaval
+        79 | Vento forte
+        62 | Vento frio
+(14 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 3.</strong> Quais são os eventos que geram o maior número de pedidos de Proagro?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">          </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">          </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_pedidos</span>
+
+<span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">cd_evento</span><span class="p">)</span>
+
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">),</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="p">,</span><span class="w"> </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">nome_evento</span>
+
+<span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">total_pedidos</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             nome_evento             | total_pedidos
+------+-------------------------------------+---------------
+ 2013 | Geada                               |          8211
+ 2013 | Chuva excessiva                     |          3497
+ 2013 | Seca                                |          2776
+ 2013 | Granizo                             |          1405
+ 2013 | Vento forte                         |           647
+ 2013 | Doença ou praga                     |           245
+ 2013 | Variação excessiva de temperatura   |           179
+ 2013 | Vento frio                          |            25
+ 2014 | Chuva excessiva                     |         33198
+ 2014 | Seca                                |         23049
+ 2014 | Vento forte                         |          2269
+ 2014 | Granizo                             |          2242
+ 2014 | Geada                               |          1161
+ 2014 | Doença ou praga                     |           952
+ 2014 | Variação excessiva de temperatura   |           308
+ 2014 | Vento frio                          |            29
+  ... | ...                                 |           ...
+ 2024 | Seca                                |         38799
+ 2024 | Chuva excessiva                     |         23723
+ 2024 | Geada                               |          7430
+ 2024 | Doença ou praga                     |          3627
+ 2024 | Variação excessiva de temperatura   |          3266
+ 2024 | Vento forte                         |          1974
+ 2024 | Granizo                             |           940
+ 2024 | Chuva na colheita                   |           190
+ 2024 | Vendaval                            |           125
+ 2024 | Enchentes                           |            32
+ 2024 | Tromba de água                      |            29
+ 2024 | Vento frio                          |            22
+ 2024 | Outros fenômenos naturais fortuitos |            11
+(137 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 4.</strong> Qual a proporção no ano de cada evento gerador de pedido de Proagro?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">WITH</span><span class="w"> </span><span class="n">total_pedidos_ano</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="p">(</span>
+<span class="w">           </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">                  </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">pedidos</span>
+<span class="w">             </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span>
+<span class="w">         </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span>
+<span class="w">     </span><span class="p">)</span>
+
+
+<span class="w">   </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">          </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">          </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">total_pedidos</span><span class="p">,</span>
+<span class="w">          </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)::</span><span class="nb">numeric</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">total_pedidos_ano</span><span class="p">.</span><span class="n">pedidos</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mi">100</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">percentagem_ano</span>
+
+<span class="w">     </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cop</span>
+
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">eventoproagro</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">cd_evento</span><span class="p">)</span>
+
+<span class="k">LEFT</span><span class="w"> </span><span class="k">JOIN</span><span class="w"> </span><span class="n">total_pedidos_ano</span>
+<span class="w">       </span><span class="k">ON</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">total_pedidos_ano</span><span class="p">.</span><span class="n">ano</span>
+
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">),</span>
+<span class="w">          </span><span class="n">cop</span><span class="p">.</span><span class="n">cd_evento</span><span class="p">,</span>
+<span class="w">          </span><span class="n">eventoproagro</span><span class="p">.</span><span class="n">nome_evento</span><span class="p">,</span>
+<span class="w">          </span><span class="n">total_pedidos_ano</span><span class="p">.</span><span class="n">pedidos</span>
+
+<span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">percentagem_ano</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             nome_evento             | total_pedidos |       percentagem_ano
+------+-------------------------------------+---------------+-----------------------------
+ 2013 | Geada                               |          8211 |    48.342655284074183103000
+ 2013 | Chuva excessiva                     |          3497 |    20.588754783632617015000
+ 2013 | Seca                                |          2776 |    16.343832793641448337000
+ 2013 | Granizo                             |          1405 |     8.272004710038269061000
+ 2013 | Vento forte                         |           647 |     3.809243450103032087000
+ 2013 | Doença ou praga                     |           245 |     1.442449219899911687000
+ 2013 | Variação excessiva de temperatura   |           179 |     1.053871062702384457000
+ 2013 | Vento frio                          |            25 |     0.147188695908154254000
+ 2014 | Chuva excessiva                     |         33198 |    52.521832679407669915000
+ 2014 | Seca                                |         23049 |    36.465320845462599671000
+ 2014 | Vento forte                         |          2269 |     3.589735476521959246000
+ 2014 | Granizo                             |          2242 |     3.547019364637387672000
+ 2014 | Geada                               |          1161 |     1.836792811036577648000
+ 2014 | Doença ou praga                     |           952 |     1.506138463485634730000
+ 2014 | Variação excessiva de temperatura   |           308 |     0.487280091127705354000
+ 2014 | Vento frio                          |            29 |     0.045880268320465764000
+  ... | ...                                 |           ... |                         ...
+ 2024 | Seca                                |         38799 |    48.397116056281808203000
+ 2024 | Chuva excessiva                     |         23723 |    29.591607623989621794000
+ 2024 | Geada                               |          7430 |     9.268037122043708213000
+ 2024 | Doença ou praga                     |          3627 |     4.524249076938429298000
+ 2024 | Variação excessiva de temperatura   |          3266 |     4.073944716096197984000
+ 2024 | Vento forte                         |          1974 |     2.462329108871370123000
+ 2024 | Granizo                             |           940 |     1.172537670891128630000
+ 2024 | Chuva na colheita                   |           190 |     0.237002295180121744000
+ 2024 | Vendaval                            |           125 |     0.155922562618501148000
+ 2024 | Enchentes                           |            32 |     0.039916176030336294000
+ 2024 | Tromba de água                      |            29 |     0.036174034527492266000
+ 2024 | Vento frio                          |            22 |     0.027442371020856202000
+ 2024 | Outros fenômenos naturais fortuitos |            11 |     0.013721185510428101000
+(137 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 5.</strong> Quais as culturas que mais solicitam Proagro?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><p>Os empreendimentos que serão avaliados consistem de financiamentos de custeio agrícola para lavoura.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="p">,</span>
 <span class="w">               </span><span class="n">dense_rank</span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">(</span><span class="n">PARTITION</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">valor_total</span><span class="w"> </span><span class="k">DESC</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">rank_valor</span><span class="p">,</span>
@@ -835,7 +1025,7 @@
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             produto              | num_pedidos_proagro |  valor_total   |  valor_medio_proagro   | rank_valor | rank_pedidos | rank_valor_medio
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |             produto              | num_pedidos_proagro |  valor_total   |  valor_medio_proagro   | rank_valor | rank_pedidos | rank_valor_medio
 ------+----------------------------------+---------------------+----------------+------------------------+------------+--------------+------------------
  2013 | milho                            |              173309 |  269125887.990 |  1552.8673524744819946 |          1 |            1 |               16
  2013 | trigo                            |               33561 |  199561956.860 |  5946.2458466672625965 |          2 |            4 |                3
@@ -857,10 +1047,27 @@
 <p>O resultado acima encontra-se disponível no formato CSV no seguinte arquivo: <a class="reference download internal" download="" href="../../_downloads/26c2e1263f0e927f69024b4365ef9187/culturas-proagro.csv"><code class="xref download docutils literal notranslate"><span class="pre">culturas-proagro.csv</span></code></a>.</p>
 </div></div>
 </details><hr class="docutils" />
-<p><strong>Consulta 2.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?</p>
+<p><strong>Consulta 6.</strong> Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-10-10-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-10-10-0" name="10-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-10-10-0" class="sphinx-tabs-panel" id="panel-10-10-0" name="10-0" role="tabpanel" tabindex="0"><p>Nessa consulta iremos utilizar a tabela <code class="docutils literal notranslate"><span class="pre">statuscopproagro</span></code>, que possui o seguinte conteúdo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">statuscopproagro</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">descricao</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Saída:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_status | descricao
+-----------+------------
+         5 | cancelada
+         2 | deferida
+         4 | desistida
+         1 | em análise
+         3 | indeferida
+         6 | inválida
+(6 rows)
+</pre></div>
+</div>
+<p>Além, da tabela acima, iremos utilizar as tabelas <code class="docutils literal notranslate"><span class="pre">sicor_cop_basico</span></code>, <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> e <code class="docutils literal notranslate"><span class="pre">empreendimento</span></code>, como mostrado na consulta abaixo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
 <span class="w">         </span><span class="n">produto</span><span class="p">,</span>
 <span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="p">,</span>
 <span class="w">         </span><span class="k">MIN</span><span class="p">(</span><span class="n">valor</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">menor_valor_emprestado</span><span class="p">,</span>
@@ -899,7 +1106,7 @@
 </div></div>
 </details><details class="summary-resultado">
 <summary>Resultado:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                    produto                    | num_pedidos_proagro | menor_valor_emprestado | maior_valor_emprestado | media_valor_emprestado | menor_area | maior_area |       media_area
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-11-11-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-11-11-0" name="11-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-11-11-0" class="sphinx-tabs-panel" id="panel-11-11-0" name="11-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                    produto                    | num_pedidos_proagro | menor_valor_emprestado | maior_valor_emprestado | media_valor_emprestado | menor_area | maior_area |       media_area
 ------+-----------------------------------------------+---------------------+------------------------+------------------------+------------------------+------------+------------+------------------------
  2013 | sorgo                                         |                   4 |               20000.00 |              151258.20 |     62567.300000000000 |      35.00 |     240.00 |    96.2500000000000000
  2013 | amendoim                                      |                   2 |               74134.52 |              300000.00 |    187067.260000000000 |      24.00 |      91.00 |    57.5000000000000000
@@ -944,11 +1151,11 @@
 </div>
 </div></div>
 </details><hr class="docutils" />
-<p><strong>Consulta 3.</strong> Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?</p>
+<p><strong>Consulta 7.</strong> Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><p>A tabela <code class="docutils literal notranslate"><span class="pre">sicor_complemento_operacao_basica</span></code> contém uma coluna que possui o código do IBGE associado ao município da operação contratada. Dessa forma, vamos começar pela construção de uma consulta que calcule o número de pedidos de Proagro por municipio.</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-12-12-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-12-12-0" name="12-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-12-12-0" class="sphinx-tabs-panel" id="panel-12-12-0" name="12-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
 <span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_pedidos_proagro</span>
 <span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">      </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="p">(</span><span class="n">cop</span><span class="p">.</span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">cop</span><span class="p">.</span><span class="n">nu_ordem</span><span class="p">)</span>
@@ -973,7 +1180,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">valor_pago_proagro</span></code>: valor total pago de Proagro no município.</p></li>
 </ul>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-13-13-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-13-13-0" name="13-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-13-13-0" class="sphinx-tabs-panel" id="panel-13-13-0" name="13-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
 <span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">valor_financiamento</span><span class="w"> </span><span class="nb">NUMERIC</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">0</span><span class="p">,</span>
 <span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_pedidos_deferidos_proagro</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span>
@@ -984,7 +1191,7 @@
 </div></div>
 <p>Agora podemos atualizar as colunas <code class="docutils literal notranslate"><span class="pre">num_pedidos_proagro</span></code> e <code class="docutils literal notranslate"><span class="pre">valor_financiamento</span></code> com o seguinte comando SQL:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-14-14-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-14-14-0" name="14-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-14-14-0" class="sphinx-tabs-panel" id="panel-14-14-0" name="14-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_pedidos_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_pedidos_proagro</span><span class="p">,</span>
 <span class="w">       </span><span class="n">valor_financiamento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_financiamento</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
@@ -1006,13 +1213,13 @@
 <span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></div>
 <p>Em seguida, podemos atualizar as colunas <code class="docutils literal notranslate"><span class="pre">num_pedidos_deferidos_proagro</span></code> e <code class="docutils literal notranslate"><span class="pre">valor_financiamento_pedidos_deferidos</span></code>:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-15-15-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-15-15-0" name="15-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-15-15-0" class="sphinx-tabs-panel" id="panel-15-15-0" name="15-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_pedidos_deferidos_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_pedidos_deferidos_proagro</span><span class="p">,</span>
 <span class="w">       </span><span class="n">valor_financiamento_pedidos_deferidos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_financiamento_pedidos_deferidos</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
@@ -1037,13 +1244,13 @@
 <span class="w">            </span><span class="p">)</span>
 <span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></div>
 <p>Por último, podemos calcular o valor pago de Proagro por município, atualizando a coluna <code class="docutils literal notranslate"><span class="pre">valor_pago_proagro</span></code>:</p>
 <div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-16-16-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-16-16-0" name="16-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-16-16-0" class="sphinx-tabs-panel" id="panel-16-16-0" name="16-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">valor_pago_proagro</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">valor_pago_proagro</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
@@ -1065,7 +1272,7 @@
 <span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">parcelas</span><span class="p">.</span><span class="n">cd_natureza_parcela</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">natureza</span><span class="p">.</span><span class="n">cd_natureza_parcela</span>
 <span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">geocodigo</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">;</span>
 </pre></div>
 </div>
 </div></div>
@@ -1085,15 +1292,31 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Sempre que construimos uma consulta, é importante fazer uma checagem do seu resultado. No caso acima, uma boa base é saber o número de municípios entre 2022 e 2024 que estão associados aos pedidos de Proagro. Para saber o número de municípios, podemos construir uma ocnsulta como:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">cd_ibge_municipio</span>
+
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">,</span>
+<span class="w">       </span><span class="n">sicor_complemento_operacao_basica</span>
+
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_complemento_operacao_basica</span><span class="p">.</span><span class="n">nu_ordem</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span><span class="p">;</span>
+</pre></div>
+</div>
+</div>
 </details><hr class="docutils" />
-<p><strong>Consulta 4.</strong> Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?</p>
+<p><strong>Consulta 8.</strong> Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-17-17-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-17-17-0" name="17-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-17-17-0" class="sphinx-tabs-panel" id="panel-17-17-0" name="17-0" role="tabpanel" tabindex="0"><p>Vamos acrescentar uma coluna chamada <code class="docutils literal notranslate"><span class="pre">num_contratos</span></code> na tabela <code class="docutils literal notranslate"><span class="pre">municipios_2022</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="k">COLUMN</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="nb">INTEGER</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-
-
-<span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
+</pre></div>
+</div>
+<p>Para preencher essa nova coluna podemos utilizar a seguinte sentença SQL:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">municipios_2022</span>
 <span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">num_contratos</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
 <span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geocodigo</span><span class="p">,</span>
@@ -1105,7 +1328,39 @@
 <span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">op</span><span class="p">.</span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2022</span>
 <span class="w">      </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">op_complemento</span><span class="p">.</span><span class="n">cd_ibge_municipio</span>
 <span class="w">  </span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">resultado</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">::</span><span class="nb">varchar</span><span class="p">;</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">resultado</span><span class="p">.</span><span class="n">geocodigo</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Agora, podemos fazer uma consulta envolvendo as colunas <code class="docutils literal notranslate"><span class="pre">num_pedidos_proagro</span></code> e <code class="docutils literal notranslate"><span class="pre">num_contratos</span></code>:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">cd_mun</span><span class="p">,</span><span class="w"> </span><span class="n">nm_mun</span><span class="p">,</span><span class="w"> </span><span class="n">sigla_uf</span><span class="p">,</span>
+<span class="w">         </span><span class="n">num_pedidos_proagro</span><span class="p">,</span>
+<span class="w">         </span><span class="n">num_contratos</span><span class="p">,</span>
+<span class="w">         </span><span class="n">num_pedidos_proagro</span><span class="p">::</span><span class="nb">numeric</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">proporcao_pedidos</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">municipios_2022</span>
+
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">num_contratos</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">proporcao_pedidos</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Resultado:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_mun  |              nm_mun              | sigla_uf | num_pedidos_proagro | num_contratos |     proporcao_pedidos
+---------+----------------------------------+----------+---------------------+---------------+----------------------------
+ 3106705 | Betim                            | MG       |                   2 |             2 |     1.00000000000000000000
+ 4119004 | Pérola d&#39;Oeste                   | PR       |                2623 |          3639 |     0.72080241824677109096
+ 4106571 | Cruzeiro do Iguaçu               | PR       |                 930 |          1408 |     0.66051136363636363636
+ 4124806 | São João                         | PR       |                2459 |          3824 |     0.64304393305439330544
+ 4128609 | Verê                             | PR       |                2916 |          4592 |     0.63501742160278745645
+ 4309753 | Ibarama                          | RS       |                 738 |          1164 |     0.63402061855670103093
+ 4322152 | Tunas                            | RS       |                 802 |          1268 |     0.63249211356466876972
+ 4103024 | Boa Esperança do Iguaçu          | PR       |                1168 |          1856 |     0.62931034482758620690
+ 4102752 | Bela Vista da Caroba             | PR       |                 944 |          1506 |     0.62682602921646746348
+ 4103222 | Bom Sucesso do Sul               | PR       |                 931 |          1502 |     0.61984021304926764314
+ 4301206 | Arroio do Tigre                  | RS       |                3007 |          4857 |     0.61910644430718550546
+ 4125209 | São Jorge d&#39;Oeste                | PR       |                2347 |          3792 |     0.61893459915611814346
+ 4311254 | Lagoão                           | RS       |                1064 |          1721 |     0.61824520627542126671
+     ... | ...                              | ...      |                 ... |           ... |                        ...
 </pre></div>
 </div>
 </div></div>
@@ -1127,7 +1382,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe7d52d43a0>
+<jinja2.runtime.BlockReference object at 0x7f66c4bda550>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

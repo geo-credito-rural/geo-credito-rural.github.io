@@ -1,0 +1,9 @@
+.. include:: ../def.rst
+
+
+.. _sec_sicor_consideracoes:
+
+Considerações Finais
+====================
+
+

@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="pt-BR" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>3.3. Consultas &mdash; GeoCreditoRural</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/copybutton.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tabs.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/table_styling.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/tutorial.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.ico"/>
+    <link rel="canonical" href="https://geo-credito-rural.github.io/sicor/consultas.html" />
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/clipboard.min.js"></script>
+        <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
+        <script src="../_static/translations.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Buscar" href="../search.html" />
+    <link rel="next" title="3.4. Considerações Finais" href="consideracoes.html" />
+    <link rel="prev" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" href="zarc.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search"  style="background: #F0F8FF" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            GeoCreditoRural
+              <img src="../_static/logo.jpeg" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Pesquisar documentos" aria-label="Pesquisar documentos" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Menu de navegação">
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../index.html">Monitoramento de Operações de Crédito Rural por meio de Geotecnologias</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Aulas:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../sql/index.html">1. Introdução à Linguagem de Consulta SQL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../jupyter/index.html">2. Ambiente de Computação Interativa</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">3. Dados do Sicor</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="microdados/index.html">3.1. Sicor - Tabelas e Microdados do Crédito Rural e do Proagro</a></li>
+<li class="toctree-l2"><a class="reference internal" href="zarc.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">3.3. Consultas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#distribuicao-das-operacoes-de-credito-rural">3.3.1. Distribuição das Operações de Crédito Rural</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#glebas">3.3.2. Glebas</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#proagro">3.3.3. Proagro</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="consideracoes.html">3.4. Considerações Finais</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../uso-cobertura-terra/index.html">5. Uso e Cobertura da Terra</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../acesso-imagens/index.html">6. Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../referencias.html">Referências Bibliográficas</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Informações Gerais:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../licenca.html">Licença</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../agradecimentos.html">Agradecimentos</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../genindex.html">Índice</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossário</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../search.html">Página de Busca</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Menu de navegação móvel"  style="background: #F0F8FF" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">GeoCreditoRural</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Navegação da página">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="index.html"><span class="section-number">3. </span>Dados do Sicor</a></li>
+      <li class="breadcrumb-item active"><span class="section-number">3.3. </span>Consultas</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul><div class="rst-breadcrumbs-buttons" role="navigation" aria-label="Navegação sequencial da página">
+        <a href="zarc.html" class="btn btn-neutral float-left" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" accesskey="p"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="consideracoes.html" class="btn btn-neutral float-right" title="3.4. Considerações Finais" accesskey="n">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+  </div>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="consultas">
+<span id="sec-sicor-consultas"></span><h1><span class="section-number">3.3. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h1>
+<section id="distribuicao-das-operacoes-de-credito-rural">
+<h2><span class="section-number">3.3.1. </span>Distribuição das Operações de Crédito Rural<a class="headerlink" href="#distribuicao-das-operacoes-de-credito-rural" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>1.</strong> Gerar um resumo geral do número de operações e valor dessas operações agrupadas por finalidade ao longo dos anos.</p>
+<p><strong>2.</strong> Gerar um resumo geral do número de operações e valor dessas operações por tipo de empreendimento (mesma finalidade, atividade, modalidade) ao longo dos anos.</p>
+<p><strong>3.</strong> Gerar um resumo geral do número de operações e valor dessas operações associadas a custeio agrícola de lavouras ao longo dos anos.</p>
+<p><strong>4.</strong> Como é a distribuição dos contratos envolvendo custeio de lavouras de soja em relação às fontes de recursos?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="k">public</span><span class="p">.</span><span class="n">fonterecursos</span><span class="p">;</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">fonte</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_contratos</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">fonterecursos</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fonte</span>
+<span class="w">          </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">,</span>
+<span class="w">               </span><span class="n">empreendimento</span><span class="p">,</span>
+<span class="w">               </span><span class="n">fonterecursos</span>
+<span class="w">         </span><span class="k">WHERE</span><span class="w"> </span><span class="n">fonterecursos</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">IN</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;fundo constitucional de financiamento do norte (fno)&#39;</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;fundo constitucional de financiamento do centro-oeste (fco)&#39;</span><span class="p">)</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">produto</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;soja&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">finalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;custeio&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">modalidade</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;lavoura&#39;</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">empreendimento</span><span class="p">.</span><span class="n">cd_empreendimento</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">cd_empreendimento</span>
+<span class="w">           </span><span class="k">AND</span><span class="w"> </span><span class="n">fonterecursos</span><span class="p">.</span><span class="n">cd_fonte_recurso</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">cd_fonte_recurso</span>
+<span class="w">    </span><span class="p">)</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">fonte</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">fonte</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>5.</strong> Gerar um resumo geral do número de operações e valor das operações pela natureza das instituições financeiras (IFs) ao longo dos anos.</p>
+<p><strong>6.</strong> Quais são as 10  instituições financeiras (IFs) envolvidas no maior número e valor de operações ao longo dos anos?</p>
+<p><strong>7.</strong> Gerar um resumo geral do número de operações e valor das operações por instrumento de crédito ao longo dos anos.</p>
+<p><strong>8.</strong> Gerar um resumo geral do número de operações e valor das operações por categoria de emitente ao longo dos anos.</p>
+<p><strong>9.</strong>  Gerar um resumo geral do número de operações e valor das operações por fonte de recurso ao longo dos anos.</p>
+<p><strong>10.</strong> Quais são as 3 fontes de recursos com maior número e valor de operações ao longo dos anos?</p>
+<p><strong>11.</strong> Gerar um resumo geral do número de operações e valor das operações por fonte publica x privada ao longo dos anos.</p>
+<p><strong>12.</strong> Gerar um resumo geral do número de operações e valor das operações fonte publica x privada e por IF ao longo dos anos.</p>
+<p><strong>13.</strong> Número e valor das operações por tipo de garantia do empreendimento</p>
+<p><strong>14.</strong> Número e valor das operações por programa</p>
+<p><strong>15.</strong> Número e valor das operações por estado</p>
+<p><strong>16.</strong> Número e valor das operações por municipio</p>
+<p><strong>17.</strong> Quais são os 10 municípios com maior número e valor de operações por ano?</p>
+</section>
+<section id="glebas">
+<h2><span class="section-number">3.3.2. </span>Glebas<a class="headerlink" href="#glebas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>1.</strong> Quantos registros de glebas existem por ano?</p>
+<p><strong>2.</strong> Qual o número de registros de gleba por estado?</p>
+<p><strong>3.</strong> Qual o número de registros de gleba por municipio?</p>
+<p><strong>4.</strong> Como são as áreas das glebas de um mesmo CPF? Existe grande alteração de área dessas glebas?</p>
+<p><strong>5.</strong> Há concordância entre as áreas declaradas e calculadas das glebas?</p>
+<p><strong>6.</strong> Há sobreposição de glebas da mesma destinação?</p>
+<p><strong>7.</strong> Os 10 municípios com as maiores glebas</p>
+</section>
+<section id="proagro">
+<h2><span class="section-number">3.3.3. </span>Proagro<a class="headerlink" href="#proagro" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>1.</strong> Quais os tipos de evento que causam o maior número de pedidos de proagro e o valor desses pedidos?</p>
+<p><strong>2.</strong> Qual a situação de todos os pedidos de proagro ao longo dos anos?</p>
+<p><strong>3.</strong> Quantos pedidos de proagro são avaliados por cada perito ao longo dos anos? E periciadora?</p>
+<p><strong>4.</strong> Quais os 10 peritos que mais atuaram em pedidos do Proagro ao longo dos anos? E periciadora?</p>
+<p><strong>5.</strong> Qual o percentual de pedidos comprovados por perito/periciadora?</p>
+<p><strong>6.</strong> Qual o percentual de pedidos comprovados por municipio?</p>
+<p><strong>7.</strong> Quanta divergencia há entre as datas de plantio/colheita declaradas no pedido de cobertura do Proagro e no relatório da comprovação de perdas?</p>
+<p><strong>8.</strong> Qual o percentual de financiamento e pedidos de proagro por ano?</p>
+<p><strong>9.</strong> Número e valor dos pedidos de proagro por finalidade ao longo dos anos.</p>
+<p><strong>10.</strong> Número e valor dos pedidos de proagro por atividade ao longo dos anos.</p>
+<p><strong>11.</strong> Número e valor dos pedidos de proagro por tipo de empreendimento (mesma finalidade, atividade,  modalidade) ao longo do tempo.</p>
+<p><strong>12.</strong> Número e valor dos pedidos de proagro associadas a custeio agrícola de lavouras ao longo dos anos.</p>
+<p><strong>13.</strong> Número e valor dos pedidos de proagro por natureza de IF ao longo dos anos.</p>
+<p><strong>14.</strong> As 10 IFs com maior número e valor de pedidos de proagro ao longo dos anos.</p>
+<p><strong>15.</strong> Número e valor dos pedidos de proagro por instrumento de crédito ao longo dos anos.</p>
+<p><strong>16.</strong> Número e valor dos pedidos de proagro por categoria de emitente ao longo dos anos.</p>
+<p><strong>17.</strong> Número e valor dos pedidos de proagro por fonte de recurso ao longo dos anos.</p>
+<p><strong>18.</strong> As 3 fontes de recursos com maior número e valor de pedidos de proagro ao longo dos anos.</p>
+<p><strong>19.</strong> Número e valor dos pedidos de proagro por fonte publica x privada ao longo dos anos.</p>
+<p><strong>20.</strong> Número e valor dos pedidos de proagro por fonte publica x privada e por IF ao longo dos anos.</p>
+<p><strong>21.</strong> Número e valor dos pedidos de proagro por tipo de garantia do empreendimento.</p>
+<p><strong>22.</strong> Número e valor dos pedidos de proagro por programa.</p>
+<p><strong>23.</strong> Número e valordos pedidos de proagro por estado.</p>
+<p><strong>24.</strong> Número e valordos pedidos de proagro por municipio.</p>
+<p><strong>25.</strong> Os 10 municipios com maior número e valor dos pedidos de proagro por ano.</p>
+<p><strong>26.</strong> Quais os tipos de evento que causam o maior número de pedidos de proagro e o valor?</p>
+<p><strong>27.</strong> Qual a situação de todos os pedidos de proagro ao longo dos anos?</p>
+<p><strong>28.</strong> Quantos pedidos de proagro são avaliados por cada perito ao longo dos anos? E periciadora?</p>
+<p><strong>29.</strong> Quais os 10 peritos que mais atuaram em pedidos do Proagro ao longo dos anos? E periciadora?</p>
+<p><strong>30.</strong> Qual o percentual de pedidos comprovados por perito/periciadora?</p>
+<p><strong>31.</strong> Qual o percentual de pedidos comprovados por municipio?</p>
+<p><strong>32.</strong> Quanta divergencia há entre as datas de plantio/colheita declaradas no pedido de cobertura do Proagro e no relatório da comprovação de perdas?</p>
+<p><strong>33.</strong> Qual o percentual de financiamento e pedidos de proagro por ano?</p>
+<p><strong>34.</strong> Número e valor dos pedidos de proagro por finalidade ao longo dos anos.</p>
+<p><strong>35.</strong> Número e valor dos pedidos de proagro por atividade ao longo dos anos.</p>
+<p><strong>36.</strong> Número e valor dos pedidos de proagro por tipo de empreendimento (mesma finalidade, atividade,  modalidade) ao longo do tempo.</p>
+<p><strong>37.</strong> Número e valor dos pedidos de proagro associadas a custeio agrícola de lavouras ao longo dos anos.</p>
+<p><strong>38.</strong> Número e valor dos pedidos de proagro por natureza de IF ao longo dos anos.</p>
+<p><strong>39.</strong> As 10 IFs com maior número e valor de pedidos de proagro ao longo dos anos.</p>
+<p><strong>40.</strong> Número e valor dos pedidos de proagro por instrumento de crédito ao longo dos anos.</p>
+<p><strong>41.</strong> Número e valor dos pedidos de proagro por categoria de emitente ao longo dos anos.</p>
+<p><strong>42.</strong> Número e valor dos pedidos de proagro por fonte de recurso ao longo dos anos.</p>
+<p><strong>43.</strong> As 3 fontes de recursos com maior número e valor de pedidos de proagro ao longo dos anos.</p>
+<p><strong>44.</strong> Número e valor dos pedidos de proagro por fonte publica x privada ao longo dos anos.</p>
+<p><strong>45.</strong> Número e valor dos pedidos de proagro por fonte publica x privada e por IF ao longo dos anos.</p>
+<p><strong>46.</strong> Número e valor dos pedidos de proagro por tipo de garantia do empreendimento.</p>
+<p><strong>47.</strong> Número e valor dos pedidos de proagro por programa.</p>
+<p><strong>48.</strong> Número e valordos pedidos de proagro por estado.</p>
+<p><strong>49.</strong> Número e valordos pedidos de proagro por municipio.</p>
+<p><strong>50.</strong> Os 10 municipios com maior número e valor dos pedidos de proagro por ano.</p>
+<p><strong>51.</strong> Gerar a relação de pedidos de Proagro por produtor, cultura, município, periciador  de 2013 até hoje, profissional/empresa que atestou as perdas a fim de verificar histórico do produtor e da cultura afetada e sua região.</p>
+<p><strong>52.</strong> Gerar a relação de produtores que aderiram ao Proagro, mas nunca solicitaram indenização, com indicação de município e/ou gleba.</p>
+<p><strong>53.</strong>  Gerar a relação de culturas com pedido de Proagro por localidade, por decêndio de data de plantio e cultivar, permitindo rever e/ou validar o ZARC.</p>
+<div class="admonition tip">
+<p class="admonition-title">Dica</p>
+<p>Na seção “Fontes de Recursos”, acrescentar uma coluna de recursos publicos e privados (publico =&gt; booleano)</p>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Rodapé">
+        <a href="zarc.html" class="btn btn-neutral float-left" title="3.2. Zoneamento Agrícola de Risco Climático (ZARC)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Anterior</a>
+        <a href="consideracoes.html" class="btn btn-neutral float-right" title="3.4. Considerações Finais" accesskey="n" rel="next">Próximo <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Time.</p>
+  </div>
+
+  
+<jinja2.runtime.BlockReference object at 0x7f66c516afa0>
+<a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
+
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(false);
+      });
+  </script> 
+
+</body>
+</html>

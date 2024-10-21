@@ -25,7 +25,7 @@ As áreas quilombolas utilizadas nesse curso foram baixadas, em arquivos no form
     Distribuição das áreas Quilombolas.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:areas_quilombolas>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:areas_quilombolas>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Áreas de Quilombolas.zip`.
@@ -86,7 +86,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:areas_quilombolas>` apresenta a estrut
     |         | area\_calc\_ | double                      |  Área calculada do território quilombola com base no  |
     |         |              |                             |  mapeamento ou georreferenciamento                    |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | perimetro\   | double                      |  Perímetro calculado do território quilombola com     |
+    |         | perimetro\_  | double                      |  Perímetro calculado do território quilombola com     |
     |         |              |                             |  base no mapeamento ou georreferenciamento            |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | esfera       | varchar(9)                  |  Federal, estadual ou municipal                       |

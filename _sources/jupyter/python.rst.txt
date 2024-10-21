@@ -40,7 +40,7 @@ Python apresenta as seguintes características:
 
 - Suporta diversos paradigmas de programação: estruturado, orientado a objetos, funcional.
 
-Podemos experimentar a linguagem Python em plataformas gratuitas na internet. O portal Kaggle disponibiliza um ambiente de programação em Python, no qual o usuário apresenta um script e observa os resultados gerados. `No endereço <https://www.kaggle.com/code/thalessehnkorting/tema2-python-pandas>`__ temos alguns comandos em Python e Markdown, e o resultado obtido. Como mencionado acima, a linguagem disponbiliza várias bibliotecas, e vamos apresentar alguns exemplos da biblioteca Pandas, que é muito útil para lidar com dados tabulares.
+Podemos experimentar a linguagem Python em plataformas gratuitas na internet. O portal Kaggle disponibiliza um ambiente de programação em Python, no qual o usuário apresenta um script e observa os resultados gerados. `Neste link <https://www.kaggle.com/code/thalessehnkorting/tema2-python-pandas>`__ temos alguns comandos em Python e Markdown, e o resultado obtido. Como mencionado acima, a linguagem disponbiliza várias bibliotecas, e vamos apresentar alguns exemplos da biblioteca Pandas, que é muito útil para lidar com dados tabulares.
 
 Computando NDVI
 ---------------
@@ -440,17 +440,17 @@ Podemos construir gráficos rapidamente a partir das séries. O tipo ``Series`` 
 
 .. code-block:: ipython
 
-    In [21]: ano = [ 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 ]
+    ano = [ 2000, 2001, 2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024 ]
 
 
 .. code-block:: ipython
 
-    In [22]: num_empreendimentos = [ 5, 0, 28, 78, 18, 31, 22, 18, 8, 50, 43, 19, 122, 134, 185, 190, 97, 373, 147, 211, 227, 161, 37, 118, 65 ]
+    num_empreendimentos = [ 5, 0, 28, 78, 18, 31, 22, 18, 8, 50, 43, 19, 122, 134, 185, 190, 97, 373, 147, 211, 227, 161, 37, 118, 65 ]
 
 
 .. code-block:: ipython
 
-    In [23]: serie_empreendimentos = pd.Series(data=num_empreendimentos, index=ano, name='#Empreendimentos x Ano')
+    serie_empreendimentos = pd.Series(data=num_empreendimentos, index=ano, name='#Empreendimentos x Ano')
 
 
 .. code-block:: ipython
@@ -1096,7 +1096,8 @@ Na saída da operação ``describe()`` podemos ver que o resultado inclui um sum
     operacoes.nunique()
 
 
-Saída::
+Saída:
+
 
 .. code-block:: ipython
 

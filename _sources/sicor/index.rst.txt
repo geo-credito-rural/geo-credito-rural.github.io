@@ -20,5 +20,6 @@ Este capítulo apresenta como acessar os dados do Sicor e como realizar algumas 
 
     ./microdados/index
     ./zarc
-
+    ./consultas
+    ./consideracoes
 

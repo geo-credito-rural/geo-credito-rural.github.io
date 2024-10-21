@@ -44,9 +44,11 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | nome         | tipo                        | descrição                                             |
     +=========+==============+=============================+=======================================================+
-    | **PK**  | id           | integer                     |  Identificador do embargo                             |
+    | **PK**  | gid          | integer                     |  Identificador do embargo                             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | geom         | geometry(MultiPolygon,4674) |  Geometria da área embargada                          |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | uuid         | varchar(120)                |  identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | objectid     | bigint                      |  Identificador do embargo                             |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
@@ -73,7 +75,12 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-ibama>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         |  seq_tad     | bigint                      |  Telefone da pessoa identificada como responsável     |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    
+
+
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `adm_embargo_a.zip` encontra-se carregado na tabela ``embargo_ibama_20240508`` do banco de dados PostgreSQL.
+
 
 A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do conjunto de dados relacionados com os embargos efetuados pelo ICMBIO. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 

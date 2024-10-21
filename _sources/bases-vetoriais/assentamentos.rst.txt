@@ -29,7 +29,7 @@ Os assentamentos são classificados em diferentes modalidades, como por exemplo,
     Distribuição dos assentamentos rurais.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Assentamento Brasil.zip`.
@@ -41,7 +41,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura 
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | nome         | tipo                        | descrição                                             |
     +=========+==============+=============================+=======================================================+
-    | **PK**  | id           | integer                     |  Identificador                                        |
+    | **PK**  | gid          | integer                     |  Identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | cd_sipra     | varchar(50)                 |  Código no Sistema de Informações de Projetos de      |
     |         |              |                             |  Reforma Agrária (SIPRA)                              |
@@ -80,8 +80,8 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura 
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | descricao\_  | varchar(50)                 |  Sem informação                                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4674) |  Geometria do território quilombola                   |
-    +---------+--------------+-----------------------------+-------------------------------------------------------+  
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria do assentamento                            |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
 
 
 .. note::

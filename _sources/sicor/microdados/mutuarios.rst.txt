@@ -7,12 +7,7 @@ Mutuários
 =========
 
 
-.. warning::
-
-    Esta seção **encontra-se em desenvolvimento**.
-
-
-O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz>` contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas ``ref_bacen`` que liga esta tabela à tabela  ``sicor_operacao_basica_estado`` descrita na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Inclui também a coluna ``cd_cpf_cnpj``, contendo o CPF ou CNPJ do mutuário, a ``cd_sexo``, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna ``cd_dap`` que contém o código da Declaração de Aptidão ao Pronaf (DAP), ``cd_primeiro`` que informa o código do primeiro mutuário informado e o ``cd_tipo_beneficiario`` contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`.
+O arquivo :download:`SICOR_MUTUARIOS.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz>` contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas ``ref_bacen`` que liga esta tabela à tabela  ``sicor_operacao_basica_estado`` descrita na :numref:`Seção %s - Operações Contratadas com Recursos Públicos e Privados <sec_sicor_microdados_operacoes>`. Inclui também a coluna ``cd_cpf_cnpj``, contendo o CPF ou CNPJ do mutuário, a coluna ``cd_sexo``, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna ``cd_dap`` que contém o código da Declaração de Aptidão ao Pronaf (DAP), ``cd_primeiro`` que informa o código do primeiro mutuário informado e o ``cd_tipo_beneficiario`` contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`.
 
 
 .. table:: Estrutura do arquivo contendo a lista de mutuários.
@@ -44,39 +39,270 @@ Como pode ser observado na :numref:`Tabela %s <tbl:sicor:microdados:mutuario>`, 
 De acordo com o Manual do Crédito Rural (MCR) :cite:`bcb:2024:c`, os beneficiários podem ser classificados pelos seguintes tipos:
 
 .. rst-class:: open
-    
-- Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)
 
-- Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)
+- Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a);
 
-- Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)
+- Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c);
 
-- Associação de produtores rurais (MCR 4-1-2)
+- Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a);
 
-- Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)
+- Associação de produtores rurais (MCR 4-1-2);
 
-- Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)
+- Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b);
 
-- Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)
+- Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b);
 
-- Beneficiador (MCR 1-4-2A-a)
+- Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d);
 
-- Agroindústria (MCR 1-4-2A-a)
+- Beneficiador (MCR 1-4-2A-a);
 
-- Cerealista (MCR 1-4-2A-b)
+- Agroindústria (MCR 1-4-2A-a);
 
-- Silvícola/indígena (MCR 1-4-3)
+- Cerealista (MCR 1-4-2A-b);
 
-- Pescador (MCR 2-1-15 e 20)
+- Silvícola/indígena (MCR 1-4-3);
 
-- Aquicultor (MCR 2-1-20)
+- Pescador (MCR 2-1-15 e 20);
 
-- Torrefadora/indústria de café solúvel (MCR 9-4-1-a)
+- Aquicultor (MCR 2-1-20);
 
-- Exportador de café (MCR 9-4-1-a)
+- Torrefadora/indústria de café solúvel (MCR 9-4-1-a);
 
-- Silvicultor (MCR 10-2-2-a-III)
+- Exportador de café (MCR 9-4-1-a);
 
-- Extrativista (MCR 2-1-15)
+- Silvicultor (MCR 10-2-2-a-III);
 
-- Quilombola rural (MCR 10-2-2-b-II)
+- Extrativista (MCR 2-1-15);
+
+- Quilombola rural (MCR 10-2-2-b-II);
+
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Quais são os tipos de beneficiários do crédito rural?
+
+
+.. collapse:: Solução:
+
+
+    A lista dos tipos de beneficiários que aparecem nos registros de mutuários pode ser encontrada na tabela ``tipobeneficiario``.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT * FROM tipobeneficiario ORDER BY descricao;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_tipo_beneficiario |                                                                       descricao
+                ----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------
+                                    9 | Agroindústria (MCR 1-4-2A-a)
+                                   13 | Aquicultor (MCR 2-1-20)
+                                    4 | Associação de produtores rurais (MCR 4-1-2)
+                                    8 | Beneficiador (MCR 1-4-2A-a)
+                                   10 | Cerealista (MCR 1-4-2A-b)
+                                    3 | Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)
+                                    2 | Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)
+                                   15 | Exportador de café (MCR 9-4-1-a)
+                                   17 | Extrativista (MCR 2-1-15)
+                                   12 | Pescador (MCR 2-1-15 e 20)
+                                    5 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)
+                                    6 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)
+                                    7 | Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)
+                                    1 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)
+                                   18 | Quilombola rural (MCR 10-2-2-b-II)
+                                   11 | Silvícola/indígena (MCR 1-4-3)
+                                   16 | Silvicultor (MCR 10-2-2-a-III)
+                                   14 | Torrefadora/indústria de café solúvel (MCR 9-4-1-a)
+                (18 rows)
+
+
+-----
+
+
+**Consulta 2.** Como é a distribuição do crédito entre os tipos de beneficiários?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT extract(YEAR FROM dt_emissao) AS ano,
+                         tipobeneficiario.descricao AS tipo_beneficiario,
+                         COUNT(*) AS numero_contratos_destinacao,
+                         SUM(vl_parc_credito) AS valor_financiamento
+
+                    FROM sicor_mutuarios,
+                         tipobeneficiario,
+                         sicor_operacao_basica_estado
+
+                   WHERE sicor_mutuarios.cd_tipo_beneficiario = tipobeneficiario.cd_tipo_beneficiario
+                     AND sicor_mutuarios.ref_bacen = sicor_operacao_basica_estado.ref_bacen
+
+                GROUP BY extract(YEAR FROM dt_emissao),
+                         tipobeneficiario.cd_tipo_beneficiario,
+                         tipobeneficiario.descricao
+
+                ORDER BY ano ASC, valor_financiamento DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ano  |                                                                   tipo_beneficiario                                                                   | numero_contratos_destinacao | valor_financiamento
+                ------+-------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+---------------------
+                 2013 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                      191552 |       7564755987.03
+                 2013 | Silvicultor (MCR 10-2-2-a-III)                                                                                                                        |                         440 |         76262450.12
+                 2013 | Pescador (MCR 2-1-15 e 20)                                                                                                                            |                        1587 |         19862596.84
+                 2013 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)                                |                          16 |          2064621.34
+                 2013 | Extrativista (MCR 2-1-15)                                                                                                                             |                         130 |           797874.87
+                 2013 | Aquicultor (MCR 2-1-20)                                                                                                                               |                          17 |           333387.28
+                 2014 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                      214590 |       9840300787.22
+                  ... | ...                                                                                                                                                   |                             |                 ...
+                 2024 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                     1282491 |     100949672252.19
+                 2024 | Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c) |                         572 |       3396607256.57
+                 2024 | Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)                                                                  |                          44 |        368307942.04
+                 2024 | Torrefadora/indústria de café solúvel (MCR 9-4-1-a)                                                                                                   |                          72 |        300239061.64
+                 2024 | Agroindústria (MCR 1-4-2A-a)                                                                                                                          |                          70 |        238635999.12
+                 2024 | Exportador de café (MCR 9-4-1-a)                                                                                                                      |                          19 |        136024348.00
+                 2024 | Beneficiador (MCR 1-4-2A-a)                                                                                                                           |                          24 |        128397355.46
+                 2024 | Aquicultor (MCR 2-1-20)                                                                                                                               |                         377 |         96040623.27
+                 2024 | Pescador (MCR 2-1-15 e 20)                                                                                                                            |                        8050 |         80778836.15
+                 2024 | Extrativista (MCR 2-1-15)                                                                                                                             |                        2191 |         49562316.74
+                 2024 | Silvícola/indígena (MCR 1-4-3)                                                                                                                        |                        3386 |         37597079.76
+                 2024 | Silvicultor (MCR 10-2-2-a-III)                                                                                                                        |                         480 |         20076025.91
+                 2024 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)                                |                           8 |         18200825.33
+                 2024 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                                                     |                          12 |         10326498.36
+                 2024 | Quilombola rural (MCR 10-2-2-b-II)                                                                                                                    |                         201 |          5727169.74
+                 2024 | Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)                   |                           8 |          4306887.20
+                (170 rows)
+
+
+-----
+
+
+**Consulta 3.** Qual o número de pedidos de Proagro por tipo de mutuário?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT ano,
+                         descricao,
+                         COUNT(*) AS numero_pedidos_proagro
+
+                    FROM (
+                        SELECT DISTINCT
+                               extract(YEAR FROM dt_comunicacao) AS ano,
+                               sicor_cop_basico.ref_bacen AS ref_bacen,
+                               sicor_cop_basico.nu_ordem AS nu_ordem,
+                               tipobeneficiario.cd_tipo_beneficiario AS cd_tipo_beneficiario,
+                               tipobeneficiario.descricao AS descricao
+
+                            FROM sicor_mutuarios,
+                                 sicor_cop_basico,
+                                 tipobeneficiario
+
+                           WHERE sicor_mutuarios.cd_tipo_beneficiario = tipobeneficiario.cd_tipo_beneficiario
+                             AND sicor_mutuarios.ref_bacen = sicor_cop_basico.ref_bacen
+                    )
+
+                GROUP BY ano,
+                         cd_tipo_beneficiario,
+                         descricao
+
+                ORDER BY ano ASC, numero_pedidos_proagro DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ano  |                                                       descricao                                                        | numero_pedidos_proagro
+                ------+------------------------------------------------------------------------------------------------------------------------+------------------------
+                 2013 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   2032
+                 2013 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      2
+                 2014 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  10648
+                 2014 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      6
+                 2014 | Extrativista (MCR 2-1-15)                                                                                              |                      4
+                 2015 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   1670
+                 2015 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      1
+                 2016 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   4267
+                 2016 | Silvicultor (MCR 10-2-2-a-III)                                                                                         |                      1
+                 2017 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  41436
+                 2017 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     41
+                 2018 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  48692
+                 2018 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     60
+                 2019 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  36872
+                 2019 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     25
+                 2019 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      1
+                 2020 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  94308
+                 2020 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                    156
+                 2020 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      5
+                 2020 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      1
+                 2021 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  78370
+                 2021 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      9
+                 2021 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                      9
+                 2022 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                 127478
+                 2022 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      9
+                 2022 | Aquicultor (MCR 2-1-20)                                                                                                |                      3
+                 2022 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      1
+                 2023 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                 177283
+                 2023 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                     12
+                 2023 | Aquicultor (MCR 2-1-20)                                                                                                |                      8
+                 2023 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      3
+                 2024 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  79460
+                 2024 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      5
+                 2024 | Aquicultor (MCR 2-1-20)                                                                                                |                      3
+                 2024 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      2
+                 2024 | Quilombola rural (MCR 10-2-2-b-II)                                                                                     |                      1
+                (36 rows)

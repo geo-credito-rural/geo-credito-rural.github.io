@@ -7,8 +7,7 @@ Zoneamento Agrícola de Risco Climático (ZARC)
 =============================================
 
 
-O Zoneamento Agrícola de Risco Climático (`ZARC <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico>`__) tem o objetivo de promover, coordenar e apoiar projetos, estudos e ações de pesquisa, de desenvolvimento, de operação ou manutenção de avaliação, quantificação e monitoramento de riscos agroclimáticos, bem como disponibilizar essas informações à sociedade. É um trabalho colaborativo que estima o risco de produção agrícola nas condições climáticas normais de cada região, com a finalidade de permitir a adequada avaliação da variabilidade climática de cada local, época e suas consequências para as culturas agrícolas. Para isso usa um elaborado sistema de análise de dados agrometeorológicos e de simulação matemática. Esse trabalho é coordenado pelo Ministério da Agricultura e Pecuária (MAPA) e tem como base uma rede de pesquisadores e técnicos da Embrapa e de várias outras instituições de pesquisa.
-
+Segundo o Ministério da Agricultura e Pecuária (MAPA), o Zoneamento Agrícola de Risco Climático (`ZARC <https://www.gov.br/agricultura/pt-br/assuntos/riscos-seguro/programa-nacional-de-zoneamento-agricola-de-risco-climatico>`__) é um instrumento de política agrícola e gestão de riscos na agricultura. Esse instrumento tem por finalidade melhorar a qualidade e a disponibilidade de dados e informações sobre riscos agroclimáticos no Brasil, com ênfase no apoio à formulação, ao aperfeiçoamento e à operacionalização de programas e políticas públicas de gestão. O estudo é elaborado com o objetivo de minimizar os riscos relacionados aos fenômenos climáticos adversos e permite a cada município identificar a melhor época de plantio das culturas, nos diferentes tipos de solo e ciclos de cultivares. A técnica é de fácil entendimento e adoção pelos produtores rurais, agentes financeiros e demais usuários. O estudo é elaborado com o objetivo de minimizar os riscos relacionados aos fenômenos climáticos adversos e permite a cada município identificar a melhor época de plantio das culturas, nos diferentes tipos de solo e ciclos de cultivares. A técnica é de fácil entendimento e adoção pelos produtores rurais, agentes financeiros e demais usuários.
 
 A primeira publicação do ZARC foi o zoneamento para a cultura do trigo na safra de 1996. Atualmente, ele é publicado anualmente e o MAPA é o órgão responsável por sua publicação no Diário Oficial da União. As normas de publicação, de participação na formulação ou aperfeiçoamento na forma de divulgação estão estabelecidas por meio da `Portaria 412 do MAPA do dia 30 de dezembro de 2020 <https://www.in.gov.br/web/dou/-/portaria-mapa-n-412-de-30-de-dezembro-de-2020-296859190>`__. Sua atualização é sistemática e ocorre por meio desse sistema colaborativo entre os órgãos de pesquisa, agentes públicos e privados. Nesse sentido, as solicitações de formulações e/ou aperfeiçoamento podem ser apresentadas por órgãos governamentais, instituições de pesquisa agropecuária, entidades representativas dos produtores rurais, cooperativas agropecuárias, por pessoas jurídicas prestadoras de serviços de assistência técnica e extensão rural, por entidades representativas e de classe dos profissionais atuantes no setor agropecuário, agentes financeiros e pessoas jurídicas fornecedoras de insumos agropecuários. Essas propostas serão avaliadas tecnicamente por um período mínimo de 12 (doze) meses e caso aceitas, serão utilizadas nas safras seguintes. Por conta desse trabalho, o ZARC é utilizado no crédito rural, por meio de iniciativas como o Programa de Subvenção Federal ao Prêmio do Seguro Rural (PSR) e o Programa de Garantia da Atividade Agropecuária (Proagro), entre outras políticas governamentais de apoio à produção que exigem a adoção das janelas de plantio recomendadas. No âmbito privado, algumas instituições financeiras utilizam como critério para a concessão de financiamento agrícola.
 
@@ -34,7 +33,7 @@ Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades
     .. math::
         :label: eq:sicor:zarc:solo2
 
-        15\% \leq a lt 35% \text {com } \Delta \lt 50\%
+        15\% \leq a \lt 35% \text {com } \Delta \lt 50\%
 
 
 - **SOLOS TIPO 3:** Solos de textura argilosa, com teor de argila maior ou igual a 35%. Assim, adotando-se o percentual de :math:`argila=a`, temos para os solos tipo 3:
@@ -45,7 +44,7 @@ Atualmente, o ZARC já contempla mais de 40 culturas e atua em todas as Unidades
         a \geq 35\%
 
 
-Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo, conforme estabelecido pela `Instrução Normativa SPA/MAPA Nº 2, de 5 de agosto de 2022 <https://in.gov.br/en/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-5-de-agosto-de-2022-421241455>`__. A partir dessa instrução normativa passam a ser adotadas as seguintes classes de AD no solo, em milímetros de água por centímetro de solo (mm.cm\ :sup:`-1`) de acordo com a seguinte classificação:
+Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo. AD pode ser conceituada como o teor de água no solo entre um limite superior, denominado capacidade de campo (a partir do qual o solo fica encharcado), e um limite inferior, denominado ponto de murcha permanente (quando a ligação da água com as moléculas do solo é tão forte que a planta não consegue absorver). Ou seja, indica a quantidade de água que pode ser armazenada no solo e pode ser utilizada pelas plantas. Este atributo do solo é importantíssimo para a agricultura, pois, quanto maior a AD, maior será o período em que uma cultura conseguirá sobreviver sem chuvas, absorvendo apenas a água armazenada no solo :cite:`teixeira:2021, monteiro:2022`. Essa pesquisa passou a compor a `Instrução Normativa SPA/MAPA Nº 2, de 5 de agosto de 2022 <https://in.gov.br/en/web/dou/-/instrucao-normativa-spa/mapa-n-2-de-5-de-agosto-de-2022-421241455>`__. A partir dessa instrução normativa passam a ser adotadas as seguintes classes de AD no solo, em milímetros de água por centímetro de solo (mm.cm\ :sup:`-1`) de acordo com a seguinte classificação:
 
 .. rst-class:: open
 
@@ -57,7 +56,36 @@ Atualmente o ZARC utiliza a quantidade de água disponível (AD) no solo, confor
 -  **VI – AD6:** para valores de AD maiores ou iguais a 1,40 mm cm\ :sup:`-1`.
 
 
-Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estão sendo revisados. Além disto estão ocorrendo investimentos na melhoria das bases de dados e avanços metodológicos na avaliação de risco climático das principais culturas agrícolas. Somado com a evolução contínua de ferramentas computacionais que têm apoiado o trabalho técnico e a comunicação das informações de risco, aplicando-se novas metodologias para o cálculo de múltiplos riscos à produção. Com isso, produtos de informações sobre clima, solos, manejo e características dos cultivos podem ser melhor explorados. Também estão sendo empregadas novas ferramentas para controle da produção de resultados e melhorias para fortalecimento da transparência e redução da incerteza. Desta maneira, com o aprimoramento metodológico, mais de 40 culturas têm o risco avaliado em todos os municípios do Brasil, em que são estimados os riscos em 20%, 30% e 40%, por decêndio (:numref:`Tabela %s <tbl:zarc:decendio>`). No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer uma quebra de safra é menor, em função das características edafoclimáticas e da cultura. 
+A definição desses limites de AD levou em consideração a textura do solo e aplicou sobre ela a seguinte a :eq:`eq:sicor:zarc:ad`. Os resultados dessa equação podem ser visualizados na :numref:`Figura %s <fig:sicor:zarc:ad-zarc>`, em um gráfico ternário tendo como eixos os teores de areia, silte e argila. Sobre o mesmo foi aplicada a escala de valores de AD apresentadas acima  :cite:`teixeira:2021, monteiro:2022`.
+
+
+.. math::
+    :label: eq:sicor:zarc:ad
+
+    AD = \left\{ 1 + \left[ 0.35941 \cdot \left( -0.02128887 \cdot AT - 0.01005814 \cdot SIL - 0.01901894 \cdot ARG + 0.0001171219 \cdot (AT \cdot SIL) + 0.0002073924 \cdot (AT \cdot ARG) + 0.00006118707 \cdot (SIL \cdot ARG) - 0.000006373789 \cdot (AT \cdot SIL \cdot ARG) \right) \right]^{2.78474} \right\} \cdot 10
+
+
+Em que:
+
+- :math:`AD` é a quantidade de água predita no solo em mm de água cm\ :sup:`-1` de solo.
+
+- :math:`AT` é teor de areia total.
+
+- :math:`SIL` é o teor de silte.
+
+- :math:`ARG` é o teor de argila.
+
+
+.. figure:: ../img/sicor/zarc/ad-zarc.jpg
+    :alt: Relação entre granulometria do solo e AD.
+    :width: 50%
+    :figclass: align-center
+    :name: fig:sicor:zarc:ad-zarc
+
+    Relação entre granulometria do solo e AD. |br| **Fonte:** :cite:t:`teixeira:2021`.
+
+
+Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estão sendo revisados. Além disto estão ocorrendo investimentos na melhoria das bases de dados e avanços metodológicos na avaliação de risco climático das principais culturas agrícolas. Somado com a evolução contínua de ferramentas computacionais que têm apoiado o trabalho técnico e a comunicação das informações de risco, aplicando-se novas metodologias para o cálculo de múltiplos riscos à produção. Com isso, produtos de informações sobre clima, solos, manejo e características dos cultivos podem ser melhor explorados. Também estão sendo empregadas novas ferramentas para controle da produção de resultados e melhorias para fortalecimento da transparência e redução da incerteza. Desta maneira, com o aprimoramento metodológico, mais de 40 culturas têm o risco avaliado em todos os municípios do Brasil, em que são estimados os riscos para as diferentes datas de semeadura em 20%, 30% e 40% (:numref:`Tabela %s <tbl:zarc:decendio>`). No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer condições agrometeorológicas adversas uma quebra de safra é menor, em função das características edafoclimáticas e da cultura. No caso de culturas anuais, ficam estabelecidos os decêndios em que o risco de ocorrer uma quebra de safra é menor, em função das características edafoclimáticas e da cultura. 
 
 
 .. table:: Decêndio.
@@ -97,12 +125,12 @@ Como observado, o ZARC vem sendo aperfeiçoado e os indicadores utilizados estã
 O Banco Central estabelece que o custeio agrícola está restrito aos empreendimentos conduzidos sob as condições do ZARC, condicionando à obrigação contratual de aplicação das recomendações técnicas referentes ao zoneamento :cite:`bcb:2024:c`. Com relação ao Proagro, estabelece diversas regras regularizando o uso do ZARC, como por exemplo, que no financiamento deve ser incluído o tipo de clima de acordo com as informações da última portaria do ZARC publicada para o empreendimento e município desejados. Além disso, o tipo de solo e o ciclo do cultivar também devem ser preenchidos com parâmetros válidos estabelecidos pelas portarias. Caso estejam inconsistentes resultarão na rejeição do registro da operação.
 
 
-Os dados do ZARC podem ser acessados no seguinte endereço: `Zoneamento Agrícola <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, em que é possível formatar diversas consultas.Os dados completos do ZARC são disponibilizados neste endereço: `Dados ZARC <http://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-
+Os dados do ZARC podem ser acessados no seguinte endereço: `Zoneamento Agrícola <https://mapa-indicadores.agricultura.gov.br/publico/extensions/Zarc/Zarc.html>`__, em que é possível formatar diversas consultas. Os dados completos do ZARC, codificados em UTF-8, são disponibilizados neste endereço: `Dados ZARC <http://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-
 dc8ff323b96f/resource/a8875ff8-fe4d-4c3c-b1a1-3b19c32916f1/download/dados-abertos-tabua-
-de-risco.csv>`__, cuja estrutura de dados é apresentada na :numref:`Tabela %s <tbl:zarc:csv>` cujo `dicionário de dados <https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf>`__  é replicado abaixo. As colunas alfanuméricas encontram-se codificadas em UTF8.
+de-risco.csv>`__, cuja estrutura dos dados é apresentada na :numref:`Tabela %s <tbl:zarc:csv>`.
 
 
-.. table:: Dicionário de dados do ZARC. |br| **Fonte:** :cite:`mapa:2024:a`.
+.. table:: Estrutura dos dados do ZARC. |br| **Fonte:** :cite:`mapa:2024:a`.
     :align: center
     :header-alignment: center center  
     :column-alignment: center center 
@@ -154,6 +182,11 @@ de-risco.csv>`__, cuja estrutura de dados é apresentada na :numref:`Tabela %s <
     Para esse trabalho foram acessadas as culturas de soja, milho safrinha e trigo para a safra 2022/2023.
 
 
+.. note::
+
+    `Dicionário de dados da tábua de risco <https://dados.agricultura.gov.br/dataset/6d3d141c-885e-41a4-ab7f-dc8ff323b96f/resource/bebb0ebb-bc75-460c-b900-a7a1ebd87bee/download/dicionario-de-dados-tabua-de-risco-04_24.pdf>`__.
+
+
 Tabelas do ZARC no Banco de Dados
 ---------------------------------
 
@@ -167,111 +200,111 @@ O banco de dados do curso possui duas tabelas com dados do ZARC. A primeira, cha
     :column-alignment: center left center left
     :name: tbl:sicor:zarc:zarc-oficial
 
-    +---------------+----------------+---------------+-----------+
-    |               | nome           | tipo          | descrição |
-    +===============+================+===============+===========+
-    |               | safra          | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | cod_cultura    | character(14) |           |
-    +---------------+----------------+---------------+-----------+
-    |               | cultura        | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | uf             | character(2)  |           |
-    +---------------+----------------+---------------+-----------+
-    |               | geocodigo      | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | cod_municipio  | character(6)  |           |
-    +---------------+----------------+---------------+-----------+
-    |               | municipio      | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | meso_regiao    | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | micro_regiao   | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | portaria       | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | grupo          | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | solo           | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | cod_solo       | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | outros_manejos | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | clima          | text          |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_1     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_2     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_3     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_4     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_5     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_6     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_7     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_8     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_9     | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_10    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_11    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_12    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_13    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_14    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_15    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_16    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_17    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_18    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_19    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_20    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_21    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_22    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_23    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_24    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_25    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_26    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_27    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_28    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_29    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_30    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_31    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_32    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_33    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_34    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_35    | integer       |           |
-    +---------------+----------------+---------------+-----------+
-    |               | decendio_36    | integer       |           |
-    +---------------+----------------+---------------+-----------+
+    +---------------+----------------+---------------+--------------------------------+
+    |               | nome           | tipo          | descrição                      |
+    +===============+================+===============+================================+
+    |               | safra          | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | cod_cultura    | character(14) |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | cultura        | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | uf             | character(2)  |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | geocodigo      | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | cod_municipio  | character(6)  |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | municipio      | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | meso_regiao    | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | micro_regiao   | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | portaria       | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | grupo          | text          | Refere-se ao ciclo do cultivar |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | solo           | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | cod_solo       | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | outros_manejos | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | clima          | text          |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_1     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_2     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_3     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_4     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_5     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_6     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_7     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_8     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_9     | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_10    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_11    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_12    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_13    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_14    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_15    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_16    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_17    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_18    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_19    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_20    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_21    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_22    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_23    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_24    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_25    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_26    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_27    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_28    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_29    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_30    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_31    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_32    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_33    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_34    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_35    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
+    |               | decendio_36    | integer       |                                |
+    +---------------+----------------+---------------+--------------------------------+
 
 
 A segunda tabela é denominada ``zarc`` e possui a seguinte estrutura (:numref:`Tabela %s <tbl:sicor:zarc:zarc>`).

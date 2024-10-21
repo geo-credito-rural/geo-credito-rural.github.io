@@ -104,7 +104,7 @@ Os limites das unidades de conservação são disponibilizados em diversos forma
     Distribuição das áreas protegidas por categoria no Brasil.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.
@@ -429,21 +429,6 @@ Consultas
                  WHERE NOT ST_IsValid(geom);
 
 
-        .. tab:: Python
-
-
-            O pacote `geobr` permite acessar a camada de informação contendo as unidades de conservação e obtém um ``GeoDataFrame`` do `GeoPandas`:
-
-
-            .. code-block:: python
-
-                import geobr
-
-                ucs = geobr.unidades_conservacao()
-
-                print(ucs.valid())
-
-
 .. collapse:: Resultado:
 
 
@@ -460,9 +445,6 @@ Consultas
                 --------------------------
                                         1
                 (1 row)
-
-
-        .. tab:: Python
 
 
 -----

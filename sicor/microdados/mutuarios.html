@@ -23,6 +23,7 @@
         <script src="../../_static/sphinx_highlight.js"></script>
         <script src="../../_static/clipboard.min.js"></script>
         <script src="../../_static/copybutton.js"></script>
+        <script src="../../_static/tabs.js"></script>
         <script src="../../_static/translations.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../../genindex.html" />
@@ -79,6 +80,8 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="../zarc.html">3.2. Zoneamento Agrícola de Risco Climático (ZARC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../consultas.html">3.3. Consultas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../consideracoes.html">3.4. Considerações Finais</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../../bases-vetoriais/index.html">4. Impedimentos Sociais, Ambientais e Climáticos</a></li>
@@ -131,11 +134,7 @@
              
   <section id="mutuarios">
 <span id="sec-sicor-microdados-mutuarios"></span><h1><span class="section-number">3.1.14. </span>Mutuários<a class="headerlink" href="#mutuarios" title="Link permanente para este cabeçalho"></a></h1>
-<div class="admonition warning">
-<p class="admonition-title">Aviso</p>
-<p>Esta seção <strong>encontra-se em desenvolvimento</strong>.</p>
-</div>
-<p>O arquivo <a class="reference download external" download="" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz"><code class="xref download docutils literal notranslate"><span class="pre">SICOR_MUTUARIOS.gz</span></code></a> contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> que liga esta tabela à tabela  <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> descrita na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>. Inclui também a coluna <code class="docutils literal notranslate"><span class="pre">cd_cpf_cnpj</span></code>, contendo o CPF ou CNPJ do mutuário, a <code class="docutils literal notranslate"><span class="pre">cd_sexo</span></code>, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna <code class="docutils literal notranslate"><span class="pre">cd_dap</span></code> que contém o código da Declaração de Aptidão ao Pronaf (DAP), <code class="docutils literal notranslate"><span class="pre">cd_primeiro</span></code> que informa o código do primeiro mutuário informado e o <code class="docutils literal notranslate"><span class="pre">cd_tipo_beneficiario</span></code> contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-mutuario"><span class="std std-numref">Tabela 3.26</span></a>.</p>
+<p>O arquivo <a class="reference download external" download="" href="https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_MUTUARIOS.gz"><code class="xref download docutils literal notranslate"><span class="pre">SICOR_MUTUARIOS.gz</span></code></a> contém a lista de beneficiários ou mutuários que tiveram acesso aos financiamentos. Essa tabela é composta pelas colunas <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> que liga esta tabela à tabela  <code class="docutils literal notranslate"><span class="pre">sicor_operacao_basica_estado</span></code> descrita na <a class="reference internal" href="operacoes.html#sec-sicor-microdados-operacoes"><span class="std std-numref">Seção 3.1.9 - Operações Contratadas com Recursos Públicos e Privados</span></a>. Inclui também a coluna <code class="docutils literal notranslate"><span class="pre">cd_cpf_cnpj</span></code>, contendo o CPF ou CNPJ do mutuário, a coluna <code class="docutils literal notranslate"><span class="pre">cd_sexo</span></code>, que tem um indicativo do sexo do mutuário (1: Mulher; 2: Homem), a coluna <code class="docutils literal notranslate"><span class="pre">cd_dap</span></code> que contém o código da Declaração de Aptidão ao Pronaf (DAP), <code class="docutils literal notranslate"><span class="pre">cd_primeiro</span></code> que informa o código do primeiro mutuário informado e o <code class="docutils literal notranslate"><span class="pre">cd_tipo_beneficiario</span></code> contendo o código do tipo do beneficiário. A estrutura desse arquivo pode ser vista na <a class="reference internal" href="#tbl-sicor-microdados-mutuario"><span class="std std-numref">Tabela 3.26</span></a>.</p>
 <table class="styled-table docutils align-center" id="tbl-sicor-microdados-mutuario">
 <caption><span class="caption-number">Tabela 3.26 - </span><span class="caption-text">Estrutura do arquivo contendo a lista de mutuários.</span><a class="headerlink" href="#tbl-sicor-microdados-mutuario" title="Link Permanente para essa tabela"></a></caption>
 <thead>
@@ -181,25 +180,194 @@
 <p>Como pode ser observado na <a class="reference internal" href="#tbl-sicor-microdados-mutuario"><span class="std std-numref">Tabela 3.26</span></a>, o campo <code class="docutils literal notranslate"><span class="pre">ref_bacen</span></code> permite a ligação do mutuário com os contratos, possibilitando verificar o acesso ao financiamento.</p>
 <p>De acordo com o Manual do Crédito Rural (MCR) <span id="id1">[<a class="reference internal" href="../../referencias.html#id15" title="Banco Central do Brasil. Manual de crédito rural (mcr). Technical Report 694, Banco Central do Brasil, Maio 2021. URL: https://www3.bcb.gov.br/mcr.">28</a>]</span>, os beneficiários podem ser classificados pelos seguintes tipos:</p>
 <ul class="open">
-<li><p>Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)</p></li>
-<li><p>Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)</p></li>
-<li><p>Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)</p></li>
-<li><p>Associação de produtores rurais (MCR 4-1-2)</p></li>
-<li><p>Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)</p></li>
-<li><p>Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)</p></li>
-<li><p>Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)</p></li>
-<li><p>Beneficiador (MCR 1-4-2A-a)</p></li>
-<li><p>Agroindústria (MCR 1-4-2A-a)</p></li>
-<li><p>Cerealista (MCR 1-4-2A-b)</p></li>
-<li><p>Silvícola/indígena (MCR 1-4-3)</p></li>
-<li><p>Pescador (MCR 2-1-15 e 20)</p></li>
-<li><p>Aquicultor (MCR 2-1-20)</p></li>
-<li><p>Torrefadora/indústria de café solúvel (MCR 9-4-1-a)</p></li>
-<li><p>Exportador de café (MCR 9-4-1-a)</p></li>
-<li><p>Silvicultor (MCR 10-2-2-a-III)</p></li>
-<li><p>Extrativista (MCR 2-1-15)</p></li>
-<li><p>Quilombola rural (MCR 10-2-2-b-II)</p></li>
+<li><p>Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a);</p></li>
+<li><p>Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c);</p></li>
+<li><p>Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a);</p></li>
+<li><p>Associação de produtores rurais (MCR 4-1-2);</p></li>
+<li><p>Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b);</p></li>
+<li><p>Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b);</p></li>
+<li><p>Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d);</p></li>
+<li><p>Beneficiador (MCR 1-4-2A-a);</p></li>
+<li><p>Agroindústria (MCR 1-4-2A-a);</p></li>
+<li><p>Cerealista (MCR 1-4-2A-b);</p></li>
+<li><p>Silvícola/indígena (MCR 1-4-3);</p></li>
+<li><p>Pescador (MCR 2-1-15 e 20);</p></li>
+<li><p>Aquicultor (MCR 2-1-20);</p></li>
+<li><p>Torrefadora/indústria de café solúvel (MCR 9-4-1-a);</p></li>
+<li><p>Exportador de café (MCR 9-4-1-a);</p></li>
+<li><p>Silvicultor (MCR 10-2-2-a-III);</p></li>
+<li><p>Extrativista (MCR 2-1-15);</p></li>
+<li><p>Quilombola rural (MCR 10-2-2-b-II);</p></li>
 </ul>
+<section id="consultas">
+<h2><span class="section-number">3.1.14.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Quais são os tipos de beneficiários do crédito rural?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>A lista dos tipos de beneficiários que aparecem nos registros de mutuários pode ser encontrada na tabela <code class="docutils literal notranslate"><span class="pre">tipobeneficiario</span></code>.</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">tipobeneficiario</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">descricao</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> cd_tipo_beneficiario |                                                                       descricao
+----------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------
+                    9 | Agroindústria (MCR 1-4-2A-a)
+                   13 | Aquicultor (MCR 2-1-20)
+                    4 | Associação de produtores rurais (MCR 4-1-2)
+                    8 | Beneficiador (MCR 1-4-2A-a)
+                   10 | Cerealista (MCR 1-4-2A-b)
+                    3 | Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)
+                    2 | Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c)
+                   15 | Exportador de café (MCR 9-4-1-a)
+                   17 | Extrativista (MCR 2-1-15)
+                   12 | Pescador (MCR 2-1-15 e 20)
+                    5 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)
+                    6 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)
+                    7 | Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)
+                    1 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)
+                   18 | Quilombola rural (MCR 10-2-2-b-II)
+                   11 | Silvícola/indígena (MCR 1-4-3)
+                   16 | Silvicultor (MCR 10-2-2-a-III)
+                   14 | Torrefadora/indústria de café solúvel (MCR 9-4-1-a)
+(18 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Como é a distribuição do crédito entre os tipos de beneficiários?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">tipo_beneficiario</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_contratos_destinacao</span><span class="p">,</span>
+<span class="w">         </span><span class="k">SUM</span><span class="p">(</span><span class="n">vl_parc_credito</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">valor_financiamento</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">,</span>
+<span class="w">         </span><span class="n">tipobeneficiario</span><span class="p">,</span>
+<span class="w">         </span><span class="n">sicor_operacao_basica_estado</span>
+
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span>
+<span class="w">     </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_operacao_basica_estado</span><span class="p">.</span><span class="n">ref_bacen</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_emissao</span><span class="p">),</span>
+<span class="w">         </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span><span class="p">,</span>
+<span class="w">         </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">descricao</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">valor_financiamento</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                                                                   tipo_beneficiario                                                                   | numero_contratos_destinacao | valor_financiamento
+------+-------------------------------------------------------------------------------------------------------------------------------------------------------+-----------------------------+---------------------
+ 2013 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                      191552 |       7564755987.03
+ 2013 | Silvicultor (MCR 10-2-2-a-III)                                                                                                                        |                         440 |         76262450.12
+ 2013 | Pescador (MCR 2-1-15 e 20)                                                                                                                            |                        1587 |         19862596.84
+ 2013 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)                                |                          16 |          2064621.34
+ 2013 | Extrativista (MCR 2-1-15)                                                                                                                             |                         130 |           797874.87
+ 2013 | Aquicultor (MCR 2-1-20)                                                                                                                               |                          17 |           333387.28
+ 2014 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                      214590 |       9840300787.22
+  ... | ...                                                                                                                                                   |                             |                 ...
+ 2024 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                                                            |                     1282491 |     100949672252.19
+ 2024 | Cooperativa de produção agropecuária – na condição de sociedade prestadora de serviços de natureza agropecuária aos seus cooperados (MCR 5-1-2-b e c) |                         572 |       3396607256.57
+ 2024 | Cooperativa de produção agropecuária – na condição de produtor rural - (MCR 5-1-2-a)                                                                  |                          44 |        368307942.04
+ 2024 | Torrefadora/indústria de café solúvel (MCR 9-4-1-a)                                                                                                   |                          72 |        300239061.64
+ 2024 | Agroindústria (MCR 1-4-2A-a)                                                                                                                          |                          70 |        238635999.12
+ 2024 | Exportador de café (MCR 9-4-1-a)                                                                                                                      |                          19 |        136024348.00
+ 2024 | Beneficiador (MCR 1-4-2A-a)                                                                                                                           |                          24 |        128397355.46
+ 2024 | Aquicultor (MCR 2-1-20)                                                                                                                               |                         377 |         96040623.27
+ 2024 | Pescador (MCR 2-1-15 e 20)                                                                                                                            |                        8050 |         80778836.15
+ 2024 | Extrativista (MCR 2-1-15)                                                                                                                             |                        2191 |         49562316.74
+ 2024 | Silvícola/indígena (MCR 1-4-3)                                                                                                                        |                        3386 |         37597079.76
+ 2024 | Silvicultor (MCR 10-2-2-a-III)                                                                                                                        |                         480 |         20076025.91
+ 2024 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b)                                |                           8 |         18200825.33
+ 2024 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                                                     |                          12 |         10326498.36
+ 2024 | Quilombola rural (MCR 10-2-2-b-II)                                                                                                                    |                         201 |          5727169.74
+ 2024 | Prestador de serviço de mecanização, de medição de lavoura ou de serviço de inseminação artificial à agropecuária (MCR 1-4-2-c e d)                   |                           8 |          4306887.20
+(170 rows)
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 3.</strong> Qual o número de pedidos de Proagro por tipo de mutuário?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">descricao</span><span class="p">,</span>
+<span class="w">         </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_pedidos_proagro</span>
+
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">        </span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span>
+<span class="w">               </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dt_comunicacao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">               </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">               </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">cd_tipo_beneficiario</span><span class="p">,</span>
+<span class="w">               </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">descricao</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">descricao</span>
+
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">sicor_cop_basico</span><span class="p">,</span>
+<span class="w">                 </span><span class="n">tipobeneficiario</span>
+
+<span class="w">           </span><span class="k">WHERE</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tipobeneficiario</span><span class="p">.</span><span class="n">cd_tipo_beneficiario</span>
+<span class="w">             </span><span class="k">AND</span><span class="w"> </span><span class="n">sicor_mutuarios</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sicor_cop_basico</span><span class="p">.</span><span class="n">ref_bacen</span>
+<span class="w">    </span><span class="p">)</span>
+
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">         </span><span class="n">cd_tipo_beneficiario</span><span class="p">,</span>
+<span class="w">         </span><span class="n">descricao</span>
+
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">numero_pedidos_proagro</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span> ano  |                                                       descricao                                                        | numero_pedidos_proagro
+------+------------------------------------------------------------------------------------------------------------------------+------------------------
+ 2013 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   2032
+ 2013 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      2
+ 2014 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  10648
+ 2014 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      6
+ 2014 | Extrativista (MCR 2-1-15)                                                                                              |                      4
+ 2015 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   1670
+ 2015 | Pescador (MCR 2-1-15 e 20)                                                                                             |                      1
+ 2016 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                   4267
+ 2016 | Silvicultor (MCR 10-2-2-a-III)                                                                                         |                      1
+ 2017 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  41436
+ 2017 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     41
+ 2018 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  48692
+ 2018 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     60
+ 2019 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  36872
+ 2019 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                     25
+ 2019 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      1
+ 2020 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  94308
+ 2020 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                    156
+ 2020 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      5
+ 2020 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      1
+ 2021 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  78370
+ 2021 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      9
+ 2021 | Pessoa física ou jurídica produtora de mudas, sementes, sêmen para inseminação artificial e embriões (MCR 1-4-2-a e b) |                      9
+ 2022 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                 127478
+ 2022 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      9
+ 2022 | Aquicultor (MCR 2-1-20)                                                                                                |                      3
+ 2022 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      1
+ 2023 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                 177283
+ 2023 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                     12
+ 2023 | Aquicultor (MCR 2-1-20)                                                                                                |                      8
+ 2023 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      3
+ 2024 | Produtor rural (pessoa física ou jurídica) - (MCR 1-4-1-a)                                                             |                  79460
+ 2024 | Silvícola/indígena (MCR 1-4-3)                                                                                         |                      5
+ 2024 | Aquicultor (MCR 2-1-20)                                                                                                |                      3
+ 2024 | Pessoa física ou jurídica da atividade de pesquisa agropecuária (MCR 1-4-2-a e b)                                      |                      2
+ 2024 | Quilombola rural (MCR 10-2-2-b-II)                                                                                     |                      1
+(36 rows)
+</pre></div>
+</div>
+</div></div>
+</details></section>
 </section>
 
 
@@ -217,7 +385,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fe7d5e56c40>
+<jinja2.runtime.BlockReference object at 0x7f66c4e96f40>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

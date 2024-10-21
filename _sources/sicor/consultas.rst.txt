@@ -1,0 +1,289 @@
+.. include:: ../def.rst
+
+
+.. _sec_sicor_consultas:
+
+Consultas
+=========
+
+
+Distribuição das Operações de Crédito Rural
+-------------------------------------------
+
+
+**1.** Gerar um resumo geral do número de operações e valor dessas operações agrupadas por finalidade ao longo dos anos.
+
+
+**2.** Gerar um resumo geral do número de operações e valor dessas operações por tipo de empreendimento (mesma finalidade, atividade, modalidade) ao longo dos anos.
+
+
+**3.** Gerar um resumo geral do número de operações e valor dessas operações associadas a custeio agrícola de lavouras ao longo dos anos.
+
+
+**4.** Como é a distribuição dos contratos envolvendo custeio de lavouras de soja em relação às fontes de recursos?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT * FROM public.fonterecursos;
+
+
+            .. code-block:: sql
+
+                  SELECT ano, fonte, COUNT(*) AS numero_contratos
+                    FROM (
+                        SELECT DISTINCT extract(YEAR FROM dt_emissao) AS ano, ref_bacen, fonterecursos.descricao AS fonte
+                          FROM sicor_operacao_basica_estado,
+                               empreendimento,
+                               fonterecursos
+                         WHERE fonterecursos.descricao IN ('fundo constitucional de financiamento do norte (fno)', 'fundo constitucional de financiamento do centro-oeste (fco)')
+                           AND empreendimento.produto = 'soja'
+                           AND empreendimento.finalidade = 'custeio'
+                           AND empreendimento.modalidade = 'lavoura'
+                           AND empreendimento.cd_empreendimento = sicor_operacao_basica_estado.cd_empreendimento
+                           AND fonterecursos.cd_fonte_recurso = sicor_operacao_basica_estado.cd_fonte_recurso
+                    )
+                GROUP BY ano, fonte
+                ORDER BY ano, fonte;
+
+
+**5.** Gerar um resumo geral do número de operações e valor das operações pela natureza das instituições financeiras (IFs) ao longo dos anos.
+
+
+**6.** Quais são as 10  instituições financeiras (IFs) envolvidas no maior número e valor de operações ao longo dos anos?
+
+
+**7.** Gerar um resumo geral do número de operações e valor das operações por instrumento de crédito ao longo dos anos.
+
+
+**8.** Gerar um resumo geral do número de operações e valor das operações por categoria de emitente ao longo dos anos.
+
+
+**9.**  Gerar um resumo geral do número de operações e valor das operações por fonte de recurso ao longo dos anos.
+
+
+**10.** Quais são as 3 fontes de recursos com maior número e valor de operações ao longo dos anos?
+
+
+**11.** Gerar um resumo geral do número de operações e valor das operações por fonte publica x privada ao longo dos anos.
+
+
+**12.** Gerar um resumo geral do número de operações e valor das operações fonte publica x privada e por IF ao longo dos anos.
+
+
+**13.** Número e valor das operações por tipo de garantia do empreendimento
+
+
+**14.** Número e valor das operações por programa
+
+
+**15.** Número e valor das operações por estado
+
+
+**16.** Número e valor das operações por municipio
+
+
+**17.** Quais são os 10 municípios com maior número e valor de operações por ano?
+
+
+Glebas
+------
+
+
+**1.** Quantos registros de glebas existem por ano?
+
+
+**2.** Qual o número de registros de gleba por estado?
+
+
+**3.** Qual o número de registros de gleba por municipio?
+
+
+**4.** Como são as áreas das glebas de um mesmo CPF? Existe grande alteração de área dessas glebas?
+
+
+**5.** Há concordância entre as áreas declaradas e calculadas das glebas?
+
+
+**6.** Há sobreposição de glebas da mesma destinação?
+
+
+**7.** Os 10 municípios com as maiores glebas
+
+
+Proagro
+-------
+
+
+**1.** Quais os tipos de evento que causam o maior número de pedidos de proagro e o valor desses pedidos?
+
+
+**2.** Qual a situação de todos os pedidos de proagro ao longo dos anos?
+
+
+**3.** Quantos pedidos de proagro são avaliados por cada perito ao longo dos anos? E periciadora?
+
+
+**4.** Quais os 10 peritos que mais atuaram em pedidos do Proagro ao longo dos anos? E periciadora?
+
+
+**5.** Qual o percentual de pedidos comprovados por perito/periciadora?
+
+
+**6.** Qual o percentual de pedidos comprovados por municipio?
+
+
+**7.** Quanta divergencia há entre as datas de plantio/colheita declaradas no pedido de cobertura do Proagro e no relatório da comprovação de perdas?
+
+
+**8.** Qual o percentual de financiamento e pedidos de proagro por ano?
+
+
+**9.** Número e valor dos pedidos de proagro por finalidade ao longo dos anos.
+
+
+**10.** Número e valor dos pedidos de proagro por atividade ao longo dos anos.
+
+
+**11.** Número e valor dos pedidos de proagro por tipo de empreendimento (mesma finalidade, atividade,  modalidade) ao longo do tempo.
+
+
+**12.** Número e valor dos pedidos de proagro associadas a custeio agrícola de lavouras ao longo dos anos.
+
+
+**13.** Número e valor dos pedidos de proagro por natureza de IF ao longo dos anos.
+
+
+**14.** As 10 IFs com maior número e valor de pedidos de proagro ao longo dos anos.
+
+
+**15.** Número e valor dos pedidos de proagro por instrumento de crédito ao longo dos anos.
+
+
+**16.** Número e valor dos pedidos de proagro por categoria de emitente ao longo dos anos.
+
+
+**17.** Número e valor dos pedidos de proagro por fonte de recurso ao longo dos anos.
+
+
+**18.** As 3 fontes de recursos com maior número e valor de pedidos de proagro ao longo dos anos.
+
+
+**19.** Número e valor dos pedidos de proagro por fonte publica x privada ao longo dos anos.
+
+
+**20.** Número e valor dos pedidos de proagro por fonte publica x privada e por IF ao longo dos anos.
+
+
+**21.** Número e valor dos pedidos de proagro por tipo de garantia do empreendimento.
+
+
+**22.** Número e valor dos pedidos de proagro por programa.
+
+
+**23.** Número e valordos pedidos de proagro por estado.
+
+
+**24.** Número e valordos pedidos de proagro por municipio.
+
+
+**25.** Os 10 municipios com maior número e valor dos pedidos de proagro por ano.
+
+
+**26.** Quais os tipos de evento que causam o maior número de pedidos de proagro e o valor?
+
+
+**27.** Qual a situação de todos os pedidos de proagro ao longo dos anos?
+
+
+**28.** Quantos pedidos de proagro são avaliados por cada perito ao longo dos anos? E periciadora?
+
+
+**29.** Quais os 10 peritos que mais atuaram em pedidos do Proagro ao longo dos anos? E periciadora?
+
+
+**30.** Qual o percentual de pedidos comprovados por perito/periciadora?
+
+
+**31.** Qual o percentual de pedidos comprovados por municipio?
+
+
+**32.** Quanta divergencia há entre as datas de plantio/colheita declaradas no pedido de cobertura do Proagro e no relatório da comprovação de perdas?
+
+
+**33.** Qual o percentual de financiamento e pedidos de proagro por ano?
+
+
+**34.** Número e valor dos pedidos de proagro por finalidade ao longo dos anos.
+
+
+**35.** Número e valor dos pedidos de proagro por atividade ao longo dos anos.
+
+
+**36.** Número e valor dos pedidos de proagro por tipo de empreendimento (mesma finalidade, atividade,  modalidade) ao longo do tempo.
+
+
+**37.** Número e valor dos pedidos de proagro associadas a custeio agrícola de lavouras ao longo dos anos.
+
+
+**38.** Número e valor dos pedidos de proagro por natureza de IF ao longo dos anos.
+
+
+**39.** As 10 IFs com maior número e valor de pedidos de proagro ao longo dos anos.
+
+
+**40.** Número e valor dos pedidos de proagro por instrumento de crédito ao longo dos anos.
+
+
+**41.** Número e valor dos pedidos de proagro por categoria de emitente ao longo dos anos.
+
+
+**42.** Número e valor dos pedidos de proagro por fonte de recurso ao longo dos anos.
+
+
+**43.** As 3 fontes de recursos com maior número e valor de pedidos de proagro ao longo dos anos.
+
+
+**44.** Número e valor dos pedidos de proagro por fonte publica x privada ao longo dos anos.
+
+
+**45.** Número e valor dos pedidos de proagro por fonte publica x privada e por IF ao longo dos anos.
+
+
+**46.** Número e valor dos pedidos de proagro por tipo de garantia do empreendimento.
+
+
+**47.** Número e valor dos pedidos de proagro por programa.
+
+
+**48.** Número e valordos pedidos de proagro por estado.
+
+
+**49.** Número e valordos pedidos de proagro por municipio.
+
+
+**50.** Os 10 municipios com maior número e valor dos pedidos de proagro por ano.
+
+
+**51.** Gerar a relação de pedidos de Proagro por produtor, cultura, município, periciador  de 2013 até hoje, profissional/empresa que atestou as perdas a fim de verificar histórico do produtor e da cultura afetada e sua região.
+
+
+**52.** Gerar a relação de produtores que aderiram ao Proagro, mas nunca solicitaram indenização, com indicação de município e/ou gleba.
+
+
+**53.**  Gerar a relação de culturas com pedido de Proagro por localidade, por decêndio de data de plantio e cultivar, permitindo rever e/ou validar o ZARC.
+
+
+
+.. tip::
+
+    Na seção "Fontes de Recursos", acrescentar uma coluna de recursos publicos e privados (publico => booleano)

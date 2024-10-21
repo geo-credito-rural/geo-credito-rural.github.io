@@ -418,7 +418,279 @@ Consultas
 ---------
 
 
-**Consulta 1.** Quais as culturas que mais solicitam Proagro?
+**Consulta 1.** Existem contratos/destinaçõs com mais de um evento reportado no pedido de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    A lista dos tipos de eventos que aparecem nos registros de pedidos de cobertura podem ser encontrados na tabela ``eventoproagro``.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT ref_bacen, nu_ordem, COUNT(*) AS num_eventos
+                    FROM sicor_cop_basico
+                GROUP BY ref_bacen, nu_ordem
+                  HAVING COUNT(*) > 1
+                ORDER BY num_eventos DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ref_bacen | nu_ordem | num_eventos
+                -----------+----------+-------------
+                 515729598 |        1 |           4
+                 516068998 |        1 |           4
+                 516533502 |        2 |           4
+                       ... |      ... |         ...
+                 513259304 |        1 |           2
+                 513511692 |        1 |           2
+                 515290913 |        1 |           2
+                (5398 rows)
+
+
+-----
+
+
+**Consulta 2.** Quais são os eventos geradores de pedido de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    A lista dos tipos de eventos, que aparecem nos registros de pedidos de cobertura, pode ser encontrada na tabela ``eventoproagro``.
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT * FROM eventoproagro ORDER BY nome_evento;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 cd_evento |             nome_evento
+                -----------+-------------------------------------
+                        17 | Chuva excessiva
+                       135 | Chuva na colheita
+                       110 | Doença ou praga
+                       127 | Enchentes
+                        24 | Geada
+                        31 | Granizo
+                       103 | Outros fenômenos naturais fortuitos
+                        93 | Raio
+                        48 | Seca
+                        55 | Tromba de água
+                        86 | Variação excessiva de temperatura
+                        61 | Vendaval
+                        79 | Vento forte
+                        62 | Vento frio
+                (14 rows)
+
+
+-----
+
+
+**Consulta 3.** Quais são os eventos que geram o maior número de pedidos de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                   SELECT extract(YEAR FROM dt_comunicacao) AS ano,
+                          eventoproagro.nome_evento,
+                          COUNT(*) AS total_pedidos
+
+                     FROM sicor_cop_basico AS cop
+
+                LEFT JOIN eventoproagro
+                       ON (cop.cd_evento = eventoproagro.cd_evento)
+
+                 GROUP BY extract(YEAR FROM dt_comunicacao), cop.cd_evento, eventoproagro.nome_evento
+
+                 ORDER BY ano ASC, total_pedidos DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ano  |             nome_evento             | total_pedidos
+                ------+-------------------------------------+---------------
+                 2013 | Geada                               |          8211
+                 2013 | Chuva excessiva                     |          3497
+                 2013 | Seca                                |          2776
+                 2013 | Granizo                             |          1405
+                 2013 | Vento forte                         |           647
+                 2013 | Doença ou praga                     |           245
+                 2013 | Variação excessiva de temperatura   |           179
+                 2013 | Vento frio                          |            25
+                 2014 | Chuva excessiva                     |         33198
+                 2014 | Seca                                |         23049
+                 2014 | Vento forte                         |          2269
+                 2014 | Granizo                             |          2242
+                 2014 | Geada                               |          1161
+                 2014 | Doença ou praga                     |           952
+                 2014 | Variação excessiva de temperatura   |           308
+                 2014 | Vento frio                          |            29
+                  ... | ...                                 |           ...
+                 2024 | Seca                                |         38799
+                 2024 | Chuva excessiva                     |         23723
+                 2024 | Geada                               |          7430
+                 2024 | Doença ou praga                     |          3627
+                 2024 | Variação excessiva de temperatura   |          3266
+                 2024 | Vento forte                         |          1974
+                 2024 | Granizo                             |           940
+                 2024 | Chuva na colheita                   |           190
+                 2024 | Vendaval                            |           125
+                 2024 | Enchentes                           |            32
+                 2024 | Tromba de água                      |            29
+                 2024 | Vento frio                          |            22
+                 2024 | Outros fenômenos naturais fortuitos |            11
+                (137 rows)
+
+
+-----
+
+
+**Consulta 4.** Qual a proporção no ano de cada evento gerador de pedido de Proagro?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                     WITH total_pedidos_ano AS (
+                           SELECT extract(YEAR FROM dt_comunicacao) AS ano,
+                                  COUNT(*) AS pedidos
+                             FROM sicor_cop_basico
+                         GROUP BY extract(YEAR FROM dt_comunicacao)
+                     )
+
+
+                   SELECT extract(YEAR FROM dt_comunicacao) AS ano,
+                          eventoproagro.nome_evento,
+                          COUNT(*) AS total_pedidos,
+                          COUNT(*)::numeric / total_pedidos_ano.pedidos * 100.0 AS percentagem_ano
+
+                     FROM sicor_cop_basico AS cop
+
+                LEFT JOIN eventoproagro
+                       ON (cop.cd_evento = eventoproagro.cd_evento)
+
+                LEFT JOIN total_pedidos_ano
+                       ON extract(YEAR FROM dt_comunicacao) = total_pedidos_ano.ano
+
+                 GROUP BY extract(YEAR FROM dt_comunicacao),
+                          cop.cd_evento,
+                          eventoproagro.nome_evento,
+                          total_pedidos_ano.pedidos
+
+                 ORDER BY ano ASC, percentagem_ano DESC;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                 ano  |             nome_evento             | total_pedidos |       percentagem_ano
+                ------+-------------------------------------+---------------+-----------------------------
+                 2013 | Geada                               |          8211 |    48.342655284074183103000
+                 2013 | Chuva excessiva                     |          3497 |    20.588754783632617015000
+                 2013 | Seca                                |          2776 |    16.343832793641448337000
+                 2013 | Granizo                             |          1405 |     8.272004710038269061000
+                 2013 | Vento forte                         |           647 |     3.809243450103032087000
+                 2013 | Doença ou praga                     |           245 |     1.442449219899911687000
+                 2013 | Variação excessiva de temperatura   |           179 |     1.053871062702384457000
+                 2013 | Vento frio                          |            25 |     0.147188695908154254000
+                 2014 | Chuva excessiva                     |         33198 |    52.521832679407669915000
+                 2014 | Seca                                |         23049 |    36.465320845462599671000
+                 2014 | Vento forte                         |          2269 |     3.589735476521959246000
+                 2014 | Granizo                             |          2242 |     3.547019364637387672000
+                 2014 | Geada                               |          1161 |     1.836792811036577648000
+                 2014 | Doença ou praga                     |           952 |     1.506138463485634730000
+                 2014 | Variação excessiva de temperatura   |           308 |     0.487280091127705354000
+                 2014 | Vento frio                          |            29 |     0.045880268320465764000
+                  ... | ...                                 |           ... |                         ...
+                 2024 | Seca                                |         38799 |    48.397116056281808203000
+                 2024 | Chuva excessiva                     |         23723 |    29.591607623989621794000
+                 2024 | Geada                               |          7430 |     9.268037122043708213000
+                 2024 | Doença ou praga                     |          3627 |     4.524249076938429298000
+                 2024 | Variação excessiva de temperatura   |          3266 |     4.073944716096197984000
+                 2024 | Vento forte                         |          1974 |     2.462329108871370123000
+                 2024 | Granizo                             |           940 |     1.172537670891128630000
+                 2024 | Chuva na colheita                   |           190 |     0.237002295180121744000
+                 2024 | Vendaval                            |           125 |     0.155922562618501148000
+                 2024 | Enchentes                           |            32 |     0.039916176030336294000
+                 2024 | Tromba de água                      |            29 |     0.036174034527492266000
+                 2024 | Vento frio                          |            22 |     0.027442371020856202000
+                 2024 | Outros fenômenos naturais fortuitos |            11 |     0.013721185510428101000
+                (137 rows)
+
+
+-----
+
+
+**Consulta 5.** Quais as culturas que mais solicitam Proagro?
 
 
 .. collapse:: Solução:
@@ -522,7 +794,7 @@ Consultas
 -----
 
 
-**Consulta 2.** Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?
+**Consulta 6.** Qual o tamanho médio das áreas associadas a pedidos de Proagro e os valores dos contratos?
 
 
 .. collapse:: Solução:
@@ -532,6 +804,33 @@ Consultas
 
 
         .. tab:: SQL
+
+
+            Nessa consulta iremos utilizar a tabela ``statuscopproagro``, que possui o seguinte conteúdo:
+
+
+            .. code-block:: sql
+
+                SELECT * FROM statuscopproagro ORDER BY descricao;
+
+
+            Saída:
+
+
+            .. code-block:: text
+
+                 cd_status | descricao
+                -----------+------------
+                         5 | cancelada
+                         2 | deferida
+                         4 | desistida
+                         1 | em análise
+                         3 | indeferida
+                         6 | inválida
+                (6 rows)
+
+
+            Além, da tabela acima, iremos utilizar as tabelas ``sicor_cop_basico``, ``sicor_operacao_basica_estado`` e ``empreendimento``, como mostrado na consulta abaixo:
 
 
             .. code-block:: sql
@@ -629,7 +928,7 @@ Consultas
 -----
 
 
-**Consulta 3.** Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?
+**Consulta 7.** Qual a localização das glebas associadas a pedidos de Proagro nos últimos três anos?
 
 
 .. collapse:: Solução:
@@ -721,7 +1020,7 @@ Consultas
                             )
                         GROUP BY geocodigo
                   ) AS resultado
-                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo;
 
 
     Em seguida, podemos atualizar as colunas ``num_pedidos_deferidos_proagro`` e ``valor_financiamento_pedidos_deferidos``:
@@ -760,7 +1059,7 @@ Consultas
                             )
                         GROUP BY geocodigo
                   ) AS resultado
-                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo;
 
 
     Por último, podemos calcular o valor pago de Proagro por município, atualizando a coluna ``valor_pago_proagro``:
@@ -796,7 +1095,7 @@ Consultas
                              AND parcelas.cd_natureza_parcela = natureza.cd_natureza_parcela
                         GROUP BY geocodigo
                   ) AS resultado
-                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo;
 
 
     O resultado dos cálculos realizados pode ser visto nos mapas apresentados nas figuras da :numref:`Tabela %s <tbl:sicor:microdados:proagro:numero-pedidos-x-valor-pago>`.
@@ -823,10 +1122,28 @@ Consultas
         +-----------------------------------------------------------------+-------------------------------------------------------------+
 
 
+    .. tip::
+
+
+        Sempre que construimos uma consulta, é importante fazer uma checagem do seu resultado. No caso acima, uma boa base é saber o número de municípios entre 2022 e 2024 que estão associados aos pedidos de Proagro. Para saber o número de municípios, podemos construir uma ocnsulta como:
+
+
+        .. code-block:: sql
+
+            SELECT DISTINCT cd_ibge_municipio
+
+              FROM sicor_cop_basico,
+                   sicor_complemento_operacao_basica
+
+             WHERE sicor_cop_basico.ref_bacen = sicor_complemento_operacao_basica.ref_bacen
+               AND sicor_cop_basico.nu_ordem = sicor_complemento_operacao_basica.nu_ordem
+               AND extract(YEAR FROM dt_comunicacao) >= 2022;
+
+
 -----
 
 
-**Consulta 4.** Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?
+**Consulta 8.** Qual o percentual de pedidos de Proagro por município em relação ao número de financiamentos?
 
 
 .. collapse:: Solução:
@@ -838,11 +1155,19 @@ Consultas
         .. tab:: SQL
 
 
+            Vamos acrescentar uma coluna chamada ``num_contratos`` na tabela ``municipios_2022``:
+
+
             .. code-block:: sql
 
                 ALTER TABLE municipios_2022
                     ADD COLUMN num_contratos INTEGER NOT NULL DEFAULT 0;
 
+
+            Para preencher essa nova coluna podemos utilizar a seguinte sentença SQL:
+
+
+            .. code-block:: sql
 
                 UPDATE municipios_2022
                    SET num_contratos = resultado.num_contratos
@@ -856,4 +1181,44 @@ Consultas
                            AND extract(YEAR FROM op.dt_emissao) >= 2022
                       GROUP BY op_complemento.cd_ibge_municipio
                   ) AS resultado
-                 WHERE municipios_2022.cd_mun = resultado.geocodigo::varchar;
+                 WHERE municipios_2022.cd_mun = resultado.geocodigo;
+
+
+            Agora, podemos fazer uma consulta envolvendo as colunas ``num_pedidos_proagro`` e ``num_contratos``:
+
+
+            .. code-block:: sql
+
+                  SELECT cd_mun, nm_mun, sigla_uf,
+                         num_pedidos_proagro,
+                         num_contratos,
+                         num_pedidos_proagro::numeric / num_contratos AS proporcao_pedidos
+
+                    FROM municipios_2022
+
+                   WHERE num_contratos > 0
+
+                ORDER BY proporcao_pedidos DESC;
+
+
+            Resultado:
+
+
+            .. code-block:: text
+
+                 cd_mun  |              nm_mun              | sigla_uf | num_pedidos_proagro | num_contratos |     proporcao_pedidos
+                ---------+----------------------------------+----------+---------------------+---------------+----------------------------
+                 3106705 | Betim                            | MG       |                   2 |             2 |     1.00000000000000000000
+                 4119004 | Pérola d'Oeste                   | PR       |                2623 |          3639 |     0.72080241824677109096
+                 4106571 | Cruzeiro do Iguaçu               | PR       |                 930 |          1408 |     0.66051136363636363636
+                 4124806 | São João                         | PR       |                2459 |          3824 |     0.64304393305439330544
+                 4128609 | Verê                             | PR       |                2916 |          4592 |     0.63501742160278745645
+                 4309753 | Ibarama                          | RS       |                 738 |          1164 |     0.63402061855670103093
+                 4322152 | Tunas                            | RS       |                 802 |          1268 |     0.63249211356466876972
+                 4103024 | Boa Esperança do Iguaçu          | PR       |                1168 |          1856 |     0.62931034482758620690
+                 4102752 | Bela Vista da Caroba             | PR       |                 944 |          1506 |     0.62682602921646746348
+                 4103222 | Bom Sucesso do Sul               | PR       |                 931 |          1502 |     0.61984021304926764314
+                 4301206 | Arroio do Tigre                  | RS       |                3007 |          4857 |     0.61910644430718550546
+                 4125209 | São Jorge d'Oeste                | PR       |                2347 |          3792 |     0.61893459915611814346
+                 4311254 | Lagoão                           | RS       |                1064 |          1721 |     0.61824520627542126671
+                     ... | ...                              | ...      |                 ... |           ... |                        ...
