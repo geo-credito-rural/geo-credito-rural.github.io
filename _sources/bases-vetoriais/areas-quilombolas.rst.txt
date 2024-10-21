@@ -158,7 +158,7 @@ Consultas
                   WHERE f_table_name = 'areas_quilombolas'   
 
 
-**Consulta 4.** Selecionar as glebas (a partir de 2021) que têm interseção com áreas quilombolas. 
+**Consulta 4.** Validar as geometrias das áreas quilombolas.
 
 
 .. collapse:: Solução:
@@ -170,12 +170,57 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT extract(YEAR FROM gle.data_emissao_contrato) AS ano, gle.gid, gle.geom
-                   FROM  areas_quilombolas as qui, sicor_glebas as gle
-                   WHERE ST_INTERSECTS(
-		                      ST_Transform(qui.geom, 4674), gle.geom)
-		                    AND extract(YEAR FROM gle.data_emissao_contrato) > 2020
-                   ORDER BY ano, gle.gid DESC
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM areas_quilombolas
+                 WHERE NOT ST_IsValid(geom);
 
 
+**Consulta 5.** Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                UPDATE areas_quilombolas
+                SET geom = ST_MakeValid(geom)
+                WHERE NOT ST_IsValid(geom);
+
+
+
+**Consulta 6.** Selecionar as glebas (a partir de 2021) que possuem intersecção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba. 
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_qui AS
+
+                     SELECT  ROW_NUMBER () OVER () AS gid,
+                         gle.gid AS gid_gleba,
+                         gle.ref_bacen AS ref_bacen,
+                         gle.nu_ordem AS nu_ordem,
+                         gle.nu_indice AS nu_indice,
+                         qui.cd_quilomb AS gid_qui,
+                         ST_Intersection(gle.geom, qui.geom) AS geom
+
+                      FROM  sicor_glebas AS gle,
+                         areas_quilombolas AS qui
+
+                      WHERE ST_INTERSECTS(gle.geom, qui.geom)
+                         AND gle.data_emissao_contrato >= TO_DATE(qui.dt_publica,DD-MM-YYYY')
+                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+                      
+                     ORDER BY gle.data_emissao_contrato, gle.gid, qui.gid;
 

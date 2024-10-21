@@ -273,7 +273,66 @@ Os arquivos `SICOR_RCP_BASICO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/
 
 .. note::
 
-    O diagrama mostrado na :numref:`Figura %s <fig:sicor:microdados:er-rcp>` também inclui uma tabela denominada ``sicor_rcp_glebas`` com estrutura similiar à tabela ``sicor_rcp_glebas_wkt`` mas já com uma coluna geométrica para representação das glebas dos relatórios.
+    O diagrama mostrado na :numref:`Figura %s <fig:sicor:microdados:er-rcp>` também inclui uma tabela denominada ``sicor_rcp_glebas`` com estrutura similiar à tabela ``sicor_rcp_glebas_wkt`` mas já com uma coluna geométrica para representação das glebas dos relatórios. O código SQL abaixo pode ser utilizado para criar essa tabela a partir da tabela ``sicor_rcp_glebas_wkt``:
+
+
+    .. code-block:: sql
+
+        CREATE TABLE sicor_rcp_glebas
+        (
+          gid                             INTEGER NOT NULL,
+          ref_bacen                       INTEGER NOT NULL,
+          nu_ordem                        INTEGER NOT NULL,
+          nu_indice                       INTEGER NOT NULL,
+          data_entrega                    DATE NOT NULL,
+          area_gleba                      NUMERIC NOT NULL DEFAULT 0.0,
+          perimetro_gleba                 NUMERIC NOT NULL DEFAULT 0.0,
+          area_menor_retangulo_envolvente NUMERIC NOT NULL DEFAULT 0.0,
+          area_menor_circulo_envolvente   NUMERIC NOT NULL DEFAULT 0.0,
+          geom                            GEOMETRY(GEOMETRY, 4674)
+        );
+
+
+    .. code-block:: sql
+
+        INSERT INTO sicor_rcp_glebas
+                    SELECT ROW_NUMBER () OVER () AS gid,
+                           glebas.ref_bacen AS ref_bacen,
+                           glebas.nu_ordem AS nu_ordem,
+                           glebas.nu_indice AS nu_indice,
+                           rcp.dt_entrega AS data_entrega,
+                           ST_Area(ST_Transform((ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674), 100000)) AS area_gleba,
+                           ST_Perimeter(ST_Transform((ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674), 100000)) AS perimetro_gleba,
+                           ST_Area(ST_Transform(ST_OrientedEnvelope((ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674)), 100000)) AS area_menor_retangulo_envolvente,
+                           ST_Area(ST_Transform(ST_MinimumBoundingCircle((ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674)), 100000)) AS area_menor_circulo_envolvente,
+                           (ST_Force2D(GT_GEOMETRIA::geometry))::geometry(geometry, 4674) AS geom
+
+                      FROM sicor_rcp_glebas_wkt AS glebas,
+                           sicor_rcp_basico AS rcp
+
+                     WHERE rcp.ref_bacen = glebas.ref_bacen
+                       AND rcp.nu_ordem = glebas.nu_ordem;
+
+
+    .. code-block:: sql
+
+        ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_pkey  PRIMARY KEY (gid);
+
+        ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_ukey  UNIQUE (ref_bacen, nu_ordem, nu_indice);
+
+        ALTER TABLE sicor_rcp_glebas ADD CONSTRAINT sicor_rcp_glebas_ref_bacen_fkey
+            FOREIGN KEY(ref_bacen, nu_ordem) REFERENCES sicor_rcp_basico(ref_bacen, nu_ordem)
+                ON UPDATE CASCADE
+                ON DELETE NO ACTION;
+
+
+    .. code-block:: sql
+
+        CREATE INDEX sicor_rcp_glebas_geom_idx ON sicor_rcp_glebas USING GiST(geom);
+
+        CREATE INDEX sicor_rcp_glebas_data_entrega_idx ON sicor_rcp_glebas(data_entrega);
+
+        CREATE INDEX sicor_rcp_glebas_ano_idx ON sicor_rcp_glebas(extract(YEAR FROM data_entrega));
 
 
 As informações das súmulas do julgamento são disponibilizadas no arquivo `SICOR_SUMULA_JULGAMENTO.gz <https://www.bcb.gov.br/htms/sicor/DadosBrutos/SICOR_SUMULA_JULGAMENTO.gz>`__, cuja estrutura é mostrada na :numref:`Tabela %s <tbl:sicor:microdados:sicor_sumula_julgamento_basico>`.

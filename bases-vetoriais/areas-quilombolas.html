@@ -315,15 +315,45 @@ base no mapeamento ou georreferenciamento</p></td>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 4.</strong> Selecionar as glebas (a partir de 2021) que têm interseção com áreas quilombolas.</p>
+</details><p><strong>Consulta 4.</strong> Validar as geometrias das áreas quilombolas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span>
-<span class="w">   </span><span class="k">FROM</span><span class="w">  </span><span class="n">areas_quilombolas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">qui</span><span class="p">,</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gle</span>
-<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span>
-<span class="w">                      </span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">qui</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">),</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="w">                    </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">2020</span>
-<span class="w">   </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">DESC</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">areas_quilombolas</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 5.</strong> Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">areas_quilombolas</span>
+<span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 6.</strong> Selecionar as glebas (a partir de 2021) que possuem intersecção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span>CREATE TABLE glebas_x_qui AS
+
+     SELECT  ROW_NUMBER () OVER () AS gid,
+         gle.gid AS gid_gleba,
+         gle.ref_bacen AS ref_bacen,
+         gle.nu_ordem AS nu_ordem,
+         gle.nu_indice AS nu_indice,
+         qui.cd_quilomb AS gid_qui,
+         ST_Intersection(gle.geom, qui.geom) AS geom
+
+      FROM  sicor_glebas AS gle,
+         areas_quilombolas AS qui
+
+      WHERE ST_INTERSECTS(gle.geom, qui.geom)
+         AND gle.data_emissao_contrato &gt;= TO_DATE(qui.dt_publica,DD-MM-YYYY&#39;)
+         AND extract(YEAR FROM gle.data_emissao_contrato) &gt;= 2020
+
+     ORDER BY gle.data_emissao_contrato, gle.gid, qui.gid;
 </pre></div>
 </div>
 </div></div>
@@ -345,7 +375,7 @@ base no mapeamento ou georreferenciamento</p></td>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fbc28f392e0>
+<jinja2.runtime.BlockReference object at 0x7fe7dccb54c0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
