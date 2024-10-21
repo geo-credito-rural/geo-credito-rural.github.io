@@ -219,7 +219,7 @@ Consultas
                          areas_quilombolas AS qui
 
                       WHERE ST_INTERSECTS(gle.geom, qui.geom)
-                         AND gle.data_emissao_contrato >= TO_DATE(qui.dt_publica,DD-MM-YYYY')
+                         AND gle.data_emissao_contrato >= TO_DATE(qui.dt_publica,'DD-MM-YYYY')
                          AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
                       
                      ORDER BY gle.data_emissao_contrato, gle.gid, qui.gid;
