@@ -139,7 +139,7 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT gid, cd_sipra, nome_proje, data_de_cr, forma_obte, descricao_e, data_de_cr, forma_obte, descricao_ 
+                SELECT gid, cd_sipra, nome_proje, data_de_cr, forma_obte, data_de_cr, forma_obte, descricao_ 
                  FROM assentamentos
                  WHERE nome_proje ilike '%TRQ%'
 
@@ -161,7 +161,7 @@ Consultas
                   WHERE f_table_name = 'assentamentos'   
 
 
-**Consulta 5.** Selecionar as glebas (a partir de 2021) que têm interseção com assentamentos. 
+**Consulta 5.** Validar as geometrias dos assentamentos.
 
 
 .. collapse:: Solução:
@@ -173,10 +173,59 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT extract(YEAR FROM gle.data_emissao_contrato) as ano, gle.gid
-                  FROM  assentamentos AS ass, sicor_glebas AS gle
-                  WHERE ST_INTERSECTS(
-		                      ST_Transform(ass.geom, 4674), gle.geom)
-		                AND extract(YEAR FROM gle.data_emissao_contrato) > 2020
-                  ORDER BY ano, gle.gid DESC
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM assentamentos
+                 WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 6.** Corrigir automaticamente as geometrias dos assentamentos detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                UPDATE assentamentos
+                SET geom = ST_MakeValid(geom)
+                WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem intersecção com assentamentos criados anteriormente à operação de crédito associada à gleba. 
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_ass AS
+
+                     SELECT  ROW_NUMBER () OVER () AS gid,
+                         gle.gid AS gid_gleba,
+                         gle.ref_bacen AS ref_bacen,
+                         gle.nu_ordem AS nu_ordem,
+                         gle.nu_indice AS nu_indice,
+                         ass.gid AS gid_ass,
+                         ST_Intersection(gle.geom, ass.geom) AS geom
+
+                      FROM  sicor_glebas AS gle,
+                            assentamentos AS ass
+
+                      WHERE ST_INTERSECTS(gle.geom, ass.geom)
+                         AND gle.data_emissao_contrato >= TO_DATE(ass.data_de_cr,'DD-MM-YYYY')
+                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+                      
+                     ORDER BY gle.data_emissao_contrato, gle.gid, ass.gid;
+
+
+
 

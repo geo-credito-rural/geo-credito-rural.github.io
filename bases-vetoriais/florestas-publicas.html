@@ -23,6 +23,7 @@
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
         <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -65,7 +66,10 @@
 <li class="toctree-l2"><a class="reference internal" href="assentamentos.html">4.3. Assentamentos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="embargos.html">4.4. Embargos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terras-indigenas.html">4.5. Terras Indígenas</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.6. Florestas Públicas</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.6. Florestas Públicas</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#consultas">4.6.1. Consultas</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="cadastro-ambiental-rural.html">4.7. Cadastro Ambiental Rural (CAR)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="sigef.html">4.8. Sistema de Gestão Fundiária (SIGEF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trabalho-analogo-escravidao.html">4.9. Trabalho Análogo à Escravidão</a></li>
@@ -145,14 +149,17 @@
 <li><p><strong>Delimitação:</strong> Averbação (registro) do perímetro da floresta junto à matricula do imóvel público;</p></li>
 <li><p><strong>Demarcação:</strong> Implantação de marcos topográficos e colocação de placas informativas no campo.</p></li>
 </ul>
-<p>Para este trabalho foram utilizados os dados do arquivo <a class="reference download external" download="" href="https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022"><code class="xref download docutils literal notranslate"><span class="pre">Atualização</span> <span class="pre">2022</span></code></a> e inseridas na tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code>. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-ref">Sumário das tabelas vetoriais</span></a>. A <a class="reference internal" href="#fig-bases-vetoriais-florestas-publicas"><span class="std std-numref">Figura 4.6</span></a> apresenta a espacialização das florestas públicas por destinação.</p>
+<p>Para este trabalho foram utilizados os dados do arquivo <a class="reference download external" download="" href="https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022"><code class="xref download docutils literal notranslate"><span class="pre">CNFP</span> <span class="pre">2022</span> <span class="pre">-</span> <span class="pre">Shapefiles</span></code></a>
+e inseridas na tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code>. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado
+em <a class="reference internal" href="sumario-tabelas-vetoriais.html#sec-bases-vetoriais-sumario"><span class="std std-ref">Sumário das tabelas vetoriais</span></a>. A <a class="reference internal" href="#fig-bases-vetoriais-florestas-publicas"><span class="std std-numref">Figura 4.6</span></a> apresenta a
+espacialização das florestas públicas por destinação.</p>
 <figure class="align-center align-default" id="fig-bases-vetoriais-florestas-publicas">
 <a class="reference internal image-reference" href="../_images/florestas-publicas.png"><img alt="Florestas Públicas por por destinação" src="../_images/florestas-publicas.png" style="width: 80%;" /></a>
 <figcaption>
 <p><span class="caption-number">Figura 4.6 - </span><span class="caption-text">Florestas Públicas por por destinação.</span><a class="headerlink" href="#fig-bases-vetoriais-florestas-publicas" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>A <a class="reference internal" href="#tbl-bases-vetoriais-cnfp-2022"><span class="std std-numref">Tabela 4.9</span></a> apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).</p>
+<p>A <a class="reference internal" href="#tbl-bases-vetoriais-cnfp-2022"><span class="std std-numref">Tabela 4.9</span></a> apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8.</p>
 <table class="styled-table docutils align-center" id="tbl-bases-vetoriais-cnfp-2022">
 <caption><span class="caption-number">Tabela 4.9 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>CNFP_2022.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-cnfp-2022" title="Link Permanente para essa tabela"></a></caption>
 <thead>
@@ -290,6 +297,123 @@
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O conjunto de arquivos <em>Esri Shapefile</em> <a class="reference download external" download="" href="https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022"><code class="xref download docutils literal notranslate"><span class="pre">CNFP</span> <span class="pre">2022</span> <span class="pre">-</span> <span class="pre">Shapefiles</span></code></a>
+encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code> do banco de dados PostgreSQL.</p>
+<p>O sistema de referência espacial original desses arquivos é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS 84 (EPSG:4326).
+No entanto, como a maioria dos dados geográficos do banco de dados estão no sistema de referência espacial SIRGAS 2000 (EPSG:4674), foi feita a reprojeção
+das geometrias das florestas públicas da tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code> para esse sistema de referência espacial. Isso evita ter que fazer a reprojeção
+em todas as consultas espaciais que envolvem os outros dados geográficos.</p>
+</div>
+<section id="consultas">
+<h2><span class="section-number">4.6.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Verificar o sistema de referência espacial das geometrias das florestas públicas da tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code>.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">DISTINCT</span><span class="w"> </span><span class="n">ST_SRID</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">cnfp_2022</span>
+
+<span class="k">SELECT</span><span class="w"> </span><span class="n">srid</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">geometry_columns</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">f_table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;cnfp_2022&#39;</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 2.</strong> Como reprojetar as geometrias das florestas públicas da tabela <code class="docutils literal notranslate"><span class="pre">cnfp_2022</span></code> para SIRGAS 2000 (EPSG:4674).</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">UpdateGeometrySRID</span><span class="p">(</span><span class="s1">&#39;cnfp_2022&#39;</span><span class="p">,</span><span class="s1">&#39;geom&#39;</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">);</span>
+
+<span class="k">UPDATE</span><span class="w"> </span><span class="n">cnfp_2022</span>
+<span class="w">  </span><span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">)</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 3.</strong> Recuperar o número de florestas públicas por classe e tipo de proteção.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">classe</span><span class="p">,</span><span class="w"> </span><span class="n">governo</span><span class="p">,</span><span class="w"> </span><span class="n">protecao</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">cnfp_2022</span>
+<span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">classe</span><span class="p">,</span><span class="w"> </span><span class="n">governo</span><span class="p">,</span><span class="w"> </span><span class="n">protecao</span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">classe</span><span class="p">,</span><span class="w"> </span><span class="n">governo</span><span class="p">,</span><span class="w"> </span><span class="n">protecao</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 4.</strong> Verificar se as geometrias das florestas públicas são válidas.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">cnfp_2022</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>NOTICE:  Ring Self-intersection at or near point -63.2600829616593 -7.4811303018218993
+NOTICE:  Nested shells at or near point -56.84711906639177 -20.919185081126557
+...
+--------------------------
+1127
+(1 row)
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 5.</strong> Corrigir automaticamente as geometrias das florestas públicas detectadas como inválidas.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">cnfp_2022</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 6.</strong> Verificar se existe interseção entre as geometrias de florestas públicas da classe <code class="docutils literal notranslate"><span class="pre">TI</span></code> e as geometrias das terras indígenas da tabela <code class="docutils literal notranslate"><span class="pre">terras_indígenas</span></code></p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">ti</span><span class="p">.</span><span class="n">terrai_cod</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ti_id</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp_id</span><span class="p">,</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">classe</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp_classe</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w">  </span><span class="n">cnfp_2022</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp</span><span class="p">,</span>
+<span class="w">        </span><span class="n">terras_indigenas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ti</span>
+<span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">fp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ti</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">  </span><span class="k">AND</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">classe</span><span class="w"> </span><span class="k">ilike</span><span class="w"> </span><span class="s1">&#39;%TI%&#39;</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 7.</strong> Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das terras indígenas da tabela <code class="docutils literal notranslate"><span class="pre">terras_indígenas</span></code></p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">classe</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp_classe</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">cnfp_2022</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp</span><span class="p">,</span>
+<span class="w">       </span><span class="n">terras_indigenas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ti</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">fp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ti</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">fp_classe</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 8.</strong> Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias dos assentamentos da tabela <code class="docutils literal notranslate"><span class="pre">assentamentos</span></code></p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-8-8-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-8-8-0" name="8-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-8-8-0" class="sphinx-tabs-panel" id="panel-8-8-0" name="8-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">classe</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp_classe</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">cnfp_2022</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp</span><span class="p">,</span>
+<span class="w">       </span><span class="n">assentamentos</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ass</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">fp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">ass</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">fp_classe</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 9.</strong> Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das unidades de conservação da tabela <code class="docutils literal notranslate"><span class="pre">cnuc_2024_02</span></code></p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-9-9-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-9-9-0" name="9-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-9-9-0" class="sphinx-tabs-panel" id="panel-9-9-0" name="9-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">fp</span><span class="p">.</span><span class="n">classe</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp_classe</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="w"> </span><span class="k">FROM</span><span class="w">  </span><span class="n">cnfp_2022</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">fp</span><span class="p">,</span>
+<span class="w">       </span><span class="n">cnuc_2024_02</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">uc</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">fp</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">uc</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">fp_classe</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
 </section>
 
 
@@ -307,7 +431,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8370bd7910>
+<jinja2.runtime.BlockReference object at 0x7fa07fde6c70>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

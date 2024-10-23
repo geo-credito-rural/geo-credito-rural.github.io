@@ -104,7 +104,8 @@ Os limites das unidades de conservação são disponibilizados em diversos forma
     Distribuição das áreas protegidas por categoria no Brasil.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. 
+O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.
@@ -410,7 +411,7 @@ Consultas
 -----
 
 
-**Consulta 5.** Validar as geometrias dos limites das unidades de conservação.
+**Consulta 5.** Verificar se as geometrias das unidades de conservação são válidas.
 
 
 .. collapse:: Solução:
@@ -450,7 +451,7 @@ Consultas
 -----
 
 
-**Consulta 6.** Corrigir automaticamente as geometrias dos limites das unidades de conservação detectadas como inválidas.
+**Consulta 6.** Corrigir automaticamente as geometrias das unidades de conservação detectadas como inválidas.
 
 
 .. collapse:: Solução:
@@ -487,7 +488,49 @@ Consultas
 -----
 
 
-**Consulta 7.** Alterar o tipo de dados da coluna ``cria_ano`` da tabela ``cnuc_2024_02`` para o tipo :sql:`DATE`.
+**Consulta 7.** Existe sobreposição entre as geometrias das unidades de conservação?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE ucs_x_ucs AS
+                   SELECT ROW_NUMBER () OVER () AS gid,
+                          vermelho.gid AS v_gid,
+                          azul.gid AS a_gid,
+                          ST_Intersection(vermelho.geom, azul.geom)
+                     FROM cnuc_2024_02 AS vermelho,
+                          cnuc_2024_02 AS azul
+                    WHERE ST_Overlaps(vermelho.geom, azul.geom)
+                 ORDER BY vermelho.gid, azul.gid;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                SELECT 2120
+
+
+-----
+
+
+**Consulta 8.** Alterar o tipo de dados da coluna ``cria_ano`` da tabela ``cnuc_2024_02`` para o tipo :sql:`DATE`.
 
 
 .. collapse:: Solução:
@@ -523,9 +566,9 @@ Consultas
 -----
 
 
-.. _sec_bases_vetoriais_unidades_conservacao_consulta_8:
+.. _sec_bases_vetoriais_unidades_conservacao_consulta_9:
 
-**Consulta 8.** Selecionar as glebas (a partir de 2021) que possuem intersecção com unidades de conservação criadas anteriormente à operação de crédito associada à gleba.
+**Consulta 9.** Selecionar as glebas (a partir de 2021) que possuem intersecção com unidades de conservação criadas anteriormente à operação de crédito associada à gleba.
 
 
 .. collapse:: Solução:
@@ -542,11 +585,16 @@ Consultas
                 CREATE TABLE glebas_x_ucs AS
 
                      SELECT ROW_NUMBER () OVER () AS gid,
-                            gle.gid AS gid_gleba,
-                            gle.ref_bacen AS ref_bacen,
-                            gle.nu_ordem AS nu_ordem,
-                            gle.nu_indice AS nu_indice,
-                            ucs.gid AS gid_uc,
+                            gle.gid AS gleba_gid,
+                            gle.ref_bacen AS gleba_ref_bacen,
+                            gle.nu_ordem AS gleba_nu_ordem,
+                            gle.nu_indice AS gleba_nu_indice,
+                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                            ucs.gid AS uc_gid,
+                            ucs.nome_uc AS un_nome,
+                            ucs.cria_ano AS uc_ano_criacao,
+                            ucs.grupo AS uc_grupo,
+                            ucs.categoria AS uc_categoria,
                             ST_Intersection(gle.geom, ucs.geom) AS geom
 
                        FROM sicor_glebas AS gle,
@@ -554,7 +602,7 @@ Consultas
 
                       WHERE ST_INTERSECTS(gle.geom, ucs.geom)
                         AND gle.data_emissao_contrato >= ucs.cria_ano
-                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
 
                    ORDER BY gle.data_emissao_contrato, gle.gid, ucs.gid;
 
@@ -564,16 +612,15 @@ Consultas
 
     .. tabs::
 
-
         .. tab:: SQL
 
 
             .. code-block:: text
 
-                SELECT 67485
+                SELECT 59365
 
 
-    A :numref:`Figura %s <fig:bases-vetoriais:glebas_x_ucs>` apresenta em destque as glebas com intersecção na área de proteção ambiental da Ilha do Bananal/Cantão.
+    A :numref:`Figura %s <fig:bases-vetoriais:glebas_x_ucs>` apresenta em destaque as glebas com intersecção na área de proteção ambiental da Ilha do Bananal/Cantão.
 
 
     .. figure:: ../img/bases-vetoriais/glebas_x_ucs.png
@@ -588,7 +635,70 @@ Consultas
 -----
 
 
-**Consulta 9.** Quais os tipos geométricos resultantes da :ref:`Consulta 8 <sec_bases_vetoriais_unidades_conservacao_consulta_8>`?
+.. _sec_bases_vetoriais_unidades_conservacao_consulta_10:
+
+**Consulta 10.** Quais os empreendimentos associados às glebas com intersecção com unidades de conservação da :ref:`Consulta 9 <sec_bases_vetoriais_unidades_conservacao_consulta_9>`?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_empreendimentos_x_ucs AS
+
+                                     SELECT ROW_NUMBER () OVER () AS gid,
+                                            gle.gid AS gleba_gid,
+                                            gle.ref_bacen AS gleba_ref_bacen,
+                                            gle.nu_ordem AS gleba_nu_ordem,
+                                            gle.nu_indice AS gleba_nu_indice,
+                                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                                            empreendimento.produto AS produto,
+                                            ucs.gid AS uc_gid,
+                                            ucs.nome_uc AS un_nome,
+                                            ucs.cria_ano AS uc_ano_criacao,
+                                            ucs.grupo AS uc_grupo,
+                                            ucs.categoria AS uc_categoria,
+                                            ST_Intersection(gle.geom, ucs.geom) AS geom
+
+                                       FROM sicor_glebas AS gle,
+                                            sicor_operacao_basica_estado AS op,
+                                            empreendimento,
+                                            cnuc_2024_02 AS ucs
+
+                                      WHERE gle.ref_bacen = op.ref_bacen
+                                        AND gle.nu_ordem = op.nu_ordem
+                                        AND op.cd_empreendimento = empreendimento.cd_empreendimento
+                                        AND ST_INTERSECTS(gle.geom, ucs.geom)
+                                        AND gle.data_emissao_contrato >= ucs.cria_ano
+                                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
+
+                                   ORDER BY gle.data_emissao_contrato, gle.gid, ucs.gid;
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                SELECT 59365
+
+
+-----
+
+
+**Consulta 11.** Quais os tipos geométricos resultantes das Consultas :ref:`9 <sec_bases_vetoriais_unidades_conservacao_consulta_9>` e :ref:`10 <sec_bases_vetoriais_unidades_conservacao_consulta_10>`?
 
 
 
@@ -634,7 +744,7 @@ Consultas
 -----
 
 
-**Consulta 10.** Quais glebas selecionadas na :ref:`Consulta 8 <sec_bases_vetoriais_unidades_conservacao_consulta_8>` fazem intersecção com mais de uma unidade de conservação?
+**Consulta 12.** Quais glebas selecionadas nas Consultas :ref:`9 <sec_bases_vetoriais_unidades_conservacao_consulta_9>` e :ref:`10 <sec_bases_vetoriais_unidades_conservacao_consulta_10>` fazem intersecção com mais de uma unidade de conservação?
 
 
 .. collapse:: Solução:
@@ -648,12 +758,12 @@ Consultas
 
             .. code-block:: sql
 
-                  SELECT gid_gleba,
+                  SELECT gleba_gid,
                          COUNT(*) AS numero_ucs
 
                     FROM glebas_x_ucs
 
-                GROUP BY gid_gleba
+                GROUP BY gleba_gid
 
                   HAVING COUNT(*) > 1
 

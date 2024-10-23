@@ -141,7 +141,42 @@ Consultas
                   ORDER BY count(*) DESC
 
 
-**Consulta 3.** Recuperar informações sobre as geometrias das áreas quilombolas (nome da coluna, SRID e tipo geométrico).
+**Consulta 3.** Recuperar o número de terras quilombolas reconhecidas por ano, considerando a data de publicação da portaria de reconhecimento.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT  extract(YEAR from TO_DATE(dt_publica, 'DD/MM/YYYY')) AS ano,
+	                    COUNT(*)
+                  FROM areas_quilombolas
+                  GROUP BY ano
+                  ORDER BY ano
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                ERROR:  date/time field value out of range: "2023-11-14" 
+
+
+
+**Consulta 4.** Recuperar informações sobre as geometrias das áreas quilombolas (nome da coluna, SRID e tipo geométrico).
 
 
 .. collapse:: Solução:
@@ -158,7 +193,7 @@ Consultas
                   WHERE f_table_name = 'areas_quilombolas'   
 
 
-**Consulta 4.** Validar as geometrias das áreas quilombolas.
+**Consulta 5.** Validar as geometrias das áreas quilombolas.
 
 
 .. collapse:: Solução:
@@ -175,7 +210,7 @@ Consultas
                  WHERE NOT ST_IsValid(geom);
 
 
-**Consulta 5.** Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.
+**Consulta 6.** Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.
 
 
 .. collapse:: Solução:
@@ -193,7 +228,7 @@ Consultas
 
 
 
-**Consulta 6.** Selecionar as glebas (a partir de 2021) que possuem intersecção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba. 
+**Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem interseção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba. 
 
 
 .. collapse:: Solução:
@@ -220,7 +255,7 @@ Consultas
 
                       WHERE ST_INTERSECTS(gle.geom, qui.geom)
                          AND gle.data_emissao_contrato >= TO_DATE(qui.dt_publica,'DD-MM-YYYY')
-                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
                       
                      ORDER BY gle.data_emissao_contrato, gle.gid, qui.gid;
 

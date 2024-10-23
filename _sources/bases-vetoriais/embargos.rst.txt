@@ -142,11 +142,17 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:emb-icmbio>` apresenta a estrutura do 
     +---------+--------------+-----------------------------+-------------------------------------------------------+
 
 
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `embargos_icmbio.zip` encontra-se carregado na tabela ``embargo_icmbio`` do banco de dados PostgreSQL.
+
+
+
 Consultas
 ---------
 
 
-**Consulta 1.** Recuperar o número de áreas embargadas pelo IBAMA.
+**Consulta 1.** Recuperar o número de áreas embargadas pelo IBAMA por ano.
 
 
 .. collapse:: Solução:
@@ -158,31 +164,113 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT COUNT(*)
-                  FROM embargo_ibama_20240508;
-
-
-**Consulta 2.** Recuperar as áreas embargadas pelo IBAMA após 2020 com todos os campos que possuam geometrias válidas.
-
-
-.. collapse:: Solução:
-
-
-    .. tabs::
-
-        .. tab:: SQL
-
-            .. code-block:: sql
-
-                SELECT *
+                SELECT extract(YEAR from dat_embarg) AS ano, COUNT(*)
                   FROM embargo_ibama_20240508
-                 WHERE extract(YEAR from dat_embarg) >=2020
-                   AND ST_IsValid(geom);
+                  GROUP BY ano
+                  ORDER BY ano
+
+
+**Consulta 2.** Verificar se as geometrias das áreas embargadas pelo IBAMA são válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM embargo_ibama_20240508
+                 WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 3.** Corrigir automaticamente as geometrias das áreas embargadas pelo IBAMA detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE embargo_ibama_20240508
+                   SET geom = ST_MakeValid(geom)
+                 WHERE NOT ST_IsValid(geom);
+
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                NOTICE:  Hole lies outside shell at or near point -48.645404815711245 -27.725463867181254
+                NOTICE:  Hole lies outside shell at or near point -51.103378180516977 -4.2908813465863629
+                NOTICE:  Hole lies outside shell at or near point -69.725527951916888 -8.6380279519168361
+                NOTICE:  Hole lies outside shell at or near point -51.093554286760472 -4.2864789148935873
+                NOTICE:  Hole lies outside shell at or near point -55.104267120399918 -6.6469883919013482
+                NOTICE:  Hole lies outside shell at or near point -55.115767073595926 -6.6650622155581543
+                NOTICE:  Hole lies outside shell at or near point -51.101245880099093 -4.3059239387989434
+                NOTICE:  Hole lies outside shell at or near point -63.737270355188151 -9.1925878524763398
+                UPDATE 8
+
+
+**Consulta 4.** Selecionar as glebas (a partir de 2021) que possuem interseção com áreas embargadas pelo IBAMA e operação de crédito após a data do embargo.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_embargos AS
+
+                     SELECT ROW_NUMBER () OVER () AS gid,
+                            gle.gid AS gleba_gid,
+                            gle.ref_bacen AS gleba_ref_bacen,
+                            gle.nu_ordem AS gleba_nu_ordem,
+                            gle.nu_indice AS gleba_nu_indice,
+                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                            emb.dat_embarg AS emb_dat_embarg,
+                            emb.dat_ult_al AS emb_dat_ult_al,
+                            emb.gid AS emb_gid,
+                            emb.des_locali AS emb_des_locali,
+                            ST_Intersection(gle.geom, emb.geom) AS geom
+
+                       FROM sicor_glebas AS gle,
+                            embargo_ibama_20240508 AS emb
+
+                      WHERE ST_INTERSECTS(gle.geom, emb.geom)
+                        AND gle.data_emissao_contrato >= emb.dat_embarg 
+                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
+
+                   ORDER BY gle.data_emissao_contrato, gle.gid, emb.gid;
 
 
 
-**Consulta 3.** Recuperar os identificadores (*ref_bacen*, *nu_ordem*) e as geometrias das glebas e os identificadores dos embargos com as seguintes restrições: i) glebas a partir de 2020; ii) intersectam os embargos efetuados pelo IBAMA em 2020, exclusivamente; iii) possuam geometrias válidas.
-
+**Consulta 5.** Recuperar os identificadores (*ref_bacen*, *nu_ordem*) das glebas e os identificadores dos embargos com as seguintes restrições: 
+i) glebas que possuem operações de crédito a partir de 2021; ii) intersectam os embargos efetuados pelo IBAMA em 2021, exclusivamente.
 
 .. collapse:: Solução:
 
@@ -193,12 +281,17 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT gle.ref_bacen as ref_bacen, gle.nu_ordem as nu_ordem, 
-                       emb.numero_tad as numero_tad, emb.num_auto_i as num_auto, gle.geom as geom
-                  FROM embargo_ibama_20240508 as emb, sicor_glebas as gle
-                 WHERE ST_INTERSECTS(
-                                  ST_Transform(emb.geom, 4674), gle.geom)
-                   AND extract(YEAR from emb.dat_embarg) = 2020
-                   AND extract(YEAR from gle.data_emissao_contrato) >= 2020
-                   AND ST_IsValid(gle.geom)
-                   AND ST_IsValid(emb.geom);
+                SELECT gle.ref_bacen AS ref_bacen, 
+                       gle.nu_ordem AS nu_ordem, 
+                       gle.data_emissao_contrato AS data_contrato_gleba,
+                       emb.dat_embarg AS data_embargo,
+                       emb.numero_tad AS numero_tad, 
+                       emb.num_auto_i AS num_auto
+                 
+                 FROM embargo_ibama_20240508 AS emb, 
+                      sicor_glebas AS gle
+
+                 WHERE ST_INTERSECTS(emb.geom, gle.geom)
+                   AND extract(YEAR from emb.dat_embarg) = 2021
+                   AND extract(YEAR from gle.data_emissao_contrato) >= 2021
+                 

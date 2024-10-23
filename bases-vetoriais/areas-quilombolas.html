@@ -306,37 +306,54 @@ base no mapeamento ou georreferenciamento</p></td>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 3.</strong> Recuperar informações sobre as geometrias das áreas quilombolas (nome da coluna, SRID e tipo geométrico).</p>
+</details><p><strong>Consulta 3.</strong> Recuperar o número de terras quilombolas reconhecidas por ano, considerando a data de publicação da portaria de reconhecimento.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w">  </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">TO_DATE</span><span class="p">(</span><span class="n">dt_publica</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;DD/MM/YYYY&#39;</span><span class="p">))</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span>
+<span class="w">            </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">areas_quilombolas</span>
+<span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>ERROR:  date/time field value out of range: &quot;2023-11-14&quot;
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 4.</strong> Recuperar informações sobre as geometrias das áreas quilombolas (nome da coluna, SRID e tipo geométrico).</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">geometry_columns</span>
 <span class="w">  </span><span class="k">WHERE</span><span class="w"> </span><span class="n">f_table_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;areas_quilombolas&#39;</span>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 4.</strong> Validar as geometrias das áreas quilombolas.</p>
+</details><p><strong>Consulta 5.</strong> Validar as geometrias das áreas quilombolas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">areas_quilombolas</span>
 <span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 5.</strong> Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.</p>
+</details><p><strong>Consulta 6.</strong> Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">areas_quilombolas</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">areas_quilombolas</span>
 <span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
 <span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 6.</strong> Selecionar as glebas (a partir de 2021) que possuem intersecção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba.</p>
+</details><p><strong>Consulta 7.</strong> Selecionar as glebas (a partir de 2021) que possuem interseção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_qui</span><span class="w"> </span><span class="k">AS</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_qui</span><span class="w"> </span><span class="k">AS</span>
 
 <span class="w">     </span><span class="k">SELECT</span><span class="w">  </span><span class="n">ROW_NUMBER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
 <span class="w">         </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid_gleba</span><span class="p">,</span>
@@ -351,7 +368,7 @@ base no mapeamento ou georreferenciamento</p></td>
 
 <span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">qui</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
 <span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">TO_DATE</span><span class="p">(</span><span class="n">qui</span><span class="p">.</span><span class="n">dt_publica</span><span class="p">,</span><span class="s1">&#39;DD-MM-YYYY&#39;</span><span class="p">)</span>
-<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
+<span class="w">         </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2021</span>
 
 <span class="w">     </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">qui</span><span class="p">.</span><span class="n">gid</span><span class="p">;</span>
 </pre></div>
@@ -375,7 +392,7 @@ base no mapeamento ou georreferenciamento</p></td>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8371426a90>
+<jinja2.runtime.BlockReference object at 0x7fa0800f44c0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

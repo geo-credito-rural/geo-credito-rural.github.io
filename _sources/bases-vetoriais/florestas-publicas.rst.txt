@@ -46,7 +46,10 @@ O cadastramento das florestas públicas segue três etapas:
 - **Demarcação:** Implantação de marcos topográficos e colocação de placas informativas no campo.
 
 
-Para este trabalho foram utilizados os dados do arquivo :download:`Atualização 2022 <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>` e inseridas na tabela ``cnfp_2022``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a espacialização das florestas públicas por destinação.
+Para este trabalho foram utilizados os dados do arquivo :download:`CNFP 2022 - Shapefiles <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>` 
+e inseridas na tabela ``cnfp_2022``. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado 
+em :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. A :numref:`Figura %s <fig:bases-vetoriais:florestas-publicas>` apresenta a 
+espacialização das florestas públicas por destinação.
 
 
 .. figure:: ../img/bases-vetoriais/florestas-publicas.png
@@ -58,8 +61,7 @@ Para este trabalho foram utilizados os dados do arquivo :download:`Atualização
     Florestas Públicas por por destinação.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
-
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `CNFP_2022.zip`.
     :align: center
@@ -120,6 +122,224 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | path         | varchar(254)                |  Endereço do polígono no computador                   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
+
+
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* :download:`CNFP 2022 - Shapefiles <https://www.gov.br/florestal/pt-br/assuntos/cadastro-nacional-de-florestas-publicas/cadastro-nacional-de-florestas-publicas-atualizacao-2022/cnfp-2022>` 
+    encontra-se carregado na tabela ``cnfp_2022`` do banco de dados PostgreSQL.
+
+
+    O sistema de referência espacial original desses arquivos é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS 84 (EPSG:4326).
+    No entanto, como a maioria dos dados geográficos do banco de dados estão no sistema de referência espacial SIRGAS 2000 (EPSG:4674), foi feita a reprojeção 
+    das geometrias das florestas públicas da tabela ``cnfp_2022`` para esse sistema de referência espacial. Isso evita ter que fazer a reprojeção 
+    em todas as consultas espaciais que envolvem os outros dados geográficos. 
+
+
+Consultas
+---------
+
+**Consulta 1.** Verificar o sistema de referência espacial das geometrias das florestas públicas da tabela ``cnfp_2022``.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT DISTINCT ST_SRID(geom) 
+                   FROM cnfp_2022
+
+                  SELECT srid 
+                   FROM geometry_columns 
+                   WHERE f_table_name = 'cnfp_2022'
+
+
+**Consulta 2.** Como reprojetar as geometrias das florestas públicas da tabela ``cnfp_2022`` para SIRGAS 2000 (EPSG:4674).
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT UpdateGeometrySRID('cnfp_2022','geom', 4674);
+
+                  UPDATE cnfp_2022 
+                    SET geom = ST_Transform(geom, 4674)
+
+
+**Consulta 3.** Recuperar o número de florestas públicas por classe e tipo de proteção.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT classe, governo, protecao, COUNT(*)
+                    FROM cnfp_2022
+                    GROUP BY classe, governo, protecao
+                    ORDER BY classe, governo, protecao
+
+
+**Consulta 4.** Verificar se as geometrias das florestas públicas são válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM cnfp_2022
+                 WHERE NOT ST_IsValid(geom);
+
+.. collapse:: Resultado:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: text
+
+                NOTICE:  Ring Self-intersection at or near point -63.2600829616593 -7.4811303018218993
+                NOTICE:  Nested shells at or near point -56.84711906639177 -20.919185081126557
+                ...
+                --------------------------
+                1127
+                (1 row)
+
+
+**Consulta 5.** Corrigir automaticamente as geometrias das florestas públicas detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE cnfp_2022
+                   SET geom = ST_MakeValid(geom)
+                 WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 6.** Verificar se existe interseção entre as geometrias de florestas públicas da classe ``TI`` e as geometrias das terras indígenas da tabela ``terras_indígenas``
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT ti.terrai_cod AS ti_id, fp.gid AS fp_id, fp.classe AS fp_classe
+                    FROM  cnfp_2022 AS fp, 
+                          terras_indigenas AS ti
+                    WHERE ST_INTERSECTS(fp.geom, ti.geom) 
+                    AND fp.classe ilike '%TI%'
+
+
+**Consulta 7.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das terras indígenas da tabela ``terras_indígenas``
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT fp.classe AS fp_classe, COUNT(*)
+                   FROM  cnfp_2022 AS fp, 
+                         terras_indigenas AS ti
+                   WHERE ST_INTERSECTS(fp.geom, ti.geom) 
+                   GROUP BY fp_classe
+
+                  
+**Consulta 8.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias dos assentamentos da tabela ``assentamentos``
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT fp.classe AS fp_classe, COUNT(*)
+                   FROM  cnfp_2022 AS fp, 
+                         assentamentos AS ass
+                   WHERE ST_INTERSECTS(fp.geom, ass.geom) 
+                   GROUP BY fp_classe
+
+
+**Consulta 9.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das unidades de conservação da tabela ``cnuc_2024_02``
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT fp.classe AS fp_classe, COUNT(*)
+                   FROM  cnfp_2022 AS fp, 
+                         cnuc_2024_02 AS uc
+                   WHERE ST_INTERSECTS(fp.geom, uc.geom) 
+                   GROUP BY fp_classe
+
 
 
 

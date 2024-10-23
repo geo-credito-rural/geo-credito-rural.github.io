@@ -351,38 +351,99 @@ embargada (somente os números)</p></td>
 </tr>
 </tbody>
 </table>
+<div class="admonition note">
+<p class="admonition-title">Nota</p>
+<p>O conjunto de arquivos <em>Esri Shapefile</em> <cite>embargos_icmbio.zip</cite> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">embargo_icmbio</span></code> do banco de dados PostgreSQL.</p>
+</div>
 <section id="consultas">
 <h2><span class="section-number">4.4.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
-<p><strong>Consulta 1.</strong> Recuperar o número de áreas embargadas pelo IBAMA.</p>
+<p><strong>Consulta 1.</strong> Recuperar o número de áreas embargadas pelo IBAMA por ano.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span><span class="p">;</span>
-</pre></div>
-</div>
-</div></div>
-</details><p><strong>Consulta 2.</strong> Recuperar as áreas embargadas pelo IBAMA após 2020 com todos os campos que possuam geometrias válidas.</p>
-<details class="summary-solucao">
-<summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dat_embarg</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
 <span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">dat_embarg</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="mi">2020</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+<span class="w">  </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
+<span class="w">  </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">ano</span>
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 3.</strong> Recuperar os identificadores (<em>ref_bacen</em>, <em>nu_ordem</em>) e as geometrias das glebas e os identificadores dos embargos com as seguintes restrições: i) glebas a partir de 2020; ii) intersectam os embargos efetuados pelo IBAMA em 2020, exclusivamente; iii) possuam geometrias válidas.</p>
+</details><p><strong>Consulta 2.</strong> Verificar se as geometrias das áreas embargadas pelo IBAMA são válidas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
-<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
-<span class="w">       </span><span class="n">emb</span><span class="p">.</span><span class="n">numero_tad</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">numero_tad</span><span class="p">,</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">num_auto_i</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">num_auto</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">geom</span>
-<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">emb</span><span class="p">,</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">gle</span>
-<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span>
-<span class="w">                  </span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">emb</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">4674</span><span class="p">),</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_embarg</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2020</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2020</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
-<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">emb</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 3.</strong> Corrigir automaticamente as geometrias das áreas embargadas pelo IBAMA detectadas como inválidas.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span>
+<span class="w">   </span><span class="k">SET</span><span class="w"> </span><span class="n">geom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">ST_MakeValid</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><details class="summary-resultado">
+<summary>Resultado:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-text notranslate"><div class="highlight"><pre><span></span>NOTICE:  Hole lies outside shell at or near point -48.645404815711245 -27.725463867181254
+NOTICE:  Hole lies outside shell at or near point -51.103378180516977 -4.2908813465863629
+NOTICE:  Hole lies outside shell at or near point -69.725527951916888 -8.6380279519168361
+NOTICE:  Hole lies outside shell at or near point -51.093554286760472 -4.2864789148935873
+NOTICE:  Hole lies outside shell at or near point -55.104267120399918 -6.6469883919013482
+NOTICE:  Hole lies outside shell at or near point -55.115767073595926 -6.6650622155581543
+NOTICE:  Hole lies outside shell at or near point -51.101245880099093 -4.3059239387989434
+NOTICE:  Hole lies outside shell at or near point -63.737270355188151 -9.1925878524763398
+UPDATE 8
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 4.</strong> Selecionar as glebas (a partir de 2021) que possuem interseção com áreas embargadas pelo IBAMA e operação de crédito após a data do embargo.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_embargos</span><span class="w"> </span><span class="k">AS</span>
+
+<span class="w">     </span><span class="k">SELECT</span><span class="w"> </span><span class="n">ROW_NUMBER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="n">OVER</span><span class="w"> </span><span class="p">()</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba_gid</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba_ref_bacen</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba_nu_ordem</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_indice</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba_nu_indice</span><span class="p">,</span>
+<span class="w">            </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gleba_data_emissao_contrato</span><span class="p">,</span>
+<span class="w">            </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_embarg</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb_dat_embarg</span><span class="p">,</span>
+<span class="w">            </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_ult_al</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb_dat_ult_al</span><span class="p">,</span>
+<span class="w">            </span><span class="n">emb</span><span class="p">.</span><span class="n">gid</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb_gid</span><span class="p">,</span>
+<span class="w">            </span><span class="n">emb</span><span class="p">.</span><span class="n">des_locali</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb_des_locali</span><span class="p">,</span>
+<span class="w">            </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+
+<span class="w">       </span><span class="k">FROM</span><span class="w"> </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gle</span><span class="p">,</span>
+<span class="w">            </span><span class="n">embargo_ibama_20240508</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb</span>
+
+<span class="w">      </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_embarg</span>
+<span class="w">        </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2021</span>
+
+<span class="w">   </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">gid</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details><p><strong>Consulta 5.</strong> Recuperar os identificadores (<em>ref_bacen</em>, <em>nu_ordem</em>) das glebas e os identificadores dos embargos com as seguintes restrições:
+i) glebas que possuem operações de crédito a partir de 2021; ii) intersectam os embargos efetuados pelo IBAMA em 2021, exclusivamente.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">ref_bacen</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">ref_bacen</span><span class="p">,</span>
+<span class="w">       </span><span class="n">gle</span><span class="p">.</span><span class="n">nu_ordem</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">nu_ordem</span><span class="p">,</span>
+<span class="w">       </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">data_contrato_gleba</span><span class="p">,</span>
+<span class="w">       </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_embarg</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">data_embargo</span><span class="p">,</span>
+<span class="w">       </span><span class="n">emb</span><span class="p">.</span><span class="n">numero_tad</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">numero_tad</span><span class="p">,</span>
+<span class="w">       </span><span class="n">emb</span><span class="p">.</span><span class="n">num_auto_i</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_auto</span>
+
+<span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">embargo_ibama_20240508</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">emb</span><span class="p">,</span>
+<span class="w">      </span><span class="n">sicor_glebas</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">gle</span>
+
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_INTERSECTS</span><span class="p">(</span><span class="n">emb</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">emb</span><span class="p">.</span><span class="n">dat_embarg</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2021</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">gle</span><span class="p">.</span><span class="n">data_emissao_contrato</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">2021</span>
 </pre></div>
 </div>
 </div></div>
@@ -404,7 +465,7 @@ embargada (somente os números)</p></td>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8371180430>
+<jinja2.runtime.BlockReference object at 0x7fa07f7754c0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

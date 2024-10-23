@@ -14,13 +14,21 @@ Sumário das tabelas vetoriais
     :name: tbl:bases-vetoriais:sumariotabelas
 
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    |     tabela                           | coluna geom | SRID | tipo geom    | num geom   |  descrição                                                               |
+    |     Tabela                           | Coluna geom | SRID | Tipo geom    | Num geom   |  Descrição                                                               |
     +======================================+=============+======+==============+============+==========================================================================+
-    | areas_quilombolas                    | geom        | 4674 | MULTIPOLYGON | 390        | :ref:`Áreas quilombolas <sec_bases_vetoriais_areas_quilombolas>`         |
+    | cnuc_2024_02                         | geom        | 4674 | MULTIPOLYGON | 2.742      | :ref:`Unidades de Conservação <sec_bases_vetoriais_unidades_conservacao>`|
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | assentamentos                        | geom        | 4326 | MULTIPOLYGON | 7.481      | :ref:`Assentamentos <sec_bases_vetoriais_assentamentos>`                 |
+    | areas_quilombolas                    | geom        | 4674 | MULTIPOLYGON | 407        | :ref:`Áreas Quilombolas <sec_bases_vetoriais_areas_quilombolas>`         |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | terras_indigenas                     | geom        | 4326 | MULTIPOLYGON | 634        | :ref:`Terras indígenas <sec_bases_vetoriais_terras_indigenas>`           |
+    | assentamentos                        | geom        | 4674 | MULTIPOLYGON | 8.224      | :ref:`Assentamentos <sec_bases_vetoriais_assentamentos>`                 |
+    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
+    | embargo_ibama_20240508               | geom        | 4674 | MULTIPOLYGON | 82.144     | :ref:`Embargos <sec_bases_vetoriais_embargos>`                           |
+    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
+    | embargos_icmbio                      | geom        | 4674 | MULTIPOLYGON | 12.175     | :ref:`Embargos <sec_bases_vetoriais_embargos>`                           |
+    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
+    | terras_indigenas                     | geom        | 4674 | MULTIPOLYGON | 637        | :ref:`Terras Indígenas <sec_bases_vetoriais_terras_indigenas>`           |
+    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
+    | cnfp_2022                            | geom        | 4674 | MULTIPOLYGON | 16.212     | :ref:`Florestas Públicas <sec_bases_vetoriais_florestas_publicas>`       |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
     | car_app_sc                           | geom        | 4674 | MULTIPOLYGON | 2.037.494  | :ref:`Cadastro Ambiental Rural <sec_bases_vetoriais_car>`                |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
@@ -76,17 +84,9 @@ Sumário das tabelas vetoriais
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
     | car_vegetacao_nativa_rs              | geom        | 4674 | MULTIPOLYGON | 469.463    | :ref:`Cadastro Ambiental Rural <sec_bases_vetoriais_car>`                |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | cnfp_2022                            | geom        | 4674 | MULTIPOLYGON | 16.212     | :ref:`Florestas Públicas <sec_bases_vetoriais_florestas_publicas>`       |
+    | imovel_certif_snci                   | geom        | 4674 | MULTIPOLYGON | 56.177     | :ref:`Sistema de Gestão Fundiária (SIGEF) <sec_bases_vetoriais_sigef>`   |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | cnuc_2024_02                         | geom        | 4674 | MULTIPOLYGON | 2.742      | :ref:`Unidades de Conservação <sec_bases_vetoriais_unidades_conservacao>`|
-    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | embargo_ibama_20240508               | geom        | 4674 | MULTIPOLYGON | 86.494     | :ref:`Embargos <sec_bases_vetoriais_embargos>`                           |
-    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | embargos_icmbio                      | geom        | 4674 | MULTIPOLYGON | 12.175     | :ref:`Embargos <sec_bases_vetoriais_embargos>`                           |
-    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | imovel_certif_snci                   | geom        | 4674 | MULTIPOLYGON | 56.858     | :ref:`Sistema de Gestão Fundiária (SIGEF) <sec_bases_vetoriais_sigef>`   |
-    +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
-    | sigef                                | geom        | 4674 | MULTIPOLYGON | 1.192.784  | :ref:`Sistema de Gestão Fundiária (SIGEF) <sec_bases_vetoriais_sigef>`   |
+    | sigef                                | geom        | 4674 | MULTIPOLYGON | 1.290.129  | :ref:`Sistema de Gestão Fundiária (SIGEF) <sec_bases_vetoriais_sigef>`   |
     +--------------------------------------+-------------+------+--------------+------------+--------------------------------------------------------------------------+
     
 

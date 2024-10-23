@@ -51,7 +51,209 @@ Com base nestes termos, o Manual de Combate ao Trabalho em Condições Análogas
 
 De tal maneira que a ausência de liberdade e de dignidade fazem o trabalhador escravo. Por isso, a eliminação das formas modernas de escravidão continua sendo uma prioridade no Brasil e o `Ministério do Trabalho e do Emprego <https://www.gov.br/trabalho-e-emprego/pt-br>`__ tem como um dos objetivos erradicar o trabalho escravo e degradante, por meio de ações fiscais coordenadas pela Secretaria de Inspeção do Trabalho. Essas ações são executadas por auditores–fiscais do trabalho do Ministério do Trabalho e Emprego (MTE), que podem contar com a participação de integrantes da Defensoria Pública da União (DPU), Ministério Público Federal (MPF), Ministério Público do Trabalho (MPT), da Polícia Federal (PF), Polícia Rodoviária Federal (PRF), entre outras forças policiais. A Inspeção do Trabalho visa regularizar os vínculos empregatícios dos trabalhadores encontrados e demais consectários e libertá-los da condição de escravidão :cite:`brasil:2024:i`. Caso seja observada a ocorrência trabalho em condição análoga à de escravo, os empregadores são incluídos em uma lista, conforme `Portaria Interministerial MTPS/MMIRDH nº 4 de 11, de maio de 2016 <https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/legislacao/portarias-1/portarias-vigentes-3/PDFPortariaInterministerialMPTSMDHn4de11demaiode2016compilada.pdf>`__ :cite:`brasil:2024:j` na forma dos sucessivos atos normativos que o regulamentaram desde então. A inclusão de pessoas físicas ou jurídicas no Cadastro de Empregadores ocorre somente após a conclusão do processo administrativo que julga o auto específico de trabalho análogo à escravidão, resultando em uma decisão administrativa irrecorrível de procedência. Importante destacar que, mesmo após a inserção no Cadastro, conforme estipulado pelo artigo 3º da Portaria Interministerial que o regulamenta, o nome de cada empregador permanecerá publicado por um período de dois anos :cite:`brasil:2024:i`. 
 
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:trabalho-analogo>` apresenta a estrutura do conjunto de dados do arquivo do Cadastro de Empregadores que tenham submetido trabalhadores a condições análogas à de escravo no banco de dados PostgreSQL. Essa tabela não tem informações da localização espacial de onde ocorreram as ações de combate ao trabalho análogo ao escra 
+
+
+.. table:: Estrutura do arquivo `cadastro_de_empregadores.csv` após a importação para o banco de dados.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:trabalho-analogo
+
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | nome                    | tipo                        | descrição                                             |
+    +=========+=========================+=============================+=======================================================+
+    | **PK**  | id                      | integer                     |  Identificador                                        |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | ano_acao_fiscal         | integer                     |  Ano que ocorreu a ação de fiscalização               |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | uf                      | varchar(2)                  |  Unidada da Federação                                 |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | empregador              | text                        |  Nome do empregador                                   |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | cnpj_cpf                | text                        |  CNPJ ou CPF do empregador                            |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | estabelecimento         | text                        |  Nome do estabelecimento                              |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | numero_trabalhadores    | integer                     |  Quantidade de trabalhadores                          |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | cnae                    | text                        |  Classificação Nacional das Atividades Econômicas     |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | data_decisao_adm        | date                        |  Data da decisão administrativa                       |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+    |         | data_inclusao_cad       | text                        |  Data da inclusão no cadastro                         |
+    +---------+-------------------------+-----------------------------+-------------------------------------------------------+
+
+
 .. note::
 
     O arquivo :download:`cadastro_de_empregadores.csv <https://www.gov.br/trabalho-e-emprego/pt-br/assuntos/inspecao-do-trabalho/areas-de-atuacao/cadastro_de_empregadores.csv>` encontra-se carregado na tabela ``cadastro-empregadores`` do banco de dados PostgreSQL.
+
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Verificar como está cadastrado o CNPJ ou o CPF na tabela ``cadastro-empregadores``.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                  SELECT cnpj_cpf, length(cnpj_cpf)
+                    FROM cadastro_empregadores 
+                ORDER BY cnpj_cpf;
+
+
+A consulta acima retornou os identificadores (CNPJ ou o CPF) e o número de caracteres de cada um deles 
+
+
+-----
+
+
+**Consulta 2.** As tabelas ``sicor_propriedades``, ``sicor_mutuarios``, ``sicor_lista_cooperados``, ``sicor_complemento_rcp`` e ``sicor_complemento_cop`` também possuem os dados de CNPJ ou CPF cdastrados e podemos utilizá-las para fazer a verificação. Entretanto, para isso, é necessário verificar como estão os dados desses identificadores nessas tabelas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            Nesse exemplo iremos utilizar a tabela ``sicor_propriedades`` para verificar a formatação e o número de caracteres desse campo
+
+            .. code-block:: sql
+
+                SELECT cd_cnpj_cpf
+                  FROM sicor_propriedades 
+                 LIMIT 100;
+
+
+            .. code-block:: sql
+
+                SELECT DISTINCT(length(cd_cnpj_cpf))
+                  FROM sicor_propriedades;
+
+
+            No exemplo abaixo iremos utilizar a tabela ``sicor_complemento_cop`` para verificar a formatação e o número de caracteres desse campo
+
+            
+            .. code-block:: sql
+
+                SELECT DISTINCT cd_cpf_perito 
+                  FROM sicor_complemento_cop 
+                 LIMIT 10;
+
+
+            .. code-block:: sql
+
+                SELECT DISTINCT(length(cd_cpf_perito))
+                  FROM sicor_complemento_cop;
+
+
+
+Como pode ser observado, os identificadores (CNPJ ou o CPF) estão cadastrados de maneira diferente no SICOR e para fazermos as consultas, eles precisam estar com o mesmo tipo de dados e com a mesma formatação. Para isso, precisamos converter os dados da tabela ``cadastro-empregadores`` para o mesmo formato utilizado pelo SICOR.
+
+
+-----
+
+
+**Consulta 3.** Convertendo o cnpj_cpf da tabela ``cadastro-empregadores`` para o mesmo formato utilizado pelo SICOR.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            .. code-block:: sql
+
+                CREATE TABLE cad_emp_tratado AS
+                SELECT replace(replace(replace(cnpj_cpf, '.', ''), '-', ''), '/', '') As cnpj_cpf_tratado,
+                       cadastro_empregadores.*
+                FROM cadastro_empregadores;
+
+
+-----
+
+
+**Consulta 4.** Agora podemos relacionar o cnpj_cpf da tabela ``cad_emp_tratado`` com os dados do SICOR, iniciando pela tabela ``sicor_mutuarios``.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            .. code-block:: sql
+
+                SELECT COUNT(*)
+                FROM sicor_mutuarios,
+                    cad_emp_tratado
+                WHERE sicor_mutuarios.cd_cpf_cnpj = cad_emp_tratado.cnpj_cpf_tratado;
+
+
+Entretanto, essa consulta não leva em conta a data da publicação da lista do Cadastro de Empregadores que tenham submetido trabalhadores a condições análogas à de escravo. 
+
+
+-----
+
+
+**Consulta 4.** Agora podemos relacionar o cnpj_cpf da tabela ``cad_emp_tratado`` com os dados do SICOR, iniciando pela tabela ``sicor_mutuarios``.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            Mas o formato que temos do campo com as datas ``data_inclusao_cad`` é do tipo texto e temos que criar uma coluna para armazenar esses dados no formato de data 
+
+
+            .. code-block:: sql
+
+                 ALTER TABLE cad_emp_tratado
+                   ADD data_inicial DATE;
+
+
+                UPDATE cad_emp_tratado
+                   SET data_inicial =(
+                SELECT TO_DATE(left(cadastro_empregadores.data_inclusao_cad, 10),'DD/MM/YYYY')
+                  FROM cadastro_empregadores
+                 WHERE cadastro_empregadores.id =  cad_emp_tratado.id )
+
+
+            Após essa conversão, podemos cruzar os mutuários do SICOR com o ``cadastro_empregadores`` 
+
+
+            .. code-block:: sql
+
+                SELECT op.ref_bacen, op.nu_ordem, op.dt_emissao,
+                        data_inclusao_cad
+                    FROM sicor_mutuarios,
+                        sicor_operacao_basica_estado AS op,
+                        cad_emp_tratado
+                WHERE sicor_mutuarios.ref_bacen = op.ref_bacen
+                    AND sicor_mutuarios.cd_cpf_cnpj = cad_emp_tratado.cnpj_cpf_tratado
+                    AND op.dt_emissao >= data_inicial 
+                ORDER BY dt_emissao DESC;
 

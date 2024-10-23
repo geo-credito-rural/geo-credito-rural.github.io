@@ -45,3 +45,202 @@ Neste trabalho foram obtidos os dados do CAR para os estados do Paraná, Rio Gra
     :name: fig:bases-vetoriais:car
 
     Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina.
+
+
+Consultas
+---------
+
+
+**Consulta 1.** Verificar como está a topologia dos dados do *CAR*.
+
+
+.. collapse:: Solução:
+
+
+    Para agilizar o processamento, inicialmente iremos obter os dados do *CAR* apenas para um município selecionado
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                CREATE TABLE car_area_imovel_sl AS
+                SELECT car_area_imovel_pr.*
+                  FROM car_area_imovel_pr,
+                       municipios_2022
+                 WHERE ST_Within(car_area_imovel_pr.geom, municipios_2022.geom)
+                   AND municipios_2022.cd_mun = 4123824;
+
+
+                ALTER TABLE car_area_imovel_sl ADD CONSTRAINT car_area_imovel_sl_pkey PRIMARY KEY (id);
+
+                CREATE INDEX car_area_imovel_sl_geom_idx ON car_area_imovel_sl USING GiST(geom);
+
+
+        A consulta acima criou a tabela ``car_area_imovel_sl`` contendo os polígonos do *CAR* contendo os limites das áreas de imóveis do município de Santa Lúcia no Paraná. Vamos repetir a consulta para as demais tabelas do *CAR*, iniciando pela tabela que contém as APPs (``car_app_pr``).
+
+
+            .. code-block:: sql
+
+                CREATE TABLE car_app_pr_sl AS
+                SELECT car_app_pr.*
+                  FROM car_app_pr,
+                       municipios_2022
+                 WHERE ST_Within(car_app_pr.geom, municipios_2022.geom)
+                   AND municipios_2022.cd_mun = 4123824;
+
+
+                ALTER TABLE car_app_pr_sl ADD CONSTRAINT car_app_pr_sl_pkey PRIMARY KEY (id);
+
+                CREATE INDEX car_app_pr_sl_geom_idx ON car_app_pr_sl USING GiST(geom);
+
+
+        Vamos obter também as áreas de reserva legal da tabela ``car_reserva_legal_pr``.
+
+
+            .. code-block:: sql
+
+                CREATE TABLE car_reserva_legal_pr_sl AS
+                SELECT car_reserva_legal_pr.*
+                  FROM car_reserva_legal_pr,
+                       municipios_2022
+                 WHERE ST_Within(car_reserva_legal_pr.geom, municipios_2022.geom)
+                   AND municipios_2022.cd_mun = 4123824;
+
+
+                ALTER TABLE car_reserva_legal_pr_sl ADD CONSTRAINT car_reserva_legal_pr_sl_pkey PRIMARY KEY (id);
+
+                CREATE INDEX car_reserva_legal_pr_sl_geom_idx ON car_reserva_legal_pr_sl USING GiST(geom);
+
+
+        E incluir também as áreas de vegetação nativa da tabela ``car_vegetacao_nativa_pr``.
+
+
+            .. code-block:: sql
+
+                CREATE TABLE car_vegetacao_nativa_pr_sl AS
+                SELECT car_vegetacao_nativa_pr.*
+                  FROM car_vegetacao_nativa_pr,
+                       municipios_2022
+                 WHERE ST_Within(car_vegetacao_nativa_pr.geom, municipios_2022.geom)
+                   AND municipios_2022.cd_mun = 4123824;
+
+
+                ALTER TABLE car_vegetacao_nativa_pr_sl ADD CONSTRAINT car_vegetacao_nativa_pr_pkey PRIMARY KEY (id);
+
+                CREATE INDEX car_vegetacao_nativa_pr_sl_geom_idx ON car_vegetacao_nativa_pr_sl USING GiST(geom);
+
+
+        Como visto na anteriormente em :ref:`Verificação Topológica das Geometrias das Glebas <sec_sicor_microdados_glebas_topologia>`, vamos testar e verificar se existem erros topológicos nesses dados.
+
+
+            .. code-block:: sql
+
+                SELECT id
+                  FROM car_area_imovel_sl
+                 WHERE NOT ST_IsValid(geom);
+
+
+            .. code-block:: sql
+
+                SELECT id
+                  FROM car_app_pr_sl
+                 WHERE NOT ST_IsValid(geom);
+        
+
+            .. code-block:: sql
+
+                SELECT id
+                  FROM car_reserva_legal_pr_sl
+                 WHERE NOT ST_IsValid(geom);
+
+
+         .. code-block:: sql
+
+                SELECT id
+                  FROM car_vegetacao_nativa_pr
+                 WHERE NOT ST_IsValid(geom);
+
+
+-----
+
+
+**Consulta 2.** Existem sobreposições entre as glebas e as áreas de APPs nesse município?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_area_estudo_x_car_app_pr_sl AS
+                SELECT glebas.gid,
+                       car_app_pr_sl.id,
+                       ST_Area(ST_Transform(glebas.geom, 100000)) / 10000.0 AS area_gleba,
+                       ST_Area(ST_Transform(car_app_pr_sl.geom, 100000))  / 10000.0 AS area_app,
+                       ST_Area(ST_Transform(ST_Intersection(glebas.geom, car_app_pr_sl.geom), 100000)) / 10000.0 AS area_interseccao,
+                       ST_Intersection(glebas.geom, car_app_pr_sl.geom) AS geom
+                  FROM glebas_area_estudo AS glebas,
+                            car_app_pr_sl
+                 WHERE ST_Intersects(glebas.geom, car_app_pr_sl.geom);
+
+
+-----
+
+
+**Consulta 3.** Das glebas que possuem intersecção com as APPs do CAR quais delas possuem mais de 10% da área com algum tipo de intersecção?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+            
+
+            Primeiro, devemos unir as várias partes de uma mesma gleba que podem ter sido geradas na criação da tabela `glebas_area_estudo_x_car_app_pr_sl``. A consulta base para união é mostrada abaixo:
+
+
+            .. code-block:: sql
+
+                  SELECT gid, ST_Union(geom) AS geom_intersecao
+                    FROM glebas_area_estudo_x_car_app_pr_sl
+                GROUP BY gid;
+
+
+            Agora, podemos incluir a consulta acima como uma subconsulta para realização dos cálculos
+
+
+            .. code-block:: sql
+
+                  SELECT gid, ST_Area(ST_Transform(geom_intersecao, 100000))/10000.0 AS area_interseccao, area_gleba 
+                    FROM (
+                            SELECT gid, MAX(area_gleba) AS area_gleba,
+                          	       ST_Union(geom) AS geom_intersecao
+                              FROM glebas_area_estudo_x_car_app_pr_sl
+                          GROUP BY gid
+                          )
+                     WHERE ( ST_Area(ST_Transform(geom_intersecao, 100000)) / 10000.0) / area_gleba >= 0.1
+                  ORDER BY gid ASC, area_interseccao DESC;
+
+
+            Observem que os resultados dessa consulta diferem dos resultados da consulta abaixo
+
+
+            .. code-block:: sql
+
+
+                      SELECT gid, Sum(area_interseccao) AS area_interseccao
+					    FROM glebas_area_estudo_x_car_app_pr_sl
+                       WHERE area_interseccao / area_gleba >= 0.1 
+				    GROUP BY gid;
+ 
+

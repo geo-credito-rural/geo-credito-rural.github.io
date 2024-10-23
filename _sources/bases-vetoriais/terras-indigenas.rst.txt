@@ -118,7 +118,24 @@ Consultas
                   ORDER BY count(*) DESC
 
 
-**Consulta 3.** Recuperar informações sobre as geometrias das terras indígenas (nome da coluna, SRID e tipo geométrico).
+**Consulta 3.** Recuperar as fases e modalidades das terras indígenas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+        .. tab:: SQL
+
+            .. code-block:: sql
+
+                SELECT DISTINCT fase_ti, modalidade 
+                   FROM terras_indigenas
+
+
+
+**Consulta 4.** Recuperar informações sobre as geometrias das terras indígenas (nome da coluna, SRID e tipo geométrico).
 
 
 .. collapse:: Solução:
@@ -135,7 +152,47 @@ Consultas
                   WHERE f_table_name = 'terras_indigenas'   
 
 
-**Consulta 4.** Selecionar as glebas (a partir de 2021) que têm interseção com terras indígenas. 
+**Consulta 5.** Verificar se as geometrias das terras indígenas são válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM terras_indigenas
+                 WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 6.** Recuperar quantas atualizações ocorreram nas terras indígenas por ano.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT  extract(YEAR from TO_DATE(data_atual, 'DD-MM-YYYY')) AS ano,
+	                    COUNT(*)
+                  FROM terras_indigenas
+                  GROUP BY ano
+                  ORDER BY ano
+
+
+**Consulta 7.** Selecionar as glebas (a partir de 2021) que têm interseção com terras indígenas na fase ``Regularizada``
 
 
 .. collapse:: Solução:
@@ -147,10 +204,26 @@ Consultas
 
             .. code-block:: sql
 
-                SELECT gle.ano, gle.gid
-                  FROM  terras_indigenas as ti, sicor_glebas as gle
-                  WHERE ST_INTERSECTS(
-		              ST_Transform(ti.geom, 4674), gle.geom)
-		              AND ano > 2020
-                  ORDER BY gle.ano, gle.gid DESC
+                CREATE TABLE glebas_x_ti AS
+
+                     SELECT ROW_NUMBER () OVER () AS gid,
+                            gle.gid AS gleba_gid,
+                            gle.ref_bacen AS gleba_ref_bacen,
+                            gle.nu_ordem AS gleba_nu_ordem,
+                            gle.nu_indice AS gleba_nu_indice,
+                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                            ti.gid AS ti_gid,
+                            ti.terrai_cod AS ti_terrai_cod,
+                            ti.terrai_nom AS ti_terrai_nom,
+                            ti.data_atual AS ti_data_atual,
+                            ST_Intersection(gle.geom, ti.geom) AS geom
+
+                       FROM sicor_glebas AS gle,
+                            terras_indigenas AS ti
+
+                      WHERE ST_INTERSECTS(gle.geom, ti.geom)
+                        AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
+                        AND ti.fase_ti = 'Regularizada'
+
+                   ORDER BY gle.data_emissao_contrato, gle.gid, ti.gid;
 

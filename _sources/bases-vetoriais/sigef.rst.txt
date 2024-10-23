@@ -46,7 +46,9 @@ O Instituto Nacional de Colonização e Reforma Agrária (INCRA), por força da 
     +-------------------+-------------------------------------------------+---------------------------------------------------+
 
 
-Por meio do SIGEF é realizada a recepção, validação, organização, regularização e disponibilização das informações georreferenciadas de limites de imóveis rurais, públicos e privados :cite:`incra:2024:a`. Por meio do SIGEF são realizadas a certificação de dados referentes a limites de imóveis rurais, respeitando o disposto na `Lei nº 6.015, de 31 de dezembro de 1973 <https://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm>`__ :cite:`brasil:2024:g` e a gestão de contratos de serviços de georreferenciamento com a administração pública, compreendendo:
+Por meio do SIGEF é realizada a recepção, validação, organização, regularização e disponibilização das informações georreferenciadas de limites de imóveis rurais, públicos e privados :cite:`incra:2024:a`. 
+Por meio do SIGEF são realizadas a certificação de dados referentes a limites de imóveis rurais, respeitando o disposto na `Lei nº 6.015, de 31 de dezembro de 1973 <https://www.planalto.gov.br/ccivil_03/LEIS/L6015consolidado.htm>`__ :cite:`brasil:2024:g` e a gestão de contratos 
+de serviços de georreferenciamento com a administração pública, compreendendo:
 
 .. rst-class:: open
 
@@ -61,7 +63,11 @@ Por meio do SIGEF é realizada a recepção, validação, organização, regular
 #. Pesquisa pública de parcelas certificadas, requerimentos e credenciados(as).
 
 
-Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s <sec_bases_vetoriais_car>`), são considerados como título para fins de reconhecimento do direito de propriedade ou posse, cumprimento do disposto no art. 2º da `Lei nº 10.267, de 28 de agosto de 2001 <https://www.planalto.gov.br/ccivil_03/LEIS/LEIS_2001/L10267.htm>`__ :cite:`brasil:2024:e` pois ele faz parte do Sistema Nacional de Cadastro Rural (SNCR). Por isso, diversos instrumentos são utilizados para validar e garantir a qualidade dos dados. Estes dados estão disponibilizados na página de `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/acv.php>`__ do INCRA. A localização das propriedades certificadas e registradas no SIGEF estão apresentadas na :numref:`Figura %s <fig:bases-vetoriais:sigef>`.
+Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s <sec_bases_vetoriais_car>`), são considerados como título para 
+fins de reconhecimento do direito de propriedade ou posse, cumprimento do disposto no art. 2º da `Lei nº 10.267, de 28 de agosto de 2001 <https://www.planalto.gov.br/ccivil_03/LEIS/LEIS_2001/L10267.htm>`__ :cite:`brasil:2024:e` pois 
+ele faz parte do Sistema Nacional de Cadastro Rural (SNCR). Por isso, diversos instrumentos são utilizados para validar e garantir a qualidade dos dados. Estes dados estão 
+disponibilizados na página de `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/acv.php>`__ do INCRA. A localização das propriedades certificadas e registradas 
+no SIGEF estão apresentadas na :numref:`Figura %s <fig:bases-vetoriais:sigef>`.
 
 
 .. figure:: ../img/bases-vetoriais/sigef.png
@@ -73,7 +79,8 @@ Os dados disponibilizados pelo SIGEF, ao contrário do CAR (:numref:`Seção %s 
     Localização das propriedades certificadas e registradas no SIGEF.
 
 
-Apesar dos problemas apontados anteriormente, muitas propriedades foram cadastradas pelo SNCI. Assim, as propriedades cadastradas por esse sistema são apresentadas na :numref:`Figura %s <fig:bases-vetoriais:snci>`.
+Apesar dos problemas apontados anteriormente, muitas propriedades foram cadastradas pelo SNCI. Assim, as propriedades cadastradas 
+por esse sistema são apresentadas na :numref:`Figura %s <fig:bases-vetoriais:snci>`.
 
 
 .. figure:: ../img/bases-vetoriais/snci.png
@@ -85,7 +92,9 @@ Apesar dos problemas apontados anteriormente, muitas propriedades foram cadastra
     Localização das propriedades certificadas e registradas no SNCI.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do conjunto de dados do SIGEF. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do conjunto de dados do SIGEF. 
+As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas 
+geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `SIGEF-BRASIL.zip`.
@@ -99,9 +108,9 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do
     +=========+==============+=============================+=======================================================+
     | **PK**  | id           | integer                     |  Identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4326) |  Geometria da propriedade rural                       |
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da propriedade rural                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+   
-    |         | parecela_co  | varchar(64)                 |  Código da propriedade                                |
+    |         | parcela_co   | varchar(64)                 |  Código da propriedade                                |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | rt           | varchar(4)                  |  Responsável técnico                                  |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
@@ -131,7 +140,14 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:sigef-vetor>` apresenta a estrutura do
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do conjunto de dados do SNCI. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência WGS84 (EPSG:4326).
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `SIGEF-BRASIL.zip` encontra-se carregado na tabela ``sigef`` do banco de dados PostgreSQL.
+
+
+A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do conjunto de dados do SNCI. 
+As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas 
+geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Imóvel certificado SNCI Brasil.zip`.
@@ -145,7 +161,7 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do 
     +=========+==============+=============================+=======================================================+
     | **PK**  | id           | integer                     |  Identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4326) |  Geometria da propriedade rural                       |
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da propriedade rural                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+   
     |         | num_proces   | varchar(50)                 |  Número do processo                                   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
@@ -167,3 +183,224 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:snci-vetor>` apresenta a estrutura do 
     +---------+--------------+-----------------------------+-------------------------------------------------------+
 
    
+.. note::
+
+    O conjunto de arquivos *Esri Shapefile* `Imóvel certificado SNCI Brasil.zip` encontra-se carregado na tabela ``imovel_certif_snci`` do banco de dados PostgreSQL.
+
+
+**Consulta 1.** Recuperar o número de limites de imóveis rurais existentes no SIGEF.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT DISTINCT COUNT(*) FROM sigef;
+
+
+**Consulta 2.** Recuperar o número de limites de imóveis rurais aprovados por ano no SIGEF
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                  SELECT extract(YEAR FROM data_aprov) as ano, count(*)
+                    FROM sigef
+                    GROUP BY ano
+                    ORDER BY ano
+
+
+**Consulta 3.** Recuperar informações sobre as geometrias dos imóveis rurais (nome da coluna geométrica, SRID e tipo geométrico).
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT *
+                  FROM geometry_columns
+                  WHERE f_table_name = 'sigef'
+
+
+**Consulta 5.** Verificar se as geometrias dos imóveis rurais são válidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                SELECT COUNT(*) AS num_geometrias_invalidas
+                  FROM sigef
+                 WHERE NOT ST_IsValid(geom);
+
+
+**Consulta 6.** Corrigir automaticamente as geometrias dos imóveis rurais detectadas como inválidas.
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                UPDATE sigef
+                   SET geom = ST_MakeValid(geom)
+                 WHERE NOT ST_IsValid(geom);
+
+
+
+**Consulta 7.** Selecionar as glebas que tiveram operação de crédito em 2023 e que possuem interseção com imóveis rurais aprovados em 2023 ou 2022. 
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_sigef AS
+
+                     SELECT ROW_NUMBER () OVER () AS gid,
+                            gle.gid AS gleba_gid,
+                            gle.ref_bacen AS gleba_ref_bacen,
+                            gle.nu_ordem AS gleba_nu_ordem,
+                            gle.nu_indice AS gleba_nu_indice,
+                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                            ir.gid AS ir_gid,
+                            ir.situacao_i AS ir_situacao,
+                            ir.data_aprov AS ir_data_aprov,
+                            ir.status AS ir_status,
+                            ST_Intersection(gle.geom, ir.geom) AS geom
+
+                       FROM sicor_glebas AS gle,
+                            sigef AS ir
+
+                      WHERE ST_INTERSECTS(gle.geom, ir.geom)
+                        AND extract(YEAR FROM gle.data_emissao_contrato) = 2023
+                        AND (extract(YEAR FROM ir.data_aprov) = 2023 OR extract(YEAR FROM ir.data_aprov) = 2022)
+
+                   ORDER BY gle.data_emissao_contrato, gle.gid, ir.gid;
+
+
+**Consulta 8.** Quais os empreendimentos associados às glebas com interseção com imóveis rurais resultantes da Consulta 7?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                CREATE TABLE glebas_x_empreendimentos_x_sigef AS
+
+                  SELECT ROW_NUMBER () OVER () AS gid,
+                            gle.gid AS gleba_gid,
+                            gle.ref_bacen AS gleba_ref_bacen,
+                            gle.nu_ordem AS gleba_nu_ordem,
+                            gle.nu_indice AS gleba_nu_indice,
+                            gle.data_emissao_contrato AS gleba_data_emissao_contrato,
+                            empreendimento.produto AS produto,
+                            ir.gid AS ir_gid,
+                            ir.situacao_i AS ir_situacao,
+                            ir.data_aprov AS ir_data_aprov,
+                            ir.status AS ir_status,
+                            ST_Intersection(gle.geom, ir.geom) AS geom
+
+                       FROM sicor_glebas AS gle,
+                            sicor_operacao_basica_estado AS op,
+                            empreendimento,
+                            sigef AS ir
+
+                      WHERE gle.ref_bacen = op.ref_bacen
+                         AND gle.nu_ordem = op.nu_ordem
+                         AND op.cd_empreendimento = empreendimento.cd_empreendimento
+                         AND ST_INTERSECTS(gle.geom, ir.geom)
+                         AND extract(YEAR FROM gle.data_emissao_contrato) = 2023
+                         AND (extract(YEAR FROM ir.data_aprov) = 2023 OR extract(YEAR FROM ir.data_aprov) = 2022)
+
+                   ORDER BY gle.data_emissao_contrato, gle.gid, ir.gid;
+
+
+**Consulta 9.** Existe sobreposição entre as geometrias dos imóveis rurais aprovados no ano de 2024?
+
+
+.. collapse:: Solução:
+
+
+    .. tabs::
+
+
+        .. tab:: SQL
+
+
+            .. code-block:: sql
+
+                -- Verificando se existe interseção 
+                SELECT vermelho.gid AS v_gid, 
+                       azul.gid AS a_gid
+                FROM   sigef AS vermelho, 
+                       sigef AS azul
+                WHERE  ST_Overlaps(vermelho.geom, azul.geom) 
+                  AND  extract(YEAR FROM vermelho.data_aprov) = 2024
+                  AND  extract(YEAR FROM azul.data_aprov) = 2024
+
+
+                -- Criando uma tabela nova com os resultados da interseção
+                CREATE TABLE sigef_x_sigef_2024 AS
+                SELECT  ROW_NUMBER () OVER () AS gid,
+                        vermelho.gid AS v_gid,
+                        azul.gid AS a_gid,
+                        ST_Intersection(vermelho.geom, azul.geom)
+                FROM  sigef AS vermelho, 
+                      sigef AS azul
+                WHERE ST_Overlaps(vermelho.geom, azul.geom) 
+                AND   extract(YEAR FROM vermelho.data_aprov) = 2024
+                AND   extract(YEAR FROM azul.data_aprov) = 2024
+
+
+
+

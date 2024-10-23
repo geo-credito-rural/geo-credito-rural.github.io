@@ -23,6 +23,7 @@
         <script src="../_static/sphinx_highlight.js"></script>
         <script src="../_static/clipboard.min.js"></script>
         <script src="../_static/copybutton.js"></script>
+        <script src="../_static/tabs.js"></script>
         <script src="../_static/translations.js"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Índice" href="../genindex.html" />
@@ -66,7 +67,10 @@
 <li class="toctree-l2"><a class="reference internal" href="embargos.html">4.4. Embargos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="terras-indigenas.html">4.5. Terras Indígenas</a></li>
 <li class="toctree-l2"><a class="reference internal" href="florestas-publicas.html">4.6. Florestas Públicas</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">4.7. Cadastro Ambiental Rural (CAR)</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">4.7. Cadastro Ambiental Rural (CAR)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#consultas">4.7.1. Consultas</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="sigef.html">4.8. Sistema de Gestão Fundiária (SIGEF)</a></li>
 <li class="toctree-l2"><a class="reference internal" href="trabalho-analogo-escravidao.html">4.9. Trabalho Análogo à Escravidão</a></li>
 <li class="toctree-l2"><a class="reference internal" href="malha-fundiaria.html">4.10. Malha Fundiária</a></li>
@@ -147,6 +151,147 @@
 <p><span class="caption-number">Figura 4.7 - </span><span class="caption-text">Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina.</span><a class="headerlink" href="#fig-bases-vetoriais-car" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
+<section id="consultas">
+<h2><span class="section-number">4.7.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
+<p><strong>Consulta 1.</strong> Verificar como está a topologia dos dados do <em>CAR</em>.</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><p>Para agilizar o processamento, inicialmente iremos obter os dados do <em>CAR</em> apenas para um município selecionado</p>
+<div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_area_imovel_sl</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">car_area_imovel_pr</span><span class="p">.</span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_area_imovel_pr</span><span class="p">,</span>
+<span class="w">       </span><span class="n">municipios_2022</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">car_area_imovel_pr</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4123824</span><span class="p">;</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_area_imovel_sl</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">car_area_imovel_sl_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">car_area_imovel_sl_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">car_area_imovel_sl</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div><p>A consulta acima criou a tabela <code class="docutils literal notranslate"><span class="pre">car_area_imovel_sl</span></code> contendo os polígonos do <em>CAR</em> contendo os limites das áreas de imóveis do município de Santa Lúcia no Paraná. Vamos repetir a consulta para as demais tabelas do <em>CAR</em>, iniciando pela tabela que contém as APPs (<code class="docutils literal notranslate"><span class="pre">car_app_pr</span></code>).</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">car_app_pr</span><span class="p">.</span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_app_pr</span><span class="p">,</span>
+<span class="w">       </span><span class="n">municipios_2022</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">car_app_pr</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4123824</span><span class="p">;</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">car_app_pr_sl_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">car_app_pr_sl_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Vamos obter também as áreas de reserva legal da tabela <code class="docutils literal notranslate"><span class="pre">car_reserva_legal_pr</span></code>.</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">car_reserva_legal_pr</span><span class="p">.</span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_reserva_legal_pr</span><span class="p">,</span>
+<span class="w">       </span><span class="n">municipios_2022</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">car_reserva_legal_pr</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4123824</span><span class="p">;</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>E incluir também as áreas de vegetação nativa da tabela <code class="docutils literal notranslate"><span class="pre">car_vegetacao_nativa_pr</span></code>.</p>
+<blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr_sl</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr</span><span class="p">.</span><span class="o">*</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr</span><span class="p">,</span>
+<span class="w">       </span><span class="n">municipios_2022</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Within</span><span class="p">(</span><span class="n">car_vegetacao_nativa_pr</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span>
+<span class="w">   </span><span class="k">AND</span><span class="w"> </span><span class="n">municipios_2022</span><span class="p">.</span><span class="n">cd_mun</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">4123824</span><span class="p">;</span>
+
+
+<span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr_sl</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr_pkey</span><span class="w"> </span><span class="k">PRIMARY</span><span class="w"> </span><span class="k">KEY</span><span class="w"> </span><span class="p">(</span><span class="n">id</span><span class="p">);</span>
+
+<span class="k">CREATE</span><span class="w"> </span><span class="k">INDEX</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr_sl_geom_idx</span><span class="w"> </span><span class="k">ON</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr_sl</span><span class="w"> </span><span class="k">USING</span><span class="w"> </span><span class="n">GiST</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<p>Como visto na anteriormente em <a class="reference internal" href="../sicor/microdados/glebas-topologia.html#sec-sicor-microdados-glebas-topologia"><span class="std std-ref">Verificação Topológica das Geometrias das Glebas</span></a>, vamos testar e verificar se existem erros topológicos nesses dados.</p>
+<blockquote>
+<div><blockquote>
+<div><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_area_imovel_sl</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_app_pr_sl</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_reserva_legal_pr_sl</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">id</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">car_vegetacao_nativa_pr</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="n">ST_IsValid</span><span class="p">(</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></blockquote>
+</div>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Existem sobreposições entre as glebas e as áreas de APPs nesse município?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_area_estudo_x_car_app_pr_sl</span><span class="w"> </span><span class="k">AS</span>
+<span class="k">SELECT</span><span class="w"> </span><span class="n">glebas</span><span class="p">.</span><span class="n">gid</span><span class="p">,</span>
+<span class="w">       </span><span class="n">car_app_pr_sl</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">glebas</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_gleba</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">car_app_pr_sl</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="w">  </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_app</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">glebas</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="p">.</span><span class="n">geom</span><span class="p">),</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_interseccao</span><span class="p">,</span>
+<span class="w">       </span><span class="n">ST_Intersection</span><span class="p">(</span><span class="n">glebas</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="p">.</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">glebas</span><span class="p">,</span>
+<span class="w">            </span><span class="n">car_app_pr_sl</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">ST_Intersects</span><span class="p">(</span><span class="n">glebas</span><span class="p">.</span><span class="n">geom</span><span class="p">,</span><span class="w"> </span><span class="n">car_app_pr_sl</span><span class="p">.</span><span class="n">geom</span><span class="p">);</span>
+</pre></div>
+</div>
+</div></div>
+</details><hr class="docutils" />
+<p><strong>Consulta 3.</strong> Das glebas que possuem intersecção com as APPs do CAR quais delas possuem mais de 10% da área com algum tipo de intersecção?</p>
+<details class="summary-solucao">
+<summary>Solução:</summary><div class="sphinx-tabs docutils container">
+<div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><p>Primeiro, devemos unir as várias partes de uma mesma gleba que podem ter sido geradas na criação da tabela <cite>glebas_area_estudo_x_car_app_pr_sl`</cite>. A consulta base para união é mostrada abaixo:</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ST_Union</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom_intersecao</span>
+<span class="w">    </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo_x_car_app_pr_sl</span>
+<span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gid</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Agora, podemos incluir a consulta acima como uma subconsulta para realização dos cálculos</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom_intersecao</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="o">/</span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_interseccao</span><span class="p">,</span><span class="w"> </span><span class="n">area_gleba</span>
+<span class="w">  </span><span class="k">FROM</span><span class="w"> </span><span class="p">(</span>
+<span class="w">          </span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">area_gleba</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_gleba</span><span class="p">,</span>
+<span class="w">                     </span><span class="n">ST_Union</span><span class="p">(</span><span class="n">geom</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">geom_intersecao</span>
+<span class="w">            </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo_x_car_app_pr_sl</span>
+<span class="w">        </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gid</span>
+<span class="w">        </span><span class="p">)</span>
+<span class="w">   </span><span class="k">WHERE</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="n">ST_Area</span><span class="p">(</span><span class="n">ST_Transform</span><span class="p">(</span><span class="n">geom_intersecao</span><span class="p">,</span><span class="w"> </span><span class="mi">100000</span><span class="p">))</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">10000</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+<span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gid</span><span class="w"> </span><span class="k">ASC</span><span class="p">,</span><span class="w"> </span><span class="n">area_interseccao</span><span class="w"> </span><span class="k">DESC</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>Observem que os resultados dessa consulta diferem dos resultados da consulta abaixo</p>
+<div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="n">gid</span><span class="p">,</span><span class="w"> </span><span class="k">Sum</span><span class="p">(</span><span class="n">area_interseccao</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">area_interseccao</span>
+<span class="w">                      </span><span class="k">FROM</span><span class="w"> </span><span class="n">glebas_area_estudo_x_car_app_pr_sl</span>
+<span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">area_interseccao</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">area_gleba</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">.</span><span class="mi">1</span>
+<span class="w">              </span><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">gid</span><span class="p">;</span>
+</pre></div>
+</div>
+</div></div>
+</details></section>
 </section>
 
 
@@ -164,7 +309,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7f8370bcbac0>
+<jinja2.runtime.BlockReference object at 0x7fa0800cdeb0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 
