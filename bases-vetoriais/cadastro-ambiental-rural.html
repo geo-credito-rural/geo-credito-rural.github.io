@@ -151,6 +151,60 @@
 <p><span class="caption-number">Figura 4.7 - </span><span class="caption-text">Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina.</span><a class="headerlink" href="#fig-bases-vetoriais-car" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
+<p>O conjunto de dados do car está armazenado no banco de dados em tabelas separadas, cuja composição do nome inicia pela identificação <code class="docutils literal notranslate"><span class="pre">car_</span></code> seguida identificação do conjunto de dados apresentados na lista acima e finalmente pela identificação do estado. Dessa maneira, como exemplo, o nome da tabela contendo o limite do imóvel para o estado de Santa Catarina ficaria da seguinte maneira <code class="docutils literal notranslate"><span class="pre">car_area_imovel_sc</span></code>. A <a class="reference internal" href="#tbl-bases-vetoriais-car-tab"><span class="std std-numref">Tabela 4.11</span></a> apresenta a estrutura desse conjunto de dados que se repete em todas as tabelas. As colunas alfanuméricas encontram-se codificadas em UTF-8.</p>
+<table class="styled-table docutils align-center" id="tbl-bases-vetoriais-car-tab">
+<caption><span class="caption-number">Tabela 4.11 - </span><span class="caption-text">Estrutura do conjunto de arquivos do CAR.</span><a class="headerlink" href="#tbl-bases-vetoriais-car-tab" title="Link Permanente para essa tabela"></a></caption>
+<thead>
+<tr class="row-odd"><th class="head center-align"></th>
+<th class="head center-align"><p>nome</p></th>
+<th class="head center-align"><p>tipo</p></th>
+<th class="head center-align"><p>descrição</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
+<td class="left-align"><p>id</p></td>
+<td class="center-align"><p>integer</p></td>
+<td class="left-align"><p>Identificador</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cod_tema</p></td>
+<td class="center-align"><p>varchar(254)</p></td>
+<td class="left-align"><p>Codigo do tema da tabela</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>nom_tema</p></td>
+<td class="center-align"><p>varchar(254)</p></td>
+<td class="left-align"><p>Nome do tema da tabela</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>cod_imovel</p></td>
+<td class="center-align"><p>varchar(254)</p></td>
+<td class="left-align"><p>Código do imóvel</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>num_area</p></td>
+<td class="center-align"><p>numerico</p></td>
+<td class="left-align"><p>Área do tema</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>ind_status</p></td>
+<td class="center-align"><p>numerico</p></td>
+<td class="left-align"><p>Status do CAR. Ativo (AT), Pendente (PE) ou
+Cancelado (CA)</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>ind_status</p></td>
+<td class="center-align"><p>numerico</p></td>
+<td class="left-align"><p>Descrição da condição</p></td>
+</tr>
+<tr class="row-odd"><td class="center-align"></td>
+<td class="left-align"><p>geom</p></td>
+<td class="center-align"><p>geometry(MultiPolygon,4674)</p></td>
+<td class="left-align"><p>Geometria do CAR</p></td>
+</tr>
+</tbody>
+</table>
 <section id="consultas">
 <h2><span class="section-number">4.7.1. </span>Consultas<a class="headerlink" href="#consultas" title="Link permanente para este cabeçalho"></a></h2>
 <p><strong>Consulta 1.</strong> Verificar como está a topologia dos dados do <em>CAR</em>.</p>
@@ -309,7 +363,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fa0800cdeb0>
+<jinja2.runtime.BlockReference object at 0x7fab688cba90>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

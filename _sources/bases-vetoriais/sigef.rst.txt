@@ -106,10 +106,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | nome         | tipo                        | descrição                                             |
     +=========+==============+=============================+=======================================================+
-    | **PK**  | id           | integer                     |  Identificador                                        |
+    | **PK**  | gid          | integer                     |  Identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da propriedade rural                       |
-    +---------+--------------+-----------------------------+-------------------------------------------------------+   
     |         | parcela_co   | varchar(64)                 |  Código da propriedade                                |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | rt           | varchar(4)                  |  Responsável técnico                                  |
@@ -137,6 +135,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
     |         | municipio    | integer                     |  Código do município                                  |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | uf_id        | integer                     |  Código do estado                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da propriedade rural                       |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     
 
@@ -205,6 +205,9 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                   SELECT DISTINCT COUNT(*) FROM sigef;
 
 
+-----
+
+
 **Consulta 2.** Recuperar o número de limites de imóveis rurais aprovados por ano no SIGEF
 
 
@@ -223,6 +226,9 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                     FROM sigef
                     GROUP BY ano
                     ORDER BY ano
+
+
+-----
 
 
 **Consulta 3.** Recuperar informações sobre as geometrias dos imóveis rurais (nome da coluna geométrica, SRID e tipo geométrico).
@@ -244,7 +250,10 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                   WHERE f_table_name = 'sigef'
 
 
-**Consulta 5.** Verificar se as geometrias dos imóveis rurais são válidas.
+-----
+
+
+**Consulta 4.** Verificar se as geometrias dos imóveis rurais são válidas.
 
 
 .. collapse:: Solução:
@@ -263,7 +272,10 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                  WHERE NOT ST_IsValid(geom);
 
 
-**Consulta 6.** Corrigir automaticamente as geometrias dos imóveis rurais detectadas como inválidas.
+-----
+
+
+**Consulta 5.** Corrigir automaticamente as geometrias dos imóveis rurais detectadas como inválidas.
 
 
 .. collapse:: Solução:
@@ -283,7 +295,10 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 
 
 
-**Consulta 7.** Selecionar as glebas que tiveram operação de crédito em 2023 e que possuem interseção com imóveis rurais aprovados em 2023 ou 2022. 
+-----
+
+
+**Consulta 6.** Selecionar as glebas que tiveram operação de crédito em 2023 e que possuem interseção com imóveis rurais aprovados em 2023 ou 2022. 
 
 
 .. collapse:: Solução:
@@ -321,7 +336,10 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                    ORDER BY gle.data_emissao_contrato, gle.gid, ir.gid;
 
 
-**Consulta 8.** Quais os empreendimentos associados às glebas com interseção com imóveis rurais resultantes da Consulta 7?
+-----
+
+
+**Consulta 7.** Quais os empreendimentos associados às glebas com interseção com imóveis rurais resultantes da Consulta 7?
 
 
 .. collapse:: Solução:
@@ -365,7 +383,10 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
                    ORDER BY gle.data_emissao_contrato, gle.gid, ir.gid;
 
 
-**Consulta 9.** Existe sobreposição entre as geometrias dos imóveis rurais aprovados no ano de 2024?
+-----
+
+
+**Consulta 8.** Existe sobreposição entre as geometrias dos imóveis rurais aprovados no ano de 2024?
 
 
 .. collapse:: Solução:

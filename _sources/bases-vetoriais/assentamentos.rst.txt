@@ -8,10 +8,91 @@ Assentamentos
 =============
 
 
-O assentamento de reforma agrária é um conjunto de unidades agrícolas, instaladas pelo Instituto Nacional de Colonização e Reforma Agrária (INCRA) em um imóvel rural. Cada uma dessas unidades, chamada de parcelas ou lotes, é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas.
+De acordo com o `Instituto Nacional de Colonização e Reforma Agrária (Incra) <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__ o assentamento de reforma agrária é composto por um conjunto de unidades (ou lotes) agrícolas em que cada unidade é destinada a uma família de agricultor ou trabalhador rural sem condições econômicas de adquirir um imóvel rural. Os assentamentos podem ser divididos em dois grupos: a) os criados por meio de obtenção de terras pelo Incra, na forma tradicional, denominados Projetos de Assentamento (PA), que incluem os ambientalmente diferenciados e o Projeto Descentralizado de Assentamento Sustentável (PDAS); b) os implantados por instituições governamentais e reconhecidos pelo Incra para acesso a algumas políticas públicas do Programa Nacional de Reforma Agrária (PNRA). A :numref:`Tabela %s <tbl:bases-vetoriais:modalidade-assentamentos>` apresenta as modalidades de assentamentos criadas pelo Incra.
 
 
-Os agricultores que recebem o lote se comprometem a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pelo lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
+.. table:: Modalidades de projetos de assentamentos criados pelo Incra. |br| **Fonte:** `Incra <https://www.gov.br/incra/pt-br/assuntos/reforma-agraria/assentamentos>`__
+    :align: center
+    :header-alignment: center center center 
+    :column-alignment: center left center 
+    :name: tbl:bases-vetoriais:modalidade-assentamentos
+
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Modalidade                                               | Sigla| Características                                                                                                                                                                                                             |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Federal                          | PA   | - Obtenção da terra, criação do Projeto e seleção dos beneficiários é de responsabilidade da União através do Incra;                                                                                                        |
+    |                                                          |      | - Aporte de recursos de crédito Apoio Instalação e de crédito de produção de responsabilidade da União;                                                                                                                     |
+    |                                                          |      | - Infraestrutura básica (estradas de acesso, água e energia elétrica) de responsabilidade da União;                                                                                                                         |
+    |                                                          |      | - Titulação (Concessão de Uso/Titulo de Propriedade) de responsabilidade da União.                                                                                                                                          |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Agroextrativista                 | PAE  | - Obtenção da terra, criação do Projeto e seleção dos beneficiários é de responsabilidade da União através do Incra;                                                                                                        |
+    |                                                          |      | - Aporte de recursos de crédito Apoio Instalação e de crédito de produção de responsabilidade da união;                                                                                                                     |
+    |                                                          |      | - Infraestrutura básica (estradas de acesso, água e energia elétrica) de responsabilidade da União;                                                                                                                         |
+    |                                                          |      | - Titulação (Concessão de Uso) de responsabilidade da União;                                                                                                                                                                |
+    |                                                          |      | - Os beneficiários são geralmente oriundos de comunidades extrativistas;                                                                                                                                                    |
+    |                                                          |      | - Atividades ambientalmente diferenciadas.                                                                                                                                                                                  |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Desenvolvimento Sustentável                   | PDS  | - Projetos de Assentamento estabelecidos para o desenvolvimento de atividades ambientalmente diferenciadas e dirigido para populações tradicionais (ribeirinhos, comunidades extrativistas, etc.);                          |
+    |                                                          |      | - Obtenção da terra, criação do Projeto e seleção dos beneficiários é de responsabilidade da União através do Incra;                                                                                                        |
+    |                                                          |      | - Aporte de recursos de crédito Apoio Instalação e de crédito de produção (Pronaf A e C) de responsabilidade do Governo Federal;                                                                                            |
+    |                                                          |      | - Infraestrutura básica (estradas de acesso, água e energia elétrica) de responsabilidade da União;                                                                                                                         |
+    |                                                          |      | - Não há a individualização de parcelas (Titulação coletiva – fração ideal) e a titulação é de responsabilidade da União.                                                                                                   |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Florestal                        | PAF  | - É uma modalidade de assentamento voltada para o manejo de recursos florestais em áreas com aptidão para a produção florestal familiar comunitária e sustentável, especialmente aplicável à região Norte;                  |
+    |                                                          |      | - A produção florestal madeireira e não madeireira no PAF deverá seguir as regulamentações do Ibama para Manejo Florestal Sustentável, considerando as condições de incremento de cada sítio florestal;                     |
+    |                                                          |      | - Tais áreas serão administradas pelos produtores florestais assentados, por meio de sua forma organizativa, associação ou cooperativas, que receberá o Termo de Concessão de Uso (CCU);                                    |
+    |                                                          |      | - O Incra, em conjunto com Ibama - órgãos estaduais e a sociedade civil organizada - indicarão áreas próprias para implantação dos PAFs.                                                                                    |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Casulo                           | PCA  | - Projeto de Assentamento criado pelo município ou pela União;                                                                                                                                                              |
+    |                                                          |      | - A União pode participar com recursos para a obtenção de recursos fundiários, mas a terra pode ser do município ou da União;                                                                                               |
+    |                                                          |      | - Aporte de recursos de Crédito Apoio Instalação e de crédito de produção (Pronaf A e C) de responsabilidade do Governo Federal;                                                                                            |
+    |                                                          |      | - Infraestrutura básica (estradas de acesso, água e energia elétrica) de responsabilidade do Governo Federal e municipal;                                                                                                   |
+    |                                                          |      | - Diferencia-se pela proximidade à centros urbanos e pelas atividades agrícolas geralmente intensivas e tecnificadas;                                                                                                       |
+    |                                                          |      | - Titulação de responsabilidade do município.                                                                                                                                                                               |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto Descentralizado de Assentamento Sustentável      | PDAS | - Modalidade descentralizada de assentamento destinada ao desenvolvimento da agricultura familiar pelos trabalhadores rurais sem-terra no entorno dos centros urbanos, por meio de atividades economicamente viáveis,       |
+    |                                                          |      |   socialmente justas, de caráter inclusivo e ecologicamente sustentáveis;                                                                                                                                                   |
+    |                                                          |      | - As áreas serão adquiridas pelo Incra por meio de compra e venda ou ainda doadas ou cedidas pelos governos estaduais e municipais;                                                                                         |
+    |                                                          |      | - Os lotes distribuídos não podem ter área superior a dois módulos fiscais ou inferior à fração mínima de parcelamento em cada município;                                                                                   |
+    |                                                          |      | - O desenvolvimento das atividades agrícolas deve garantir a produção de hortifrutigranjeiros para os centros urbanos;                                                                                                      |
+    |                                                          |      | - O Incra e o órgão estadual ou municipal de política agrária, ou equivalente, deverão firmar Acordo de Cooperação Técnica visando garantir as condições mínimas necessárias para que as famílias assentadas tenham acesso  |
+    |                                                          |      |   às políticas públicas para o desenvolvimento do futuro projeto de assentamento.                                                                                                                                           |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Estadual                         | PE   | - Obtenção da terra, criação do Projeto e seleção dos beneficiários é de responsabilidade das Unidades Federativas;                                                                                                         |
+    |                                                          |      | - Aporte de recursos de crédito e infraestrutura de responsabilidade das Unidades Federativas segundo seus programas fundiários;                                                                                            |
+    |                                                          |      | - Há a possibilidade de participação da União no aporte de recursos relativos à obtenção de terras, Crédito Apoio à Instalação e produção (Pronaf A e C) mediante convênio;                                                 |
+    |                                                          |      | - Há a possibilidade de participação da União no aporte de recursos relativos a infraestrutura básica;                                                                                                                      |
+    |                                                          |      | - O Incra reconhece os Projetos Estaduais como Projetos de Reforma Agrária viabilizando o acesso dos beneficiários aos direitos básicos estabelecidos para o Programa de Reforma Agrária;                                   |
+    |                                                          |      | - Titulação de responsabilidade das Unidades Federativas.                                                                                                                                                                   |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Projeto de Assentamento Municipal                        | PAM  | - Obtenção da terra, criação do Projeto e seleção dos beneficiários é de responsabilidade dos municípios;                                                                                                                   |
+    |                                                          |      | - Aporte de recursos de crédito e infraestrutura de responsabilidade dos municípios;                                                                                                                                        |
+    |                                                          |      | - Há a possibilidade de participação da União no aporte de recursos relativos à obtenção de terras, Crédito Apoio à Instalação e produção (Pronaf A e C) mediante convênio;                                                 |
+    |                                                          |      | - Há a possibilidade de participação da União no aporte de recursos relativos a infraestrutura básica;                                                                                                                      |
+    |                                                          |      | - O Incra reconhece os Projetos Municipais como de Reforma Agrária viabilizando o acesso dos beneficiários aos direitos básicos estabelecidos para o Programa de Reforma Agrária;                                           |
+    |                                                          |      | - Titulação de responsabilidade dos municípios.                                                                                                                                                                             |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Reservas Extrativistas                                   | RESEX| - Reconhecimento pelo Incra de áreas de Reservas Extrativistas como Projetos de Assentamento viabilizando o acesso das comunidades que ali vivem aos direitos básicos estabelecidos para o Programa de Reforma Agrária;     |
+    |                                                          |      | - A obtenção de terras não é feita pelo Incra, mas pelos órgãos ambiental federal ou estadual quando da criação das RESEX.                                                                                                  |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Território Remanescentes Quilombola                      | TRQ  | - Decretação da área pela União visando a regularização e o estabelecimento de comunidades remanescentes de quilombos;                                                                                                      |
+    |                                                          |      | - Aporte de recursos para a obtenção de terras, créditos e infraestrutura feito pela União por meio de ações integradas com a Fundação Palmares e outras instituições.                                                      |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Reconhecimento de Assentamento de Fundo de Pasto         | PFP  | - Projetos criados pelos estados ou municípios;                                                                                                                                                                             |
+    |                                                          |      | - Esses projetos são reconhecidos pelo Incra como beneficiárias do Programa Nacional de Reforma Agrária (PNRA), viabilizando o acesso das comunidades que ali vivem ao Pronaf A.                                            |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Reassentamento de Barragem                               | PRB  | - A implantação é de competência dos empreendedores e o Incra reconhece como beneficiário do PNRA, quando eles passam a ter direito ao Pronaf A, Assistência Técnica Social e Ambiental (ATES) e Pronera.                   |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Floresta Nacional                                        | FLONA| - A obtenção de terras não é feita pelo Incra, mas pelos órgãos ambiental federal quando da criação das FLONAS.                                                                                                             |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+    | Reserva de Desenvolvimento Sustentável                   | RDS  | - Sob gestão do ICMBio;                                                                                                                                                                                                     |
+    |                                                          |      | - São unidades de conservação de uso sustentável reconhecidas pelo Incra como beneficiárias do Programa Nacional de Reforma Agrária (PNRA), viabilizando o acesso das comunidades que ali vivem aos direitos básicos como   |
+    |                                                          |      |   créditos de implantação e produção (Pronaf A);                                                                                                                                                                            |
+    |                                                          |      | - O reconhecimento de RDS como beneficiária do PNRA é feito por analogia à portaria de reconhecimento das RESEX.                                                                                                            |
+    +----------------------------------------------------------+------+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
+A família beneficiada deve residir e explorar o lote, com o desenvolvimento de atividades produtivas diversas ligadas com a exploração agrícola. Assim, os agricultores que recebem o lote se comprometem a morar na parcela e a explorá-la para seu sustento, utilizando mão de obra familiar. Eles contam com créditos, assistência técnica, infraestrutura e outros benefícios de apoio ao desenvolvimento das famílias assentadas. Os assentados pagam pelo lote que receberam do INCRA e pelos créditos contratados. As famílias recebem os primeiros créditos no período da instalação do assentamento. Em seguida, podem acessar as linhas do Programa Nacional de Fortalecimento da Agricultura Familiar (Pronaf) para investimento em infraestrutura e atividades produtivas.
 
 
 Os assentamentos utilizados nesse curso foram baixados, em arquivos no formato shapefile, do `Acervo Fundiário <https://acervofundiario.incra.gov.br/acervo/login.php>`__ do INCRA e inseridos na tabela ``assentamentos``. Para realizar o download desse dado, é necessário autenticar com a credencial do **gov.br**. Um sumário de todas as tabelas vetoriais e suas principais características pode ser encontrado em  :ref:`Sumário das tabelas vetoriais <sec_bases_vetoriais_sumario>`. 
@@ -32,7 +113,7 @@ Os assentamentos são classificados em diferentes modalidades, como por exemplo,
 A :numref:`Tabela %s <tbl:bases-vetoriais:assentamentos>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
-.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Assentamento Brasil.zip`.
+.. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `Assentamento Brasil.zip`. |br| **Fonte:** Adaptada de 
     :align: center
     :header-alignment: center center center center
     :column-alignment: center left center left
@@ -109,6 +190,9 @@ Consultas
                   FROM assentamentos;
 
 
+---------
+
+
 **Consulta 2.** Recuperar o número de assentamentos por estado.
 
 
@@ -125,6 +209,9 @@ Consultas
                   FROM assentamentos
                   GROUP BY uf
                   ORDER BY count(*) DESC
+
+
+---------
 
 
 **Consulta 3.** Recuperar os assentamentos que são do tipo Território Remanescente Quilombola (TRQ).
@@ -144,6 +231,9 @@ Consultas
                  WHERE nome_proje ilike '%TRQ%'
 
 
+---------
+
+
 **Consulta 4.** Recuperar informações sobre as geometrias dos assentamentos (nome da coluna, SRID e tipo geométrico).
 
 
@@ -159,6 +249,9 @@ Consultas
                 SELECT * 
                   FROM geometry_columns
                   WHERE f_table_name = 'assentamentos'   
+
+
+---------
 
 
 **Consulta 5.** Validar as geometrias dos assentamentos.
@@ -178,6 +271,9 @@ Consultas
                  WHERE NOT ST_IsValid(geom);
 
 
+---------
+
+
 **Consulta 6.** Corrigir automaticamente as geometrias dos assentamentos detectadas como inválidas.
 
 
@@ -193,6 +289,9 @@ Consultas
                 UPDATE assentamentos
                 SET geom = ST_MakeValid(geom)
                 WHERE NOT ST_IsValid(geom);
+
+
+---------
 
 
 **Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem intersecção com assentamentos criados anteriormente à operação de crédito associada à gleba. 
@@ -222,7 +321,7 @@ Consultas
 
                       WHERE ST_INTERSECTS(gle.geom, ass.geom)
                          AND gle.data_emissao_contrato >= TO_DATE(ass.data_de_cr,'DD-MM-YYYY')
-                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2020
+                         AND extract(YEAR FROM gle.data_emissao_contrato) >= 2021
                       
                      ORDER BY gle.data_emissao_contrato, gle.gid, ass.gid;
 

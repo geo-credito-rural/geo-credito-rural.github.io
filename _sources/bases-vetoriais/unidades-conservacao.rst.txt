@@ -19,7 +19,7 @@ As unidades de conservação podem ser divididas em dois grupos:
 -  **Unidades de Uso Sustentável:** cujo objetivo é o de compatibilizar a conservação da natureza com o uso sustentável de parcela dos seus recursos naturais.
 
 
-Estes dois tipos de unidades de conservação são compostos por diversas categorias e objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta as categorias de unidade de conservação integrantes do SNUC e a descrição de cada uma delas.
+Estes dois grupos de unidades de conservação são compostos por diversas categorias com distintos objetivos. A :numref:`Tabela %s <tbl:bases-vetoriais:uc>` apresenta as categorias de unidade de conservação integrantes do SNUC e a descrição de cada uma delas.
 
 
 .. table:: Categorias de unidades de conservação. |br| **Fonte:** :cite:`brasil:2024:a, wikipedia:2024:a`.
@@ -92,20 +92,19 @@ Estes dois tipos de unidades de conservação são compostos por diversas catego
     +--------------+-----------------+-----------------------------------------------------------------------------------+
 
 
-Os limites das unidades de conservação são disponibilizados em diversos formatos pelo Ministério do Meio Ambiente e Mudança do Clima (MMA). Para este estudo foi acessado o conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__, que possui aproximadamente 32MB. A :numref:`Figura %s <fig:bases-vetoriais:cnuc>` apresenta a distribuição destas áreas por categoria no Brasil.
+Os limites das unidades de conservação são disponibilizados em diversos formatos pelo Ministério do Meio Ambiente e Mudança do Clima (MMA). Para este estudo foi acessado o conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__, que possui aproximadamente 32MB. A :numref:`Figura %s <fig:bases-vetoriais:cnuc>` apresenta a distribuição destas áreas por categoria SNUC no Brasil.
 
 
 .. figure:: ../img/bases-vetoriais/cnuc.png
-    :alt: Distribuição das áreas protegidas por categoria no Brasil
+    :alt: Distribuição das áreas protegidas por categoria SNUC no Brasil
     :width: 80%
     :figclass: align-center
     :name: fig:bases-vetoriais:cnuc
 
-    Distribuição das áreas protegidas por categoria no Brasil.
+    Distribuição das áreas protegidas por categoria SNUC no Brasil.
 
 
-A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. 
-O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
+A :numref:`Tabela %s <tbl:bases-vetoriais:cnucshp>` apresenta a estrutura desse conjunto de dados. As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).
 
 
 .. table:: Estrutura do conjunto de arquivos *Esri Shapefile* `shp_cnuc_2024_02.zip <https://dados.mma.gov.br/dataset/44b6dc8a-dc82-4a84-8d95-1b0da7c85dac/resource/9ec98f66-44ad-4397-8583-a1d9cc3a9835/download/shp_cnuc_2024_02.zip>`__.

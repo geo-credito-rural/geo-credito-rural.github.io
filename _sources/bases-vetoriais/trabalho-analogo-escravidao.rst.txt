@@ -215,7 +215,7 @@ Entretanto, essa consulta não leva em conta a data da publicação da lista do 
 -----
 
 
-**Consulta 4.** Agora podemos relacionar o cnpj_cpf da tabela ``cad_emp_tratado`` com os dados do SICOR, iniciando pela tabela ``sicor_mutuarios``.
+**Consulta 5.** Agora podemos relacionar o cnpj_cpf da tabela ``cad_emp_tratado`` com os dados do SICOR, iniciando pela tabela ``sicor_mutuarios``.
 
 
 .. collapse:: Solução:

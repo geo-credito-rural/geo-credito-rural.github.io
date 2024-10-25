@@ -123,6 +123,9 @@ Consultas
                   FROM areas_quilombolas;
 
 
+---------             
+
+
 **Consulta 2.** Recuperar o número de terras quilombolas por estado.
 
 
@@ -139,6 +142,9 @@ Consultas
                   FROM areas_quilombolas
                   GROUP BY cd_uf
                   ORDER BY count(*) DESC
+
+
+---------
 
 
 **Consulta 3.** Recuperar o número de terras quilombolas reconhecidas por ano, considerando a data de publicação da portaria de reconhecimento.
@@ -179,6 +185,9 @@ Consultas
 **Consulta 4.** Recuperar informações sobre as geometrias das áreas quilombolas (nome da coluna, SRID e tipo geométrico).
 
 
+---------
+
+
 .. collapse:: Solução:
 
 
@@ -191,6 +200,9 @@ Consultas
                 SELECT * 
                   FROM geometry_columns
                   WHERE f_table_name = 'areas_quilombolas'   
+
+
+---------
 
 
 **Consulta 5.** Validar as geometrias das áreas quilombolas.
@@ -210,6 +222,9 @@ Consultas
                  WHERE NOT ST_IsValid(geom);
 
 
+---------
+
+
 **Consulta 6.** Corrigir automaticamente as geometrias das áreas quilombolas detectadas como inválidas.
 
 
@@ -226,6 +241,8 @@ Consultas
                 SET geom = ST_MakeValid(geom)
                 WHERE NOT ST_IsValid(geom);
 
+
+---------
 
 
 **Consulta 7.** Selecionar as glebas (a partir de 2021) que possuem interseção com áreas quilombolas criadas anteriormente à operação de crédito associada à gleba. 

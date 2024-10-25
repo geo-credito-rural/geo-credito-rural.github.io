@@ -124,7 +124,7 @@
 <span id="sec-bases-vetoriais-sigef"></span><h1><span class="section-number">4.8. </span>Sistema de Gestão Fundiária (SIGEF)<a class="headerlink" href="#sistema-de-gestao-fundiaria-sigef" title="Link permanente para este cabeçalho"></a></h1>
 <p>O Instituto Nacional de Colonização e Reforma Agrária (INCRA), por força da lei <span id="id1">[<a class="reference internal" href="../referencias.html#id27" title="Brasil. Lei no 10.267, de 28 de agosto de 2001. Julho 2024. Online; acessado 13 de Julho de 2024. URL: https://www.planalto.gov.br/ccivil_03/LEIS/LEIS_2001/L10267.htm.">43</a>]</span> deve verificar os limites dos imóveis rurais, obedecendo o escalonamento da exigência conforme o tamanho das propriedades. Por conta disso, implementou a primeira base de dados geoespaciais para certificação de imóveis rurais, o Sistema Nacional de Certificação de Imóveis (SNCI). O SNCI foi utilizado entre 2004 e 2013 e, devido às tecnologias vigentes na época, grande parte do procedimento era analógico, o que tornava o sistema moroso e complexo. Muitos processos levaram mais de 4 anos para sua conclusão e certificação e era muito raro um processo ser concluído em menos de 1 ano <span id="id2">[<a class="reference internal" href="../referencias.html#id102" title="T. Marra, K. Barbosa, and E. Oliveira. Brazil towards an effective cadastre with sigef. In 2015 World Bank Conference on Land and Proverty. Washington DC. 2015.">44</a>]</span>. Por conta disso, e com o avanço da tecnologia, o INCRA investiu no desenvolvimento de uma ferramenta eletrônica, o Sistema de Gestão Fundiária (SIGEF), para subsidiar a governança fundiária do território nacional. O comparativo entre esses dois sistemas pode ser observado na <a class="reference internal" href="unidades-conservacao.html#tbl-bases-vetoriais-uc"><span class="std std-numref">Tabela 4.1</span></a> em que é possível observar a evolução desse cadastro.</p>
 <table class="styled-table docutils align-default" id="tbl-bases-vetoriais-snci-sigef">
-<caption><span class="caption-number">Tabela 4.10 - </span><span class="caption-text">Comparativo entre SNCI e SIGEF. <br/> <strong>Fonte:</strong> <span id="id3">[<a class="reference internal" href="../referencias.html#id97" title="F. E. M. Lemos. Evidências de desconexão entre a administração pública e cartórios de registros de imóveis para o cadastro territorial rural brasileiro. Master's thesis, Universidade do Estado de Santa Catarina (UESC), 2017. URL: https://sistemabu.udesc.br/pergamumweb/vinculos/000045/000045fe.pdf.">45</a>]</span>.</span><a class="headerlink" href="#tbl-bases-vetoriais-snci-sigef" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 4.12 - </span><span class="caption-text">Comparativo entre SNCI e SIGEF. <br/> <strong>Fonte:</strong> <span id="id3">[<a class="reference internal" href="../referencias.html#id97" title="F. E. M. Lemos. Evidências de desconexão entre a administração pública e cartórios de registros de imóveis para o cadastro territorial rural brasileiro. Master's thesis, Universidade do Estado de Santa Catarina (UESC), 2017. URL: https://sistemabu.udesc.br/pergamumweb/vinculos/000045/000045fe.pdf.">45</a>]</span>.</span><a class="headerlink" href="#tbl-bases-vetoriais-snci-sigef" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"><p>Critérios</p></th>
 <th class="head center-align"><p>SNCI</p></th>
@@ -217,11 +217,11 @@ por esse sistema são apresentadas na <a class="reference internal" href="#fig-b
 <p><span class="caption-number">Figura 4.9 - </span><span class="caption-text">Localização das propriedades certificadas e registradas no SNCI.</span><a class="headerlink" href="#fig-bases-vetoriais-snci" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>A <a class="reference internal" href="#tbl-bases-vetoriais-sigef-vetor"><span class="std std-numref">Tabela 4.11</span></a> apresenta a estrutura do conjunto de dados do SIGEF.
+<p>A <a class="reference internal" href="#tbl-bases-vetoriais-sigef-vetor"><span class="std std-numref">Tabela 4.13</span></a> apresenta a estrutura do conjunto de dados do SIGEF.
 As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas
 geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).</p>
 <table class="styled-table docutils align-center" id="tbl-bases-vetoriais-sigef-vetor">
-<caption><span class="caption-number">Tabela 4.11 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>SIGEF-BRASIL.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-sigef-vetor" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 4.13 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>SIGEF-BRASIL.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-sigef-vetor" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -231,36 +231,31 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </thead>
 <tbody>
 <tr class="row-even"><td class="center-align"><p><strong>PK</strong></p></td>
-<td class="left-align"><p>id</p></td>
+<td class="left-align"><p>gid</p></td>
 <td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Identificador</p></td>
 </tr>
 <tr class="row-odd"><td class="center-align"></td>
-<td class="left-align"><p>geom</p></td>
-<td class="center-align"><p>geometry(MultiPolygon,4674)</p></td>
-<td class="left-align"><p>Geometria da propriedade rural</p></td>
-</tr>
-<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>parcela_co</p></td>
 <td class="center-align"><p>varchar(64)</p></td>
 <td class="left-align"><p>Código da propriedade</p></td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>rt</p></td>
 <td class="center-align"><p>varchar(4)</p></td>
 <td class="left-align"><p>Responsável técnico</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>art</p></td>
 <td class="center-align"><p>varchar(80)</p></td>
 <td class="left-align"><p>Anotação de responsabilidade técnica</p></td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>situacao_i</p></td>
 <td class="center-align"><p>varchar(25)</p></td>
 <td class="left-align"><p>Situação da titulação e registro da propriedade</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>codigo_imo</p></td>
 <td class="center-align"><p>varchar(13)</p></td>
 <td class="left-align"><dl class="simple">
@@ -269,46 +264,51 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </dl>
 </td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>data_submi</p></td>
 <td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data da submissão</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>data_aprov</p></td>
 <td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data da aprovação</p></td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>status</p></td>
 <td class="center-align"><p>varchar(32)</p></td>
 <td class="left-align"><p>Informa se a propriedade está certificada ou
 Registrada</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>nome_area</p></td>
 <td class="center-align"><p>varchar(254)</p></td>
 <td class="left-align"><p>Nome da propriedade</p></td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>registro_m</p></td>
 <td class="center-align"><p>varchar(254)</p></td>
 <td class="left-align"><p>Registro</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>registro_d</p></td>
 <td class="center-align"><p>date</p></td>
 <td class="left-align"><p>Data do registro</p></td>
 </tr>
-<tr class="row-odd"><td class="center-align"></td>
+<tr class="row-even"><td class="center-align"></td>
 <td class="left-align"><p>municipio</p></td>
 <td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do município</p></td>
 </tr>
-<tr class="row-even"><td class="center-align"></td>
+<tr class="row-odd"><td class="center-align"></td>
 <td class="left-align"><p>uf_id</p></td>
 <td class="center-align"><p>integer</p></td>
 <td class="left-align"><p>Código do estado</p></td>
+</tr>
+<tr class="row-even"><td class="center-align"></td>
+<td class="left-align"><p>geom</p></td>
+<td class="center-align"><p>geometry(MultiPolygon,4674)</p></td>
+<td class="left-align"><p>Geometria da propriedade rural</p></td>
 </tr>
 </tbody>
 </table>
@@ -316,11 +316,11 @@ Registrada</p></td>
 <p class="admonition-title">Nota</p>
 <p>O conjunto de arquivos <em>Esri Shapefile</em> <cite>SIGEF-BRASIL.zip</cite> encontra-se carregado na tabela <code class="docutils literal notranslate"><span class="pre">sigef</span></code> do banco de dados PostgreSQL.</p>
 </div>
-<p>A <a class="reference internal" href="#tbl-bases-vetoriais-snci-vetor"><span class="std std-numref">Tabela 4.12</span></a> apresenta a estrutura do conjunto de dados do SNCI.
+<p>A <a class="reference internal" href="#tbl-bases-vetoriais-snci-vetor"><span class="std std-numref">Tabela 4.14</span></a> apresenta a estrutura do conjunto de dados do SNCI.
 As colunas alfanuméricas encontram-se codificadas em UTF-8. O sistema de referência espacial utilizado é baseado em coordenadas
 geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4674).</p>
 <table class="styled-table docutils align-center" id="tbl-bases-vetoriais-snci-vetor">
-<caption><span class="caption-number">Tabela 4.12 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>Imóvel certificado SNCI Brasil.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-snci-vetor" title="Link Permanente para essa tabela"></a></caption>
+<caption><span class="caption-number">Tabela 4.14 - </span><span class="caption-text">Estrutura do conjunto de arquivos <em>Esri Shapefile</em> <cite>Imóvel certificado SNCI Brasil.zip</cite>.</span><a class="headerlink" href="#tbl-bases-vetoriais-snci-vetor" title="Link Permanente para essa tabela"></a></caption>
 <thead>
 <tr class="row-odd"><th class="head center-align"></th>
 <th class="head center-align"><p>nome</p></th>
@@ -397,7 +397,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 2.</strong> Recuperar o número de limites de imóveis rurais aprovados por ano no SIGEF</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 2.</strong> Recuperar o número de limites de imóveis rurais aprovados por ano no SIGEF</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-1-1-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-1-1-0" name="1-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-1-1-0" class="sphinx-tabs-panel" id="panel-1-1-0" name="1-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">extract</span><span class="p">(</span><span class="k">YEAR</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">data_aprov</span><span class="p">)</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">ano</span><span class="p">,</span><span class="w"> </span><span class="k">count</span><span class="p">(</span><span class="o">*</span><span class="p">)</span>
@@ -407,7 +408,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 3.</strong> Recuperar informações sobre as geometrias dos imóveis rurais (nome da coluna geométrica, SRID e tipo geométrico).</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 3.</strong> Recuperar informações sobre as geometrias dos imóveis rurais (nome da coluna geométrica, SRID e tipo geométrico).</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-2-2-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-2-2-0" name="2-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-2-2-0" class="sphinx-tabs-panel" id="panel-2-2-0" name="2-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span>
@@ -416,7 +418,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 5.</strong> Verificar se as geometrias dos imóveis rurais são válidas.</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 4.</strong> Verificar se as geometrias dos imóveis rurais são válidas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-3-3-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-3-3-0" name="3-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-3-3-0" class="sphinx-tabs-panel" id="panel-3-3-0" name="3-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">SELECT</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">num_geometrias_invalidas</span>
@@ -425,7 +428,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 6.</strong> Corrigir automaticamente as geometrias dos imóveis rurais detectadas como inválidas.</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 5.</strong> Corrigir automaticamente as geometrias dos imóveis rurais detectadas como inválidas.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-4-4-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-4-4-0" name="4-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-4-4-0" class="sphinx-tabs-panel" id="panel-4-4-0" name="4-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">UPDATE</span><span class="w"> </span><span class="n">sigef</span>
@@ -434,7 +438,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 7.</strong> Selecionar as glebas que tiveram operação de crédito em 2023 e que possuem interseção com imóveis rurais aprovados em 2023 ou 2022.</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 6.</strong> Selecionar as glebas que tiveram operação de crédito em 2023 e que possuem interseção com imóveis rurais aprovados em 2023 ou 2022.</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-5-5-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-5-5-0" name="5-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-5-5-0" class="sphinx-tabs-panel" id="panel-5-5-0" name="5-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_sigef</span><span class="w"> </span><span class="k">AS</span>
@@ -462,7 +467,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 8.</strong> Quais os empreendimentos associados às glebas com interseção com imóveis rurais resultantes da Consulta 7?</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 7.</strong> Quais os empreendimentos associados às glebas com interseção com imóveis rurais resultantes da Consulta 7?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-6-6-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-6-6-0" name="6-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-6-6-0" class="sphinx-tabs-panel" id="panel-6-6-0" name="6-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="k">CREATE</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">glebas_x_empreendimentos_x_sigef</span><span class="w"> </span><span class="k">AS</span>
@@ -496,7 +502,8 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
 </pre></div>
 </div>
 </div></div>
-</details><p><strong>Consulta 9.</strong> Existe sobreposição entre as geometrias dos imóveis rurais aprovados no ano de 2024?</p>
+</details><hr class="docutils" />
+<p><strong>Consulta 8.</strong> Existe sobreposição entre as geometrias dos imóveis rurais aprovados no ano de 2024?</p>
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-7-7-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-7-7-0" name="7-0" role="tab" tabindex="0">SQL</button></div><div aria-labelledby="tab-7-7-0" class="sphinx-tabs-panel" id="panel-7-7-0" name="7-0" role="tabpanel" tabindex="0"><div class="highlight-sql notranslate"><div class="highlight"><pre><span></span><span class="c1">-- Verificando se existe interseção</span>
@@ -540,7 +547,7 @@ geográficas (LAT/LONG) no sistema geodésico de referência SIRGAS 2000 (EPSG:4
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fa07fd98a00>
+<jinja2.runtime.BlockReference object at 0x7fab6812ba00>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

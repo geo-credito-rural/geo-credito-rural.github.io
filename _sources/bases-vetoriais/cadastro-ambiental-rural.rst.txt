@@ -47,6 +47,38 @@ Neste trabalho foram obtidos os dados do CAR para os estados do Paraná, Rio Gra
     Cadastro Ambiental Rural para os estados do Paraná, Rio Grande do Sul e Santa Catarina.
 
 
+O conjunto de dados do car está armazenado no banco de dados em tabelas separadas, cuja composição do nome inicia pela identificação ``car_`` seguida identificação do conjunto de dados apresentados na lista acima e finalmente pela identificação do estado. Dessa maneira, como exemplo, o nome da tabela contendo o limite do imóvel para o estado de Santa Catarina ficaria da seguinte maneira ``car_area_imovel_sc``. A :numref:`Tabela %s <tbl:bases-vetoriais:car-tab>` apresenta a estrutura desse conjunto de dados que se repete em todas as tabelas. As colunas alfanuméricas encontram-se codificadas em UTF-8. 
+
+
+.. table:: Estrutura do conjunto de arquivos do CAR.
+    :align: center
+    :header-alignment: center center center center
+    :column-alignment: center left center left
+    :name: tbl:bases-vetoriais:car-tab
+
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nome         | tipo                        | descrição                                             |
+    +=========+==============+=============================+=======================================================+
+    | **PK**  | id           | integer                     |  Identificador                                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cod_tema     | varchar(254)                |  Codigo do tema da tabela                             |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | nom_tema     | varchar(254)                |  Nome do tema da tabela                               |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | cod_imovel   | varchar(254)                |  Código do imóvel                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | num_area     | numerico                    |  Área do tema                                         |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ind_status   | numerico                    |  Status do CAR. Ativo (AT), Pendente (PE) ou          |
+    |         |              |                             |  Cancelado (CA)                                       |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | ind_status   | numerico                    |  Descrição da condição                                |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria do CAR                                     |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
+
+
+
 Consultas
 ---------
 

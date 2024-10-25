@@ -72,10 +72,8 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | nome         | tipo                        | descrição                                             |
     +=========+==============+=============================+=======================================================+
-    | **PK**  | id           | integer                     |  Identificador                                        |
+    | **PK**  | gid          | integer                     |  Identificador                                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
-    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da floresta pública                        |
-    +---------+--------------+-----------------------------+-------------------------------------------------------+   
     |         | categoria    | varchar(40)                 |  Categoria da floresta pública                        |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | governo      | varchar(20)                 |  Jurisdição (federal, Estadual, municipal)            |
@@ -122,6 +120,8 @@ A :numref:`Tabela %s <tbl:bases-vetoriais:cnfp_2022>` apresenta a estrutura dess
     +---------+--------------+-----------------------------+-------------------------------------------------------+
     |         | path         | varchar(254)                |  Endereço do polígono no computador                   |
     +---------+--------------+-----------------------------+-------------------------------------------------------+
+    |         | geom         | geometry(MultiPolygon,4674) |  Geometria da floresta pública                        |
+    +---------+--------------+-----------------------------+-------------------------------------------------------+
 
 
 .. note::
@@ -161,6 +161,9 @@ Consultas
                    WHERE f_table_name = 'cnfp_2022'
 
 
+-----
+
+
 **Consulta 2.** Como reprojetar as geometrias das florestas públicas da tabela ``cnfp_2022`` para SIRGAS 2000 (EPSG:4674).
 
 
@@ -181,6 +184,9 @@ Consultas
                     SET geom = ST_Transform(geom, 4674)
 
 
+-----
+
+
 **Consulta 3.** Recuperar o número de florestas públicas por classe e tipo de proteção.
 
 
@@ -199,6 +205,9 @@ Consultas
                     FROM cnfp_2022
                     GROUP BY classe, governo, protecao
                     ORDER BY classe, governo, protecao
+
+
+-----
 
 
 **Consulta 4.** Verificar se as geometrias das florestas públicas são válidas.
@@ -238,6 +247,9 @@ Consultas
                 (1 row)
 
 
+-----
+
+
 **Consulta 5.** Corrigir automaticamente as geometrias das florestas públicas detectadas como inválidas.
 
 
@@ -255,6 +267,9 @@ Consultas
                 UPDATE cnfp_2022
                    SET geom = ST_MakeValid(geom)
                  WHERE NOT ST_IsValid(geom);
+
+
+-----
 
 
 **Consulta 6.** Verificar se existe interseção entre as geometrias de florestas públicas da classe ``TI`` e as geometrias das terras indígenas da tabela ``terras_indígenas``
@@ -278,6 +293,9 @@ Consultas
                     AND fp.classe ilike '%TI%'
 
 
+-----
+
+
 **Consulta 7.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das terras indígenas da tabela ``terras_indígenas``
 
 
@@ -299,6 +317,9 @@ Consultas
                    GROUP BY fp_classe
 
                   
+-----
+
+
 **Consulta 8.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias dos assentamentos da tabela ``assentamentos``
 
 
@@ -320,6 +341,9 @@ Consultas
                    GROUP BY fp_classe
 
 
+-----
+
+
 **Consulta 9.** Verificar quantas interseções existem entre as geometrias de florestas públicas de cada classe e as geometrias das unidades de conservação da tabela ``cnuc_2024_02``
 
 
@@ -339,12 +363,5 @@ Consultas
                          cnuc_2024_02 AS uc
                    WHERE ST_INTERSECTS(fp.geom, uc.geom) 
                    GROUP BY fp_classe
-
-
-
-
-
-
-
 
 
