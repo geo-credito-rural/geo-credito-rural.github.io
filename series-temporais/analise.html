@@ -67,9 +67,6 @@
 <li class="toctree-l2"><a class="reference internal" href="filtragem.html">7.2. Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">7.3. Análise de Séries Temporais de Imagens</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#classificacao-de-series-temporais-de-imagens">7.3.1. Classificação de Séries Temporais de Imagens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#agrupamento-de-series-temporais-de-imagens">7.3.2. Agrupamento de Séries Temporais de Imagens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens">7.3.3. Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens">7.3.4. Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="wtss.html">7.4. Web Time Series Service (WTSS)</a></li>
@@ -77,6 +74,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-integrada/index.html">10. Análise Integrada</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -135,16 +133,20 @@ Considerando todos os valores dessas séries é possível identificar as mudanç
 <p><span class="caption-number">Figura 7.5 - </span><span class="caption-text">Séries temporais NDVI extraídas do cubo de dados de imagens Sentinel-2 associadas à quatro localizações distintas.</span><a class="headerlink" href="#id13" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir:
-(1) Classificação de Séries Temporais de Imagens; (2) Agrupamento de Séries Temporais de Imagens;
-(3) Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens; e
-(4) Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens.</p>
+<p>Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir:</p>
+<ul class="open">
+<li><p>Classificação de Séries Temporais de Imagens</p></li>
+<li><p>Agrupamento de Séries Temporais de Imagens</p></li>
+<li><p>Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens</p></li>
+<li><p>Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens</p></li>
+</ul>
 <figure class="align-center align-default" id="id14">
 <a class="reference internal image-reference" href="../_images/analise-series-temporais.png"><img alt="Métodos de Análise de Séries Temporais de Imagens" src="../_images/analise-series-temporais.png" style="width: 95%;" /></a>
 <figcaption>
 <p><span class="caption-number">Figura 7.6 - </span><span class="caption-text">Métodos de Análise de Séries Temporais de Imagens.</span><a class="headerlink" href="#id14" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
+<p>Os métodos para extração de métricas fenológicas de séries temporais de imagens são descritos no <a class="reference internal" href="../fenologia/index.html#cap-fenologia"><span class="std std-ref">Capítulo sobre Fenologia</span></a>, e os métodos de agrupamentos de séries temporais são apresentados no <a class="reference internal" href="../padroes-series-temporais/index.html#cap-padroes-series-temporais"><span class="std std-ref">Capítulo sobre Padrões de Séries Temporais</span></a>.</p>
 <section id="classificacao-de-series-temporais-de-imagens">
 <h2><span class="section-number">7.3.1. </span>Classificação de Séries Temporais de Imagens<a class="headerlink" href="#classificacao-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
 <p>Atualmente, métodos de aprendizado de máquina (<em>machine learning</em>) e de aprendizado profundo (<em>deep learning</em>) têm sido amplamente
@@ -165,17 +167,6 @@ rede neural <em>Self-Organizing Maps</em> (SOM) e inferência bayesiana. SOM é 
 O método proposto produz métricas que indicam a qualidade das amostras de uso e cobertura da terra, usando o SOM para gerar clusters ou agrupamentos
 de séries temporais de imagens e inferência bayesiana para avaliar as similaridades <em>intra-cluster</em> e <em>inter-cluster</em> <span id="id12">[<a class="reference internal" href="../referencias.html#id129" title="Lorena A Santos, Karine R Ferreira, Gilberto Camara, Michelle CA Picoli, and Rolf E Simoes. Quality control and class noise reduction of satellite image time series. ISPRS Journal of Photogrammetry and Remote Sensing, 177:75–88, 2021.">115</a>]</span>.</p>
 </section>
-<section id="agrupamento-de-series-temporais-de-imagens">
-<h2><span class="section-number">7.3.2. </span>Agrupamento de Séries Temporais de Imagens<a class="headerlink" href="#agrupamento-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
-<p>Métodos de agrupamentos de séries temporais são descritos no <a class="reference internal" href="../padroes-series-temporais/index.html#cap-padroes-series-temporais"><span class="std std-ref">Capítulo sobre Padrões de Séries Temporais</span></a>.</p>
-</section>
-<section id="deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens">
-<h2><span class="section-number">7.3.3. </span>Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens<a class="headerlink" href="#deteccao-de-disturbios-mudancas-em-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
-</section>
-<section id="extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens">
-<h2><span class="section-number">7.3.4. </span>Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens<a class="headerlink" href="#extracao-de-metricas-fenologicas-da-vegetacao-a-partir-de-series-temporais-de-imagens" title="Link permanente para este cabeçalho"></a></h2>
-<p>Métodos para extração de métricas fenológicas de séries temporais de imagens são descritos no <a class="reference internal" href="../fenologia/index.html#cap-fenologia"><span class="std std-ref">Capítulo sobre Fenologia</span></a>.</p>
-</section>
 </section>
 
 
@@ -193,7 +184,7 @@ de séries temporais de imagens e inferência bayesiana para avaliar as similari
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fab683df340>
+<jinja2.runtime.BlockReference object at 0x7f03397ee9a0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

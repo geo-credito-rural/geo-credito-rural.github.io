@@ -71,6 +71,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-integrada/index.html">10. Análise Integrada</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -133,7 +134,7 @@ a partir desse cubo.</p>
 <p>Cubos de dados de imagens são gerados a partir de <em>dados prontos para análise</em>.
 O termo <em>dados prontos para análise</em> (em inglês <em>Analysis-Ready Data - ARD</em>) definido
 pelo <a class="reference external" href="https://ceos.org/ard/">CEOS</a> (Comitê Internacional de Satélites de Observação da Terra,
-ou em inglês <em>Committee on Earth Observation Satellites - CEOS</em>) se refere à dados de satélites que foram
+ou em inglês <em>Committee on Earth Observation Satellites</em>) se refere à dados de satélites que foram
 processados ​​com um conjunto mínimo de requisitos e organizados em um formato que
 permite análise imediata com um mínimo de esforço adicional do usuário e interoperabilidade ao longo do tempo
 e com outros conjuntos de dados.
@@ -141,23 +142,19 @@ Um dado ARD ou pronto para análise contém atributos de medidas fundamentais pa
 a maioria dos usuários globais que utilizam imagens de sensoriamento remoto em aplicações de mapeamento terrestre e possui um nível mínimo de requisitos para suportar análise de séries temporais e interoperabilidade
 de dados. Além de correção radiométrica, geométrica e atmosférica,
 um dado ARD possui metadados sobre a qualidade de seus valores, indicando, por exemplo, se são nuvens, sombras de nuvens,
-dados falantes, saturação e medidas de acurácia. Para mais informações,
+dados faltantes, ou medidas de acurácia. Para mais informações,
 acesse o documento <a class="reference external" href="https://ceos.org/ard/files/PFS/SR/v5.0.1/CEOS-ARD_Product_Family_Specification_Surface_Reflectance-v5.0.1.pdf">CEOS Analysis Ready Data For Land (pdf)</a>.</p>
-<p>Atualmente, existem diferentes iniciativas para produzir dados prontos para análise (em inglês <em>Analysis-Ready Data - ARD</em>) e
-cubos de dados de observação da Terra para regiões e países específicos, incluindo o
-Swiss Data Cube <span id="id3">[<a class="reference internal" href="../referencias.html#id62" title="Gregory Giuliani, Bruno Chatenoux, Andrea De Bono, Denisa Rodila, Jean-Philippe Richard, Karin Allenbach, Hy Dao, and Pascal Peduzzi. Building an earth observations data cube: lessons learned from the swiss data cube (sdc) on generating analysis ready data (ard). Big Earth Data, 1(1-2):100–117, 2017.">102</a>]</span>, o Digital Earth Africa <span id="id4">[<a class="reference internal" href="../referencias.html#id91" title="Brian Killough. The impact of analysis ready data in the africa regional data cube. In IGARSS 2019-2019 IEEE International Geoscience and Remote Sensing Symposium, 5646–5649. IEEE, 2019.">103</a>]</span>, o Australian Data Cube <span id="id5">[<a class="reference internal" href="../referencias.html#id98" title="Adam Lewis, Simon Oliver, Leo Lymburner, Ben Evans, Lesley Wyborn, Norman Mueller, Gregory Raevksi, Jeremy Hooke, Rob Woodcock, Joshua Sixsmith, and others. The australian geoscience data cube—foundations and lessons learned. Remote Sensing of Environment, 202:276–292, 2017.">104</a>]</span> e o
-Brazil Data Cube <span id="id6">[<a class="reference internal" href="../referencias.html#id56" title="Karine R Ferreira, Gilberto R Queiroz, Lubia Vinhas, Rennan FB Marujo, Rolf EO Simoes, Michelle CA Picoli, Gilberto Camara, Ricardo Cartaxo, Vitor CF Gomes, Lorena A Santos, and others. Earth observation data cubes for brazil: requirements, methodology and products. Remote Sensing, 12(24):4033, 2020. doi:https://doi.org/10.3390/rs12244033.">76</a>]</span>. A Figura a seguir ilustra essas e outras iniciativas no mundo, classificando os cubos de dados que estão operacionais
-(países e regiões pintadas de amarelo) e em desenvolvimento (países e regiões pintadas de vermelho) <span id="id7">[<a class="reference internal" href="../referencias.html#id143" title="Martin Sudmanns, Hannah Augustin, Brian Killough, Gregory Giuliani, Dirk Tiede, Alex Leith, Fang Yuan, and Adam Lewis. Think global, cube local: an earth observation data cube’s contribution to the digital earth vision. Big Earth Data, 7(3):831–859, 2023.">105</a>]</span>.</p>
+<p>Atualmente, existem diferentes iniciativas para produzir dados ARD e cubos de dados de observação da Terra para regiões e países específicos, incluindo o Swiss Data Cube <span id="id3">[<a class="reference internal" href="../referencias.html#id62" title="Gregory Giuliani, Bruno Chatenoux, Andrea De Bono, Denisa Rodila, Jean-Philippe Richard, Karin Allenbach, Hy Dao, and Pascal Peduzzi. Building an earth observations data cube: lessons learned from the swiss data cube (sdc) on generating analysis ready data (ard). Big Earth Data, 1(1-2):100–117, 2017.">102</a>]</span>, o Digital Earth Africa <span id="id4">[<a class="reference internal" href="../referencias.html#id91" title="Brian Killough. The impact of analysis ready data in the africa regional data cube. In IGARSS 2019-2019 IEEE International Geoscience and Remote Sensing Symposium, 5646–5649. IEEE, 2019.">103</a>]</span>, o Australian Data Cube <span id="id5">[<a class="reference internal" href="../referencias.html#id98" title="Adam Lewis, Simon Oliver, Leo Lymburner, Ben Evans, Lesley Wyborn, Norman Mueller, Gregory Raevksi, Jeremy Hooke, Rob Woodcock, Joshua Sixsmith, and others. The australian geoscience data cube—foundations and lessons learned. Remote Sensing of Environment, 202:276–292, 2017.">104</a>]</span> e o Brazil Data Cube <span id="id6">[<a class="reference internal" href="../referencias.html#id56" title="Karine R Ferreira, Gilberto R Queiroz, Lubia Vinhas, Rennan FB Marujo, Rolf EO Simoes, Michelle CA Picoli, Gilberto Camara, Ricardo Cartaxo, Vitor CF Gomes, Lorena A Santos, and others. Earth observation data cubes for brazil: requirements, methodology and products. Remote Sensing, 12(24):4033, 2020. doi:https://doi.org/10.3390/rs12244033.">76</a>]</span>. A Figura a seguir ilustra essas e outras iniciativas no mundo, classificando os cubos de dados que estão operacionais (países e regiões pintadas de amarelo) e em desenvolvimento (países e regiões pintadas de vermelho) <span id="id7">[<a class="reference internal" href="../referencias.html#id143" title="Martin Sudmanns, Hannah Augustin, Brian Killough, Gregory Giuliani, Dirk Tiede, Alex Leith, Fang Yuan, and Adam Lewis. Think global, cube local: an earth observation data cube’s contribution to the digital earth vision. Big Earth Data, 7(3):831–859, 2023.">105</a>]</span>.</p>
 <figure class="align-center align-default" id="id11">
 <a class="reference internal image-reference" href="../_images/data-cubes-world.png"><img alt="Iniciativas no mundo de produção de dados prontos para análise e cubos de dados de observação da Terra." src="../_images/data-cubes-world.png" style="width: 100%;" /></a>
 <figcaption>
 <p><span class="caption-number">Figura 7.3 - </span><span class="caption-text">Iniciativas no mundo de produção de dados prontos para análise (em inglês <em>Analysis-Ready Data - ARD</em>) e cubos de dados de observação da Terra para regiões e países específicos. <br/> <strong>Adapdata de:</strong> <span id="id8">[<a class="reference internal" href="../referencias.html#id143" title="Martin Sudmanns, Hannah Augustin, Brian Killough, Gregory Giuliani, Dirk Tiede, Alex Leith, Fang Yuan, and Adam Lewis. Think global, cube local: an earth observation data cube’s contribution to the digital earth vision. Big Earth Data, 7(3):831–859, 2023.">105</a>]</span>.</span><a class="headerlink" href="#id11" title="Link Permanente para essa imagem"></a></p>
 </figcaption>
 </figure>
-<p>Desde 2019, o Instituto Nacional de Pesquisas Espaciais (INPE) está desenvolvendo um projeto chamado Brazil Data Cube
+<p>Desde 2019, o Instituto Nacional de Pesquisas Espaciais (INPE) está desenvolvendo o Brazil Data Cube
 para gerar cubos de dados multidimensionais a partir de imagens de sensoriamento remoto dos satélites Landsat-8,
-Sentinel-2 e CBERS-4 <span id="id9">[<a class="reference internal" href="../referencias.html#id56" title="Karine R Ferreira, Gilberto R Queiroz, Lubia Vinhas, Rennan FB Marujo, Rolf EO Simoes, Michelle CA Picoli, Gilberto Camara, Ricardo Cartaxo, Vitor CF Gomes, Lorena A Santos, and others. Earth observation data cubes for brazil: requirements, methodology and products. Remote Sensing, 12(24):4033, 2020. doi:https://doi.org/10.3390/rs12244033.">76</a>]</span>.  Esses cubos de dados estão sendo criados para todo o território brasileiro,
-gerando um grande volume de dados que são úteis para diversos tipos de aplicações em sensoriamento remoto. Além disso,
+Sentinel-2 e CBERS-4 <span id="id9">[<a class="reference internal" href="../referencias.html#id56" title="Karine R Ferreira, Gilberto R Queiroz, Lubia Vinhas, Rennan FB Marujo, Rolf EO Simoes, Michelle CA Picoli, Gilberto Camara, Ricardo Cartaxo, Vitor CF Gomes, Lorena A Santos, and others. Earth observation data cubes for brazil: requirements, methodology and products. Remote Sensing, 12(24):4033, 2020. doi:https://doi.org/10.3390/rs12244033.">76</a>]</span>. Esses cubos de dados estão sendo criados para todo o território brasileiro,
+gerando um grande volume de dados úteis para diversos tipos de aplicações em sensoriamento remoto. Além disso,
 a equipe desse projeto está utilizando e desenvolvendo métodos de aprendizado de máquina (<em>machine learning</em>), análise de
 séries temporais e processamento em nuvem (<em>cloud computing</em>) para gerar mapas de uso e cobertura da terra a partir de cubos de
 dados.</p>
@@ -178,7 +175,7 @@ dados.</p>
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fab684ba820>
+<jinja2.runtime.BlockReference object at 0x7f033acd5a60>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

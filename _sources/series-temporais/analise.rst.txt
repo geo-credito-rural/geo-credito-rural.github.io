@@ -34,9 +34,14 @@ Considerando todos os valores dessas séries é possível identificar as mudanç
 
 
 Podemos classificar os métodos de análise de séries temporais de imagens em quatro grupos, como mostrado na Figura a seguir: 
-(1) Classificação de Séries Temporais de Imagens; (2) Agrupamento de Séries Temporais de Imagens; 
-(3) Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens; e 
-(4) Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens.  
+
+.. rst-class:: open
+
+
+- Classificação de Séries Temporais de Imagens
+- Agrupamento de Séries Temporais de Imagens
+- Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens
+- Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens
 
 
 .. figure:: ../img/series-temporais/analise-series-temporais.png
@@ -45,6 +50,9 @@ Podemos classificar os métodos de análise de séries temporais de imagens em q
    :figclass: align-center 
 
    Métodos de Análise de Séries Temporais de Imagens.
+
+
+Os métodos para extração de métricas fenológicas de séries temporais de imagens são descritos no :ref:`Capítulo sobre Fenologia <cap_fenologia>`, e os métodos de agrupamentos de séries temporais são apresentados no :ref:`Capítulo sobre Padrões de Séries Temporais <cap_padroes_series_temporais>`. 
 
 
 Classificação de Séries Temporais de Imagens
@@ -75,25 +83,3 @@ rede neural *Self-Organizing Maps* (SOM) e inferência bayesiana. SOM é uma té
 O método proposto produz métricas que indicam a qualidade das amostras de uso e cobertura da terra, usando o SOM para gerar clusters ou agrupamentos 
 de séries temporais de imagens e inferência bayesiana para avaliar as similaridades *intra-cluster* e *inter-cluster* :cite:`santos:2021`. 
 
-
-Agrupamento de Séries Temporais de Imagens
-------------------------------------------
-
-
-Métodos de agrupamentos de séries temporais são descritos no :ref:`Capítulo sobre Padrões de Séries Temporais <cap_padroes_series_temporais>`.
-
-
-Detecção de Distúrbios/Mudanças em Séries Temporais de Imagens
---------------------------------------------------------------
-
-
-
-Extração de Métricas Fenológicas da Vegetação a partir de Séries Temporais de Imagens
--------------------------------------------------------------------------------------
-
-
-Métodos para extração de métricas fenológicas de séries temporais de imagens são descritos no :ref:`Capítulo sobre Fenologia <cap_fenologia>`.
-
-
-
-   

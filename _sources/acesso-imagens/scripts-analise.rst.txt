@@ -40,7 +40,7 @@ Veja que nesse caso o nome dos arquivos já contém informações importantes so
     * - **L4**
       - nível de processamento da imagem, nesse caso L4 é o melhor produto disponível, sendo 0 o nível de dados brutos, 1 quando foi aplicada correção radiométrica sobre o nível anterior, 2 quando foi aplicada correção de sistema sobre o nível anterior, 3 quando foi aplicada correção geométrica utilizando pontos de controle sobre o nível anterior, e por fim 4 quando a imagem do nível anterior foi ortorretificada (observação: cada satélite possui uma quantidade diferente de níveis de processamento, e formas variadas de representação desses níveis)
     * - **BAND1, ... BAND4**
-      - indica a banda específica, no caso do AMAZONIA-1, BAND1 corresponde ao canal verde, BAND2 ao canal azul, BAND3 ao canal vermelho, e BAND4 ao canal infravermelho (observação: nem sempre a banda número 1 de um sensor vai corresponder ao canal verde, e nem sempre a BAND4 ao canal infravermelho; isso sempre depende da quantidade de bandas que cada sensor possui.
+      - indica a banda específica, no caso do AMAZONIA-1, BAND1 corresponde ao canal azul, BAND2 ao canal verde, BAND3 ao canal vermelho, e BAND4 ao canal infravermelho (observação: nem sempre a banda número 1 de um sensor vai corresponder ao canal verde, e nem sempre a BAND4 ao canal infravermelho; isso sempre depende da quantidade de bandas que cada sensor possui.
 
 
 .. note::
@@ -66,7 +66,7 @@ Quando trabalhamos com arquivos separados para cada banda, é preciso carregar c
             .. code-block:: python
 
               with rio.open('AMAZONIA_1_WFI_20220819_035_020_L4_BAND1.tif') as banda1:
-                  matriz_verde = banda1.read(1)
+                  matriz_azul = banda1.read(1)
                   # as linhas a seguir são para apresentar algumas informações sobre a imagem
                   resolucao_espacial = banda1.res[0]
                   linhas = banda1.height
@@ -75,7 +75,7 @@ Quando trabalhamos com arquivos separados para cada banda, é preciso carregar c
                   print(f'área total imageada: {linhas * colunas * resolucao_espacial * resolucao_espacial / 1000000} km²')
 
               with rio.open('AMAZONIA_1_WFI_20220819_035_020_L4_BAND2.tif') as banda2:
-                  matriz_azul = banda2.read(1)
+                  matriz_verde = banda2.read(1)
               with rio.open('AMAZONIA_1_WFI_20220819_035_020_L4_BAND3.tif') as banda3:
                   matriz_vermelho = banda3.read(1)
               with rio.open('AMAZONIA_1_WFI_20220819_035_020_L4_BAND4.tif') as banda4:

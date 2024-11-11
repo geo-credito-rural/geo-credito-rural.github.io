@@ -76,6 +76,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../series-temporais/index.html">7. Séries Temporais de Imagens de Satélites</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../fenologia/index.html">8. Fenologia</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../padroes-series-temporais/index.html">9. Padrões em Séries Temporais de Imagens de Satélites</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../analise-integrada/index.html">10. Análise Integrada</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Referências Bibliográficas</span></p>
 <ul>
@@ -151,7 +152,7 @@
 <td><p>nível de processamento da imagem, nesse caso L4 é o melhor produto disponível, sendo 0 o nível de dados brutos, 1 quando foi aplicada correção radiométrica sobre o nível anterior, 2 quando foi aplicada correção de sistema sobre o nível anterior, 3 quando foi aplicada correção geométrica utilizando pontos de controle sobre o nível anterior, e por fim 4 quando a imagem do nível anterior foi ortorretificada (observação: cada satélite possui uma quantidade diferente de níveis de processamento, e formas variadas de representação desses níveis)</p></td>
 </tr>
 <tr class="row-even"><td><p><strong>BAND1, … BAND4</strong></p></td>
-<td><p>indica a banda específica, no caso do AMAZONIA-1, BAND1 corresponde ao canal verde, BAND2 ao canal azul, BAND3 ao canal vermelho, e BAND4 ao canal infravermelho (observação: nem sempre a banda número 1 de um sensor vai corresponder ao canal verde, e nem sempre a BAND4 ao canal infravermelho; isso sempre depende da quantidade de bandas que cada sensor possui.</p></td>
+<td><p>indica a banda específica, no caso do AMAZONIA-1, BAND1 corresponde ao canal azul, BAND2 ao canal verde, BAND3 ao canal vermelho, e BAND4 ao canal infravermelho (observação: nem sempre a banda número 1 de um sensor vai corresponder ao canal verde, e nem sempre a BAND4 ao canal infravermelho; isso sempre depende da quantidade de bandas que cada sensor possui.</p></td>
 </tr>
 </tbody>
 </table>
@@ -164,7 +165,7 @@
 <details class="summary-solucao">
 <summary>Solução:</summary><div class="sphinx-tabs docutils container">
 <div aria-label="Tabbed content" class="closeable" role="tablist"><button aria-controls="panel-0-0-0" aria-selected="true" class="sphinx-tabs-tab" id="tab-0-0-0" name="0-0" role="tab" tabindex="0">Python</button></div><div aria-labelledby="tab-0-0-0" class="sphinx-tabs-panel" id="panel-0-0-0" name="0-0" role="tabpanel" tabindex="0"><div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;AMAZONIA_1_WFI_20220819_035_020_L4_BAND1.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">banda1</span><span class="p">:</span>
-    <span class="n">matriz_verde</span> <span class="o">=</span> <span class="n">banda1</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">matriz_azul</span> <span class="o">=</span> <span class="n">banda1</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
     <span class="c1"># as linhas a seguir são para apresentar algumas informações sobre a imagem</span>
     <span class="n">resolucao_espacial</span> <span class="o">=</span> <span class="n">banda1</span><span class="o">.</span><span class="n">res</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
     <span class="n">linhas</span> <span class="o">=</span> <span class="n">banda1</span><span class="o">.</span><span class="n">height</span>
@@ -173,7 +174,7 @@
     <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;área total imageada: </span><span class="si">{</span><span class="n">linhas</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">colunas</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">resolucao_espacial</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">resolucao_espacial</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">1000000</span><span class="si">}</span><span class="s1"> km²&#39;</span><span class="p">)</span>
 
 <span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;AMAZONIA_1_WFI_20220819_035_020_L4_BAND2.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">banda2</span><span class="p">:</span>
-    <span class="n">matriz_azul</span> <span class="o">=</span> <span class="n">banda2</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">matriz_verde</span> <span class="o">=</span> <span class="n">banda2</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;AMAZONIA_1_WFI_20220819_035_020_L4_BAND3.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">banda3</span><span class="p">:</span>
     <span class="n">matriz_vermelho</span> <span class="o">=</span> <span class="n">banda3</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="k">with</span> <span class="n">rio</span><span class="o">.</span><span class="n">open</span><span class="p">(</span><span class="s1">&#39;AMAZONIA_1_WFI_20220819_035_020_L4_BAND4.tif&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">banda4</span><span class="p">:</span>
@@ -287,7 +288,7 @@
   </div>
 
   
-<jinja2.runtime.BlockReference object at 0x7fab6876bc70>
+<jinja2.runtime.BlockReference object at 0x7f03397edfd0>
 <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc-sa.png" width="117" height="41"/></a> This work is licensed under a <a rel="license" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons “Attribution-NonCommercial-ShareAlike 4.0 International” license</a>.
 
 

@@ -1,0 +1,44 @@
+.. include:: ../def.rst
+
+
+.. _cap_analise_integrada:
+
+Análise Integrada
+=================
+
+Uma forma de sintetizar parte das informações que se podem obter a partir da geometria de uma gleba, é por meio de uma visualização integrada de dados. Partindo da geometria de uma gleba, uma forma de retomar os capítulos anteriores é agregar as consultas que já foram realizadas, tanto pelo cruzamento de bases de dados vetoriais, quanto pela consulta e análise de imagens de sensoriamento remoto. Assim, a localização da geometria é o ponto de partida para se realizar o cruzamento com dados de malha fundiária, mapas de uso e cobertura da terra, observação e classificação por *clustering* de séries temporais pontuais e apresentação de estatísticas dos recortes das imagens e de índices espectrais ao longo do tempo.
+
+Uma maneira comum de compilar o resultado de análises é através da geração de um relatório, por exemplo um documento no formato PDF (*Portable Document Format* - formato portátil de documento). Este formato foi criado pela empresa Adobe, e atualmente é um padrão aberto mantido pela International Organization of Standardization (ISO) :cite:`adobe:2024`. Por meio da implementação de um conjunto de scripts, é possível salvar as figuras geradas como páginas de um relatório no formato PDF, contendo o resultado das análises.
+
+Para elaborar uma análise integrada, um conjunto de passos é sugerido:
+
+.. rst-class:: open
+
+- Disponibilizar uma entrada de dados por parte do usuário. Considerando o banco de dados contendo as geometrias das glebas associadas às operações de crédito contratadas com recursos públicos, um potencial usuário de uma análise integrada identifica essa gleba, por meio das chaves 'ref_bacen' e 'nu_ordem', conforme apresentado na :numref:`Seção %s <sec_sicor_microdados_glebas>`.
+
+- Carregar na base de dados, a geometria correspondente, além de um intervalo de datas para a análise das imagens e cruzamento com mapas de referência de uso e cobertura da terra, conforme apresentado na :numref:`Seção %s <sec_uso_cobertura_terra>`.
+
+- Realizar o cálculo de métricas espaciais da gleba selecionada, para que com isso seja possível observar desde indicadores usuais como área e perímetro, como também indicadores de forma que evidenciam se a geometria da gleba, embora válida do ponto de vista vetorial, não possui irregularidade de forma. Essa irregularidade pode indicar uma forma muito diferente do esperado (as formas mais usuais seriam retangulares ou circulares, e suas variações). Outra possibilidade de análise com as formas é integrando várias glebas, permitindo a descoberta de grupos de glebas com formas semelhantes, porém a análise integrada aqui proposta é para geometrias individuais. Mais informações sobre as métricas espaciais podem ser encontradas na :numref:`Seção %s <sec_sicor_microdados_glebas_forma>`.
+
+- Realizar o cruzamento da gleba com mapeamentos de uso e cobertura da terra, dado que este tipo de mapas são geralmente produzidos a partir de imagens de satélites de observação da Terra, e que temos diferentes iniciativas e projetos gerando essa informação, torna-se possível obter informações complementares, além de comparar os diferentes mapeamentos para se ter maior certeza sobre as classes encontradas no cruzamento com a gleba. A descrição dos diferentes produtos de uso e cobertura da terra podem ser encontradas na :numref:`Seção %s <sec_uso_cobertura_terra>`.
+
+- Gerar um conjunto de pontos aleatórios dentro da gleba, de forma a não sobrecarregar um servidor de dados com muitas buscas, mas também não generalizar demais a busca com um valor único, como por exemplo o centroide da gleba. A partir desse conjunto de pontos é possível realizar as seguintes operações de consulta:
+
+  - visualizar séries temporais com o WTSS (*Web Time Series Service*), conforme descrito na :numref:`Seção %s <sec_series_temporais_wtss>`.
+
+  - complementar a visualização da série com o WLTS (*Web Land Trajectory Service*), conforme descrito na :numref:`Seção %s <sec_uso_cobertura_terra_wlts>`.
+
+  - computar e visualizar métricas fenológicas das séries temporais obtidas, conforme descrito na :numref:`Seção %s <sec_fenologia_wcpms>`.
+
+- obter recortes de imagens de sensoriamento remoto, índices espectrais e estatísticas intermediárias, conforme descrito na :numref:`Seção %s <sec_acesso_imagens_indices_espectrais>`. Cada imagem é um recorte disponível na série temporal, acompanhado de um gráfico com as seguintes medidas:
+  - **nv**: quantidade de pixels identificados como nuvens, em formato de porcentagem
+  - **vg**: pixels identificados com alto valor no índice de vegetação, pelo NDVI *normalized difference vegetation index*
+  - **qm**: pixels identificados com alto valor no índice de queimadas, via NBR *normalized burn ratio*
+  - **tx**: índice de textura, relacionado com desvio padrão dos pixels
+  - **um**: pixels identificados com alto índice de água, pelo NDWI *normalized difference water index*
+  - **so**: pixels identificados com alto índice de solo exposto, via SCI *soil composition index*
+
+- finalizar e exportar em um documento o relatório com as saídas obtidas
+
+O conjunto de scripts contendo essa execução pode ser encontrado no seguinte `link da plataforma Kaggle <https://www.kaggle.com/code/thalessehnkorting/tema8-visualizacao-integrada>`__.
+

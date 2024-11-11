@@ -65,6 +65,7 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     series-temporais/index
     fenologia/index
     padroes-series-temporais/index
+    analise-integrada/index
 
 
 .. toctree::

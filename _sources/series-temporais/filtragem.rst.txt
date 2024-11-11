@@ -7,14 +7,25 @@ Filtragem de Dados Oriundos de Séries Temporais de Imagens de Satélite
 ======================================================================
 
 
-Uma série temporal oriunda das imagens de satélite podem estar sujeita a ocorrência de ruídos oriundos de diversos fatores como a presença de nuvens, falhas do detector, geometria de iluminação e visada, dentre outros :cite:`jonsson:2002,eklundh:2016,hird:2009`. Para minimizar os efeitos dos ruídos em séries temporais foram criados diversos filtros. Neste sentido, :cite:t:`hird:2009` testaram seis filtros e concluíram que quatro filtros deles produziram bons resultados: a) 4253H twice :cite:`velleman:1977`; b) savitzky–Golay :cite:`savitzky:1964` c) função duplo-logística :cite:`beck:2006` e; d) gaussiano assimétrico :cite:`jonsson:2002`. Além deles, também podem ser utilizados os filtros Hants que tem por base a transformada de Fourier :cite:`roerink:2000`.
+Uma série temporal gerada por imagens de satélite pode estar sujeita à ocorrência de ruídos oriundos de diversos fatores como a presença de nuvens, falhas do detector, geometria de iluminação e visada, dentre outros :cite:`jonsson:2002,eklundh:2016,hird:2009`. Para minimizar os efeitos dos ruídos em séries temporais foram criados diversos filtros. Neste sentido, :cite:t:`hird:2009` testaram seis filtros e concluíram que quatro deles produziram bons resultados: 
+
+
+.. rst-class:: open
+
+- 4253H twice :cite:`velleman:1977`
+- Savitzky–Golay :cite:`savitzky:1964`
+- função duplo-logística :cite:`beck:2006`
+- gaussiano assimétrico :cite:`jonsson:2002`
+
+
+Além deles, também podem ser utilizados os filtros Hants que têm por base a transformada de Fourier :cite:`roerink:2000`.
 
 
 4253H twice
 -----------
 
 
-Este filtro é uma adequação do filtro de mediana proposto por :cite:t:`velleman:1977`. A parte numérica do nome do filtro *4253* representa a largura da janela temporal utilizada para o cálculo da mediana. Por exemplo, inicialmente o filtro considera uma janela de quatro datas. A partir das quatro primeiras datas é calculado um valor da primeira de mediana. Na sequência a janela é deslocada uma data no tempo e, é composta pelos dados das três últimas datas da janela anterior mais a data seguinte e assim sucessivamente até a última data da série temporal do período considerado. Na segunda, terceira e quarta rodada do filtro as janelas tem tamanho de 2, 5 e 3 datas, respectivamente. O termo *H* do nome do filtro refere-se à função de Hann e o *twice* é devido à função ser aplicada tanto nos dados quanto nos resíduos. A função de Hann ou Hanning representa uma função simétrica utilizada para filtrar os dados, cujo maior peso é dado ao elemento central da janela. Para calcular os coeficientes da função de Hann, deve-se resolver a :eq:`eq:series-temporais:filtragem:hann`:
+Este filtro é uma adequação do filtro de mediana proposto por :cite:t:`velleman:1977`. A parte numérica do nome do filtro *4253* representa a largura da janela temporal utilizada para o cálculo da mediana. Por exemplo, inicialmente o filtro considera uma janela de quatro datas. A partir das quatro primeiras datas é calculado um valor da primeira mediana. Na sequência a janela é deslocada uma data no tempo e, é composta pelos dados das três últimas datas da janela anterior mais a data seguinte e assim sucessivamente até a última data da série temporal do período considerado. Na segunda, terceira e quarta rodadas do filtro as janelas têm tamanho de 2, 5 e 3 datas, respectivamente. O termo *H* do nome do filtro refere-se à função de Hann e o *twice* é devido à função ser aplicada tanto nos dados quanto nos resíduos. A função de Hann ou Hanning representa uma função simétrica utilizada para filtrar os dados, cujo maior peso é dado ao elemento central da janela. Para calcular os coeficientes da função de Hann, deve-se resolver a :eq:`eq:series-temporais:filtragem:hann`:
 
 
 .. math::
@@ -23,7 +34,7 @@ Este filtro é uma adequação do filtro de mediana proposto por :cite:t:`vellem
     w(n) = 0.5 \left( 1 - \cos \left( 2 \pi \frac{n}{N} \right) \right), \quad 0 \leq n \leq N
 
 
-em que: :math:`N` representa o número total de elementos da janela, :math:`n` o elemento que será calculado, e :math:`w` o valor do coeficiente calculado para o elemento :math:`n`.
+em que :math:`N` representa o número total de elementos da janela, :math:`n` o elemento que será calculado, e :math:`w` o valor do coeficiente calculado para o elemento :math:`n`.
 
 
 Inicialmente, o filtro de medianas, com as janelas (:math:`v`) de tamanho 4, 2, 5 e 3, é aplicado à série temporal (:math:`x_t`) no tempo :math:`t`. Para o caso de :math:`n` ser um número ímpar a :eq:`eq:series-temporais:filtragem:med-impar` deve ser utilizada:
@@ -38,7 +49,7 @@ Inicialmente, o filtro de medianas, com as janelas (:math:`v`) de tamanho 4, 2, 
 em que :math:`v = 2u+1` e :math:`y_t` referem-se ao valor de mediana para o elemento na posição :math:`t`.
 
 
-quando :math:`v` for um número par, a :eq:`eq:series-temporais:filtragem:med-par` deve ser utilizada:
+Quando :math:`v` for um número par, a :eq:`eq:series-temporais:filtragem:med-par` deve ser utilizada:
 
 
 .. math::
@@ -59,7 +70,7 @@ Na série filtrada resultante é aplicada a função de Hann com uma janela de t
     z_t = \frac{1}{4} y_{t-1} + \frac{1}{2} y_t + \frac{1}{4} y_{t+1}, \quad 0 \leq t \leq T
 
 
-em que: :math:`z_t` refere-se ao valor do elemento e :math:`y_t` é o valor mediano no tempo :math:`t`.
+em que :math:`z_t` refere-se ao valor do elemento e :math:`y_t` é o valor mediano no tempo :math:`t`.
 
 
 Após esta nova filtragem é calculado o resíduo entre os dados originais e os dados filtrados (:eq:`eq:series-temporais:filtragem:residuos-4253`):
@@ -80,7 +91,19 @@ Savitzky–Golay
 --------------
 
 
-O filtro de *Savitzky–Golay* :cite:`savitzky:1964` é um clássico entre os filtros de suavização de sinais analíticos, de séries temporais ou de sinais. A equação para o filtro Savitzky-Golay é baseada em um ajuste polinomial de uma janela deslizante de dados. Para aplicar este filtro, os seguintes passos devem ser realizados: i) definir a largura da janela temporal; ii) remover o ponto central do intervalo abrangido pela janela; iii) ajustar, pelo método dos mínimos quadrados, um polinômio de grau variável aos dados restantes; iv) utilizar o polinômio para estimar o valor do ponto removido e substituir este valor; v) deslocar a janela para o próximo ponto e repetir o processo anterior. A equação geral deste filtro é apresentada na :eq:`eq:series-temporais:filtragem:savitzky–golay`:
+O filtro de *Savitzky–Golay* :cite:`savitzky:1964` é um clássico entre os filtros de suavização de sinais analíticos, de séries temporais ou de sinais. A equação para o filtro Savitzky-Golay é baseada em um ajuste polinomial de uma janela deslizante de dados. Para aplicar este filtro, os seguintes passos devem ser realizados: 
+
+
+.. rst-class:: open
+
+- definir a largura da janela temporal
+- remover o ponto central do intervalo abrangido pela janela
+- ajustar, pelo método dos mínimos quadrados, um polinômio de grau variável aos dados restantes
+- utilizar o polinômio para estimar o valor do ponto removido e substituir este valor
+- deslocar a janela para o próximo ponto e repetir o processo anterior. 
+
+
+A equação geral deste filtro é apresentada na :eq:`eq:series-temporais:filtragem:savitzky–golay`:
 
 
 .. math::
@@ -149,7 +172,20 @@ Duplo-logística
 ---------------
 
 
-Este filtro usa a função logística com dois parâmetros de ajuste para filtrar os dados e foi proposto por :cite:t:`beck:2006` para modelar o comportamento temporal do NDVI em áreas de alta latitude (tundra e taiga). Posteriormente, :cite:t:`julien:2009, julien:2010` utilizaram este filtro nos dados de NDVI para estimar os parâmetros fenológicos da vegetação de todo o globo terrestre. Para utilizar este filtro é necessário definir 6 parâmetros: i) valor mínimo do índice espectral :math:`(w_{IV})`; ii) valor máximo do índice espectral :math:`(m_{IV})`; iii) ponto de inflexão da curva quando ela está acendente :math:`(s)`; iv) ponto de inflexão da curva, um quando ela começa a descendente :math:`(a)`; v) a taxa de incremento em :math:`s (\Delta s)`  e vi) a taxa de decréscimo em :math:`a (\Delta a)`. A equação do filtro é apresentada na :eq:`eq:series-temporais:filtragem:duplo-logistica`:
+Este filtro usa a função logística com dois parâmetros de ajuste para filtrar os dados e foi proposto por :cite:t:`beck:2006` para modelar o comportamento temporal do NDVI em áreas de alta latitude (tundra e taiga). Posteriormente, :cite:t:`julien:2009, julien:2010` utilizaram este filtro nos dados de NDVI para estimar os parâmetros fenológicos da vegetação de todo o globo terrestre. Para utilizar este filtro é necessário definir 6 parâmetros:
+
+
+.. rst-class:: open
+
+- valor mínimo do índice espectral :math:`(w_{IV})`
+- valor máximo do índice espectral :math:`(m_{IV})`
+- ponto de inflexão da curva quando ela está acendente :math:`(s)`
+- ponto de inflexão da curva, um quando ela começa a descendente :math:`(a)`
+- a taxa de incremento em :math:`s (\Delta s)`
+- a taxa de decréscimo em :math:`a (\Delta a)`
+
+
+A equação do filtro é apresentada na :eq:`eq:series-temporais:filtragem:duplo-logistica`:
 
 
 .. math::
@@ -162,7 +198,7 @@ Séries de Fourier
 -----------------
 
 
-As séries de Fourier ou Análise harmônica receberam este nome em homenagem a Jean-Baptiste Joseph Fourier, matemático e físico Frances que iniciou a investigação sobre a decomposição de funções periódicas em séries trigonométricas convergentes chamadas séries de Fourier e a sua aplicação aos problemas da condução do calor. Atualmente esta técnica é aplicada as mais diversas áreas do conhecimento :cite:`roerink:2000,morettin:2004`.
+As séries de Fourier ou Análise harmônica receberam este nome em homenagem a Jean-Baptiste Joseph Fourier, matemático e físico Francês que iniciou a investigação sobre a decomposição de funções periódicas em séries trigonométricas convergentes chamadas séries de Fourier e a sua aplicação aos problemas da condução do calor. Atualmente esta técnica é aplicada nas mais diversas áreas do conhecimento :cite:`roerink:2000,morettin:2004`.
 
 
 As séries de Fourier permitem representar uma função complexa por uma somatória de ondas (termos) senoidais e cossenoidais, em que cada onda é definida por um valor único de amplitude e de fase. A amplitude corresponde à metade do valor em que a função é maximizada e a fase (ou ângulo de fase) é o deslocamento entre a origem e o pico da onda no intervalo de :math:`0` até :math:`2 \pi`. Cada termo designa o número de ciclos completados por uma onda num determinado intervalo: o primeiro harmônico ou harmônico fundamental tem um período :math:`T` igual ao período total em estudo; o segundo harmônico tem um período igual à metade do período do primeiro harmônico :math:`\frac{T}{2}`, o terceiro harmônico igual à terceira parte do período :math:`\frac{T}{3}` e assim sucessivamente. A somatória dos termos produz uma curva complexa, em que cada componente (termo) representa um percentual do total da variância da série original :cite:`roerink:2000,morettin:2004,jakubauskas:2002`. A representação gráfica desse processo pode ser observada na :numref:`Figura %s <fig:series-temporais:fourrier-harmonicos>`.
