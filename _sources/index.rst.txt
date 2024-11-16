@@ -80,7 +80,9 @@ Espera-se que o aluno aproveite a oportunidade no curso para aprofundar seu conh
     :caption: Informações Gerais:
 
     licenca
-    agradecimentos
+    panoptes
+    coordenacao
+    apoio
     genindex
     glossary
     search

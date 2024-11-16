@@ -1,0 +1,30 @@
+Projeto Panoptes
+================
+
+
+Irregularidades relacionadas às **políticas de crédito rural** e seguro rural (Proagro) ocorrem há várias décadas. 
+Auditorias do Tribunal de Contas da União (TCU) apontam para fragilidades na gestão de risco de ambas. 
+Apesar de reconhecerem a necessidade de automação do monitoramento das operações de crédito rural, o Banco Central do Brasil e diversas outras instituições 
+encontram barreiras históricas para a sua operacionalização.
+
+
+A situação em 2023 era de considerável descompasso entre a tecnologia à disposição e a precariedade das tecnologias de fato utilizadas pelos órgãos 
+responsáveis pela fiscalização do crédito. Nesse cenário, o **Grupo de Pesquisa em Geotecnologias** do Programa de Pós-Graduação e Pesquisas do Instituto 
+Serzedello Corrêa (ISC) propôs em 2023 o projeto Panoptes, considerando:
+
+.. rst-class:: open
+
+
+a. A relevância da política de crédito rural para economia e sociedade;
+b. A escala dos recursos públicos investidos anualmente;
+c. Os riscos de desvios nas operações de crédito e Proagro;
+d. Os riscos de utilização dos recursos para atividades ilícitas; 
+e. Os riscos de desconsiderar os impeditivos sociais e ambientais, gerando externalidades negativas;
+f. Os riscos reputacionais ao sistema financeiro e ao Brasil; e
+g. O histórico hiato entre a tecnologia à disposição e a tecnologia efetivamente em uso pelos órgãos de fiscalização e de polícia.
+
+
+Participaram do Panoptes instituições financeiras, cooperativas de crédito, universidades públicas, órgãos públicos de fiscalização e 
+polícia, institutos públicos de pesquisa e organizações da sociedade civil. O projeto contou com o envolvimento e colaboração de mais 
+de 120 pessoas.
+
